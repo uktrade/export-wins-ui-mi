@@ -1,0 +1,48 @@
+{% extends 'govuk_template.html' %}
+
+{% set global_header_text='Data Hub' %}
+
+{% block cookie_message %}GOV.UK uses cookies to make the site simpler. <a href="https://www.gov.uk/help/cookies">Find out more about cookies</a>{% endblock cookie_message %}
+{% block page_title %}MI - Homepage{% endblock page_title %}
+
+{% block head %}
+<!-- build:css(src) /public/css/app.min.css -->
+	<link rel="stylesheet" href="/public/css/main.css">
+<!-- endbuild -->
+{% endblock head %}
+
+{% block content %}
+	<div class="page-content">
+
+		<div class="phase-banner">
+			<p>
+				<strong class="phase-tag">ALPHA</strong>
+				<span>This is a new service – your <a href="#">feedback</a> will help us to improve it.</span>
+			</p>
+		</div>
+
+		<nav class="top-nav">
+			<a href="{{ uuid }}/">Management information</a>
+		</nav>
+
+		{% block page_content %}{% endblock %}
+	</div>
+{% endblock %}
+
+{% block body_end %}
+	{% block script %}
+	<!-- build:js(src) /public/js/jessie.min.js -->
+	<script src="/public/js/vendor/jessie/jessie.js"></script>
+	<!-- endbuild -->
+	<script src="/public/js/vendor/plotly/plotly-basic-1.20.5.min.js"></script>
+	<!-- build:js(src) /public/js/app.min.js -->
+		<script src="/public/js/mi.js"></script>
+		<script src="/public/js/mi.plot.js"></script>
+		<script src="/public/js/pages/page.sector.js"></script>
+		<script src="/public/js/pages/page.region.js"></script>
+	<!-- endbuild -->
+	{% endblock script %}
+
+	{% block pageScript %}
+	{% endblock pageScript %}
+{% endblock body_end %}

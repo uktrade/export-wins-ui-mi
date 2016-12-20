@@ -1,0 +1,12 @@
+{
+ 	"env": {
+		"node": false,
+		"browser": true
+	},
+
+	"globals": {
+		"mi": true,
+		"Plotly": false,
+		"jessie": false
+	}
+}

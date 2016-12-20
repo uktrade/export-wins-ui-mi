@@ -1,0 +1,41 @@
+@import 'colours';
+@import 'typography';
+
+.sector-wins_list {
+	border: 1px solid $grey-2;
+	padding: 0;
+}
+
+.sector-wins_list_item {
+	
+	display: table-cell;
+	border-right: 1px solid $grey-2;
+	padding: 0.5em;
+
+	&:last-of-type {
+		border-right: none;
+	}
+}
+
+.sector-wins_list_item_heading {
+
+	@include bold-19;
+	margin-top: 1em;
+
+	&:first-of-type {
+		margin-top: 0;
+	}
+}
+
+.sector-wins_list_item_gauge-heading {
+	margin-bottom: 0.5em;
+}
+
+.sector-wins_list_item_gauge {
+	margin: 0 auto;
+}
+
+.sector-wins_list_item_value {
+	margin: 0.5em 0;
+}
+

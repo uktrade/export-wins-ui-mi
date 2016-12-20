@@ -1,0 +1,12 @@
+node_modules
+*.DS_Store
+.tmp
+npm-debug.log
+dist
+.env
+jinja_govuk_template-*
+.sass-cache
+src/public/**/*.map
+src/stubs
+src/mocks
+

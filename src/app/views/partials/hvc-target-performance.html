@@ -1,0 +1,108 @@
+<div class="hvc-perf">
+	<table class="hvc-perf_table">
+		<thead>
+			<tr>
+				<th colspan="3"></th>
+				<th colspan="3" class="hvc-perf_table_cell_heading">&pound;millions</th>
+			</tr>
+			<tr>
+				<th class="hvc-perf_table_cell_region">HVC name</th>
+				<th class="hvc-perf_table_cell_heading">change from last quarter</th>
+				<th class="hvc-perf_table_cell_heading">Percentage of target reached</th>
+				<th><span class="visually-hidden">Over target</span></th>
+				<th class="hvc-perf_table_cell_heading">Export value</th>
+				<th class="hvc-perf_table_cell_heading">Including confirmed</th>
+				<th class="hvc-perf_table_cell_heading">Target</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for item in hvcTargetPerformance %}
+			<tr class="hvc-perf_table_row">
+				<td class="hvc-perf_table_cell hvc-perf_table_cell--region">{{ item.region }}</td>
+				<td class="hvc-perf_table_cell hvc-perf_table_cell--change">
+					<span class="hvc-perf_table_cell_arrow hvc-perf_table_cell_arrow--{{ item.change }}"></span>
+					<span class="visually-hidden">{{ item.change }}</span>
+				</td>
+				<td class="hvc-perf_table_cell hvc-perf_table_cell--percent-complete">
+					<span class="visually-hidden">{{ item.progress.confirmed }}% confirmed</span>
+					<span class="visually-hidden">{{ item.progress.unconfirmed }}% unconfirmed</span>
+					<span class="hvc-perf_table_cell_bar hvc-perf_table_cell_bar--{{ item.status }}" style="width:{{ item.progress.confirmed }}%"></span>
+					{%- if item.progress.unconfirmed > 0 -%}
+					<span class="hvc-perf_table_cell_bar hvc-perf_table_cell_bar--unconfirmed" style="width:{{ item.progress.unconfirmed }}%"></span>
+					{%- endif %}
+					<span class="hvc-perf_table_cell_50-percent"></span>
+					<span class="hvc-perf_table_cell_over-percentage"></span>
+				</td>
+				<td class="hvc-perf_table_cell hvc-perf_table_cell--over-target">
+					<span class="visually-hidden">
+						{%- if item.progress.overThreshold -%}
+						Yes
+						{%- else -%}
+						No
+						{%- endif -%}
+					</span>
+					{%- if item.progress.overThreshold -%}
+					<span class="hvc-perf_table_cell_over-marker hvc-perf_table_cell_over-marker--{% if item.progress.unconfirmed > 0 %}unconfirmed{% else %}{{ item.status }}{% endif %}"></span>
+					{%- endif -%}
+				</td>
+				<td class="hvc-perf_table_cell hvc-perf_table_cell--confirmed">{{ item.value.confirmed | largeNumber }}</td>
+				<td class="hvc-perf_table_cell hvc-perf_table_cell--combined">{{ item.value.total | largeNumber }}</td>
+				<td class="hvc-perf_table_cell hvc-perf_table_cell--target">{{ item.target | largeNumber }}</td>
+			</tr>
+			{% endfor %}
+
+			<tr>
+				<td colspan="2"></td>
+				<td>
+					
+					<div class="hvc-perf_percent-markers">
+						<span class="hvc-perf_percent-markers_marker hvc-perf_percent-markers_marker--0">
+							<span class="hvc-peft_percent-markers_marker_text">0%</span>
+						</span>
+						<span class="hvc-perf_percent-markers_marker hvc-perf_percent-markers_marker--25">
+							<span class="hvc-peft_percent-markers_marker_text">25%</span>
+						</span>
+						<span class="hvc-perf_percent-markers_marker hvc-perf_percent-markers_marker--50">
+							<span class="hvc-peft_percent-markers_marker_text">50%</span>
+						</span>
+						<span class="hvc-perf_percent-markers_marker hvc-perf_percent-markers_marker--75">
+							<span class="hvc-peft_percent-markers_marker_text">75%</span>
+						</span>
+						<span class="hvc-perf_percent-markers_marker hvc-perf_percent-markers_marker--100">
+							<span class="hvc-peft_percent-markers_marker_text">100%</span>
+						</span>
+						<span class="hvc-perf_percent-markers_marker hvc-perf_percent-markers_marker--125">
+							<span class="hvc-peft_percent-markers_marker_text">125%</span>
+						</span>
+					</div>
+				</td>
+				<td colspan="4"></td>
+			</tr>
+
+		</tbody>
+	</table>
+
+	<h3 class="visually-hidden">Colour keys</h3>
+	<ul class="hvc-perf_key">
+		<li class="hvc-perf_key_item">
+			<span class="hvc-perf_key_item_colour hvc-perf_key_item_colour--green"></span>
+			<span class="visually-hidden">Green is for </span>
+			<span class="hvc-perf_key_item_text">on target confirmed</span>
+		</li>
+		<li class="hvc-perf_key_item">
+			<span class="hvc-perf_key_item_colour hvc-perf_key_item_colour--amber"></span>
+			<span class="visually-hidden">Amber is for </span>
+			<span class="hvc-perf_key_item_text">amber confirmed</span>
+		</li>
+		<li class="hvc-perf_key_item">
+			<span class="hvc-perf_key_item_colour hvc-perf_key_item_colour--red"></span>
+			<span class="visually-hidden">Red is for </span>
+			<span class="hvc-perf_key_item_text">red confirmed</span>
+		</li>
+		<li class="hvc-perf_key_item">
+			<span class="hvc-perf_key_item_colour hvc-perf_key_item_colour--grey"></span>
+			<span class="visually-hidden">Grey is for </span>
+			<span class="hvc-perf_key_item_text">unconfirmed wins</span>
+		</li>
+	</ul>
+</div>

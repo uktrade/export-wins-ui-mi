@@ -1,0 +1,45 @@
+@import 'grid_layout';
+@import 'design-patterns/alpha-beta';
+@import 'colours';
+
+.grid-row {
+	@extend %grid-row;
+}
+
+.column-single {
+	@include grid-column( 1 );
+}
+
+.column-half {
+	@include grid-column( 1/2 );
+}
+
+.column-one-third {
+	@include grid-column( 1/3 );
+}
+
+.column-two-thirds {
+	@include grid-column( 2/3 );
+}
+
+.column-one-quarter {
+	@include grid-column( 1/4 );
+}
+
+.column-three-quarters {
+	@include grid-column( 3/4 );
+}
+
+.phase-banner  {
+  @include phase-banner();
+}
+
+.top-nav {
+	border-bottom: 1px solid $grey-2;
+	padding: 0.5em 0;
+ 	margin-bottom: 0.5em;
+}
+
+.page-content {
+	@extend %site-width-container;
+}

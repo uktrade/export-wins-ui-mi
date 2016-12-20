@@ -1,0 +1,76 @@
+{% extends 'layout.html' %}
+
+{% block page_content %}
+
+	<h1>
+		{{ sectorName }}
+	</h1>
+
+	<section class="sector-wins grid-row">
+		<h2 class="visually-hidden">Sector wins summary</h2>
+
+		<div class="column-half">
+			
+			<ul class="sector-wins_list">
+				<li class="sector-wins_list_item">
+					<h3 class="sector-wins_list_item_gauge-heading">Confirmed wins against target</h3>
+
+					<p class="visually-hidden">{{ winSummary.progress.percent }}%</p>
+					<div class="gauge sector-wins_list_item_gauge">
+						<div class="gauge_container">
+							<div class="gauge_container_a"></div>
+							<div class="gauge_container_b"></div>
+							<div id="wins-target-progress" class="gauge_container_c"></div>
+						</div>
+					</div>
+				</li>
+				<li class="sector-wins_list_item">
+					<h3 class="sector-wins_list_item_heading">Total confirmed</h3>
+					<p class="sector-wins_list_item_value">&pound;{{ winSummary.totalConfirmed | largeNumber }}</p>
+					<h3 class="sector-wins_list_item_heading">Target</h3>
+					<p class="sector-wins_list_item_value">&pound;{{ winSummary.target | largeNumber }}</p>
+				</li>
+			</ul>
+
+		</div>
+
+		<div class="column-half">
+			<h3>Confirmed/unconfirmed</h3>
+			<div id="hvc-wins" class="sector-wins_pie"></div>
+			Average time to confirm: {{ winSummary.averageTimeToConfirm | days }}
+		</div>
+	</section>
+
+
+	<section class="grid-row">
+		<div class="column-single">
+			<h2 class="sector-heading">HVC target performance</h2>
+			{% include 'partials/hvc-target-performance.html' %}
+		</div>
+	</section>
+
+	<section class="grid-row">
+		<div class="column-single">
+			<h2 class="sector-heading">Overall sector performance</h2>
+			<div id="sector-performance"></div>
+		</div>
+	</section>
+
+	<section class="grid-row">
+		<div class="column-single">
+			<h2 class="sector-heading">Top performing non-HVC regions and sectors</h2>
+			{% include 'partials/top-non-hvc-regions-sectors.html' %}
+		</div>
+	</section>
+
+{% endblock %}
+
+{% block pageScript %}
+	<script>
+		mi.pages.sector({
+			sectorPerformance: {{ sectorPerformance | dump | safe }},
+			wins: {{ wins | dump | safe }},
+			targetProgress: {{ winSummary.progress.gauge | dump | safe }}
+		});
+	</script>
+{% endblock pageScript %}

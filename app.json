@@ -1,0 +1,12 @@
+{
+  "name": "export-wins-ui-mi",
+  "env": {
+    "NODE_MODULES_CACHE": "false",
+    "NPM_CONFIG_PRODUCTION": "false"
+  },
+  "buildpacks": [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-nodejs"
+    }
+  ]
+}

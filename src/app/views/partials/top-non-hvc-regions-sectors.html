@@ -1,0 +1,64 @@
+
+<div class="top-non-hvc">
+	<table class="top-non-hvc_table">
+		<thead>
+			<tr>
+				<th><span class="visually-hidden">Region</span></th>
+				<th><span class="visually-hidden">Sector</span></th>
+				<th><span class="visually-hidden">Percent complete</span></th>
+				<th class="top-non-hvc_table_heading">Total value of wins</th>
+				<th class="top-non-hvc_table_heading">Number of wins</th>
+				<th class="top-non-hvc_table_heading">Av. win value</th>
+				<th><span class="visually-hidden">Percent of average</span></th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for item in topNonHvcRegionsSectors %}
+			<tr class="top-non-hvc_table_row">
+				<td class="top-non-hvc_table_cell top-non-hvc_table_cell--region">{{ item.region }}</td>
+				<td class="top-non-hvc_table_cell top-non-hvc_table_cell--sector">{{ item.sector }}</td>
+				<td class="top-non-hvc_table_cell top-non-hvc_table_cell--percent">
+					<span class="visually-hidden">{{ item.percentComplete }}%</span>
+					<span class="top-non-hvc_table_cell_bar" style="width:{{ item.percentComplete }}%"></span>
+				</td>
+				<td class="top-non-hvc_table_cell top-non-hvc_table_cell--total-value">{{ item.totalValue | largeNumber }}</td>
+				<td class="top-non-hvc_table_cell top-non-hvc_table_cell--total-wins">{{ item.totalWins }}</td>
+				<td class="top-non-hvc_table_cell top-non-hvc_table_cell--average-win-value">{{ item.averageWinValue | largeNumber }}</td>
+				<td class="top-non-hvc_table_cell top-non-hvc_table_cell--average-percent">
+					<span class="visually-hidden">{{ item.averageWinPercent }}%</span>
+					<span class="top-non-hvc_table_cell_bar top-non-hvc_table_cell_bar--average" style="width:{{ item.averageWinPercent }}%"></span>
+				</td>
+			</tr>
+			{% endfor %}
+
+			<tr>
+				<td colspan="2"></td>
+				<td>
+				 	<div class="top-non-hvc_value-markers">
+						<span class="top-non-hvc_value-markers_marker top-non-hvc_value-markers_marker--first">
+							<span class="top-non-hvc_value-markers_marker_line"></span>
+							<span class="top-non-hvc_value-markers_marker_text">
+								&pound;{{ topNonHvcRegionsSectorsScale.low | largeNumber }}
+							</span>
+						</span>
+						<span class="top-non-hvc_value-markers_marker top-non-hvc_value-markers_marker--second">
+							<span class="top-non-hvc_value-markers_marker_line"></span>
+							<span class="top-non-hvc_value-markers_marker_text">
+								&pound;{{ topNonHvcRegionsSectorsScale.mid | largeNumber }}
+							</span>
+						</span>
+						<span class="top-non-hvc_value-markers_marker top-non-hvc_value-markers_marker--third">
+							<span class="top-non-hvc_value-markers_marker_line"></span>
+							<span class="top-non-hvc_value-markers_marker_text">
+								&pound;{{ topNonHvcRegionsSectorsScale.high | largeNumber }}
+							</span>
+						</span>
+					</div>
+				</td>
+				<td colspan="3"></td>
+			</tr>
+		</tbody>
+	</table>
+
+
+</div>

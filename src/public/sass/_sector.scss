@@ -1,0 +1,22 @@
+@import 'typography';
+
+#sector-performance {
+	width: 100%;
+	height: 400px;
+}
+
+.wins-pie {
+	margin-top: 1em;
+	width: 400px;
+	height: 300px;
+}
+
+.sector-wins_pie {
+	width: 425px;
+	height: 145px;
+}
+
+.sector-heading {
+	margin-top: 2em;
+	@include bold-19();
+}

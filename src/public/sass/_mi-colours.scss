@@ -1,0 +1,7 @@
+@function tint($color, $percentage) {
+	@return mix(white, $color, $percentage);
+}
+
+$mi-red: tint( $mellow-red, 25% );
+$mi-amber: tint( $orange, 25% );
+$mi-green: $turquoise;

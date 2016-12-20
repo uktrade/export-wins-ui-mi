@@ -1,0 +1,130 @@
+@import 'typography';
+@import 'colours';
+
+$right-padding: 2em;
+
+@mixin left-border {
+	border-left: 1px solid #000;
+}
+
+.top-non-hvc {
+	position: relative;
+	padding-bottom: 1em;
+}
+
+.top-non-hvc_table {
+	border-collapse: collapse;
+	border-bottom: 1px solid #000;
+}
+
+.top-non-hvc_table_row:first-of-type {
+	border-top: 1px solid #000;
+}
+.top-non-hvc_table_row:nth-of-type(even) {
+	background-color: $grey-3;
+}	
+
+.top-non-hvc_table_heading {
+	@include core-14;
+}
+
+.top-non-hvc_table_cell {
+	padding: 0.5em;
+}
+
+$region-width: 15%;
+$sector-width: 15%;
+$percent-width: 40%;
+$total-value-width: 8%;
+$total-wins-width: 6%;
+$average-win-width: 6%;
+$average-percent-width: 10%;
+
+.top-non-hvc_table_cell--region {
+	width: $region-width;
+}
+
+.top-non-hvc_table_cell--sector {
+	width: $sector-width;
+}
+
+.top-non-hvc_table_cell--percent {
+	@include left-border;
+	width: $percent-width;
+	padding-left: 0;
+	padding-right: $right-padding;
+}
+
+.top-non-hvc_table_cell--total-value {
+	width: $total-value-width;
+	@include left-border;
+	@include bold-14;
+	text-align: right;
+	padding-right: 1.5em;
+}
+
+.top-non-hvc_table_cell--total-wins {
+	width: $total-wins-width;
+	@include left-border;
+	@include core-14;
+	padding-left: 1.5em;
+}
+
+.top-non-hvc_table_cell--average-win-value {
+	width: $average-win-width;
+	@include left-border;
+	@include core-14;
+	padding-left: 0.5em;
+}
+
+.top-non-hvc_table_cell--average-percent {
+	width: $average-percent-width;
+}
+
+.top-non-hvc_table_cell_bar {
+	background-color: $mauve;
+	display: inline-block;
+	height: 10px;
+}
+
+.top-non-hvc_table_cell_bar--average {
+	background-color: $grey-2;
+}
+
+.top-non-hvc_value-markers {
+	padding-left: 0;
+	width: 100%;
+	position: relative;
+	margin-bottom: 3em;
+}
+
+.top-non-hvc_value-markers_marker {
+	@include core-14;
+	position: absolute;
+	padding-top: 1em;
+	margin-left: -$right-padding;
+}
+
+.top-non-hvc_value-markers_marker--first {
+	left: 33.3%;
+}
+
+.top-non-hvc_value-markers_marker--second {
+	left: 66.6%;
+}
+
+.top-non-hvc_value-markers_marker--third {
+	left: 100%;
+}
+
+.top-non-hvc_value-markers_marker_line {
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 10px;
+	border-left: 2px solid #000;
+}
+
+.top-non-hvc_value-markers_marker_text {
+	margin-left: -50%;
+}

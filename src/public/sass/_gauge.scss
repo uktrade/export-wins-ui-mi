@@ -1,0 +1,60 @@
+$width: 200px;
+$height: 100px;
+$overHeight: ($height * 1.25);
+
+.gauge {
+	position: relative;
+	height: $height;
+	width: $width;
+	margin-bottom: 1em;
+}
+
+.gauge_container {
+	width: $width;
+	height: $height;
+	position: absolute;
+	overflow: hidden;
+	text-align: center;
+}
+
+.gauge_container_a {
+	z-index: 1;
+	position: absolute;
+	background-color: $grey-2;
+	width: $width;
+	height: $height;
+	top: 0%;
+	border-radius: $overHeight $overHeight 0px 0px;
+}
+
+.gauge_container_b {
+	z-index: 3;
+	position: absolute;
+	background-color: #fff;
+	width: $overHeight;
+	height: ( $overHeight / 2 );
+	top: ($height - ( $overHeight / 2 ) );
+	margin-left: ($height - ( $overHeight / 2 ) );
+	margin-right: auto;
+	border-radius: $overHeight $overHeight 0px 0px;
+}
+
+.gauge_container_c {
+	z-index: 2;
+	position: absolute;
+	background-color: $yellow;
+	width: $width;
+	height: $height;
+	top: $height;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 0px 0px $height $height;
+	transform-origin: center top;
+	transition: all 1.3s ease-in-out;
+}
+
+/*
+.container .gauge-c {
+	transform:rotate(.02turn);
+}
+*/

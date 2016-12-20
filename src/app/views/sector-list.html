@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+
+{% block page_content %}
+
+	<h1>
+		Management Information - Export Wins
+	</h1>
+
+
+	<div class="grid-row">
+		<div class="column-one-third">
+			
+			<h2 class="sector-list-heading">Sectors</h2>
+
+			<ul class="sector-list">
+			{% for sector in sectors %}
+				<li><a href="{{ uuid }}/sectors/{{ sector.id }}/">{{ sector.name }}</a></li>
+			{% endfor %}
+			</ul>
+		</div>
+	
+		<div class="column-one-third">
+			
+		</div>
+
+		<div class="column-one-third">
+			
+			<h2>Region</h2>
+
+			<a href="{{ uuid }}/regions/">Region</a>
+		</div>
+	</div>
+
+{% endblock %}
