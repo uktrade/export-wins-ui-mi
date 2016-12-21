@@ -25,9 +25,17 @@
 
 		<div class="column-one-third">
 			
-			<h2>Region</h2>
+			{% if regions.length %}
 
-			<a href="{{ uuid }}/regions/">Region</a>
+			<h2 class="sector-list-heading">Regions</h2>
+
+			<ul class="sector-list">
+			{% for region in regions %}
+				<li><a href="{{ uuid }}/regions/{{ region.id }}/">{{ region.name }}</a></li>
+			{% endfor %}
+			</ul>
+
+			{% endif %}
 		</div>
 	</div>
 

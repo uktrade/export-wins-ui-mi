@@ -11,15 +11,19 @@ module.exports = {
 
 	region: function( req, res ){
 
-		backendService.getRegionInfo( 4 ).then( function( data ){
+		const regionId = req.params.id;
 
-			const winsData = data[ 0 ];
-			const months = data[ 1 ];
-			const topNonHvc = data[ 2 ];
-			const hvcTargetPerformance = data[ 3 ];
+		backendService.getRegionInfo( regionId ).then( function( data ){
+
+			const regionName = data[ 0 ];
+			const winsData = data[ 1 ];
+			const months = data[ 2 ];
+			const topNonHvc = data[ 3 ];
+			const hvcTargetPerformance = data[ 4 ];
 
 			res.render( 'region.html', {
 				
+				regionName,
 				topNonHvcRegionsSectors: topNonHvc,
 				topNonHvcRegionsSectorsScale: topNonHvcDataSet.create( topNonHvc ),
 				sectorPerformance: sectorDataSet.create( months ),

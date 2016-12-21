@@ -10,6 +10,7 @@ const regionTopNonHvcStub = require( '../../../../stubs/backend/region_top_non_h
 const regionCampaignsStub = require( '../../../../stubs/backend/region_campaigns' );
 const regionMonthsStub = require( '../../../../stubs/backend/region_months' );
 const regionStub = require( '../../../../stubs/backend/region' );
+const regionsStub = require( '../../../../stubs/backend/regions' );
 
 describe( 'Backend stub', function(){
 
@@ -79,6 +80,16 @@ describe( 'Backend stub', function(){
 
 
 	describe( 'Regions', function(){
+
+		describe( 'Getting the regions list', function(){
+		
+			it( 'Should return the list', function( done ){
+		
+				const url = '/mi/overseas_regions/';
+
+				checkStub( url, regionsStub, done );
+			} );
+		} );
 	
 		describe( 'Getting the top non hvc', function(){
 		

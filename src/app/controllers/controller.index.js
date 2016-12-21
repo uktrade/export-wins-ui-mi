@@ -3,12 +3,15 @@ const backendService = require( '../lib/service/service.backend' );
 
 module.exports = function( req, res ){
 
-	backendService.getSectors().then( function( sectors ){
+	backendService.getSectorsAndRegions().then( function( data ){
 
-		res.render( 'sector-list.html', { sectors } );
+			const sectors = data[ 0 ];
+			const regions = data[ 1 ];
 
-	} ).catch( function( err ){
+			res.render( 'sector-list.html', { sectors, regions } );
 
-		res.render( 'error', { error: err } );
-	} );
+		} ).catch( function( err ){
+
+			res.render( 'error', { error: err } );
+		} );
 };

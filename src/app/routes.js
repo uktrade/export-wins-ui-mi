@@ -8,5 +8,5 @@ module.exports = function( express, app ){
 	app.get( '/', indexController );
 	app.get( '/sectors/', sectorController.sectorList );
 	app.get( '/sectors/:id', sectorController.sector );
-	app.get( '/regions/', regionController.region );
+	app.get( '/regions/:id', regionController.region );
 };

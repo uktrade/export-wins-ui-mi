@@ -85,6 +85,40 @@ function getTopNonHvcRegionsAndSectors( sectorId ){
 	} );
 }
 
+function getRegions(){
+
+	return new Promise( ( resolve, reject ) => {
+		
+		backend.get( '/mi/overseas_regions/', createHandler( resolve, reject ) );
+	} );
+}
+
+function getRegionName( regionId ){
+
+	return getRegions().then( ( regions ) => {
+
+		let regionName;
+
+		for( let region of regions ){
+
+			if( region.id == regionId ){
+
+				regionName = region.name;
+				break;
+			}
+		}
+
+		if( regionName ){
+
+			return regionName;
+
+		} else {
+
+			throw new Error( 'Region not found' );
+		}
+	} );
+}
+
 function getRegion( regionId ){
 
 	return new Promise( ( resolve, reject ) => {
@@ -149,6 +183,7 @@ module.exports = {
 		] );
 	},
 
+	getRegions,
 	getRegion,
 	getRegionMonths,
 	getRegionTopNonHvc,
@@ -158,10 +193,20 @@ module.exports = {
 
 		return Promise.all( [
 
+			getRegionName( regionId ),
 			getRegion( regionId ),
 			getRegionMonths( regionId ),
 			getRegionTopNonHvc( regionId ),
 			getRegionHvcTargetPerformance( regionId )
 		] );
 	},
+
+	getSectorsAndRegions: function(){
+
+		return Promise.all( [
+
+			getSectors(),
+			getRegions()
+		] );
+	}
 };

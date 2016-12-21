@@ -8,6 +8,7 @@ const isRegionTopNonHvc = /^\/mi\/regions\/[0-9]+\/top_non_hvcs\/$/;
 const isRegionCampaigns = /^\/mi\/regions\/[0-9]+\/campaigns\/$/;
 const isRegionMonths = /^\/mi\/regions\/[0-9]+\/months\/$/;
 const isRegion = /^\/mi\/regions\/[0-9]+\/$/;
+const isRegions = /^\/mi\/overseas_regions\/$/;
 
 const okStatus = { statusCode: 200 };
 
@@ -21,6 +22,7 @@ const regionTopNonHvcStub = require( '../../stubs/backend/region_top_non_hvc' );
 const regionCampaignsStub = require( '../../stubs/backend/region_campaigns' );
 const regionMonthsStub = require( '../../stubs/backend/region_months' );
 const regionStub = require( '../../stubs/backend/region' );
+const regionsStub = require( '../../stubs/backend/regions' );
 
 const stubs = [
 
@@ -33,7 +35,8 @@ const stubs = [
 	[ isRegionTopNonHvc, regionTopNonHvcStub ],
 	[ isRegionCampaigns, regionCampaignsStub ],
 	[ isRegionMonths, regionMonthsStub ],
-	[ isRegion, regionStub ]
+	[ isRegion, regionStub ],
+	[ isRegions, regionsStub ]
 ];
 
 module.exports = {
