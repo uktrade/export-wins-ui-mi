@@ -1,6 +1,48 @@
 {% extends 'layout.html' %}
 
+{% macro blocks( colour, amount ) %}
+	{%- for item in range( 0, amount ) -%}
+		<span class="overseas-region-groups_group_regions_region_block overseas-region-groups_group_regions_region_block--{{ colour }}"></span>
+	{%- endfor -%}
+{% endmacro %}
+
 {% block page_content %}
 
-	Overview page
+	<h2>
+		Export Wins world overview
+	</h2>
+
+	<ol class="overseas-region-groups">
+	{% for group in regionGroups -%}
+
+			<li class="overseas-region-groups_group">
+				
+				<img src="/public/img/overseas-region-maps/{{ group.image }}.png" alt="group map" class="overseas-region-groups_group_image">
+				<ol class="overseas-region-groups_group_regions">
+				{%- for region in group.regions -%}
+
+					<li class="overseas-region-groups_group_regions_region">
+
+						<h3 class="overseas-region-groups_group_regions_region_heading">
+							{{ region.name }}
+						</h3>
+						<p class="visually-hidden">
+							Red: {{ region.hvcColours.red }},
+							Amber: {{ region.hvcColours.amber }},
+							Green: {{ region.hvcColours.green }}
+						</p>
+
+						<div class="overseas-region-groups_group_regions_region_block-wrapper">
+							{% if region.hvcColours.red > 0 %}{{ blocks( 'red', region.hvcColours.red ) }}<br>{% endif %}
+							{% if region.hvcColours.amber > 0 %}{{ blocks( 'amber', region.hvcColours.amber ) }}<br>{% endif %}
+							{% if region.hvcColours.green > 0 %}{{ blocks( 'green', region.hvcColours.green ) }}<br>{% endif %}
+						</div>
+					</li>
+			
+				{%- endfor -%}
+				</ol>
+			</li>
+
+	{%- endfor %}
+	</ol>
 {% endblock %}

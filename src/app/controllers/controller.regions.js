@@ -11,7 +11,10 @@ module.exports = {
 
 	overview: function( req, res ){
 
-		res.render( 'regions/overview.html' );
+		backendService.getRegionsOverview().then( ( regionGroups ) => {
+
+			res.render( 'regions/overview.html', { regionGroups } );
+		} );
 	},
 
 	regionList: function( req, res ){

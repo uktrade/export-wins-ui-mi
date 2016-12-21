@@ -153,6 +153,11 @@ function getRegionHvcTargetPerformance( regionId ){
 	} ) ).then( ( data ) => transformCampaigns( data ) );
 }
 
+function getRegionsOverview(){
+
+	return require( '../../../mocks' ).regionsOverview();
+}
+
 
 /*eslint-disable no-func-assign */
 if( USE_MOCKS ){
@@ -208,5 +213,7 @@ module.exports = {
 			getSectors(),
 			getRegions()
 		] );
-	}
+	},
+
+	getRegionsOverview
 };
