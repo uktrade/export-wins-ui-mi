@@ -9,6 +9,19 @@ const hvcTargetPerformanceDataSet = require( '../lib/data-sets/hvc-target-perfor
 
 module.exports = { 
 
+	overview: function( req, res ){
+
+		res.render( 'regions/overview.html' );
+	},
+
+	regionList: function( req, res ){
+
+		backendService.getRegions().then( ( regions ) => {
+
+			res.render( 'regions/list.html', { regions } );
+		} );
+	},
+
 	region: function( req, res ){
 
 		const regionId = req.params.id;
@@ -21,7 +34,7 @@ module.exports = {
 			const topNonHvc = data[ 3 ];
 			const hvcTargetPerformance = data[ 4 ];
 
-			res.render( 'region.html', {
+			res.render( 'regions/region.html', {
 				
 				regionName,
 				topNonHvcRegionsSectors: topNonHvc,

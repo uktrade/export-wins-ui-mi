@@ -14,7 +14,7 @@ module.exports = {
 
 		backendService.getSectors().then( function( sectors ){
 
-			res.render( 'sector-list.html', { sectors } );
+			res.render( 'sectors/list.html', { sectors } );
 
 		} ).catch( function( err ){
 
@@ -33,7 +33,7 @@ module.exports = {
 			const topNonHvcRegionsSectors = data[ 2 ];
 			const hvcTargetPerformance = data[ 3 ];
 
-			res.render( 'sector.html', {
+			res.render( 'sectors/sector.html', {
 				
 				topNonHvcRegionsSectors,
 				topNonHvcRegionsSectorsScale: topNonHvcDataSet.create( topNonHvcRegionsSectors ),

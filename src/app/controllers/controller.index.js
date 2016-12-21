@@ -8,7 +8,7 @@ module.exports = function( req, res ){
 			const sectors = data[ 0 ];
 			const regions = data[ 1 ];
 
-			res.render( 'sector-list.html', { sectors, regions } );
+			res.render( 'index.html', { sectors, regions } );
 
 		} ).catch( function( err ){
 
