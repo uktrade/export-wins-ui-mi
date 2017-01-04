@@ -45,11 +45,7 @@ module.exports = {
 
 		logger.debug( 'Backend GET request to: ' + path );
 
-		let opts = createRequestOptions( 'GET', alice, path );
-
-		console.dir( opts );
-
-		request( opts, convertToJson( cb ) );
+		request( createRequestOptions( 'GET', alice, path ), convertToJson( cb ) );
 	},
 
 	post: function( alice, path, body, cb ){
