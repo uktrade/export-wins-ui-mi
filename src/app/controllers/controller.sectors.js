@@ -12,7 +12,7 @@ module.exports = {
 
 	sectorList: function( req, res ){
 
-		backendService.getSectors().then( function( sectors ){
+		backendService.getSectors( req.alice ).then( function( sectors ){
 
 			res.render( 'sectors/list.html', { sectors } );
 
@@ -26,7 +26,7 @@ module.exports = {
 
 		const sectorId = req.params.id;
 
-		backendService.getSectorInfo( sectorId ).then( function( data ){
+		backendService.getSectorInfo( req.alice, sectorId ).then( function( data ){
 
 			const winsData = data[ 0 ];
 			const sectorMonths = data[ 1 ];

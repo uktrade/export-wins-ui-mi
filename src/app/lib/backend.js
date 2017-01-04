@@ -7,22 +7,23 @@ const createSignature = require( './createSignature' );
 const backendConfig = config.backend;
 const backendUrl = `${ backendConfig.protocol }://${ backendConfig.host }:${ backendConfig.port }`;
 
-function createRequestOptions( method, path, body ){
+function createRequestOptions( method, alice, path, body ){
 
 	return {
 		url: ( backendUrl + path ),
 		method: method,
 		headers: {
-			'X-Signature': createSignature( path, body )
+			'X-Signature': createSignature( path, body ),
+			'Cookie': ( 'sessionid=' + alice.session )
 		}
 	};
 }
 
 function convertToJson( cb ){
 
-	return function( err, resopnse, data ){
+	return function( err, response, data ){
 
-		if( !err && typeof data == 'string' ){
+		if( !err && typeof data === 'string' ){
 
 			try {
 
@@ -34,19 +35,25 @@ function convertToJson( cb ){
 			}
 		}
 
-		cb( err, resopnse, data );
+		cb( err, response, data );
 	};
 }
 
 module.exports = {
 
-	get: function( path, cb ){
+	get: function( alice, path, cb ){
 
-		request( createRequestOptions( 'GET', path ), convertToJson( cb ) );
+		logger.debug( 'Backend GET request to: ' + path );
+
+		let opts = createRequestOptions( 'GET', alice, path );
+
+		console.dir( opts );
+
+		request( opts, convertToJson( cb ) );
 	},
 
-	post: function( path, body, cb ){
+	post: function( alice, path, body, cb ){
 
-		request( createRequestOptions( 'POST', path, body ), convertToJson( cb ) );
+		request( createRequestOptions( 'POST', alice, path, body ), convertToJson( cb ) );
 	}
 };

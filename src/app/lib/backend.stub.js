@@ -41,7 +41,7 @@ const stubs = [
 
 module.exports = {
 
-	get: function( url, cb ){
+	get: function( alice, url, cb ){
 
 		let data;
 		let path;

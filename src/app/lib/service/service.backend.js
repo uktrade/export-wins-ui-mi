@@ -1,6 +1,6 @@
 
 const USE_MOCKS = false;
-const USE_STUBS = true;
+const USE_STUBS = false;
 
 const backend = ( USE_STUBS ? require( '../backend.stub' ) : require( '../backend' ) );
 const mocks = ( USE_MOCKS ? require( '../../../mocks' ) : null );
@@ -43,57 +43,57 @@ function createHandler( resolve, reject ){
 	};
 }
 
-function getSectors(){
+function getSectors( alice ){
 
 	return new Promise( ( resolve, reject ) => {
 		
-		backend.get( '/mi/sector_teams/', createHandler( resolve, reject ) );
+		backend.get( alice, '/mi/sector_teams/', createHandler( resolve, reject ) );
 	} );
 }
 
-function getSector( sectorId ){
+function getSector( alice, sectorId ){
 
 	return new Promise( ( resolve, reject ) => {
 		
-		backend.get( `/mi/sector_teams/${ sectorId }/`, createHandler( resolve, reject ) );
+		backend.get( alice, `/mi/sector_teams/${ sectorId }/`, createHandler( resolve, reject ) );
 	} );
 }
 
-function getSectorMonths( sectorId ){
+function getSectorMonths( alice, sectorId ){
 
 	return ( new Promise( ( resolve, reject ) => {
 		
-		backend.get( `/mi/sector_teams/${ sectorId }/months/`, createHandler( resolve, reject ) );
+		backend.get( alice, `/mi/sector_teams/${ sectorId }/months/`, createHandler( resolve, reject ) );
 
 	} ) ).then( ( data ) => transformMonths( data ) );
 }
 
-function getHvcTargetPerformance( sectorId ){
+function getHvcTargetPerformance( alice, sectorId ){
 
 	return new Promise( ( resolve, reject ) => {
 		
-		backend.get( `/mi/sector_teams/${ sectorId }/campaigns/`, createHandler( resolve, reject ) );
+		backend.get( alice, `/mi/sector_teams/${ sectorId }/campaigns/`, createHandler( resolve, reject ) );
 
 	} ).then( ( data ) => transformCampaigns( data ) );
 }
 
-function getTopNonHvcRegionsAndSectors( sectorId ){
+function getTopNonHvcRegionsAndSectors( alice, sectorId ){
 
 	return new Promise( ( resolve, reject ) => {
 		
-		backend.get( `/mi/sector_teams/${ sectorId }/top_non_hvcs/`, createHandler( resolve, reject ) );
+		backend.get( alice, `/mi/sector_teams/${ sectorId }/top_non_hvcs/`, createHandler( resolve, reject ) );
 	} );
 }
 
-function getRegions(){
+function getRegions( alice ){
 
 	return new Promise( ( resolve, reject ) => {
 		
-		backend.get( '/mi/overseas_regions/', createHandler( resolve, reject ) );
+		backend.get( alice, '/mi/overseas_regions/', createHandler( resolve, reject ) );
 	} );
 }
 
-function getRegionName( regionId ){
+function getRegionName( alice, regionId ){
 
 	return getRegions().then( ( regions ) => {
 
@@ -119,41 +119,41 @@ function getRegionName( regionId ){
 	} );
 }
 
-function getRegion( regionId ){
+function getRegion( alice, regionId ){
 
 	return new Promise( ( resolve, reject ) => {
 		
-		backend.get( `/mi/regions/${ regionId }/`, createHandler( resolve, reject ) );
+		backend.get( alice, `/mi/regions/${ regionId }/`, createHandler( resolve, reject ) );
 	} );
 }
 
-function getRegionMonths( regionId ){
+function getRegionMonths( alice, regionId ){
 
 	return ( new Promise( ( resolve, reject ) => {
 		
-		backend.get( `/mi/regions/${ regionId }/months/`, createHandler( resolve, reject ) );
+		backend.get( alice, `/mi/regions/${ regionId }/months/`, createHandler( resolve, reject ) );
 
 	} ) ).then( ( data ) => transformMonths( data ) );
 }
 
-function getRegionTopNonHvc( regionId ){
+function getRegionTopNonHvc( alice, regionId ){
 
 	return new Promise( ( resolve, reject ) => {
 		
-		backend.get( `/mi/regions/${ regionId }/top_non_hvcs/`, createHandler( resolve, reject ) );
+		backend.get( alice, `/mi/regions/${ regionId }/top_non_hvcs/`, createHandler( resolve, reject ) );
 	} );
 }
 
-function getRegionHvcTargetPerformance( regionId ){
+function getRegionHvcTargetPerformance( alice, regionId ){
 
 	return ( new Promise( ( resolve, reject ) => {
 		
-		backend.get( `/mi/regions/${ regionId }/campaigns/`, createHandler( resolve, reject ) );
+		backend.get( alice, `/mi/regions/${ regionId }/campaigns/`, createHandler( resolve, reject ) );
 
 	} ) ).then( ( data ) => transformCampaigns( data ) );
 }
 
-function getRegionsOverview(){
+function getRegionsOverview( /* alice */ ){
 
 	return require( '../../../mocks' ).regionsOverview();
 }
@@ -177,14 +177,14 @@ module.exports = {
 	getHvcTargetPerformance,
 	getTopNonHvcRegionsAndSectors,
 
-	getSectorInfo: function( sectorId ){
+	getSectorInfo: function( alice, sectorId ){
 
 		return Promise.all( [
 
-			getSector( sectorId ),
-			getSectorMonths( sectorId ),
-			getTopNonHvcRegionsAndSectors( sectorId ),
-			getHvcTargetPerformance( sectorId )
+			getSector( alice, sectorId ),
+			getSectorMonths( alice, sectorId ),
+			getTopNonHvcRegionsAndSectors( alice, sectorId ),
+			getHvcTargetPerformance( alice, sectorId )
 		] );
 	},
 
@@ -194,24 +194,24 @@ module.exports = {
 	getRegionTopNonHvc,
 	getRegionHvcTargetPerformance,
 
-	getRegionInfo: function( regionId ){
+	getRegionInfo: function( alice, regionId ){
 
 		return Promise.all( [
 
-			getRegionName( regionId ),
-			getRegion( regionId ),
-			getRegionMonths( regionId ),
-			getRegionTopNonHvc( regionId ),
-			getRegionHvcTargetPerformance( regionId )
+			getRegionName( alice, regionId ),
+			getRegion( alice, regionId ),
+			getRegionMonths( alice, regionId ),
+			getRegionTopNonHvc( alice, regionId ),
+			getRegionHvcTargetPerformance( alice, regionId )
 		] );
 	},
 
-	getSectorsAndRegions: function(){
+	getSectorsAndRegions: function( alice ){
 
 		return Promise.all( [
 
-			getSectors(),
-			getRegions()
+			getSectors( alice ),
+			getRegions( alice )
 		] );
 	},
 

@@ -1,4 +1,5 @@
 const config = require( '../../config' );
+const logger = require( 'winston' );
 const jwt = require( 'jsonwebtoken' );
 
 const secret = config.backend.uiSecret;
@@ -24,6 +25,10 @@ module.exports = function( req, res, next ){
 
 	} else {
 
-		next();
+		let err = new Error( 'No token in cookies' );
+
+		logger.error( err.message );
+
+		res.render( 'error', { error: err } );
 	}
 };

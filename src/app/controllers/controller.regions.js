@@ -11,7 +11,7 @@ module.exports = {
 
 	overview: function( req, res ){
 
-		backendService.getRegionsOverview().then( ( regionGroups ) => {
+		backendService.getRegionsOverview( req.alice ).then( ( regionGroups ) => {
 
 			res.render( 'regions/overview.html', { regionGroups } );
 		} );
@@ -19,7 +19,7 @@ module.exports = {
 
 	regionList: function( req, res ){
 
-		backendService.getRegions().then( ( regions ) => {
+		backendService.getRegions( req.alice ).then( ( regions ) => {
 
 			res.render( 'regions/list.html', { regions } );
 		} );
@@ -29,7 +29,7 @@ module.exports = {
 
 		const regionId = req.params.id;
 
-		backendService.getRegionInfo( regionId ).then( function( data ){
+		backendService.getRegionInfo( req.alice, regionId ).then( function( data ){
 
 			const regionName = data[ 0 ];
 			const winsData = data[ 1 ];
