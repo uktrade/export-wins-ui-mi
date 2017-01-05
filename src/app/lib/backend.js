@@ -1,7 +1,7 @@
 
 const config = require( '../config' );
 const request = require( 'request' );
-const logger = require( 'winston' );
+const logger = require( './logger' );
 const createSignature = require( './createSignature' );
 
 const backendConfig = config.backend;
@@ -23,7 +23,12 @@ function convertToJson( cb ){
 
 	return function( err, response, data ){
 
-		if( !err && typeof data === 'string' ){
+		const isSuccess = ( response.statusCode >= 200 && response.statusCode < 300 );
+		const isJson = ( response.headers[ 'content-type' ] === 'application/json' );
+
+		response.isSuccess = isSuccess;
+
+		if( !err && isJson ){
 
 			try {
 
@@ -31,7 +36,7 @@ function convertToJson( cb ){
 
 			} catch( e ){
 				
-				logger.error( 'Unable to convert response to JSON' );
+				logger.error( 'Unable to convert response to JSON for uri: %s', response.request.uri.href );
 			}
 		}
 
@@ -46,10 +51,5 @@ module.exports = {
 		logger.debug( 'Backend GET request to: ' + path );
 
 		request( createRequestOptions( 'GET', alice, path ), convertToJson( cb ) );
-	},
-
-	post: function( alice, path, body, cb ){
-
-		request( createRequestOptions( 'POST', alice, path, body ), convertToJson( cb ) );
 	}
 };

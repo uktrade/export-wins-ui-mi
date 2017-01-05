@@ -1,6 +1,6 @@
 
 const cluster = require( 'cluster' );
-const logger = require( 'winston' );
+const logger = require( './lib/logger' );
 const config = require( './config' );
 
 const numberOfWorkers = config.server.workers;
@@ -66,7 +66,8 @@ function startApp(){
 
 		} else {
 
-			logger.info( '\nApp running in %s mode\nListening at http://%s:%s', env, serverConfig.host, serverConfig.port );
+			logger.info( 'App running in %s mode', env );
+			logger.info( 'Listening at http://%s:%s', serverConfig.host, serverConfig.port );
 		}
 	});
 

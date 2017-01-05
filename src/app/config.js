@@ -22,6 +22,7 @@ module.exports = {
     views: {
         cache: bool( 'CACHE_VIEWS', true )
     },
+    logLevel: env( 'LOG_LEVEL', 'warn' ),
     backend: {
         secret: env( 'MI_SECRET' ),
         uiSecret: env( 'UI_SECRET' ),

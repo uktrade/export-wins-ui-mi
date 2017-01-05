@@ -2,10 +2,16 @@
 const USE_MOCKS = false;
 const USE_STUBS = false;
 
+const logger = require( '../logger' );
 const backend = ( USE_STUBS ? require( '../backend.stub' ) : require( '../backend' ) );
 const mocks = ( USE_MOCKS ? require( '../../../mocks' ) : null );
 const transformMonths = require( '../transformers/sector-months' );
 const transformCampaigns = require( '../transformers/sector-campaigns' );
+
+if( USE_STUBS ){
+
+	logger.warn( 'Using stubs for backend service' );
+}
 
 /*
 	/sector-teams/
@@ -31,12 +37,13 @@ function createHandler( resolve, reject ){
 
 		} else {
 
-			if( response.statusCode === 200 ){
+			if( response.isSuccess ){
 
 				resolve( data );
 
 			} else {
 
+				logger.error( 'Got a %s status code for url: %s', response.statusCode, response.request.uri.href );
 				reject( new Error( 'Not a successful response from the backend.' ) );
 			}
 		}
@@ -89,13 +96,13 @@ function getRegions( alice ){
 
 	return new Promise( ( resolve, reject ) => {
 		
-		backend.get( alice, '/mi/overseas_regions/', createHandler( resolve, reject ) );
+		backend.get( alice, '/mi/regions/', createHandler( resolve, reject ) );
 	} );
 }
 
 function getRegionName( alice, regionId ){
 
-	return getRegions().then( ( regions ) => {
+	return getRegions( alice ).then( ( regions ) => {
 
 		let regionName;
 
@@ -161,6 +168,8 @@ function getRegionsOverview( /* alice */ ){
 
 /*eslint-disable no-func-assign */
 if( USE_MOCKS ){
+
+	logger.warn( 'Using mocks for backend service' );
 
 	getHvcTargetPerformance = mocks.hvcTargetPerformance;
 	getTopNonHvcRegionsAndSectors = mocks.topNonHvcRegionsAndSectors;

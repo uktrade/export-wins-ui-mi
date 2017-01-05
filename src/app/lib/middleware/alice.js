@@ -1,5 +1,5 @@
 const config = require( '../../config' );
-const logger = require( 'winston' );
+const logger = require( '../logger' );
 const jwt = require( 'jsonwebtoken' );
 
 const secret = config.backend.uiSecret;
