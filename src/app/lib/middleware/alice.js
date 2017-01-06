@@ -2,7 +2,7 @@ const config = require( '../../config' );
 const logger = require( '../logger' );
 const jwt = require( 'jsonwebtoken' );
 
-const secret = config.backend.uiSecret;
+const secret = config.cookieSecret;
 
 module.exports = function( req, res, next ){
 

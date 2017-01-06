@@ -12,22 +12,25 @@ function bool( name, defaultValue ){
 }
 
 module.exports = {
-    server: {
-        protocol: env( 'SERVER_PROTOCOL', 'http' ),
-        host: env( 'SERVER_HOST', 'localhost' ),
-        port: env( 'SERVER_PORT', env( 'PORT', 8080 ) ),
-        workers: env( 'SERVER_WORKERS', 1 ),
-        uuid: env( 'SERVER_UUID', '05422c73-064a-4277-aca8-07774dd3e3a0' )
-    },
-    views: {
-        cache: bool( 'CACHE_VIEWS', true )
-    },
-    logLevel: env( 'LOG_LEVEL', 'warn' ),
-    backend: {
-        secret: env( 'MI_SECRET' ),
-        uiSecret: env( 'UI_SECRET' ),
-        protocol: env( 'MI_PROTOCOL', 'http' ),
-        host: env( 'MI_HOST', 'localhost' ),
-        port: env( 'MI_PORT', 8000 )
-    }
+	server: {
+		protocol: env( 'SERVER_PROTOCOL', 'http' ),
+		host: env( 'SERVER_HOST', 'localhost' ),
+		port: env( 'SERVER_PORT', env( 'PORT', 8080 ) ),
+		workers: env( 'SERVER_WORKERS', 1 ),
+		uuid: env( 'SERVER_UUID', '05422c73-064a-4277-aca8-07774dd3e3a0' )
+	},
+	views: {
+		cache: bool( 'CACHE_VIEWS', true )
+	},
+	cookieSecret: env( 'COOKIE_SECRET' ),
+	logLevel: env( 'LOG_LEVEL', 'warn' ),
+	backend: {
+		secret: env( 'MI_SECRET' ),
+		protocol: env( 'MI_PROTOCOL', 'http' ),
+		host: env( 'MI_HOST', 'localhost' ),
+		port: env( 'MI_PORT', 8000 ),
+
+		stub: bool( 'STUB_MI', false ),
+		mock: bool( 'MOCK_MI', false )
+	}
 };
