@@ -8,18 +8,47 @@
 }
 
 .overseas-region-groups_group {
-
+	clear: left;
+	overflow: hidden;
+	margin-bottom: 2em;
 }
 
 .overseas-region-groups_group_image {
-	display: inline;
+	float: left;
 }
 
 .overseas-region-groups_group_regions {
-	display: inline-block;
-	vertical-align: top;
-	padding: 0;
-	width: 60%;
+
+}
+
+.overseas-region-groups_group_regions_region_name {
+	width: 20%;
+}
+
+.overseas-region-groups_group_regions_region_performance {
+	width: 35%;
+}
+
+.overseas-region-groups_group_regions_region_current {
+	width: 15%;
+}
+
+.overseas-region-groups_group_regions_region_target {
+	width: 15%;
+}
+
+.overseas-region-groups_group_regions_region_progress {
+	width: 0%;
+}
+
+.overseas-region-groups_group_regions_region_hvc-non-hvc {
+	width: 15%;	
+}
+
+.overseas-region-groups_group_regions_region_name_countries {
+	@include core-14;
+	display: block;
+	color: $grey-1;
 }
 
 .overseas-region-groups_group_regions_region {
@@ -31,15 +60,14 @@
 	}
 }
 
-.overseas-region-groups_group_regions_region_heading {
-	display: inline-block;
-	width: 30%;
+.overseas-region-groups_group_regions_region_name {
 	@include core-14;
 	vertical-align: middle;
 }
 
 .overseas-region-groups_group_regions_region_block-wrapper {
 	display: inline-block;
+	line-height: 1;
 }
 
 .overseas-region-groups_group_regions_region_block {

@@ -37,7 +37,7 @@
 		<div class="column-half">
 			<h3>Confirmed/unconfirmed</h3>
 			<div id="hvc-wins" class="sector-wins_pie"></div>
-			Average time to confirm: {{ winSummary.averageTimeToConfirm | days }}
+			Average time to confirm: {{ winSummary.averageTimeToConfirm | pluralise( 'day' ) }}
 		</div>
 	</section>
 

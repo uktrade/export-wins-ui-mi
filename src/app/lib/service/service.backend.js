@@ -1,6 +1,6 @@
 
 const USE_MOCKS = false;
-const USE_STUBS = false;
+const USE_STUBS = true;
 
 const logger = require( '../logger' );
 const backend = ( USE_STUBS ? require( '../backend.stub' ) : require( '../backend' ) );

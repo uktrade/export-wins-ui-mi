@@ -1,8 +1,8 @@
-const days = require( './days' );
+const pluralise = require( './pluralise' );
 const largeNumber = require( './large-number' );
 
 module.exports = function( env ){
 
 	env.addFilter( 'largeNumber', largeNumber );
-	env.addFilter( 'days', days );
+	env.addFilter( 'pluralise', pluralise );
 };
