@@ -21,6 +21,10 @@
 
 }
 
+.overseas-region-groups_group_regions_row {
+	line-height: 1;
+}
+
 .overseas-region-groups_group_regions_region_name {
 	width: 20%;
 }
@@ -42,13 +46,28 @@
 }
 
 .overseas-region-groups_group_regions_region_hvc-non-hvc {
-	width: 15%;	
+	width: 15%;
+	text-align: center;
 }
 
 .overseas-region-groups_group_regions_region_name_countries {
 	@include core-14;
 	display: block;
 	color: $grey-1;
+}
+
+.overseas-region-groups_group_regions_heading_hvc-non-hvc_block {
+	display: inline-block;
+	height: 10px;
+	width: 10px;
+}
+
+.overseas-region-groups_group_regions_heading_hvc-non-hvc_block--hvc {
+	background-color: $overview-hvc;
+}
+
+.overseas-region-groups_group_regions_heading_hvc-non-hvc_block--non-hvc {
+	background-color: $overview-non-hvc;
 }
 
 .overseas-region-groups_group_regions_region {

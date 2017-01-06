@@ -1,0 +1,45 @@
+@import 'mi-colours';
+
+$size: 40px;
+
+/*
+Pie code taken from https://www.smashingmagazine.com/2015/07/designing-simple-pie-charts-with-css/
+Thanks Lea!
+*/
+
+.pie {
+	position: relative;
+	width: $size;
+	height: $size;
+	line-height: $size;
+	border-radius: 50%;
+	background: $overview-hvc;
+	background-image: linear-gradient(to right, transparent 50%, $overview-non-hvc 0);
+	color: transparent;
+	text-align: center;
+}
+
+.pie--center {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+@keyframes spin {
+	to { transform: rotate( .5turn ); }
+}
+@keyframes bg {
+	50% { background: $overview-non-hvc; }
+}
+
+.pie::before {
+	content: '';
+	position: absolute;
+	top: 0; left: 50%;
+	width: 50%; height: 100%;
+	border-radius: 0 100% 100% 0 / 50%;
+	background-color: inherit;
+	transform-origin: left;
+	animation: spin 50s linear infinite, bg 100s step-end infinite;
+	animation-play-state: paused;
+	animation-delay: inherit;
+}

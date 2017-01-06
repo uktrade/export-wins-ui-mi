@@ -20,13 +20,18 @@
 				<img src="/public/img/overseas-region-maps/{{ group.image }}.png" alt="group map" class="overseas-region-groups_group_image">
 				<table class="overseas-region-groups_group_regions">
 					<thead{% if loop.index > 1 %} class="visually-hidden"{% endif %}>
-						<tr>
-							<th class="overseas-region-groups_group_regions_name"><span class="visually-hidden">Region name (and countries)</span></th>
-							<th class="overseas-region-groups_group_regions_performance">HVC performance (each square represents an HVC within a region</th>
-							<th class="overseas-region-groups_group_regions_current">Current</th>
-							<th class="overseas-region-groups_group_regions_target">Target</th>
-							<th class="overseas-region-groups_group_regions_progress"><span class="visually-hidden">Progress</span></th>
-							<th class="overseas-region-groups_group_regions_hvc-non-hvc">HVC vs. non-HVC</th>
+						<tr class="overseas-region-groups_group_regions_row">
+							<th><span class="visually-hidden">Region name (and countries)</span></th>
+							<th>HVC performance (each square represents an HVC within a region</th>
+							<th>Current</th>
+							<th>Target</th>
+							<th><span class="visually-hidden">Progress</span></th>
+							<th>
+								<span class="overseas-region-groups_group_regions_heading_hvc-non-hvc_block overseas-region-groups_group_regions_heading_hvc-non-hvc_block--hvc"></span>
+								HVC vs.<br>
+								<span class="overseas-region-groups_group_regions_heading_hvc-non-hvc_block overseas-region-groups_group_regions_heading_hvc-non-hvc_block--non-hvc"></span>
+								non-HVC
+							</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -62,7 +67,9 @@
 							<td class="overseas-region-groups_group_regions_region_progress">
 								{{ region.value.percentage }}%
 							</td>
-							<td class="overseas-region-groups_group_regions_region_hvc-non-hvc"></td>
+							<td class="overseas-region-groups_group_regions_region_hvc-non-hvc">
+								<div class="pie pie--center" style="animation-delay: -{{ region.hvcVsNonhvcPercentage }}s">{{ region.hvcVsNonhvcPercentage }}%</div>
+							</td>
 						</tr>
 				
 					{%- endfor -%}
