@@ -27,6 +27,8 @@ function startApp(){
 	const cookieParser = require( 'cookie-parser' );
 	const path = require( 'path' );
 	const morganLogger = require( 'morgan' );
+	const compression = require( 'compression' );
+
 	const nunjucksFilters = require( './lib/nunjucks-filters' );
 	const alice = require( './lib/middleware/alice' );
 	const uuid = require( './lib/middleware/uuid' );
@@ -36,7 +38,9 @@ function startApp(){
 	const pathToPublic = path.resolve( __dirname, '../public' );
 	const env = app.get( 'env' );
 	const isDev = ( 'development' === env );
+
 	let nunjucksEnv;
+	let staticMaxAge = 0;
 
 	app.set( 'view engine', 'html' );
 	app.set( 'view cache', config.views.cache );
@@ -50,7 +54,13 @@ function startApp(){
 
 	nunjucksFilters( nunjucksEnv );
 
-	app.use( '/public', serveStatic( pathToPublic ) );
+	if( !isDev ){
+
+		app.use( compression() );
+		staticMaxAge = '2y';
+	}
+
+	app.use( '/public', serveStatic( pathToPublic, { maxAge: staticMaxAge } ) );
 	app.use( morganLogger( ( isDev ? 'dev' : 'combined' ) ) );
 	app.use( cookieParser() );
 	app.use( uuid );
@@ -93,7 +103,7 @@ if( isClustered ){
 	//if this is the master then create the workers
 	if( cluster.isMaster ){
 
-		for( var i = 0; i < numberOfWorkers; i++ ) {
+		for( let i = 0; i < numberOfWorkers; i++ ) {
 
 			listenForWorkerMessages( cluster.fork() );
 		}

@@ -54,6 +54,7 @@
   "homepage": "https://github.com/uktrade/export-wins-ui-mi#readme",
   "dependencies": {
     "body-parser": "*",
+    "compression": "1.6.2",
     "cookie-parser": "1.4.3",
     "express": "*",
     "jsonwebtoken": "7.2.1",
