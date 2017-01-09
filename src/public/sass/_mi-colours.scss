@@ -1,12 +1,13 @@
 @import 'colours';
 
+/*
 @function tint( $color, $percentage ){
 	@return mix( white, $color, $percentage );
 }
-
-$mi-red: tint( $mellow-red, 25% );
-$mi-amber: tint( $orange, 25% );
-$mi-green: $turquoise;
+*/
+$mi-red: $mellow-red;
+$mi-amber: $yellow;
+$mi-green: $green-50;
 
 $overview-hvc: $grey-2;
 $overview-non-hvc: $light-blue;
