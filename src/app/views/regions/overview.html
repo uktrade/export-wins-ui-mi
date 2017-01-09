@@ -18,14 +18,20 @@
 			<li class="overseas-region-groups_group">
 				
 				<img src="/public/img/overseas-region-maps/{{ group.image }}.png" alt="group map" class="overseas-region-groups_group_image">
+
 				<table class="overseas-region-groups_group_regions">
+
+					<caption class="visually-hidden">
+						Region overview group {{ loop.index }}
+					</caption>
+
 					<thead{% if loop.index > 1 %} class="visually-hidden"{% endif %}>
 						<tr class="overseas-region-groups_group_regions_row">
 							<th><span class="visually-hidden">Region name (and countries)</span></th>
-							<th>HVC performance (each square represents an HVC within a region</th>
+							<th>HVC performance (each square represents an HVC within a region)</th>
 							<th>Current</th>
 							<th>Target</th>
-							<th><span class="visually-hidden">Progress</span></th>
+							<th><span class="visually-hidden">Progress against target</span></th>
 							<th>
 								<span class="overseas-region-groups_group_regions_heading_hvc-non-hvc_block overseas-region-groups_group_regions_heading_hvc-non-hvc_block--hvc"></span>
 								HVC vs.<br>
@@ -34,13 +40,14 @@
 							</th>
 						</tr>
 					</thead>
+
 					<tbody>
 					{%- for region in group.regions -%}
 
 						<tr class="overseas-region-groups_group_regions_region">
 
 							<td class="overseas-region-groups_group_regions_region_name">
-								{{ region.name }}
+								<a href="#">{{ region.name }}</a>
 								<span class="overseas-region-groups_group_regions_region_name_countries">
 									{{- region.markets | pluralise( 'country', 'countries' ) -}}
 								</span>
@@ -60,20 +67,25 @@
 							</td>
 							<td class="overseas-region-groups_group_regions_region_current">
 								&pound;{{ region.value.current | largeNumber }}
+								<span class="overseas-region-groups_group_regions_region_current_progress">
+									<span class="overseas-region-groups_group_regions_region_current_progress_amount" style="width: {{ region.value.percentage }}%"></span>
+								</span>
 							</td>
 							<td class="overseas-region-groups_group_regions_region_target">
 								&pound;{{ region.value.target | largeNumber }}
 							</td>
 							<td class="overseas-region-groups_group_regions_region_progress">
-								{{ region.value.percentage }}%
+								<span class="visually-hidden">{{ region.value.percentage }}%</span>
 							</td>
 							<td class="overseas-region-groups_group_regions_region_hvc-non-hvc">
 								<div class="pie pie--center" style="animation-delay: -{{ region.hvcVsNonhvcPercentage }}s">{{ region.hvcVsNonhvcPercentage }}%</div>
 							</td>
+
 						</tr>
 				
 					{%- endfor -%}
 					</tbody>
+
 				</table>
 			</li>
 

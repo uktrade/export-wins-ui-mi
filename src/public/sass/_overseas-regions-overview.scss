@@ -18,7 +18,7 @@
 }
 
 .overseas-region-groups_group_regions {
-
+	border-collapse: collapse;
 }
 
 .overseas-region-groups_group_regions_row {
@@ -35,10 +35,12 @@
 
 .overseas-region-groups_group_regions_region_current {
 	width: 15%;
+	position: relative;
 }
 
 .overseas-region-groups_group_regions_region_target {
 	width: 15%;
+	text-align: right;
 }
 
 .overseas-region-groups_group_regions_region_progress {
@@ -54,6 +56,22 @@
 	@include core-14;
 	display: block;
 	color: $grey-1;
+}
+
+.overseas-region-groups_group_regions_region_current_progress {
+	border: 1px solid $grey-1;
+	display: inline-block;
+	width: 200%; /* make this span the current and target cells */
+	line-height: 10px;
+	position: absolute;
+	bottom: 2px;
+	left: 0;
+}
+
+.overseas-region-groups_group_regions_region_current_progress_amount {
+	display: inline-block;
+	background-color: $grey-2;
+	height: 10px;
 }
 
 .overseas-region-groups_group_regions_heading_hvc-non-hvc_block {
