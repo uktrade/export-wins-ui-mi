@@ -13,81 +13,84 @@
 	</h2>
 
 	<ol class="overseas-region-groups">
+	{% set loopIndex = 0 %}
 	{% for group in regionGroups -%}
+		
+		<li class="overseas-region-groups_group">
+			
+			<img src="/public/img/overseas-region-maps/{{ group.image }}.png" alt="group map" class="overseas-region-groups_group_image">
 
-			<li class="overseas-region-groups_group">
-				
-				<img src="/public/img/overseas-region-maps/{{ group.image }}.png" alt="group map" class="overseas-region-groups_group_image">
+			<table class="overseas-region-groups_group_regions">
 
-				<table class="overseas-region-groups_group_regions">
+				<caption class="visually-hidden">
+					Region overview group {{ loop.index }}
+				</caption>
 
-					<caption class="visually-hidden">
-						Region overview group {{ loop.index }}
-					</caption>
+				<thead{% if loop.index > 1 %} class="visually-hidden"{% endif %}>
+					<tr class="overseas-region-groups_group_regions_row">
+						<th><span class="visually-hidden">Region name (and countries)</span></th>
+						<th>HVC performance (each square represents an HVC within a region)</th>
+						<th>Current</th>
+						<th>Target</th>
+						<th><span class="visually-hidden">Progress against target</span></th>
+						<th>
+							<span class="overseas-region-groups_group_regions_heading_hvc-non-hvc_block overseas-region-groups_group_regions_heading_hvc-non-hvc_block--hvc"></span>
+							HVC vs.<br>
+							<span class="overseas-region-groups_group_regions_heading_hvc-non-hvc_block overseas-region-groups_group_regions_heading_hvc-non-hvc_block--non-hvc"></span>
+							non-HVC
+						</th>
+					</tr>
+				</thead>
 
-					<thead{% if loop.index > 1 %} class="visually-hidden"{% endif %}>
-						<tr class="overseas-region-groups_group_regions_row">
-							<th><span class="visually-hidden">Region name (and countries)</span></th>
-							<th>HVC performance (each square represents an HVC within a region)</th>
-							<th>Current</th>
-							<th>Target</th>
-							<th><span class="visually-hidden">Progress against target</span></th>
-							<th>
-								<span class="overseas-region-groups_group_regions_heading_hvc-non-hvc_block overseas-region-groups_group_regions_heading_hvc-non-hvc_block--hvc"></span>
-								HVC vs.<br>
-								<span class="overseas-region-groups_group_regions_heading_hvc-non-hvc_block overseas-region-groups_group_regions_heading_hvc-non-hvc_block--non-hvc"></span>
-								non-HVC
-							</th>
-						</tr>
-					</thead>
+				<tbody>
+				{%- for region in group.regions -%}
 
-					<tbody>
-					{%- for region in group.regions -%}
+					{% set loopIndex = ( loopIndex + 1 ) %}
 
-						<tr class="overseas-region-groups_group_regions_region">
+					<tr class="overseas-region-groups_group_regions_region{% if loopIndex % 2 === 1 %} overseas-region-groups_group_regions_region--odd{% endif %}">
 
-							<td class="overseas-region-groups_group_regions_region_name">
-								<a href="#">{{ region.name }}</a>
-								<span class="overseas-region-groups_group_regions_region_name_countries">
-									{{- region.markets | pluralise( 'country', 'countries' ) -}}
-								</span>
-							</td>
-							<td class="overseas-region-groups_group_regions_region_performance">
-								<p class="visually-hidden">
-									Red: {{ region.hvcColours.red }},
-									Amber: {{ region.hvcColours.amber }},
-									Green: {{ region.hvcColours.green }}
-								</p>
+						<td class="overseas-region-groups_group_regions_region_name">
+							<a href="#">{{ region.name }}</a>
+							<span class="overseas-region-groups_group_regions_region_name_countries">
+								{{- region.markets | pluralise( 'country', 'countries' ) -}}
+							</span>
+						</td>
+						<td class="overseas-region-groups_group_regions_region_performance">
+							<p class="visually-hidden">
+								Red: {{ region.hvcColours.red }},
+								Amber: {{ region.hvcColours.amber }},
+								Green: {{ region.hvcColours.green }}
+							</p>
 
-								<div class="overseas-region-groups_group_regions_region_block-wrapper">
-									{% if region.hvcColours.red > 0 %}{{ blocks( 'red', region.hvcColours.red ) }}<br>{% endif %}
-									{% if region.hvcColours.amber > 0 %}{{ blocks( 'amber', region.hvcColours.amber ) }}<br>{% endif %}
-									{% if region.hvcColours.green > 0 %}{{ blocks( 'green', region.hvcColours.green ) }}<br>{% endif %}
-								</div>
-							</td>
-							<td class="overseas-region-groups_group_regions_region_current">
-								&pound;{{ region.value.current | largeNumber }}
-								<span class="overseas-region-groups_group_regions_region_current_progress">
-									<span class="overseas-region-groups_group_regions_region_current_progress_amount" style="width: {{ region.value.percentage }}%"></span>
-								</span>
-							</td>
-							<td class="overseas-region-groups_group_regions_region_target">
-								&pound;{{ region.value.target | largeNumber }}
-							</td>
-							<td class="overseas-region-groups_group_regions_region_progress">
-								<span class="visually-hidden">{{ region.value.percentage }}%</span>
-							</td>
-							<td class="overseas-region-groups_group_regions_region_hvc-non-hvc">
-								<div class="pie pie--center" style="animation-delay: -{{ region.hvcVsNonhvcPercentage }}s">{{ region.hvcVsNonhvcPercentage }}%</div>
-							</td>
+							<div class="overseas-region-groups_group_regions_region_block-wrapper">
+								{% if region.hvcColours.red > 0 %}{{ blocks( 'red', region.hvcColours.red ) }}<br>{% endif %}
+								{% if region.hvcColours.amber > 0 %}{{ blocks( 'amber', region.hvcColours.amber ) }}<br>{% endif %}
+								{% if region.hvcColours.green > 0 %}{{ blocks( 'green', region.hvcColours.green ) }}<br>{% endif %}
+							</div>
+						</td>
+						<td class="overseas-region-groups_group_regions_region_current">
+							&pound;{{ region.value.current | largeNumber }}
+							<span class="overseas-region-groups_group_regions_region_current_progress">
+								<span class="overseas-region-groups_group_regions_region_current_progress_amount" style="width: {{ region.value.percentage }}%"></span>
+							</span>
+						</td>
+						<td class="overseas-region-groups_group_regions_region_target">
+							&pound;{{ region.value.target | largeNumber }}
+						</td>
+						<td class="overseas-region-groups_group_regions_region_progress">
+							<span class="visually-hidden">{{ region.value.percentage }}%</span>
+						</td>
+						<td class="overseas-region-groups_group_regions_region_hvc-non-hvc">
+							<div class="pie pie--center" style="animation-delay: -{{ region.hvcVsNonhvcPercentage }}s">{{ region.hvcVsNonhvcPercentage }}%</div>
+						</td>
 
-						</tr>
-				
-					{%- endfor -%}
-					</tbody>
+					</tr>
+			
+				{%- endfor -%}
+				</tbody>
 
-				</table>
-			</li>
+			</table>
+		</li>
 
 	{%- endfor %}
 	</ol>

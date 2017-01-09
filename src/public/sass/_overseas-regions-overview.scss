@@ -89,17 +89,17 @@
 }
 
 .overseas-region-groups_group_regions_region {
-
 	padding: 0.5em 0;
+}
 
-	&:nth-of-type( even ) {
-		background-color: $grey-4;
-	}
+.overseas-region-groups_group_regions_region--odd {
+	background-color: $grey-4;
 }
 
 .overseas-region-groups_group_regions_region_name {
 	@include core-14;
 	vertical-align: middle;
+	padding-left: pem( 5, 14 );
 }
 
 .overseas-region-groups_group_regions_region_block-wrapper {
