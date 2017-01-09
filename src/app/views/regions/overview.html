@@ -20,6 +20,7 @@
 			
 			<img src="/public/img/overseas-region-maps/{{ group.image }}.png" alt="group map" class="overseas-region-groups_group_image">
 
+			<div>{# wrapper for flex #}
 			<table class="overseas-region-groups_group_regions">
 
 				<caption class="visually-hidden">
@@ -49,7 +50,7 @@
 
 					<tr class="overseas-region-groups_group_regions_region{% if loopIndex % 2 === 1 %} overseas-region-groups_group_regions_region--odd{% endif %}">
 
-						<td class="overseas-region-groups_group_regions_region_name">
+						<td class="overseas-region-groups_group_regions_region_name overseas-region-groups_group_regions_region_name--{{ region.colour }}">
 							<a href="#">{{ region.name }}</a>
 							<span class="overseas-region-groups_group_regions_region_name_countries">
 								{{- region.markets | pluralise( 'country', 'countries' ) -}}
@@ -90,6 +91,7 @@
 				</tbody>
 
 			</table>
+			</div>
 		</li>
 
 	{%- endfor %}

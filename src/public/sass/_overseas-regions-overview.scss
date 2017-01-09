@@ -11,10 +11,12 @@
 	clear: left;
 	overflow: hidden;
 	margin-bottom: 2em;
+	display: flex;
 }
 
 .overseas-region-groups_group_image {
 	float: left;
+	align-self: center;
 }
 
 .overseas-region-groups_group_regions {
@@ -56,6 +58,22 @@
 	@include core-14;
 	display: block;
 	color: $grey-1;
+}
+
+.overseas-region-groups_group_regions_region_name--pink {
+	border-left: 2px solid #fb07fa;
+}
+
+.overseas-region-groups_group_regions_region_name--blue {
+	border-left: 2px solid #0dc3d8
+}
+
+.overseas-region-groups_group_regions_region_name--green {
+	border-left: 2px solid #c7fd09
+}
+
+.overseas-region-groups_group_regions_region_name--purple {
+	border-left: 2px solid #9744f5
 }
 
 .overseas-region-groups_group_regions_region_current_progress {
