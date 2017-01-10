@@ -1,6 +1,6 @@
 {
   "name": "export-wins-ui-mi",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "dependencies": {
     "a-sync-waterfall": {
       "version": "1.0.0",
