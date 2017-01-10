@@ -29,5 +29,6 @@ describe( 'Large number', function(){
 		testAll( 100000, '0.1m' );
 		testAll( 10000, '0.01m' );
 		testAll( 21863525, '21.86m' );
+		testAll( 3084510000, '3.08b' );
 	} );
 } );
