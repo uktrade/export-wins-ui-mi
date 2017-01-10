@@ -16,7 +16,7 @@ describe( 'Backend stub', function(){
 
 	function checkStub( url, stub, done ){
 
-		backendStub.get( url, ( err, response, data ) => {
+		backendStub.get( 'fake-alice-str', url, ( err, response, data ) => {
 
 			expect( err ).toBeNull();
 			expect( response.statusCode ).toEqual( 200 );
@@ -85,7 +85,7 @@ describe( 'Backend stub', function(){
 		
 			it( 'Should return the list', function( done ){
 		
-				const url = '/mi/overseas_regions/';
+				const url = '/mi/regions/';
 
 				checkStub( url, regionsStub, done );
 			} );
