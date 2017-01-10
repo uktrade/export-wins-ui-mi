@@ -164,7 +164,19 @@ function getRegionHvcTargetPerformance( alice, regionId ){
 
 function getRegionsOverview( /* alice */ ){
 
-	return require( '../../../mocks' ).regionsOverview();
+	try {
+	
+		return require( '../../../mocks' ).regionsOverview();
+
+	} catch( e ){
+
+		logger.warn( 'No mocks found' );
+
+		return new Promise( ( resolve, reject ) => {
+			
+			reject( new Error( 'Unable to load mocks' ) );
+		} );
+	}
 }
 
 

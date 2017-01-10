@@ -25,7 +25,7 @@ module.exports = function( req, res, next ){
 
 	} else {
 
-		let err = new Error( 'No token in cookies' );
+		let err = new Error( 'Not logged in' );
 
 		logger.error( err.message );
 

@@ -7,6 +7,16 @@ const topNonHvcDataSet = require( '../lib/data-sets/top-non-hvc' );
 const targetProgressDataSet = require( '../lib/data-sets/target-progress' );
 const hvcTargetPerformanceDataSet = require( '../lib/data-sets/hvc-target-performance' );
 
+function renderError( res ){
+
+	return function( err ){
+
+		console.error( err );
+
+		res.render( 'error', { error: err } );
+	};
+}
+
 module.exports = { 
 
 	overview: function( req, res ){
@@ -14,7 +24,8 @@ module.exports = {
 		backendService.getRegionsOverview( req.alice ).then( ( regionGroups ) => {
 
 			res.render( 'regions/overview.html', { regionGroups } );
-		} );
+		
+		} ).catch( renderError( res ) );
 	},
 
 	regionList: function( req, res ){
@@ -22,7 +33,8 @@ module.exports = {
 		backendService.getRegions( req.alice ).then( ( regions ) => {
 
 			res.render( 'regions/list.html', { regions } );
-		} );
+		
+		} ).catch( renderError( res ) );
 	},
 
 	region: function( req, res ){
@@ -54,11 +66,6 @@ module.exports = {
 				hvcTargetPerformance: hvcTargetPerformanceDataSet.create( hvcTargetPerformance )
 			} );
 
-		} ).catch( function( err ){
-
-			console.error( err );
-
-			res.render( 'error', { error: err } );
-		} );
+		} ).catch( renderError( res ) );
 	}
 };
