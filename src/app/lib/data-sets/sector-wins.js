@@ -16,17 +16,7 @@ function combineData( data1, data2 ){
 }
 
 
-function createVolumePieData( data ){
-
-	const parts = ( 100 / data.number.total );
-
-	return {
-		confirmed: Math.round( parts * data.number.confirmed ),
-		unconfirmed: Math.round( parts * data.number.non_confirmed )
-	};
-}
-
-function createValuePieData( data ){
+function createConfirmedUnconfirmedData( data ){
 
 	const parts = ( 100 / data.value.total );
 
@@ -36,13 +26,26 @@ function createValuePieData( data ){
 	};
 }
 
+function createHvcNonHvcData( hvc, nonHvc ){
+
+	const total = ( hvc.value.confirmed + nonHvc.value.confirmed );
+	const parts = ( 100 / total );
+
+	return {
+		hvc: Math.round( parts * hvc.value.confirmed ),
+		nonHvc: Math.round( parts * nonHvc.value.confirmed )
+	};
+}
+
 module.exports = {
 
 	create: function( data ){
 
+		const combinedData = combineData( data.wins.hvc, data.wins.non_hvc );
+
 		return {
-			hvc: createValuePieData( data.wins.hvc ),
-			combined: createVolumePieData( combineData( data.wins.hvc, data.wins.non_hvc ) )
+			hvcNonHvcValue: createHvcNonHvcData( data.wins.hvc, data.wins.non_hvc ),
+			confirmedUnconfirmedValue: createConfirmedUnconfirmedData( combinedData )
 		};
 	}
 };

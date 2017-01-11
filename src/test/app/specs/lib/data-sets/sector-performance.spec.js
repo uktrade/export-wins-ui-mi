@@ -105,7 +105,7 @@ describe( 'Sector performance data set', function(){
 		//expect( output.max ).toEqual( input.max );
 		//expect( output.min ).toEqual( input.min );
 
-		expect( target.name ).toEqual( '£60m target' );
+		expect( target.name ).toEqual( '£60m HVC target' );
 		expect( target.mode ).toEqual( 'lines' );
 		expect( target.x ).toEqual( [ '2016-04', '2016-05', '2016-06' ] );
 		expect( target.y ).toEqual( [ 60000000, 60000000, 60000000 ] );
@@ -123,7 +123,7 @@ describe( 'Sector performance data set', function(){
 		expect( hvcConfirmed.line.color ).toBeDefined();
 		expect( hvcConfirmed.line.width ).toEqual( 2 );
 
-		expect( hvcUnconfirmed.name ).toEqual( 'hvc unconfirmed' );
+		expect( hvcUnconfirmed.name ).toEqual( 'incl. unconfirmed' );
 		expect( hvcUnconfirmed.mode ).toEqual( 'lines+markers' );
 		expect( hvcUnconfirmed.x ).toEqual( [ '2016-04', '2016-05', '2016-06' ] );
 		expect( hvcUnconfirmed.y ).toEqual( [ 25, 200, 16 ] );
@@ -142,7 +142,7 @@ describe( 'Sector performance data set', function(){
 		expect( nonHvcConfirmed.line.color ).toBeDefined();
 		expect( nonHvcConfirmed.line.width ).toEqual( 2 );
 
-		expect( nonHvcUnconfirmed.name ).toEqual( 'non-HVC unconfirmed' );
+		expect( nonHvcUnconfirmed.name ).toEqual( 'incl. unconfirmed' );
 		expect( nonHvcUnconfirmed.mode ).toEqual( 'lines+markers' );
 		expect( nonHvcUnconfirmed.x ).toEqual( [ '2016-04', '2016-05', '2016-06' ] );
 		expect( nonHvcUnconfirmed.y ).toEqual( [ 50, 400, 32 ] );
@@ -161,7 +161,7 @@ describe( 'Sector performance data set', function(){
 		expect( nonExportConfirmed.line.color ).toBeDefined();
 		expect( nonExportConfirmed.line.width ).toEqual( 2 );
 
-		expect( nonExportUnconfirmed.name ).toEqual( 'non-export unconfirmed' );
+		expect( nonExportUnconfirmed.name ).toEqual( 'incl. unconfirmed' );
 		expect( nonExportUnconfirmed.mode ).toEqual( 'lines+markers' );
 		expect( nonExportUnconfirmed.x ).toEqual( [ '2016-04', '2016-05', '2016-06' ] );
 		expect( nonExportUnconfirmed.y ).toEqual( [ 100, 800, 64 ] );

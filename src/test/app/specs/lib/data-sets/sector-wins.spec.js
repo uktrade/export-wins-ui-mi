@@ -39,11 +39,11 @@ describe( 'Sector wins data data set', function(){
 
 		const output = dataset.create( input );
 
-		expect( output.hvc.confirmed ).toEqual( 30 );
-		expect( output.hvc.unconfirmed ).toEqual( 70 );
+		expect( output.hvcNonHvcValue.hvc ).toEqual( 34 );
+		expect( output.hvcNonHvcValue.nonHvc ).toEqual( 66 );
 
-		expect( output.combined.confirmed ).toEqual( 36 );
-		expect( output.combined.unconfirmed ).toEqual( 64 );
+		expect( output.confirmedUnconfirmedValue.confirmed ).toEqual( 36 );
+		expect( output.confirmedUnconfirmedValue.unconfirmed ).toEqual( 64 );
 
 	} );
 } );

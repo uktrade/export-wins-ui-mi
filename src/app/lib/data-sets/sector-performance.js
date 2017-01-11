@@ -1,8 +1,8 @@
 
 const targetColour = 'rgb(0, 0, 0)';
-const hvcColour = 'rgb(6, 199, 252)';
-const nonHvcColour = 'rgb(154, 166, 14)';
-const nonExportColour = 'rgb(255, 140, 130)';
+const hvcColour = 'rgb(6, 199, 252)'; //2B8CC4
+const nonHvcColour = 'rgb(154, 166, 14)';//6F72AF
+const nonExportColour = 'rgb(255, 140, 130)';//6F72AF - 50%
 
 function createTrace( name, x, y, color, dashed, mode ){
 
@@ -60,15 +60,15 @@ module.exports = {
 			nonExportUnconfirmed.push( month.totals.nonExport.unconfirmed );
 		}
 
-		const targetTrace = createTrace( data.targetName + ' target', x, target, targetColour, false, 'lines' );
+		const targetTrace = createTrace( data.targetName + ' HVC target', x, target, targetColour, false, 'lines' );
 
 		const hvcConfirmedTrace = createTrace( 'hvc confirmed', x, hvcConfirmed, hvcColour );
 		const nonHvcConfirmedTrace = createTrace( 'non-HVC confirmed', x, nonHvcConfirmed, nonHvcColour );
 		const nonExportConfirmedTrace = createTrace( 'non-export confirmed', x, nonExportConfirmed, nonExportColour );
 
-		const hvcUnconfirmedTrace = createTrace( 'hvc unconfirmed', x, hvcUnconfirmed, hvcColour, true );
-		const nonHvcUnconfirmedTrace = createTrace( 'non-HVC unconfirmed', x, nonHvcUnconfirmed, nonHvcColour, true );
-		const nonExportUnconfirmedTrace = createTrace( 'non-export unconfirmed', x, nonExportUnconfirmed, nonExportColour, true );
+		const hvcUnconfirmedTrace = createTrace( 'incl. unconfirmed', x, hvcUnconfirmed, hvcColour, true );
+		const nonHvcUnconfirmedTrace = createTrace( 'incl. unconfirmed', x, nonHvcUnconfirmed, nonHvcColour, true );
+		const nonExportUnconfirmedTrace = createTrace( 'incl. unconfirmed', x, nonExportUnconfirmed, nonExportColour, true );
 
 		return {
 

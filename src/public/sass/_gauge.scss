@@ -20,7 +20,7 @@ $overHeight: ($height * 1.1);
 .gauge_container_a {
 	z-index: 1;
 	position: absolute;
-	background-color: $grey-2;
+	background-color: $grey-3;
 	width: $width;
 	height: $height;
 	top: 0%;
@@ -42,7 +42,7 @@ $overHeight: ($height * 1.1);
 .gauge_container_c {
 	z-index: 2;
 	position: absolute;
-	background-color: $yellow;
+	background-color: $light-blue;
 	width: $width;
 	height: $height;
 	top: $height;

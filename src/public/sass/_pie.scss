@@ -20,6 +20,10 @@ Thanks Lea!
 	text-align: center;
 }
 
+.pie--pink {
+	background-image: linear-gradient(to right, transparent 50%, $mi-pink 0);
+}
+
 .pie--center {
 	margin-left: auto;
 	margin-right: auto;
@@ -36,6 +40,10 @@ Thanks Lea!
 	50% { background: $overview-non-hvc; }
 }
 
+@keyframes bg-pink {
+	50% { background: $mi-pink; }
+}
+
 .pie::before {
 	content: '';
 	position: absolute;
@@ -45,6 +53,12 @@ Thanks Lea!
 	background-color: inherit;
 	transform-origin: left;
 	animation: spin 50s linear infinite, bg 100s step-end infinite;
+	animation-play-state: paused;
+	animation-delay: inherit;
+}
+
+.pie--pink::before {
+	animation: spin 50s linear infinite, bg-pink 100s step-end infinite;
 	animation-play-state: paused;
 	animation-delay: inherit;
 }
@@ -70,9 +84,16 @@ Thanks Lea!
 	margin-right: pem( 5, 14 );
 }
 
-.pie-key_block--other {
+.pie-key_block--slice {
 	background-color: $overview-non-hvc;
 }
+
+.pie-key--pink {
+	.pie-key_block--slice {
+		background-color: $mi-pink;
+	}
+}
+
 
 
 $sector-team-size: 70px;
