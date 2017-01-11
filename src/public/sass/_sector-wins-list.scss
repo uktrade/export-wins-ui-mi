@@ -1,16 +1,22 @@
 @import 'colours';
 @import 'typography';
 
+.sector-wins_list-heading {
+	@include bold-16;
+	margin-top: pem( 20, 16 );
+	margin-bottom: pem( 5, 16 );
+}
+
 .sector-wins_list {
-	border: 1px solid $grey-2;
 	padding: 0;
+	margin: 0;
 }
 
 .sector-wins_list_item {
 	
 	display: table-cell;
-	border-right: 1px solid $grey-2;
-	padding: 0.5em;
+	padding: 0 pem( 40, 16 ) 0 0;
+	vertical-align: middle;
 
 	&:last-of-type {
 		border-right: none;
@@ -19,7 +25,7 @@
 
 .sector-wins_list_item_heading {
 
-	@include bold-19;
+	@include bold-16;
 	margin-top: 1em;
 
 	&:first-of-type {
@@ -27,15 +33,27 @@
 	}
 }
 
-.sector-wins_list_item_gauge-heading {
-	margin-bottom: 0.5em;
-}
-
-.sector-wins_list_item_gauge {
-	margin: 0 auto;
-}
-
 .sector-wins_list_item_value {
-	margin: 0.5em 0;
+	@include bold-24;
+	margin: 0 0 0 0;
 }
 
+.sector-wins_list_item_value_currency {
+	@include core-19;
+}
+
+
+.sector-wins_list_item_values {
+	padding: 0;
+	list-style: none;
+	overflow: hidden;
+}
+
+.sector-wins_list_item_values_item {
+
+	float: left;
+
+	&:first-of-type {
+		margin-right: pem( 40, 16 );
+	}
+}

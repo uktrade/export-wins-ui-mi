@@ -1,3 +1,4 @@
+@import 'helpers';
 @import 'typography';
 
 #sector-performance {
@@ -11,6 +12,10 @@
 	height: 300px;
 }
 
+.sector-wins {
+	margin-top: pem( 50 );
+}
+
 .sector-wins_pie {
 	width: 425px;
 	height: 145px;
@@ -18,5 +23,56 @@
 
 .sector-heading {
 	margin-top: 2em;
-	@include bold-19();
+	@include bold-19;
+}
+
+.sector-sub-heading {
+	@include bold-16;
+}
+
+.sector-export-value {
+	@include bold-48;
+	margin: 0;
+}
+
+.sector-overview {
+	margin-top: pem( 25 );
+}
+
+.sector-overview_total-value-heading,
+.sector-overview_confirmed-heading {
+	@include bold-14;
+	min-height: 3em;
+}
+
+.sector-overview_total-value-heading {
+	max-width: 200px;
+}
+
+.sector-overview_charts {
+	list-style: none;
+	overflow: hidden;
+	margin: 0;
+}
+
+.sector-overview_charts_chart {
+
+	display: inline-block;
+	float: left;
+
+	&:first-of-type {
+		margin-right: pem( 25 );
+	}
+}
+
+.sector-overview_charts_chart_average-time {
+	@include bold-14;
+	max-width: 100px;
+	float: right;
+	margin: 0 0 0 pem( 10, 14 );
+}
+
+.sector-overview_charts_chart_average-time_days {
+	@include bold-24;
+	display: block;
 }

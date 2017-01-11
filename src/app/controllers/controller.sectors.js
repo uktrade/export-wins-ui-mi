@@ -1,8 +1,8 @@
 
 const backendService = require( '../lib/service/service.backend' );
 const sectorDataSet = require( '../lib/data-sets/sector-performance' );
-const winsDataSet = require( '../lib/data-sets/wins' );
 const topNonHvcDataSet = require( '../lib/data-sets/top-non-hvc' );
+const sectorWinsDataSet = require( '../lib/data-sets/sector-wins' );
 const targetProgressDataSet = require( '../lib/data-sets/target-progress' );
 const hvcTargetPerformanceDataSet = require( '../lib/data-sets/hvc-target-performance' );
 
@@ -38,12 +38,13 @@ module.exports = {
 				topNonHvcRegionsSectors,
 				topNonHvcRegionsSectorsScale: topNonHvcDataSet.create( topNonHvcRegionsSectors ),
 				sectorPerformance: sectorDataSet.create( sectorMonths ),
-				wins: winsDataSet.create( winsData ),
 				winSummary: {
 					target: winsData.hvcs.target,
 					totalConfirmed: winsData.wins.hvc.value.confirmed,
 					progress: targetProgressDataSet.create( winsData ),
-					averageTimeToConfirm: winsData.avg_time_to_confirm
+					averageTimeToConfirm: winsData.avg_time_to_confirm,
+					exportValue: winsData.exportValue,
+					wins: sectorWinsDataSet.create( winsData )
 				},
 				sectorName: winsData.name,
 				hvcTargetPerformance: hvcTargetPerformanceDataSet.create( hvcTargetPerformance )

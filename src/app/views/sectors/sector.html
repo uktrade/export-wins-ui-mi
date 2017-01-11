@@ -6,15 +6,65 @@
 		{{ sectorName }}
 	</h1>
 
-	<section class="sector-wins grid-row">
-		<h2 class="visually-hidden">Sector wins summary</h2>
 
-		<div class="column-half">
+	<h2 class="visually-hidden">Summary</h2>
+	<section class="sector-overview grid-row">
+		<div class="column-one-third">
 			
+			<h3 class="">Total confirmed incl. non-HVC</h3>
+			<p class="sector-export-value">&pound;{{ winSummary.exportValue | largeNumber }}</p>
+		</div>
+
+		<div class="column-two-thirds">
+
+			<ul class="sector-overview_charts">
+				<li class="sector-overview_charts_chart">
+					
+					<h3 class="sector-overview_total-value-heading">Total value of confirmed wins (HVC &amp; non-HVC)</h3>
+					<div class="pie pie--sector-team pie--inline" style="animation-delay: -{{ winSummary.wins.hvc.confirmed }}s">{{ winSummary.wins.hvc.confirmed }}%</div>
+
+					<ul class="pie-key pie-key--inline sector-overview_total-value-key">
+						<li class="pie-key_item">
+							<span class="pie-key_block"></span>HVC
+						</li>
+						<li class="pie-key_item">
+							<span class="pie-key_block pie-key_block--other"></span>non-HVC
+						</li>
+					</ul>
+
+				</li>
+				<li class="sector-overview_charts_chart">
+
+					<h3 class="sector-overview_confirmed-heading">Confirmed vs. unconfirmed wins value</h3>
+					<div class="pie pie--sector-team pie--inline" style="animation-delay: -{{ winSummary.wins.combined.confirmed }}s">{{ winSummary.wins.combined.confirmed }}%</div>
+
+					<ul class="pie-key pie-key--inline sector-overview_total-value-key">
+						<li class="pie-key_item">
+							<span class="pie-key_block"></span>Unconfirmed wins - {{ winSummary.wins.combined.unconfirmed }}%
+						</li>
+						<li class="pie-key_item">
+							<span class="pie-key_block pie-key_block--other"></span>Confirmed wins - {{ winSummary.wins.combined.confirmed }}%
+						</li>
+					</ul>
+					<p class="sector-overview_charts_chart_average-time">
+						Average time to confirm: <span class="sector-overview_charts_chart_average-time_days">{{ winSummary.averageTimeToConfirm | pluralise( 'day' ) }}</span>
+					</p>
+
+				</li>
+			</ul>
+
+		</div>
+	</section>
+
+	<section class="sector-wins grid-row">
+
+		<div class="column-single">
+			<h3>HVC Performance</h3>
+
+			<h4 class="sector-wins_list-heading">Total confirmed HVCs against target</h4>
+
 			<ul class="sector-wins_list">
 				<li class="sector-wins_list_item">
-					<h3 class="sector-wins_list_item_gauge-heading">Confirmed wins against target</h3>
-
 					<p class="visually-hidden">{{ winSummary.progress.percent }}%</p>
 					<div class="gauge sector-wins_list_item_gauge">
 						<div class="gauge_container">
@@ -25,26 +75,25 @@
 					</div>
 				</li>
 				<li class="sector-wins_list_item">
-					<h3 class="sector-wins_list_item_heading">Total confirmed</h3>
-					<p class="sector-wins_list_item_value">&pound;{{ winSummary.totalConfirmed | largeNumber }}</p>
-					<h3 class="sector-wins_list_item_heading">Target</h3>
-					<p class="sector-wins_list_item_value">&pound;{{ winSummary.target | largeNumber }}</p>
+					<ul class="sector-wins_list_item_values">
+						<li class="sector-wins_list_item_values_item">
+							<h3 class="sector-wins_list_item_heading">Total confirmed</h3>
+							<p class="sector-wins_list_item_value"><span class="sector-wins_list_item_value_currency">&pound;</span>{{ winSummary.totalConfirmed | largeNumber }}</p>
+						</li>
+						<li class="sector-wins_list_item_values_item">
+							<h3 class="sector-wins_list_item_heading">Target</h3>
+							<p class="sector-wins_list_item_value"><span class="sector-wins_list_item_value_currency">&pound;</span>{{ winSummary.target | largeNumber }}</p>
+						</li>
+					</ul>
 				</li>
 			</ul>
 
 		</div>
-
-		<div class="column-half">
-			<h3>Confirmed/unconfirmed</h3>
-			<div id="hvc-wins" class="sector-wins_pie"></div>
-			Average time to confirm: {{ winSummary.averageTimeToConfirm | pluralise( 'day' ) }}
-		</div>
 	</section>
-
 
 	<section class="grid-row">
 		<div class="column-single">
-			<h2 class="sector-heading">HVC target performance</h2>
+			<h2 class="sector-sub-heading">HVCs with 1 year targets</h2>
 			{% include 'partials/hvc-target-performance.html' %}
 		</div>
 	</section>
@@ -69,7 +118,6 @@
 	<script>
 		mi.pages.sector({
 			sectorPerformance: {{ sectorPerformance | dump | safe }},
-			wins: {{ wins | dump | safe }},
 			targetProgress: {{ winSummary.progress.gauge | dump | safe }}
 		});
 	</script>

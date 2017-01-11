@@ -7,8 +7,10 @@ const USE_STUBS = config.backend.stub;
 const logger = require( '../logger' );
 const backend = ( USE_STUBS ? require( '../backend.stub' ) : require( '../backend' ) );
 const mocks = ( USE_MOCKS ? require( '../../../mocks' ) : null );
+
 const transformMonths = require( '../transformers/sector-months' );
 const transformCampaigns = require( '../transformers/sector-campaigns' );
+const transformSectorTeam = require( '../transformers/sector-team' );
 
 if( USE_STUBS ){
 
@@ -62,10 +64,11 @@ function getSectors( alice ){
 
 function getSector( alice, sectorId ){
 
-	return new Promise( ( resolve, reject ) => {
+	return ( new Promise( ( resolve, reject ) => {
 		
 		backend.get( alice, `/mi/sector_teams/${ sectorId }/`, createHandler( resolve, reject ) );
-	} );
+		
+	} ) ).then( ( data ) => transformSectorTeam( data ) );
 }
 
 function getSectorMonths( alice, sectorId ){

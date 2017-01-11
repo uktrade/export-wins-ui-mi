@@ -1,4 +1,5 @@
 @import 'mi-colours';
+@import 'typography';
 
 $size: 40px;
 
@@ -24,6 +25,10 @@ Thanks Lea!
 	margin-right: auto;
 }
 
+.pie--inline {
+	display: inline-block;
+}
+
 @keyframes spin {
 	to { transform: rotate( .5turn ); }
 }
@@ -42,4 +47,37 @@ Thanks Lea!
 	animation: spin 50s linear infinite, bg 100s step-end infinite;
 	animation-play-state: paused;
 	animation-delay: inherit;
+}
+
+.pie-key {
+	list-style: none;
+	padding: 0 0 0 pem( 10 );
+}
+
+.pie-key--inline {
+	display: inline-block;
+}
+
+.pie-key_item {
+	@include core-14;
+}
+
+.pie-key_block {
+	display: inline-block;
+	height: 10px;
+	width: 10px;
+	background-color: $overview-hvc;
+	margin-right: pem( 5, 14 );
+}
+
+.pie-key_block--other {
+	background-color: $overview-non-hvc;
+}
+
+
+$sector-team-size: 70px;
+.pie--sector-team {
+	width: $sector-team-size;
+	height: $sector-team-size;
+	line-height: $sector-team-size;
 }
