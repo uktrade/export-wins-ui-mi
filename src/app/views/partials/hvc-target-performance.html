@@ -6,8 +6,8 @@
 				<th colspan="3" class="hvc-perf_table_cell_heading">&pound;millions</th>
 			</tr>
 			<tr>
-				<th class="hvc-perf_table_cell_region">HVC name</th>
-				<th class="hvc-perf_table_cell_heading">change from last quarter</th>
+				<th class="hvc-perf_table_cell_heading hvc-perf_table_cell_heading--region">HVC name</th>
+				{#<th class="hvc-perf_table_cell_heading">change from last quarter</th>#}
 				<th class="hvc-perf_table_cell_heading">Percentage of target reached</th>
 				<th><span class="visually-hidden">Over target</span></th>
 				<th class="hvc-perf_table_cell_heading">Export value</th>
@@ -16,13 +16,16 @@
 			</tr>
 		</thead>
 		<tbody>
+
 			{% for item in hvcTargetPerformance %}
 			<tr class="hvc-perf_table_row">
 				<td class="hvc-perf_table_cell hvc-perf_table_cell--region">{{ item.region }}</td>
+				{#
 				<td class="hvc-perf_table_cell hvc-perf_table_cell--change">
 					<span class="hvc-perf_table_cell_arrow hvc-perf_table_cell_arrow--{{ item.change }}"></span>
 					<span class="visually-hidden">{{ item.change }}</span>
 				</td>
+				#}
 				<td class="hvc-perf_table_cell hvc-perf_table_cell--percent-complete">
 					<span class="visually-hidden">{{ item.progress.confirmed }}% confirmed</span>
 					<span class="visually-hidden">{{ item.progress.unconfirmed }}% unconfirmed</span>
@@ -52,7 +55,7 @@
 			{% endfor %}
 
 			<tr>
-				<td colspan="2"></td>
+				<td></td>
 				<td>
 					
 					<div class="hvc-perf_percent-markers">

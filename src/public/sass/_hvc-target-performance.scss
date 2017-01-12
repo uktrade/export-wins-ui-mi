@@ -45,23 +45,35 @@ $keyBoxSize: 12px;
 	border-collapse: collapse;
 	border-bottom: 1px solid #000;
 	margin-right: $keyWidth;
+	line-height: 1.1;
+}
+
+.hvc-perf_table_row {
+
+	&:first-of-type {
+		border-top: 1px solid #000;
+	}
 }
 
 .hvc-perf_table_cell_heading {
 	@include core-14;
+	vertical-align: bottom;
 }
 
-.hvc-perf_table_row:first-of-type {
-	border-top: 1px solid #000;
+.hvc-perf_table_cell_heading--region {
+	@include bold-16;
+	text-align: left;
 }
 
 .hvc-perf_table_cell {
-	padding: 0.25em 0.5em 0 0.5em;
+	padding: 0.25em 0.5em 0.25em 0.5em;
 	position: relative;
+	@include core-14;
 }
 
-$region-width: 15%;
-$change-width: 5%;
+$region-width: 20%;
+//$region-width: 15%;
+//$change-width: 5%;
 $percent-complete-width: 50%;
 $over-target-width: 6%;
 $confirmed-width: 8%;
@@ -70,11 +82,13 @@ $target-width: 8%;
 
 .hvc-perf_table_cell--region {
 	width: $region-width;
+	padding-left: 0
 }
-
+/*
 .hvc-perf_table_cell--change {
 	width: $change-width;
 }
+*/
 .hvc-perf_table_cell--percent-complete {
 	width: $percent-complete-width;
 	border-left: 1px solid #000;
@@ -143,7 +157,7 @@ $parts: ( 100 / 125 );
 	top: 0;
 	width: ( $parts * 75% );
 	height: 100%;
-	border-left: 1px solid #000;
+	border-left: 1px solid $grey-3;
 	z-index: 1;
 }
 
