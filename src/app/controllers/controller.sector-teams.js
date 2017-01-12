@@ -12,7 +12,10 @@ module.exports = {
 
 	overview: function( req, res ){
 
-		res.render( 'sector-teams/overview' );
+		backendService.getSectorTeamsOverview( req.alice ).then( ( sectorTeams ) => {
+			
+			res.render( 'sector-teams/overview', { sectorTeams } );
+		} );
 	},
 
 	list: function( req, res ){

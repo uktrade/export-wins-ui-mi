@@ -1,4 +1,4 @@
-const transform = require( '../../../../../app/lib/transformers/sector-campaigns' );
+const transform = require( '../../../../../app/lib/transformers/campaigns' );
 const input = require( '../../../../../stubs/backend/sector_team_campaigns_2016-12-12' );
 
 /*

@@ -97,6 +97,25 @@ function getSectorTeamTopNonHvc( alice, teamId ){
 	} );
 }
 
+function getSectorTeamsOverview( /* alice */ ){
+
+	try {
+	
+		return require( '../../../mocks' ).sectorTeamsOverview();
+
+	} catch( e ){
+
+		logger.warn( 'No mocks found' );
+
+		return new Promise( ( resolve, reject ) => {
+			
+			reject( new Error( 'Unable to load mock' ) );
+		} );
+	}
+}
+
+
+
 function getRegions( alice ){
 
 	return new Promise( ( resolve, reject ) => {
@@ -213,6 +232,8 @@ module.exports = {
 			getSectorTeamCampaigns( alice, teamId )
 		] );
 	},
+
+	getSectorTeamsOverview,
 
 	getRegions,
 	getRegion,

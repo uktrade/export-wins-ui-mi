@@ -1,4 +1,4 @@
-const transform = require( '../../../../../app/lib/transformers/sector-months' );
+const transform = require( '../../../../../app/lib/transformers/months' );
 const input = require( '../../../../../stubs/backend/sector_team_months' );
 const inputOverTarget = require( '../../../../../stubs/backend/sector_team_months-over-target' );
 const input20161212 = require( '../../../../../stubs/backend/sector_team_months_2016-12-12' );

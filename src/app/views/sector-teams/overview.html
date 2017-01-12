@@ -6,7 +6,13 @@
 		Sectors teams overview
 	</h2>
 
-	<ol class="sector-groups">
-	
+	<ol class="sector-teams-list">
+		{% for team in sectorTeams %}
+		
+			<li>
+				<img src="/public/img/sector-team-icons/{{ team.image.name }}" width="{{ team.image.width }}" height="{{ team.image.height }}" alt="{{ team.image.alt }}">
+				{{ team.name }}
+			</li>
+		{% endfor %}
 	</ol>
 {% endblock %}
