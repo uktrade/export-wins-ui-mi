@@ -16,7 +16,6 @@ describe( 'Region overview mock', function(){
 
 				expect( region.name ).toBeDefined();
 				expect( region.markets ).toBeDefined();
-				expect( region.hvcs ).toBeDefined();
 				expect( region.hvcColours.red ).toBeDefined();
 				expect( region.hvcColours.amber ).toBeDefined();
 				expect( region.hvcColours.green ).toBeDefined();
