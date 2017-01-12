@@ -10,6 +10,11 @@ const hvcTargetPerformanceDataSet = require( '../lib/data-sets/hvc-target-perfor
 
 module.exports = {
 
+	overview: function( req, res ){
+
+		res.render( 'sectors/overview' );
+	},
+
 	sectorList: function( req, res ){
 
 		backendService.getSectors( req.alice ).then( function( sectors ){

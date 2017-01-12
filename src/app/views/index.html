@@ -11,6 +11,8 @@
 			
 			<h2 class="sector-list-heading">Sectors</h2>
 
+			<a href="{{ uuid }}/sectors/overview/" class="sectors-overview-link">Overview</a>
+
 			<ul class="sector-list">
 			{% for sector in sectors %}
 				<li><a href="{{ uuid }}/sectors/{{ sector.id }}/">{{ sector.name }}</a></li>
@@ -28,7 +30,7 @@
 
 			<h2 class="sector-list-heading">Overseas Regions</h2>
 
-			<a href="{{ uuid }}/regions/overview/" class="regions-overview">Overview</a>
+			<a href="{{ uuid }}/regions/overview/" class="regions-overview-link">Overview</a>
 
 			<ul class="sector-list">
 			{% for region in regions %}
