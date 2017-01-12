@@ -1,7 +1,7 @@
 
-var mock = require( '../../../mocks/sector-performance' );
+var mock = require( '../../../mocks/sector-team-months' );
 
-describe( 'Sector performance mock', function(){
+describe( 'Sector team months mock', function(){
 
 	it( 'Should have 12 months', function(){
 	

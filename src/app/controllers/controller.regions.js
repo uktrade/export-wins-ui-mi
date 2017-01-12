@@ -55,8 +55,8 @@ module.exports = {
 			res.render( 'regions/region.html', {
 				
 				regionName,
-				topNonHvcRegionsSectors: topNonHvc,
-				topNonHvcRegionsSectorsScale: topNonHvcDataSet.create( topNonHvc ),
+				topNonHvc,
+				topNonHvcScale: topNonHvcDataSet.create( topNonHvc ),
 				sectorPerformance: sectorDataSet.create( months ),
 				wins: winsDataSet.create( winsData ),
 				winSummary: {

@@ -11,11 +11,11 @@
 			
 			<h2 class="sector-list-heading">Sectors</h2>
 
-			<a href="{{ uuid }}/sectors/overview/" class="sectors-overview-link">Overview</a>
+			<a href="{{ uuid }}/sector-teams/overview/" class="sectors-overview-link">Overview</a>
 
 			<ul class="sector-list">
 			{% for sector in sectors %}
-				<li><a href="{{ uuid }}/sectors/{{ sector.id }}/">{{ sector.name }}</a></li>
+				<li><a href="{{ uuid }}/sector-teams/{{ sector.id }}/">{{ sector.name }}</a></li>
 			{% endfor %}
 			</ul>
 		</div>

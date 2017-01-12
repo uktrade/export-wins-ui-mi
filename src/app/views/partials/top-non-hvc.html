@@ -13,7 +13,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			{% for item in topNonHvcRegionsSectors %}
+			{% for item in topNonHvc %}
 			<tr class="top-non-hvc_table_row">
 				<td class="top-non-hvc_table_cell top-non-hvc_table_cell--region">{{ item.region }}</td>
 				<td class="top-non-hvc_table_cell top-non-hvc_table_cell--sector">{{ item.sector }}</td>
@@ -38,19 +38,19 @@
 						<span class="top-non-hvc_value-markers_marker top-non-hvc_value-markers_marker--first">
 							<span class="top-non-hvc_value-markers_marker_line"></span>
 							<span class="top-non-hvc_value-markers_marker_text">
-								&pound;{{ topNonHvcRegionsSectorsScale.low | largeNumber }}
+								&pound;{{ topNonHvcScale.low | largeNumber }}
 							</span>
 						</span>
 						<span class="top-non-hvc_value-markers_marker top-non-hvc_value-markers_marker--second">
 							<span class="top-non-hvc_value-markers_marker_line"></span>
 							<span class="top-non-hvc_value-markers_marker_text">
-								&pound;{{ topNonHvcRegionsSectorsScale.mid | largeNumber }}
+								&pound;{{ topNonHvcScale.mid | largeNumber }}
 							</span>
 						</span>
 						<span class="top-non-hvc_value-markers_marker top-non-hvc_value-markers_marker--third">
 							<span class="top-non-hvc_value-markers_marker_line"></span>
 							<span class="top-non-hvc_value-markers_marker_text">
-								&pound;{{ topNonHvcRegionsSectorsScale.high | largeNumber }}
+								&pound;{{ topNonHvcScale.high | largeNumber }}
 							</span>
 						</span>
 					</div>

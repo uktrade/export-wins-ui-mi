@@ -1,8 +1,8 @@
-const isTopNonHvc = /^\/mi\/sector_teams\/[0-9]+\/top_non_hvcs\/$/;
-const isSectorCampaign = /^\/mi\/sector_teams\/[0-9]+\/campaigns\/$/;
-const isSectorMonths = /^\/mi\/sector_teams\/[0-9]+\/months\/$/;
-const isSector = /^\/mi\/sector_teams\/[0-9]+\/$/;
-const isSectors = /^\/mi\/sector_teams\/$/;
+const isSectorTeamTopNonHvc = /^\/mi\/sector_teams\/[0-9]+\/top_non_hvcs\/$/;
+const isSectorTeamCampaign = /^\/mi\/sector_teams\/[0-9]+\/campaigns\/$/;
+const isSectorTeamMonths = /^\/mi\/sector_teams\/[0-9]+\/months\/$/;
+const isSectorTeam = /^\/mi\/sector_teams\/[0-9]+\/$/;
+const isSectorTeams = /^\/mi\/sector_teams\/$/;
 
 const isRegionTopNonHvc = /^\/mi\/regions\/[0-9]+\/top_non_hvcs\/$/;
 const isRegionCampaigns = /^\/mi\/regions\/[0-9]+\/campaigns\/$/;
@@ -13,10 +13,10 @@ const isRegions = /^\/mi\/regions\/$/;
 const response = { statusCode: 200, isSuccess: true };
 
 const topNonHvcStub = require( '../../stubs/backend/top_non_hvc_2016-12-12' );
-const sectorCampaignStub = require( '../../stubs/backend/sector_team_campaigns_2016-12-12' );
-const sectorMonthsStub = require( '../../stubs/backend/sector_team_months_2016-12-12' );
-const sectorStub = require( '../../stubs/backend/sector_team_v2' );
-const sectorsStub = require( '../../stubs/backend/sector_teams' );
+const sectorTeamCampaignStub = require( '../../stubs/backend/sector_team_campaigns_2016-12-12' );
+const sectorTeamMonthsStub = require( '../../stubs/backend/sector_team_months_2016-12-12' );
+const sectorTeamStub = require( '../../stubs/backend/sector_team_v2' );
+const sectorTeamsStub = require( '../../stubs/backend/sector_teams' );
 
 const regionTopNonHvcStub = require( '../../stubs/backend/region_top_non_hvc' );
 const regionCampaignsStub = require( '../../stubs/backend/region_campaigns' );
@@ -26,11 +26,11 @@ const regionsStub = require( '../../stubs/backend/regions' );
 
 const stubs = [
 
-	[ isTopNonHvc, topNonHvcStub ],
-	[ isSectorCampaign, sectorCampaignStub ],
-	[ isSectorMonths, sectorMonthsStub ],
-	[ isSector, sectorStub ],
-	[ isSectors, sectorsStub ],
+	[ isSectorTeamTopNonHvc, topNonHvcStub ],
+	[ isSectorTeamCampaign, sectorTeamCampaignStub ],
+	[ isSectorTeamMonths, sectorTeamMonthsStub ],
+	[ isSectorTeam, sectorTeamStub ],
+	[ isSectorTeams, sectorTeamsStub ],
 
 	[ isRegionTopNonHvc, regionTopNonHvcStub ],
 	[ isRegionCampaigns, regionCampaignsStub ],

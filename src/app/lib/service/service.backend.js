@@ -8,8 +8,8 @@ const logger = require( '../logger' );
 const backend = ( USE_STUBS ? require( '../backend.stub' ) : require( '../backend' ) );
 const mocks = ( USE_MOCKS ? require( '../../../mocks' ) : null );
 
-const transformMonths = require( '../transformers/sector-months' );
-const transformCampaigns = require( '../transformers/sector-campaigns' );
+const transformMonths = require( '../transformers/months' );
+const transformCampaigns = require( '../transformers/campaigns' );
 const transformSectorTeam = require( '../transformers/sector-team' );
 
 if( USE_STUBS ){
@@ -19,10 +19,10 @@ if( USE_STUBS ){
 
 /*
 	/sector-teams/
-	/sector-teams/{sectorId}/
-	/sector-teams/{sectorId}/months/
-	/sector-teams/{sectorId}/overseas_regions/
-	/sector-teams/{sectorId}/campaigns => HVC target performance
+	/sector-teams/{teamId}/
+	/sector-teams/{teamId}/months/
+	/sector-teams/{teamId}/overseas_regions/
+	/sector-teams/{teamId}/campaigns => HVC target performance
 	/top_non_hvcs => top 5 non HVC
 */
 
@@ -54,7 +54,7 @@ function createHandler( resolve, reject ){
 	};
 }
 
-function getSectors( alice ){
+function getSectorTeams( alice ){
 
 	return new Promise( ( resolve, reject ) => {
 		
@@ -62,38 +62,38 @@ function getSectors( alice ){
 	} );
 }
 
-function getSector( alice, sectorId ){
+function getSectorTeam( alice, teamId ){
 
 	return ( new Promise( ( resolve, reject ) => {
 		
-		backend.get( alice, `/mi/sector_teams/${ sectorId }/`, createHandler( resolve, reject ) );
+		backend.get( alice, `/mi/sector_teams/${ teamId }/`, createHandler( resolve, reject ) );
 		
 	} ) ).then( ( data ) => transformSectorTeam( data ) );
 }
 
-function getSectorMonths( alice, sectorId ){
+function getSectorTeamMonths( alice, teamId ){
 
 	return ( new Promise( ( resolve, reject ) => {
 		
-		backend.get( alice, `/mi/sector_teams/${ sectorId }/months/`, createHandler( resolve, reject ) );
+		backend.get( alice, `/mi/sector_teams/${ teamId }/months/`, createHandler( resolve, reject ) );
 
 	} ) ).then( ( data ) => transformMonths( data ) );
 }
 
-function getHvcTargetPerformance( alice, sectorId ){
+function getSectorTeamCampaigns( alice, teamId ){
 
 	return new Promise( ( resolve, reject ) => {
 		
-		backend.get( alice, `/mi/sector_teams/${ sectorId }/campaigns/`, createHandler( resolve, reject ) );
+		backend.get( alice, `/mi/sector_teams/${ teamId }/campaigns/`, createHandler( resolve, reject ) );
 
 	} ).then( ( data ) => transformCampaigns( data ) );
 }
 
-function getTopNonHvcRegionsAndSectors( alice, sectorId ){
+function getSectorTeamTopNonHvc( alice, teamId ){
 
 	return new Promise( ( resolve, reject ) => {
 		
-		backend.get( alice, `/mi/sector_teams/${ sectorId }/top_non_hvcs/`, createHandler( resolve, reject ) );
+		backend.get( alice, `/mi/sector_teams/${ teamId }/top_non_hvcs/`, createHandler( resolve, reject ) );
 	} );
 }
 
@@ -156,7 +156,7 @@ function getRegionTopNonHvc( alice, regionId ){
 	} );
 }
 
-function getRegionHvcTargetPerformance( alice, regionId ){
+function getRegionCampaigns( alice, regionId ){
 
 	return ( new Promise( ( resolve, reject ) => {
 		
@@ -188,29 +188,29 @@ if( USE_MOCKS ){
 
 	logger.warn( 'Using mocks for backend service' );
 
-	getHvcTargetPerformance = mocks.hvcTargetPerformance;
-	getTopNonHvcRegionsAndSectors = mocks.topNonHvcRegionsAndSectors;
-	getSectorMonths = mocks.sectorPerformance;
+	getSectorTeamCampaigns = mocks.sectorTeamCampaigns;
+	getSectorTeamTopNonHvc = mocks.sectorTeamTopNonHvc;
+	getSectorTeamMonths = mocks.sectorTeamMonths;
 }
 /*eslint-enable no-func-assign */
 
 
 module.exports = {
 
-	getSectors,
-	getSector,
-	getSectorMonths,
-	getHvcTargetPerformance,
-	getTopNonHvcRegionsAndSectors,
+	getSectorTeams,
+	getSectorTeam,
+	getSectorTeamMonths,
+	getSectorTeamCampaigns,
+	getSectorTeamTopNonHvc,
 
-	getSectorInfo: function( alice, sectorId ){
+	getSectorTeamInfo: function( alice, teamId ){
 
 		return Promise.all( [
 
-			getSector( alice, sectorId ),
-			getSectorMonths( alice, sectorId ),
-			getTopNonHvcRegionsAndSectors( alice, sectorId ),
-			getHvcTargetPerformance( alice, sectorId )
+			getSectorTeam( alice, teamId ),
+			getSectorTeamMonths( alice, teamId ),
+			getSectorTeamTopNonHvc( alice, teamId ),
+			getSectorTeamCampaigns( alice, teamId )
 		] );
 	},
 
@@ -218,7 +218,7 @@ module.exports = {
 	getRegion,
 	getRegionMonths,
 	getRegionTopNonHvc,
-	getRegionHvcTargetPerformance,
+	getRegionCampaigns,
 
 	getRegionInfo: function( alice, regionId ){
 
@@ -228,15 +228,15 @@ module.exports = {
 			getRegion( alice, regionId ),
 			getRegionMonths( alice, regionId ),
 			getRegionTopNonHvc( alice, regionId ),
-			getRegionHvcTargetPerformance( alice, regionId )
+			getRegionCampaigns( alice, regionId )
 		] );
 	},
 
-	getSectorsAndRegions: function( alice ){
+	getSectorTeamsAndRegions: function( alice ){
 
 		return Promise.all( [
 
-			getSectors( alice ),
+			getSectorTeams( alice ),
 			getRegions( alice )
 		] );
 	},
