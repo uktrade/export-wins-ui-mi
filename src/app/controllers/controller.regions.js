@@ -1,4 +1,5 @@
 
+const logger = require( '../lib/logger' );
 const backendService = require( '../lib/service/service.backend' );
 
 const sectorDataSet = require( '../lib/data-sets/sector-performance' );
@@ -11,7 +12,7 @@ function renderError( res ){
 
 	return function( err ){
 
-		console.error( err );
+		logger.error( err );
 
 		res.render( 'error', { error: err } );
 	};
@@ -22,6 +23,8 @@ module.exports = {
 	overview: function( req, res ){
 
 		backendService.getRegionsOverview( req.alice ).then( ( regionGroups ) => {
+
+			//console.log( JSON.stringify( regionGroups, null, 2 ) );
 
 			res.render( 'regions/overview.html', { regionGroups } );
 		

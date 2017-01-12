@@ -6,7 +6,7 @@ const colorize = ( !process.env.NODE_ENV || process.env.NODE_ENV === 'developmen
 const logger = new winston.Logger({
 	level: config.logLevel,
 	transports: [
-		new winston.transports.Console({ colorize } )
+		new winston.transports.Console( { colorize } )
 	]
 });
 
