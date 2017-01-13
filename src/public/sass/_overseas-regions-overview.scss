@@ -17,6 +17,7 @@
 .overseas-region-groups_group_image {
 	float: left;
 	align-self: center;
+	flex-shrink: 0;//stop the image from radomly getting a width of about 1px - for some reason!
 }
 
 .overseas-region-overview-data {

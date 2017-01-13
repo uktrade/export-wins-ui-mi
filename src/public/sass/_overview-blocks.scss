@@ -5,21 +5,21 @@
 	line-height: 1;
 }
 
-.overview-blocks_overview-block {
+.overview-blocks_block {
 	display: inline-block;
 	height: 10px;
 	width: 10px;
 	margin-right: 4px;
 }
 
-.overview-blocks_overview-block--red {
+.overview-blocks_block--red {
 	background-color: $mi-red;
 }
 
-.overview-blocks_overview-block--amber {
+.overview-blocks_block--amber {
 	background-color: $mi-amber;
 }
 
-.overview-blocks_overview-block--green {
+.overview-blocks_block--green {
 	background-color: $mi-green;
 }

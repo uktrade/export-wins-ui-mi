@@ -1,6 +1,6 @@
 {% macro blocks( colour, amount ) %}
 	{%- for item in range( 0, amount ) -%}
-		<span class="overview-blocks_overview-block overview-blocks_overview-block--{{ colour }}"></span>
+		<span class="overview-blocks_block overview-blocks_block--{{ colour }}"></span>
 	{%- endfor -%}
 {% endmacro %}
 
@@ -12,8 +12,8 @@
 	</p>
 
 	<div class="overview-blocks">
-		{% if hvcColours.red > 0 %}{{ blocks( 'red', hvcColours.red ) }}<br>{% endif %}
-		{% if hvcColours.amber > 0 %}{{ blocks( 'amber', hvcColours.amber ) }}<br>{% endif %}
+		{% if hvcColours.red > 0 %}{{ blocks( 'red', hvcColours.red ) }}<br>{% endif -%}
+		{% if hvcColours.amber > 0 %}{{ blocks( 'amber', hvcColours.amber ) }}<br>{% endif -%}
 		{% if hvcColours.green > 0 %}{{ blocks( 'green', hvcColours.green ) }}<br>{% endif %}
 	</div>
 {% endmacro %}

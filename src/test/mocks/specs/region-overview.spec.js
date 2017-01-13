@@ -9,7 +9,9 @@ describe( 'Region overview mock', function(){
 
 		for( let regionGroup of mock ){
 
-			expect( regionGroup.image ).toBeDefined();
+			expect( regionGroup.image.name ).toBeDefined();
+			expect( regionGroup.image.width ).toBeDefined();
+			expect( regionGroup.image.height ).toBeDefined();
 			expect( regionGroup.regions ).toBeDefined();
 
 			for( let region of regionGroup.regions ){
