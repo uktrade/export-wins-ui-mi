@@ -1,0 +1,26 @@
+{% macro blocks( colour, amount ) %}
+	{%- for item in range( 0, amount ) -%}
+		<span class="overview-blocks_overview-block overview-blocks_overview-block--{{ colour }}"></span>
+	{%- endfor -%}
+{% endmacro %}
+
+{% macro overviewBlocks( hvcColours ) %}
+	<p class="visually-hidden">
+		Red: {{ hvcColours.red }},
+		Amber: {{ hvcColours.amber }},
+		Green: {{ hvcColours.green }}
+	</p>
+
+	<div class="overview-blocks">
+		{% if hvcColours.red > 0 %}{{ blocks( 'red', hvcColours.red ) }}<br>{% endif %}
+		{% if hvcColours.amber > 0 %}{{ blocks( 'amber', hvcColours.amber ) }}<br>{% endif %}
+		{% if hvcColours.green > 0 %}{{ blocks( 'green', hvcColours.green ) }}<br>{% endif %}
+	</div>
+{% endmacro %}
+
+{% macro currentValue( value ) %}
+	&pound;{{ value.current | largeNumber }}
+	<span class="overview-progress">
+		<span class="overview-progress_amount" style="width: {{ value.percentage }}%"></span>
+	</span>
+{% endmacro %}

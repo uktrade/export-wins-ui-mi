@@ -1,0 +1,15 @@
+.overview-progress {
+	border: 1px solid $grey-1;
+	display: inline-block;
+	width: 200%; /* make this span the current and target cells */
+	line-height: 10px;
+	position: absolute;
+	bottom: 5px;
+	left: 0;
+}
+
+.overview-progress_amount {
+	display: inline-block;
+	background-color: $grey-2;
+	height: 10px;
+}

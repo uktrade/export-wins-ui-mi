@@ -1,17 +1,68 @@
 {% extends 'layout.html' %}
 
+{% from 'macros/overview.html' import overviewBlocks, currentValue %}
+
+{% macro row( sector, index, isParent=false ) %}
+	<tr class="sector-teams-list_team_row{% if index % 2 === 1 %} sector-teams-list_team_row--odd{% endif %}">
+		<td class="sector-teams-list_team_cell sector-teams-list_team_cell--name{% if isParent %} sector-teams-list_team_cell--parent{% endif %}">
+			{%- if isParent %}<span class="visually-hidden">Parent sector: </span>{% endif -%}
+			<a href="#">{{- sector.name -}}</a>
+		</td>
+		<td class="sector-teams-list_team_cell sector-teams-list_team_cell--performance">{{ overviewBlocks( sector.hvcColours ) }}</td>
+		<td class="sector-teams-list_team_cell sector-teams-list_team_cell--current-value">{{ currentValue( sector.value ) }}</td>
+		<td class="sector-teams-list_team_cell sector-teams-list_team_cell--target-value">&pound;{{ sector.value.target | largeNumber }}</td>
+		<td class="sector-teams-list_team_cell sector-teams-list_team_cell--value-percentage"><span class="visually-hidden">{{ sector.value.percentage }}%</span></td>
+		<td class="sector-teams-list_team_cell sector-teams-list_team_cell--hvc-non-hvc">
+			<div class="pie pie--center" style="animation-delay: -{{ sector.hvcVsNonhvcPercentage }}s">{{ sector.hvcVsNonhvcPercentage }}%</div>
+		</td>
+	</tr>
+{% endmacro %}
+
 {% block page_content %}
 
 	<h2>
-		Sectors teams overview
+		Sectors overview
 	</h2>
+
+	{% set loopIndex = 0 %}
 
 	<ol class="sector-teams-list">
 		{% for team in sectorTeams %}
 		
-			<li>
-				<img src="/public/img/sector-team-icons/{{ team.image.name }}" width="{{ team.image.width }}" height="{{ team.image.height }}" alt="{{ team.image.alt }}">
-				{{ team.name }}
+			<li class="sector-teams-list_item">
+
+				<img class="sector-teams-list_image" src="/public/img/sector-team-icons/{{ team.image.name }}" width="{{ team.image.width }}" height="{{ team.image.height }}" alt="{{ team.image.alt }}">
+
+				<table class="sector-teams-list_team">
+					<thead{% if loop.index > 1 %} class="visually-hidden"{% endif %}>
+						<tr>
+							<th class="sector-teams-list_team_heading"><span class="visually-hidden">Sector name</span></th>
+							<th class="sector-teams-list_team_heading">HVC performance (each square represents an HVC within a region)</th>
+							<th class="sector-teams-list_team_heading">Current<span class="visually-hidden"> value</span></th>
+							<th class="sector-teams-list_team_heading sector-teams-list_team_heading--target">Target</th>
+							<th class="sector-teams-list_team_heading"><span class="visually-hidden">Progress against target</span></th>
+							<th class="sector-teams-list_team_heading sector-teams-list_team_heading--hvc-non-hvc">
+								<span class="overseas-region-overview-data_heading_hvc-non-hvc_block overseas-region-overview-data_heading_hvc-non-hvc_block--hvc"></span>
+								HVC vs.<br>
+								<span class="overseas-region-overview-data_heading_hvc-non-hvc_block overseas-region-overview-data_heading_hvc-non-hvc_block--non-hvc"></span>
+								non-HVC
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+
+						{% set loopIndex = ( loopIndex + 1 ) %}
+						
+						{{ row( team, loopIndex ) }}
+
+						{% for parent in team.parentSectors %}
+							{% set loopIndex = ( loopIndex + 1 ) %}
+							{{ row( parent, loopIndex, true ) }}
+						{% endfor %}
+
+					</tbody>
+				</table>
+
 			</li>
 		{% endfor %}
 	</ol>

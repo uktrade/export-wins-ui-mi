@@ -19,127 +19,92 @@
 	align-self: center;
 }
 
-.overseas-region-groups_group_regions {
+.overseas-region-overview-data {
 	border-collapse: collapse;
 }
 
-.overseas-region-groups_group_regions_row {
+.overseas-region-overview-data_headings {
 	line-height: 1;
 }
 
-.overseas-region-groups_group_regions_region_name {
-	width: 20%;
-}
-
-.overseas-region-groups_group_regions_region_performance {
-	width: 35%;
-}
-
-.overseas-region-groups_group_regions_region_current {
-	width: 15%;
-	position: relative;
-}
-
-.overseas-region-groups_group_regions_region_target {
-	width: 15%;
-	text-align: right;
-}
-
-.overseas-region-groups_group_regions_region_progress {
-	width: 0%;
-}
-
-.overseas-region-groups_group_regions_region_hvc-non-hvc {
-	width: 15%;
-	text-align: center;
-}
-
-.overseas-region-groups_group_regions_region_name_countries {
-	@include core-14;
-	display: block;
-	color: $grey-1;
-}
-
-.overseas-region-groups_group_regions_region_name--pink {
-	border-left: 2px solid #fb07fa;
-}
-
-.overseas-region-groups_group_regions_region_name--blue {
-	border-left: 2px solid #0dc3d8
-}
-
-.overseas-region-groups_group_regions_region_name--green {
-	border-left: 2px solid #c7fd09
-}
-
-.overseas-region-groups_group_regions_region_name--purple {
-	border-left: 2px solid #9744f5
-}
-
-.overseas-region-groups_group_regions_region_current_progress {
-	border: 1px solid $grey-1;
-	display: inline-block;
-	width: 200%; /* make this span the current and target cells */
-	line-height: 10px;
-	position: absolute;
-	bottom: 2px;
-	left: 0;
-}
-
-.overseas-region-groups_group_regions_region_current_progress_amount {
-	display: inline-block;
-	background-color: $grey-2;
-	height: 10px;
-}
-
-.overseas-region-groups_group_regions_heading_hvc-non-hvc_block {
+.overseas-region-overview-data_heading_hvc-non-hvc_block {
 	display: inline-block;
 	height: 10px;
 	width: 10px;
 }
 
-.overseas-region-groups_group_regions_heading_hvc-non-hvc_block--hvc {
+.overseas-region-overview-data_heading_hvc-non-hvc_block--hvc {
 	background-color: $overview-hvc;
 }
 
-.overseas-region-groups_group_regions_heading_hvc-non-hvc_block--non-hvc {
+.overseas-region-overview-data_heading_hvc-non-hvc_block--non-hvc {
 	background-color: $overview-non-hvc;
 }
 
-.overseas-region-groups_group_regions_region {
-	padding: 0.5em 0;
-}
-
-.overseas-region-groups_group_regions_region--odd {
+.overseas-region-overview-data_region--odd {
 	background-color: $grey-4;
 }
 
-.overseas-region-groups_group_regions_region_name {
+.overseas-region-overview-data_headings_heading--target {
+	text-align: right;
+}
+
+.overseas-region-overview-data_headings_heading--hvc-non-hvc {
+	padding-left: pem( 15, 16 );
+}
+
+.overseas-region-overview-data_cell {
+	padding-top: pem( 8, 16 );
+	padding-bottom: pem( 8, 16 );
+}
+
+.overseas-region-overview-data_region_name {
+	width: 20%;
 	@include core-14;
 	vertical-align: middle;
 	padding-left: pem( 5, 14 );
 }
 
-.overseas-region-groups_group_regions_region_block-wrapper {
-	display: inline-block;
-	line-height: 1;
+.overseas-region-overview-data_region_performance {
+	width: 35%;
 }
 
-.overseas-region-groups_group_regions_region_block {
-	display: inline-block;
-	height: 10px;
-	width: 10px;
-	margin-right: 4px;
+.overseas-region-overview-data_region_current {
+	width: 15%;
+	position: relative;
 }
 
-.overseas-region-groups_group_regions_region_block--red {
-	background-color: $mi-red;
+.overseas-region-overview-data_region_target {
+	width: 15%;
+	text-align: right;
 }
 
-.overseas-region-groups_group_regions_region_block--amber {
-	background-color: $mi-amber;
+.overseas-region-overview-data_region_progress {
+	width: 0%;
 }
 
-.overseas-region-groups_group_regions_region_block--green {
-	background-color: $mi-green;
+.overseas-region-overview-data_region_hvc-non-hvc {
+	width: 15%;
+	text-align: center;
+}
+
+.overseas-region-overview-data_region_name_countries {
+	display: block;
+	color: $grey-1;
+}
+
+.overseas-region-overview-data_region_name--pink {
+	border-left: 2px solid #fb07fa;
+}
+
+.overseas-region-overview-data_region_name--blue {
+	border-left: 2px solid #0dc3d8
+}
+
+.overseas-region-overview-data_region_name--green {
+	border-left: 2px solid #c7fd09
+}
+
+.overseas-region-overview-data_region_name--purple {
+	border-left: 2px solid #9744f5
 }
