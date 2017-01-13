@@ -1,3 +1,4 @@
+const isSectorTeamsOverview = /^\/mi\/sector_teams\/overview\/$/;
 const isSectorTeamTopNonHvc = /^\/mi\/sector_teams\/[0-9]+\/top_non_hvcs\/$/;
 const isSectorTeamCampaign = /^\/mi\/sector_teams\/[0-9]+\/campaigns\/$/;
 const isSectorTeamMonths = /^\/mi\/sector_teams\/[0-9]+\/months\/$/;
@@ -12,6 +13,7 @@ const isRegions = /^\/mi\/regions\/$/;
 
 const response = { statusCode: 200, isSuccess: true };
 
+const sectorTeamsOverviewStub = require( '../../stubs/backend/sector_teams_overview' );
 const topNonHvcStub = require( '../../stubs/backend/top_non_hvc_2016-12-12' );
 const sectorTeamCampaignStub = require( '../../stubs/backend/sector_team_campaigns_2016-12-12' );
 const sectorTeamMonthsStub = require( '../../stubs/backend/sector_team_months_2016-12-12' );
@@ -26,6 +28,7 @@ const regionsStub = require( '../../stubs/backend/regions' );
 
 const stubs = [
 
+	[ isSectorTeamsOverview, sectorTeamsOverviewStub ],
 	[ isSectorTeamTopNonHvc, topNonHvcStub ],
 	[ isSectorTeamCampaign, sectorTeamCampaignStub ],
 	[ isSectorTeamMonths, sectorTeamMonthsStub ],

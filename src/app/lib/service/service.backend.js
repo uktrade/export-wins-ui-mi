@@ -11,6 +11,7 @@ const mocks = ( USE_MOCKS ? require( '../../../mocks' ) : null );
 const transformMonths = require( '../transformers/months' );
 const transformCampaigns = require( '../transformers/campaigns' );
 const transformSectorTeam = require( '../transformers/sector-team' );
+const transformSectorTeamsOverview = require( '../transformers/sector-teams-overview' );
 
 if( USE_STUBS ){
 
@@ -97,23 +98,14 @@ function getSectorTeamTopNonHvc( alice, teamId ){
 	} );
 }
 
-function getSectorTeamsOverview( /* alice */ ){
+function getSectorTeamsOverview( alice ){
 
-	try {
-	
-		return require( '../../../mocks' ).sectorTeamsOverview();
+	return new Promise( ( resolve, reject ) => {
+		
+		backend.get( alice, '/mi/sector_teams/overview/', createHandler( resolve, reject ) );
 
-	} catch( e ){
-
-		logger.warn( 'No mocks found' );
-
-		return new Promise( ( resolve, reject ) => {
-			
-			reject( new Error( 'Unable to load mock' ) );
-		} );
-	}
+	} ).then( ( data ) => transformSectorTeamsOverview( data ) );	
 }
-
 
 
 function getRegions( alice ){
@@ -210,6 +202,7 @@ if( USE_MOCKS ){
 	getSectorTeamCampaigns = mocks.sectorTeamCampaigns;
 	getSectorTeamTopNonHvc = mocks.sectorTeamTopNonHvc;
 	getSectorTeamMonths = mocks.sectorTeamMonths;
+	getSectorTeamsOverview = mocks.sectorTeamsOverview;
 }
 /*eslint-enable no-func-assign */
 
