@@ -18,102 +18,72 @@ if( USE_STUBS ){
 	logger.warn( 'Using stubs for backend service' );
 }
 
-/*
-	/sector-teams/
-	/sector-teams/{teamId}/
-	/sector-teams/{teamId}/months/
-	/sector-teams/{teamId}/overseas_regions/
-	/sector-teams/{teamId}/campaigns => HVC target performance
-	/top_non_hvcs => top 5 non HVC
-*/
 
-function createHandler( resolve, reject ){
+function get( alice, path ){
 
-	return function( err, response, data ){
+	return new Promise( ( resolve, reject ) => {
+		
+		backend.get( alice, path, function( err, response, data ){
 
-		if( err ){
+			if( err ){
 
-			if( err.code === 'ECONNREFUSED' ){ 
+				if( err.code === 'ECONNREFUSED' ){ 
 
-				err = new Error( 'The backend is not available.' );
-			}
+					err = new Error( 'The backend is not available.' );
+				}
 
-			reject( err );
-
-		} else {
-
-			if( response.isSuccess ){
-
-				resolve( data );
+				reject( err );
 
 			} else {
 
-				logger.error( 'Got a %s status code for url: %s', response.statusCode, response.request.uri.href );
-				reject( new Error( 'Not a successful response from the backend.' ) );
+				if( response.isSuccess ){
+
+					resolve( data );
+
+				} else {
+
+					logger.error( 'Got a %s status code for url: %s', response.statusCode, response.request.uri.href );
+					reject( new Error( 'Not a successful response from the backend.' ) );
+				}
 			}
-		}
-	};
+		} );
+	} );
 }
 
 function getSectorTeams( alice ){
 
-	return new Promise( ( resolve, reject ) => {
-		
-		backend.get( alice, '/mi/sector_teams/', createHandler( resolve, reject ) );
-	} );
+	return get( alice, '/mi/sector_teams/' );
 }
 
 function getSectorTeam( alice, teamId ){
 
-	return ( new Promise( ( resolve, reject ) => {
-		
-		backend.get( alice, `/mi/sector_teams/${ teamId }/`, createHandler( resolve, reject ) );
-		
-	} ) ).then( ( data ) => transformSectorTeam( data ) );
+	return get( alice, `/mi/sector_teams/${ teamId }/` ).then( ( data ) => transformSectorTeam( data ) );
 }
 
 function getSectorTeamMonths( alice, teamId ){
 
-	return ( new Promise( ( resolve, reject ) => {
-		
-		backend.get( alice, `/mi/sector_teams/${ teamId }/months/`, createHandler( resolve, reject ) );
-
-	} ) ).then( ( data ) => transformMonths( data ) );
+	return get( alice, `/mi/sector_teams/${ teamId }/months/` ).then( ( data ) => transformMonths( data ) );
 }
 
 function getSectorTeamCampaigns( alice, teamId ){
 
-	return new Promise( ( resolve, reject ) => {
-		
-		backend.get( alice, `/mi/sector_teams/${ teamId }/campaigns/`, createHandler( resolve, reject ) );
-
-	} ).then( ( data ) => transformCampaigns( data ) );
+	return get( alice, `/mi/sector_teams/${ teamId }/campaigns/` ).then( ( data ) => transformCampaigns( data ) );
 }
 
 function getSectorTeamTopNonHvc( alice, teamId ){
 
-	return new Promise( ( resolve, reject ) => {
-		
-		backend.get( alice, `/mi/sector_teams/${ teamId }/top_non_hvcs/`, createHandler( resolve, reject ) );
-	} );
+	return get( alice, `/mi/sector_teams/${ teamId }/top_non_hvcs/` );
 }
 
 function getSectorTeamsOverview( alice ){
 
-	return new Promise( ( resolve, reject ) => {
-		
-		backend.get( alice, '/mi/sector_teams/overview/', createHandler( resolve, reject ) );
-
-	} ).then( ( data ) => transformSectorTeamsOverview( data ) );	
+	return get( alice, '/mi/sector_teams/overview/' ).then( ( data ) => transformSectorTeamsOverview( data ) );	
 }
 
 
 function getRegions( alice ){
 
-	return new Promise( ( resolve, reject ) => {
-		
-		backend.get( alice, '/mi/regions/', createHandler( resolve, reject ) );
-	} );
+	return get( alice, '/mi/regions/' );
 }
 
 function getRegionName( alice, regionId ){
@@ -144,36 +114,22 @@ function getRegionName( alice, regionId ){
 
 function getRegion( alice, regionId ){
 
-	return new Promise( ( resolve, reject ) => {
-		
-		backend.get( alice, `/mi/regions/${ regionId }/`, createHandler( resolve, reject ) );
-	} );
+	return get( alice, `/mi/regions/${ regionId }/` );
 }
 
 function getRegionMonths( alice, regionId ){
 
-	return ( new Promise( ( resolve, reject ) => {
-		
-		backend.get( alice, `/mi/regions/${ regionId }/months/`, createHandler( resolve, reject ) );
-
-	} ) ).then( ( data ) => transformMonths( data ) );
+	return get( alice, `/mi/regions/${ regionId }/months/` ).then( ( data ) => transformMonths( data ) );
 }
 
 function getRegionTopNonHvc( alice, regionId ){
 
-	return new Promise( ( resolve, reject ) => {
-		
-		backend.get( alice, `/mi/regions/${ regionId }/top_non_hvcs/`, createHandler( resolve, reject ) );
-	} );
+	return get( alice, `/mi/regions/${ regionId }/top_non_hvcs/` );
 }
 
 function getRegionCampaigns( alice, regionId ){
 
-	return ( new Promise( ( resolve, reject ) => {
-		
-		backend.get( alice, `/mi/regions/${ regionId }/campaigns/`, createHandler( resolve, reject ) );
-
-	} ) ).then( ( data ) => transformCampaigns( data ) );
+	return get( alice, `/mi/regions/${ regionId }/campaigns/` ).then( ( data ) => transformCampaigns( data ) );
 }
 
 function getRegionsOverview( /* alice */ ){
