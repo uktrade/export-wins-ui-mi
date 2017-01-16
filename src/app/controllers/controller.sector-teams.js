@@ -20,9 +20,9 @@ module.exports = {
 
 	list: function( req, res ){
 
-		backendService.getSectorTeams( req.alice ).then( function( sectors ){
+		backendService.getSectorTeams( req.alice ).then( function( sectorTeams ){
 
-			res.render( 'sector-teams/list.html', { sectors } );
+			res.render( 'sector-teams/list.html', { sectorTeams } );
 
 		} ).catch( function( err ){
 

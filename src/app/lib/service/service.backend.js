@@ -149,6 +149,24 @@ function getRegionsOverview( /* alice */ ){
 	}
 }
 
+function getParentSectors( alice ){
+
+	return getSectorTeams( alice ).then( ( teams ) => {
+
+		let parentSectors = [];
+
+		teams.forEach( ( team ) => {
+
+			team.parent_sectors.forEach( ( parent ) => {
+
+				parentSectors.push( parent );
+			} );
+		} );
+
+		return parentSectors;
+	} );
+}
+
 
 /*eslint-disable no-func-assign */
 if( USE_MOCKS ){
@@ -211,5 +229,15 @@ module.exports = {
 		] );
 	},
 
-	getRegionsOverview
+	getRegionsOverview,
+
+	getParentSectors,
+
+	getParentSectorInfo: function( alice, id ){
+
+		return new Promise( ( resolve, reject ) => {
+			
+			resolve( null );
+		} );
+	}
 };

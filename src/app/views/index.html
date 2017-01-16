@@ -14,8 +14,18 @@
 			<a href="{{ uuid }}/sector-teams/overview/" class="sectors-overview-link">Overview</a>
 
 			<ul class="sector-list">
-			{% for sector in sectors %}
-				<li><a href="{{ uuid }}/sector-teams/{{ sector.id }}/">{{ sector.name }}</a></li>
+			{% for team in sectorTeams %}
+				<li><a href="{{ uuid }}/sector-teams/{{ team.id }}/">{{ team.name }}</a></li>
+
+				{% if team.parent_sectors.length %}
+					<ul class="sector-list_parent-sectors">
+						{% for parentSector in team.parent_sectors %}
+						<li>
+							<a href="{{ uuid }}/parent-sectors/{{ parentSector.id }}/">{{ parentSector.name }}</a>
+						</li>
+						{% endfor %}
+					</ul>
+				{% endif %}
 			{% endfor %}
 			</ul>
 		</div>

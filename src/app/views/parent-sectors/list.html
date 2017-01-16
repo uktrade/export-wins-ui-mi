@@ -9,11 +9,11 @@
 	<div class="grid-row">
 		<div class="column-one-third">
 			
-			<h2 class="sector-list-heading">Sectors</h2>
+			<h2 class="sector-list-heading">Parent Sectors</h2>
 
 			<ul class="sector-list">
-			{% for team in sectorTeams %}
-				<li><a href="{{ uuid }}/sector-teams/{{ team.id }}/">{{ team.name }}</a></li>
+			{% for parent in parentSectors %}
+				<li><a href="{{ uuid }}/parent-sectors/{{ parent.id }}/">{{ parent.name }}</a></li>
 			{% endfor %}
 			</ul>
 		</div>
