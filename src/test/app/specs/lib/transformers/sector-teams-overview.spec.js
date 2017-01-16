@@ -49,4 +49,28 @@ describe( 'Sector teams overview transformer', function(){
 			}
 		}
 	} );
+
+	it( 'Should limit the percentage to 100', function(){
+	
+		expect( output[ 0 ].value.percentage ).toEqual( 100 );
+	} );
+
+	it( 'Should round the percentage to whole numbers', function(){
+	
+		expect( output[ 0 ].hvcVsNonhvcPercentage ).toEqual( 21 );
+		expect( output[ 1 ].value.percentage ).toEqual( 26 );
+		expect( output[ 1 ].hvcVsNonhvcPercentage ).toEqual( 71 );
+
+	} );
+
+	it( 'Should define all colours and ensure they have a min of 0', function(){
+	
+		expect( output[ 0 ].hvcColours.red ).toEqual( 0 );
+		expect( output[ 0 ].hvcColours.amber ).toEqual( 5 );
+		expect( output[ 0 ].hvcColours.green ).toEqual( 5 );
+
+		expect( output[ 3 ].hvcColours.red ).toEqual( 0 );
+		expect( output[ 3 ].hvcColours.amber ).toEqual( 9 );
+		expect( output[ 3 ].hvcColours.green ).toEqual( 0 );
+	} );
 } );

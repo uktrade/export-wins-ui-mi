@@ -45,13 +45,17 @@ function mapValues( sector ){
 
 	return {
 		name: sector.name,
-		hvcColours: sector.hvc_colours,
+		hvcColours: {
+			red: ( sector.hvc_colours.red || 0 ),
+			amber: ( sector.hvc_colours.amber || 0 ),
+			green: ( sector.hvc_colours.green || 0 )
+		},
 		value: {
 			current: sector.hvc_target_values.current,
 			target: sector.hvc_target_values.target,
-			percentage: sector.hvc_target_values.target_percentage
+			percentage: Math.min( Math.round( sector.hvc_target_values.target_percentage ), 100 )
 		},
-		hvcVsNonhvcPercentage: sector.hvc_vs_non_hvc_percentage
+		hvcVsNonhvcPercentage: Math.round( sector.hvc_vs_non_hvc_percentage )
 	};
 }
 
