@@ -207,6 +207,7 @@ module.exports = {
 	getRegionMonths,
 	getRegionTopNonHvc,
 	getRegionCampaigns,
+	getRegionName,
 
 	getRegionInfo: function( alice, regionId ){
 

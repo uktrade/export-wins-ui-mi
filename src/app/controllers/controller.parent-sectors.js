@@ -8,6 +8,8 @@ module.exports = {
 
 		backendService.getParentSectors( req.alice ).then( function( parentSectors ){
 
+			console.log( JSON.stringify( parentSectors, null, 2 ) );
+
 			res.render( 'parent-sectors/list.html', { parentSectors } );
 
 		} ).catch( renderError( res ) );

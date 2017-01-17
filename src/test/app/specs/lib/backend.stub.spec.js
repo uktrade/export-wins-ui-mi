@@ -5,6 +5,7 @@ const campaignsStub = require( '../../../../stubs/backend/sector_team_campaigns_
 const monthsStub = require( '../../../../stubs/backend/sector_team_months_2016-12-12' );
 const sectorStub = require( '../../../../stubs/backend/sector_team_v2' );
 const sectorsStub = require( '../../../../stubs/backend/sector_teams' );
+const sectorsOverviewStub = require( '../../../../stubs/backend/sector_teams_overview' );
 
 const regionTopNonHvcStub = require( '../../../../stubs/backend/region_top_non_hvc' );
 const regionCampaignsStub = require( '../../../../stubs/backend/region_campaigns' );
@@ -26,6 +27,16 @@ describe( 'Backend stub', function(){
 	}
 
 	describe( 'Sectors', function(){
+
+		describe( 'Getting the overview', function(){
+		
+			it( 'Should return the overview stub', function( done ){
+			
+				const url = '/mi/sector_teams/overview/';
+
+				checkStub( url, sectorsOverviewStub, done );
+			} );
+		} );
 	
 		describe( 'Getting the top non hvc regions and sectors', function(){
 		
