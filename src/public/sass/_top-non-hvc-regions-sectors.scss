@@ -103,13 +103,13 @@ $average-percent-width: 10%;
 	width: 100%;
 	position: relative;
 	margin-bottom: 3em;
+	left: -$right-padding;
 }
 
 .top-non-hvc_value-markers_marker {
 	@include core-14;
 	position: absolute;
 	padding-top: 1em;
-	margin-left: -$right-padding;
 }
 
 .top-non-hvc_value-markers_marker--first {
