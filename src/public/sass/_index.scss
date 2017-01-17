@@ -23,6 +23,15 @@
 	margin-top: 0;
 }
 
+.sector-list_item {
+
+	margin-top: pem( 5, 16 );
+
+	&:first-of-type {
+		margin-top: 0;
+	}
+}
+
 .sector-list_parent-sectors {
 	padding-left: pem( 15, 16 );
 }

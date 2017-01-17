@@ -15,7 +15,7 @@
 
 			<ul class="sector-list">
 			{% for team in sectorTeams %}
-				<li><a href="{{ uuid }}/sector-teams/{{ team.id }}/">{{ team.name }}</a></li>
+				<li class="sector-list_item"><a href="{{ uuid }}/sector-teams/{{ team.id }}/">{{ team.name }}</a></li>
 
 				{% if team.parent_sectors.length %}
 					<ul class="sector-list_parent-sectors">
