@@ -1,4 +1,5 @@
 
+const renderError = require( '../lib/render-error' );
 const backendService = require( '../lib/service/service.backend' );
 
 module.exports = {
@@ -9,10 +10,7 @@ module.exports = {
 
 			res.render( 'parent-sectors/list.html', { parentSectors } );
 
-		} ).catch( function( err ){
-
-			res.render( 'error', { error: err } );
-		} );
+		} ).catch( renderError( res ) );
 	},
 
 	parent: function( req, res ){
@@ -23,9 +21,6 @@ module.exports = {
 
 			res.render( 'parent-sectors/parent-sector.html', { parentSector } );
 
-		} ).catch( function( err ){
-
-			res.render( 'error', { error: err } );
-		} );
+		} ).catch( renderError( res ) );
 	}
 };

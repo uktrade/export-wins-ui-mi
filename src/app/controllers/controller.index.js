@@ -1,5 +1,6 @@
 
 const backendService = require( '../lib/service/service.backend' );
+const renderError = require( '../lib/render-error' );
 
 module.exports = function( req, res ){
 
@@ -10,8 +11,5 @@ module.exports = function( req, res ){
 
 			res.render( 'index.html', { sectorTeams, regions } );
 
-		} ).catch( function( err ){
-
-			res.render( 'error', { error: err } );
-		} );
+		} ).catch( renderError( res ) );
 };

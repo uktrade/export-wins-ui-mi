@@ -1,22 +1,12 @@
 
-const logger = require( '../lib/logger' );
 const backendService = require( '../lib/service/service.backend' );
+const renderError = require( '../lib/render-error' );
 
 const sectorDataSet = require( '../lib/data-sets/sector-performance' );
 const winsDataSet = require( '../lib/data-sets/wins' );
 const topNonHvcDataSet = require( '../lib/data-sets/top-non-hvc' );
 const targetProgressDataSet = require( '../lib/data-sets/target-progress' );
 const hvcTargetPerformanceDataSet = require( '../lib/data-sets/hvc-target-performance' );
-
-function renderError( res ){
-
-	return function( err ){
-
-		logger.error( err );
-
-		res.render( 'error', { error: err } );
-	};
-}
 
 module.exports = { 
 

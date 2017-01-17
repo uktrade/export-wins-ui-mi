@@ -5,6 +5,7 @@ const topNonHvcDataSet = require( '../lib/data-sets/top-non-hvc' );
 const sectorWinsDataSet = require( '../lib/data-sets/sector-wins' );
 const targetProgressDataSet = require( '../lib/data-sets/target-progress' );
 const hvcTargetPerformanceDataSet = require( '../lib/data-sets/hvc-target-performance' );
+const renderError = require( '../lib/render-error' );
 
 // .toLocaleString( 'en-GB', { style: 'currency', currency: 'GBP', maximumFractionDigits: 0 }
 
@@ -15,7 +16,7 @@ module.exports = {
 		backendService.getSectorTeamsOverview( req.alice ).then( ( sectorTeams ) => {
 			
 			res.render( 'sector-teams/overview', { sectorTeams } );
-		} );
+		} ).catch( renderError( res ) );
 	},
 
 	list: function( req, res ){
@@ -24,10 +25,7 @@ module.exports = {
 
 			res.render( 'sector-teams/list.html', { sectorTeams } );
 
-		} ).catch( function( err ){
-
-			res.render( 'error', { error: err } );
-		} );
+		} ).catch( renderError( res ) );
 	},
 
 	team: function( req, res ){
@@ -58,9 +56,6 @@ module.exports = {
 				hvcTargetPerformance: hvcTargetPerformanceDataSet.create( campaigns )
 			} );
 
-		} ).catch( function( err ){
-
-			res.render( 'error', { error: err } );
-		} );
+		} ).catch( renderError( res ) );
 	}
 };
