@@ -6,7 +6,7 @@ let stubs = {
 	'../config': configStub
 };
 
-let createSignature = proxyquire( '../../../../app/lib/createSignature', stubs );
+let createSignature = proxyquire( '../../../../app/lib/create-signature', stubs );
 
 describe( 'createSignature', function(){
 

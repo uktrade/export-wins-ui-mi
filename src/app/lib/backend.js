@@ -2,7 +2,7 @@
 const config = require( '../config' );
 const request = require( 'request' );
 const logger = require( './logger' );
-const createSignature = require( './createSignature' );
+const createSignature = require( './create-signature' );
 
 const backendConfig = config.backend;
 const backendUrl = `${ backendConfig.protocol }://${ backendConfig.host }:${ backendConfig.port }`;

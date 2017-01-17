@@ -16,6 +16,7 @@ module.exports = {
 		backendService.getSectorTeamsOverview( req.alice ).then( ( sectorTeams ) => {
 			
 			res.render( 'sector-teams/overview', { sectorTeams } );
+			
 		} ).catch( renderError( res ) );
 	},
 
