@@ -13,6 +13,13 @@ const regionMonthsStub = require( '../../../../stubs/backend/region_months' );
 const regionStub = require( '../../../../stubs/backend/region' );
 const regionsStub = require( '../../../../stubs/backend/regions' );
 
+const parentSectorsStub = require( '../../../../stubs/backend/parent_sectors' );
+const parentSectorStub = require( '../../../../stubs/backend/parent_sector' );
+const parentCampaignsStub = require( '../../../../stubs/backend/parent_sector_campaigns' );
+const parentMonthsStub = require( '../../../../stubs/backend/parent_sector_months' );
+const parentTopNonHvcsStub = require( '../../../../stubs/backend/parent_sector_top_non_hvcs' );
+
+
 describe( 'Backend stub', function(){
 
 	function checkStub( url, stub, done ){
@@ -141,5 +148,58 @@ describe( 'Backend stub', function(){
 				checkStub( url, regionStub, done );
 			} );
 		} );		
+	} );
+
+	describe( 'Parent sectors', function(){
+	
+		describe( 'Getting the list of parent sectors', function(){
+		
+			it( 'Should return the list', function( done ){
+			
+				const url = '/mi/parent_sectors/';
+
+				checkStub( url, parentSectorsStub, done );
+			} );
+		} );
+
+		describe( 'Getting a parent sector sector', function(){
+		
+			it( 'Should return the sector info', function( done ){
+		
+				const url = '/mi/parent_sectors/3/';
+
+				checkStub( url, parentSectorStub, done );
+			} );
+		} );
+
+		describe( 'Getting the campaigns', function(){
+		
+			it( 'Should return the campaigns', function( done ){
+		
+				const url = '/mi/parent_sectors/3/campaigns/';
+
+				checkStub( url, parentCampaignsStub, done );
+			} );
+		} );
+
+		describe( 'Getting the months', function(){
+		
+			it( 'Should return the month info', function( done ){
+		
+				const url = '/mi/parent_sectors/3/months/';
+
+				checkStub( url, parentMonthsStub, done );
+			} );
+		} );
+
+		describe( 'Getting the top non hvcs', function(){
+		
+			it( 'Should return the top non hvcs info', function( done ){
+		
+				const url = '/mi/parent_sectors/3/top_non_hvcs/';
+
+				checkStub( url, parentTopNonHvcsStub, done );
+			} );
+		} );
 	} );
 } );

@@ -151,20 +151,27 @@ function getRegionsOverview( /* alice */ ){
 
 function getParentSectors( alice ){
 
-	return getSectorTeams( alice ).then( ( teams ) => {
+	return get( alice, '/mi/parent_sectors/' );
+}
 
-		let parentSectors = [];
+function getParentSector( alice, parentId ){
 
-		teams.forEach( ( team ) => {
+	return get( alice, `/mi/parent_sectors/${ parentId }/` );
+}
 
-			team.parent_sectors.forEach( ( parent ) => {
+function getParentSectorCampaigns( alice, parentId ){
 
-				parentSectors.push( parent );
-			} );
-		} );
+	return get( alice, `/mi/parent_sectors/${ parentId }/campaigns/` );
+}
 
-		return parentSectors;
-	} );
+function getParentSectorMonths( alice, parentId ){
+
+	return get( alice, `/mi/parent_sectors/${ parentId }/months/` );
+}
+
+function getParentSectorTopNonHvc( alice, parentId ){
+
+	return get( alice, `/mi/parent_sectors/${ parentId }/top_non_hvcs/` );
 }
 
 
@@ -234,11 +241,14 @@ module.exports = {
 
 	getParentSectors,
 
-	getParentSectorInfo: function( alice, id ){
+	getParentSectorInfo: function( alice, parentId ){
 
-		return new Promise( ( resolve, reject ) => {
-			
-			resolve( null );
-		} );
+		return Promise.all( [
+
+			getParentSector( alice, parentId ),
+			getParentSectorMonths( alice, parentId ),
+			getParentSectorTopNonHvc( alice, parentId ),
+			getParentSectorCampaigns( alice, parentId )
+		] );
 	}
 };

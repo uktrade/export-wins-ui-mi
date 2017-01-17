@@ -11,6 +11,13 @@ const isRegionMonths = /^\/mi\/regions\/[0-9]+\/months\/$/;
 const isRegion = /^\/mi\/regions\/[0-9]+\/$/;
 const isRegions = /^\/mi\/regions\/$/;
 
+const isParentSectors = /^\/mi\/parent_sectors\/$/;
+const isParentSector = /^\/mi\/parent_sectors\/[0-9]+\/$/;
+const isParentCampaigns = /^\/mi\/parent_sectors\/[0-9]+\/campaigns\/$/;
+const isParentMonths = /^\/mi\/parent_sectors\/[0-9]+\/months\/$/;
+const isParentTopNonHvcs = /^\/mi\/parent_sectors\/[0-9]+\/top_non_hvcs\/$/;
+
+
 const response = { statusCode: 200, isSuccess: true };
 
 const sectorTeamsOverviewStub = require( '../../stubs/backend/sector_teams_overview' );
@@ -26,6 +33,13 @@ const regionMonthsStub = require( '../../stubs/backend/region_months' );
 const regionStub = require( '../../stubs/backend/region' );
 const regionsStub = require( '../../stubs/backend/regions' );
 
+const parentSectorsStub = require( '../../stubs/backend/parent_sectors' );
+const parentSectorStub = require( '../../stubs/backend/parent_sector' );
+const parentCampaignsStub = require( '../../stubs/backend/parent_sector_campaigns' );
+const parentMonthsStub = require( '../../stubs/backend/parent_sector_months' );
+const parentTopNonHvcsStub = require( '../../stubs/backend/parent_sector_top_non_hvcs' );
+
+
 const stubs = [
 
 	[ isSectorTeamsOverview, sectorTeamsOverviewStub ],
@@ -39,7 +53,13 @@ const stubs = [
 	[ isRegionCampaigns, regionCampaignsStub ],
 	[ isRegionMonths, regionMonthsStub ],
 	[ isRegion, regionStub ],
-	[ isRegions, regionsStub ]
+	[ isRegions, regionsStub ],
+
+	[ isParentSectors, parentSectorsStub ],
+	[ isParentSector, parentSectorStub ],
+	[ isParentCampaigns, parentCampaignsStub ],
+	[ isParentMonths, parentMonthsStub ],
+	[ isParentTopNonHvcs, parentTopNonHvcsStub ]
 ];
 
 module.exports = {

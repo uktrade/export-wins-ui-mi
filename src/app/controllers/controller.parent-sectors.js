@@ -8,7 +8,7 @@ module.exports = {
 
 		backendService.getParentSectors( req.alice ).then( function( parentSectors ){
 
-			console.log( JSON.stringify( parentSectors, null, 2 ) );
+			//console.log( JSON.stringify( parentSectors, null, 2 ) );
 
 			res.render( 'parent-sectors/list.html', { parentSectors } );
 
@@ -19,9 +19,19 @@ module.exports = {
 
 		const parentId = req.params.id;
 
-		backendService.getParentSectorInfo( req.alice, parentId ).then( function( parentSector ){
+		backendService.getParentSectorInfo( req.alice, parentId ).then( function( data ){
 
-			res.render( 'parent-sectors/parent-sector.html', { parentSector } );
+			const parentInfo = data[ 0 ];
+			const	campaigns = data[ 1 ];
+			const months = data[ 2 ];
+			const topNonHvcs = data[ 3 ];
+
+			res.render( 'parent-sectors/parent-sector.html', {
+				parentInfo,
+				campaigns,
+				months,
+				topNonHvcs
+			} );
 
 		} ).catch( renderError( res ) );
 	}
