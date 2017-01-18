@@ -4,20 +4,21 @@ const divideIconBy = 2.5;
 
 const teamIcons = {
 
-	1: [ 'financial-prof-serv.png', 120, 119 ],
-	2: [ 'education.png', 120, 93 ],
-	3: [ 'technology.png', 120, 102 ],
-	4: [ 'food-drink.png', 120, 103 ],
-	5: [ 'aerospace.png', 120, 120 ],
-	6: [ 'infrastructure.png', 120, 115 ],
-	7: [ 'energy.png', 120, 52 ],
-	8: [ 'life-sciences.png', 120, 120 ],
-	9: [ 'advanced-manufacturing.png', 120, 121 ],
-	10: [ 'consumer-creative.png', 120, 119 ],
-	11: [ 'automotive.png', 120, 59 ],
-	12: [ 'healthcare.png', 120, 136 ],
-	13: [ 'bio-economy.png', 120, 122 ],
-	14: [ 'defence.png', 120, 161 ],
+	/* use full path to image for usemin to do it's thing */
+	1: [ '/public/img/sector-team-icons/financial-prof-serv.png', 120, 119 ],
+	2: [ '/public/img/sector-team-icons/education.png', 120, 93 ],
+	3: [ '/public/img/sector-team-icons/technology.png', 120, 102 ],
+	4: [ '/public/img/sector-team-icons/food-drink.png', 120, 103 ],
+	5: [ '/public/img/sector-team-icons/aerospace.png', 120, 120 ],
+	6: [ '/public/img/sector-team-icons/infrastructure.png', 120, 115 ],
+	7: [ '/public/img/sector-team-icons/energy.png', 120, 52 ],
+	8: [ '/public/img/sector-team-icons/life-sciences.png', 120, 120 ],
+	9: [ '/public/img/sector-team-icons/advanced-manufacturing.png', 120, 121 ],
+	10: [ '/public/img/sector-team-icons/consumer-creative.png', 120, 119 ],
+	11: [ '/public/img/sector-team-icons/automotive.png', 120, 59 ],
+	12: [ '/public/img/sector-team-icons/healthcare.png', 120, 136 ],
+	13: [ '/public/img/sector-team-icons/bio-economy.png', 120, 122 ],
+	14: [ '/public/img/sector-team-icons/defence.png', 120, 161 ],
 };
 
 function getImage( team ){
@@ -26,10 +27,10 @@ function getImage( team ){
 
 	if( icon ){
 
-		const [ name, width, height ] = icon;
+		const [ url, width, height ] = icon;
 
 		return {
-			name,
+			url,
 			width: ( width / divideIconBy ),
 			height: ( height / divideIconBy )
 		};

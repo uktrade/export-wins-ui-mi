@@ -31,7 +31,7 @@
 		
 			<li class="sector-teams-list_item">
 
-				<img class="sector-teams-list_image" src="/public/img/sector-team-icons/{{ team.image.name }}" width="{{ team.image.width }}" height="{{ team.image.height }}" alt="{{ team.image.alt }}">
+				<img class="sector-teams-list_image" src="{{ team.image.url }}" width="{{ team.image.width }}" height="{{ team.image.height }}" alt="{{ team.image.alt }}">
 
 				<table class="sector-teams-list_team">
 					<thead{% if loop.index > 1 %} class="visually-hidden"{% endif %}>

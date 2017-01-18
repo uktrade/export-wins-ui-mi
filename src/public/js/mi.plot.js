@@ -11,4 +11,4 @@ mi.plot = function( elem, data, layout ){
 	};
 
 	Plotly.plot( elem, data, layout, { showLink: false, displaylogo: false } );
-}
+};

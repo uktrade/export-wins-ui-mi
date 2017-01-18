@@ -14,7 +14,7 @@ describe( 'Sector teams overview transformer', function(){
 	
 		for( let team of output ){
 
-			expect( team.image.name ).toBeDefined();
+			expect( team.image.url ).toBeDefined();
 			expect( team.image.width ).toBeDefined();
 			expect( team.image.height ).toBeDefined();
 		}

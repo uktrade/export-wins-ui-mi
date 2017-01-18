@@ -76,7 +76,7 @@ module.exports = function( grunt ){
 
 		usemin: {
 			html: 'dist/app/views/**/*.html',
-			js: 'dist/public/**/*.js',
+			js: 'dist/**/*.js',
 			css: 'dist/public/**/*.css',
 			options: {
 				assetsDirs: [ 'dist', 'dist/public' ],
@@ -139,4 +139,4 @@ module.exports = function( grunt ){
 	} );
 
 	grunt.registerTask( 'template-font', 'Remove the govuk font from the template', [ 'replace:govuk'] );
-}
+};
