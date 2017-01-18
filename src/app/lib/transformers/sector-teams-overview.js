@@ -18,7 +18,7 @@ const teamIcons = {
 	11: [ '/public/img/sector-team-icons/automotive.png', 120, 59 ],
 	12: [ '/public/img/sector-team-icons/healthcare.png', 120, 136 ],
 	13: [ '/public/img/sector-team-icons/bio-economy.png', 120, 122 ],
-	14: [ '/public/img/sector-team-icons/defence.png', 120, 161 ],
+	14: [ '/public/img/sector-team-icons/defence.png', 120, 61 ],
 };
 
 function getImage( team ){
