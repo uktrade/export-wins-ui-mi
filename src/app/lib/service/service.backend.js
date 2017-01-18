@@ -10,7 +10,7 @@ const mocks = ( USE_MOCKS ? require( '../../../mocks' ) : null );
 
 const transformMonths = require( '../transformers/months' );
 const transformCampaigns = require( '../transformers/campaigns' );
-const transformSectorTeam = require( '../transformers/sector-team' );
+const transformSector = require( '../transformers/sector-team' );
 const transformSectorTeamsOverview = require( '../transformers/sector-teams-overview' );
 
 if( USE_STUBS ){
@@ -57,7 +57,7 @@ function getSectorTeams( alice ){
 
 function getSectorTeam( alice, teamId ){
 
-	return get( alice, `/mi/sector_teams/${ teamId }/` ).then( ( data ) => transformSectorTeam( data ) );
+	return get( alice, `/mi/sector_teams/${ teamId }/` ).then( ( data ) => transformSector( data ) );
 }
 
 function getSectorTeamMonths( alice, teamId ){
@@ -156,17 +156,17 @@ function getParentSectors( alice ){
 
 function getParentSector( alice, parentId ){
 
-	return get( alice, `/mi/parent_sectors/${ parentId }/` );
+	return get( alice, `/mi/parent_sectors/${ parentId }/` ).then( ( data ) => transformSector( data ) );
 }
 
 function getParentSectorCampaigns( alice, parentId ){
 
-	return get( alice, `/mi/parent_sectors/${ parentId }/campaigns/` );
+	return get( alice, `/mi/parent_sectors/${ parentId }/campaigns/` ).then( ( data ) => transformCampaigns( data ) );
 }
 
 function getParentSectorMonths( alice, parentId ){
 
-	return get( alice, `/mi/parent_sectors/${ parentId }/months/` );
+	return get( alice, `/mi/parent_sectors/${ parentId }/months/` ).then( ( data ) => transformMonths( data ) );
 }
 
 function getParentSectorTopNonHvc( alice, parentId ){

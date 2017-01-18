@@ -60,7 +60,7 @@ $keyBoxSize: 12px;
 	vertical-align: bottom;
 }
 
-.hvc-perf_table_cell_heading--region {
+.hvc-perf_table_cell_heading--campaign {
 	@include bold-16;
 	text-align: left;
 }
@@ -71,8 +71,8 @@ $keyBoxSize: 12px;
 	@include core-14;
 }
 
-$region-width: 20%;
-//$region-width: 15%;
+$campaign-width: 20%;
+//$campaign-width: 15%;
 //$change-width: 5%;
 $percent-complete-width: 50%;
 $over-target-width: 6%;
@@ -80,8 +80,8 @@ $confirmed-width: 8%;
 $combined-width: 8%;
 $target-width: 8%;
 
-.hvc-perf_table_cell--region {
-	width: $region-width;
+.hvc-perf_table_cell--campaign {
+	width: $campaign-width;
 	padding-left: 0
 }
 /*
@@ -175,7 +175,7 @@ $parts: ( 100 / 125 );
 .hvc-perf_percent-markers {
 	position: relative;
 	//width: $percent-complete-width;
-	//margin-left: ( $region-width + $change-width );
+	//margin-left: ( $campaign-width + $change-width );
 }
 
 .hvc-perf_percent-markers_marker {

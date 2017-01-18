@@ -11,47 +11,54 @@ module.exports = {
 
 	create: function( data ){
 
-		return data.map( function( item ){
+		if( data && data.length ){
 
-			let confirmedPercent = item.progress.confirmed;
-			let unconfirmedPercent = item.progress.unconfirmed;
-			let confirmed;
-			let unconfirmed;
-			let overThreshold = false;
-			//clone the item to prevent updating the original (issue when this is a stub in memory)
-			let newItem = Object.create( item );
+			return data.map( function( item ){
 
-			if( confirmedPercent > highestPercent ){
+				let confirmedPercent = item.progress.confirmed;
+				let unconfirmedPercent = item.progress.unconfirmed;
+				let confirmed;
+				let unconfirmed;
+				let overThreshold = false;
+				//clone the item to prevent updating the original (issue when this is a stub in memory)
+				let newItem = Object.create( item );
 
-				confirmed = 100;
-				unconfirmed = 0;
-				overThreshold = true;
+				if( confirmedPercent > highestPercent ){
 
-			} else if( unconfirmedPercent > highestPercent ){
+					confirmed = 100;
+					unconfirmed = 0;
+					overThreshold = true;
 
-				confirmed = 0;
-				unconfirmed = 100;
-				overThreshold = true;
+				} else if( unconfirmedPercent > highestPercent ){
 
-			} else if( ( confirmedPercent + unconfirmedPercent ) > highestPercent ){
+					confirmed = 0;
+					unconfirmed = 100;
+					overThreshold = true;
 
-				confirmed = calculatePercent( confirmedPercent );
-				unconfirmed = ( 100 - confirmed );
-				overThreshold = true;
+				} else if( ( confirmedPercent + unconfirmedPercent ) > highestPercent ){
 
-			} else {
+					confirmed = calculatePercent( confirmedPercent );
+					unconfirmed = ( 100 - confirmed );
+					overThreshold = true;
 
-				confirmed = calculatePercent( confirmedPercent );
-				unconfirmed = calculatePercent( unconfirmedPercent );
-			}
+				} else {
 
-			newItem.progress = {
-				confirmed,
-				unconfirmed,
-				overThreshold
-			};
+					confirmed = calculatePercent( confirmedPercent );
+					unconfirmed = calculatePercent( unconfirmedPercent );
+				}
 
-			return newItem;
-		} );
+				newItem.progress = {
+					confirmed,
+					unconfirmed,
+					overThreshold
+				};
+
+				return newItem;
+			} );
+			
+		} else {
+
+			return [];
+		}
 	}
 };

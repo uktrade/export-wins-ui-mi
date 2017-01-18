@@ -1,19 +1,20 @@
 const transform = require( '../../../../../app/lib/transformers/months' );
 const input = require( '../../../../../stubs/backend/sector_team_months' );
+const parentSectorInput = require( '../../../../../stubs/backend/parent_sector_months' );
 const inputOverTarget = require( '../../../../../stubs/backend/sector_team_months-over-target' );
 const input20161212 = require( '../../../../../stubs/backend/sector_team_months_2016-12-12' );
 
 
 describe( 'Sector months transformer', function(){
 
-	function checkOutput( input, max ){
+	function checkOutput( input, max, target = ( ( input.hvcs.target / 1e+6 ) + 'm' ) ){
 
 		const output = transform( input );
 
 		//expect( output.max ).toEqual( max );
 		//expect( output.min ).toEqual( 0 );
 		expect( output.target ).toEqual( input.hvcs.target );
-		expect( output.targetName ).toEqual( '£' + ( input.hvcs.target / 1e+6 ) + 'm' );
+		expect( output.targetName ).toEqual( '£' + target );
 
 		input.months.forEach( ( month, i ) => {
 
@@ -29,18 +30,29 @@ describe( 'Sector months transformer', function(){
 		} );
 	}
 
-	it( 'Should return the correct format', function(){
+	describe( 'With a sector team', function(){
+	
+		it( 'Should return the correct format', function(){
 
-		checkOutput( input, 92882566 );
+			checkOutput( input, 92882566 );
+		} );
+
+		it( 'Should return the correct format when over target', function(){
+
+			checkOutput( inputOverTarget, 504321098 );
+		} );
+
+		it( 'Should return the correct format for 2016-12-12', function(){
+
+			checkOutput( input20161212, 501286154 );
+		} );
 	} );
 
-	it( 'Should return the correct format when over target', function(){
+	describe( 'With a parent sector', function(){
 
-		checkOutput( inputOverTarget, 504321098 );
-	} );
-
-	it( 'Should return the correct format for 2016-12-12', function(){
-
-		checkOutput( input20161212, 501286154 );
+		it( 'Should return the correct format', function(){
+		
+			checkOutput( parentSectorInput, 100, '2.66b' );
+		} );
 	} );
 } );

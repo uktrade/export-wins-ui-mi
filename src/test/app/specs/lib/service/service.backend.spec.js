@@ -9,7 +9,7 @@ const stubs = {
 
 const backend = proxyquire( '../../../../../app/lib/service/service.backend', stubs );
 
-const parentSectorsList = require( '../../../json/parent-sectors' );
+const parentSectorsList = require( '../../../../../stubs/backend/parent_sectors' );
 
 describe( 'Backend service', function(){
 

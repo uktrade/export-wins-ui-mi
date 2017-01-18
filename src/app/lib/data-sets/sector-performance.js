@@ -45,7 +45,7 @@ module.exports = {
 		let nonHvcUnconfirmed = [];
 		let nonExportUnconfirmed = [];
 
-		for( let month of data.months ){
+		for( let month of ( data.months || [] ) ){
 
 			x.push( month.date );
 

@@ -2,7 +2,7 @@ const dataset = require( '../../../../../app/lib/data-sets/hvc-target-performanc
 
 const input = [
 	{
-		region: 'test',
+		campaign: 'test',
 		target: 100,
 		change: 'up',
 		progress: {
@@ -15,7 +15,7 @@ const input = [
 		}
 	},
 	{
-		region: 'test',
+		campaign: 'test',
 		target: 100,
 		change: 'up',
 		progress: {
@@ -28,7 +28,7 @@ const input = [
 		}
 	},
 	{
-		region: 'test',
+		campaign: 'test',
 		target: 100,
 		change: 'up',
 		progress: {
@@ -41,7 +41,7 @@ const input = [
 		}
 	},
 	{
-		region: 'test',
+		campaign: 'test',
 		target: 100,
 		change: 'up',
 		progress: {
@@ -54,7 +54,7 @@ const input = [
 		}
 	},
 	{
-		region: 'test',
+		campaign: 'test',
 		target: 100,
 		change: 'up',
 		progress: {
@@ -67,7 +67,7 @@ const input = [
 		}
 	},
 	{
-		region: 'test',
+		campaign: 'test',
 		target: 100,
 		change: 'up',
 		progress: {
@@ -81,7 +81,7 @@ const input = [
 	}
 	,
 	{
-		region: 'test',
+		campaign: 'test',
 		target: 100,
 		change: 'up',
 		progress: {
