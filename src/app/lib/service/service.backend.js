@@ -52,7 +52,13 @@ function get( alice, path ){
 
 function getSectorTeams( alice ){
 
-	return get( alice, '/mi/sector_teams/' );
+	return get( alice, '/mi/sector_teams/' ).then( ( teams ) => teams.map( ( team ) => {
+
+			delete team.parent_sectors;
+
+			return team;
+		} )
+	);
 }
 
 function getSectorTeam( alice, teamId ){
