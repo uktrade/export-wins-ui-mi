@@ -23,22 +23,25 @@ function convertToJson( cb ){
 
 	return function( err, response, data ){
 
-		const isSuccess = ( response.statusCode >= 200 && response.statusCode < 300 );
-		const isJson = ( response.headers[ 'content-type' ] === 'application/json' );
+		if( !err ){
 
-		response.isSuccess = isSuccess;
+			const isSuccess = ( response.statusCode >= 200 && response.statusCode < 300 );
+			const isJson = ( response.headers[ 'content-type' ] === 'application/json' );
 
-		if( !err && isJson ){
+			response.isSuccess = isSuccess;
 
-			try {
+			if( !err && isJson ){
 
-				data = JSON.parse( data );
+				try {
 
-			} catch( e ){
-				
-				logger.error( 'Unable to convert response to JSON for uri: %s', response.request.uri.href );
+					data = JSON.parse( data );
+
+				} catch( e ){
+					
+					logger.error( 'Unable to convert response to JSON for uri: %s', response.request.uri.href );
+				}
 			}
-		}
+		}		
 
 		cb( err, response, data );
 	};
