@@ -12,7 +12,7 @@ const transformMonths = require( '../transformers/months' );
 const transformCampaigns = require( '../transformers/campaigns' );
 const transformSector = require( '../transformers/sector-team' );
 const transformSectorTeamsOverview = require( '../transformers/sector-teams-overview' );
-
+const transformRegionsOverview = require( '../transformers/os-regions-overview' );
 if( USE_STUBS ){
 
 	logger.warn( 'Using stubs for backend service' );
@@ -139,22 +139,11 @@ function getRegionCampaigns( alice, regionId ){
 	return get( alice, `/mi/regions/${ regionId }/campaigns/` ).then( ( data ) => transformCampaigns( data ) );
 }
 
-function getRegionsOverview( /* alice */ ){
+function getRegionsOverview( alice ){
 
-	try {
-	
-		return require( '../../../mocks' ).regionsOverview();
-
-	} catch( e ){
-
-		logger.warn( 'No mocks found' );
-
-		return new Promise( ( resolve, reject ) => {
-			
-			reject( new Error( 'Unable to load mocks' ) );
-		} );
-	}
+	return get( alice, '/mi/os_regions/overview/' ).then( ( data ) => transformRegionsOverview( data ) );
 }
+
 
 function getHvcGroups( alice ){
 
@@ -191,6 +180,8 @@ if( USE_MOCKS ){
 	getSectorTeamTopNonHvc = mocks.sectorTeamTopNonHvc;
 	getSectorTeamMonths = mocks.sectorTeamMonths;
 	getSectorTeamsOverview = mocks.sectorTeamsOverview;
+
+	getRegionsOverview = mocks.regionsOverview;
 }
 /*eslint-enable no-func-assign */
 
