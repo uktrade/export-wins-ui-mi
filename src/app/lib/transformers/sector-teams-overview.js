@@ -67,7 +67,7 @@ module.exports = function( teams ){
 		let mappedTeam = mapValues( team );
 
 		mappedTeam.image = getImage( team );
-		mappedTeam.parentSectors = team.parent_sectors.map( mapValues );
+		mappedTeam.hvcGroups = team.parent_sectors.map( mapValues );
 
 		return mappedTeam;
 	} );

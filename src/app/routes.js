@@ -2,7 +2,7 @@
 const indexController = require( './controllers/controller.index' );
 const sectorTeamController = require( './controllers/controller.sector-teams' );
 const regionController = require( './controllers/controller.regions' );
-const parentSectorController = require( './controllers/controller.parent-sectors' );
+const hvcGroupController = require( './controllers/controller.hvc-groups' );
 
 module.exports = function( express, app ){
 
@@ -16,6 +16,6 @@ module.exports = function( express, app ){
 	app.get( '/regions/overview/', regionController.overview );
 	app.get( '/regions/:id', regionController.region );
 
-	app.get( '/parent-sectors/', parentSectorController.list );
-	app.get( '/parent-sectors/:id', parentSectorController.parent );
+	app.get( '/hvc-groups/', hvcGroupController.list );
+	app.get( '/hvc-groups/:id', hvcGroupController.group );
 };

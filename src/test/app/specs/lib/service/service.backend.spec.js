@@ -25,13 +25,13 @@ describe( 'Backend service', function(){
 		} );
 	} );
 
-	describe( 'Getting the list of parent sectors', function(){
+	describe( 'Getting the list of HVC Groups', function(){
 	
-		it( 'Should return just the parent sectors', function( done ){
+		it( 'Should return just the hvc groups', function( done ){
 	
-			backend.getParentSectors().then( ( parentSectors ) => {
+			backend.getHvcGroups().then( ( hvcGroup ) => {
 
-				expect( parentSectors ).toEqual( parentSectorsList );
+				expect( hvcGroup ).toEqual( parentSectorsList );
 				done();
 			} );
 		} );

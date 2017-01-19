@@ -1,6 +1,6 @@
 const config = require( '../../config' );
-const logger = require( '../logger' );
 const jwt = require( 'jsonwebtoken' );
+const renderError = require( '../render-error' );
 
 const secret = config.cookieSecret;
 
@@ -19,7 +19,7 @@ module.exports = function( req, res, next ){
 
 			} else {
 
-				res.render( 'error', { error: err } );
+				renderError.sendResponse( res, err );
 			}
 		} );
 
@@ -27,8 +27,6 @@ module.exports = function( req, res, next ){
 
 		let err = new Error( 'Not logged in' );
 
-		logger.error( err.message );
-
-		res.render( 'error', { error: err } );
+		renderError.sendResponse( res, err );
 	}
 };

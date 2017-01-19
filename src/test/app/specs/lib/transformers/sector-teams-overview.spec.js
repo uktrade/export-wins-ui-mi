@@ -26,7 +26,7 @@ describe( 'Sector teams overview transformer', function(){
 
 			expect( team.name ).toBeDefined();
 			expect( team.hvcColours ).toBeDefined();
-			expect( team.parentSectors ).toBeDefined();
+			expect( team.hvcGroups ).toBeDefined();
 			expect( team.value.percentage ).toBeDefined();
 			expect( team.value.current ).toBeDefined();
 			expect( team.value.target ).toBeDefined();
@@ -34,18 +34,18 @@ describe( 'Sector teams overview transformer', function(){
 		}
 	} );
 
-	it( 'Should give the parent sectors the correct properties', function(){
+	it( 'Should give the HVC Groups the correct properties', function(){
 	
 		for( let team of output ){
 
-			for( let parent of team.parentSectors ){
+			for( let hvcGroup of team.hvcGroups ){
 
-				expect( parent.name ).toBeDefined();
-				expect( parent.hvcColours ).toBeDefined();
-				expect( parent.value.percentage ).toBeDefined();
-				expect( parent.value.current ).toBeDefined();
-				expect( parent.value.target ).toBeDefined();
-				expect( parent.hvcVsNonhvcPercentage ).toBeDefined();
+				expect( hvcGroup.name ).toBeDefined();
+				expect( hvcGroup.hvcColours ).toBeDefined();
+				expect( hvcGroup.value.percentage ).toBeDefined();
+				expect( hvcGroup.value.current ).toBeDefined();
+				expect( hvcGroup.value.target ).toBeDefined();
+				expect( hvcGroup.hvcVsNonhvcPercentage ).toBeDefined();
 			}
 		}
 	} );

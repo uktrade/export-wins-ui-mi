@@ -18,7 +18,7 @@ module.exports = {
 
 			res.render( 'regions/overview.html', { regionGroups } );
 		
-		} ).catch( renderError( res ) );
+		} ).catch( renderError.handler( res ) );
 	},
 
 	regionList: function( req, res ){
@@ -27,14 +27,14 @@ module.exports = {
 
 			res.render( 'regions/list.html', { regions } );
 		
-		} ).catch( renderError( res ) );
+		} ).catch( renderError.handler( res ) );
 	},
 
 	region: function( req, res ){
 
 		const regionId = req.params.id;
 
-		backendService.getRegionInfo( req.alice, regionId ).then( function( data ){
+		backendService.getRegionInfo( req.alice, regionId ).then( ( data ) => {
 
 			const regionName = data[ 0 ];
 			const winsData = data[ 1 ];
@@ -59,6 +59,6 @@ module.exports = {
 				hvcTargetPerformance: hvcTargetPerformanceDataSet.create( hvcTargetPerformance )
 			} );
 
-		} ).catch( renderError( res ) );
+		} ).catch( renderError.handler( res ) );
 	}
 };

@@ -18,23 +18,23 @@ module.exports = {
 			
 			res.render( 'sector-teams/overview', { sectorTeams } );
 			
-		} ).catch( renderError( res ) );
+		} ).catch( renderError.handler( res ) );
 	},
 
 	list: function( req, res ){
 
-		backendService.getSectorTeams( req.alice ).then( function( sectorTeams ){
+		backendService.getSectorTeams( req.alice ).then( ( sectorTeams ) => {
 
 			res.render( 'sector-teams/list.html', { sectorTeams } );
 
-		} ).catch( renderError( res ) );
+		} ).catch( renderError.handler( res ) );
 	},
 
 	team: function( req, res ){
 
 		const teamId = req.params.id;
 
-		backendService.getSectorTeamInfo( req.alice, teamId ).then( function( data ){
+		backendService.getSectorTeamInfo( req.alice, teamId ).then( ( data ) => {
 
 			const winsData = data[ 0 ];
 			const months = data[ 1 ];
@@ -58,6 +58,6 @@ module.exports = {
 				hvcTargetPerformance: hvcTargetPerformanceDataSet.create( campaigns )
 			} );
 
-		} ).catch( renderError( res ) );
+		} ).catch( renderError.handler( res ) );
 	}
 };

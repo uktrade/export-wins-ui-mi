@@ -55,9 +55,9 @@
 						
 						{{ row( team, loopIndex ) }}
 
-						{% for parent in team.parentSectors %}
+						{% for hvcGroup in team.hvcGroups %}
 							{% set loopIndex = ( loopIndex + 1 ) %}
-							{{ row( parent, loopIndex, true ) }}
+							{{ row( hvcGroup, loopIndex, true ) }}
 						{% endfor %}
 
 					</tbody>

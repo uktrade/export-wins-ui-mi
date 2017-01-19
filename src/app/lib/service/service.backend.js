@@ -54,6 +54,7 @@ function getSectorTeams( alice ){
 
 	return get( alice, '/mi/sector_teams/' ).then( ( teams ) => teams.map( ( team ) => {
 
+			team.hvc_groups = team.parent_sectors;
 			delete team.parent_sectors;
 
 			return team;
@@ -155,27 +156,27 @@ function getRegionsOverview( /* alice */ ){
 	}
 }
 
-function getParentSectors( alice ){
+function getHvcGroups( alice ){
 
 	return get( alice, '/mi/parent_sectors/' );
 }
 
-function getParentSector( alice, parentId ){
+function getHvcGroup( alice, parentId ){
 
 	return get( alice, `/mi/parent_sectors/${ parentId }/` ).then( ( data ) => transformSector( data ) );
 }
 
-function getParentSectorCampaigns( alice, parentId ){
+function getHvcGroupCampaigns( alice, parentId ){
 
 	return get( alice, `/mi/parent_sectors/${ parentId }/campaigns/` ).then( ( data ) => transformCampaigns( data ) );
 }
 
-function getParentSectorMonths( alice, parentId ){
+function getHvcGroupMonths( alice, parentId ){
 
 	return get( alice, `/mi/parent_sectors/${ parentId }/months/` ).then( ( data ) => transformMonths( data ) );
 }
 
-function getParentSectorTopNonHvc( alice, parentId ){
+function getHvcGroupTopNonHvc( alice, parentId ){
 
 	return get( alice, `/mi/parent_sectors/${ parentId }/top_non_hvcs/` );
 }
@@ -245,16 +246,16 @@ module.exports = {
 
 	getRegionsOverview,
 
-	getParentSectors,
+	getHvcGroups,
 
-	getParentSectorInfo: function( alice, parentId ){
+	getHvcGroupInfo: function( alice, parentId ){
 
 		return Promise.all( [
 
-			getParentSector( alice, parentId ),
-			getParentSectorMonths( alice, parentId ),
-			getParentSectorTopNonHvc( alice, parentId ),
-			getParentSectorCampaigns( alice, parentId )
+			getHvcGroup( alice, parentId ),
+			getHvcGroupMonths( alice, parentId ),
+			getHvcGroupTopNonHvc( alice, parentId ),
+			getHvcGroupCampaigns( alice, parentId )
 		] );
 	}
 };

@@ -12,20 +12,20 @@ module.exports = {
 
 	list: function( req, res ){
 
-		backendService.getParentSectors( req.alice ).then( function( parentSectors ){
+		backendService.getHvcGroups( req.alice ).then( ( hvcGroups ) => {
 
-			//console.log( JSON.stringify( parentSectors, null, 2 ) );
+			//console.log( JSON.stringify( hvcGroups, null, 2 ) );
 
-			res.render( 'parent-sectors/list.html', { parentSectors } );
+			res.render( 'hvc-groups/list.html', { hvcGroups } );
 
-		} ).catch( renderError( res ) );
+		} ).catch( renderError.handler( res ) );
 	},
 
-	parent: function( req, res ){
+	group: function( req, res ){
 
-		const parentId = req.params.id;
+		const groupId = req.params.id;
 
-		backendService.getParentSectorInfo( req.alice, parentId ).then( function( data ){
+		backendService.getHvcGroupInfo( req.alice, groupId ).then( ( data ) => {
 
 			const winsData = data[ 0 ];
 			const months = data[ 1 ];
@@ -48,6 +48,6 @@ module.exports = {
 				hvcTargetPerformance: hvcTargetPerformanceDataSet.create( campaigns )
 			} );
 
-		} ).catch( renderError( res ) );
+		} ).catch( renderError.handler( res ) );
 	}
 };

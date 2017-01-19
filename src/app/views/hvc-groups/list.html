@@ -9,11 +9,11 @@
 	<div class="grid-row">
 		<div class="column-one-third">
 			
-			<h2 class="sector-list-heading">Parent Sectors</h2>
+			<h2 class="sector-list-heading">HVC Groups</h2>
 
 			<ul class="sector-list">
-			{% for parent in parentSectors %}
-				<li><a href="{{ uuid }}/parent-sectors/{{ parent.id }}/">{{ parent.name }}</a></li>
+			{% for group in hvcGroups %}
+				<li><a href="{{ uuid }}/hvc-groups/{{ group.id }}/">{{ group.name }}</a></li>
 			{% endfor %}
 			</ul>
 		</div>

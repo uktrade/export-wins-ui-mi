@@ -1,12 +1,23 @@
+
 const logger = require( './logger' );
 
-module.exports = function( res ){
+function sendResponse( res, err ){
 
-	return function( err ){
+	logger.error( err );
 
-		logger.error( err );
+	res.render( 'error', { error: err } );
+}
 
-		res.render( 'error', { error: err } );
-	};
+module.exports = {
+
+	sendResponse,
+
+	handler: function( res ){
+
+		return function( err ){
+
+			sendResponse( res, err );
+		};
+	}
 };
 

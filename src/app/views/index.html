@@ -17,11 +17,11 @@
 			{% for team in sectorTeams %}
 				<li class="sector-list_item"><a href="{{ uuid }}/sector-teams/{{ team.id }}/">{{ team.name }}</a></li>
 
-				{% if team.parent_sectors.length %}
+				{% if team.hvc_groups.length %}
 					<ul class="sector-list_parent-sectors">
-						{% for parentSector in team.parent_sectors %}
+						{% for hvcGroup in team.hvc_groups %}
 						<li>
-							<a href="{{ uuid }}/parent-sectors/{{ parentSector.id }}/">{{ parentSector.name }}</a>
+							<a href="{{ uuid }}/hvc-groups/{{ hvcGroup.id }}/">{{ hvcGroup.name }}</a>
 						</li>
 						{% endfor %}
 					</ul>
