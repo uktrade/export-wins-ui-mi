@@ -12,7 +12,8 @@ const transformMonths = require( '../transformers/months' );
 const transformCampaigns = require( '../transformers/campaigns' );
 const transformSector = require( '../transformers/sector-team' );
 const transformSectorTeamsOverview = require( '../transformers/sector-teams-overview' );
-const transformRegionsOverview = require( '../transformers/os-regions-overview' );
+const transformOverseasRegionsOverview = require( '../transformers/os-regions-overview' );
+
 if( USE_STUBS ){
 
 	logger.warn( 'Using stubs for backend service' );
@@ -88,14 +89,14 @@ function getSectorTeamsOverview( alice ){
 }
 
 
-function getRegions( alice ){
+function getOverseasRegions( alice ){
 
-	return get( alice, '/mi/regions/' );
+	return get( alice, '/mi/os_regions/' );
 }
 
-function getRegionName( alice, regionId ){
+function getOverseasRegionName( alice, regionId ){
 
-	return getRegions( alice ).then( ( regions ) => {
+	return getOverseasRegions( alice ).then( ( regions ) => {
 
 		let regionName;
 
@@ -116,32 +117,33 @@ function getRegionName( alice, regionId ){
 
 			throw new Error( 'Region not found' );
 		}
-	} );
+
+	});
 }
 
-function getRegion( alice, regionId ){
+function getOverseasRegion( alice, regionId ){
 
-	return get( alice, `/mi/regions/${ regionId }/` );
+	return get( alice, `/mi/os_regions/${ regionId }/` );
 }
 
-function getRegionMonths( alice, regionId ){
+function getOverseasRegionMonths( alice, regionId ){
 
-	return get( alice, `/mi/regions/${ regionId }/months/` ).then( ( data ) => transformMonths( data ) );
+	return get( alice, `/mi/os_regions/${ regionId }/months/` ).then( ( data ) => transformMonths( data ) );
 }
 
-function getRegionTopNonHvc( alice, regionId ){
+function getOverseasRegionTopNonHvc( alice, regionId ){
 
-	return get( alice, `/mi/regions/${ regionId }/top_non_hvcs/` );
+	return get( alice, `/mi/os_regions/${ regionId }/top_non_hvcs/` );
 }
 
-function getRegionCampaigns( alice, regionId ){
+function getOverseasRegionCampaigns( alice, regionId ){
 
-	return get( alice, `/mi/regions/${ regionId }/campaigns/` ).then( ( data ) => transformCampaigns( data ) );
+	return get( alice, `/mi/os_regions/${ regionId }/campaigns/` ).then( ( data ) => transformCampaigns( data ) );
 }
 
-function getRegionsOverview( alice ){
+function getOverseasRegionsOverview( alice ){
 
-	return get( alice, '/mi/os_regions/overview/' ).then( ( data ) => transformRegionsOverview( data ) );
+	return get( alice, '/mi/os_regions/overview/' ).then( ( data ) => transformOverseasRegionsOverview( data ) );
 }
 
 
@@ -181,7 +183,7 @@ if( USE_MOCKS ){
 	getSectorTeamMonths = mocks.sectorTeamMonths;
 	getSectorTeamsOverview = mocks.sectorTeamsOverview;
 
-	getRegionsOverview = mocks.regionsOverview;
+	getOverseasRegionsOverview = mocks.regionsOverview;
 }
 /*eslint-enable no-func-assign */
 
@@ -207,35 +209,35 @@ module.exports = {
 
 	getSectorTeamsOverview,
 
-	getRegions,
-	getRegion,
-	getRegionMonths,
-	getRegionTopNonHvc,
-	getRegionCampaigns,
-	getRegionName,
+	getOverseasRegions,
+	getOverseasRegion,
+	getOverseasRegionMonths,
+	getOverseasRegionTopNonHvc,
+	getOverseasRegionCampaigns,
+	getOverseasRegionName,
 
-	getRegionInfo: function( alice, regionId ){
+	getOverseasRegionInfo: function( alice, regionId ){
 
 		return Promise.all( [
 
-			getRegionName( alice, regionId ),
-			getRegion( alice, regionId ),
-			getRegionMonths( alice, regionId ),
-			getRegionTopNonHvc( alice, regionId ),
-			getRegionCampaigns( alice, regionId )
+			getOverseasRegionName( alice, regionId ),
+			getOverseasRegion( alice, regionId ),
+			getOverseasRegionMonths( alice, regionId ),
+			getOverseasRegionTopNonHvc( alice, regionId ),
+			getOverseasRegionCampaigns( alice, regionId )
 		] );
 	},
 
-	getSectorTeamsAndRegions: function( alice ){
+	getSectorTeamsAndOverseasRegions: function( alice ){
 
 		return Promise.all( [
 
 			getSectorTeams( alice ),
-			getRegions( alice )
+			getOverseasRegions( alice )
 		] );
 	},
 
-	getRegionsOverview,
+	getOverseasRegionsOverview,
 
 	getHvcGroups,
 

@@ -1,5 +1,5 @@
 const transform = require( '../../../../../app/lib/transformers/sector-team' );
-const sectorTeamInput = require( '../../../../../stubs/backend/sector_team_v2' );
+const sectorTeamInput = require( '../../../../../stubs/backend/sector_teams/sector_team_v2' );
 const parentSectorInput = require( '../../../../../stubs/backend/parent_sector' );
 
 describe( 'Sector transformer', function(){

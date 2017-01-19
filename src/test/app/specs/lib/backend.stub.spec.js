@@ -1,17 +1,18 @@
 const backendStub = require( '../../../../app/lib/backend.stub' );
 
-const topNonHvcStub = require( '../../../../stubs/backend/top_non_hvc_2016-12-12' );
-const campaignsStub = require( '../../../../stubs/backend/sector_team_campaigns_2016-12-12' );
-const monthsStub = require( '../../../../stubs/backend/sector_team_months_2016-12-12' );
-const sectorStub = require( '../../../../stubs/backend/sector_team_v2' );
-const sectorsStub = require( '../../../../stubs/backend/sector_teams' );
-const sectorsOverviewStub = require( '../../../../stubs/backend/sector_teams_overview' );
+const sectorsOverviewStub = require( '../../../../stubs/backend/sector_teams/overview' );
+const sectorTeamsTopNonHvcStub = require( '../../../../stubs/backend/sector_teams/top_non_hvcs' );
+const sectorTeamsCampaignsStub = require( '../../../../stubs/backend/sector_teams/campaigns' );
+const sectorTeamMonthsStub = require( '../../../../stubs/backend/sector_teams/months_2016-12-12' );
+const sectorTeamStub = require( '../../../../stubs/backend/sector_teams/sector_team_v2' );
+const sectorTeamsStub = require( '../../../../stubs/backend/sector_teams/' );
 
-const regionTopNonHvcStub = require( '../../../../stubs/backend/region_top_non_hvc' );
-const regionCampaignsStub = require( '../../../../stubs/backend/region_campaigns' );
-const regionMonthsStub = require( '../../../../stubs/backend/region_months' );
-const regionStub = require( '../../../../stubs/backend/region' );
-const regionsStub = require( '../../../../stubs/backend/regions' );
+const overseasRegionTopNonHvcStub = require( '../../../../stubs/backend/os_regions/top_non_hvcs' );
+const overseasRegionCampaignsStub = require( '../../../../stubs/backend/os_regions/campaigns' );
+const overseasRegionMonthsStub = require( '../../../../stubs/backend/os_regions/months' );
+const overseasRegionStub = require( '../../../../stubs/backend/os_regions/region' );
+const overseasRegionsStub = require( '../../../../stubs/backend/os_regions/' );
+const overseasRegionsOverviewStub = require( '../../../../stubs/backend/os_regions/overview' );
 
 const parentSectorsStub = require( '../../../../stubs/backend/parent_sectors' );
 const parentSectorStub = require( '../../../../stubs/backend/parent_sector' );
@@ -51,7 +52,7 @@ describe( 'Backend stub', function(){
 
 				const url = '/mi/sector_teams/2/top_non_hvcs/';
 
-				checkStub( url, topNonHvcStub, done );
+				checkStub( url, sectorTeamsTopNonHvcStub, done );
 			} );
 		} );
 
@@ -61,7 +62,7 @@ describe( 'Backend stub', function(){
 			
 				const url = '/mi/sector_teams/1/campaigns/';
 				
-				checkStub( url, campaignsStub, done );
+				checkStub( url, sectorTeamsCampaignsStub, done );
 			} );
 		} );
 
@@ -71,7 +72,7 @@ describe( 'Backend stub', function(){
 		
 				const url = '/mi/sector_teams/3/months/';
 
-				checkStub( url, monthsStub, done );
+				checkStub( url, sectorTeamMonthsStub, done );
 			} );
 		} );
 
@@ -81,7 +82,7 @@ describe( 'Backend stub', function(){
 		
 				const url = '/mi/sector_teams/3/';
 
-				checkStub( url, sectorStub, done );
+				checkStub( url, sectorTeamStub, done );
 			} );
 		} );
 
@@ -91,21 +92,21 @@ describe( 'Backend stub', function(){
 		
 				const url = '/mi/sector_teams/';
 
-				checkStub( url, sectorsStub, done );
+				checkStub( url, sectorTeamsStub, done );
 			} );
 		} );
 	} );
 
 
-	describe( 'Regions', function(){
+	describe( 'Overseas Regions', function(){
 
 		describe( 'Getting the regions list', function(){
 		
 			it( 'Should return the list', function( done ){
 		
-				const url = '/mi/regions/';
+				const url = '/mi/os_regions/';
 
-				checkStub( url, regionsStub, done );
+				checkStub( url, overseasRegionsStub, done );
 			} );
 		} );
 	
@@ -113,9 +114,9 @@ describe( 'Backend stub', function(){
 		
 			it( 'Should return the top_non_hvc stub', function( done ){
 		
-				const url = '/mi/regions/2/top_non_hvcs/';
+				const url = '/mi/os_regions/2/top_non_hvcs/';
 
-				checkStub( url, regionTopNonHvcStub, done );
+				checkStub( url, overseasRegionTopNonHvcStub, done );
 			} );
 		} );
 
@@ -123,9 +124,9 @@ describe( 'Backend stub', function(){
 		
 			it( 'Should return the campaigns stub', function( done ){
 		
-				const url = '/mi/regions/3/campaigns/';
+				const url = '/mi/os_regions/3/campaigns/';
 
-				checkStub( url, regionCampaignsStub, done );
+				checkStub( url, overseasRegionCampaignsStub, done );
 			} );
 		} );
 
@@ -133,21 +134,31 @@ describe( 'Backend stub', function(){
 		
 			it( 'Should return the months stub', function( done ){
 		
-				const url = '/mi/regions/3/months/';
+				const url = '/mi/os_regions/3/months/';
 
-				checkStub( url, regionMonthsStub, done );
+				checkStub( url, overseasRegionMonthsStub, done );
 			} );
 		} );
 
-		describe( 'Getting region', function(){
+		describe( 'Getting a region', function(){
 		
 			it( 'Should return the region stub', function( done ){
 		
-				const url = '/mi/regions/3/';
+				const url = '/mi/os_regions/3/';
 
-				checkStub( url, regionStub, done );
+				checkStub( url, overseasRegionStub, done );
 			} );
-		} );		
+		} );	
+
+		describe( 'Getting the overview', function(){
+			
+				it( 'Should return the overview', function( done ){
+			
+					const url = '/mi/os_regions/overview/';
+
+					checkStub( url, overseasRegionsOverviewStub, done );
+				} );
+			} );	
 	} );
 
 	describe( 'Parent sectors', function(){

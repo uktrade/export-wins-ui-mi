@@ -1,7 +1,7 @@
 
 var mock = require( '../../../mocks/region-overview' );
 
-describe( 'Region overview mock', function(){
+describe( 'Overseas regions overview mock', function(){
 
 	it( 'Should have the right data structure', function(){
 

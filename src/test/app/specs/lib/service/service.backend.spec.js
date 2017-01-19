@@ -17,11 +17,12 @@ describe( 'Backend service', function(){
 	
 		it( 'Should return the correct name', function( done ){
 		
-			backend.getRegionName( 'test', 1 ).then( ( name ) => {
+			backend.getOverseasRegionName( 'test', 1 ).then( ( name ) => {
 
 				expect( name ).toEqual( 'North Africa' );
 				done();
-			} );
+				
+			} ).catch( ( err ) => { expect( err ).not.toBeDefined(); done(); } );
 		} );
 	} );
 

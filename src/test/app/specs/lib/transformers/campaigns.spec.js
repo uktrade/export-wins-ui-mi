@@ -1,5 +1,5 @@
 const transform = require( '../../../../../app/lib/transformers/campaigns' );
-const input = require( '../../../../../stubs/backend/sector_team_campaigns_2016-12-12' );
+const input = require( '../../../../../stubs/backend/sector_teams/campaigns' );
 const parentSectorInput = require( '../../../../../stubs/backend/parent_sector_campaigns' );
 
 /*
