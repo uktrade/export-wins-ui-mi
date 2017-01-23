@@ -15,7 +15,6 @@ $right-padding: 2em;
 
 .top-non-hvc_table {
 	border-collapse: collapse;
-	border-bottom: 1px solid #000;
 }
 
 .top-non-hvc_table_row:first-of-type {
@@ -96,6 +95,10 @@ $average-percent-width: 10%;
 
 .top-non-hvc_table_cell_bar--average {
 	background-color: $grey-2;
+}
+
+.top-non-hvc_table_markers-row {
+	border-top: 1px solid #000;
 }
 
 .top-non-hvc_value-markers {
