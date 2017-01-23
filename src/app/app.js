@@ -32,6 +32,7 @@ function startApp(){
 	const nunjucksFilters = require( './lib/nunjucks-filters' );
 	const alice = require( './lib/middleware/alice' );
 	const uuid = require( './lib/middleware/uuid' );
+	const feedbackEmail = require( './lib/middleware/feedback-email' );
 
 	const app = express();
 	const serverConfig = config.server;
@@ -65,6 +66,7 @@ function startApp(){
 	app.use( cookieParser() );
 	app.use( uuid );
 	app.use( alice );
+	app.use( feedbackEmail );
 
 	routes( express, app );
 

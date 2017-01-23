@@ -22,6 +22,7 @@ module.exports = {
 	views: {
 		cache: bool( 'CACHE_VIEWS', true )
 	},
+	feedbackEmail: env( 'FEEDBACK_EMAIL' ),
 	cookieSecret: env( 'COOKIE_SECRET' ),
 	logLevel: env( 'LOG_LEVEL', 'warn' ),
 	backend: {
