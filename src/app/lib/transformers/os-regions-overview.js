@@ -45,7 +45,7 @@ const groups = [
 		},
 		regions: [
 			{ id: 7, colour: 'pink' },		// 'Australia & NZ'
-			{ id: 2, colour: 'blue' }		// 'South East Asia'
+			{ id: 2, colour: 'purple' }		// 'South East Asia'
 		],
 	},
 	{
@@ -67,7 +67,7 @@ const groups = [
 			height: 136
 		},
 		regions: [
-			{ id: 3, colour: 'pink' },		// 'North America'
+			{ id: 3, colour: 'green' },		// 'North America'
 			{ id: 6, colour: 'blue' }		// 'Latin America'
 		]
 	}
