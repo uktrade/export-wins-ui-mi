@@ -45,6 +45,7 @@ function getImage( team ){
 function mapValues( sector ){
 
 	return {
+		id: sector.id,
 		name: sector.name,
 		hvcColours: {
 			red: ( sector.hvc_colours.red || 0 ),

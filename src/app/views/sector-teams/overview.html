@@ -2,11 +2,18 @@
 
 {% from 'macros/overview.html' import overviewBlocks, currentValue %}
 
-{% macro row( sector, index, isParent=false ) %}
+{% macro row( sector, index, isHvcGroup=false ) %}
+
+	{% if isHvcGroup %}
+		{% set urlPath = 'hvc-groups' %}
+	{% else %}
+		{% set urlPath = 'sector-teams' %}
+	{% endif %}
+
 	<tr class="sector-teams-list_team_row{% if index % 2 === 1 %} sector-teams-list_team_row--odd{% endif %}">
-		<td class="sector-teams-list_team_cell sector-teams-list_team_cell--name{% if isParent %} sector-teams-list_team_cell--parent{% endif %}">
-			{%- if isParent %}<span class="visually-hidden">Parent sector: </span>{% endif -%}
-			<a href="#">{{- sector.name -}}</a>
+		<td class="sector-teams-list_team_cell sector-teams-list_team_cell--name{% if isHvcGroup %} sector-teams-list_team_cell--parent{% endif %}">
+			{%- if isHvcGroup %}<span class="visually-hidden">Parent sector: </span>{% endif -%}
+			<a href="{% if isHvcGroup %}#{% else %}{{ uuid }}/{{ urlPath }}/{{ sector.id }}/{% endif %}">{{- sector.name -}}</a>
 		</td>
 		<td class="sector-teams-list_team_cell sector-teams-list_team_cell--performance">{{ overviewBlocks( sector.hvcColours ) }}</td>
 		<td class="sector-teams-list_team_cell sector-teams-list_team_cell--current-value">{{ currentValue( sector.value ) }}</td>

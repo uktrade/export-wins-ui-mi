@@ -24,6 +24,7 @@ describe( 'Sector teams overview transformer', function(){
 	
 		for( let team of output ){
 
+			expect( team.id ).toBeDefined();
 			expect( team.name ).toBeDefined();
 			expect( team.hvcColours ).toBeDefined();
 			expect( team.hvcGroups ).toBeDefined();
@@ -40,6 +41,7 @@ describe( 'Sector teams overview transformer', function(){
 
 			for( let hvcGroup of team.hvcGroups ){
 
+				expect( hvcGroup.id ).toBeDefined();
 				expect( hvcGroup.name ).toBeDefined();
 				expect( hvcGroup.hvcColours ).toBeDefined();
 				expect( hvcGroup.value.percentage ).toBeDefined();

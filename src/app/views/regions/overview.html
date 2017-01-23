@@ -47,7 +47,7 @@
 					<tr class="overseas-region-overview-data_region{% if loopIndex % 2 === 1 %} overseas-region-overview-data_region--odd{% endif %}">
 
 						<td class="overseas-region-overview-data_cell overseas-region-overview-data_region_name overseas-region-overview-data_region_name--{{ region.colour }}">
-							<a href="#">{{ region.name }}</a>
+							<a href="{{ uuid }}/overseas-regions/{{ region.id }}/">{{ region.name }}</a>
 							<span class="overseas-region-overview-data_region_name_countries">
 								{{- region.markets | pluralise( 'country', 'countries' ) -}}
 							</span>
