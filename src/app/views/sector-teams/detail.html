@@ -1,3 +1,89 @@
-{% extends 'sector/detail.html' %}
+{% extends 'layout.html' %}
 
 {% set pageName %}Sector team - {{ sectorName }}{% endset %}
+
+{% block page_content %}
+
+	<h1>
+		{{ sectorName }}
+	</h1>
+
+	<h2 class="visually-hidden">Summary</h2>
+	<section class="sector-overview grid-row">
+		<div class="column-one-third">
+			
+			<h3 class="">Total confirmed incl. non-HVC</h3>
+			<p class="sector-export-value">&pound;{{ winSummary.exportValue | largeNumber }}</p>
+		</div>
+
+		<div class="column-two-thirds">
+
+			<ul class="sector-overview_charts">
+				<li class="sector-overview_charts_chart">
+					
+					<h3 class="sector-overview_total-value-heading">Total value of confirmed wins (HVC &amp; non-HVC)</h3>
+					<div class="pie pie--sector-team pie--inline" style="animation-delay: -{{ winSummary.wins.hvcNonHvcValue.nonHvc }}s">{{ winSummary.wins.hvcNonHvcValue.nonHvc }}%</div>
+
+					<ul class="pie-key pie-key--inline sector-overview_total-value-key">
+						<li class="pie-key_item">
+							<span class="pie-key_block pie-key_block--slice"></span>non-HVC<span class="visually-hidden"> - {{ winSummary.wins.hvcNonHvcValue.nonHvc }}%</span>
+						</li>
+						<li class="pie-key_item">
+							<span class="pie-key_block"></span>HVC<span class="visually-hidden"> - {{ winSummary.wins.hvcNonHvcValue.hvc }}%</span>
+						</li>
+					</ul>
+
+				</li>
+				<li class="sector-overview_charts_chart">
+
+					<h3 class="sector-overview_confirmed-heading">Confirmed vs. unconfirmed wins value</h3>
+					{% include 'partials/confirmed-vs-unconfirmed-wins.html' %}
+
+				</li>
+			</ul>
+
+		</div>
+	</section>
+
+	<section class="sector-wins grid-row">
+
+		<div class="column-single">
+			<h3>HVC Performance</h3>
+
+			<h4 class="sector-wins_list-heading">Total confirmed HVCs against target</h4>
+			{% include 'partials/hvc-performance-summary.html' %}
+
+		</div>
+	</section>
+
+	<section class="grid-row">
+		<div class="column-single">
+			<h2 class="sector-sub-heading">HVCs with 1 year targets</h2>
+			{% include 'partials/hvc-target-performance.html' %}
+		</div>
+	</section>
+
+	<section class="grid-row">
+		<div class="column-single">
+			<h2 class="sector-heading">Overall sector performance</h2>
+			<div id="sector-performance"></div>
+		</div>
+	</section>
+
+	<section class="grid-row">
+		<div class="column-single">
+			<h2 class="sector-heading">Top performing non-HVC markets and sectors</h2>
+			{% include 'partials/top-non-hvc.html' %}
+		</div>
+	</section>
+
+{% endblock %}
+
+{% block pageScript %}
+	<script>
+		mi.pages.sector({
+			sectorPerformance: {{ sectorPerformance | dump | safe }},
+			targetProgress: {{ winSummary.progress.gauge | dump | safe }}
+		});
+	</script>
+{% endblock pageScript %}

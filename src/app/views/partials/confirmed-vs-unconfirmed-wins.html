@@ -1,0 +1,13 @@
+<div class="pie pie--sector-team pie--pink pie--inline" style="animation-delay: -{{ winSummary.wins.confirmedUnconfirmedValue.unconfirmed }}s">{{ winSummary.wins.confirmedUnconfirmedValue.unconfirmed }}%</div>
+
+<ul class="pie-key pie-key--pink pie-key--inline sector-overview_total-value-key">
+	<li class="pie-key_item">
+		<span class="pie-key_block pie-key_block--slice"></span>Unconfirmed wins - {{ winSummary.wins.confirmedUnconfirmedValue.unconfirmed }}%
+	</li>
+	<li class="pie-key_item">
+		<span class="pie-key_block"></span>Confirmed wins - {{ winSummary.wins.confirmedUnconfirmedValue.confirmed }}%
+	</li>
+</ul>
+<p class="sector-overview_charts_chart_average-time">
+	Average time to confirm: <span class="sector-overview_charts_chart_average-time_days">{{ winSummary.averageTimeToConfirm | pluralise( 'day' ) }}</span>
+</p>

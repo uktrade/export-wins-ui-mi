@@ -13,30 +13,37 @@ module.exports = function( input ){
 	input.months.forEach( ( month ) => {
 
 		const confirmedHvc = month.totals.hvc.value.confirmed;
-		const confirmedNonHvc = month.totals.non_hvc.value.confirmed;
 		const confirmedNonExport = month.totals.non_export.value.confirmed;
 
 		const unconfirmedHvc = month.totals.hvc.value.total;
-		const unconfirmedNonHvc = month.totals.non_hvc.value.total;
 		const unconfirmedNonExport = month.totals.non_export.value.total;
 
-		output.months.push( {
+		let data = {
 			date: month.date,
 			totals: {
 				hvc: {
 					confirmed: confirmedHvc,
 					unconfirmed: unconfirmedHvc
 				},
-				nonHvc: {
-					confirmed: confirmedNonHvc,
-					unconfirmed: unconfirmedNonHvc
-				},
 				nonExport: {
 					confirmed: confirmedNonExport,
 					unconfirmed: unconfirmedNonExport
 				}
 			}
-		} );
+		};
+
+		if( month.totals.non_hvc ){
+
+			const confirmedNonHvc = month.totals.non_hvc.value.confirmed;
+			const unconfirmedNonHvc = month.totals.non_hvc.value.total;
+
+			data.totals.nonHvc = {
+				confirmed: confirmedNonHvc,
+				unconfirmed: unconfirmedNonHvc
+			};
+		}
+
+		output.months.push( data );
 
 		//output.max = Math.max( output.max, confirmedHvc, unconfirmedHvc, confirmedNonHvc, unconfirmedNonHvc, confirmedNonExport, unconfirmedNonExport );
 	} );

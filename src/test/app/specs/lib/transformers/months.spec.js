@@ -1,6 +1,6 @@
 const transform = require( '../../../../../app/lib/transformers/months' );
 const input = require( '../../../../../stubs/backend/sector_teams/months' );
-const parentSectorInput = require( '../../../../../stubs/backend/parent_sector_months' );
+const hvcGroupInput = require( '../../../../../stubs/backend/hvc_groups/group_months' );
 const inputOverTarget = require( '../../../../../stubs/backend/sector_teams/months-over-target' );
 const input20161212 = require( '../../../../../stubs/backend/sector_teams/months_2016-12-12' );
 
@@ -30,6 +30,28 @@ describe( 'Sector months transformer', function(){
 		} );
 	}
 
+	function checkGroupOutput( input, max, target = ( ( input.hvcs.target / 1e+6 ) + 'm' ) ){
+
+		const output = transform( input );
+
+		//expect( output.max ).toEqual( max );
+		//expect( output.min ).toEqual( 0 );
+		expect( output.target ).toEqual( input.hvcs.target );
+		expect( output.targetName ).toEqual( '£' + target );
+
+		input.months.forEach( ( month, i ) => {
+
+			const outputMonth = output.months[ i ];
+
+			expect( outputMonth.date ).toEqual( month.date );
+			expect( outputMonth.totals.hvc.confirmed ).toEqual( month.totals.hvc.value.confirmed );
+			expect( outputMonth.totals.hvc.unconfirmed ).toEqual( month.totals.hvc.value.total );
+			expect( outputMonth.totals.nonHvc ).not.toBeDefined();
+			expect( outputMonth.totals.nonExport.confirmed ).toEqual( month.totals.non_export.value.confirmed );
+			expect( outputMonth.totals.nonExport.unconfirmed ).toEqual( month.totals.non_export.value.total );
+		} );
+	}
+
 	describe( 'With a sector team', function(){
 	
 		it( 'Should return the correct format', function(){
@@ -48,11 +70,12 @@ describe( 'Sector months transformer', function(){
 		} );
 	} );
 
-	describe( 'With a parent sector', function(){
-
-		it( 'Should return the correct format', function(){
-		
-			checkOutput( parentSectorInput, 100, '2.66b' );
+	describe( 'With a HVC Group', function(){
+	
+		it( 'Should return the correct format - without non-hvc', function(){
+	
+			checkGroupOutput( hvcGroupInput, 12223 );
 		} );
 	} );
+	
 } );

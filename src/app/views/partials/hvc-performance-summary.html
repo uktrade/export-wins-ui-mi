@@ -1,0 +1,24 @@
+<ul class="sector-wins_list">
+	<li class="sector-wins_list_item">
+		<p class="visually-hidden">{{ winSummary.progress.percent }}%</p>
+		<div class="gauge sector-wins_list_item_gauge">
+			<div class="gauge_container">
+				<div class="gauge_container_a"></div>
+				<div class="gauge_container_b"></div>
+				<div id="wins-target-progress" class="gauge_container_c"></div>
+			</div>
+		</div>
+	</li>
+	<li class="sector-wins_list_item">
+		<ul class="sector-wins_list_item_values">
+			<li class="sector-wins_list_item_values_item">
+				<h3 class="sector-wins_list_item_heading">Total confirmed</h3>
+				<p class="sector-wins_list_item_value"><span class="sector-wins_list_item_value_currency">&pound;</span>{{ winSummary.totalConfirmed | largeNumber }}</p>
+			</li>
+			<li class="sector-wins_list_item_values_item">
+				<h3 class="sector-wins_list_item_heading">Target</h3>
+				<p class="sector-wins_list_item_value"><span class="sector-wins_list_item_value_currency">&pound;</span>{{ winSummary.target | largeNumber }}</p>
+			</li>
+		</ul>
+	</li>
+</ul>

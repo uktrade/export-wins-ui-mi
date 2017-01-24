@@ -14,11 +14,10 @@ const overseasRegionStub = require( '../../../../stubs/backend/os_regions/region
 const overseasRegionsStub = require( '../../../../stubs/backend/os_regions/' );
 const overseasRegionsOverviewStub = require( '../../../../stubs/backend/os_regions/overview' );
 
-const parentSectorsStub = require( '../../../../stubs/backend/parent_sectors' );
-const parentSectorStub = require( '../../../../stubs/backend/parent_sector' );
-const parentCampaignsStub = require( '../../../../stubs/backend/parent_sector_campaigns' );
-const parentMonthsStub = require( '../../../../stubs/backend/parent_sector_months' );
-const parentTopNonHvcsStub = require( '../../../../stubs/backend/parent_sector_top_non_hvcs' );
+const hvcGroupsStub = require( '../../../../stubs/backend/hvc_groups' );
+const hvcGroupStub = require( '../../../../stubs/backend/hvc_groups/group' );
+const hvcGroupCampaignsStub = require( '../../../../stubs/backend/hvc_groups/group_campaigns' );
+const hvcGroupMonthsStub = require( '../../../../stubs/backend/hvc_groups/group_months' );
 
 
 describe( 'Backend stub', function(){
@@ -161,15 +160,15 @@ describe( 'Backend stub', function(){
 			} );	
 	} );
 
-	describe( 'Parent sectors', function(){
+	describe( 'HVC Groups', function(){
 	
-		describe( 'Getting the list of parent sectors', function(){
+		describe( 'Getting the list of groups', function(){
 		
 			it( 'Should return the list', function( done ){
 			
-				const url = '/mi/parent_sectors/';
+				const url = '/mi/hvc_groups/';
 
-				checkStub( url, parentSectorsStub, done );
+				checkStub( url, hvcGroupsStub, done );
 			} );
 		} );
 
@@ -177,9 +176,9 @@ describe( 'Backend stub', function(){
 		
 			it( 'Should return the sector info', function( done ){
 		
-				const url = '/mi/parent_sectors/3/';
+				const url = '/mi/hvc_groups/3/';
 
-				checkStub( url, parentSectorStub, done );
+				checkStub( url, hvcGroupStub, done );
 			} );
 		} );
 
@@ -187,9 +186,9 @@ describe( 'Backend stub', function(){
 		
 			it( 'Should return the campaigns', function( done ){
 		
-				const url = '/mi/parent_sectors/3/campaigns/';
+				const url = '/mi/hvc_groups/3/campaigns/';
 
-				checkStub( url, parentCampaignsStub, done );
+				checkStub( url, hvcGroupCampaignsStub, done );
 			} );
 		} );
 
@@ -197,19 +196,9 @@ describe( 'Backend stub', function(){
 		
 			it( 'Should return the month info', function( done ){
 		
-				const url = '/mi/parent_sectors/3/months/';
+				const url = '/mi/hvc_groups/3/months/';
 
-				checkStub( url, parentMonthsStub, done );
-			} );
-		} );
-
-		describe( 'Getting the top non hvcs', function(){
-		
-			it( 'Should return the top non hvcs info', function( done ){
-		
-				const url = '/mi/parent_sectors/3/top_non_hvcs/';
-
-				checkStub( url, parentTopNonHvcsStub, done );
+				checkStub( url, hvcGroupMonthsStub, done );
 			} );
 		} );
 	} );

@@ -3,7 +3,6 @@ const backendService = require( '../lib/service/service.backend' );
 const renderError = require( '../lib/render-error' );
 
 const sectorPerformanceDataSet = require( '../lib/data-sets/sector-performance' );
-const topNonHvcDataSet = require( '../lib/data-sets/top-non-hvc' );
 const sectorWinsDataSet = require( '../lib/data-sets/sector-wins' );
 const targetProgressDataSet = require( '../lib/data-sets/target-progress' );
 const hvcTargetPerformanceDataSet = require( '../lib/data-sets/hvc-target-performance' );
@@ -29,12 +28,9 @@ module.exports = {
 
 			const winsData = data[ 0 ];
 			const months = data[ 1 ];
-			const topNonHvc = data[ 2 ];
-			const	campaigns = data[ 3 ];
+			const	campaigns = data[ 2 ];
 
 			res.render( 'hvc-groups/detail.html', {
-				topNonHvc,
-				topNonHvcScale: topNonHvcDataSet.create( topNonHvc ),
 				sectorPerformance: sectorPerformanceDataSet.create( months ),
 				winSummary: {
 					target: winsData.hvcs.target,
