@@ -1,8 +1,7 @@
-{% extends 'govuk_template.html' %}
+{% extends 'layouts/ukti_template.html' %}
 
-{% set global_header_text='Data Hub' %}
-
-{% block cookie_message %}GOV.UK uses cookies to make the site simpler. <a href="https://www.gov.uk/help/cookies">Find out more about cookies</a>{% endblock cookie_message %}
+{% set homepage_url = "/" %}
+{% block service_name %}Datahub{% endblock %}
 {% block page_title %}MI - Homepage{% endblock page_title %}
 
 {% block head %}

@@ -9,13 +9,6 @@
     "npm": "3.10.8"
   },
   "scripts": {
-    "template:get": "VERSION=$npm_package_govuk_template_version; curl -L https://github.com/alphagov/govuk_template/releases/download/v$VERSION/jinja_govuk_template-$VERSION.tgz | tar -zxv",
-    "template:prepare": "VERSION=$npm_package_govuk_template_version; cd jinja_govuk_template-${VERSION}; cp views/layouts/govuk_template.html .; node ../replace.js",
-    "template:copy": "VERSION=$npm_package_govuk_template_version; cd jinja_govuk_template-${VERSION}; cp govuk_template.html ../src/app/views/; mkdir ../src/public/govuk-${VERSION}/; cp -r assets ../src/public/govuk-${VERSION}/",
-    "template:remove-fonts": "VERSION=$npm_package_govuk_template_version; cd src/public/govuk-${VERSION}/assets/stylesheets/; rm -r fonts/ fonts*.css",
-    "template:remove": "VERSION=$npm_package_govuk_template_version; rm -r jinja_govuk_template-${VERSION};",
-    "template:remove-font-style": "grunt --verbose --debug --stack template-font",
-    "template": "run-s template:get template:prepare template:copy template:remove-fonts template:remove-font-style template:remove",
     "test": "npm run test:unit",
     "test-all": "run-s test:*",
     "test:unit": "JASMINE_CONFIG_PATH=src/test/app/jasmine.json jasmine",
@@ -33,9 +26,9 @@
     "dist": "npm run build:dist && npm run start",
     "dist-install": "cd dist && npm install --production",
     "lint": "eslint .",
-    "watch:sass": "node-sass src/public/sass/main.scss src/public/css/main.css --source-map src/public/css/main.css.map --source-map-contents --include-path ./node_modules/govuk-elements-sass/public/sass/ --include-path ./node_modules/govuk_frontend_toolkit/stylesheets -w -r",
-    "sass:dev": "node-sass src/public/sass/main.scss src/public/css/main.css --source-map src/public/css/main.css.map --source-map-contents --include-path ./node_modules/govuk-elements-sass/public/sass/ --include-path ./node_modules/govuk_frontend_toolkit/stylesheets",
-    "sass:prod": "node-sass src/public/sass/main.scss src/public/css/main.css --include-path ./node_modules/govuk-elements-sass/public/sass/ --include-path ./node_modules/govuk_frontend_toolkit/stylesheets -x --output-style compressed"
+    "watch:sass": "node-sass src/public/sass/main.scss src/public/css/main.css --source-map src/public/css/main.css.map --source-map-contents --include-path ./node_modules/@uktrade/trade_elements/dist/sass/ -w -r",
+    "sass:dev": "node-sass src/public/sass/main.scss src/public/css/main.css --source-map src/public/css/main.css.map --source-map-contents --include-path ./node_modules/@uktrade/trade_elements/dist/sass/",
+    "sass:prod": "node-sass src/public/sass/main.scss src/public/css/main.css --include-path ./node_modules/@uktrade/trade_elements/dist/sass/ -x --output-style compressed"
   },
   "repository": {
     "type": "git",
@@ -53,6 +46,7 @@
   },
   "homepage": "https://github.com/uktrade/export-wins-ui-mi#readme",
   "dependencies": {
+    "@uktrade/trade_elements": "1.2.3",
     "body-parser": "*",
     "compression": "1.6.2",
     "cookie-parser": "1.4.3",
@@ -67,7 +61,6 @@
   },
   "devDependencies": {
     "eslint": "3.10.2",
-    "govuk_frontend_toolkit": "5.0.2",
     "grunt": "*",
     "grunt-contrib-clean": "*",
     "grunt-contrib-compress": "*",

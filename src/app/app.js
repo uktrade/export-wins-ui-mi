@@ -32,11 +32,12 @@ function startApp(){
 	const nunjucksFilters = require( './lib/nunjucks-filters' );
 	const alice = require( './lib/middleware/alice' );
 	const uuid = require( './lib/middleware/uuid' );
-	const feedbackEmail = require( './lib/middleware/feedback-email' );
+	const locals = require( './lib/middleware/locals' );
 
 	const app = express();
 	const serverConfig = config.server;
 	const pathToPublic = path.resolve( __dirname, '../public' );
+	const pathToUkTradePublic = path.resolve( __dirname, '../../node_modules/@uktrade/trade_elements/dist' );
 	const env = app.get( 'env' );
 	const isDev = ( 'development' === env );
 
@@ -46,7 +47,10 @@ function startApp(){
 	app.set( 'view engine', 'html' );
 	app.set( 'view cache', config.views.cache );
 
-	nunjucksEnv = nunjucks.configure( ( __dirname + '/views' ), {
+	nunjucksEnv = nunjucks.configure( [
+			`${__dirname}/views`,
+			`${__dirname}/../../node_modules/@uktrade/trade_elements/dist/nunjucks`,
+		], {
 		autoescape: true,
 		watch: config.isDev,
 		noCache: !config.views.cache,
@@ -62,11 +66,12 @@ function startApp(){
 	}
 
 	app.use( '/public', serveStatic( pathToPublic, { maxAge: staticMaxAge } ) );
+	app.use( '/public/uktrade', serveStatic( pathToUkTradePublic, { maxAge: staticMaxAge } ) );
 	app.use( morganLogger( ( isDev ? 'dev' : 'combined' ) ) );
 	app.use( cookieParser() );
 	app.use( uuid );
 	app.use( alice );
-	app.use( feedbackEmail );
+	app.use( locals );
 
 	routes( express, app );
 
