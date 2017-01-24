@@ -41,7 +41,7 @@ module.exports = {
 			const topNonHvc = data[ 2 ];
 			const campaigns = data[ 3 ];
 
-			res.render( 'sector/detail.html', {
+			res.render( 'sector-teams/detail.html', {
 				
 				topNonHvc,
 				topNonHvcScale: topNonHvcDataSet.create( topNonHvc ),
