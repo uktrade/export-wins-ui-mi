@@ -46,21 +46,21 @@
   },
   "homepage": "https://github.com/uktrade/export-wins-ui-mi#readme",
   "dependencies": {
-    "@uktrade/trade_elements": "1.2.4",
-    "body-parser": "*",
-    "compression": "1.6.2",
-    "cookie-parser": "1.4.3",
-    "express": "*",
-    "jsonwebtoken": "7.2.1",
-    "morgan": "*",
-    "nunjucks": "*",
-    "random-int": "1.0.0",
-    "request": "2.76.0",
-    "serve-static": "*",
-    "winston": "2.3.0"
+    "@uktrade/trade_elements": "^1.2.4",
+    "body-parser": "1.16.0",
+    "compression": "^1.6.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.0",
+    "jsonwebtoken": "^7.2.1",
+    "morgan": "^1.7.0",
+    "nunjucks": "^3.0.0",
+    "random-int": "^1.0.0",
+    "request": "2.79.0",
+    "serve-static": "1.11.2",
+    "winston": "2.3.1"
   },
   "devDependencies": {
-    "eslint": "3.10.2",
+    "eslint": "^3.10.2",
     "grunt": "*",
     "grunt-contrib-clean": "*",
     "grunt-contrib-compress": "*",
@@ -70,7 +70,7 @@
     "grunt-contrib-uglify": "*",
     "grunt-filerev": "*",
     "grunt-mkdir": "*",
-    "grunt-replace": "1.0.1",
+    "grunt-replace": "^1.0.1",
     "grunt-usemin": "*",
     "jasmine": "*",
     "jasmine-core": "*",
@@ -78,10 +78,10 @@
     "karma-chrome-launcher": "*",
     "karma-jasmine": "*",
     "load-grunt-tasks": "*",
-    "node-sass": "4.0.0",
+    "node-sass": "^4.0.0",
     "nodemon": "*",
-    "npm-run-all": "3.1.1",
-    "proxyquire": "1.7.10"
+    "npm-run-all": "^3.1.1",
+    "proxyquire": "^1.7.10"
   },
   "optionalDependencies": {
     "fsevents": "*"
