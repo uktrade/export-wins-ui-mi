@@ -10,9 +10,11 @@ const mocks = ( USE_MOCKS ? require( '../../../mocks' ) : null );
 
 const transformMonths = require( '../transformers/months' );
 const transformCampaigns = require( '../transformers/campaigns' );
-const transformSector = require( '../transformers/sector-team' );
+const transformSectorTeam = require( '../transformers/sector-team' );
 const transformSectorTeamsOverview = require( '../transformers/sector-teams-overview' );
 const transformOverseasRegionsOverview = require( '../transformers/os-regions-overview' );
+const transformHvcGroup = require( '../transformers/hvc-group' );
+
 
 if( USE_STUBS ){
 
@@ -53,19 +55,12 @@ function get( alice, path ){
 
 function getSectorTeams( alice ){
 
-	return get( alice, '/mi/sector_teams/' ).then( ( teams ) => teams.map( ( team ) => {
-
-			team.hvc_groups = team.parent_sectors;
-			delete team.parent_sectors;
-
-			return team;
-		} )
-	);
+	return get( alice, '/mi/sector_teams/' );
 }
 
 function getSectorTeam( alice, teamId ){
 
-	return get( alice, `/mi/sector_teams/${ teamId }/` ).then( ( data ) => transformSector( data ) );
+	return get( alice, `/mi/sector_teams/${ teamId }/` ).then( ( data ) => transformSectorTeam( data ) );
 }
 
 function getSectorTeamMonths( alice, teamId ){
@@ -149,27 +144,22 @@ function getOverseasRegionsOverview( alice ){
 
 function getHvcGroups( alice ){
 
-	return get( alice, '/mi/parent_sectors/' );
+	return get( alice, '/mi/hvc_groups/' );
 }
 
-function getHvcGroup( alice, parentId ){
+function getHvcGroup( alice, groupId ){
 
-	return get( alice, `/mi/parent_sectors/${ parentId }/` ).then( ( data ) => transformSector( data ) );
+	return get( alice, `/mi/hvc_groups/${ groupId }/` ).then( ( data ) => transformHvcGroup( data ) );
 }
 
-function getHvcGroupCampaigns( alice, parentId ){
+function getHvcGroupCampaigns( alice, groupId ){
 
-	return get( alice, `/mi/parent_sectors/${ parentId }/campaigns/` ).then( ( data ) => transformCampaigns( data ) );
+	return get( alice, `/mi/hvc_groups/${ groupId }/campaigns/` ).then( ( data ) => transformCampaigns( data ) );
 }
 
-function getHvcGroupMonths( alice, parentId ){
+function getHvcGroupMonths( alice, groupId ){
 
-	return get( alice, `/mi/parent_sectors/${ parentId }/months/` ).then( ( data ) => transformMonths( data ) );
-}
-
-function getHvcGroupTopNonHvc( alice, parentId ){
-
-	return get( alice, `/mi/parent_sectors/${ parentId }/top_non_hvcs/` );
+	return get( alice, `/mi/hvc_groups/${ groupId }/months/` ).then( ( data ) => transformMonths( data ) );
 }
 
 
@@ -247,7 +237,6 @@ module.exports = {
 
 			getHvcGroup( alice, parentId ),
 			getHvcGroupMonths( alice, parentId ),
-			getHvcGroupTopNonHvc( alice, parentId ),
 			getHvcGroupCampaigns( alice, parentId )
 		] );
 	}

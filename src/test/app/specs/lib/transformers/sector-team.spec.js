@@ -1,6 +1,5 @@
 const transform = require( '../../../../../app/lib/transformers/sector-team' );
 const sectorTeamInput = require( '../../../../../stubs/backend/sector_teams/sector_team_v2' );
-const parentSectorInput = require( '../../../../../stubs/backend/parent_sector' );
 
 describe( 'Sector transformer', function(){
 
@@ -16,19 +15,6 @@ describe( 'Sector transformer', function(){
 		it( 'Should calculate the total confirmed', function(){
 		
 			expect( output.exportValue ).toEqual( 228975262 );
-		} );
-	} );
-
-	describe( 'With a parent sector', function(){
-
-		beforeEach( function(){
-		
-			output = transform( parentSectorInput );
-		} );
-	
-		it( 'Should calculate the total confirmed', function(){
-		
-			expect( output.exportValue ).toEqual( 4120843003 );
 		} );
 	} );
 } );

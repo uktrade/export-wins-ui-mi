@@ -9,7 +9,7 @@ const stubs = {
 
 const backend = proxyquire( '../../../../../app/lib/service/service.backend', stubs );
 
-const parentSectorsList = require( '../../../../../stubs/backend/parent_sectors' );
+const hvcGroups = require( '../../../../../stubs/backend/hvc_groups' );
 
 describe( 'Backend service', function(){
 
@@ -32,7 +32,7 @@ describe( 'Backend service', function(){
 	
 			backend.getHvcGroups().then( ( hvcGroup ) => {
 
-				expect( hvcGroup ).toEqual( parentSectorsList );
+				expect( hvcGroup ).toEqual( hvcGroups );
 				done();
 			} );
 		} );

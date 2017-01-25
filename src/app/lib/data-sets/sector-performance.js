@@ -4,6 +4,39 @@ const hvcColour = 'rgb(43,140,196)'; //2B8CC4
 const nonHvcColour = 'rgb(111,114,175)'; //6F72AF
 const nonExportColour = 'rgb(183,185,215)'; //6F72AF - 50%
 
+function createTargetTrace( name, x, y ){
+
+	let traceX = [].concat( x );
+
+	do {
+
+		let date = new Date( traceX[ traceX.length - 1 ] );
+
+		date.setMonth( date.getMonth() + 1 );
+
+		traceX.push( date.getFullYear() + '-' + ( date.getMonth() + 1 ) );
+		y.push( y[ y.length - 1 ] );
+
+	} while( traceX.length < 12 );
+
+	let trace = {
+		name,
+		x: traceX,
+		y,
+		mode: 'lines',
+		marker: {
+			color: targetColour,
+			size: 4
+		},
+		line: {
+			color: targetColour,
+			width: 2
+		}
+	};
+
+	return trace;
+}
+
 function createTrace( name, x, y, color, dashed, mode ){
 
 	let trace = {
@@ -38,12 +71,14 @@ module.exports = {
 		let target = [];
 
 		let hvcConfirmed = [];
+		let hvcUnconfirmed = [];
+		
+		let nonHvcUnconfirmed = [];
+		let nonExportUnconfirmed = [];
+		
 		let nonHvcConfirmed = [];
 		let nonExportConfirmed = [];
 
-		let hvcUnconfirmed = [];
-		let nonHvcUnconfirmed = [];
-		let nonExportUnconfirmed = [];
 
 		for( let month of ( data.months || [] ) ){
 
@@ -52,41 +87,65 @@ module.exports = {
 			target.push( data.target );
 
 			hvcConfirmed.push( month.totals.hvc.confirmed );
-			nonHvcConfirmed.push( month.totals.nonHvc.confirmed );
-			nonExportConfirmed.push( month.totals.nonExport.confirmed );
-
 			hvcUnconfirmed.push( month.totals.hvc.unconfirmed );
-			nonHvcUnconfirmed.push( month.totals.nonHvc.unconfirmed );
+			
+			nonExportConfirmed.push( month.totals.nonExport.confirmed );
 			nonExportUnconfirmed.push( month.totals.nonExport.unconfirmed );
+
+			if( month.totals.nonHvc ){
+
+				nonHvcConfirmed.push( month.totals.nonHvc.confirmed );
+				nonHvcUnconfirmed.push( month.totals.nonHvc.unconfirmed );
+			}
 		}
 
-		const targetTrace = createTrace( data.targetName + ' HVC target', x, target, targetColour, false, 'lines' );
+		const targetTrace = createTargetTrace( data.targetName + ' HVC target', x, target );
 
 		const hvcConfirmedTrace = createTrace( 'hvc confirmed', x, hvcConfirmed, hvcColour );
-		const nonHvcConfirmedTrace = createTrace( 'non-HVC confirmed', x, nonHvcConfirmed, nonHvcColour );
-		const nonExportConfirmedTrace = createTrace( 'non-export confirmed', x, nonExportConfirmed, nonExportColour );
-
 		const hvcUnconfirmedTrace = createTrace( 'incl. unconfirmed', x, hvcUnconfirmed, hvcColour, true );
-		const nonHvcUnconfirmedTrace = createTrace( 'incl. unconfirmed', x, nonHvcUnconfirmed, nonHvcColour, true );
+		
+		const nonExportConfirmedTrace = createTrace( 'non-export confirmed', x, nonExportConfirmed, nonExportColour );
 		const nonExportUnconfirmedTrace = createTrace( 'incl. unconfirmed', x, nonExportUnconfirmed, nonExportColour, true );
 
-		return {
+		if( nonHvcConfirmed.length && nonHvcUnconfirmed.length ){
 
-			//max: data.max,
-			//min: data.min,
-			data: [
+			const nonHvcConfirmedTrace = createTrace( 'non-HVC confirmed', x, nonHvcConfirmed, nonHvcColour );
+			const nonHvcUnconfirmedTrace = createTrace( 'incl. unconfirmed', x, nonHvcUnconfirmed, nonHvcColour, true );
 
-				targetTrace,
+			return {
 
-				hvcConfirmedTrace,
-				hvcUnconfirmedTrace,
-				
-				nonHvcConfirmedTrace,
-				nonHvcUnconfirmedTrace,
+				//max: data.max,
+				//min: data.min,
+				data: [
 
-				nonExportConfirmedTrace,
-				nonExportUnconfirmedTrace
-			]
-		};
+					targetTrace,
+
+					hvcConfirmedTrace,
+					hvcUnconfirmedTrace,
+					
+					nonHvcConfirmedTrace,
+					nonHvcUnconfirmedTrace,
+
+					nonExportConfirmedTrace,
+					nonExportUnconfirmedTrace
+				]
+			};
+
+		} else {
+
+			return {
+
+				data: [
+
+					targetTrace,
+
+					hvcConfirmedTrace,
+					hvcUnconfirmedTrace,
+					
+					nonExportConfirmedTrace,
+					nonExportUnconfirmedTrace
+				]
+			};
+		}	
 	}
 };

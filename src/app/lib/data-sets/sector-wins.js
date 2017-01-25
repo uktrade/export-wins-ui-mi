@@ -41,11 +41,20 @@ module.exports = {
 
 	create: function( data ){
 
-		const combinedData = combineData( data.wins.hvc, data.wins.non_hvc );
+		if( data.wins.non_hvc ){
 
-		return {
-			hvcNonHvcValue: createHvcNonHvcData( data.wins.hvc, data.wins.non_hvc ),
-			confirmedUnconfirmedValue: createConfirmedUnconfirmedData( combinedData )
-		};
+			const combinedData = combineData( data.wins.hvc, data.wins.non_hvc );
+
+			return {
+				hvcNonHvcValue: createHvcNonHvcData( data.wins.hvc, data.wins.non_hvc ),
+				confirmedUnconfirmedValue: createConfirmedUnconfirmedData( combinedData )
+			};
+		
+		} else {
+
+			return {
+				confirmedUnconfirmedValue: createConfirmedUnconfirmedData( data.wins.hvc )
+			};		
+		}
 	}
 };

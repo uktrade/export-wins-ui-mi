@@ -19,7 +19,7 @@
 			{% for team in sectorTeams %}
 				<li class="sector-list_item"><a href="{{ uuid }}/sector-teams/{{ team.id }}/">{{ team.name }}</a></li>
 
-				{% if false and team.hvc_groups.length %}
+				{% if team.hvc_groups.length %}
 					<ul class="sector-list_parent-sectors">
 						{% for hvcGroup in team.hvc_groups %}
 						<li>

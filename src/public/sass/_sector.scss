@@ -65,6 +65,13 @@
 	}
 }
 
+.sector-overview_charts--single {
+
+	.sector-overview_charts_chart {
+		float: right;
+	}
+}
+
 .sector-overview_charts_chart_average-time {
 	@include bold-14;
 	max-width: 100px;

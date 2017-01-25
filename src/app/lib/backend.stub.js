@@ -22,11 +22,10 @@ const stubs = [
 	[ /^\/mi\/os_regions\/$/, getStub( 'os_regions' ) ],
 	[ /^\/mi\/os_regions\/overview\/$/, getStub( 'os_regions/overview' ) ],
 
-	[ /^\/mi\/parent_sectors\/$/, getStub( 'parent_sectors' ) ],
-	[ /^\/mi\/parent_sectors\/[0-9]+\/$/, getStub( 'parent_sector' ) ],
-	[ /^\/mi\/parent_sectors\/[0-9]+\/campaigns\/$/, getStub( 'parent_sector_campaigns' ) ],
-	[ /^\/mi\/parent_sectors\/[0-9]+\/months\/$/, getStub( 'parent_sector_months' ) ],
-	[ /^\/mi\/parent_sectors\/[0-9]+\/top_non_hvcs\/$/, getStub( 'parent_sector_top_non_hvcs' ) ]
+	[ /^\/mi\/hvc_groups\/$/, getStub( 'hvc_groups' ) ],
+	[ /^\/mi\/hvc_groups\/[0-9]+\/$/, getStub( 'hvc_groups/group' ) ],
+	[ /^\/mi\/hvc_groups\/[0-9]+\/campaigns\/$/, getStub( 'hvc_groups/group_campaigns' ) ],
+	[ /^\/mi\/hvc_groups\/[0-9]+\/months\/$/, getStub( 'hvc_groups/group_months' ) ]
 ];
 
 module.exports = {
