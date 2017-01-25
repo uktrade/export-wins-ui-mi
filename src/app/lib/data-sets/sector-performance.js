@@ -4,6 +4,39 @@ const hvcColour = 'rgb(43,140,196)'; //2B8CC4
 const nonHvcColour = 'rgb(111,114,175)'; //6F72AF
 const nonExportColour = 'rgb(183,185,215)'; //6F72AF - 50%
 
+function createTargetTrace( name, x, y ){
+
+	let traceX = [].concat( x );
+
+	do {
+
+		let date = new Date( traceX[ traceX.length - 1 ] );
+
+		date.setMonth( date.getMonth() + 1 );
+
+		traceX.push( date.getFullYear() + '-' + ( date.getMonth() + 1 ) );
+		y.push( y[ y.length - 1 ] );
+
+	} while( traceX.length < 12 );
+
+	let trace = {
+		name,
+		x: traceX,
+		y,
+		mode: 'lines',
+		marker: {
+			color: targetColour,
+			size: 4
+		},
+		line: {
+			color: targetColour,
+			width: 2
+		}
+	};
+
+	return trace;
+}
+
 function createTrace( name, x, y, color, dashed, mode ){
 
 	let trace = {
@@ -66,7 +99,7 @@ module.exports = {
 			}
 		}
 
-		const targetTrace = createTrace( data.targetName + ' HVC target', x, target, targetColour, false, 'lines' );
+		const targetTrace = createTargetTrace( data.targetName + ' HVC target', x, target );
 
 		const hvcConfirmedTrace = createTrace( 'hvc confirmed', x, hvcConfirmed, hvcColour );
 		const hvcUnconfirmedTrace = createTrace( 'incl. unconfirmed', x, hvcUnconfirmed, hvcColour, true );

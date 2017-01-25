@@ -156,8 +156,10 @@ describe( 'Sector performance data set for Sector Teams data', function(){
 
 		expect( target.name ).toEqual( '£60m HVC target' );
 		expect( target.mode ).toEqual( 'lines' );
-		expect( target.x ).toEqual( [ '2016-04', '2016-05', '2016-06' ] );
-		expect( target.y ).toEqual( [ 60000000, 60000000, 60000000 ] );
+		expect( target.x.length ).toEqual( 12 );
+		expect( target.x ).toEqual( [ '2016-04', '2016-05', '2016-06', '2016-7', '2016-8', '2016-9', '2016-10', '2016-11', '2016-12', '2017-1', '2017-2', '2017-3' ] );
+		expect( target.y.length ).toEqual( 12 );
+		expect( target.y ).toEqual( [ 60000000, 60000000, 60000000, 60000000, 60000000, 60000000, 60000000, 60000000, 60000000, 60000000, 60000000, 60000000 ] );
 		expect( target.marker.color ).toBeDefined();
 		expect( target.marker.size ).toEqual( 4 );
 		expect( target.line.color ).toBeDefined();
@@ -239,8 +241,10 @@ describe( 'Sector performance data set for HVC Group data', function(){
 
 		expect( target.name ).toEqual( '£60m HVC target' );
 		expect( target.mode ).toEqual( 'lines' );
-		expect( target.x ).toEqual( [ '2016-04', '2016-05', '2016-06' ] );
-		expect( target.y ).toEqual( [ 60000000, 60000000, 60000000 ] );
+		expect( target.x.length ).toEqual( 12 );
+		expect( target.x ).toEqual( [ '2016-04', '2016-05', '2016-06', '2016-7', '2016-8', '2016-9', '2016-10', '2016-11', '2016-12', '2017-1', '2017-2', '2017-3' ] );
+		expect( target.y.length ).toEqual( 12 );
+		expect( target.y ).toEqual( [ 60000000, 60000000, 60000000, 60000000, 60000000, 60000000, 60000000, 60000000, 60000000, 60000000, 60000000, 60000000 ] );
 		expect( target.marker.color ).toBeDefined();
 		expect( target.marker.size ).toEqual( 4 );
 		expect( target.line.color ).toBeDefined();
