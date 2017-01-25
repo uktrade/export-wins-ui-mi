@@ -70,8 +70,8 @@ function startApp(){
 	app.use( morganLogger( ( isDev ? 'dev' : 'combined' ) ) );
 	app.use( cookieParser() );
 	app.use( uuid );
-	app.use( alice );
 	app.use( locals );
+	app.use( alice );
 
 	routes( express, app );
 

@@ -60,10 +60,10 @@
     "winston": "2.3.1"
   },
   "devDependencies": {
-    "eslint": "^3.10.2",
+    "eslint": "3.14.0",
     "grunt": "*",
     "grunt-contrib-clean": "*",
-    "grunt-contrib-compress": "*",
+    "grunt-contrib-compress": "1.4.1",
     "grunt-contrib-concat": "*",
     "grunt-contrib-copy": "*",
     "grunt-contrib-cssmin": "*",
@@ -72,15 +72,15 @@
     "grunt-mkdir": "*",
     "grunt-replace": "^1.0.1",
     "grunt-usemin": "*",
-    "jasmine": "*",
+    "jasmine": "2.5.3",
     "jasmine-core": "*",
-    "karma": "*",
+    "karma": "1.4.0",
     "karma-chrome-launcher": "*",
     "karma-jasmine": "*",
     "load-grunt-tasks": "*",
-    "node-sass": "^4.0.0",
+    "node-sass": "4.3.0",
     "nodemon": "*",
-    "npm-run-all": "^3.1.1",
+    "npm-run-all": "3.1.2",
     "proxyquire": "^1.7.10"
   },
   "optionalDependencies": {
