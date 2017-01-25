@@ -15,7 +15,7 @@
 	<tr class="sector-teams-list_team_row{% if index % 2 === 1 %} sector-teams-list_team_row--odd{% endif %}">
 		<td class="sector-teams-list_team_cell sector-teams-list_team_cell--name{% if isHvcGroup %} sector-teams-list_team_cell--parent{% endif %}">
 			{%- if isHvcGroup %}<span class="visually-hidden">Parent sector: </span>{% endif -%}
-			<a href="{% if isHvcGroup %}#{% else %}{{ uuid }}/{{ urlPath }}/{{ sector.id }}/{% endif %}">{{- sector.name -}}</a>
+			<a href="{{ uuid }}/{{ urlPath }}/{{ sector.id }}/">{{- sector.name -}}</a>
 		</td>
 		<td class="sector-teams-list_team_cell sector-teams-list_team_cell--performance">{{ overviewBlocks( sector.hvcColours ) }}</td>
 		<td class="sector-teams-list_team_cell sector-teams-list_team_cell--current-value">{{ currentValue( sector.value ) }}</td>
