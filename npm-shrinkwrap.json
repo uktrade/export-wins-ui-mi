@@ -3,9 +3,9 @@
   "version": "1.8.4",
   "dependencies": {
     "@uktrade/trade_elements": {
-      "version": "1.2.4",
-      "from": "@uktrade/trade_elements@1.2.4",
-      "resolved": "https://registry.npmjs.org/@uktrade/trade_elements/-/trade_elements-1.2.4.tgz"
+      "version": "1.3.0",
+      "from": "@uktrade/trade_elements@1.3.0",
+      "resolved": "https://registry.npmjs.org/@uktrade/trade_elements/-/trade_elements-1.3.0.tgz"
     },
     "a-sync-waterfall": {
       "version": "1.0.0",
