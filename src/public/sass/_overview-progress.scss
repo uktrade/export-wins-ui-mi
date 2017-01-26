@@ -3,9 +3,7 @@
 	display: inline-block;
 	width: 200%; /* make this span the current and target cells */
 	line-height: 10px;
-	position: absolute;
-	bottom: 5px;
-	left: 0;
+	float: left; //This was positioned absolutely, but IE 11 seemed to have an issue working out the position inside the flex item!?!
 }
 
 .overview-progress_amount {

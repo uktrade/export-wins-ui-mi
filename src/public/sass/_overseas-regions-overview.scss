@@ -8,10 +8,19 @@
 }
 
 .overseas-region-groups_group {
+
 	clear: left;
 	overflow: hidden;
 	margin-bottom: 2em;
 	display: flex;
+
+	&:first-of-type {
+
+		.overseas-region-groups_group_image:first-of-type {
+
+			margin-top: 3em;
+		}
+	}
 }
 
 .overseas-region-groups_group_image {
@@ -82,6 +91,7 @@
 .overseas-region-overview-data_region_target {
 	width: 15%;
 	text-align: right;
+	padding-bottom: 20px; //padding for the progress bar to line up text
 }
 
 .overseas-region-overview-data_region_progress {
