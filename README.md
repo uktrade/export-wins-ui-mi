@@ -5,13 +5,7 @@ A front end project to show some MI data for Export Wins
 
 ## Dependenies
 
-You will need to have sass installed, check by running this in the command line:
-
-```bash
-sass -v
-```
-
-Which should return something like: "Sass 3.4.22 (Selective Steve)"
+All dependencies come from NPM
 
 ## Setup
 
@@ -59,20 +53,3 @@ To test the client side code:
 ```bash
 npm run test-client
 ```
-
-
-## Gov UK template
-
-To update the template from govuk, first set the version number in package.json:
-
-```json
-"govuk-template-version": "0.19.1"
-```
-
-Then run:
-
-```
-npm run template
-```
-
-This will download the template tar file, untar it and update the location of the assets_path and then put the files in the correct places in the project. You can then checkin the updated files.
