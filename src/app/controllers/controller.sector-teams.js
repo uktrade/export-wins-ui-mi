@@ -43,9 +43,7 @@ module.exports = {
 
 			res.render( 'sector-teams/detail.html', {
 				
-				topNonHvc,
-				topNonHvcScale: topNonHvcDataSet.create( topNonHvc ),
-				sectorPerformance: sectorPerformanceDataSet.create( months ),
+				sectorName: winsData.name,
 				winSummary: {
 					target: winsData.hvcs.target,
 					totalConfirmed: winsData.wins.hvc.value.confirmed,
@@ -54,8 +52,10 @@ module.exports = {
 					exportValue: winsData.exportValue,
 					wins: sectorWinsDataSet.create( winsData )
 				},
-				sectorName: winsData.name,
-				hvcTargetPerformance: hvcTargetPerformanceDataSet.create( campaigns )
+				hvcTargetPerformance: hvcTargetPerformanceDataSet.create( campaigns ),
+				sectorPerformance: sectorPerformanceDataSet.create( months ),
+				topNonHvc,
+				topNonHvcScale: topNonHvcDataSet.create( topNonHvc )
 			} );
 
 		} ).catch( renderError.handler( res ) );

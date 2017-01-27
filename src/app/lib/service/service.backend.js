@@ -10,7 +10,7 @@ const mocks = ( USE_MOCKS ? require( '../../../mocks' ) : null );
 
 const transformMonths = require( '../transformers/months' );
 const transformCampaigns = require( '../transformers/campaigns' );
-const transformSectorTeam = require( '../transformers/sector-team' );
+const transformSector = require( '../transformers/sector' );
 const transformSectorTeamsOverview = require( '../transformers/sector-teams-overview' );
 const transformOverseasRegionsOverview = require( '../transformers/os-regions-overview' );
 const transformHvcGroup = require( '../transformers/hvc-group' );
@@ -60,7 +60,7 @@ function getSectorTeams( alice ){
 
 function getSectorTeam( alice, teamId ){
 
-	return get( alice, `/mi/sector_teams/${ teamId }/` ).then( ( data ) => transformSectorTeam( data ) );
+	return get( alice, `/mi/sector_teams/${ teamId }/` ).then( ( data ) => transformSector( data ) );
 }
 
 function getSectorTeamMonths( alice, teamId ){
@@ -118,7 +118,7 @@ function getOverseasRegionName( alice, regionId ){
 
 function getOverseasRegion( alice, regionId ){
 
-	return get( alice, `/mi/os_regions/${ regionId }/` );
+	return get( alice, `/mi/os_regions/${ regionId }/` ).then( ( data ) => transformSector( data ) );
 }
 
 function getOverseasRegionMonths( alice, regionId ){
@@ -210,7 +210,6 @@ module.exports = {
 
 		return Promise.all( [
 
-			getOverseasRegionName( alice, regionId ),
 			getOverseasRegion( alice, regionId ),
 			getOverseasRegionMonths( alice, regionId ),
 			getOverseasRegionTopNonHvc( alice, regionId ),

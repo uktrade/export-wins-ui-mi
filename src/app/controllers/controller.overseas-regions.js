@@ -2,8 +2,8 @@
 const backendService = require( '../lib/service/service.backend' );
 const renderError = require( '../lib/render-error' );
 
-const sectorDataSet = require( '../lib/data-sets/sector-performance' );
-const winsDataSet = require( '../lib/data-sets/wins' );
+const sectorPerformanceDataSet = require( '../lib/data-sets/sector-performance' );
+const sectorWinsDataSet = require( '../lib/data-sets/sector-wins' );
 const topNonHvcDataSet = require( '../lib/data-sets/top-non-hvc' );
 const targetProgressDataSet = require( '../lib/data-sets/target-progress' );
 const hvcTargetPerformanceDataSet = require( '../lib/data-sets/hvc-target-performance' );
@@ -16,16 +16,16 @@ module.exports = {
 
 			//console.log( JSON.stringify( regionGroups, null, 2 ) );
 
-			res.render( 'regions/overview.html', { regionGroups } );
+			res.render( 'overseas-regions/overview.html', { regionGroups } );
 		
 		} ).catch( renderError.handler( res ) );
 	},
 
-	regionList: function( req, res ){
+	list: function( req, res ){
 
 		backendService.getOverseasRegions( req.alice ).then( ( regions ) => {
 
-			res.render( 'regions/list.html', { regions } );
+			res.render( 'overseas-regions/list.html', { regions } );
 		
 		} ).catch( renderError.handler( res ) );
 	},
@@ -36,27 +36,26 @@ module.exports = {
 
 		backendService.getOverseasRegionInfo( req.alice, regionId ).then( ( data ) => {
 
-			const regionName = data[ 0 ];
-			const winsData = data[ 1 ];
-			const months = data[ 2 ];
-			const topNonHvc = data[ 3 ];
-			const hvcTargetPerformance = data[ 4 ];
+			const winsData = data[ 0 ];
+			const months = data[ 1 ];
+			const topNonHvc = data[ 2 ];
+			const hvcTargetPerformance = data[ 3 ];
 
-			res.render( 'regions/region.html', {
+			res.render( 'overseas-regions/detail.html', {
 				
-				regionName,
-				topNonHvc,
-				topNonHvcScale: topNonHvcDataSet.create( topNonHvc ),
-				sectorPerformance: sectorDataSet.create( months ),
-				wins: winsDataSet.create( winsData ),
+				regionName: winsData.name,
 				winSummary: {
 					target: winsData.hvcs.target,
 					totalConfirmed: winsData.wins.hvc.value.confirmed,
 					progress: targetProgressDataSet.create( winsData ),
-					averageTimeToConfirm: winsData.avg_time_to_confirm
+					averageTimeToConfirm: winsData.avg_time_to_confirm,
+					exportValue: winsData.exportValue,
+					wins: sectorWinsDataSet.create( winsData )
 				},
-				sectorName: winsData.name,
-				hvcTargetPerformance: hvcTargetPerformanceDataSet.create( hvcTargetPerformance )
+				hvcTargetPerformance: hvcTargetPerformanceDataSet.create( hvcTargetPerformance ),
+				sectorPerformance: sectorPerformanceDataSet.create( months ),
+				topNonHvc,
+				topNonHvcScale: topNonHvcDataSet.create( topNonHvc ),
 			} );
 
 		} ).catch( renderError.handler( res ) );

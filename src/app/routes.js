@@ -12,7 +12,7 @@ module.exports = function( express, app ){
 	app.get( '/sector-teams/overview/', sectorTeamController.overview );
 	app.get( '/sector-teams/:id', sectorTeamController.team );
 
-	app.get( '/overseas-regions/', regionController.regionList );
+	app.get( '/overseas-regions/', regionController.list );
 	app.get( '/overseas-regions/overview/', regionController.overview );
 	app.get( '/overseas-regions/:id', regionController.region );
 
