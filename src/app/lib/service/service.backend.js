@@ -22,9 +22,9 @@ if( USE_STUBS ){
 }
 
 
-function get( alice, path ){
+function get( alice, path, transform ){
 
-	return new Promise( ( resolve, reject ) => {
+	let promise = new Promise( ( resolve, reject ) => {
 		
 		backend.get( alice, path, function( err, response, data ){
 
@@ -51,6 +51,13 @@ function get( alice, path ){
 			}
 		} );
 	} );
+
+	if( transform ){
+
+		promise = promise.then( transform );
+	}
+
+	return promise;
 }
 
 function getSectorTeams( alice ){
@@ -60,17 +67,17 @@ function getSectorTeams( alice ){
 
 function getSectorTeam( alice, teamId ){
 
-	return get( alice, `/mi/sector_teams/${ teamId }/` ).then( ( data ) => transformSector( data ) );
+	return get( alice, `/mi/sector_teams/${ teamId }/`, transformSector );
 }
 
 function getSectorTeamMonths( alice, teamId ){
 
-	return get( alice, `/mi/sector_teams/${ teamId }/months/` ).then( ( data ) => transformMonths( data ) );
+	return get( alice, `/mi/sector_teams/${ teamId }/months/`, transformMonths );
 }
 
 function getSectorTeamCampaigns( alice, teamId ){
 
-	return get( alice, `/mi/sector_teams/${ teamId }/campaigns/` ).then( ( data ) => transformCampaigns( data ) );
+	return get( alice, `/mi/sector_teams/${ teamId }/campaigns/`, transformCampaigns );
 }
 
 function getSectorTeamTopNonHvc( alice, teamId ){
@@ -80,7 +87,7 @@ function getSectorTeamTopNonHvc( alice, teamId ){
 
 function getSectorTeamsOverview( alice ){
 
-	return get( alice, '/mi/sector_teams/overview/' ).then( ( data ) => transformSectorTeamsOverview( data ) );	
+	return get( alice, '/mi/sector_teams/overview/', transformSectorTeamsOverview );
 }
 
 
@@ -118,12 +125,12 @@ function getOverseasRegionName( alice, regionId ){
 
 function getOverseasRegion( alice, regionId ){
 
-	return get( alice, `/mi/os_regions/${ regionId }/` ).then( ( data ) => transformSector( data ) );
+	return get( alice, `/mi/os_regions/${ regionId }/`, transformSector );
 }
 
 function getOverseasRegionMonths( alice, regionId ){
 
-	return get( alice, `/mi/os_regions/${ regionId }/months/` ).then( ( data ) => transformMonths( data ) );
+	return get( alice, `/mi/os_regions/${ regionId }/months/`, transformMonths );
 }
 
 function getOverseasRegionTopNonHvc( alice, regionId ){
@@ -133,12 +140,12 @@ function getOverseasRegionTopNonHvc( alice, regionId ){
 
 function getOverseasRegionCampaigns( alice, regionId ){
 
-	return get( alice, `/mi/os_regions/${ regionId }/campaigns/` ).then( ( data ) => transformCampaigns( data ) );
+	return get( alice, `/mi/os_regions/${ regionId }/campaigns/`, transformCampaigns );
 }
 
 function getOverseasRegionsOverview( alice ){
 
-	return get( alice, '/mi/os_regions/overview/' ).then( ( data ) => transformOverseasRegionsOverview( data ) );
+	return get( alice, '/mi/os_regions/overview/', transformOverseasRegionsOverview );
 }
 
 
@@ -149,17 +156,17 @@ function getHvcGroups( alice ){
 
 function getHvcGroup( alice, groupId ){
 
-	return get( alice, `/mi/hvc_groups/${ groupId }/` ).then( ( data ) => transformHvcGroup( data ) );
+	return get( alice, `/mi/hvc_groups/${ groupId }/`, transformHvcGroup );
 }
 
 function getHvcGroupCampaigns( alice, groupId ){
 
-	return get( alice, `/mi/hvc_groups/${ groupId }/campaigns/` ).then( ( data ) => transformCampaigns( data ) );
+	return get( alice, `/mi/hvc_groups/${ groupId }/campaigns/`, transformCampaigns );
 }
 
 function getHvcGroupMonths( alice, groupId ){
 
-	return get( alice, `/mi/hvc_groups/${ groupId }/months/` ).then( ( data ) => transformMonths( data ) );
+	return get( alice, `/mi/hvc_groups/${ groupId }/months/`, transformMonths );
 }
 
 
@@ -229,6 +236,9 @@ module.exports = {
 	getOverseasRegionsOverview,
 
 	getHvcGroups,
+	getHvcGroup,
+	getHvcGroupMonths,
+	getHvcGroupCampaigns,
 
 	getHvcGroupInfo: function( alice, parentId ){
 
