@@ -24,7 +24,7 @@ if( USE_STUBS ){
 
 function get( alice, path, transform ){
 
-	let promise = new Promise( ( resolve, reject ) => {
+	return new Promise( ( resolve, reject ) => {
 		
 		backend.get( alice, path, function( err, response, data ){
 
@@ -41,6 +41,11 @@ function get( alice, path, transform ){
 
 				if( response.isSuccess ){
 
+					if( transform ){
+						
+						data = transform( data );
+					}
+
 					resolve( data );
 
 				} else {
@@ -51,13 +56,6 @@ function get( alice, path, transform ){
 			}
 		} );
 	} );
-
-	if( transform ){
-
-		promise = promise.then( transform );
-	}
-
-	return promise;
 }
 
 function getSectorTeams( alice ){
