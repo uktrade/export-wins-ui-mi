@@ -28,6 +28,7 @@ function startApp(){
 	const path = require( 'path' );
 	const morganLogger = require( 'morgan' );
 	const compression = require( 'compression' );
+	const raven = require( 'raven' );
 
 	const nunjucksFilters = require( './lib/nunjucks-filters' );
 	const alice = require( './lib/middleware/alice' );
@@ -59,6 +60,12 @@ function startApp(){
 
 	nunjucksFilters( nunjucksEnv );
 
+	if( config.sentryDsn ){
+
+		raven.config( config.sentryDsn ).install();
+		app.use( raven.requestHandler() );
+	}
+
 	if( !isDev ){
 
 		app.use( compression() );
@@ -74,6 +81,11 @@ function startApp(){
 	app.use( alice );
 
 	routes( express, app );
+
+	if( config.sentryDsn ){
+		
+		app.use( raven.errorHandler() );
+	}
 
 	app.listen( serverConfig.port, function(){
 

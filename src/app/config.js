@@ -25,6 +25,7 @@ module.exports = {
 	feedbackEmail: env( 'FEEDBACK_EMAIL' ),
 	cookieSecret: env( 'COOKIE_SECRET' ),
 	logLevel: env( 'LOG_LEVEL', 'warn' ),
+	sentryDsn: env( 'SENTRY_DSN' ),
 	backend: {
 		secret: env( 'MI_SECRET' ),
 		protocol: env( 'MI_PROTOCOL', 'http' ),

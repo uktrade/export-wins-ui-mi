@@ -18,4 +18,9 @@ module.exports = function( express, app ){
 
 	app.get( '/hvc-groups/', hvcGroupController.list );
 	app.get( '/hvc-groups/:id', hvcGroupController.group );
+
+	app.get( '/sentry', function( /* req, res */ ){
+		
+		throw new Error( 'testing' );
+	} );
 };

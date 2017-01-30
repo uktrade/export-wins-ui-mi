@@ -55,6 +55,7 @@
     "morgan": "^1.7.0",
     "nunjucks": "^3.0.0",
     "random-int": "^1.0.0",
+    "raven": "1.1.1",
     "request": "2.79.0",
     "serve-static": "1.11.2",
     "winston": "2.3.1"
