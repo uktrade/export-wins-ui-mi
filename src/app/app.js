@@ -2,6 +2,7 @@
 const cluster = require( 'cluster' );
 const logger = require( './lib/logger' );
 const config = require( './config' );
+const ping = require( './lib/middleware/ping' );
 
 const numberOfWorkers = config.server.workers;
 const isClustered = ( numberOfWorkers > 1 );
@@ -76,6 +77,7 @@ function startApp(){
 	app.use( '/public/uktrade', serveStatic( pathToUkTradePublic, { maxAge: staticMaxAge } ) );
 	app.use( morganLogger( ( isDev ? 'dev' : 'combined' ) ) );
 	app.use( cookieParser() );
+	app.use( ping );
 	app.use( uuid );
 	app.use( locals );
 	app.use( alice );
