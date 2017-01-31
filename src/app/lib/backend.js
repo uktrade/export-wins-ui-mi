@@ -1,6 +1,7 @@
 
 const config = require( '../config' );
 const request = require( 'request' );
+const raven = require( 'raven' );
 const logger = require( './logger' );
 const createSignature = require( './create-signature' );
 
@@ -11,6 +12,7 @@ function createRequestOptions( method, alice, path, body ){
 
 	return {
 		url: ( backendUrl + path ),
+		time: true,
 		method: method,
 		headers: {
 			'X-Signature': createSignature( path, body ),
@@ -22,6 +24,17 @@ function createRequestOptions( method, alice, path, body ){
 function convertToJson( cb ){
 
 	return function( err, response, data ){
+
+		if( response.elapsedTime > config.backend.timeout ){
+
+			raven.captureMessage( 'Long response time from backend API', {
+				level: 'info',
+				extra: {
+					time: response.elapsedTime,
+					path: response.request.uri.path
+				}
+			} );
+		}
 
 		if( !err ){
 

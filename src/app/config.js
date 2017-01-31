@@ -31,6 +31,7 @@ module.exports = {
 		protocol: env( 'MI_PROTOCOL', 'http' ),
 		host: env( 'MI_HOST', 'localhost' ),
 		port: env( 'MI_PORT', 8000 ),
+		timeout: env( 'MI_TIMEOUT', 1000 ),
 
 		stub: bool( 'STUB_MI', false ),
 		mock: bool( 'MOCK_MI', false )
