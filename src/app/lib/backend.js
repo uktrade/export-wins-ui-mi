@@ -6,6 +6,7 @@ const logger = require( './logger' );
 const createSignature = require( './create-signature' );
 
 const backendConfig = config.backend;
+const haveSentry = !!config.sentryDsn;
 const backendUrl = `${ backendConfig.protocol }://${ backendConfig.host }:${ backendConfig.port }`;
 
 function createRequestOptions( method, alice, path, body ){
@@ -27,13 +28,20 @@ function convertToJson( cb ){
 
 		if( response.elapsedTime > config.backend.timeout ){
 
-			raven.captureMessage( 'Long response time from backend API', {
-				level: 'info',
-				extra: {
-					time: response.elapsedTime,
-					path: response.request.uri.path
-				}
-			} );
+			if( haveSentry ){
+
+				raven.captureMessage( 'Long response time from backend API', {
+					level: 'info',
+					extra: {
+						time: response.elapsedTime,
+						path: response.request.uri.path
+					}
+				} );
+
+			} else {
+
+				logger.warn( 'Slow response from backend API. %s took %sms', response.request.uri.path, response.elapsedTime );
+			}
 		}
 
 		if( !err ){
