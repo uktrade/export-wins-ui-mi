@@ -22,36 +22,41 @@ function createRequestOptions( method, alice, path, body ){
 	};
 }
 
+function checkResponseTime( response ){
+
+	if( response.elapsedTime > config.backend.timeout ){
+
+		if( haveSentry ){
+
+			raven.captureMessage( 'Long response time from backend API', {
+				level: 'info',
+				extra: {
+					time: response.elapsedTime,
+					path: response.request.uri.path
+				}
+			} );
+
+		} else {
+
+			logger.warn( 'Slow response from backend API. %s took %sms', response.request.uri.path, response.elapsedTime );
+		}
+	}
+}
+
 function convertToJson( cb ){
 
 	return function( err, response, data ){
 
-		if( response.elapsedTime > config.backend.timeout ){
-
-			if( haveSentry ){
-
-				raven.captureMessage( 'Long response time from backend API', {
-					level: 'info',
-					extra: {
-						time: response.elapsedTime,
-						path: response.request.uri.path
-					}
-				} );
-
-			} else {
-
-				logger.warn( 'Slow response from backend API. %s took %sms', response.request.uri.path, response.elapsedTime );
-			}
-		}
-
 		if( !err ){
-
+			
 			const isSuccess = ( response.statusCode >= 200 && response.statusCode < 300 );
 			const isJson = ( response.headers[ 'content-type' ] === 'application/json' );
 
 			response.isSuccess = isSuccess;
 
-			if( !err && isJson ){
+			checkResponseTime( response );
+
+			if( isJson ){
 
 				try {
 
