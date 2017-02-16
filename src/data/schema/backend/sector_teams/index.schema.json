@@ -1,0 +1,39 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "Sector Teams list",
+
+	"type": "array",
+	"items": {
+		"type": "object",
+		"required": [ "id", "name", "hvc_groups" ],
+		"properties": {
+
+			"id": {
+				"type": "number",
+				"faker": "random.number"
+			},
+			"name": {
+				"type": "string",
+				"faker": "lorem.words"
+			},
+			"hvc_groups": {
+				"type": "array",
+				"minItems": 1,
+				"items": {
+					"type": "object",
+					"required": [ "id", "name" ],
+					"properties": {
+						"id": {
+							"type": "number",
+							"faker": "random.number"
+						},
+						"name": {
+							"type": "string",
+							"faker": "lorem.words"
+						}
+					}
+				}
+			}
+		}
+	}
+}

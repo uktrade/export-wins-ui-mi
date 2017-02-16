@@ -1,5 +1,7 @@
 
-var mock = require( '../../../mocks/region-overview' );
+const mock = require( '../../../../data/mocks/region-overview' );
+
+const imagePath = /^\/public\/img\/overseas-region-maps\/[0-9]+\.png/;
 
 describe( 'Overseas regions overview mock', function(){
 
@@ -9,7 +11,8 @@ describe( 'Overseas regions overview mock', function(){
 
 		for( let regionGroup of mock ){
 
-			expect( regionGroup.image.name ).toBeDefined();
+			expect( regionGroup.image.url ).toBeDefined();
+			expect( imagePath.test( regionGroup.image.url ) ).toEqual( true );
 			expect( regionGroup.image.width ).toBeDefined();
 			expect( regionGroup.image.height ).toBeDefined();
 			expect( regionGroup.regions ).toBeDefined();

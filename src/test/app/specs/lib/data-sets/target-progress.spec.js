@@ -1,19 +1,21 @@
-
 const dataset = require( '../../../../../app/lib/data-sets/target-progress' );
+const getBackendStub = require( '../../../helpers/get-backend-stub' );
 
 const input = {
 	"hvcs": { "target": 165000000 },
 	"wins": {
-		"hvc": {
-			"number": {
-				"non_confirmed": 49,
-				"confirmed": 21,
-				"total": 70
-			},
-			"value": {
-				"non_confirmed": 4900000,
-				"confirmed": 2100000,
-				"total": 7000000
+		"export": {
+			"hvc": {
+				"number": {
+					"non_confirmed": 49,
+					"confirmed": 21,
+					"total": 70
+				},
+				"value": {
+					"non_confirmed": 4900000,
+					"confirmed": 2100000,
+					"total": 7000000
+				}
 			}
 		}
 	}
@@ -22,9 +24,11 @@ const input = {
 const input2 = {
 	"hvcs": { "target": 100 },
 	"wins": {
-		"hvc": {
-			"value": {
-				"confirmed": 50
+		"export": {
+			"hvc": {
+				"value": {
+					"confirmed": 50
+				}
 			}
 		}
 	}
@@ -33,9 +37,11 @@ const input2 = {
 const input3 = {
 	"hvcs": { "target": 1000 },
 	"wins": {
-		"hvc": {
-			"value": {
-				"confirmed": 250
+		"export": {
+			"hvc": {
+				"value": {
+					"confirmed": 250
+				}
 			}
 		}
 	}
@@ -44,9 +50,11 @@ const input3 = {
 const input4 = {
 	"hvcs": { "target": 60 },
 	"wins": {
-		"hvc": {
-			"value": {
-				"confirmed": 21
+		"export": {
+			"hvc": {
+				"value": {
+					"confirmed": 21
+				}
 			}
 		}
 	}
@@ -55,13 +63,15 @@ const input4 = {
 const input5 = {
 	"hvcs": { "target": 600 },
 	"wins": {
-		"hvc": {
-			"value": {
-				"confirmed": 800
+		"export": {
+			"hvc": {
+				"value": {
+					"confirmed": 800
+				}
 			}
 		}
 	}
-}
+};
 
 describe( 'Target progress data set', function(){
 
@@ -97,4 +107,18 @@ describe( 'Target progress data set', function(){
 		} );
 	} );
 
+	describe( 'With a stub file', function(){
+	
+		it( 'Does not throw an error', function(){
+	
+			function createDataSet(){
+
+				const stub = getBackendStub( '/sector_teams/sector_team' );
+				
+				dataset.create( stub );
+			}
+
+			expect( createDataSet ).not.toThrow();
+		} );
+	} );
 } );

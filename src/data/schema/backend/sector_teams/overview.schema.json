@@ -1,0 +1,165 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "Sector overview",
+
+	"type": "array",
+	"minItems": 5,
+	"items": {
+		"type": "object",
+		"required": [ "hvc_performance", "id", "name", "hvc_groups", "confirmed_percent", "hvc_target_values" ],
+		"properties": {
+			"hvc_performance": {
+				"$ref": "#/definitions/hvc-performance"
+			},
+			"id": {
+				"type": "number",
+				"faker": "random.number"
+			},
+			"name": {
+				"type": "string",
+				"faker": "lorem.words"
+			},
+			"confirmed_percent": {
+				"type": "object",
+				"required": [ "hvc", "non_hvc" ],
+				"properties": {
+					"hvc": {
+						"type": "number",
+						"faker": {
+							"random.number": [ 100 ]
+						}
+					},
+					"non_hvc": {
+						"type": "number",
+						"faker": {
+							"random.number": [ 100 ]
+						}
+					}
+				}
+			},
+			"hvc_target_values": {
+				"$ref": "#/definitions/target-values"
+			},
+			"hvc_groups": {
+				"type": "array",
+				"minItems": 1,
+				"items": {
+					"type": "object",
+					"required": [ "name", "hvc_performance", "hvc_target_values", "id" ],
+					"properties": {
+						"name": {
+							"type": "string",
+							"faker": "lorem.words"
+						},
+						"hvc_performance": {
+							"$ref": "#/definitions/hvc-performance2"
+						},
+						"hvc_target_values": {
+							"$ref": "#/definitions/target-values2"
+						},
+						"id": {
+							"type": "number",
+							"faker": "random.number"
+						}
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+
+		"hvc-performance": {
+			"type": "object",
+			"required": [ "red", "amber", "green" ],
+			"properties": {
+				"red": {
+					"type": "number",
+					"faker": {
+						"random.number": [ 25 ]
+					}
+				},
+				"amber": {
+					"type": "number",
+					"faker": {
+						"random.number": [ 25 ]
+					}
+				},
+				"green": {
+					"type": "number",
+					"faker": {
+						"random.number": [ 25 ]
+					}
+				}
+			}
+		},
+
+		"hvc-performance2": {
+			"type": "object",
+			"required": [ "red", "amber", "green" ],
+			"properties": {
+				"red": {
+					"type": "number",
+					"faker": {
+						"random.number": [ 25 ]
+					}
+				},
+				"amber": {
+					"type": "number",
+					"faker": {
+						"random.number": [ 25 ]
+					}
+				},
+				"green": {
+					"type": "number",
+					"faker": {
+						"random.number": [ 25 ]
+					}
+				}
+			}
+		},
+
+		"target-values": {
+			"type": "object",
+			"required": [ "target_percentage", "current", "target" ],
+			"properties": {
+				"target_percentage": {
+					"type": "number",
+					"faker": {
+						"random.number": [ 100 ]
+					}
+				},
+				"current": {
+					"type": "number",
+					"faker": "random.number"
+				},
+				"target": {
+					"type": "number",
+					"chance": {
+						"integer": { "min": 0 }
+					}
+				}
+			}
+		},
+		
+		"target-values2": {
+			"type": "object",
+			"required": [ "target_percentage", "current", "target" ],
+			"properties": {
+				"target_percentage": {
+					"type": "number",
+					"faker": {
+						"random.number": [ 100 ]
+					}
+				},
+				"current": {
+					"type": "number",
+					"faker": "random.number"
+				},
+				"target": {
+					"type": "number",
+					"faker": "random.number"
+				}
+			}
+		}
+	}
+}

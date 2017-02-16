@@ -1,4 +1,3 @@
-
 const config = require( '../../config' );
 
 const USE_MOCKS = config.backend.mock;
@@ -14,12 +13,6 @@ const transformSector = require( '../transformers/sector' );
 const transformSectorTeamsOverview = require( '../transformers/sector-teams-overview' );
 const transformOverseasRegionsOverview = require( '../transformers/os-regions-overview' );
 const transformHvcGroup = require( '../transformers/hvc-group' );
-
-
-if( USE_STUBS ){
-
-	logger.warn( 'Using stubs for backend service' );
-}
 
 
 function get( alice, path, transform ){
@@ -43,10 +36,21 @@ function get( alice, path, transform ){
 
 					if( transform ){
 						
-						data = transform( data );
-					}
+						try {
 
-					resolve( data );
+							data = transform( data );
+							resolve( data );
+
+						} catch ( e ){
+
+							logger.error( 'Unable to transform API response for url: %s', response.request.uri.path );
+							reject( new Error( 'Unable to transform API response' ) );
+						}
+
+					} else {
+
+						resolve( data );						
+					}
 
 				} else {
 
@@ -131,14 +135,14 @@ function getOverseasRegionMonths( alice, regionId ){
 	return get( alice, `/mi/os_regions/${ regionId }/months/`, transformMonths );
 }
 
-function getOverseasRegionTopNonHvc( alice, regionId ){
-
-	return get( alice, `/mi/os_regions/${ regionId }/top_non_hvcs/` );
-}
-
 function getOverseasRegionCampaigns( alice, regionId ){
 
 	return get( alice, `/mi/os_regions/${ regionId }/campaigns/`, transformCampaigns );
+}
+
+function getOverseasRegionTopNonHvc( alice, regionId ){
+
+	return get( alice, `/mi/os_regions/${ regionId }/top_non_hvcs/` );
 }
 
 function getOverseasRegionsOverview( alice ){

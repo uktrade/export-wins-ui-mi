@@ -31,9 +31,9 @@ module.exports = {
 
 				} else if( unconfirmedPercent > highestPercent ){
 
-					confirmed = 0;
-					unconfirmed = 100;
-					overThreshold = true;
+					confirmed = calculatePercent( confirmedPercent );
+					unconfirmed= ( 100 - confirmed );
+					overThreshold = true; 
 
 				} else if( ( confirmedPercent + unconfirmedPercent ) > highestPercent ){
 
@@ -48,8 +48,8 @@ module.exports = {
 				}
 
 				newItem.progress = {
-					confirmed,
-					unconfirmed,
+					confirmed: Math.round( confirmed ),
+					unconfirmed: Math.round( unconfirmed ),
 					overThreshold
 				};
 

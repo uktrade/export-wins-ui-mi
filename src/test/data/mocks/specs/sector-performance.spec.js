@@ -1,5 +1,5 @@
 
-var mock = require( '../../../mocks/sector-team-months' );
+var mock = require( '../../../../data/mocks/sector-team-months' );
 
 describe( 'Sector team months mock', function(){
 

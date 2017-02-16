@@ -1,6 +1,8 @@
 const transform = require( '../../../../../app/lib/transformers/sector' );
-const sectorTeamInput = require( '../../../../../stubs/backend/sector_teams/sector_team_v2' );
-const overseasRegionInput = require( '../../../../../stubs/backend/os_regions/region' );
+const getBackendStub = require( '../../../helpers/get-backend-stub' );
+
+const sectorTeamInput = getBackendStub( '/sector_teams/sector_team' );
+const overseasRegionInput = getBackendStub( '/os_regions/region' );
 
 describe( 'Sector transformer', function(){
 
@@ -15,7 +17,7 @@ describe( 'Sector transformer', function(){
 	
 		it( 'Should calculate the total confirmed', function(){
 		
-			expect( output.exportValue ).toEqual( 228975262 );
+			expect( output.exportValue ).toEqual( 130082 );
 		} );
 	} );
 
@@ -28,7 +30,7 @@ describe( 'Sector transformer', function(){
 	
 		it( 'Should calculate the total confirmed', function(){
 		
-			expect( output.exportValue ).toEqual( 280236070 );
+			expect( output.exportValue ).toEqual( 56203 );
 		} );
 	} );
 } );

@@ -1,5 +1,7 @@
 const transform = require( '../../../../../app/lib/transformers/hvc-group' );
-const hvcGroupInput = require( '../../../../../stubs/backend/hvc_groups/group' );
+const getBackendStub = require( '../../../helpers/get-backend-stub' );
+
+const hvcGroupInput = getBackendStub( '/hvc_groups/group' );
 
 describe( 'HVC Group transformer', function(){
 
@@ -14,7 +16,7 @@ describe( 'HVC Group transformer', function(){
 	
 		it( 'Should calculate the total confirmed', function(){
 		
-			expect( output.exportValue ).toEqual( 6247000 );
+			expect( output.exportValue ).toEqual( 59481 );
 		} );
 	} );
 } );

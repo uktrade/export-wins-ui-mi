@@ -12,10 +12,10 @@ module.exports = function( input ){
 
 	input.months.forEach( ( month ) => {
 
-		const confirmedHvc = month.totals.hvc.value.confirmed;
+		const confirmedHvc = month.totals.export.hvc.value.confirmed;
 		const confirmedNonExport = month.totals.non_export.value.confirmed;
 
-		const unconfirmedHvc = month.totals.hvc.value.total;
+		const unconfirmedHvc = month.totals.export.hvc.value.total;
 		const unconfirmedNonExport = month.totals.non_export.value.total;
 
 		let data = {
@@ -32,10 +32,10 @@ module.exports = function( input ){
 			}
 		};
 
-		if( month.totals.non_hvc ){
+		if( month.totals.export.non_hvc ){
 
-			const confirmedNonHvc = month.totals.non_hvc.value.confirmed;
-			const unconfirmedNonHvc = month.totals.non_hvc.value.total;
+			const confirmedNonHvc = month.totals.export.non_hvc.value.confirmed;
+			const unconfirmedNonHvc = month.totals.export.non_hvc.value.total;
 
 			data.totals.nonHvc = {
 				confirmed: confirmedNonHvc,

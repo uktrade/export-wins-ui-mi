@@ -55,7 +55,7 @@
 							</span>
 						</td>
 						<td class="overseas-region-overview-data_cell overseas-region-overview-data_region_performance">
-							{{- overviewBlocks( region.hvcColours ) -}}
+							{{- overviewBlocks( region.hvcPerformance ) -}}
 						</td>
 						<td class="overseas-region-overview-data_cell overseas-region-overview-data_region_current">
 							{{- currentValue( region.value ) -}}
@@ -67,7 +67,7 @@
 							<span class="visually-hidden">{{ region.value.percentage }}%</span>
 						</td>
 						<td class="overseas-region-overview-data_cell overseas-region-overview-data_region_hvc-non-hvc">
-							<div class="pie pie--center" style="animation-delay: -{{ region.hvcVsNonhvcPercentage }}s">{{ region.hvcVsNonhvcPercentage }}%</div>
+							<div class="pie pie--center" style="animation-delay: -{{ region.confirmedPercent.nonHvc }}s">{{ region.confirmedPercent.nonHvc }}%</div>
 						</td>
 
 					</tr>

@@ -1,0 +1,136 @@
+{
+   "hvcs": {
+      "target": 27943,
+      "campaigns": [
+         "Consequatur consequatur explicabo et expedita fuga.",
+         "Sequi consectetur ipsa ipsam aut aut earum.",
+         "Vel provident aperiam possimus hic.",
+         "Repellendus consequatur animi voluptatem quos.",
+         "Numquam ut exercitationem corporis vero.",
+         "Nam inventore harum earum asperiores quam ipsam."
+      ]
+   },
+   "name": "quasi dicta praesentium",
+   "campaigns": [
+      {
+         "campaign": "voluptate perferendis eum",
+         "totals": {
+            "hvc": {
+               "value": {
+                  "unconfirmed": 27787,
+                  "confirmed": 69078,
+                  "total": 96865
+               },
+               "number": {
+                  "unconfirmed": 662,
+                  "confirmed": 601,
+                  "total": 1263
+               }
+            },
+            "change": "up",
+            "progress": {
+               "confirmed_percent": 4,
+               "unconfirmed_percent": 96,
+               "status": "red"
+            },
+            "target": 24393311
+         }
+      },
+      {
+         "campaign": "voluptas pariatur iure",
+         "totals": {
+            "hvc": {
+               "value": {
+                  "unconfirmed": 33244,
+                  "confirmed": 93560,
+                  "total": 126804
+               },
+               "number": {
+                  "unconfirmed": 364,
+                  "confirmed": 749,
+                  "total": 1113
+               }
+            },
+            "change": "up",
+            "progress": {
+               "confirmed_percent": 40,
+               "unconfirmed_percent": 60,
+               "status": "green"
+            },
+            "target": 93222796
+         }
+      },
+      {
+         "campaign": "sunt vel minus",
+         "totals": {
+            "hvc": {
+               "value": {
+                  "unconfirmed": 31897,
+                  "confirmed": 85992,
+                  "total": 117889
+               },
+               "number": {
+                  "unconfirmed": 911,
+                  "confirmed": 232,
+                  "total": 1143
+               }
+            },
+            "change": "up",
+            "progress": {
+               "confirmed_percent": 47,
+               "unconfirmed_percent": 53,
+               "status": "amber"
+            },
+            "target": 68132435
+         }
+      },
+      {
+         "campaign": "excepturi omnis maiores",
+         "totals": {
+            "hvc": {
+               "value": {
+                  "unconfirmed": 7179,
+                  "confirmed": 3095,
+                  "total": 10274
+               },
+               "number": {
+                  "unconfirmed": 610,
+                  "confirmed": 273,
+                  "total": 883
+               }
+            },
+            "change": "down",
+            "progress": {
+               "confirmed_percent": 13,
+               "unconfirmed_percent": 87,
+               "status": "amber"
+            },
+            "target": 33053925
+         }
+      },
+      {
+         "campaign": "molestias vitae aut",
+         "totals": {
+            "hvc": {
+               "value": {
+                  "unconfirmed": 9979,
+                  "confirmed": 31102,
+                  "total": 41081
+               },
+               "number": {
+                  "unconfirmed": 181,
+                  "confirmed": 75,
+                  "total": 256
+               }
+            },
+            "change": "up",
+            "progress": {
+               "confirmed_percent": 26,
+               "unconfirmed_percent": 74,
+               "status": "green"
+            },
+            "target": 38299140
+         }
+      }
+   ]
+}

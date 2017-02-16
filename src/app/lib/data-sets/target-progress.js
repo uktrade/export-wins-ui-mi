@@ -4,7 +4,7 @@ module.exports = {
 	create: function( winsData ){
 
 		const target = winsData.hvcs.target;
-		const confirmed = winsData.wins.hvc.value.confirmed;
+		const confirmed = winsData.wins.export.hvc.value.confirmed;
 		let progress;
 
 		if( confirmed > target ){

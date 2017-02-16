@@ -1,0 +1,160 @@
+{
+   "hvcs": {
+      "target": 57677,
+      "campaigns": [
+         "Voluptatum doloribus quasi nemo consequatur sit provident sit est.",
+         "Fugit et sunt natus architecto dolor.",
+         "Officia numquam est.",
+         "Est eveniet similique et ut.",
+         "Et recusandae placeat voluptas et sunt est.",
+         "Quam quo sint."
+      ]
+   },
+   "name": "similique vitae qui",
+   "campaigns": [
+      {
+         "campaign": "facere eos eum",
+         "totals": {
+            "hvc": {
+               "value": {
+                  "unconfirmed": 29714,
+                  "confirmed": 39703,
+                  "total": 69417
+               },
+               "number": {
+                  "unconfirmed": 675,
+                  "confirmed": 310,
+                  "total": 985
+               }
+            },
+            "change": "down",
+            "progress": {
+               "confirmed_percent": 69,
+               "unconfirmed_percent": 31,
+               "status": "green"
+            },
+            "target": 26429381
+         }
+      },
+      {
+         "campaign": "quo nobis consequatur",
+         "totals": {
+            "hvc": {
+               "value": {
+                  "unconfirmed": 8139,
+                  "confirmed": 82068,
+                  "total": 90207
+               },
+               "number": {
+                  "unconfirmed": 358,
+                  "confirmed": 952,
+                  "total": 1310
+               }
+            },
+            "change": "up",
+            "progress": {
+               "confirmed_percent": 87,
+               "unconfirmed_percent": 13,
+               "status": "red"
+            },
+            "target": 780261
+         }
+      },
+      {
+         "campaign": "eius accusantium qui",
+         "totals": {
+            "hvc": {
+               "value": {
+                  "unconfirmed": 85488,
+                  "confirmed": 53975,
+                  "total": 139463
+               },
+               "number": {
+                  "unconfirmed": 99,
+                  "confirmed": 884,
+                  "total": 983
+               }
+            },
+            "change": "up",
+            "progress": {
+               "confirmed_percent": 37,
+               "unconfirmed_percent": 63,
+               "status": "amber"
+            },
+            "target": 80697280
+         }
+      },
+      {
+         "campaign": "est et ea",
+         "totals": {
+            "hvc": {
+               "value": {
+                  "unconfirmed": 23147,
+                  "confirmed": 98549,
+                  "total": 121696
+               },
+               "number": {
+                  "unconfirmed": 898,
+                  "confirmed": 352,
+                  "total": 1250
+               }
+            },
+            "change": "up",
+            "progress": {
+               "confirmed_percent": 9,
+               "unconfirmed_percent": 91,
+               "status": "amber"
+            },
+            "target": 10978644
+         }
+      },
+      {
+         "campaign": "perspiciatis qui debitis",
+         "totals": {
+            "hvc": {
+               "value": {
+                  "unconfirmed": 39579,
+                  "confirmed": 97203,
+                  "total": 136782
+               },
+               "number": {
+                  "unconfirmed": 180,
+                  "confirmed": 612,
+                  "total": 792
+               }
+            },
+            "change": "up",
+            "progress": {
+               "confirmed_percent": 70,
+               "unconfirmed_percent": 30,
+               "status": "amber"
+            },
+            "target": 46516547
+         }
+      },
+      {
+         "campaign": "explicabo ea atque",
+         "totals": {
+            "hvc": {
+               "value": {
+                  "unconfirmed": 8765,
+                  "confirmed": 49283,
+                  "total": 58048
+               },
+               "number": {
+                  "unconfirmed": 226,
+                  "confirmed": 982,
+                  "total": 1208
+               }
+            },
+            "change": "down",
+            "progress": {
+               "confirmed_percent": 72,
+               "unconfirmed_percent": 28,
+               "status": "red"
+            },
+            "target": 55423597
+         }
+      }
+   ]
+}

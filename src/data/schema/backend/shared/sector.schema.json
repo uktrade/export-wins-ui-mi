@@ -1,0 +1,257 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "Sector information",
+
+	"type": "object",
+	"required": [ "hvcs", "name", "avg_time_to_confirm", "wins" ],
+	"properties": {
+		"hvcs": {
+			"type": "object",
+			"required": [ "target", "campaigns" ],
+			"properties": {
+				"target": {
+					"type": "number",
+					"minimum": 0,
+					"exclusiveMinimum": true,
+					"faker": "random.number"
+				},
+				"campaigns": {
+					"type": "array",
+					"maxItems": 15,
+					"items": {
+						"type": "string",
+						"faker": "lorem.sentence"
+					}
+				}
+			}
+		},
+		"name":{
+			"type": "string",
+			"faker": "lorem.words"
+		},
+		"avg_time_to_confirm": {
+			"type": "number",
+			"faker": {
+				"finance.amount": [ 0, 100, 2 ]
+			}
+		},
+		"wins": {
+			"type": "object",
+			"required": [ "non_export", "export" ],
+			"properties": {
+				"non_export": {
+					"$ref": "#/definitions/win-info"
+				},
+				"export": {
+					"type": "object",
+					"required": [ "hvc", "non_hvc", "totals" ],
+					"properties": {
+						"hvc": {
+							"$ref": "#/definitions/win-info2"
+						},
+						"non_hvc": {
+							"$ref": "#/definitions/win-info3"
+						},
+						"totals": {
+							"$ref": "#/definitions/grand-totals"
+						}
+					}
+				}
+			}
+		}
+	},
+
+	"definitions": {
+
+		"win-info": {
+			"type": "object",
+			"required": [ "number", "value" ],
+			"properties": {
+				"number": {
+					"type": "object",
+					"required": [ "unconfirmed", "total", "confirmed" ],
+					"properties": {
+						"unconfirmed": {
+							"type": "number",
+							"faker": {
+								"random.number": [ 1000 ]
+							}
+						},
+						"total": {
+							"type": "number",
+							"faker": {
+								"random.number": [ 1000 ]
+							}
+						},
+						"confirmed": {
+							"type": "number",
+							"faker": {
+								"random.number": [ 1000 ]
+							}
+						}
+					}
+				},
+				"value": {
+					"type": "object",
+					"required": [ "unconfirmed", "total", "confirmed" ],
+					"properties": {
+						"unconfirmed": {
+							"type": "number",
+							"faker": "random.number"
+						},
+						"total": {
+							"type": "number",
+							"faker": "random.number"
+						},
+						"confirmed": {
+							"type": "number",
+							"faker": "random.number"
+						}
+					}
+				}
+			}
+		},
+
+		"win-info2": {
+			"type": "object",
+			"required": [ "number", "value" ],
+			"properties": {
+				"number": {
+					"type": "object",
+					"required": [ "unconfirmed", "total", "confirmed" ],
+					"properties": {
+						"unconfirmed": {
+							"type": "number",
+							"faker": {
+								"random.number": [ 1000 ]
+							}
+						},
+						"total": {
+							"type": "number",
+							"faker": {
+								"random.number": [ 1000 ]
+							}
+						},
+						"confirmed": {
+							"type": "number",
+							"faker": {
+								"random.number": [ 1000 ]
+							}
+						}
+					}
+				},
+				"value": {
+					"type": "object",
+					"required": [ "unconfirmed", "total", "confirmed" ],
+					"properties": {
+						"unconfirmed": {
+							"type": "number",
+							"faker": "random.number"
+						},
+						"total": {
+							"type": "number",
+							"faker": "random.number"
+						},
+						"confirmed": {
+							"type": "number",
+							"faker": "random.number"
+						}
+					}
+				}
+			}
+		},
+
+		"win-info3": {
+			"type": "object",
+			"required": [ "number", "value" ],
+			"properties": {
+				"number": {
+					"type": "object",
+					"required": [ "unconfirmed", "total", "confirmed" ],
+					"properties": {
+						"unconfirmed": {
+							"type": "number",
+							"faker": {
+								"random.number": [ 1000 ]
+							}
+						},
+						"total": {
+							"type": "number",
+							"faker": {
+								"random.number": [ 1000 ]
+							}
+						},
+						"confirmed": {
+							"type": "number",
+							"faker": {
+								"random.number": [ 1000 ]
+							}
+						}
+					}
+				},
+				"value": {
+					"type": "object",
+					"required": [ "unconfirmed", "total", "confirmed" ],
+					"properties": {
+						"unconfirmed": {
+							"type": "number",
+							"faker": "random.number"
+						},
+						"total": {
+							"type": "number",
+							"faker": "random.number"
+						},
+						"confirmed": {
+							"type": "number",
+							"faker": "random.number"
+						}
+					}
+				}
+			}
+		},
+
+		"grand-totals": {
+			"type": "object",
+			"required": [ "number", "value" ],
+			"properties": {
+				"number": {
+					"type": "object",
+					"required": [ "unconfirmed", "confirmed", "grand_total" ],
+					"properties": {
+						"confirmed": {
+							"type": "number",
+							"faker": "random.number"
+						},
+						"unconfirmed": {
+							"type": "number",
+							"maximum": 1000,
+							"faker": "random.number"
+						},
+						"grand_total": {
+							"type": "number",
+							"faker": "random.number"
+						}
+					}
+				},
+				"value": {
+					"type": "object",
+					"required": [ "unconfirmed", "confirmed", "grand_total" ],
+					"properties": {
+						"confirmed": {
+							"type": "number",
+							"faker": "random.number"
+						},
+						"unconfirmed": {
+							"type": "number",
+							"faker": "random.number"
+						},
+						"grand_total": {
+							"type": "number",
+							"faker": "random.number"
+						}
+					}
+				}
+			}
+		}
+	}
+}

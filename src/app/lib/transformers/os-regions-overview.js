@@ -102,11 +102,14 @@ module.exports = function( input ){
 						target: region.hvc_target_values.target,
 						percentage: Math.min( Math.round( region.hvc_target_values.target_percentage ), 100 )
 					},
-					hvcVsNonhvcPercentage: Math.round( region.hvc_vs_non_hvc_percentage ),
-					hvcColours: {
-						red: ( region.hvc_colours.red || 0 ),
-						amber: ( region.hvc_colours.amber || 0 ),
-						green: ( region.hvc_colours.green || 0 )
+					confirmedPercent: {
+						hvc: region.confirmed_percent.hvc,
+						nonHvc: region.confirmed_percent.non_hvc
+					},
+					hvcPerformance: {
+						red: ( region.hvc_performance.red || 0 ),
+						amber: ( region.hvc_performance.amber || 0 ),
+						green: ( region.hvc_performance.green || 0 )
 					}
 				};
 			} )

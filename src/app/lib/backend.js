@@ -1,18 +1,16 @@
-
 const config = require( '../config' );
 const request = require( 'request' );
 const raven = require( 'raven' );
 const logger = require( './logger' );
 const createSignature = require( './create-signature' );
 
-const backendConfig = config.backend;
 const haveSentry = !!config.sentryDsn;
-const backendUrl = `${ backendConfig.protocol }://${ backendConfig.host }:${ backendConfig.port }`;
+const backendHref = config.backend.href;
 
 function createRequestOptions( method, alice, path, body ){
 
 	return {
-		url: ( backendUrl + path ),
+		url: ( backendHref + path ),
 		time: true,
 		method: method,
 		headers: {
@@ -43,7 +41,7 @@ function checkResponseTime( response ){
 	}
 }
 
-function convertToJson( cb ){
+function handleResponse( cb ){
 
 	return function( err, response, data ){
 
@@ -79,6 +77,6 @@ module.exports = {
 
 		logger.debug( 'Backend GET request to: ' + path );
 
-		request( createRequestOptions( 'GET', alice, path ), convertToJson( cb ) );
+		request( createRequestOptions( 'GET', alice, path ), handleResponse( cb ) );
 	}
 };

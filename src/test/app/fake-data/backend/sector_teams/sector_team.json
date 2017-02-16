@@ -1,0 +1,63 @@
+{
+   "hvcs": {
+      "target": 20178,
+      "campaigns": [
+         "Blanditiis quod assumenda.",
+         "Provident sed impedit dolor eum ipsa."
+      ]
+   },
+   "name": "distinctio quas numquam",
+   "avg_time_to_confirm": 27,
+   "wins": {
+      "non_export": {
+         "number": {
+            "unconfirmed": 964,
+            "total": 1946,
+            "confirmed": 982
+         },
+         "value": {
+            "unconfirmed": 66335,
+            "total": 102337,
+            "confirmed": 36002
+         }
+      },
+      "export": {
+         "hvc": {
+            "number": {
+               "unconfirmed": 314,
+               "total": 659,
+               "confirmed": 345
+            },
+            "value": {
+               "unconfirmed": 23341,
+               "total": 57616,
+               "confirmed": 34275
+            }
+         },
+         "non_hvc": {
+            "number": {
+               "unconfirmed": 502,
+               "total": 948,
+               "confirmed": 446
+            },
+            "value": {
+               "unconfirmed": 43752,
+               "total": 139559,
+               "confirmed": 95807
+            }
+         },
+         "totals": {
+            "number": {
+               "unconfirmed": 816,
+               "confirmed": 791,
+               "grand_total": 1607
+            },
+            "value": {
+               "unconfirmed": 67093,
+               "confirmed": 130082,
+               "grand_total": 197175
+            }
+         }
+      }
+   }
+}

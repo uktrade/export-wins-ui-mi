@@ -1,0 +1,140 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "Campaigns information",
+
+	"type": "object",
+	"required": [ "hvcs", "name", "campaigns" ],
+	"properties": {
+
+		"hvcs": {
+			"type": "object",
+			"required": [ "target", "campaigns" ],
+			"properties": {
+				"target": {
+					"type": "number",
+					"minimum": 0,
+					"exclusiveMinimum": true,
+					"faker": "random.number"
+				},
+				"campaigns": {
+					"type": "array",
+					"maxItems": 15,
+					"items": {
+						"type": "string",
+						"faker": "lorem.sentence"
+					}
+				}
+			}
+		},
+
+		"name":{
+			"type": "string",
+			"faker": "lorem.words"
+		},
+
+		"campaigns": {
+
+			"type": "array",
+			"maxItems": 15,
+			"items": {
+
+				"type": "object",
+				"required": [ "campaign", "totals" ],
+				"properties": {
+
+					"campaign": {
+						"type": "string",
+						"faker": "lorem.words"
+					},
+
+					"totals": {
+
+						"type": "object",
+						"required": [ "hvc", "change", "progress", "target" ],
+						"properties": {
+
+							"hvc": {
+
+								"type": "object",
+								"required": [ "value", "number" ],
+								"properties": {
+									"value": {
+										"type": "object",
+										"required": [ "unconfirmed", "confirmed", "total" ],
+										"properties": {
+											"unconfirmed": {
+												"type": "number",
+												"faker": "random.number"
+											},
+											"confirmed": {
+												"type": "number",
+												"faker": "random.number"
+											},
+											"total": {
+												"type": "number"
+											}
+										}
+									},
+									"number": {
+										"type": "object",
+										"required": [ "unconfirmed", "confirmed", "total" ],
+										"properties": {
+											"unconfirmed": {
+												"type": "number",
+												"faker": {
+													"random.number": [ 1000 ]
+												}
+											},
+											"confirmed": {
+												"type": "number",
+												"faker": {
+													"random.number": [ 1000 ]
+												}
+											},
+											"total": {
+												"type": "number"
+											}
+										}
+									}
+								}
+							},
+
+							"change": {
+								"type": "string",
+								"pattern": "up|down"
+							},
+
+							"progress": {
+								"type": "object",
+								"required": [ "confirmed_percent", "unconfirmed_percent", "status" ],
+								"properties": {
+									"confirmed_percent": {
+										"type": "number",
+										"faker": {
+											"finance.amount": [ 0, 100 ]
+										}
+									},
+									"unconfirmed_percent": {
+										"type": "number",
+										"faker": {
+											"finance.amount": [ 0, 100 ]
+										}
+									},
+									"status": {
+										"type": "string",
+										"pattern": "red|amber|green"
+									}
+								}
+							},
+							"target": {
+								"type": "number",
+								"minimum": 0,
+								"random.number": [ 5000000000 ]
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

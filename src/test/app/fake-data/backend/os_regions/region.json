@@ -1,0 +1,63 @@
+{
+   "hvcs": {
+      "target": 94125,
+      "campaigns": [
+         "Repellendus maxime pariatur consequatur.",
+         "Aliquam sed at doloremque explicabo maiores illum molestiae quia."
+      ]
+   },
+   "name": "minima explicabo architecto",
+   "avg_time_to_confirm": 12.8,
+   "wins": {
+      "non_export": {
+         "number": {
+            "unconfirmed": 332,
+            "total": 1147,
+            "confirmed": 815
+         },
+         "value": {
+            "unconfirmed": 15127,
+            "total": 40651,
+            "confirmed": 25524
+         }
+      },
+      "export": {
+         "hvc": {
+            "number": {
+               "unconfirmed": 303,
+               "total": 467,
+               "confirmed": 164
+            },
+            "value": {
+               "unconfirmed": 96162,
+               "total": 114314,
+               "confirmed": 18152
+            }
+         },
+         "non_hvc": {
+            "number": {
+               "unconfirmed": 171,
+               "total": 659,
+               "confirmed": 488
+            },
+            "value": {
+               "unconfirmed": 3974,
+               "total": 42025,
+               "confirmed": 38051
+            }
+         },
+         "totals": {
+            "number": {
+               "unconfirmed": 474,
+               "confirmed": 652,
+               "grand_total": 1126
+            },
+            "value": {
+               "unconfirmed": 100136,
+               "confirmed": 56203,
+               "grand_total": 156339
+            }
+         }
+      }
+   }
+}

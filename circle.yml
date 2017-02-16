@@ -1,0 +1,8 @@
+machine:
+  node:
+    version: 6.9.1
+
+dependencies:
+  post:
+    - npm rebuild node-sass
+    - npm run build:dist
