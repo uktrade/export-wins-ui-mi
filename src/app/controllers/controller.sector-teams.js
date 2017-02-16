@@ -46,7 +46,7 @@ module.exports = {
 				sectorName: winsData.name,
 				winSummary: {
 					target: winsData.hvcs.target,
-					totalConfirmed: winsData.wins.hvc.value.confirmed,
+					totalConfirmed: winsData.wins.export.hvc.value.confirmed,
 					progress: targetProgressDataSet.create( winsData ),
 					averageTimeToConfirm: winsData.avg_time_to_confirm,
 					exportValue: winsData.exportValue,

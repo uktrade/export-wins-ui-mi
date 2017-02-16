@@ -1,9 +1,7 @@
-
 let proxyquire = require( 'proxyquire' );
 
-const configStub = { backend: { secret: 'othersecret' } };
 let stubs = {
-	'../config': configStub
+	'../config': { backend: { secret: 'othersecret' } }
 };
 
 let createSignature = proxyquire( '../../../../app/lib/create-signature', stubs );

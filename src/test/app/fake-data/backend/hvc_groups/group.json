@@ -1,0 +1,70 @@
+{
+   "hvcs": {
+      "target": 17443,
+      "campaigns": [
+         "Aperiam velit repellat autem dolorum eum fugiat.",
+         "Error id excepturi itaque aperiam accusantium consequatur voluptatum in id.",
+         "Quod autem et provident consectetur soluta.",
+         "Et voluptatem commodi itaque molestias vel nihil.",
+         "Assumenda ratione earum eum delectus aut deserunt asperiores.",
+         "Voluptas in tempore.",
+         "Harum est numquam dolores dolores architecto qui corrupti vel.",
+         "Quibusdam officia eveniet ea qui quisquam aut blanditiis optio.",
+         "Et recusandae ut."
+      ]
+   },
+   "name": "sunt laborum quos",
+   "avg_time_to_confirm": 27.4,
+   "wins": {
+      "non_export": {
+         "number": {
+            "unconfirmed": 550,
+            "total": 915,
+            "confirmed": 365
+         },
+         "value": {
+            "unconfirmed": 65304,
+            "total": 70257,
+            "confirmed": 4953
+         }
+      },
+      "export": {
+         "hvc": {
+            "number": {
+               "unconfirmed": 984,
+               "total": 1770,
+               "confirmed": 786
+            },
+            "value": {
+               "unconfirmed": 67836,
+               "total": 127317,
+               "confirmed": 59481
+            }
+         },
+         "non_hvc": {
+            "number": {
+               "unconfirmed": 588,
+               "total": 1268,
+               "confirmed": 680
+            },
+            "value": {
+               "unconfirmed": 83598,
+               "total": 109870,
+               "confirmed": 26272
+            }
+         },
+         "totals": {
+            "number": {
+               "unconfirmed": 1572,
+               "confirmed": 1466,
+               "grand_total": 3038
+            },
+            "value": {
+               "unconfirmed": 151434,
+               "confirmed": 85753,
+               "grand_total": 237187
+            }
+         }
+      }
+   }
+}

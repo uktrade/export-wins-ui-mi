@@ -17,13 +17,15 @@
 			{%- if isHvcGroup %}<span class="visually-hidden">Parent sector: </span>{% endif -%}
 			<a href="{{ uuid }}/{{ urlPath }}/{{ sector.id }}/">{{- sector.name -}}</a>
 		</td>
-		<td class="sector-teams-list_team_cell sector-teams-list_team_cell--performance">{{ overviewBlocks( sector.hvcColours ) }}</td>
+		<td class="sector-teams-list_team_cell sector-teams-list_team_cell--performance">{{ overviewBlocks( sector.hvcPerformance ) }}</td>
 		<td class="sector-teams-list_team_cell sector-teams-list_team_cell--current-value">{{ currentValue( sector.value ) }}</td>
 		<td class="sector-teams-list_team_cell sector-teams-list_team_cell--target-value">&pound;{{ sector.value.target | largeNumber }}</td>
 		<td class="sector-teams-list_team_cell sector-teams-list_team_cell--value-percentage"><span class="visually-hidden">{{ sector.value.percentage }}%</span></td>
+		{% if sector.confirmedPercent -%}
 		<td class="sector-teams-list_team_cell sector-teams-list_team_cell--hvc-non-hvc">
-			<div class="pie pie--center" style="animation-delay: -{{ sector.hvcVsNonhvcPercentage }}s">{{ sector.hvcVsNonhvcPercentage }}%</div>
+			<div class="pie pie--center" style="animation-delay: -{{ sector.confirmedPercent.hvc }}s">{{ sector.confirmedPercent.hvc }}%</div>
 		</td>
+		{%- endif -%}
 	</tr>
 {% endmacro %}
 

@@ -1,8 +1,10 @@
 const transform = require( '../../../../../app/lib/transformers/months' );
-const input = require( '../../../../../stubs/backend/sector_teams/months' );
-const hvcGroupInput = require( '../../../../../stubs/backend/hvc_groups/group_months' );
-const inputOverTarget = require( '../../../../../stubs/backend/sector_teams/months-over-target' );
-const input20161212 = require( '../../../../../stubs/backend/sector_teams/months_2016-12-12' );
+const getBackendStub = require( '../../../helpers/get-backend-stub' );
+
+const input = getBackendStub( '/sector_teams/months' );
+const hvcGroupInput = getBackendStub( '/hvc_groups/months' );
+const inputOverTarget = getBackendStub( '/sector_teams/months_over-target' );
+const input20161212 = getBackendStub( '/sector_teams/months' );
 
 
 describe( 'Sector months transformer', function(){
@@ -21,16 +23,16 @@ describe( 'Sector months transformer', function(){
 			const outputMonth = output.months[ i ];
 
 			expect( outputMonth.date ).toEqual( month.date );
-			expect( outputMonth.totals.hvc.confirmed ).toEqual( month.totals.hvc.value.confirmed );
-			expect( outputMonth.totals.hvc.unconfirmed ).toEqual( month.totals.hvc.value.total );
-			expect( outputMonth.totals.nonHvc.confirmed ).toEqual( month.totals.non_hvc.value.confirmed );
-			expect( outputMonth.totals.nonHvc.unconfirmed ).toEqual( month.totals.non_hvc.value.total );
+			expect( outputMonth.totals.hvc.confirmed ).toEqual( month.totals.export.hvc.value.confirmed );
+			expect( outputMonth.totals.hvc.unconfirmed ).toEqual( month.totals.export.hvc.value.total );
+			expect( outputMonth.totals.nonHvc.confirmed ).toEqual( month.totals.export.non_hvc.value.confirmed );
+			expect( outputMonth.totals.nonHvc.unconfirmed ).toEqual( month.totals.export.non_hvc.value.total );
 			expect( outputMonth.totals.nonExport.confirmed ).toEqual( month.totals.non_export.value.confirmed );
 			expect( outputMonth.totals.nonExport.unconfirmed ).toEqual( month.totals.non_export.value.total );
 		} );
 	}
 
-	function checkGroupOutput( input, max, target = ( ( input.hvcs.target / 1e+6 ) + 'm' ) ){
+	function checkGroupOutput( input, max, target ){
 
 		const output = transform( input );
 
@@ -44,8 +46,8 @@ describe( 'Sector months transformer', function(){
 			const outputMonth = output.months[ i ];
 
 			expect( outputMonth.date ).toEqual( month.date );
-			expect( outputMonth.totals.hvc.confirmed ).toEqual( month.totals.hvc.value.confirmed );
-			expect( outputMonth.totals.hvc.unconfirmed ).toEqual( month.totals.hvc.value.total );
+			expect( outputMonth.totals.hvc.confirmed ).toEqual( month.totals.export.hvc.value.confirmed );
+			expect( outputMonth.totals.hvc.unconfirmed ).toEqual( month.totals.export.hvc.value.total );
 			expect( outputMonth.totals.nonHvc ).not.toBeDefined();
 			expect( outputMonth.totals.nonExport.confirmed ).toEqual( month.totals.non_export.value.confirmed );
 			expect( outputMonth.totals.nonExport.unconfirmed ).toEqual( month.totals.non_export.value.total );
@@ -74,7 +76,7 @@ describe( 'Sector months transformer', function(){
 	
 		it( 'Should return the correct format - without non-hvc', function(){
 	
-			checkGroupOutput( hvcGroupInput, 12223 );
+			checkGroupOutput( hvcGroupInput, 12223, '0.04m' );
 		} );
 	} );
 	

@@ -4,17 +4,17 @@
 	{%- endfor -%}
 {% endmacro %}
 
-{% macro overviewBlocks( hvcColours ) %}
+{% macro overviewBlocks( hvcPerformance ) %}
 	<p class="visually-hidden">
-		Red: {{ hvcColours.red }},
-		Amber: {{ hvcColours.amber }},
-		Green: {{ hvcColours.green }}
+		Red: {{ hvcPerformance.red }},
+		Amber: {{ hvcPerformance.amber }},
+		Green: {{ hvcPerformance.green }}
 	</p>
 
 	<div class="overview-blocks">
-		{% if hvcColours.red > 0 %}{{ blocks( 'red', hvcColours.red ) }}<br>{% endif -%}
-		{% if hvcColours.amber > 0 %}{{ blocks( 'amber', hvcColours.amber ) }}<br>{% endif -%}
-		{% if hvcColours.green > 0 %}{{ blocks( 'green', hvcColours.green ) }}<br>{% endif %}
+		{% if hvcPerformance.red > 0 %}{{ blocks( 'red', hvcPerformance.red ) }}<br>{% endif -%}
+		{% if hvcPerformance.amber > 0 %}{{ blocks( 'amber', hvcPerformance.amber ) }}<br>{% endif -%}
+		{% if hvcPerformance.green > 0 %}{{ blocks( 'green', hvcPerformance.green ) }}<br>{% endif %}
 	</div>
 {% endmacro %}
 

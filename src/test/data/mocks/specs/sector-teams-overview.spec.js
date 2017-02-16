@@ -1,5 +1,5 @@
 
-var mock = require( '../../../mocks/sector-teams-overview' );
+var mock = require( '../../../../data/mocks/sector-teams-overview' );
 
 function checkSector( sector ){
 

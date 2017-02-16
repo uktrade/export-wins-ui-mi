@@ -1,4 +1,4 @@
-var routes = require( '../../../app/routes.js' );
+const routes = require( '../../../app/routes.js' );
 
 describe( 'Routes', function(){
 	

@@ -11,7 +11,7 @@ function bool( name, defaultValue ){
 	return ( env( name, defaultValue ) + '' ) === 'true';
 }
 
-module.exports = {
+let config = {
 	server: {
 		protocol: env( 'SERVER_PROTOCOL', 'http' ),
 		host: env( 'SERVER_HOST', 'localhost' ),
@@ -34,6 +34,11 @@ module.exports = {
 		timeout: env( 'MI_TIMEOUT', 1000 ),
 
 		stub: bool( 'STUB_MI', false ),
+		fake: bool( 'FAKE_MI', false ),
 		mock: bool( 'MOCK_MI', false )
 	}
 };
+
+config.backend.href = `${config.backend.protocol}://${config.backend.host}:${config.backend.port}`;
+
+module.exports = config;

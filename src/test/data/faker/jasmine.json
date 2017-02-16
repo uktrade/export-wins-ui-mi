@@ -1,5 +1,5 @@
 {
-  "spec_dir": "src/test/mocks/specs",
+  "spec_dir": "src/test/data/faker/specs",
   "spec_files": [
     "**/*[sS]pec.js"
   ],

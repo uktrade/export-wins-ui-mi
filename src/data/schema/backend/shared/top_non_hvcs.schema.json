@@ -1,0 +1,50 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "Top non HVCs",
+
+	"type": "array",
+	"minItems": 5,
+	"maxItems": 5,
+	"items": {
+		"type": "object",
+		"required": [ "averageWinValue", "region", "percentComplete", "averageWinPercent", "totalValue", "sector", "totalWins" ],
+		"properties": {
+			"averageWinValue": {
+				"type": "number",
+				"faker": "random.number"
+			},
+			"region": {
+				"type": "string",
+				"faker": "lorem.words"
+			},
+			"percentComplete": {
+				"type": "number",
+				"maximum": 100,
+				"faker": {
+					"random.number": [ 100 ]
+				}
+			},
+			"averageWinPercent": {
+				"type": "number",
+				"maximum": 100,
+				"faker": {
+					"random.number": [ 100 ]
+				}
+			},
+			"totalValue": {
+				"type": "number",
+				"faker": "random.number"
+			},
+			"sector": {
+				"type": "string",
+				"faker": "lorem.words"
+			},
+			"totalWins": {
+				"type": "number",
+				"faker": {
+					"random.number": [ 1000 ]
+				}
+			}
+		}
+	}
+}

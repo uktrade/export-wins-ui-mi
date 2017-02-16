@@ -42,7 +42,7 @@ const input = {
 		}*/
 	},
 	"name": "Technology"
-}
+};
 
 
 describe( 'Wins data data set', function(){

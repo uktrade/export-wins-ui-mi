@@ -1,0 +1,118 @@
+{
+   "hvcs": {
+      "target": 68349,
+      "campaigns": [
+         "Iusto esse et nulla libero consequatur molestias labore iste.",
+         "Cum et voluptate et quis et reiciendis necessitatibus.",
+         "Quo iusto harum ea aspernatur nulla exercitationem ut.",
+         "Dignissimos aspernatur explicabo fugiat facilis quia vitae aut.",
+         "Odio et sunt.",
+         "Ab reprehenderit nulla facilis et.",
+         "Ex iure ipsam placeat dicta.",
+         "Velit qui et quos veritatis voluptatibus aperiam.",
+         "Ipsa occaecati voluptatem.",
+         "Ducimus molestiae voluptatem libero cumque architecto sunt distinctio.",
+         "Ducimus tempore totam officia quis est officia ut accusantium.",
+         "Sed eum modi ut."
+      ]
+   },
+   "name": "quis non blanditiis",
+   "campaigns": [
+      {
+         "campaign": "rem in molestiae",
+         "totals": {
+            "hvc": {
+               "value": {
+                  "unconfirmed": 79083,
+                  "confirmed": 6590,
+                  "total": 85673
+               },
+               "number": {
+                  "unconfirmed": 607,
+                  "confirmed": 330,
+                  "total": 937
+               }
+            },
+            "change": "up",
+            "progress": {
+               "confirmed_percent": 30,
+               "unconfirmed_percent": 70,
+               "status": "amber"
+            },
+            "target": 93457826
+         }
+      },
+      {
+         "campaign": "id eaque fugiat",
+         "totals": {
+            "hvc": {
+               "value": {
+                  "unconfirmed": 7379,
+                  "confirmed": 46432,
+                  "total": 53811
+               },
+               "number": {
+                  "unconfirmed": 745,
+                  "confirmed": 609,
+                  "total": 1354
+               }
+            },
+            "change": "up",
+            "progress": {
+               "confirmed_percent": 41,
+               "unconfirmed_percent": 59,
+               "status": "amber"
+            },
+            "target": 2521398
+         }
+      },
+      {
+         "campaign": "ut est aliquid",
+         "totals": {
+            "hvc": {
+               "value": {
+                  "unconfirmed": 10275,
+                  "confirmed": 69592,
+                  "total": 79867
+               },
+               "number": {
+                  "unconfirmed": 64,
+                  "confirmed": 143,
+                  "total": 207
+               }
+            },
+            "change": "up",
+            "progress": {
+               "confirmed_percent": 87,
+               "unconfirmed_percent": 13,
+               "status": "green"
+            },
+            "target": 62920033
+         }
+      },
+      {
+         "campaign": "debitis aut id",
+         "totals": {
+            "hvc": {
+               "value": {
+                  "unconfirmed": 57787,
+                  "confirmed": 35310,
+                  "total": 93097
+               },
+               "number": {
+                  "unconfirmed": 786,
+                  "confirmed": 761,
+                  "total": 1547
+               }
+            },
+            "change": "down",
+            "progress": {
+               "confirmed_percent": 70,
+               "unconfirmed_percent": 30,
+               "status": "amber"
+            },
+            "target": 54138220
+         }
+      }
+   ]
+}
