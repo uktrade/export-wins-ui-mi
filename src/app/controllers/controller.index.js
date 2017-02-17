@@ -4,14 +4,29 @@ const renderError = require( '../lib/render-error' );
 
 module.exports = function( req, res ){
 
-	backendService.getSectorTeamsAndOverseasRegions( req.alice ).then( ( data ) => {
+	const showOsRegions = req.query.osRegions;
 
-		const sectorTeams = data[ 0 ];
-		const overseasRegions = data[ 1 ];
+	if( showOsRegions ){
 
-		//console.log( JSON.stringify( data, null, 2 ) );
+		backendService.getSectorTeamsAndOverseasRegions( req.alice ).then( ( data ) => {
 
-		res.render( 'index.html', { sectorTeams, overseasRegions } );
+			const sectorTeams = data[ 0 ];
+			const overseasRegions = data[ 1 ];
 
-	} ).catch( renderError.handler( res ) );
+			//console.log( JSON.stringify( data, null, 2 ) );
+
+			res.render( 'index.html', { sectorTeams, overseasRegions } );
+
+		} ).catch( renderError.handler( res ) );
+
+	} else {
+	
+		backendService.getSectorTeams( req.alice ).then( ( sectorTeams ) => {
+
+			//console.log( JSON.stringify( data, null, 2 ) );
+
+			res.render( 'index.html', { sectorTeams } );
+
+		} ).catch( renderError.handler( res ) );			
+	}
 };

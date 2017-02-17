@@ -19,12 +19,41 @@ describe( 'Overseas Regions controller', function(){
 
 	describe( 'Handler', function(){
 	
-		it( 'Should get the data and render the correct view', function( done ){
-		
+		it( 'Should get the sectors list data and render the view', function( done ){
+
 			const req = {
-				alice: '87654'
+				alice: '87654',
+				query: {}
 			};
 
+			spyOn( backendService, 'getSectorTeams' ).and.callThrough();
+			spyOn( errorHandler, 'handler' ).and.callThrough();
+
+			interceptBackend.getStub( '/mi/sector_teams/', 200, '/sector_teams/' );
+
+			controller( req, { render: function( view, data ){
+
+				expect( backendService.getSectorTeams ).toHaveBeenCalledWith( req.alice );
+				expect( view ).toEqual( 'index.html' );
+				expect( data.sectorTeams ).toBeDefined();
+				expect( data.overseasRegions ).not.toBeDefined();
+				expect( errorHandler.handler ).toHaveBeenCalled();
+				done();
+			} } );
+		} );
+	} );
+
+	describe( 'When the os-regions query param is true', function(){
+	
+		it( 'Should show the Overseas Regions list and render the view', function( done ){
+
+			const req = {
+				alice: '87654',
+				query: {
+					osRegions: true
+				}
+			};
+	
 			spyOn( backendService, 'getSectorTeamsAndOverseasRegions' ).and.callThrough();
 			spyOn( errorHandler, 'handler' ).and.callThrough();
 
