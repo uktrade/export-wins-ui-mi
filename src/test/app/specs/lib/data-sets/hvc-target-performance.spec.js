@@ -117,6 +117,19 @@ const input = [
 			confirmed: 100,
 			total: 100
 		}
+	},
+	{
+		campaign: 'zero target',
+		target: 0,
+		change: 'up',
+		progress: {
+			confirmed: 0,
+			unconfirmed: 150
+		},
+		value: {
+			confirmed: 100,
+			total: 100
+		}
 	}
 ];
 
@@ -124,94 +137,110 @@ describe( 'HVC target performance data set', function(){
 
 	const output = dataset.create( input );
 
-	const item1 = output[ 0 ];
-	const item2 = output[ 1 ];
-	const item3 = output[ 2 ];
-	const item4 = output[ 3 ];
-	const item5 = output[ 4 ];
-	const item6 = output[ 5 ];
-	const item7 = output[ 6 ];
-	const item8 = output[ 7 ];
-	const item9 = output[ 8 ];
+	function checkResult( index, targetConfirmed, targetUnconfirmed, targetOver ){
 
-	describe( 'When the combined percentage is under the threshold', function(){
+		const inputData = input[ index ];
+		const item = output.withTarget[ index ];
+
+		expect( item.progress.confirmed ).toEqual( inputData.progress.confirmed );
+		expect( item.progress.unconfirmed ).toEqual( inputData.progress.unconfirmed );
+		expect( item.progress.target.confirmed ).toEqual( targetConfirmed );
+		expect( item.progress.target.unconfirmed ).toEqual( targetUnconfirmed );
+		expect( item.progress.target.overThreshold ).toEqual( targetOver );		
+	}
+
+	describe( 'Without any data', function(){
 	
-		it( 'Should return the numbers as a percentage of 125', function(){
+		it( 'Should return empty arrays', function(){
+	
+			const out = dataset.create();
 
-			expect( item1.progress.confirmed ).toEqual( 100 );
-			expect( item1.progress.unconfirmed ).toEqual( 0 );
-			expect( item1.progress.overThreshold ).toEqual( false );
-
-			expect( item2.progress.confirmed ).toEqual( 64 );
-			expect( item2.progress.unconfirmed ).toEqual( 16 );
-			expect( item2.progress.overThreshold ).toEqual( false );
-
-			expect( item3.progress.confirmed ).toEqual( 64 );
-			expect( item3.progress.unconfirmed ).toEqual( 28 );
-			expect( item3.progress.overThreshold ).toEqual( false );
+			expect( out.withTarget.length ).toEqual( 0 );
+			expect( out.zeroTarget.length ).toEqual( 0 );
 		} );
 	} );
 
-	describe( 'When the confirmed percentage is over the threshold', function(){
+	describe( 'With data', function(){
 	
-		it( 'Should return 100 for confirmed and 0 for unconfirmed', function(){
+		it( 'Should separate the data into two lists', function(){
 	
-			expect( item4.progress.confirmed ).toEqual( 100 );
-			expect( item4.progress.unconfirmed ).toEqual( 0 );
-			expect( item4.progress.overThreshold ).toEqual( true );
+			expect( output.withTarget.length ).toEqual( 9 );
+			expect( output.zeroTarget.length ).toEqual( 1 );
 		} );
-	} );
 
-	describe( 'When the unconfirmed percentage is over the threshold', function(){
+		describe( 'HVCs with zero target', function(){
+		
+			it( 'Should return the correct format', function(){
+		
+				const zeroTarget = output.zeroTarget;
 
-		describe( 'When there is a confirmed percentage', function(){
-		
-			it( 'Should return a percentage for both as a percent of 125', function(){
-		
-				expect( item5.progress.confirmed ).toEqual( 20 );
-				expect( item5.progress.unconfirmed ).toEqual( 80 );
-				expect( item5.progress.overThreshold ).toEqual( true );
+				expect( zeroTarget ).toBeDefined;
 			} );
+		} );
 
-			it( 'Should round the values', function(){
+		describe( 'HVCs with a target', function(){
+		
+			describe( 'When the combined percentage is under the threshold', function(){
 			
-				expect( item8.progress.confirmed ).toEqual( 30 );
-				expect( item8.progress.unconfirmed ).toEqual( 70 );
-				expect( item8.progress.overThreshold ).toEqual( true );
-			} );
-		} );
+				it( 'Should return the numbers as a percentage of 125', function(){
 
-		describe( 'When there is zero for the confirmed percentage', function(){
-		
-			it( 'Should return zero for the confirmed and 100 for unconfirmed', function(){
-		
-				expect( item9.progress.confirmed ).toEqual( 0 );
-				expect( item9.progress.unconfirmed ).toEqual( 100 );
-				expect( item9.progress.overThreshold ).toEqual( true );				
+					checkResult( 0, 100, 0, false );
+					checkResult( 1, 64, 16, false );
+					checkResult( 2, 64, 28, false );
+				} );
+			} );
+
+			describe( 'When the confirmed percentage is over the threshold', function(){
+			
+				it( 'Should return 100 for confirmed and 0 for unconfirmed', function(){
+			
+					checkResult( 3, 100, 0, true );
+				} );
+			} );
+
+			describe( 'When the unconfirmed percentage is over the threshold', function(){
+
+				describe( 'When there is a confirmed percentage', function(){
+				
+					it( 'Should return a percentage for both as a percent of 125', function(){
+				
+						checkResult( 4, 20, 80, true );
+					} );
+
+					it( 'Should round the values', function(){
+					
+						checkResult( 7, 30, 70, true );
+					} );
+				} );
+
+				describe( 'When there is zero for the confirmed percentage', function(){
+				
+					it( 'Should return zero for the confirmed and 100 for unconfirmed', function(){
+				
+						checkResult( 8, 0, 100, true );
+					} );
+				} );
+			} );
+
+			describe( 'When the combined percentage is over the threshold', function(){
+
+				describe( 'When the confirmed is higher than the unconfirmed', function(){
+				
+					it( 'Should return the confirmed percent and cap the unconfirmed percent', function(){
+				
+						checkResult( 5, 76, 24, true );
+					} );
+				} );		
+
+				describe( 'When the unconfirmed is higher than the confirmed', function(){
+				
+					it( 'Should return the confirmed percent and cap the unconfirmed percent', function(){
+				
+						checkResult( 6, 68, 32, true );
+					} );
+				} );
 			} );
 		} );
 	} );
 
-	describe( 'When the combined percentage is over the threshold', function(){
-
-		describe( 'When the confirmed is higher than the unconfirmed', function(){
-		
-			it( 'Should return the confirmed percent and cap the unconfirmed percent', function(){
-		
-				expect( item6.progress.confirmed ).toEqual( 76 );
-				expect( item6.progress.unconfirmed ).toEqual( 24 );
-				expect( item6.progress.overThreshold ).toEqual( true );
-			} );
-		} );		
-
-		describe( 'When the unconfirmed is higher than the confirmed', function(){
-		
-			it( 'Should return the confirmed percent and cap the unconfirmed percent', function(){
-		
-				expect( item7.progress.confirmed ).toEqual( 68 );
-				expect( item7.progress.unconfirmed ).toEqual( 32 );
-				expect( item7.progress.overThreshold ).toEqual( true );
-			} );
-		} );
-	} );
 } );

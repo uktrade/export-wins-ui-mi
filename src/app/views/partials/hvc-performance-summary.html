@@ -12,12 +12,12 @@
 	<li class="sector-wins_list_item">
 		<ul class="sector-wins_list_item_values">
 			<li class="sector-wins_list_item_values_item">
-				<h3 class="sector-wins_list_item_heading">Total confirmed</h3>
-				<p class="sector-wins_list_item_value"><span class="sector-wins_list_item_value_currency">&pound;</span>{{ winSummary.totalConfirmed | largeNumber }}</p>
+				<h3 class="sector-wins_list_item_heading">Total HVC<br>confirmed</h3>
+				<p class="sector-wins_list_item_value sector-wins_list_item_value--hvc"><span class="sector-wins_list_item_value_currency">&pound;</span>{{ winSummary.totalConfirmed | largeNumber( true ) | safe }}</p>
 			</li>
 			<li class="sector-wins_list_item_values_item">
-				<h3 class="sector-wins_list_item_heading">Target</h3>
-				<p class="sector-wins_list_item_value"><span class="sector-wins_list_item_value_currency">&pound;</span>{{ winSummary.target | largeNumber }}</p>
+				<h3 class="sector-wins_list_item_heading">HVC<br>Target</h3>
+				<p class="sector-wins_list_item_value"><span class="sector-wins_list_item_value_currency">&pound;</span>{{ winSummary.target | largeNumber( true ) | safe }}</p>
 			</li>
 		</ul>
 	</li>

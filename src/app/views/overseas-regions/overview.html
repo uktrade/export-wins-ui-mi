@@ -67,7 +67,7 @@
 							<span class="visually-hidden">{{ region.value.percentage }}%</span>
 						</td>
 						<td class="overseas-region-overview-data_cell overseas-region-overview-data_region_hvc-non-hvc">
-							<div class="pie pie--center" style="animation-delay: -{{ region.confirmedPercent.nonHvc }}s">{{ region.confirmedPercent.nonHvc }}%</div>
+							<div class="pie pie--hvc-vs-non pie--center" style="animation-delay: -{{ region.confirmedPercent.nonHvc | piePercentage }}s">{{ region.confirmedPercent.nonHvc }}%</div>
 						</td>
 
 					</tr>

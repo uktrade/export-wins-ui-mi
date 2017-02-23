@@ -3,55 +3,21 @@
 @import 'mi-colours';
 @import 'helpers';
 
-$keyWidth: 150px;
 $keyBoxSize: 12px;
 
 .hvc-perf {
 	position: relative;
 }
 
-.hvc-perf_key {
-	position: absolute;
-	right: 0;
-	top: 100px;
-	width: $keyWidth;
-	@include core-14;
-	list-style: none;
-}
-
-.hvc-perf_key_item_colour {
-	display: inline-block;
-	width: $keyBoxSize;
-	height: $keyBoxSize;
-}
-
-.hvc-perf_key_item_colour--green {
-	background-color: $mi-green;
-}
-
-.hvc-perf_key_item_colour--amber {
-	background-color: $mi-amber;
-}
-
-.hvc-perf_key_item_colour--red {
-	background-color: $mi-red;
-}
-
-.hvc-perf_key_item_colour--grey {
-	background-color: $grey-2;
-}
-
 .hvc-perf_table {
 	border-collapse: collapse;
-	border-bottom: 1px solid #000;
-	margin-right: $keyWidth;
 	line-height: 1.1;
 }
 
 .hvc-perf_table_row {
 
-	&:first-of-type {
-		border-top: 1px solid #000;
+	&:hover {
+		background-color: $grey-4;
 	}
 }
 
@@ -72,24 +38,21 @@ $keyBoxSize: 12px;
 	overflow: hidden;//IE 11 fix as it calculates the wrong height of .hvc-perf_table_cell_50-percent and .hvc-perf_table_cell_over-percentage 
 }
 
-$campaign-width: 20%;
-//$campaign-width: 15%;
-//$change-width: 5%;
-$percent-complete-width: 50%;
-$over-target-width: 6%;
-$confirmed-width: 8%;
-$combined-width: 8%;
+$campaign-width: 25%;
+$percent-complete-width: 33%;
+$over-target-width: 4%;
+$confirmed-width: 10%;
+$combined-width: 10%;
 $target-width: 8%;
+$hvc-percent: 10%;
+//above should equal 100%
+//used in _zero-target-perf-table as well to match values
 
 .hvc-perf_table_cell--campaign {
 	width: $campaign-width;
 	padding-left: 0
 }
-/*
-.hvc-perf_table_cell--change {
-	width: $change-width;
-}
-*/
+
 .hvc-perf_table_cell--percent-complete {
 	width: $percent-complete-width;
 	border-left: 1px solid #000;
@@ -122,6 +85,45 @@ $target-width: 8%;
 	padding-right: 1.5em;
 }
 
+.hvc-perf_table_cell--hvc-percent {
+	width: $hvc-percent;
+	text-align: center;
+}
+
+.hvc-perf_table_cell_hvc-id {
+	display: inline-block;
+	min-width: 16%;
+	vertical-align: top;
+}
+
+.hvc-perf_table_cell_hvc-name {
+	display: inline-block;
+	max-width: 80%;
+}
+
+.hvc-perf_status {
+	width: 100%;
+	display: inline-block;
+}
+
+.hvc-perf_status--green {
+	background-color: $mi-green;
+	color: #fff;
+}
+
+.hvc-perf_status--amber {
+	background-color: $mi-amber;
+}
+
+.hvc-perf_status--red {
+	background-color: $mi-red;
+	color: #fff;
+}
+
+.hvc-perf_status--zero {
+	border: 1px solid $unconfirmed;
+}
+
 .hvc-perf_table_cell_bar {
 	display: inline-block;
 	height: 20px;
@@ -129,27 +131,30 @@ $target-width: 8%;
 	z-index: 10;
 }
 
-.hvc-perf_table_cell_bar--green {
-	background-color: $mi-green;
-}
-
-.hvc-perf_table_cell_bar--amber {
-	background-color: $mi-amber;
-}
-
+.hvc-perf_table_cell_bar--green,
+.hvc-perf_table_cell_bar--amber,
 .hvc-perf_table_cell_bar--red {
-	background-color: $mi-red;
+	background-color: $hvc;
 }
 
 .hvc-perf_table_cell_bar--unconfirmed {
-	background-color: $grey-3;
+	background-color: $unconfirmed;
 }
+
 
 $parts: ( 100 / 125 );
 
 @mixin leftPosition( $percent ){
 
 	left: ( $parts * $percent );
+}
+
+.hvc-perf_row_percent-markers--top {
+	border-bottom: 1px solid #000;
+}
+
+.hvc-perf_row_percent-markers--bottom {
+	border-top: 1px solid #000;
 }
 
 .hvc-perf_table_cell_50-percent {
@@ -175,8 +180,7 @@ $parts: ( 100 / 125 );
 
 .hvc-perf_percent-markers {
 	position: relative;
-	//width: $percent-complete-width;
-	//margin-left: ( $campaign-width + $change-width );
+	min-height: 1em;
 }
 
 .hvc-perf_percent-markers_marker {
@@ -211,7 +215,7 @@ $parts: ( 100 / 125 );
 
 .hvc-peft_percent-markers_marker_text {
 	margin-left: -50%;
-	padding-top: pem( 4, 14 );
+	padding-top: 0;
 	display: inline-block;
 }
 
@@ -225,20 +229,14 @@ $over-arrow-size: 10px;
 	display: inline-block;
 }
 
-.hvc-perf_table_cell_over-marker--green {
-	border-left: $over-arrow-size solid $mi-green;
-}
-
-.hvc-perf_table_cell_over-marker--amber {
-	border-left: $over-arrow-size solid $mi-amber;
-}
-
+.hvc-perf_table_cell_over-marker--green,
+.hvc-perf_table_cell_over-marker--amber,
 .hvc-perf_table_cell_over-marker--red {
-	border-left: $over-arrow-size solid $mi-red;
+	border-left: $over-arrow-size solid $hvc;
 }
 
 .hvc-perf_table_cell_over-marker--unconfirmed {
-	border-left: $over-arrow-size solid $grey-3;
+	border-left: $over-arrow-size solid $unconfirmed;
 }
 
 

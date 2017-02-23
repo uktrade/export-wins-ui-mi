@@ -1,6 +1,6 @@
-<div class="pie pie--sector-team pie--pink pie--inline" style="animation-delay: -{{ winSummary.wins.confirmedUnconfirmedValue.unconfirmed }}s">{{ winSummary.wins.confirmedUnconfirmedValue.unconfirmed }}%</div>
+<div class="pie pie--sector pie--confirmed-vs-un pie--inline" style="animation-delay: -{{ winSummary.wins.confirmedUnconfirmedValue.unconfirmed | piePercentage }}s">{{ winSummary.wins.confirmedUnconfirmedValue.unconfirmed }}%</div>
 
-<ul class="pie-key pie-key--pink pie-key--inline sector-overview_total-value-key">
+<ul class="pie-key pie-key--confirmed-vs-un pie-key--inline sector-overview_total-value-key">
 	<li class="pie-key_item">
 		<span class="pie-key_block pie-key_block--slice"></span>Unconfirmed wins - {{ winSummary.wins.confirmedUnconfirmedValue.unconfirmed }}%
 	</li>

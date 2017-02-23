@@ -13,6 +13,7 @@
    "name": "similique vitae qui",
    "campaigns": [
       {
+         "campaign_id": 20277,
          "campaign": "facere eos eum",
          "totals": {
             "hvc": {
@@ -37,6 +38,7 @@
          }
       },
       {
+         "campaign_id": 40310,
          "campaign": "quo nobis consequatur",
          "totals": {
             "hvc": {
@@ -61,6 +63,7 @@
          }
       },
       {
+         "campaign_id": 40238,
          "campaign": "eius accusantium qui",
          "totals": {
             "hvc": {
@@ -85,6 +88,7 @@
          }
       },
       {
+         "campaign_id": 27994,
          "campaign": "est et ea",
          "totals": {
             "hvc": {
@@ -109,6 +113,7 @@
          }
       },
       {
+         "campaign_id": 97331,
          "campaign": "perspiciatis qui debitis",
          "totals": {
             "hvc": {
@@ -133,6 +138,7 @@
          }
       },
       {
+         "campaign_id": 5312,
          "campaign": "explicabo ea atque",
          "totals": {
             "hvc": {

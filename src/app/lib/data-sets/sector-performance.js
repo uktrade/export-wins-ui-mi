@@ -1,7 +1,7 @@
 
 const targetColour = 'rgb(0, 0, 0)';
 const hvcColour = 'rgb(43,140,196)'; //2B8CC4
-const nonHvcColour = 'rgb(111,114,175)'; //6F72AF
+const nonHvcColour = 'rgb(234,156,192)'; //EA9CC0
 const nonExportColour = 'rgb(183,185,215)'; //6F72AF - 50%
 
 function createTargetTrace( name, x, y ){
