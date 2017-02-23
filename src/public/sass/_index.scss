@@ -3,8 +3,8 @@
 
 
 .sector-list-heading {
-	border-top: 5px solid #000;
-	@include bold-19;
+	border-top: 10px solid #000;
+	@include bold-24;
 	margin-top: 1em;
 	padding: 0.5em 0 0 pem( 10, 19 );
 	margin-bottom: 0.75em;
@@ -15,6 +15,7 @@
 	display: inline-block;
 	margin-bottom: 1em;
 	margin-left: 0.625em;
+	@include bold-19;
 }
 
 .sector-list {

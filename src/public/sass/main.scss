@@ -24,3 +24,13 @@
 	font-size: 75%;
 	font-weight: normal;
 }
+
+.page-heading {
+	@include bold-36;
+	margin-top: pem( 30, 36 );
+}
+
+.page-sub-heading {
+	@include bold-24;
+	margin-top: pem( 15, 24 );
+}
