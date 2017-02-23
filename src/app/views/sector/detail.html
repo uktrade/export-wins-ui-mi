@@ -20,14 +20,14 @@
 				<li class="sector-overview_charts_chart">
 					
 					<h3 class="sector-overview_total-value-heading">Total value of confirmed wins (HVC &amp; non-HVC)</h3>
-					<div class="pie pie--sector-team pie--inline" style="animation-delay: -{{ winSummary.wins.hvcNonHvcValue.hvc }}s">{{ winSummary.wins.hvcNonHvcValue.hvc }}%</div>
+					<div class="pie pie--sector-team" style="animation-delay: -{{ winSummary.wins.hvcNonHvcValue.nonHvc | piePercentage }}s">{{ winSummary.wins.hvcNonHvcValue.nonHvc }}%</div>
 
-					<ul class="pie-key pie-key--inline sector-overview_total-value-key">
+					<ul class="pie-key pie-key--hvc-vs-non pie-key--inline sector-overview_total-value-key">
 						<li class="pie-key_item">
-							<span class="pie-key_block pie-key_block--slice"></span>non-HVC<span class="visually-hidden"> - {{ winSummary.wins.hvcNonHvcValue.nonHvc }}%</span>
+							<span class="pie-key_block pie-key_block--slice"></span>non-HVC - {{ winSummary.wins.hvcNonHvcValue.nonHvc }}%
 						</li>
 						<li class="pie-key_item">
-							<span class="pie-key_block"></span>HVC<span class="visually-hidden"> - {{ winSummary.wins.hvcNonHvcValue.hvc }}%</span>
+							<span class="pie-key_block"></span>HVC - {{ winSummary.wins.hvcNonHvcValue.hvc }}%
 						</li>
 					</ul>
 
@@ -46,31 +46,46 @@
 	<section class="sector-wins grid-row">
 
 		<div class="column-single">
-			<h3>HVC Performance</h3>
+			<h3 class="sector-wins_heading">HVC export wins</h3>
+		</div>
 
-			<h4 class="sector-wins_list-heading">Total confirmed HVCs against target</h4>
+		<div class="column-half">
+
+			<h4 class="sector-heading sector-heading--target">Total confirmed against target</h4>
 			{% include 'partials/hvc-performance-summary.html' %}
 
+		</div>
+		<div class="column-half">
+			{% include 'partials/key.html' %}
 		</div>
 	</section>
 
 	<section class="grid-row">
 		<div class="column-single">
-			<h2 class="sector-sub-heading">HVCs with 1 year targets</h2>
+			<h2 class="sector-heading">HVCs with 1 year targets</h2>
 			{% include 'partials/hvc-target-performance.html' %}
 		</div>
 	</section>
 
+	{% if hvcTargetPerformance.zeroTarget.length %}
 	<section class="grid-row">
 		<div class="column-single">
-			<h2 class="sector-heading">Overall sector performance</h2>
+			<h2 class="sector-heading sector-heading--zero-target">HVCs with no target in 2016-17</h2>
+			{% include 'partials/zero-target-performance.html' %}
+		</div>
+	</section>
+	{% endif %}
+
+	<section class="grid-row">
+		<div class="column-single">
+			<h2 class="sector-heading sector-heading--separator">Overall sector performance</h2>
 			<div id="sector-performance"></div>
 		</div>
 	</section>
 
 	<section class="grid-row">
 		<div class="column-single">
-			<h2 class="sector-heading">Top performing non-HVC markets and sectors</h2>
+			<h2 class="sector-heading sector-heading--separator">Top performing non-HVC markets and sectors</h2>
 			{% include 'partials/top-non-hvc.html' %}
 		</div>
 	</section>

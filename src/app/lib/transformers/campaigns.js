@@ -7,7 +7,8 @@ module.exports = function( input ){
 		const totals = campaign.totals;
 
 		data.push({
-			campaign: campaign.campaign,
+			id: campaign.campaign_id,
+			name: campaign.campaign,
 			target: totals.target,
 			change: totals.change,
 			status: totals.progress.status,

@@ -39,8 +39,13 @@
 			"items": {
 
 				"type": "object",
-				"required": [ "campaign", "totals" ],
+				"required": [ "campaign_id", "campaign", "totals" ],
 				"properties": {
+
+					"campaign_id": {
+						"type": "number",
+						"faker": "random.number"
+					},
 
 					"campaign": {
 						"type": "string",

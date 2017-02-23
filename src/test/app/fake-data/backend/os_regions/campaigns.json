@@ -13,6 +13,7 @@
    "name": "quasi dicta praesentium",
    "campaigns": [
       {
+         "campaign_id": 20277,
          "campaign": "voluptate perferendis eum",
          "totals": {
             "hvc": {
@@ -37,6 +38,7 @@
          }
       },
       {
+         "campaign_id": 40310,
          "campaign": "voluptas pariatur iure",
          "totals": {
             "hvc": {
@@ -61,6 +63,7 @@
          }
       },
       {
+         "campaign_id": 40238,
          "campaign": "sunt vel minus",
          "totals": {
             "hvc": {
@@ -85,6 +88,7 @@
          }
       },
       {
+         "campaign_id": 27994,
          "campaign": "excepturi omnis maiores",
          "totals": {
             "hvc": {
@@ -109,6 +113,7 @@
          }
       },
       {
+         "campaign_id": 97331,
          "campaign": "molestias vitae aut",
          "totals": {
             "hvc": {

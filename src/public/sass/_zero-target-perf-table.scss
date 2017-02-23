@@ -1,0 +1,49 @@
+
+//using variables created in _hvc-target-performance
+
+.zero-target-perf-table {
+	@extend .hvc-perf_table;
+	width: 100%;
+}
+
+.zero-target-perf-table_row {
+	@extend .hvc-perf_table_row;
+}
+
+.zero-target-perf-table_cell {
+	@extend .hvc-perf_table_cell;
+}
+
+.zero-target-perf-table_cell--campaign {
+	@extend .hvc-perf_table_cell--campaign;
+	width: ( $campaign-width + $percent-complete-width + $over-target-width );
+}
+
+.zero-target-perf-table_cell--confirmed {
+	@extend .hvc-perf_table_cell--confirmed;
+	width: $confirmed-width;
+}
+
+.zero-target-perf-table_cell--combined {
+	@extend .hvc-perf_table_cell--combined;
+	width: $combined-width;
+}
+
+.zero-target-perf-table_cell--target {
+	@extend .hvc-perf_table_cell--target;
+	width: $target-width;
+}
+
+.zero-target-perf-table_cell--hvc-percent {
+	@extend .hvc-perf_table_cell--hvc-percent;
+	width: $hvc-percent;
+}
+
+.zero-target-perf-table_cell_hvc-id {
+	@extend .hvc-perf_table_cell_hvc-id;
+	min-width: 6.5%;
+}
+
+.zero-target-perf-table_cell_hvc-name {
+	@extend .hvc-perf_table_cell_hvc-name;
+}

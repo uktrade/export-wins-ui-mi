@@ -16,7 +16,8 @@ describe( 'Sector campaigns transformer', function(){
 
 		output.forEach( ( item ) => {
 
-			expect( item.campaign ).toBeDefined();
+			expect( item.id ).toBeDefined();
+			expect( item.name ).toBeDefined();
 			expect( item.change ).toBeDefined();
 			expect( item.progress ).toBeDefined();
 			expect( item.progress.confirmed ).toBeDefined();

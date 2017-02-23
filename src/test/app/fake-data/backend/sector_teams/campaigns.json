@@ -19,6 +19,7 @@
    "name": "quis non blanditiis",
    "campaigns": [
       {
+         "campaign_id": 57038,
          "campaign": "rem in molestiae",
          "totals": {
             "hvc": {
@@ -43,6 +44,7 @@
          }
       },
       {
+         "campaign_id": 58532,
          "campaign": "id eaque fugiat",
          "totals": {
             "hvc": {
@@ -67,6 +69,7 @@
          }
       },
       {
+         "campaign_id": 91991,
          "campaign": "ut est aliquid",
          "totals": {
             "hvc": {
@@ -91,6 +94,7 @@
          }
       },
       {
+         "campaign_id": 62853,
          "campaign": "debitis aut id",
          "totals": {
             "hvc": {

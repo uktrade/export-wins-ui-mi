@@ -16,18 +16,31 @@
 	margin-top: pem( 50 );
 }
 
+.sector-wins_heading {
+	@include bold-27;
+	margin-bottom: pem( 25, 27 );
+}
+
 .sector-wins_pie {
 	width: 425px;
 	height: 145px;
 }
 
 .sector-heading {
-	margin-top: 2em;
 	@include bold-19;
 }
 
-.sector-sub-heading {
-	@include bold-16;
+.sector-heading--separator {
+	margin-top: pem( 60, 19 );
+}
+
+.sector-heading--target {
+	margin-bottom: pem( 10, 19 )
+}
+
+.sector-heading--zero-target {
+	margin-top: pem( 10, 19 );
+	margin-bottom: pem( 15, 19 );
 }
 
 .sector-export-value {

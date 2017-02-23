@@ -1,15 +1,21 @@
 @import 'colours';
 
-/*
+
 @function tint( $color, $percentage ){
 	@return mix( white, $color, $percentage );
 }
-*/
+
 $mi-red: $mellow-red;
 $mi-amber: $yellow;
 $mi-green: $green-50;
 
-$overview-hvc: $grey-2;
-$overview-non-hvc: $mauve;
+$pie-default: $grey-2;
+$pie-default-wedge: $mauve;
 
 $mi-pink: $pink;
+
+$hvc: $link-hover-colour;
+$non-hvc: tint( $pink, 50 );
+
+$confirmed: #000;
+$unconfirmed: $grey-3;

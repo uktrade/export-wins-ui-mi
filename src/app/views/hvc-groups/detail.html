@@ -33,24 +33,29 @@
 	<section class="sector-wins grid-row">
 
 		<div class="column-single">
-			<h3>HVC Performance</h3>
+			<h3 class="sector-wins_heading">HVC export wins</h3>
+		</div>
 
-			<h4 class="sector-wins_list-heading">Total confirmed HVCs against target</h4>
+		<div class="column-half">
+			<h4 class="sector-heading sector-heading--target">Total confirmed HVCs against target</h4>
 			{% include 'partials/hvc-performance-summary.html' %}
+		</div>
 
+		<div class="column-half">
+			{% include 'partials/key.html' %}
 		</div>
 	</section>
 
 	<section class="grid-row">
 		<div class="column-single">
-			<h2 class="sector-sub-heading">HVCs with 1 year targets</h2>
+			<h2 class="sector-heading">HVCs with 1 year targets</h2>
 			{% include 'partials/hvc-target-performance.html' %}
 		</div>
 	</section>
 
 	<section class="grid-row">
 		<div class="column-single">
-			<h2 class="sector-heading">Overall sector performance</h2>
+			<h2 class="sector-heading sector-heading--separator">Overall sector performance</h2>
 			<div id="sector-performance"></div>
 		</div>
 	</section>

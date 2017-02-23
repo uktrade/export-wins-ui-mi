@@ -23,7 +23,7 @@
 		<td class="sector-teams-list_team_cell sector-teams-list_team_cell--value-percentage"><span class="visually-hidden">{{ sector.value.percentage }}%</span></td>
 		{% if sector.confirmedPercent -%}
 		<td class="sector-teams-list_team_cell sector-teams-list_team_cell--hvc-non-hvc">
-			<div class="pie pie--center" style="animation-delay: -{{ sector.confirmedPercent.hvc }}s">{{ sector.confirmedPercent.hvc }}%</div>
+			<div class="pie pie--hvc-vs-non pie--center" style="animation-delay: -{{ sector.confirmedPercent.nonHvc | piePercentage }}s">{{ sector.confirmedPercent.nonHvc }}%</div>
 		</td>
 		{%- endif -%}
 	</tr>
