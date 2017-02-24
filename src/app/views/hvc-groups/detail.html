@@ -1,12 +1,13 @@
 {% extends 'layout.html' %}
 
+{% from 'macros/dates.html' import financialYear %}
+
 {% set pageName %}Overseas Region - {{ sectorName }}{% endset %}
 
 {% block page_content %}
 
-	<h1>
-		{{ sectorName }}
-	</h1>
+	<h1>{{ sectorName }}</h1>
+	<h2 class="page-date">{{ financialYear() }}</h2>
 
 	<h2 class="visually-hidden">Summary</h2>
 	<section class="sector-overview grid-row">
@@ -48,14 +49,16 @@
 
 	<section class="grid-row">
 		<div class="column-single">
-			<h2 class="sector-heading">HVCs with 1 year targets</h2>
+			<h2 class="sector-heading">{{ sectorName }} HVCs</h2>
+			<h3 class="sub-heading-date">{{ financialYear() }}</h3>
 			{% include 'partials/hvc-target-performance.html' %}
 		</div>
 	</section>
 
 	<section class="grid-row">
 		<div class="column-single">
-			<h2 class="sector-heading sector-heading--separator">Overall sector performance</h2>
+			<h2 class="sector-heading sector-heading--separator">{{ sectorName }} HVCs monthly performance</h2>
+			<h3 class="sub-heading-date">{{ financialYear() }}</h3>
 			<div id="sector-performance"></div>
 		</div>
 	</section>

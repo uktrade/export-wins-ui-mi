@@ -1,0 +1,3 @@
+{% macro financialYear( endDate ) %}
+	{{- '2016-04-01' | dateOnly }} to {{ endDate | dateWithTime -}}
+{% endmacro %}

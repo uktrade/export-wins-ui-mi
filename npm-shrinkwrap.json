@@ -299,6 +299,11 @@
         }
       }
     },
+    "dateformat": {
+      "version": "2.0.0",
+      "from": "dateformat@latest",
+      "resolved": "https://registry.npmjs.org/dateformat/-/dateformat-2.0.0.tgz"
+    },
     "debug": {
       "version": "2.2.0",
       "from": "debug@>=2.2.0 <2.3.0",

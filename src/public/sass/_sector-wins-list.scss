@@ -9,7 +9,7 @@
 
 .sector-wins_list {
 	padding: 0;
-	margin: 0;
+	margin: 0 0 pem( 15 ) 0;//bottom padding for when the numbers wrap - gives space beween the next heading
 }
 
 .sector-wins_list_item {
@@ -60,6 +60,6 @@
 	float: left;
 
 	&:first-of-type {
-		margin-right: pem( 40, 16 );
+		margin-right: pem( 30, 16 );
 	}
 }
