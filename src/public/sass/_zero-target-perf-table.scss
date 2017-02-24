@@ -4,6 +4,7 @@
 .zero-target-perf-table {
 	@extend .hvc-perf_table;
 	width: 100%;
+	border-bottom: 1px solid #000;
 }
 
 .zero-target-perf-table_row {
