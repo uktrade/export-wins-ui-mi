@@ -1,12 +1,12 @@
 {% extends 'layout.html' %}
 
+{% from 'macros/dates.html' import financialYear %}
+
 {% block page_content %}
 
-	<h1>
-		{{ sectorName }}
-	</h1>
+	<h1 class="page-heading">{{ sectorName }}</h1>
+	<h2 class="page-date">{{ financialYear() }}</h2>
 
-	<h2 class="visually-hidden">Summary</h2>
 	<section class="sector-overview grid-row">
 		<div class="column-one-third">
 			
@@ -35,7 +35,7 @@
 				<li class="sector-overview_charts_chart">
 
 					<h3 class="sector-overview_confirmed-heading">Confirmed vs. unconfirmed wins value</h3>
-					{% include 'partials/confirmed-vs-unconfirmed-wins.html' %}
+					{% include 'partials/confirmed-vs-unconfirmed-wins.html' -%}
 
 				</li>
 			</ul>
@@ -52,7 +52,7 @@
 		<div class="column-half">
 
 			<h4 class="sector-heading sector-heading--target">Total confirmed against target</h4>
-			{% include 'partials/hvc-performance-summary.html' %}
+			{% include 'partials/hvc-performance-summary.html' -%}
 
 		</div>
 		<div class="column-half">
@@ -62,7 +62,8 @@
 
 	<section class="grid-row">
 		<div class="column-single">
-			<h2 class="sector-heading">HVCs with 1 year targets</h2>
+			<h2 class="sector-heading">{{ sectorName }} HVCs</h2>
+			<h3 class="sub-heading-date">{{ financialYear() }}</h3>
 			{% include 'partials/hvc-target-performance.html' %}
 		</div>
 	</section>
@@ -78,7 +79,8 @@
 
 	<section class="grid-row">
 		<div class="column-single">
-			<h2 class="sector-heading sector-heading--separator">Overall sector performance</h2>
+			<h2 class="sector-heading sector-heading--separator">{{ sectorName }} sector team monthly performance</h2>
+			<h3 class="sub-heading-date">{{ financialYear() }}</h3>
 			<div id="sector-performance"></div>
 		</div>
 	</section>
@@ -86,17 +88,18 @@
 	<section class="grid-row">
 		<div class="column-single">
 			<h2 class="sector-heading sector-heading--separator">Top performing non-HVC markets and sectors</h2>
+			<h3 class="sub-heading-date">{{ financialYear() }}</h3>
 			{% include 'partials/top-non-hvc.html' %}
 		</div>
 	</section>
 
-{% endblock %}
+{%- endblock -%}
 
-{% block pageScript %}
+{%- block pageScript %}
 	<script>
 		mi.pages.sector({
 			sectorPerformance: {{ sectorPerformance | dump | safe }},
 			targetProgress: {{ winSummary.progress.gauge | dump | safe }}
 		});
 	</script>
-{% endblock pageScript %}
+{% endblock pageScript -%}

@@ -1,6 +1,6 @@
 {
   "name": "export-wins-ui-mi",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "dependencies": {
     "@uktrade/trade_elements": {
       "version": "1.3.0",
@@ -298,6 +298,11 @@
           "resolved": "https://registry.npmjs.org/assert-plus/-/assert-plus-1.0.0.tgz"
         }
       }
+    },
+    "dateformat": {
+      "version": "2.0.0",
+      "from": "dateformat@latest",
+      "resolved": "https://registry.npmjs.org/dateformat/-/dateformat-2.0.0.tgz"
     },
     "debug": {
       "version": "2.2.0",

@@ -1,14 +1,14 @@
 {% extends 'layout.html' %}
 
-{% set pageName='Overseas Regions Overview' %}
-
 {% from 'macros/overview.html' import overviewBlocks, currentValue %}
+{% from 'macros/dates.html' import financialYear %}
+
+{% set pageName='Overseas Regions Overview' %}
 
 {% block page_content %}
 
-	<h2>
-		Overseas regions overview
-	</h2>
+	<h2>Overseas regions overview</h2>
+	<h3 class="page-date">{{ financialYear() }}</h3>
 
 	<ol class="overseas-region-groups">
 	{% set loopIndex = 0 %}

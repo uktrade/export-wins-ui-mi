@@ -1,20 +1,21 @@
 {% extends 'layout.html' %}
 
-{% set pageName='Sector Teams Overview' %}
-
 {% from 'macros/overview.html' import overviewBlocks, currentValue %}
+{% from 'macros/dates.html' import financialYear %}
+
+{% set pageName='Sector Teams Overview' %}
 
 {% macro row( sector, index, isHvcGroup=false ) %}
 
-	{% if isHvcGroup %}
+	{%- if isHvcGroup %}
 		{% set urlPath = 'hvc-groups' %}
-	{% else %}
+	{%- else -%}
 		{% set urlPath = 'sector-teams' %}
-	{% endif %}
+	{% endif -%}
 
 	<tr class="sector-teams-list_team_row{% if index % 2 === 1 %} sector-teams-list_team_row--odd{% endif %}">
 		<td class="sector-teams-list_team_cell sector-teams-list_team_cell--name{% if isHvcGroup %} sector-teams-list_team_cell--parent{% endif %}">
-			{%- if isHvcGroup %}<span class="visually-hidden">Parent sector: </span>{% endif -%}
+			{%- if isHvcGroup %}<span class="visually-hidden">HVC group: </span>{% endif -%}
 			<a href="{{ uuid }}/{{ urlPath }}/{{ sector.id }}/">{{- sector.name -}}</a>
 		</td>
 		<td class="sector-teams-list_team_cell sector-teams-list_team_cell--performance">{{ overviewBlocks( sector.hvcPerformance ) }}</td>
@@ -31,14 +32,13 @@
 
 {% block page_content %}
 
-	<h2>
-		Sectors overview
-	</h2>
+	<h2>Sectors overview</h2>
+	<h3 class="page-date page-date--half">{{ financialYear() }}</h3>
 
-	{% set loopIndex = 0 %}
+	{%- set loopIndex = 0 -%}
 
 	<ol class="sector-teams-list">
-		{% for team in sectorTeams %}
+		{%- for team in sectorTeams -%}
 		
 			<li class="sector-teams-list_item">
 

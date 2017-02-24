@@ -24,3 +24,32 @@
 	font-size: 75%;
 	font-weight: normal;
 }
+
+.page-heading {
+	@include bold-36;
+	margin-top: pem( 30, 36 );
+}
+
+.page-sub-heading {
+	@include bold-24;
+	margin-top: pem( 15, 24 );
+}
+
+.page-date {
+	@include core-16;
+	background-color: $date-bg;
+	padding: pem( 5 );
+	margin-top: pem( 15 );
+}
+
+.page-date--half {
+	width: 50%;
+}
+
+.sub-heading-date {
+	@include core-16;
+	background-color: $date-bg;
+	padding: pem( 2 ) pem( 5 );
+	margin-top: pem( 5 );
+	width: 50%;
+}

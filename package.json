@@ -1,6 +1,6 @@
 {
   "name": "export-wins-ui-mi",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "An MI dashboard for Export Wins",
   "main": "server.js",
   "engines": {
@@ -52,6 +52,7 @@
     "body-parser": "1.16.0",
     "compression": "^1.6.2",
     "cookie-parser": "^1.4.3",
+    "dateformat": "2.0.0",
     "express": "^4.14.0",
     "jsonwebtoken": "^7.2.1",
     "morgan": "^1.7.0",
