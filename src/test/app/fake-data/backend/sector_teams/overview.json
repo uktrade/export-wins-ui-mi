@@ -1,365 +1,700 @@
 [
    {
       "hvc_performance": {
-         "red": 0,
-         "amber": 13
+         "amber": 13,
+         "zero": 9
       },
       "id": 1,
-      "name": "deserunt explicabo cum",
+      "name": "vel cupiditate cumque",
       "hvc_groups": [
          {
-            "name": "at non voluptate",
-            "hvc_performance": {
-               "red": 2,
-               "amber": 0,
-               "green": 4
-            },
-            "hvc_target_values": {
-               "target_percentage": 171,
-               "current": 7819,
-               "target": 11013
-            },
-            "id": 25487
-         },
-         {
-            "name": "sint voluptates inventore",
+            "name": "nesciunt voluptatibus aut",
             "hvc_performance": {
                "red": 19,
-               "amber": 14,
-               "green": 6
+               "amber": 6,
+               "green": 25,
+               "zero": 14
             },
-            "hvc_target_values": {
-               "target_percentage": 22,
-               "current": 83007,
-               "target": 377305
+            "values": {
+               "hvc": {
+                  "total_win_percent": {
+                     "confirmed": 75,
+                     "unconfirmed": 66
+                  },
+                  "target": 85630,
+                  "current": {
+                     "confirmed": 48585,
+                     "unconfirmed": 97820
+                  },
+                  "target_percent": {
+                     "confirmed": 7,
+                     "unconfirmed": 28
+                  }
+               }
             },
-            "id": 67186
+            "id": 51469
          },
          {
-            "name": "debitis et saepe",
-            "hvc_performance": {
-               "red": 17,
-               "amber": 17,
-               "green": 2
-            },
-            "hvc_target_values": {
-               "target_percentage": 87,
-               "current": 2110,
-               "target": 2425
-            },
-            "id": 26352
-         },
-         {
-            "name": "esse autem soluta",
-            "hvc_performance": {
-               "red": 1,
-               "amber": 12,
-               "green": 18
-            },
-            "hvc_target_values": {
-               "target_percentage": 87,
-               "current": 19102,
-               "target": 21956
-            },
-            "id": 18630
-         }
-      ],
-      "confirmed_percent": {
-         "hvc": 23,
-         "non_hvc": 77
-      },
-      "hvc_target_values": {
-         "target_percentage": 123,
-         "current": 20525,
-         "target": 89239
-      }
-   },
-   {
-      "hvc_performance": {
-         "red": 2,
-         "amber": 3,
-         "green": 12
-      },
-      "id": 2,
-      "name": "et natus dolorum",
-      "hvc_groups": [
-         {
-            "name": "reprehenderit est vitae",
-            "hvc_performance": {
-               "red": 17,
-               "amber": 9,
-               "green": 21
-            },
-            "hvc_target_values": {
-               "target_percentage": 5,
-               "current": 66348,
-               "target": 1326960
-            },
-            "id": 73850
-         },
-         {
-            "name": "maiores non quas",
-            "hvc_performance": {
-               "red": 5,
-               "amber": 4,
-               "green": 11
-            },
-            "hvc_target_values": {
-               "target_percentage": 71,
-               "current": 29012,
-               "target": 40862
-            },
-            "id": 31325
-         },
-         {
-            "name": "rem quisquam sit",
-            "hvc_performance": {
-               "red": 7,
-               "amber": 1,
-               "green": 16
-            },
-            "hvc_target_values": {
-               "target_percentage": 92,
-               "current": 37130,
-               "target": 40359
-            },
-            "id": 13361
-         },
-         {
-            "name": "nulla accusantium temporibus",
+            "name": "nihil voluptas enim",
             "hvc_performance": {
                "red": 10,
-               "amber": 3,
-               "green": 17
+               "amber": 1,
+               "green": 19,
+               "zero": 12
             },
-            "hvc_target_values": {
-               "target_percentage": 41,
-               "current": 42260,
-               "target": 103073
+            "values": {
+               "hvc": {
+                  "total_win_percent": {
+                     "confirmed": 30,
+                     "unconfirmed": 59
+                  },
+                  "target": 33751,
+                  "current": {
+                     "confirmed": 86312,
+                     "unconfirmed": 23956
+                  },
+                  "target_percent": {
+                     "confirmed": 91,
+                     "unconfirmed": 31
+                  }
+               }
             },
-            "id": 4575
+            "id": 70609
          },
          {
-            "name": "et officia voluptatum",
+            "name": "qui fuga deserunt",
             "hvc_performance": {
-               "red": 18,
-               "amber": 0,
-               "green": 5
+               "red": 13,
+               "amber": 20,
+               "green": 6,
+               "zero": 24
             },
-            "hvc_target_values": {
-               "target_percentage": 66,
-               "current": 69683,
-               "target": 105580
+            "values": {
+               "hvc": {
+                  "total_win_percent": {
+                     "confirmed": 49,
+                     "unconfirmed": 35
+                  },
+                  "target": 38811,
+                  "current": {
+                     "confirmed": 48122,
+                     "unconfirmed": 99951
+                  },
+                  "target_percent": {
+                     "confirmed": 102,
+                     "unconfirmed": 67
+                  }
+               }
             },
-            "id": 4288
-         }
-      ],
-      "confirmed_percent": {
-         "hvc": 16,
-         "non_hvc": 84
-      },
-      "hvc_target_values": {
-         "target_percentage": 6,
-         "current": 49108,
-         "target": 818467
-      }
-   },
-   {
-      "hvc_performance": {
-         "red": 1,
-         "amber": 13,
-         "green": 8
-      },
-      "id": 3,
-      "name": "in omnis ab",
-      "hvc_groups": [
-         {
-            "name": "ut delectus eaque",
-            "hvc_performance": {
-               "red": 21,
-               "amber": 3,
-               "green": 18
-            },
-            "hvc_target_values": {
-               "target_percentage": 99,
-               "current": 48328,
-               "target": 48816
-            },
-            "id": 28303
+            "id": 51949
          },
          {
-            "name": "natus ratione pariatur",
+            "name": "neque consequuntur velit",
             "hvc_performance": {
-               "red": 4,
-               "amber": 15,
-               "green": 7
+               "red": 13,
+               "amber": 24,
+               "green": 24,
+               "zero": 6
             },
-            "hvc_target_values": {
-               "target_percentage": 10,
-               "current": 78623,
-               "target": 786230
+            "values": {
+               "hvc": {
+                  "total_win_percent": {
+                     "confirmed": 100,
+                     "unconfirmed": 66
+                  },
+                  "target": 46588,
+                  "current": {
+                     "confirmed": 58450,
+                     "unconfirmed": 49931
+                  },
+                  "target_percent": {
+                     "confirmed": 95,
+                     "unconfirmed": 76
+                  }
+               }
             },
-            "id": 65351
+            "id": 38775
          },
          {
-            "name": "unde quos quo",
+            "name": "dicta exercitationem aut",
             "hvc_performance": {
                "red": 11,
-               "amber": 18,
-               "green": 20
+               "amber": 20,
+               "green": 2,
+               "zero": 13
             },
-            "hvc_target_values": {
-               "target_percentage": 39,
-               "current": 85066,
-               "target": 218118
+            "values": {
+               "hvc": {
+                  "total_win_percent": {
+                     "confirmed": 8,
+                     "unconfirmed": 19
+                  },
+                  "target": 54040,
+                  "current": {
+                     "confirmed": 27726,
+                     "unconfirmed": 4712
+                  },
+                  "target_percent": {
+                     "confirmed": 122,
+                     "unconfirmed": 10
+                  }
+               }
             },
-            "id": 94300
-         },
-         {
-            "name": "vel tempore iusto",
-            "hvc_performance": {
-               "red": 10,
-               "amber": 24,
-               "green": 4
-            },
-            "hvc_target_values": {
-               "target_percentage": 69,
-               "current": 43849,
-               "target": 63549
-            },
-            "id": 74465
+            "id": 44574
          }
       ],
-      "confirmed_percent": {
-         "hvc": 52,
-         "non_hvc": 48
-      },
-      "hvc_target_values": {
-         "target_percentage": 127,
-         "current": 51671,
-         "target": 191374
+      "values": {
+         "totals": {
+            "confirmed": 14327,
+            "unconfirmed": 27283
+         },
+         "hvc": {
+            "total_win_percent": {
+               "confirmed": 3,
+               "unconfirmed": 40
+            },
+            "target": 86651,
+            "current": {
+               "confirmed": 11891,
+               "unconfirmed": 28102
+            },
+            "target_percent": {
+               "confirmed": 125,
+               "unconfirmed": 103
+            }
+         },
+         "non_hvc": {
+            "total_win_percent": {
+               "confirmed": 97,
+               "unconfirmed": 60
+            },
+            "current": {
+               "confirmed": 53616,
+               "unconfirmed": 68469
+            }
+         }
       }
    },
    {
       "hvc_performance": {
+         "red": 20,
          "amber": 23,
-         "green": 25
+         "green": 19,
+         "zero": 12
       },
-      "id": 4,
-      "name": "et quaerat et",
+      "id": 2,
+      "name": "non impedit nesciunt",
       "hvc_groups": [
          {
-            "name": "ipsam eaque non",
+            "name": "sint sit perspiciatis",
             "hvc_performance": {
-               "red": 8,
+               "red": 0,
                "amber": 22,
-               "green": 1
+               "green": 7,
+               "zero": 15
             },
-            "hvc_target_values": {
-               "target_percentage": 74,
-               "current": 97703,
-               "target": 132031
+            "values": {
+               "hvc": {
+                  "total_win_percent": {
+                     "confirmed": 59,
+                     "unconfirmed": 97
+                  },
+                  "target": 33439,
+                  "current": {
+                     "confirmed": 72540,
+                     "unconfirmed": 12822
+                  },
+                  "target_percent": {
+                     "confirmed": 30,
+                     "unconfirmed": 82
+                  }
+               }
             },
-            "id": 5424
+            "id": 48931
          },
          {
-            "name": "rerum impedit ad",
+            "name": "rerum natus voluptatum",
             "hvc_performance": {
-               "red": 6,
-               "amber": 8,
-               "green": 25
+               "red": 12,
+               "amber": 6,
+               "green": 3,
+               "zero": 11
             },
-            "hvc_target_values": {
-               "target_percentage": 62,
-               "current": 61433,
-               "target": 99085
+            "values": {
+               "hvc": {
+                  "total_win_percent": {
+                     "confirmed": 95,
+                     "unconfirmed": 53
+                  },
+                  "target": 34016,
+                  "current": {
+                     "confirmed": 42581,
+                     "unconfirmed": 70656
+                  },
+                  "target_percent": {
+                     "confirmed": 70,
+                     "unconfirmed": 85
+                  }
+               }
             },
-            "id": 70052
+            "id": 969
+         },
+         {
+            "name": "natus aut voluptatum",
+            "hvc_performance": {
+               "red": 12,
+               "amber": 13,
+               "green": 23,
+               "zero": 1
+            },
+            "values": {
+               "hvc": {
+                  "total_win_percent": {
+                     "confirmed": 51,
+                     "unconfirmed": 2
+                  },
+                  "target": 71458,
+                  "current": {
+                     "confirmed": 44027,
+                     "unconfirmed": 58077
+                  },
+                  "target_percent": {
+                     "confirmed": 100,
+                     "unconfirmed": 16
+                  }
+               }
+            },
+            "id": 43267
+         },
+         {
+            "name": "assumenda repudiandae non",
+            "hvc_performance": {
+               "red": 13,
+               "amber": 12,
+               "green": 14,
+               "zero": 15
+            },
+            "values": {
+               "hvc": {
+                  "total_win_percent": {
+                     "confirmed": 64,
+                     "unconfirmed": 61
+                  },
+                  "target": 71480,
+                  "current": {
+                     "confirmed": 9064,
+                     "unconfirmed": 74759
+                  },
+                  "target_percent": {
+                     "confirmed": 122,
+                     "unconfirmed": 19
+                  }
+               }
+            },
+            "id": 29028
+         },
+         {
+            "name": "dolor aut nesciunt",
+            "hvc_performance": {
+               "red": 12,
+               "amber": 10,
+               "green": 6,
+               "zero": 8
+            },
+            "values": {
+               "hvc": {
+                  "total_win_percent": {
+                     "confirmed": 59,
+                     "unconfirmed": 94
+                  },
+                  "target": 79998,
+                  "current": {
+                     "confirmed": 21389,
+                     "unconfirmed": 28877
+                  },
+                  "target_percent": {
+                     "confirmed": 73,
+                     "unconfirmed": 12
+                  }
+               }
+            },
+            "id": 86658
          }
       ],
-      "confirmed_percent": {
-         "hvc": 8,
-         "non_hvc": 92
+      "values": {
+         "totals": {
+            "confirmed": 153226,
+            "unconfirmed": 2445300
+         },
+         "hvc": {
+            "total_win_percent": {
+               "confirmed": 65,
+               "unconfirmed": 60
+            },
+            "target": 76815,
+            "current": {
+               "confirmed": 47500,
+               "unconfirmed": 24453
+            },
+            "target_percent": {
+               "confirmed": 31,
+               "unconfirmed": 1
+            }
+         },
+         "non_hvc": {
+            "total_win_percent": {
+               "confirmed": 35,
+               "unconfirmed": 40
+            },
+            "current": {
+               "confirmed": 93359,
+               "unconfirmed": 39169
+            }
+         }
+      }
+   },
+   {
+      "hvc_performance": {
+         "red": 14,
+         "amber": 1,
+         "green": 11,
+         "zero": 10
       },
-      "hvc_target_values": {
-         "target_percentage": 6,
-         "current": 64584,
-         "target": 1076400
+      "id": 3,
+      "name": "quia quod iste",
+      "hvc_groups": [
+         {
+            "name": "iusto mollitia ex",
+            "hvc_performance": {
+               "red": 1,
+               "amber": 16,
+               "green": 0,
+               "zero": 1
+            },
+            "values": {
+               "hvc": {
+                  "total_win_percent": {
+                     "confirmed": 8,
+                     "unconfirmed": 10
+                  },
+                  "target": 39179,
+                  "current": {
+                     "confirmed": 1677,
+                     "unconfirmed": 8436
+                  },
+                  "target_percent": {
+                     "confirmed": 84,
+                     "unconfirmed": 66
+                  }
+               }
+            },
+            "id": 97560
+         },
+         {
+            "name": "ut laborum tempore",
+            "hvc_performance": {
+               "red": 12,
+               "amber": 25,
+               "green": 11,
+               "zero": 17
+            },
+            "values": {
+               "hvc": {
+                  "total_win_percent": {
+                     "confirmed": 40,
+                     "unconfirmed": 11
+                  },
+                  "target": 80624,
+                  "current": {
+                     "confirmed": 58029,
+                     "unconfirmed": 59287
+                  },
+                  "target_percent": {
+                     "confirmed": 115,
+                     "unconfirmed": 12
+                  }
+               }
+            },
+            "id": 5382
+         },
+         {
+            "name": "odio ducimus sit",
+            "hvc_performance": {
+               "red": 13,
+               "amber": 11,
+               "green": 14,
+               "zero": 25
+            },
+            "values": {
+               "hvc": {
+                  "total_win_percent": {
+                     "confirmed": 15,
+                     "unconfirmed": 91
+                  },
+                  "target": 41580,
+                  "current": {
+                     "confirmed": 6028,
+                     "unconfirmed": 36346
+                  },
+                  "target_percent": {
+                     "confirmed": 39,
+                     "unconfirmed": 3
+                  }
+               }
+            },
+            "id": 13038
+         },
+         {
+            "name": "molestias voluptatum est",
+            "hvc_performance": {
+               "red": 1,
+               "amber": 19,
+               "green": 17,
+               "zero": 14
+            },
+            "values": {
+               "hvc": {
+                  "total_win_percent": {
+                     "confirmed": 16,
+                     "unconfirmed": 98
+                  },
+                  "target": 7020,
+                  "current": {
+                     "confirmed": 33023,
+                     "unconfirmed": 7200
+                  },
+                  "target_percent": {
+                     "confirmed": 96,
+                     "unconfirmed": 92
+                  }
+               }
+            },
+            "id": 90974
+         }
+      ],
+      "values": {
+         "totals": {
+            "confirmed": 67227,
+            "unconfirmed": 93452
+         },
+         "hvc": {
+            "total_win_percent": {
+               "confirmed": 29,
+               "unconfirmed": 14
+            },
+            "target": 86371,
+            "current": {
+               "confirmed": 45042,
+               "unconfirmed": 27101
+            },
+            "target_percent": {
+               "confirmed": 67,
+               "unconfirmed": 29
+            }
+         },
+         "non_hvc": {
+            "total_win_percent": {
+               "confirmed": 71,
+               "unconfirmed": 86
+            },
+            "current": {
+               "confirmed": 39169,
+               "unconfirmed": 80142
+            }
+         }
       }
    },
    {
       "hvc_performance": {
          "red": 9,
+         "amber": 23,
          "green": 22
       },
-      "id": 5,
-      "name": "neque nihil velit",
+      "id": 4,
+      "name": "in asperiores sed",
       "hvc_groups": [
          {
-            "name": "nobis deserunt enim",
+            "name": "qui neque laboriosam",
             "hvc_performance": {
-               "red": 22,
-               "amber": 2,
-               "green": 22
+               "red": 9,
+               "amber": 6,
+               "green": 21,
+               "zero": 6
             },
-            "hvc_target_values": {
-               "target_percentage": 21,
-               "current": 93054,
-               "target": 443114
+            "values": {
+               "hvc": {
+                  "total_win_percent": {
+                     "confirmed": 2,
+                     "unconfirmed": 39
+                  },
+                  "target": 28704,
+                  "current": {
+                     "confirmed": 87423,
+                     "unconfirmed": 98143
+                  },
+                  "target_percent": {
+                     "confirmed": 125,
+                     "unconfirmed": 73
+                  }
+               }
             },
-            "id": 50985
+            "id": 70331
          },
          {
-            "name": "ipsam id ab",
+            "name": "omnis voluptas repudiandae",
             "hvc_performance": {
-               "red": 19,
-               "amber": 7,
-               "green": 5
+               "red": 12,
+               "amber": 18,
+               "green": 21,
+               "zero": 21
             },
-            "hvc_target_values": {
-               "target_percentage": 50,
-               "current": 93296,
-               "target": 186592
+            "values": {
+               "hvc": {
+                  "total_win_percent": {
+                     "confirmed": 98,
+                     "unconfirmed": 94
+                  },
+                  "target": 21131,
+                  "current": {
+                     "confirmed": 32968,
+                     "unconfirmed": 37236
+                  },
+                  "target_percent": {
+                     "confirmed": 112,
+                     "unconfirmed": 103
+                  }
+               }
             },
-            "id": 30448
-         },
-         {
-            "name": "beatae qui qui",
-            "hvc_performance": {
-               "red": 11,
-               "amber": 17,
-               "green": 4
-            },
-            "hvc_target_values": {
-               "target_percentage": 97,
-               "current": 67457,
-               "target": 69543
-            },
-            "id": 19028
-         },
-         {
-            "name": "ipsa laboriosam dolor",
-            "hvc_performance": {
-               "red": 10,
-               "amber": 15,
-               "green": 5
-            },
-            "hvc_target_values": {
-               "target_percentage": 58,
-               "current": 71611,
-               "target": 123467
-            },
-            "id": 91853
+            "id": 98841
          }
       ],
-      "confirmed_percent": {
-         "hvc": 27,
-         "non_hvc": 73
+      "values": {
+         "totals": {
+            "confirmed": 257781,
+            "unconfirmed": 55273
+         },
+         "hvc": {
+            "total_win_percent": {
+               "confirmed": 67,
+               "unconfirmed": 11
+            },
+            "target": 74990,
+            "current": {
+               "confirmed": 54134,
+               "unconfirmed": 66880
+            },
+            "target_percent": {
+               "confirmed": 21,
+               "unconfirmed": 121
+            }
+         },
+         "non_hvc": {
+            "total_win_percent": {
+               "confirmed": 33,
+               "unconfirmed": 89
+            },
+            "current": {
+               "confirmed": 72097,
+               "unconfirmed": 49517
+            }
+         }
+      }
+   },
+   {
+      "hvc_performance": {
+         "red": 25,
+         "amber": 21,
+         "green": 1,
+         "zero": 7
       },
-      "hvc_target_values": {
-         "target_percentage": 42,
-         "current": 69576,
-         "target": 165657
+      "id": 5,
+      "name": "consequatur praesentium qui",
+      "hvc_groups": [
+         {
+            "name": "perspiciatis in porro",
+            "hvc_performance": {
+               "red": 8,
+               "amber": 25,
+               "green": 9,
+               "zero": 3
+            },
+            "values": {
+               "hvc": {
+                  "total_win_percent": {
+                     "confirmed": 90,
+                     "unconfirmed": 52
+                  },
+                  "target": 60584,
+                  "current": {
+                     "confirmed": 38807,
+                     "unconfirmed": 56425
+                  },
+                  "target_percent": {
+                     "confirmed": 114,
+                     "unconfirmed": 62
+                  }
+               }
+            },
+            "id": 18799
+         },
+         {
+            "name": "nam quod molestiae",
+            "hvc_performance": {
+               "red": 25,
+               "amber": 4,
+               "green": 12,
+               "zero": 13
+            },
+            "values": {
+               "hvc": {
+                  "total_win_percent": {
+                     "confirmed": 50,
+                     "unconfirmed": 91
+                  },
+                  "target": 93713,
+                  "current": {
+                     "confirmed": 32659,
+                     "unconfirmed": 81531
+                  },
+                  "target_percent": {
+                     "confirmed": 39,
+                     "unconfirmed": 101
+                  }
+               }
+            },
+            "id": 22718
+         }
+      ],
+      "values": {
+         "totals": {
+            "confirmed": 106713,
+            "unconfirmed": 73619
+         },
+         "hvc": {
+            "total_win_percent": {
+               "confirmed": 92,
+               "unconfirmed": 20
+            },
+            "target": 34112,
+            "current": {
+               "confirmed": 55491,
+               "unconfirmed": 26503
+            },
+            "target_percent": {
+               "confirmed": 52,
+               "unconfirmed": 36
+            }
+         },
+         "non_hvc": {
+            "total_win_percent": {
+               "confirmed": 8,
+               "unconfirmed": 80
+            },
+            "current": {
+               "confirmed": 85627,
+               "unconfirmed": 29898
+            }
+         }
       }
    }
 ]

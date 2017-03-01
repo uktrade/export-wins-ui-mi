@@ -3,13 +3,13 @@
 
 .key {
 	border: 1px solid $grey-2;
-	padding: pem( 15 );
+	padding: pem( 12 );
 	overflow: hidden;
 }
 
 .key_heading {
 	@include bold-16;
-	margin-bottom: pem( 15 );
+	margin-bottom: pem( 10 );
 }
 
 .key_list {

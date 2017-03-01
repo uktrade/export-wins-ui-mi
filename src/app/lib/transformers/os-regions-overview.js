@@ -73,6 +73,14 @@ const groups = [
 	}
 ];
 
+function createTargetPercent( percentage ){
+	return {
+		capped: Math.min( percentage, 100 ),
+		isOver: ( percentage > 100 ),
+		value: percentage
+	};
+}
+
 module.exports = function( input ){
 
 	let output = [];
@@ -91,25 +99,32 @@ module.exports = function( input ){
 			regions: group.regions.map( ( regionConfig ) => {
 				
 				let region = regions[ regionConfig.id ];
+				const hvcValues = region.values.hvc;
 
 				return {
-					colour: regionConfig.colour,
 					id: region.id,
+					colour: regionConfig.colour,
 					name: region.name,
 					markets: region.markets,
-					value: {
-						current: region.hvc_target_values.current,
-						target: region.hvc_target_values.target,
-						percentage: Math.min( Math.round( region.hvc_target_values.target_percentage ), 100 )
+					values: {
+						hvc: {
+							target: hvcValues.target,
+							current: hvcValues.current,
+							targetPercent: {
+								confirmed: createTargetPercent( hvcValues.target_percent.confirmed ),
+								unconfirmed: createTargetPercent( hvcValues.target_percent.unconfirmed )
+							}
+						}
 					},
 					confirmedPercent: {
-						hvc: region.confirmed_percent.hvc,
-						nonHvc: region.confirmed_percent.non_hvc
+						hvc: hvcValues.total_win_percent.confirmed,
+						nonHvc: region.values.non_hvc.total_win_percent.confirmed
 					},
 					hvcPerformance: {
 						red: ( region.hvc_performance.red || 0 ),
 						amber: ( region.hvc_performance.amber || 0 ),
-						green: ( region.hvc_performance.green || 0 )
+						green: ( region.hvc_performance.green || 0 ),
+						zero: ( region.hvc_performance.zero || 0 )
 					}
 				};
 			} )

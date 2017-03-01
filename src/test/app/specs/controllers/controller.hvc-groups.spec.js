@@ -22,7 +22,7 @@ describe( 'Overseas Regions controller', function(){
 		it( 'Should get the list data and render the correct view', function( done ){
 		
 			spyOn( backendService, 'getHvcGroups' ).and.callThrough();
-			spyOn( errorHandler, 'handler' ).and.callThrough();
+			spyOn( errorHandler, 'createHandler' ).and.callThrough();
 
 			const req = {
 				alice: '87654'
@@ -35,7 +35,7 @@ describe( 'Overseas Regions controller', function(){
 				expect( backendService.getHvcGroups ).toHaveBeenCalledWith( req.alice );
 				expect( view ).toEqual( 'hvc-groups/list.html' );
 				expect( data.hvcGroups ).toBeDefined();
-				expect( errorHandler.handler ).toHaveBeenCalled();
+				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				done();
 			} } );
 		} );

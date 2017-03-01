@@ -8,19 +8,56 @@
 	<p class="visually-hidden">
 		Red: {{ hvcPerformance.red }},
 		Amber: {{ hvcPerformance.amber }},
-		Green: {{ hvcPerformance.green }}
+		Green: {{ hvcPerformance.green }},
+		Zero: {{ hvcPerformance.zero }}
 	</p>
 
 	<div class="overview-blocks">
 		{% if hvcPerformance.red > 0 %}{{ blocks( 'red', hvcPerformance.red ) }}<br>{% endif -%}
 		{% if hvcPerformance.amber > 0 %}{{ blocks( 'amber', hvcPerformance.amber ) }}<br>{% endif -%}
 		{% if hvcPerformance.green > 0 %}{{ blocks( 'green', hvcPerformance.green ) }}<br>{% endif %}
+		{% if hvcPerformance.zero > 0 %}{{ blocks( 'zero', hvcPerformance.zero ) }}<br>{% endif %}
 	</div>
 {% endmacro %}
 
-{% macro currentValue( value ) %}
+{% macro currentValue( value, isSectorTeam=false ) %}
 	&pound;{{ value.current | largeNumber }}
 	<span class="overview-progress">
-		<span class="overview-progress_amount" style="width: {{ value.percentage }}%"></span>
+		<span class="overview-progress_amount{% if isSectorTeam %} overview-progress_amount--large{% endif %}" style="width: {{ value.percentage }}%"></span>
 	</span>
+{% endmacro %}
+
+{% macro currentValueOver( values, isSectorTeam=false ) %}
+
+	{%- if values.targetPercent.confirmed.isOver %}
+		{% set overClass = ' overview-progress--confirmed-over' %}
+	{% elif values.targetPercent.unconfirmed.isOver %}
+		{% set overClass = ' overview-progress--unconfirmed-over' %}
+	{% endif -%}
+
+	&pound;{{ values.current.confirmed | largeNumber }}
+	<span class="overview-progress{% if isSectorTeam %} overview-progress--large{% endif %}{{ overClass }}">
+
+		<span class="overview-progress_amount" style="width: {{ values.targetPercent.confirmed.capped }}%"></span>
+		{%- if values.targetPercent.unconfirmed.capped > values.targetPercent.confirmed.capped -%}
+		<span class="overview-progress_amount-unconfirmed" style="width: {{ values.targetPercent.unconfirmed.capped }}%"></span>
+		{%- endif -%}
+
+		{%- if values.targetPercent.confirmed.isOver -%}
+		<span class="overview-progress_over-marker"></span>
+		<span class="overview-progress_over-amount">{{ values.targetPercent.confirmed.value }}%</span>
+		{%- elif values.targetPercent.unconfirmed.isOver -%}
+		<span class="overview-progress_over-marker-unconfirmed"></span>
+		{%- endif -%}
+	</span>
+{% endmacro %}
+
+{% macro overviewPie( nonHvc ) %}
+	<div class="pie pie--hvc-vs-non pie--center" style="animation-delay: -{{ nonHvc | piePercentage }}s">
+	{%- if nonHvc == 100 or nonHvc == 0 -%}
+	<span class="pie-text">{{ nonHvc }}%</span>
+	{%- else -%}
+		{{ nonHvc }}%
+	{%- endif -%}
+	</div>
 {% endmacro %}

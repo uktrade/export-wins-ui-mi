@@ -1,40 +1,74 @@
 @import 'colours';
 @import 'helpers';
 
+.sectors-overview-heading {
+	@extend .page-sub-heading;
+	margin-bottom: 1em;
+}
+
+.sectors-overview-date-heading {
+
+	margin-top: 1em;
+
+	@include media(desktop){
+
+		margin-top: 5em;
+	}
+}
+
 .sector-teams-list {
 	list-style: none;
 	padding: 0;
 }
 
+$sector-teams-list-font-size: 14;
+
 .sector-teams-list_item {
 
+	@include core-14;// $sector-teams-list-font-size should match this
 	clear: left;
 	overflow: hidden;
 	line-height: 1.1;
+	border-bottom: 2px solid #000;
+	padding-top: pem( 10, $sector-teams-list-font-size );
+	padding-bottom: pem( 10, $sector-teams-list-font-size );
+
 
 	&:first-of-type {
 
+		padding-top: 0;
+
 		.sector-teams-list_image {
-			margin-top: 2.5em;
+			margin-top: pem( 75, $sector-teams-list-font-size );
 		}
 	}
 }
 
 .sector-teams-list_image {
 	float: left;
-	margin-right: pem( 15, 16 );
+	margin-right: pem( 15, $sector-teams-list-font-size );
+	margin-top: pem( 10, $sector-teams-list-font-size );
 }
 
 .sector-teams-list_team {
 	border-collapse: collapse;
 }
 
-.sector-teams-list_team_row--odd {
+.sector-teams-list_team_row {
+	font-weight: bold;
+	@include bold-16;
+}
+
+.sector-teams-list_team_row--hvc {
 	background-color: $grey-4;
+	border-top: 4px solid #fff;
+	font-weight: normal;
+	@include core-14;
 }
 
 .sector-teams-list_team_heading {
-
+	@include bold-14;
+	border-bottom: 2px solid #000;
 }
 
 .sector-teams-list_team_heading--target {
@@ -42,42 +76,75 @@
 }
 
 .sector-teams-list_team_heading--hvc-non-hvc {
-	padding-left: pem( 20, 16 );
+	padding-left: pem( 20, $sector-teams-list-font-size );
 }
 
 .sector-teams-list_team_cell {
-	padding-top: pem( 6, 16 );
-	padding-bottom: pem( 6, 16 );	
+	padding-top: pem( 6, $sector-teams-list-font-size );
+	padding-bottom: pem( 6, $sector-teams-list-font-size );
 }
 
+.sector-teams-list_team_cell a {
+	text-decoration: none;
+}
+
+// $sector-teams-cell-name-width: 20%;
+// $sector-teams-cell-performance-width: 35%;
+// $sector-teams-cell-current-value-width: 15%;
+// $sector-teams-cell-target-value-width: $sector-teams-cell-current-value-width;
+// $sector-teams-cell-value-percentage-width: 0%;
+// $sector-teams-cell-hvc-non-hvc-width: 15%;
+
+$sector-teams-cell-name-width: 26%;
+$sector-teams-cell-performance-width: 18%;
+$sector-teams-cell-current-value-width: 12%;
+$sector-teams-cell-target-value-width: $sector-teams-cell-current-value-width;
+$sector-teams-cell-value-percentage-width: 0%;
+$sector-teams-cell-hvc-non-hvc-width: 12%;
+$sector-teams-cell-non-hvc-value-width: 10%;
+$sector-teams-cell-total-value-width: 10%;
+
 .sector-teams-list_team_cell--name {
-	width: 20%;
-	padding-right: pem( 10, 16 );
+	width: $sector-teams-cell-name-width;
+	padding-right: pem( 10, $sector-teams-list-font-size );
 }
 
 .sector-teams-list_team_cell--performance{
-	width: 35%;
+	width: $sector-teams-cell-performance-width;
+	padding-right: pem( 10, $sector-teams-list-font-size );
 }
 
 .sector-teams-list_team_cell--current-value {
-	width: 15%;
+	width: $sector-teams-cell-current-value-width;
 	position: relative;
 }
 
 .sector-teams-list_team_cell--target-value {
-	width: 15%;
+	width: $sector-teams-cell-target-value-width;
 	text-align: right;
-	padding-bottom: 20px; //padding for the progress bar to line up the text
+	padding-bottom: pem( 18, 14 ); //padding for the progress bar to line up the text
 }
 
 .sector-teams-list_team_cell--value-percentage {
-	width: 0%;
+	width: $sector-teams-cell-value-percentage-width;
 }
 
 .sector-teams-list_team_cell--hvc-non-hvc {
-	width: 15%;
+	width: $sector-teams-cell-hvc-non-hvc-width;
 }
 
-.sector-teams-list_team_cell--parent {
-	padding-left: pem( 20, 16 );
+.sector-teams-list_team_cell--non-hvc-value {
+	width: $sector-teams-cell-non-hvc-value-width
+}
+
+.sector-teams-list_team_cell--total-value {
+	width: $sector-teams-cell-total-value-width
+}
+
+.sector-teams-list_team_cell--hvc-group {
+	padding-left: pem( 12, $sector-teams-list-font-size );
+}
+
+.sector-teams-list_team_cell--large {
+	@include bold-19;
 }

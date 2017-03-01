@@ -1,5 +1,8 @@
 @import 'mi-colours';
 
+$overview-blocks-size: 10px;
+$overview-blocks-size-zero: $overview-blocks-size - 2;
+
 .overview-blocks {
 	display: inline-block;
 	line-height: 1;
@@ -7,8 +10,8 @@
 
 .overview-blocks_block {
 	display: inline-block;
-	height: 10px;
-	width: 10px;
+	height: $overview-blocks-size;
+	width: $overview-blocks-size;
 	margin-right: 4px;
 }
 
@@ -22,4 +25,11 @@
 
 .overview-blocks_block--green {
 	background-color: $mi-green;
+}
+
+.overview-blocks_block--zero {
+	border: 1px solid $grey-2;
+	background-color: #fff;
+	height: $overview-blocks-size-zero;
+	width: $overview-blocks-size-zero;
 }

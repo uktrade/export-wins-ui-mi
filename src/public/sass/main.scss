@@ -53,3 +53,8 @@
 	margin-top: pem( 5 );
 	width: 50%;
 }
+
+.column-date {
+	@extend .page-date;
+	margin-top: 0;
+}

@@ -36,31 +36,44 @@ describe( 'Overseas Regions Overview transformer', function(){
 
 				group.regions.forEach( ( region ) => {
 
+					expect( region.id ).toBeDefined();
 					expect( region.colour ).toBeDefined();
 					expect( region.name ).toBeDefined();
 					expect( region.markets ).toBeDefined();
-					expect( region.value.current ).toBeDefined();
-					expect( region.value.target ).toBeDefined();
-					expect( region.value.percentage ).toBeDefined();
+					expect( region.values.hvc.target ).toBeDefined();
+					expect( region.values.hvc.current.confirmed ).toBeDefined();
+					expect( region.values.hvc.current.unconfirmed ).toBeDefined();
+					expect( region.values.hvc.targetPercent.confirmed ).toBeDefined();
+					expect( region.values.hvc.targetPercent.unconfirmed ).toBeDefined();
 					expect( region.confirmedPercent.hvc ).toBeDefined();
 					expect( region.confirmedPercent.nonHvc ).toBeDefined();
 					expect( region.hvcPerformance.red ).toBeDefined();
 					expect( region.hvcPerformance.amber ).toBeDefined();
 					expect( region.hvcPerformance.green ).toBeDefined();
+					expect( region.hvcPerformance.zero ).toBeDefined();
 				} );
 			} );
 		} );
 
-		it( 'Should limit the percentages to 100', function() {
+		it( 'Should add a capped percentage of 100, along with a marker to say it is over', function() {
 			
-			expect( output[ 0 ].regions[ 0 ].value.percentage ).toEqual( 100 );
-			expect( output[ 1 ].regions[ 0 ].value.percentage ).toEqual( 100 );
+			expect( output[ 0 ].regions[ 0 ].values.hvc.targetPercent.unconfirmed.isOver ).toEqual( true );
+			expect( output[ 0 ].regions[ 0 ].values.hvc.targetPercent.unconfirmed.capped ).toEqual( 100 );
+			expect( output[ 0 ].regions[ 0 ].values.hvc.targetPercent.unconfirmed.value ).toEqual( 105 );
+
+			expect( output[ 0 ].regions[ 2 ].values.hvc.targetPercent.unconfirmed.isOver ).toEqual( false );
+			expect( output[ 0 ].regions[ 2 ].values.hvc.targetPercent.unconfirmed.capped ).toEqual( 89 );
+			expect( output[ 0 ].regions[ 2 ].values.hvc.targetPercent.unconfirmed.value ).toEqual( 89 );
+
+			expect( output[ 4 ].regions[ 1 ].values.hvc.targetPercent.confirmed.isOver ).toEqual( true );
+			expect( output[ 4 ].regions[ 1 ].values.hvc.targetPercent.confirmed.capped ).toEqual( 100 );
+			expect( output[ 4 ].regions[ 1 ].values.hvc.targetPercent.confirmed.value ).toEqual( 129 );
 		});
 
 		it( 'Should return whole numbers for the percentages', function(){
 
-			expect( output[ 0 ].regions[ 0 ].confirmedPercent.hvc ).toEqual( 13 );
-			expect( output[ 1 ].regions[ 0 ].confirmedPercent.hvc ).toEqual( 16 );
+			expect( output[ 0 ].regions[ 0 ].confirmedPercent.hvc ).toEqual( 22 );
+			expect( output[ 1 ].regions[ 0 ].confirmedPercent.hvc ).toEqual( 46 );
 		} );
 
 	} );

@@ -1,13 +1,95 @@
+$overview-progress-height: 12px;
+$overview-progress-height-large: 16px;
+
 .overview-progress {
 	border: 1px solid $grey-1;
 	display: inline-block;
 	width: 200%; /* make this span the current and target cells */
 	line-height: 10px;
 	float: left; //This was positioned absolutely, but IE 11 seemed to have an issue working out the position inside the flex item!?!
+	position: relative;
+	height: $overview-progress-height;
 }
 
 .overview-progress_amount {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: $hvc;
+	height: $overview-progress-height;
+	z-index: 10;
+}
+
+.overview-progress_amount-unconfirmed {
+
+	@extend .overview-progress_amount;
+	background-color: $unconfirmed;
+	z-index: 9;
+}
+
+.overview-progress--confirmed-over {
+	border-color: $hvc;
+}
+
+.overview-progress--unconfirmed-over {
+	border-color: $unconfirmed;
+}
+
+
+.overview-progress_over-amount {
+	position: absolute;
+	top: 1px;
+	right: pem( 5, 12 );
+	color: #fff;
+	font-size: 12px;
+	z-index: 11;
+}
+
+$overview-progress-arrow-size: ( ( $overview-progress-height + 2 ) / 2 );
+$overview-progress-arrow-size-large: ( ( $overview-progress-height-large + 2 ) / 2 );
+
+.overview-progress_over-marker {
+	position: absolute;
+	top: -1px;//for border
+	right: -( $overview-progress-arrow-size + 1 );//plus one for border
+
+	width: 0;
+	height: 0;
+	border-top: $overview-progress-arrow-size solid transparent;
+	border-bottom: $overview-progress-arrow-size solid transparent;
+	border-left: $overview-progress-arrow-size solid $hvc;
 	display: inline-block;
-	background-color: $grey-2;
-	height: 10px;
+}
+
+.overview-progress_over-marker-unconfirmed {
+	@extend .overview-progress_over-marker;
+	border-left-color: $unconfirmed;
+}
+
+.overview-progress--large {
+
+	height: $overview-progress-height-large;
+
+	.overview-progress_over-amount {
+		font-size: 14px;
+		top: 3px;
+		right: pem( 4, 14 );
+	}
+
+	.overview-progress_amount {
+		height: $overview-progress-height-large;
+	}
+
+	.overview-progress_over-marker {
+		right: -( $overview-progress-arrow-size-large + 1 );//plus one for border
+
+		border-top: $overview-progress-arrow-size-large solid transparent;
+		border-bottom: $overview-progress-arrow-size-large solid transparent;
+		border-left: $overview-progress-arrow-size-large solid $hvc;
+	}
+
+	.overview-progress_over-marker-unconfirmed {
+		@extend .overview-progress_over-marker;
+		border-left-color: $unconfirmed;
+	}
 }
