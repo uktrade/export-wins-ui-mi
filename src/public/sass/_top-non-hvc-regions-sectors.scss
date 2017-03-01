@@ -39,12 +39,11 @@ $right-padding: 2em;
 }
 
 $region-width: 15%;
-$sector-width: 15%;
+$sector-width: 23%;
 $percent-width: 40%;
-$total-value-width: 8%;
+$total-value-width: 9%;
 $total-wins-width: 6%;
-$average-win-width: 6%;
-$average-percent-width: 10%;
+$average-win-width: 7%;
 
 .top-non-hvc_table_cell--region {
 	width: $region-width;
@@ -81,20 +80,13 @@ $average-percent-width: 10%;
 	@include left-border;
 	@include core-14;
 	padding-left: 0.5em;
-}
-
-.top-non-hvc_table_cell--average-percent {
-	width: $average-percent-width;
+	text-align: right;
 }
 
 .top-non-hvc_table_cell_bar {
 	background-color: $non-hvc;
 	display: inline-block;
 	height: 10px;
-}
-
-.top-non-hvc_table_cell_bar--average {
-	background-color: $grey-2;
 }
 
 .top-non-hvc_table_markers-row {

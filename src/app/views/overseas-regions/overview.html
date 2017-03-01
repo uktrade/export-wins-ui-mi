@@ -1,14 +1,22 @@
 {% extends 'layout.html' %}
 
-{% from 'macros/overview.html' import overviewBlocks, currentValue %}
+{% from 'macros/overview.html' import overviewBlocks, currentValueOver, overviewPie %}
 {% from 'macros/dates.html' import financialYear %}
 
 {% set pageName='Overseas Regions Overview' %}
 
 {% block page_content %}
 
-	<h2>Overseas regions overview</h2>
-	<h3 class="page-date">{{ financialYear() }}</h3>
+	<h2 class="overseas-regions-overview-heading">Overseas regions overview</h2>
+
+	<section class="grid-row">
+		<div class="column-half">
+			<h3 class="column-date">{{ financialYear() }}</h3>
+		</div>
+		<div class="column-half">
+			{% include 'partials/key.html' %}
+		</div>
+	</section>
 
 	<ol class="overseas-region-groups">
 	{% set loopIndex = 0 %}
@@ -28,13 +36,13 @@
 				<thead{% if loop.index > 1 %} class="visually-hidden"{% endif %}>
 					<tr class="overseas-region-overview-data_headings">
 						<th class="overseas-region-overview-data_headings_heading"><span class="visually-hidden">Region name (and countries)</span></th>
-						<th class="overseas-region-overview-data_headings_heading">HVC performance (each square represents an HVC within a region)</th>
-						<th class="overseas-region-overview-data_headings_heading">Current</th>
+						<th class="overseas-region-overview-data_headings_heading">HVCs<br>(each square equals 1 HVC)</th>
+						<th class="overseas-region-overview-data_headings_heading">Current value</th>
 						<th class="overseas-region-overview-data_headings_heading overseas-region-overview-data_headings_heading--target">Target</th>
 						<th class="overseas-region-overview-data_headings_heading"><span class="visually-hidden">Progress against target</span></th>
 						<th class="overseas-region-overview-data_headings_heading overseas-region-overview-data_headings_heading--hvc-non-hvc">
 							<span class="overseas-region-overview-data_heading_hvc-non-hvc_block overseas-region-overview-data_heading_hvc-non-hvc_block--hvc"></span>
-							HVC vs.<br>
+							HVC<br>
 							<span class="overseas-region-overview-data_heading_hvc-non-hvc_block overseas-region-overview-data_heading_hvc-non-hvc_block--non-hvc"></span>
 							non-HVC
 						</th>
@@ -58,16 +66,16 @@
 							{{- overviewBlocks( region.hvcPerformance ) -}}
 						</td>
 						<td class="overseas-region-overview-data_cell overseas-region-overview-data_region_current">
-							{{- currentValue( region.value ) -}}
+							{{- currentValueOver( region.values.hvc ) -}}
 						</td>
 						<td class="overseas-region-overview-data_cell overseas-region-overview-data_region_target">
-							&pound;{{ region.value.target | largeNumber }}
+							&pound;{{ region.values.hvc.target | largeNumber }}
 						</td>
 						<td class="overseas-region-overview-data_cell overseas-region-overview-data_region_progress">
 							<span class="visually-hidden">{{ region.value.percentage }}%</span>
 						</td>
 						<td class="overseas-region-overview-data_cell overseas-region-overview-data_region_hvc-non-hvc">
-							<div class="pie pie--hvc-vs-non pie--center" style="animation-delay: -{{ region.confirmedPercent.nonHvc | piePercentage }}s">{{ region.confirmedPercent.nonHvc }}%</div>
+							{{ overviewPie( region.confirmedPercent.nonHvc ) }}
 						</td>
 
 					</tr>

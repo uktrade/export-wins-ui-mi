@@ -9,7 +9,6 @@
 				<th class="top-non-hvc_table_heading">Total value of wins &pound;</th>
 				<th class="top-non-hvc_table_heading">Number of wins</th>
 				<th class="top-non-hvc_table_heading">Av. win value &pound;</th>
-				<th><span class="visually-hidden">Percent of average</span></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -24,10 +23,6 @@
 				<td class="top-non-hvc_table_cell top-non-hvc_table_cell--total-value">{{ item.totalValue | largeNumber }}</td>
 				<td class="top-non-hvc_table_cell top-non-hvc_table_cell--total-wins">{{ item.totalWins }}</td>
 				<td class="top-non-hvc_table_cell top-non-hvc_table_cell--average-win-value">{{ item.averageWinValue | largeNumber }}</td>
-				<td class="top-non-hvc_table_cell top-non-hvc_table_cell--average-percent">
-					<span class="visually-hidden">{{ item.averageWinPercent }}%</span>
-					<span class="top-non-hvc_table_cell_bar top-non-hvc_table_cell_bar--average" style="width:{{ item.averageWinPercent }}%"></span>
-				</td>
 			</tr>
 			{% endfor %}
 

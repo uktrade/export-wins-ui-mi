@@ -27,7 +27,7 @@ describe( 'Overseas Regions controller', function(){
 			};
 
 			spyOn( backendService, 'getSectorTeams' ).and.callThrough();
-			spyOn( errorHandler, 'handler' ).and.callThrough();
+			spyOn( errorHandler, 'createHandler' ).and.callThrough();
 
 			interceptBackend.getStub( '/mi/sector_teams/', 200, '/sector_teams/' );
 
@@ -37,7 +37,7 @@ describe( 'Overseas Regions controller', function(){
 				expect( view ).toEqual( 'index.html' );
 				expect( data.sectorTeams ).toBeDefined();
 				expect( data.overseasRegions ).not.toBeDefined();
-				expect( errorHandler.handler ).toHaveBeenCalled();
+				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				done();
 			} } );
 		} );
@@ -55,7 +55,7 @@ describe( 'Overseas Regions controller', function(){
 			};
 	
 			spyOn( backendService, 'getSectorTeamsAndOverseasRegions' ).and.callThrough();
-			spyOn( errorHandler, 'handler' ).and.callThrough();
+			spyOn( errorHandler, 'createHandler' ).and.callThrough();
 
 			interceptBackend.getStub( '/mi/sector_teams/', 200, '/sector_teams/' );
 			interceptBackend.getStub( '/mi/os_regions/', 200, '/os_regions/' );
@@ -66,7 +66,7 @@ describe( 'Overseas Regions controller', function(){
 				expect( view ).toEqual( 'index.html' );
 				expect( data.sectorTeams ).toBeDefined();
 				expect( data.overseasRegions ).toBeDefined();
-				expect( errorHandler.handler ).toHaveBeenCalled();
+				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				done();
 			} } );
 		} );

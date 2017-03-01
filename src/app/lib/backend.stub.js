@@ -44,6 +44,12 @@ module.exports = {
 		let path;
 		let stub;
 
+		response.request = {
+			uri: {
+				path: url
+			}
+		};
+
 		for( [ path, stub ] of stubs ){
 
 			if( path.test( url ) ){

@@ -17,7 +17,7 @@ module.exports = function( req, res ){
 
 			res.render( 'index.html', { sectorTeams, overseasRegions } );
 
-		} ).catch( renderError.handler( res ) );
+		} ).catch( renderError.createHandler( res ) );
 
 	} else {
 	
@@ -27,6 +27,6 @@ module.exports = function( req, res ){
 
 			res.render( 'index.html', { sectorTeams } );
 
-		} ).catch( renderError.handler( res ) );			
+		} ).catch( renderError.createHandler( res ) );
 	}
 };

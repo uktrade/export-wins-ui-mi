@@ -1,6 +1,5 @@
 const generateSchema = require( './lib/generate-schema' );
-const calculateTarget = require( './lib/calculate-target' );
-const calculateConfirmedPercentages = require( './lib/calculate-confirmed-percentages' );
+const calculateOverviewValues = require( './lib/calculate-overview-values' );
 
 module.exports = {
 
@@ -17,13 +16,11 @@ module.exports = {
 		for( let sector of overview ){
 
 			sector.id = sectorId++; // id's need to match icon ids
-			calculateTarget( sector.hvc_target_values );
-			calculateConfirmedPercentages( sector.confirmed_percent );
+			calculateOverviewValues( sector.values );
 
 			for( let hvcGroup of sector.hvc_groups ){
 
-				calculateTarget( hvcGroup.hvc_target_values );
-				calculateConfirmedPercentages( hvcGroup.confirmed_percent );
+				calculateOverviewValues( hvcGroup.values );
 			}
 		}
 

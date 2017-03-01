@@ -18,7 +18,7 @@ module.exports = {
 			
 			res.render( 'sector-teams/overview', { sectorTeams } );
 			
-		} ).catch( renderError.handler( res ) );
+		} ).catch( renderError.createHandler( res ) );
 	},
 
 	list: function( req, res ){
@@ -27,7 +27,7 @@ module.exports = {
 
 			res.render( 'sector-teams/list.html', { sectorTeams } );
 
-		} ).catch( renderError.handler( res ) );
+		} ).catch( renderError.createHandler( res ) );
 	},
 
 	team: function( req, res ){
@@ -43,7 +43,7 @@ module.exports = {
 
 			res.render( 'sector-teams/detail.html', {
 				
-				sectorName: winsData.name,
+				sectorName: ( winsData.name + ' Sector Team' ),
 				winSummary: {
 					target: winsData.hvcs.target,
 					totalConfirmed: winsData.wins.export.hvc.value.confirmed,
@@ -58,6 +58,6 @@ module.exports = {
 				topNonHvcScale: topNonHvcDataSet.create( topNonHvc )
 			} );
 
-		} ).catch( renderError.handler( res ) );
+		} ).catch( renderError.createHandler( res ) );
 	}
 };

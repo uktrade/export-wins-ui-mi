@@ -1,6 +1,10 @@
 @import 'colours';
 @import 'mi-colours';
 
+.overseas-regions-overview-heading {
+	@extend .page-sub-heading;
+	margin-bottom: 1em;
+}
 
 .overseas-region-groups {
 	list-style: none;
@@ -39,6 +43,7 @@
 
 .overseas-region-overview-data_headings {
 	line-height: 1;
+	@include bold-14;
 }
 
 .overseas-region-overview-data_heading_hvc-non-hvc_block {

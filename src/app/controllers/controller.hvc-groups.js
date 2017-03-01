@@ -17,7 +17,7 @@ module.exports = {
 
 			res.render( 'hvc-groups/list.html', { hvcGroups } );
 
-		} ).catch( renderError.handler( res ) );
+		} ).catch( renderError.createHandler( res ) );
 	},
 
 	group: function( req, res ){
@@ -44,6 +44,6 @@ module.exports = {
 				hvcTargetPerformance: hvcTargetPerformanceDataSet.create( campaigns )
 			} );
 
-		} ).catch( renderError.handler( res ) );
+		} ).catch( renderError.createHandler( res ) );
 	}
 };

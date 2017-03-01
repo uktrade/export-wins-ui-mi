@@ -18,7 +18,7 @@ module.exports = {
 
 			res.render( 'overseas-regions/overview.html', { regionGroups } );
 		
-		} ).catch( renderError.handler( res ) );
+		} ).catch( renderError.createHandler( res ) );
 	},
 
 	list: function( req, res ){
@@ -27,7 +27,7 @@ module.exports = {
 
 			res.render( 'overseas-regions/list.html', { regions } );
 		
-		} ).catch( renderError.handler( res ) );
+		} ).catch( renderError.createHandler( res ) );
 	},
 
 	region: function( req, res ){
@@ -58,6 +58,6 @@ module.exports = {
 				topNonHvcScale: topNonHvcDataSet.create( topNonHvc ),
 			} );
 
-		} ).catch( renderError.handler( res ) );
+		} ).catch( renderError.createHandler( res ) );
 	}
 };

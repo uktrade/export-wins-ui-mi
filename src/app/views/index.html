@@ -13,9 +13,9 @@
 	<div class="grid-row">
 		<div class="column-one-third">
 			
-			<h2 class="sector-list-heading">Sector</h2>
+			<h2 class="sector-list-heading">Sector Teams</h2>
 
-			<a href="{{ uuid }}/sector-teams/overview/" class="sectors-overview-link">Sectors overview</a>
+			<a href="{{ uuid }}/sector-teams/overview/" class="sectors-overview-link">Sector Teams overview</a>
 
 			<ul class="sector-list">
 			{% for team in sectorTeams %}
@@ -25,7 +25,7 @@
 					<ul class="sector-list_parent-sectors">
 						{% for hvcGroup in team.hvc_groups %}
 						<li>
-							<a href="{{ uuid }}/hvc-groups/{{ hvcGroup.id }}/">{{ hvcGroup.name }}</a>
+							<a href="{{ uuid }}/hvc-groups/{{ hvcGroup.id }}/">{{ hvcGroup.name }} HVCs</a>
 						</li>
 						{% endfor %}
 					</ul>

@@ -44,6 +44,7 @@ function get( alice, path, transform ){
 						} catch ( e ){
 
 							logger.error( 'Unable to transform API response for url: %s', response.request.uri.path );
+							logger.error( e );
 							reject( new Error( 'Unable to transform API response' ) );
 						}
 

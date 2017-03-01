@@ -1,6 +1,5 @@
 const generateSchema = require( './lib/generate-schema' );
-const calculateTarget = require( './lib/calculate-target' );
-const calculateConfirmedPercentages = require( './lib/calculate-confirmed-percentages' );
+const calculateOverviewValues = require( './lib/calculate-overview-values' );
 
 module.exports = {
 
@@ -13,8 +12,7 @@ module.exports = {
 		for( let region of overview ){
 
 			region.id = regionId++;//Regions need to be from 1 to 17 to make the grouping work
-			calculateConfirmedPercentages( region.confirmed_percent );
-			calculateTarget( region.hvc_target_values );
+			calculateOverviewValues( region.values );
 		}
 
 		return overview;

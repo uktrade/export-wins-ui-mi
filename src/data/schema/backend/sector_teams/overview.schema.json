@@ -6,7 +6,7 @@
 	"minItems": 5,
 	"items": {
 		"type": "object",
-		"required": [ "hvc_performance", "id", "name", "hvc_groups", "confirmed_percent", "hvc_target_values" ],
+		"required": [ "hvc_performance", "id", "name", "hvc_groups", "values" ],
 		"properties": {
 			"hvc_performance": {
 				"$ref": "#/definitions/hvc-performance"
@@ -19,33 +19,15 @@
 				"type": "string",
 				"faker": "lorem.words"
 			},
-			"confirmed_percent": {
-				"type": "object",
-				"required": [ "hvc", "non_hvc" ],
-				"properties": {
-					"hvc": {
-						"type": "number",
-						"faker": {
-							"random.number": [ 100 ]
-						}
-					},
-					"non_hvc": {
-						"type": "number",
-						"faker": {
-							"random.number": [ 100 ]
-						}
-					}
-				}
-			},
-			"hvc_target_values": {
-				"$ref": "#/definitions/target-values"
+			"values": {
+				"$ref": "#/definitions/values"
 			},
 			"hvc_groups": {
 				"type": "array",
 				"minItems": 1,
 				"items": {
 					"type": "object",
-					"required": [ "name", "hvc_performance", "hvc_target_values", "id" ],
+					"required": [ "name", "hvc_performance", "values", "id" ],
 					"properties": {
 						"name": {
 							"type": "string",
@@ -54,8 +36,8 @@
 						"hvc_performance": {
 							"$ref": "#/definitions/hvc-performance2"
 						},
-						"hvc_target_values": {
-							"$ref": "#/definitions/target-values2"
+						"values": {
+							"$ref": "#/definitions/hvc-values"
 						},
 						"id": {
 							"type": "number",
@@ -66,11 +48,12 @@
 			}
 		}
 	},
+	
 	"definitions": {
 
 		"hvc-performance": {
 			"type": "object",
-			"required": [ "red", "amber", "green" ],
+			"required": [ "red", "amber", "green", "zero" ],
 			"properties": {
 				"red": {
 					"type": "number",
@@ -85,6 +68,12 @@
 					}
 				},
 				"green": {
+					"type": "number",
+					"faker": {
+						"random.number": [ 25 ]
+					}
+				},
+				"zero": {
 					"type": "number",
 					"faker": {
 						"random.number": [ 25 ]
@@ -95,7 +84,7 @@
 
 		"hvc-performance2": {
 			"type": "object",
-			"required": [ "red", "amber", "green" ],
+			"required": [ "red", "amber", "green", "zero" ],
 			"properties": {
 				"red": {
 					"type": "number",
@@ -114,50 +103,201 @@
 					"faker": {
 						"random.number": [ 25 ]
 					}
+				},
+				"zero": {
+					"type": "number",
+					"faker": {
+						"random.number": [ 25 ]
+					}
 				}
 			}
 		},
 
-		"target-values": {
+		"values": {
 			"type": "object",
-			"required": [ "target_percentage", "current", "target" ],
+			"required": [ "totals", "hvc", "non_hvc" ],
 			"properties": {
-				"target_percentage": {
-					"type": "number",
-					"faker": {
-						"random.number": [ 100 ]
+
+				"totals": {
+					"type": "object",
+					"required": [ "confirmed", "unconfirmed" ],
+					"properties": {
+						"confirmed": {
+							"type": "number",
+							"faker": "random.number"
+						},
+						"unconfirmed": {
+							"type": "number",
+							"faker": "random.number"
+						}
 					}
 				},
-				"current": {
-					"type": "number",
-					"faker": "random.number"
+
+				"hvc": {
+					"type": "object",
+					"required": [ "total_win_percent", "target", "current", "target_percent" ],
+					"properties": {
+						"total_win_percent": {
+							"type": "object",
+							"required": [ "confirmed", "unconfirmed" ],
+							"properties": {
+								"confirmed": {
+									"type": "number",
+									"faker": {
+										"random.number": [ 100 ]
+									}
+								},
+								"unconfirmed": {
+									"type": "number",
+									"faker": {
+										"random.number": [ 100 ]
+									}
+								}
+							}
+						},
+						"target": {
+							"type": "number",
+							"faker": "random.number"
+						},
+						"current": {
+							"type": "object",
+							"required": [ "confirmed", "unconfirmed" ],
+							"properties": {
+								"confirmed": {
+									"type": "number",
+									"faker": "random.number"
+								},
+								"unconfirmed": {
+									"type": "number",
+									"faker": "random.number"
+								}
+							}
+						},
+						"target_percent": {
+							"type": "object",
+							"required": [ "confirmed", "unconfirmed" ],
+							"properties": {
+								"confirmed": {
+									"type": "number",
+									"faker": {
+										"random.number": [ 125 ]
+									}
+								},
+								"unconfirmed": {
+									"type": "number",
+									"faker": {
+										"random.number": [ 125 ]
+									}
+								}
+							}
+						}
+					}
 				},
-				"target": {
-					"type": "number",
-					"chance": {
-						"integer": { "min": 0 }
+
+				"non_hvc": {
+					"type": "object",
+					"required": [ "total_win_percent", "current" ],
+					"properties": {
+						"total_win_percent": {
+							"type": "object",
+							"required": [ "confirmed", "unconfirmed" ],
+							"properties": {
+								"confirmed": {
+									"type": "number",
+									"faker": {
+										"random.number": [ 100 ]
+									}
+								},
+								"unconfirmed": {
+									"type": "number",
+									"faker": {
+										"random.number": [ 100 ]
+									}
+								}
+							}
+						},
+						"current": {
+							"type": "object",
+							"required": [ "confirmed", "unconfirmed" ],
+							"properties": {
+								"confirmed": {
+									"type": "number",
+									"faker": "random.number"
+								},
+								"unconfirmed": {
+									"type": "number",
+									"faker": "random.number"
+								}
+							}
+						}
 					}
 				}
 			}
 		},
 		
-		"target-values2": {
+		"hvc-values": {
 			"type": "object",
-			"required": [ "target_percentage", "current", "target" ],
+			"required": [ "hvc" ],
 			"properties": {
-				"target_percentage": {
-					"type": "number",
-					"faker": {
-						"random.number": [ 100 ]
+				"hvc": {
+					"type": "object",
+					"required": [ "total_win_percent", "target", "current", "target_percent" ],
+					"properties": {
+						"total_win_percent": {
+							"type": "object",
+							"required": [ "confirmed", "unconfirmed" ],
+							"properties": {
+								"confirmed": {
+									"type": "number",
+									"faker": {
+										"random.number": [ 100 ]
+									}
+								},
+								"unconfirmed": {
+									"type": "number",
+									"faker": {
+										"random.number": [ 100 ]
+									}
+								}
+							}
+						},
+						"target": {
+							"type": "number",
+							"faker": "random.number"
+						},
+						"current": {
+							"type": "object",
+							"required": [ "confirmed", "unconfirmed" ],
+							"properties": {
+								"confirmed": {
+									"type": "number",
+									"faker": "random.number"
+								},
+								"unconfirmed": {
+									"type": "number",
+									"faker": "random.number"
+								}
+							}
+						},
+						"target_percent": {
+							"type": "object",
+							"required": [ "confirmed", "unconfirmed" ],
+							"properties": {
+								"confirmed": {
+									"type": "number",
+									"faker": {
+										"random.number": [ 125 ]
+									}
+								},
+								"unconfirmed": {
+									"type": "number",
+									"faker": {
+										"random.number": [ 125 ]
+									}
+								}
+							}
+						}
 					}
-				},
-				"current": {
-					"type": "number",
-					"faker": "random.number"
-				},
-				"target": {
-					"type": "number",
-					"faker": "random.number"
 				}
 			}
 		}

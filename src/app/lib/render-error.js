@@ -12,7 +12,7 @@ module.exports = {
 
 	sendResponse,
 
-	handler: function( res ){
+	createHandler: function( res ){
 
 		return function( err ){
 

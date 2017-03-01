@@ -92,6 +92,18 @@ $sector-size: 70px;
 	animation-delay: inherit;
 }
 
+.pie-text {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	color: #fff;
+	text-align: center;
+	@include bold-14;
+	padding-top: 25%;
+}
+
 
 .pie-key {
 	list-style: none;
