@@ -1,4 +1,4 @@
-@import 'colours';
+@import 'mi-colours';
 @import 'typography';
 
 .sector-wins_list-heading {
@@ -15,18 +15,19 @@
 .sector-wins_list_item {
 	
 	display: table-cell;
-	padding: 0 pem( 40, 16 ) 0 0;
+	padding: 0 pem( 26, 16 ) 0 0;
 	vertical-align: middle;
 	text-align: center;
 
 	&:last-of-type {
 		border-right: none;
+		padding-right: 0;
 	}
 }
 
 .sector-wins_list_item_heading {
 
-	@include bold-16;
+	@include bold-14;
 	margin-top: 1em;
 
 	&:first-of-type {
@@ -41,6 +42,10 @@
 
 .sector-wins_list_item_value--hvc {
 	color: $hvc;
+}
+
+.sector-wins_list_item_value--unconfirmed {
+	color: $unconfirmed;
 }
 
 .sector-wins_list_item_value_currency {
@@ -58,8 +63,9 @@
 .sector-wins_list_item_values_item {
 
 	float: left;
+	margin-right: pem( 18, 16 );
 
-	&:first-of-type {
-		margin-right: pem( 30, 16 );
+	&:last-of-type {
+		margin-right: 0;
 	}
 }

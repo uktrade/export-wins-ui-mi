@@ -1,9 +1,59 @@
+@import 'mi-colours';
 @import 'helpers';
 @import 'typography';
 
 #sector-performance {
 	width: 100%;
 	height: 400px;
+}
+
+.sector-detail {
+	margin-top: pem( 50 );
+	padding-bottom: pem( 15 );
+}
+
+.column-export-value {
+
+	@extend .column-single;
+	margin-top: 1em;
+
+	@include media( tablet ){
+		width: 50%;
+		margin-top: 0;
+	}
+
+	@include media( desktop ){
+		width: 18%;
+	}
+}
+
+.column-charts {
+
+	@extend .column-single;
+	margin-top: 1em;
+
+	@include media( tablet ){
+		width: 75%;
+	}
+
+	@include media( desktop ){
+		width: 50%;
+		margin-top: 0;
+	}
+}
+
+.column-average-time {
+
+	@extend .column-single;
+	margin-top: 1em;
+
+	@include media( tablet ){
+		width: 13%;
+	}
+
+	@include media( desktop ){
+		margin-top: 0;
+	}
 }
 
 .wins-pie {
@@ -13,7 +63,7 @@
 }
 
 .sector-wins {
-	margin-top: pem( 50 );
+	margin-top: pem( 20 );
 }
 
 .sector-wins_heading {
@@ -43,9 +93,24 @@
 	margin-bottom: pem( 15, 19 );
 }
 
-.sector-export-value {
-	@include bold-48;
+.sector-export-heading {
+	@include bold-16;
+	margin-bottom: pem( 10, 16 );
+}
+
+.sector-export-confirmed-value {
+	@include bold-36;
 	margin: 0;
+}
+
+.sector-export-unconfirmed-value {
+	@extend .sector-export-confirmed-value;
+	color: $unconfirmed;
+}
+
+.sector-export-value-currency {
+	font-size: 75%;
+	font-weight: normal;
 }
 
 .sector-overview {
@@ -56,25 +121,23 @@
 .sector-overview_confirmed-heading {
 	@include bold-14;
 	min-height: 3em;
-}
-
-.sector-overview_total-value-heading {
-	max-width: 200px;
+	max-width: 80%;
+	margin-bottom: pem( 10, 14 );
 }
 
 .sector-overview_charts {
 	list-style: none;
 	overflow: hidden;
 	margin: 0;
+	padding: 0;
 }
 
 .sector-overview_charts_chart {
 
-	display: inline-block;
 	float: left;
 
-	&:first-of-type {
-		margin-right: pem( 25 );
+	@include media( tablet ){
+		width: 50%;
 	}
 }
 
@@ -95,4 +158,5 @@
 .sector-overview_charts_chart_average-time_days {
 	@include bold-24;
 	display: block;
+	margin-top: pem( 20, 24 );
 }

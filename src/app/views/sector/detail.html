@@ -7,41 +7,56 @@
 	<h1 class="page-heading">{{ sectorName }}</h1>
 	<h2 class="page-date">{{ financialYear() }}</h2>
 
-	<section class="sector-overview grid-row">
-		<div class="column-one-third">
-			
-			<h3 class="">Total confirmed incl. non-HVC</h3>
-			<p class="sector-export-value">&pound;{{ winSummary.exportValue | largeNumber }}</p>
-		</div>
+	<section class="sector-detail grid-row">
+		<div class="column-export-value">
 
-		<div class="column-two-thirds">
+			<h3 class="sector-export-heading">Total confirmed export value</h3>
+			<p class="sector-export-confirmed-value"><span class="sector-export-value-currency">&pound;</span>{{ winSummary.exportValue | largeNumber( true ) | safe }}</p>
+
+		</div>
+		<div class="column-export-value">
+
+			<h3 class="sector-export-heading">Total incl. unconfirmed</h3>
+			<p class="sector-export-unconfirmed-value"><span class="sector-export-value-currency">&pound;</span>{{ winSummary.exportValueTotal | largeNumber( true ) | safe }}</p>
+
+		</div>
+		<div class="column-charts">
 
 			<ul class="sector-overview_charts">
 				<li class="sector-overview_charts_chart">
 					
-					<h3 class="sector-overview_total-value-heading">Total value of confirmed wins (HVC &amp; non-HVC)</h3>
+					<h3 class="sector-overview_total-value-heading">HVC and non-HVC confirmed wins value</h3>
 					<div class="pie pie--sector-team" style="animation-delay: -{{ winSummary.wins.hvcNonHvcValue.nonHvc | piePercentage }}s">{{ winSummary.wins.hvcNonHvcValue.nonHvc }}%</div>
 
 					<ul class="pie-key pie-key--hvc-vs-non pie-key--inline sector-overview_total-value-key">
 						<li class="pie-key_item">
-							<span class="pie-key_block pie-key_block--slice"></span>non-HVC - {{ winSummary.wins.hvcNonHvcValue.nonHvc }}%
+							<span class="pie-key_block pie-key_block--slice"></span>Non-HVC - <span class="pie-key_item_percentage">{{ winSummary.wins.hvcNonHvcValue.nonHvc }}%</span>
 						</li>
 						<li class="pie-key_item">
-							<span class="pie-key_block"></span>HVC - {{ winSummary.wins.hvcNonHvcValue.hvc }}%
+							<span class="pie-key_block"></span>HVC - <span class="pie-key_item_percentage">{{ winSummary.wins.hvcNonHvcValue.hvc }}%</span>
 						</li>
 					</ul>
 
 				</li>
 				<li class="sector-overview_charts_chart">
 
-					<h3 class="sector-overview_confirmed-heading">Confirmed vs. unconfirmed wins value</h3>
+					<h3 class="sector-overview_confirmed-heading">Confirmed and unconfirmed wins value</h3>
 					{% include 'partials/confirmed-vs-unconfirmed-wins.html' -%}
 
 				</li>
 			</ul>
 
 		</div>
+		<div class="column-average-time">
+
+			<p class="sector-overview_charts_chart_average-time">
+				Average time to confirm <span class="sector-overview_charts_chart_average-time_days">{{ winSummary.averageTimeToConfirm | pluralise( 'day' ) }}</span>
+			</p>
+
+		</div>
 	</section>
+
+	<hr>
 
 	<section class="sector-wins grid-row">
 
@@ -49,13 +64,13 @@
 			<h3 class="sector-wins_heading">HVC export wins</h3>
 		</div>
 
-		<div class="column-half">
+		<div class="column-six-elevenths">
 
 			<h4 class="sector-heading sector-heading--target">Total confirmed against target</h4>
 			{% include 'partials/hvc-performance-summary.html' -%}
 
 		</div>
-		<div class="column-half">
+		<div class="column-five-elevenths">
 			{% include 'partials/key.html' %}
 		</div>
 	</section>
@@ -87,7 +102,7 @@
 
 	<section class="grid-row">
 		<div class="column-single">
-			<h2 class="sector-heading sector-heading--separator">Top performing non-HVC markets and sectors</h2>
+			<h2 class="sector-heading sector-heading--separator">Top performing markets and sectors (with no HVC tagged)</h2>
 			<h3 class="sub-heading-date">{{ financialYear() }}</h3>
 			{% include 'partials/top-non-hvc.html' %}
 		</div>

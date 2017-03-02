@@ -30,6 +30,26 @@
 	@include grid-column( 3/4 );
 }
 
+.column-one-seventh {
+	@include grid-column( 1/7 );
+}
+
+.column-two-sevenths {
+	@include grid-column( 2/7 );
+}
+
+.column-four-sevenths {
+	@include grid-column( 4/7 );
+}
+
+.column-five-elevenths {
+	@include grid-column( 5/11 );
+}
+
+.column-six-elevenths {
+	@include grid-column( 6/11 );
+}
+
 .phase-banner  {
   @include phase-banner();
 }

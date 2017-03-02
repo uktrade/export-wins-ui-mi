@@ -15,9 +15,14 @@ describe( 'Sector transformer', function(){
 			output = transform( sectorTeamInput );
 		} );
 	
-		it( 'Should calculate the total confirmed', function(){
+		it( 'Should return the total confirmed', function(){
 		
 			expect( output.exportValue ).toEqual( 130082 );
+		} );
+
+		it( 'Should return the total including unconfirmed', function(){
+		
+			expect( output.exportValueTotal ).toEqual( 197175 );
 		} );
 	} );
 
@@ -28,9 +33,14 @@ describe( 'Sector transformer', function(){
 			output = transform( overseasRegionInput );
 		} );
 	
-		it( 'Should calculate the total confirmed', function(){
+		it( 'Should return the total confirmed', function(){
 		
 			expect( output.exportValue ).toEqual( 56203 );
+		} );
+
+		it( 'Should return the total including unconfirmed', function(){
+		
+			expect( output.exportValueTotal ).toEqual( 156339 );
 		} );
 	} );
 } );

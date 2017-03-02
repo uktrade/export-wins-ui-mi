@@ -2,12 +2,9 @@
 
 <ul class="pie-key pie-key--confirmed-vs-un pie-key--inline sector-overview_total-value-key">
 	<li class="pie-key_item">
-		<span class="pie-key_block pie-key_block--slice"></span>Unconfirmed wins - {{ winSummary.wins.confirmedUnconfirmedValue.unconfirmed }}%
+		<span class="pie-key_block pie-key_block--slice"></span>Unconfirmed - <span class="pie-key_item_percentage">{{ winSummary.wins.confirmedUnconfirmedValue.unconfirmed }}%</span>
 	</li>
 	<li class="pie-key_item">
-		<span class="pie-key_block"></span>Confirmed wins - {{ winSummary.wins.confirmedUnconfirmedValue.confirmed }}%
+		<span class="pie-key_block"></span>Confirmed - <span class="pie-key_item_percentage">{{ winSummary.wins.confirmedUnconfirmedValue.confirmed }}%</span>
 	</li>
 </ul>
-<p class="sector-overview_charts_chart_average-time">
-	Average time to confirm: <span class="sector-overview_charts_chart_average-time_days">{{ winSummary.averageTimeToConfirm | pluralise( 'day' ) }}</span>
-</p>

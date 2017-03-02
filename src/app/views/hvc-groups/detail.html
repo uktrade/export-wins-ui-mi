@@ -6,18 +6,18 @@
 
 {% block page_content %}
 
-	<h1>{{ sectorName }}</h1>
+	<h1 class="page-heading">{{ sectorName }} HVC Group</h1>
 	<h2 class="page-date">{{ financialYear() }}</h2>
 
 	<h2 class="visually-hidden">Summary</h2>
-	<section class="sector-overview grid-row">
-		<div class="column-one-third">
+	<section class="sector-detail grid-row">
+		<div class="column-two-sevenths">
 			
-			<h3 class="">Total confirmed</h3>
-			<p class="sector-export-value">&pound;{{ winSummary.exportValue | largeNumber }}</p>
-		</div>
+			<h3 class="sector-export-heading">Total confirmed export value</h3>
+			<p class="sector-export-confirmed-value"><span class="sector-export-value-currency">&pound;</span>{{ winSummary.exportValue | largeNumber( true ) | safe }}</p>
 
-		<div class="column-two-thirds">
+		</div>
+		<div class="column-four-sevenths">
 
 			<ul class="sector-overview_charts sector-overview_charts--single">
 				<li class="sector-overview_charts_chart">
@@ -29,7 +29,16 @@
 			</ul>
 
 		</div>
+		<div class="column-one-seventh">
+
+			<p class="sector-overview_charts_chart_average-time">
+				Average time to confirm <span class="sector-overview_charts_chart_average-time_days">{{ winSummary.averageTimeToConfirm | pluralise( 'day' ) }}</span>
+			</p>
+
+		</div>
 	</section>
+
+	<hr>
 
 	<section class="sector-wins grid-row">
 
@@ -37,12 +46,12 @@
 			<h3 class="sector-wins_heading">HVC export wins</h3>
 		</div>
 
-		<div class="column-half">
-			<h4 class="sector-heading sector-heading--target">Total confirmed HVCs against target</h4>
+		<div class="column-six-elevenths">
+			<h4 class="sector-heading sector-heading--target">Total confirmed against target</h4>
 			{% include 'partials/hvc-performance-summary.html' %}
 		</div>
 
-		<div class="column-half">
+		<div class="column-five-elevenths">
 			{% include 'partials/key.html' %}
 		</div>
 	</section>
