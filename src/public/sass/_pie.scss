@@ -20,7 +20,7 @@ Thanks Lea!
 	text-align: center;
 }
 
-$sector-size: 70px;
+$sector-size: 66px;
 .pie--sector {
 	width: $sector-size;
 	height: $sector-size;
@@ -116,6 +116,10 @@ $sector-size: 70px;
 
 .pie-key_item {
 	@include core-14;
+}
+
+.pie-key_item_percentage {
+	@include bold-14;
 }
 
 .pie-key_block {
