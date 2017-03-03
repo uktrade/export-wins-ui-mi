@@ -3,6 +3,7 @@ const cluster = require( 'cluster' );
 const logger = require( './lib/logger' );
 const config = require( './config' );
 const ping = require( './lib/middleware/ping' );
+const reporter = require( './lib/reporter' );
 
 const numberOfWorkers = config.server.workers;
 const isClustered = ( numberOfWorkers > 1 );
@@ -29,7 +30,6 @@ function startApp(){
 	const path = require( 'path' );
 	const morganLogger = require( 'morgan' );
 	const compression = require( 'compression' );
-	const raven = require( 'raven' );
 
 	const nunjucksFilters = require( './lib/nunjucks-filters' );
 	const alice = require( './lib/middleware/alice' );
@@ -61,11 +61,7 @@ function startApp(){
 
 	nunjucksFilters( nunjucksEnv );
 
-	if( config.sentryDsn ){
-
-		raven.config( config.sentryDsn ).install();
-		app.use( raven.requestHandler() );
-	}
+	reporter.setup( app );
 
 	if( !isDev ){
 
@@ -84,10 +80,7 @@ function startApp(){
 
 	routes( express, app );
 
-	if( config.sentryDsn ){
-		
-		app.use( raven.errorHandler() );
-	}
+	reporter.handleErrors( app );
 
 	app.listen( serverConfig.port, function(){
 
