@@ -12,6 +12,7 @@ function bool( name, defaultValue ){
 }
 
 let config = {
+	version: env( 'npm_package_version', 'unknown' ),
 	server: {
 		protocol: env( 'SERVER_PROTOCOL', 'http' ),
 		host: env( 'SERVER_HOST', 'localhost' ),

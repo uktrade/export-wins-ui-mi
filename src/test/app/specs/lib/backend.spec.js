@@ -2,12 +2,12 @@ const proxyquire = require( 'proxyquire' );
 const interceptBackend = require( '../../helpers/intercept-backend' );
 
 let request;
-let raven;
+let reporter;
 let logger;
 let createSignature;
 let backend;
 
-const timeout = 10;
+const timeout = 500;
 const href = 'testing.local';
 const path = '/test';
 const alice ={ session: 'alice-session' };
@@ -16,7 +16,7 @@ function createBackend( opts = {} ){
 
 	backend = proxyquire( '../../../../app/lib/backend', {
 		'request': opts.request || request,
-		'raven': opts.raven || raven,
+		'./reporter': opts.reporter || reporter,
 		'./logger': opts.logger || logger,
 		'./create-signature': opts.createSignature || createSignature,
 		'../config':  opts.config || { backend: { stub: true, fake: false, href, timeout } }
@@ -29,8 +29,8 @@ describe( 'Backend lib', function(){
 
 		beforeEach( function(){
 		
-			raven = {
-				captureMessage: jasmine.createSpy( 'raven.captureMessage' ) 
+			reporter = {
+				message: jasmine.createSpy( 'reporter.message' ) 
 			};
 
 			logger = {
@@ -75,56 +75,25 @@ describe( 'Backend lib', function(){
 
 		describe( 'A slow request', function(){
 
-			describe( 'When a sentry DSN is defined', function(){
-			
-				it( 'Should log an event with raven/sentry', function( done ){
-
-					createBackend( {
-						config: { sentryDsn: 'test1234', backend: { stub: true, fake: false, href, timeout } }
-					} );
-			
-					request.and.callFake( function( opts, cb ){
-						cb( null, {
-							statusCode: 200,
-							elapsedTime: 1000,
-							headers: {},
-							request: { uri: { href: '/test' } }
-						}, '{ "test": "testing" }' );
-					} );
-
-					backend.get( alice, path, function( err, response ){
-
-						expect( raven.captureMessage ).toHaveBeenCalledWith( 'Long response time from backend API', {
-							level: 'info',
-							extra: {
-								time: response.elapsedTime,
-								path: response.request.uri.path
-							}
-						} );
-						done();
-					} );
+			it( 'Should log an event with the reporter', function( done ){
+		
+				request.and.callFake( function( opts, cb ){
+					cb( null, {
+						statusCode: 200,
+						elapsedTime: 1000,
+						headers: {},
+						request: { uri: { path: '/test' } }
+					}, '{ "test": "testing" }' );
 				} );
-			} );
 
-			describe( 'When a sentry DSN is not defined', function(){
-			
-				it( 'Should log an error', function( done ){
-			
-					request.and.callFake( function( opts, cb ){
-						cb( null, {
-							statusCode: 200,
-							elapsedTime: 1000,
-							headers: {},
-							request: { uri: { href: '/test' } }
-						}, '{ "test": "testing" }' );
+				backend.get( alice, path, function( err, response ){
+
+					expect( reporter.message ).toHaveBeenCalledWith( 'info', 'Long response time from backend API: /test', {
+						time: response.elapsedTime,
+						path: response.request.uri.path
 					} );
 
-					backend.get( alice, path, function( err, response ){
-
-						expect( raven.captureMessage ).not.toHaveBeenCalled();
-						expect( logger.warn ).toHaveBeenCalledWith( 'Slow response from backend API. %s took %sms', response.request.uri.path, response.elapsedTime );
-						done();
-					} );
+					done();
 				} );
 			} );
 		} );
@@ -140,7 +109,7 @@ describe( 'Backend lib', function(){
 						headers: {
 							'content-type': 'application/json'
 						},
-						request: { uri: { href: '/test' } }
+						request: { uri: { path: '/test' } }
 					}, '{ "test": "testing" }' );
 				} );
 			} );
@@ -203,7 +172,7 @@ describe( 'Backend lib', function(){
 							headers: {
 								'content-type': 'text/plain'
 							},
-							request: { uri: { href: '/test' } }
+							request: { uri: { path: '/test' } }
 						}, 'test' );
 					} );
 

@@ -1,10 +1,9 @@
 const config = require( '../config' );
 const request = require( 'request' );
-const raven = require( 'raven' );
 const logger = require( './logger' );
+const reporter = require( './reporter' );
 const createSignature = require( './create-signature' );
 
-const haveSentry = !!config.sentryDsn;
 const backendHref = config.backend.href;
 
 function createRequestOptions( method, alice, path, body ){
@@ -22,22 +21,16 @@ function createRequestOptions( method, alice, path, body ){
 
 function checkResponseTime( response ){
 
-	if( response.elapsedTime > config.backend.timeout ){
+	const time = response.elapsedTime;
 
-		if( haveSentry ){
+	if( time > config.backend.timeout ){
 
-			raven.captureMessage( 'Long response time from backend API', {
-				level: 'info',
-				extra: {
-					time: response.elapsedTime,
-					path: response.request.uri.path
-				}
-			} );
+		let path = response.request.uri.path;
 
-		} else {
-
-			logger.warn( 'Slow response from backend API. %s took %sms', response.request.uri.path, response.elapsedTime );
-		}
+		reporter.message( 'info', `Long response time from backend API: ${path}`, {
+			time,
+			path
+		} );
 	}
 }
 
