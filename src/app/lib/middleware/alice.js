@@ -8,7 +8,12 @@ module.exports = function( req, res, next ){
 
 	const token = req.cookies.alice;
 
-	if( token ){
+	if( config.backend.stub ){
+
+		req.alice = {};
+		next();
+
+	} else if( token ){
 
 		jwt.verify( token, secret, function( err, data ){
 
