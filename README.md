@@ -34,11 +34,26 @@ To run just the app directly (not as a child process from server.js):
 npm run app
 ```
 
+### Development
+
 To run in development mode (watching files for changes):
 
 ```bash
 npm run watch
 ```
+
+To run in development mode and also use fake stubs, first you need to generate the stubs:
+
+```bash
+node src/data/create-backend-fake-stubs.js
+```
+
+This should log a message to say how many files were written, now you can run the app with those stubs:
+
+```bash
+npm run watch-stub
+```
+
 
 ## Testing
 
