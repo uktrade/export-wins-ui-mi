@@ -3,17 +3,16 @@ const backendService = require( '../lib/service/service.backend' );
 const renderError = require( '../lib/render-error' );
 
 const sectorPerformanceDataSet = require( '../lib/data-sets/sector-performance' );
-const sectorWinsDataSet = require( '../lib/data-sets/sector-wins' );
-const targetProgressDataSet = require( '../lib/data-sets/target-progress' );
-const hvcTargetPerformanceDataSet = require( '../lib/data-sets/hvc-target-performance' );
+
+const hvcTargetPerformance = require( '../lib/view-models/hvc-target-performance' );
+const sectorSummary = require( '../lib/view-models/sector-summary' );
+const hvcSummary = require( '../lib/view-models/sector-hvc-summary' );
 
 module.exports = {
 
 	list: function( req, res ){
 
 		backendService.getHvcGroups( req.alice ).then( ( hvcGroups ) => {
-
-			//console.log( JSON.stringify( hvcGroups, null, 2 ) );
 
 			res.render( 'hvc-groups/list.html', { hvcGroups } );
 
@@ -26,23 +25,12 @@ module.exports = {
 
 		backendService.getHvcGroupInfo( req.alice, groupId ).then( ( data ) => {
 
-			const winsData = data[ 0 ];
-			const months = data[ 1 ];
-			const	campaigns = data[ 2 ];
-
 			res.render( 'hvc-groups/detail.html', {
-				sectorPerformance: sectorPerformanceDataSet.create( months ),
-				winSummary: {
-					target: winsData.hvcs.target,
-					totalConfirmed: winsData.wins.export.hvc.value.confirmed,
-					total: winsData.wins.export.hvc.value.total,
-					progress: targetProgressDataSet.create( winsData ),
-					averageTimeToConfirm: winsData.avg_time_to_confirm,
-					exportValue: winsData.exportValue,
-					wins: sectorWinsDataSet.create( winsData )
-				},
-				sectorName: winsData.name,
-				hvcTargetPerformance: hvcTargetPerformanceDataSet.create( campaigns )
+				sectorName: data.wins.name,
+				summary: sectorSummary.create( data.wins ),
+				hvcSummary: hvcSummary.create( data.wins ),
+				sectorPerformance: sectorPerformanceDataSet.create( data.months ),
+				hvcTargetPerformance: hvcTargetPerformance.create( data.campaigns )
 			} );
 
 		} ).catch( renderError.createHandler( res ) );

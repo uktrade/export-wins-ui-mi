@@ -1,6 +1,11 @@
 const proxyquire = require( 'proxyquire' );
+
 const backendService = require( '../../../../app/lib/service/service.backend' );
 const errorHandler = require( '../../../../app/lib/render-error' );
+const sectorSummary = require( '../../../../app/lib/view-models/sector-summary' );
+const hvcSummary = require( '../../../../app/lib/view-models/sector-hvc-summary' );
+const hvcTargetPerformance = require( '../../../../app/lib/view-models/hvc-target-performance' );
+
 const interceptBackend = require( '../../helpers/intercept-backend' );
 
 let controller;
@@ -11,7 +16,10 @@ describe( 'Overseas Regions controller', function(){
 
 		const stubs = {
 			'../lib/service/service.backend': backendService,
-			'../lib/render-error': errorHandler
+			'../lib/render-error': errorHandler,
+			'../lib/view-models/sector-summary': sectorSummary,
+			'../lib/view-models/sector-hvc-summary': hvcSummary,
+			'../lib/view-models/hvc-target-performance': hvcTargetPerformance
 		};
 
 		controller = proxyquire( '../../../../app/controllers/controller.hvc-groups', stubs );
@@ -46,6 +54,10 @@ describe( 'Overseas Regions controller', function(){
 		it( 'Should get the group data and render the correct view', function( done ){
 	
 			spyOn( backendService, 'getHvcGroupInfo' ).and.callThrough();
+			spyOn( errorHandler, 'createHandler' ).and.callThrough();
+			spyOn( sectorSummary, 'create' ).and.callThrough();
+			spyOn( hvcSummary, 'create' ).and.callThrough();
+			spyOn( hvcTargetPerformance, 'create' ).and.callThrough();
 
 			const req = {
 				alice: '1234',
@@ -62,11 +74,18 @@ describe( 'Overseas Regions controller', function(){
 			controller.group( req, { render: function( view, data ){
 
 				expect( backendService.getHvcGroupInfo ).toHaveBeenCalledWith( req.alice, groupId );
-				expect( view ).toEqual( 'hvc-groups/detail.html' );
-				expect( data.sectorPerformance ).toBeDefined();
-				expect( data.winSummary ).toBeDefined();
+				expect( errorHandler.createHandler ).toHaveBeenCalled();
+				expect( sectorSummary.create ).toHaveBeenCalled();
+				expect( hvcSummary.create ).toHaveBeenCalled();
+				expect( hvcTargetPerformance.create ).toHaveBeenCalled();
+
 				expect( data.sectorName ).toBeDefined();
+				expect( data.summary ).toBeDefined();
+				expect( data.hvcSummary ).toBeDefined();
+				expect( data.sectorPerformance ).toBeDefined();
 				expect( data.hvcTargetPerformance ).toBeDefined();
+				
+				expect( view ).toEqual( 'hvc-groups/detail.html' );
 				done();
 			} } );
 		} );

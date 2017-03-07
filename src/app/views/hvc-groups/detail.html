@@ -2,7 +2,7 @@
 
 {% from 'macros/dates.html' import financialYear %}
 
-{% set pageName %}Overseas Region - {{ sectorName }}{% endset %}
+{% set pageName %}Overseas Region - {{ sectorName  | safe }}{% endset %}
 
 {% block page_content %}
 
@@ -14,7 +14,7 @@
 		<div class="column-two-sevenths">
 			
 			<h3 class="sector-export-heading">Total confirmed export value</h3>
-			<p class="sector-export-confirmed-value"><span class="sector-export-value-currency">&pound;</span>{{ winSummary.exportValue | largeNumber( true ) | safe }}</p>
+			<p class="sector-export-confirmed-value"><span class="sector-export-value-currency">&pound;</span>{{ summary.exportValue | largeNumber( true ) | safe }}</p>
 
 		</div>
 		<div class="column-four-sevenths">
@@ -32,7 +32,7 @@
 		<div class="column-one-seventh">
 
 			<p class="sector-overview_charts_chart_average-time">
-				Average time to confirm <span class="sector-overview_charts_chart_average-time_days">{{ winSummary.averageTimeToConfirm | pluralise( 'day' ) }}</span>
+				Average time to confirm <span class="sector-overview_charts_chart_average-time_days">{{ summary.averageTimeToConfirm | pluralise( 'day' ) }}</span>
 			</p>
 
 		</div>
@@ -79,7 +79,7 @@
 	<script>
 		mi.pages.sector({
 			sectorPerformance: {{ sectorPerformance | dump | safe }},
-			targetProgress: {{ winSummary.progress.gauge | dump | safe }}
+			targetProgress: {{ hvcSummary.progress.gauge | dump | safe }}
 		});
 	</script>
 {% endblock pageScript %}

@@ -1,4 +1,4 @@
-const dataset = require( '../../../../../app/lib/data-sets/hvc-target-performance' );
+const dataset = require( '../../../../../app/lib/view-models/hvc-target-performance' );
 
 const input = [
 	{

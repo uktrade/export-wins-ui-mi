@@ -1,4 +1,4 @@
 {% extends 'sector/detail.html' %}
 
-{% set pageName %}Overseas Region - {{ regionName }}{% endset %}
-{% set sectorName %}{{ regionName }}{% endset %}
+{% set pageName %}Overseas Region - {{ regionName | safe  }}{% endset %}
+{% set sectorName %}{{ regionName | safe }}{% endset %}
