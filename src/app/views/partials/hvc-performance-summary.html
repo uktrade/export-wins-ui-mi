@@ -1,6 +1,6 @@
 <ul class="sector-wins_list">
 	<li class="sector-wins_list_item">
-		<p class="visually-hidden">{{ winSummary.progress.percent }}%</p>
+		<p class="visually-hidden">{{ hvcSummary.progress.percent }}%</p>
 		<div class="gauge sector-wins_list_item_gauge">
 			<div class="gauge_container">
 				<div class="gauge_container_a"></div>
@@ -13,15 +13,15 @@
 		<ul class="sector-wins_list_item_values">
 			<li class="sector-wins_list_item_values_item">
 				<h3 class="sector-wins_list_item_heading">Total HVC<br>confirmed</h3>
-				<p class="sector-wins_list_item_value sector-wins_list_item_value--hvc"><span class="sector-wins_list_item_value_currency">&pound;</span>{{ winSummary.totalConfirmed | largeNumber( true ) | safe }}</p>
+				<p class="sector-wins_list_item_value sector-wins_list_item_value--hvc"><span class="sector-wins_list_item_value_currency">&pound;</span>{{ hvcSummary.totalConfirmed | largeNumber( true ) | safe }}</p>
 			</li>
 			<li class="sector-wins_list_item_values_item">
 				<h3 class="sector-wins_list_item_heading">Total HVC incl.<br>unconfirmed</h3>
-				<p class="sector-wins_list_item_value sector-wins_list_item_value--unconfirmed"><span class="sector-wins_list_item_value_currency">&pound;</span>{{ winSummary.total | largeNumber( true ) | safe }}</p>
+				<p class="sector-wins_list_item_value sector-wins_list_item_value--unconfirmed"><span class="sector-wins_list_item_value_currency">&pound;</span>{{ hvcSummary.total | largeNumber( true ) | safe }}</p>
 			</li>
 			<li class="sector-wins_list_item_values_item">
 				<h3 class="sector-wins_list_item_heading">HVC<br>Target</h3>
-				<p class="sector-wins_list_item_value"><span class="sector-wins_list_item_value_currency">&pound;</span>{{ winSummary.target | largeNumber( true ) | safe }}</p>
+				<p class="sector-wins_list_item_value"><span class="sector-wins_list_item_value_currency">&pound;</span>{{ hvcSummary.target | largeNumber( true ) | safe }}</p>
 			</li>
 		</ul>
 	</li>

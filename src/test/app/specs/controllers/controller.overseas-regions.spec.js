@@ -1,7 +1,13 @@
 const proxyquire = require( 'proxyquire' );
+
 const backendService = require( '../../../../app/lib/service/service.backend' );
 const errorHandler = require( '../../../../app/lib/render-error' );
+const sectorSummary = require( '../../../../app/lib/view-models/sector-summary' );
+const hvcSummary = require( '../../../../app/lib/view-models/sector-hvc-summary' );
+const hvcTargetPerformance = require( '../../../../app/lib/view-models/hvc-target-performance' );
+
 const interceptBackend = require( '../../helpers/intercept-backend' );
+
 
 let controller;
 
@@ -11,7 +17,10 @@ describe( 'Overseas Regions controller', function(){
 
 		const stubs = {
 			'../lib/service/service.backend': backendService,
-			'../lib/render-error': errorHandler
+			'../lib/render-error': errorHandler,
+			'../lib/view-models/sector-summary': sectorSummary,
+			'../lib/view-models/sector-hvc-summary': hvcSummary,
+			'../lib/view-models/hvc-target-performance': hvcTargetPerformance
 		};
 
 		controller = proxyquire( '../../../../app/controllers/controller.overseas-regions', stubs );
@@ -80,6 +89,9 @@ describe( 'Overseas Regions controller', function(){
 
 			spyOn( backendService, 'getOverseasRegionInfo' ).and.callThrough();
 			spyOn( errorHandler, 'createHandler' ).and.callThrough();
+			spyOn( sectorSummary, 'create' ).and.callThrough();
+			spyOn( hvcSummary, 'create' ).and.callThrough();
+			spyOn( hvcTargetPerformance, 'create' ).and.callThrough();
 
 			interceptBackend.getStub( `/mi/os_regions/${ regionId }/`, 200, '/os_regions/region' );
 			interceptBackend.getStub( `/mi/os_regions/${ regionId }/months/`, 200, '/os_regions/months' );
@@ -90,8 +102,19 @@ describe( 'Overseas Regions controller', function(){
 
 				expect( backendService.getOverseasRegionInfo ).toHaveBeenCalledWith( req.alice, regionId );
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
+				expect( sectorSummary.create ).toHaveBeenCalled();
+				expect( hvcSummary.create ).toHaveBeenCalled();
+				expect( hvcTargetPerformance.create ).toHaveBeenCalled();
+
+				expect( data.regionName ).toBeDefined();
+				expect( data.summary ).toBeDefined();
+				expect( data.hvcSummary ).toBeDefined();
+				expect( data.hvcTargetPerformance ).toBeDefined();
+				expect( data.sectorPerformance ).toBeDefined();
+				expect( data.topNonHvc ).toBeDefined();
+				expect( data.topNonHvcScale ).toBeDefined();
+
 				expect( view ).toEqual( 'overseas-regions/detail.html' );
-				expect( data ).toBeDefined();
 				done();
 			} } );
 		} );

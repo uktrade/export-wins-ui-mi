@@ -1,5 +1,5 @@
 
-const dataset = require( '../../../../../app/lib/data-sets/sector-wins' );
+const dataset = require( '../../../../../app/lib/data-sets/sector-pie-charts' );
 const getBackendStub = require( '../../../helpers/get-backend-stub' );
 
 const input = {

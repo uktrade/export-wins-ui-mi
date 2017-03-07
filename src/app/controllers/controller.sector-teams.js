@@ -4,11 +4,10 @@ const renderError = require( '../lib/render-error' );
 
 const sectorPerformanceDataSet = require( '../lib/data-sets/sector-performance' );
 const topNonHvcDataSet = require( '../lib/data-sets/top-non-hvc' );
-const sectorWinsDataSet = require( '../lib/data-sets/sector-wins' );
-const targetProgressDataSet = require( '../lib/data-sets/target-progress' );
-const hvcTargetPerformanceDataSet = require( '../lib/data-sets/hvc-target-performance' );
 
-// .toLocaleString( 'en-GB', { style: 'currency', currency: 'GBP', maximumFractionDigits: 0 }
+const hvcTargetPerformance = require( '../lib/view-models/hvc-target-performance' );
+const sectorSummary = require( '../lib/view-models/sector-summary' );
+const hvcSummary = require( '../lib/view-models/sector-hvc-summary' );
 
 module.exports = {
 
@@ -36,28 +35,15 @@ module.exports = {
 
 		backendService.getSectorTeamInfo( req.alice, teamId ).then( ( data ) => {
 
-			const winsData = data[ 0 ];
-			const months = data[ 1 ];
-			const topNonHvc = data[ 2 ];
-			const campaigns = data[ 3 ];
-
 			res.render( 'sector-teams/detail.html', {
 				
-				sectorName: ( winsData.name + ' Sector Team' ),
-				winSummary: {
-					target: winsData.hvcs.target,
-					totalConfirmed: winsData.wins.export.hvc.value.confirmed,
-					total: winsData.wins.export.hvc.value.total,
-					progress: targetProgressDataSet.create( winsData ),
-					averageTimeToConfirm: winsData.avg_time_to_confirm,
-					exportValue: winsData.exportValue,
-					exportValueTotal: winsData.exportValueTotal,
-					wins: sectorWinsDataSet.create( winsData )
-				},
-				hvcTargetPerformance: hvcTargetPerformanceDataSet.create( campaigns ),
-				sectorPerformance: sectorPerformanceDataSet.create( months ),
-				topNonHvc,
-				topNonHvcScale: topNonHvcDataSet.create( topNonHvc )
+				sectorName: ( data.wins.name + ' Sector Team' ),
+				summary: sectorSummary.create( data.wins ),
+				hvcSummary: hvcSummary.create( data.wins ),
+				hvcTargetPerformance: hvcTargetPerformance.create( data.campaigns ),
+				sectorPerformance: sectorPerformanceDataSet.create( data.months ),
+				topNonHvc: data.topNonHvc,
+				topNonHvcScale: topNonHvcDataSet.create( data.topNonHvc )
 			} );
 
 		} ).catch( renderError.createHandler( res ) );
