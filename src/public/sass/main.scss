@@ -58,3 +58,7 @@
 	@extend .page-date;
 	margin-top: 0;
 }
+
+.footer-feedback-link {
+	@include core-16;
+}
