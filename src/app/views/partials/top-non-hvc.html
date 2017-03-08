@@ -1,6 +1,19 @@
+{% macro topNonHvcRow( item ) %}
+	<tr class="top-non-hvc_table_row">
+		<td class="top-non-hvc_table_cell top-non-hvc_table_cell--region">{{ item.region }}</td>
+		<td class="top-non-hvc_table_cell top-non-hvc_table_cell--sector">{{ item.sector }}</td>
+		<td class="top-non-hvc_table_cell top-non-hvc_table_cell--percent">
+			<span class="visually-hidden">{{ item.percentComplete }}%</span>
+			<span class="top-non-hvc_table_cell_bar" style="width:{{ item.percentComplete }}%"></span>
+		</td>
+		<td class="top-non-hvc_table_cell top-non-hvc_table_cell--total-value">{{ item.totalValue | largeNumber }}</td>
+		<td class="top-non-hvc_table_cell top-non-hvc_table_cell--total-wins">{{ item.totalWins }}</td>
+		<td class="top-non-hvc_table_cell top-non-hvc_table_cell--average-win-value">{{ item.averageWinValue | largeNumber }}</td>
+	</tr>
+{% endmacro %}
 
 <div class="top-non-hvc">
-	<table class="top-non-hvc_table">
+	<table class="top-non-hvc_table" id="{{ topNonHvcId }}">
 		<thead>
 			<tr>
 				<th class="top-non-hvc_table_heading top-non-hvc_table_heading--left">Market</th>
@@ -13,17 +26,7 @@
 		</thead>
 		<tbody>
 			{% for item in topNonHvc %}
-			<tr class="top-non-hvc_table_row">
-				<td class="top-non-hvc_table_cell top-non-hvc_table_cell--region">{{ item.region }}</td>
-				<td class="top-non-hvc_table_cell top-non-hvc_table_cell--sector">{{ item.sector }}</td>
-				<td class="top-non-hvc_table_cell top-non-hvc_table_cell--percent">
-					<span class="visually-hidden">{{ item.percentComplete }}%</span>
-					<span class="top-non-hvc_table_cell_bar" style="width:{{ item.percentComplete }}%"></span>
-				</td>
-				<td class="top-non-hvc_table_cell top-non-hvc_table_cell--total-value">{{ item.totalValue | largeNumber }}</td>
-				<td class="top-non-hvc_table_cell top-non-hvc_table_cell--total-wins">{{ item.totalWins }}</td>
-				<td class="top-non-hvc_table_cell top-non-hvc_table_cell--average-win-value">{{ item.averageWinValue | largeNumber }}</td>
-			</tr>
+			{{ topNonHvcRow( item ) }}
 			{% endfor %}
 
 			<tr class="top-non-hvc_table_markers-row">
@@ -58,5 +61,6 @@
 		</tbody>
 	</table>
 
+	<a href="#" id="top-non-hvc-load-more">Load next 5</a>
 
 </div>

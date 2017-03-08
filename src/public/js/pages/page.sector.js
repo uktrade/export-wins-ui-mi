@@ -18,5 +18,10 @@ mi.pages.sector =  function( data ){
 
 			jessie.getElement( 'wins-target-progress' ).style.transform = 'rotate(' + data.targetProgress + 'turn)';
 		} );
+
+		mi.application.components = new mi.components.TopNonHvcs( {
+			url: data.loadMoreNonHvcs.url,
+			tableId: data.loadMoreNonHvcs.id
+		} );
 	}
 };

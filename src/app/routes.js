@@ -10,6 +10,7 @@ module.exports = function( express, app ){
 	app.get( '/sector-teams/', sectorTeamController.list );
 	app.get( '/sector-teams/overview/', sectorTeamController.overview );
 	app.get( '/sector-teams/:id', sectorTeamController.team );
+	app.get( '/sector-teams/:id/top-non-hvc', sectorTeamController.topNonHvcs );
 
 	app.get( '/overseas-regions/', regionController.list );
 	app.get( '/overseas-regions/overview/', regionController.overview );

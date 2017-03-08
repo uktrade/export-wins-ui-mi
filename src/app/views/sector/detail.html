@@ -2,6 +2,8 @@
 
 {% from 'macros/dates.html' import financialYear %}
 
+{% set topNonHvcId = "top-non-hvc-table" %}
+
 {% block page_content %}
 
 	<h1 class="page-heading">{{ sectorName }}</h1>
@@ -24,7 +26,7 @@
 
 			<ul class="sector-overview_charts">
 				<li class="sector-overview_charts_chart">
-					
+
 					<h3 class="sector-overview_total-value-heading">HVC and non-HVC confirmed wins value</h3>
 					<div class="pie pie--sector-team" style="animation-delay: -{{ summary.pieData.hvcNonHvcValue.nonHvc | piePercentage }}s">{{ summary.pieData.hvcNonHvcValue.nonHvc }}%</div>
 
@@ -114,7 +116,11 @@
 	<script>
 		mi.pages.sector({
 			sectorPerformance: {{ sectorPerformance | dump | safe }},
-			targetProgress: {{ hvcSummary.progress.gauge | dump | safe }}
+			targetProgress: {{ hvcSummary.progress.gauge | dump | safe }},
+			loadMoreNonHvcs: {
+				url: {{ loadMoreUrl | dump | safe }},
+				id: {{ topNonHvcId | dump | safe }}
+			}
 		});
 	</script>
 {% endblock pageScript -%}

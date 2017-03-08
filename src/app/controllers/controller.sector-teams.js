@@ -14,9 +14,9 @@ module.exports = {
 	overview: function( req, res ){
 
 		backendService.getSectorTeamsOverview( req.alice ).then( ( sectorTeams ) => {
-			
+
 			res.render( 'sector-teams/overview', { sectorTeams } );
-			
+
 		} ).catch( renderError.createHandler( res ) );
 	},
 
@@ -36,15 +36,25 @@ module.exports = {
 		backendService.getSectorTeamInfo( req.alice, teamId ).then( ( data ) => {
 
 			res.render( 'sector-teams/detail.html', {
-				
+
 				sectorName: ( data.wins.name + ' Sector Team' ),
 				summary: sectorSummary.create( data.wins ),
 				hvcSummary: hvcSummary.create( data.wins ),
 				hvcTargetPerformance: hvcTargetPerformance.create( data.campaigns ),
 				sectorPerformance: sectorPerformanceDataSet.create( data.months ),
 				topNonHvc: data.topNonHvc,
-				topNonHvcScale: topNonHvcDataSet.create( data.topNonHvc )
+				topNonHvcScale: topNonHvcDataSet.create( data.topNonHvc ),
+				loadMoreUrl: `${ res.locals.uuid }/sector-teams/${teamId}/top-non-hvc/`
 			} );
+
+		} ).catch( renderError.createHandler( res ) );
+	},
+
+	topNonHvcs: function( req, res ){
+
+		backendService.getSectorTeamTopNonHvc( req.alice, req.params.id ).then( ( data ) => {
+
+			res.render( 'partials/top-non-hvc-rows.html', { rows: data } );
 
 		} ).catch( renderError.createHandler( res ) );
 	}
