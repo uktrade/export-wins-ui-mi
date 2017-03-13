@@ -10,10 +10,8 @@ module.exports = function( req, res ){
 
 		backendService.getSectorTeamsAndOverseasRegions( req.alice ).then( ( data ) => {
 
-			const sectorTeams = data[ 0 ];
-			const overseasRegions = data[ 1 ];
-
-			//console.log( JSON.stringify( data, null, 2 ) );
+			const sectorTeams = data.sectorTeams;
+			const overseasRegions = data.overseasRegions;
 
 			res.render( 'index.html', { sectorTeams, overseasRegions } );
 
@@ -22,8 +20,6 @@ module.exports = function( req, res ){
 	} else {
 	
 		backendService.getSectorTeams( req.alice ).then( ( sectorTeams ) => {
-
-			//console.log( JSON.stringify( data, null, 2 ) );
 
 			res.render( 'index.html', { sectorTeams } );
 

@@ -250,7 +250,14 @@ module.exports = {
 
 			getSectorTeams( alice ),
 			getOverseasRegions( alice )
-		] );
+
+		] ).then( function( data ){
+
+			return {
+				sectorTeams: data[ 0 ],
+				overseasRegions: data[ 1 ]
+			};
+		} );
 	},
 
 	getOverseasRegionsOverview,

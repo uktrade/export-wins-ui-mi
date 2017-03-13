@@ -1,6 +1,6 @@
 {
   "name": "export-wins-ui-mi",
-  "version": "2.3.5",
+  "version": "2.3.6",
   "description": "An MI dashboard for Export Wins",
   "main": "server.js",
   "engines": {
@@ -88,7 +88,8 @@
     "node-sass": "4.3.0",
     "nodemon": "*",
     "npm-run-all": "3.1.2",
-    "proxyquire": "^1.7.10"
+    "proxyquire": "^1.7.10",
+    "supertest": "3.0.0"
   },
   "optionalDependencies": {
     "fsevents": "*"

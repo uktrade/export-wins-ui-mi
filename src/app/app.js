@@ -1,11 +1,11 @@
 
 const cluster = require( 'cluster' );
-const logger = require( './lib/logger' );
 const config = require( './config' );
-const ping = require( './lib/middleware/ping' );
-const reporter = require( './lib/reporter' );
+const logger = require( './lib/logger' );
+const createApp = require( './lib/app' ).create;
 
-const numberOfWorkers = config.server.workers;
+const serverConfig = config.server;
+const numberOfWorkers = serverConfig.workers;
 const isClustered = ( numberOfWorkers > 1 );
 
 function listenForWorkerMessages( worker ){
@@ -22,65 +22,9 @@ function listenForWorkerMessages( worker ){
 
 function startApp(){
 
-	const express = require( 'express' );
-	const routes = require( './routes' );
-	const nunjucks = require( 'nunjucks' );
-	const serveStatic = require( 'serve-static' );
-	const cookieParser = require( 'cookie-parser' );
-	const path = require( 'path' );
-	const morganLogger = require( 'morgan' );
-	const compression = require( 'compression' );
-
-	const nunjucksFilters = require( './lib/nunjucks-filters' );
-	const alice = require( './lib/middleware/alice' );
-	const uuid = require( './lib/middleware/uuid' );
-	const locals = require( './lib/middleware/locals' );
-
-	const app = express();
-	const serverConfig = config.server;
-	const pathToPublic = path.resolve( __dirname, '../public' );
-	const pathToUkTradePublic = path.resolve( __dirname, '../../node_modules/@uktrade/trade_elements/dist' );
+	const app = createApp();
 	const env = app.get( 'env' );
 	const isDev = ( 'development' === env );
-
-	let nunjucksEnv;
-	let staticMaxAge = 0;
-
-	app.set( 'view engine', 'html' );
-	app.set( 'view cache', config.views.cache );
-
-	nunjucksEnv = nunjucks.configure( [
-			`${__dirname}/views`,
-			`${__dirname}/../../node_modules/@uktrade/trade_elements/dist/nunjucks`,
-		], {
-		autoescape: true,
-		watch: config.isDev,
-		noCache: !config.views.cache,
-		express: app
-	} );
-
-	nunjucksFilters( nunjucksEnv );
-
-	reporter.setup( app );
-
-	if( !isDev ){
-
-		app.use( compression() );
-		staticMaxAge = '2y';
-	}
-
-	app.use( '/public', serveStatic( pathToPublic, { maxAge: staticMaxAge } ) );
-	app.use( '/public/uktrade', serveStatic( pathToUkTradePublic, { maxAge: staticMaxAge } ) );
-	app.use( morganLogger( ( isDev ? 'dev' : 'combined' ) ) );
-	app.use( cookieParser() );
-	app.use( ping );
-	app.use( uuid );
-	app.use( locals );
-	app.use( alice );
-
-	routes( express, app );
-
-	reporter.handleErrors( app );
 
 	app.listen( serverConfig.port, function(){
 
