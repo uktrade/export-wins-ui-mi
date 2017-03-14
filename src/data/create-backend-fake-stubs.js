@@ -17,7 +17,7 @@ const jsonFiles = {
 
 	'os_regions/overview': osRegionsJson.createOverview(),
 	'os_regions/campaigns': sharedJson.createCampaigns(),
-	'os_regions/index': sharedJson.createIndex(),
+	'os_regions/index': osRegionsJson.createList(),
 	'os_regions/months': sharedJson.createMonths(),
 	'os_regions/region': sharedJson.createSector(),
 	'os_regions/top_non_hvcs': sharedJson.createTopNonHvcs(),

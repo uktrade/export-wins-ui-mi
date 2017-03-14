@@ -16,5 +16,18 @@ module.exports = {
 		}
 
 		return overview;
+	},
+
+	createList: function(){
+
+		let list = generateSchema( '/os_regions/index.schema' );
+		let id = 1;
+
+		for( let region of list ){
+
+			region.id = id++;//Regions need to be from 1 to 17 to make the grouping work
+		}
+
+		return list;
 	}
 };

@@ -11,9 +11,9 @@ module.exports = function( req, res ){
 		backendService.getSectorTeamsAndOverseasRegions( req.alice ).then( ( data ) => {
 
 			const sectorTeams = data.sectorTeams;
-			const overseasRegions = data.overseasRegions;
+			const overseasRegionGroups = data.overseasRegionGroups;
 
-			res.render( 'index.html', { sectorTeams, overseasRegions } );
+			res.render( 'index.html', { sectorTeams, overseasRegionGroups } );
 
 		} ).catch( renderError.createHandler( res ) );
 

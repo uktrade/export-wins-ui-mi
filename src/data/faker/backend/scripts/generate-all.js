@@ -9,6 +9,7 @@ const outputPath = path.resolve( __dirname, '../output/' );
 
 const jsonFiles = {
 	'os_regions/overview': osRegionsJson.createOverview(),
+	'os_regions/index': osRegionsJson.createList(),
 	'sector_teams/index': sectorTeamsJson.createIndex(),
 	'sector_teams/overview': sectorTeamsJson.createOverview(),
 	'shared/index': sharedJson.createIndex(),

@@ -12,6 +12,7 @@ const transformCampaigns = require( '../transformers/campaigns' );
 const transformSectorTeamsOverview = require( '../transformers/sector-teams-overview' );
 const transformOverseasRegionsOverview = require( '../transformers/os-regions-overview' );
 const transformHvcGroup = require( '../transformers/hvc-group' );
+const transformOsRegions = require( '../transformers/os-regions' );
 
 
 function get( alice, path, transform ){
@@ -96,6 +97,11 @@ function getSectorTeamsOverview( alice ){
 function getOverseasRegions( alice ){
 
 	return get( alice, '/mi/os_regions/' );
+}
+
+function getOverseasRegionGroups( alice ){
+
+	return getOverseasRegions( alice ).then( transformOsRegions );
 }
 
 function getOverseasRegionName( alice, regionId ){
@@ -218,6 +224,7 @@ module.exports = {
 	getSectorTeamsOverview,
 
 	getOverseasRegions,
+	getOverseasRegionGroups,
 	getOverseasRegion,
 	getOverseasRegionMonths,
 	getOverseasRegionTopNonHvc,
@@ -249,13 +256,13 @@ module.exports = {
 		return Promise.all( [
 
 			getSectorTeams( alice ),
-			getOverseasRegions( alice )
+			getOverseasRegionGroups( alice )
 
 		] ).then( function( data ){
 
 			return {
 				sectorTeams: data[ 0 ],
-				overseasRegions: data[ 1 ]
+				overseasRegionGroups: data[ 1 ]
 			};
 		} );
 	},
