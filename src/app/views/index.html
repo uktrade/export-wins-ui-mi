@@ -40,15 +40,22 @@
 
 		<div class="column-one-third">
 			
-			{% if overseasRegions.length %}
+			{% if overseasRegionGroups.length %}
 
 			<h2 class="sector-list-heading">Overseas Regions</h2>
 
 			<a href="{{ uuid }}/overseas-regions/overview/" class="regions-overview-link">Overseas regions overview</a>
 
-			<ul class="sector-list">
-			{% for region in overseasRegions %}
-				<li><a href="{{ uuid }}/overseas-regions/{{ region.id }}/">{{ region.name }}</a></li>
+			<ul class="sector-group-list">
+			{% for group in overseasRegionGroups %}
+				<li class="sector-group-list_item">
+					{{ group.name }}
+					<ul class="sector-list">
+					{% for region in group.regions %}
+						<li><a href="{{ uuid }}/overseas-regions/{{ region.id }}/">{{ region.name }}</a></li>
+					{% endfor %}
+					</ul>
+				</li>
 			{% endfor %}
 			</ul>
 

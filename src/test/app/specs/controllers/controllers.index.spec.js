@@ -65,7 +65,7 @@ describe( 'Overseas Regions controller', function(){
 				expect( backendService.getSectorTeamsAndOverseasRegions ).toHaveBeenCalledWith( req.alice );
 				expect( view ).toEqual( 'index.html' );
 				expect( data.sectorTeams ).toBeDefined();
-				expect( data.overseasRegions ).toBeDefined();
+				expect( data.overseasRegionGroups ).toBeDefined();
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				done();
 			} } );

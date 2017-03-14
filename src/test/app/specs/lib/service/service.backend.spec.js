@@ -12,6 +12,7 @@ let campaignsSpy;
 let sectorTeamsOverviewSpy;
 let osRegionsOverviewSpy;
 let hvcGroupSpy;
+let osRegionsSpy;
 let backend;
 
 
@@ -34,6 +35,7 @@ describe( 'Backend service', function(){
 			sectorTeamsOverviewSpy = jasmine.createSpy( 'sector-teams-overview' );
 			osRegionsOverviewSpy = jasmine.createSpy( 'os-regions-overview' );
 			hvcGroupSpy = jasmine.createSpy( 'hvc-group' );
+			osRegionsSpy = jasmine.createSpy( 'os-regions' );
 			backend = {
 				get: function(){}
 			};
@@ -46,6 +48,7 @@ describe( 'Backend service', function(){
 				'../transformers/sector-teams-overview': sectorTeamsOverviewSpy,
 				'../transformers/os-regions-overview': osRegionsOverviewSpy,
 				'../transformers/hvc-group': hvcGroupSpy,
+				'../transformers/os-regions': osRegionsSpy,
 				'../backend': backend
 			};
 
@@ -149,6 +152,45 @@ describe( 'Backend service', function(){
 
 					expect( sectorTeamsOverviewSpy ).toHaveBeenCalled();
 					expect( sectorTeamsOverviewSpy.calls.count() ).toEqual( 1 );
+					done();
+				} );
+			} );
+		} );
+
+		describe( 'Getting the overseas regions list', function(){
+
+			it( 'Should use the os-regions transformer', function( done ){
+
+				returnStub( '/os_regions/' );
+
+				backendService.getOverseasRegions( alice ).then( () => {
+
+					const args = backend.get.calls.argsFor( 0 );
+
+					expect( args[ 0 ] ).toEqual( alice );
+					expect( args[ 1 ] ).toEqual( '/mi/os_regions/' );
+
+					expect( osRegionsSpy ).not.toHaveBeenCalled();
+					done();
+				} );
+			} );
+		} );
+
+		describe( 'Getting the Grouped overseas regions list', function(){
+
+			it( 'Should use the os-regions transformer', function( done ){
+
+				returnStub( '/os_regions/' );
+
+				backendService.getOverseasRegionGroups( alice ).then( () => {
+
+					const args = backend.get.calls.argsFor( 0 );
+
+					expect( args[ 0 ] ).toEqual( alice );
+					expect( args[ 1 ] ).toEqual( '/mi/os_regions/' );
+
+					expect( osRegionsSpy ).toHaveBeenCalled();
+					expect( osRegionsSpy.calls.count() ).toEqual( 1 );
 					done();
 				} );
 			} );
@@ -262,9 +304,9 @@ describe( 'Backend service', function(){
 
 				returnStub( '/os_regions/' );
 
-				backendService.getOverseasRegionName( alice, 99488 ).then( ( name ) => {
+				backendService.getOverseasRegionName( alice, 2 ).then( ( name ) => {
 
-					expect( name ).toEqual( 'sunt nisi molestiae' );
+					expect( name ).toEqual( 'qui voluptas consequatur' );
 					done();
 
 				} ).catch( ( err ) => { expect( err ).not.toBeDefined(); done(); } );
@@ -517,7 +559,7 @@ describe( 'Backend service', function(){
 					backendService.getSectorTeamsAndOverseasRegions( alice ).then( ( data ) => {
 
 						expect( data.sectorTeams ).toBeDefined();
-						expect( data.overseasRegions ).toBeDefined();
+						expect( data.overseasRegionGroups ).toBeDefined();
 
 						done();
 					} );

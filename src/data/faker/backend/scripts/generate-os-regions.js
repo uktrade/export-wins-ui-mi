@@ -6,7 +6,8 @@ const writeJsonFiles = require( '../../helpers/write-json-files' );
 let outputPath = path.resolve( __dirname, '../output/os_regions/' );
 
 let jsonFiles = {
-	overview: osRegionsJson.createOverview()
+	overview: osRegionsJson.createOverview(),
+	list: osRegionsJson.createList()
 };
 
 writeJsonFiles( outputPath, jsonFiles );
