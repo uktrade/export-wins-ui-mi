@@ -401,11 +401,19 @@ describe( 'Backend service', function(){
 
 	describe( 'Aggregate methods', function(){
 
+		let reporter;
+
 		beforeEach( function(){
 
+			let aggConfigStub = Object.assign( {}, configStub );
+			aggConfigStub.backend.timeout = 25;
+
+			reporter = { message: jasmine.createSpy( 'reporter.message' ) };
+
 			stubs = {
-				'../../config': configStub,
-				'../logger': require( '../../../helpers/mock-logger' )
+				'../../config': aggConfigStub,
+				'../logger': require( '../../../helpers/mock-logger' ),
+				'../reporter': reporter
 			};
 
 			backendService = proxyquire( '../../../../../app/lib/service/service.backend', stubs );
@@ -419,6 +427,29 @@ describe( 'Backend service', function(){
 
 				interceptBackend.getStub( uri, status, stub );
 			} );
+		}
+
+		function interceptWithDelay( files ){
+
+			const [ uri, stub, status = 200 ] = files.pop();
+
+			intercept( files );
+
+			interceptBackend
+				.get( uri )
+				.delay( 50 )
+				.reply( status, getBackendStub( stub ) );
+		}
+
+		function checkReporterMessage( methodName ){
+
+			const args = reporter.message.calls.argsFor( 0 );
+
+			expect( reporter.message ).toHaveBeenCalled();
+			expect( args[ 0 ] ).toEqual( 'info' );
+			expect( args[ 1 ] ).toEqual( 'Long aggregate response time from backendService.' + methodName );
+			expect( args[ 2 ].time ).toBeDefined();
+			expect( args[ 2 ].name ).toEqual( methodName );
 		}
 	
 		describe( 'Getting the Sector Team info', function(){
@@ -445,10 +476,35 @@ describe( 'Backend service', function(){
 						expect( data.campaigns ).toBeDefined();
 						expect( data.topNonHvc ).toBeDefined();
 
-						expect( data.wins ).toEqual( getBackendStub( '/sector_teams/sector_team' ) );
-						//expect( data.months ).toEqual( getBackendStub( '/sector_teams/months' ) );
-						//expect( data.campaigns ).toEqual( getBackendStub( '/sector_teams/campaigns' ) );
-						expect( data.topNonHvc ).toEqual( getBackendStub( '/sector_teams/top_non_hvcs' ) );
+						done();
+					} );
+				} );
+			} );
+
+			describe( 'When one of APIs returns after a long time', function(){
+
+				it( 'Should log a message with the reporter', function( done ){
+
+					const teamId = 3;
+
+					const files = [
+						[ `/mi/sector_teams/${ teamId }/`, '/sector_teams/sector_team' ],
+						[ `/mi/sector_teams/${ teamId }/months/`, '/sector_teams/months' ],
+						[ `/mi/sector_teams/${ teamId }/campaigns/`, '/sector_teams/campaigns' ],
+						[ `/mi/sector_teams/${ teamId }/top_non_hvcs/`, '/sector_teams/top_non_hvcs' ]
+					];
+
+					interceptWithDelay( files );
+
+					backendService.getSectorTeamInfo( alice, teamId ).then( ( data ) => {
+
+						checkReporterMessage( 'getSectorTeamInfo' );
+
+						expect( data.wins ).toBeDefined();
+						expect( data.months ).toBeDefined();
+						expect( data.campaigns ).toBeDefined();
+						expect( data.topNonHvc ).toBeDefined();
+
 						done();
 					} );
 				} );
@@ -506,11 +562,36 @@ describe( 'Backend service', function(){
 					expect( data.campaigns ).toBeDefined();
 					expect( data.topNonHvc ).toBeDefined();
 
-					//expect( data.wins ).toEqual( getBackendStub( '/sector_teams/sector_team' ) );
-					//expect( data.months ).toEqual( getBackendStub( '/sector_teams/months' ) );
-					//expect( data.campaigns ).toEqual( getBackendStub( '/sector_teams/campaigns' ) );
-					//expect( data.topNonHvc ).toEqual( getBackendStub( '/sector_teams/top_non_hvcs' ) );
 					done();
+				} );
+			} );
+
+			describe( 'When one of APIs returns after a long time', function(){
+
+				it( 'Should log a message with the reporter', function( done ){
+
+					const regionId = 4;
+
+					const files = [
+						[ `/mi/os_regions/${ regionId }/`, '/os_regions/region' ],
+						[ `/mi/os_regions/${ regionId }/months/`, '/os_regions/months' ],
+						[ `/mi/os_regions/${ regionId }/campaigns/`, '/os_regions/campaigns' ],
+						[ `/mi/os_regions/${ regionId }/top_non_hvcs/`, '/os_regions/top_non_hvcs' ]
+					];
+
+					interceptWithDelay( files );
+
+					backendService.getOverseasRegionInfo( alice, regionId ).then( ( data ) => {
+
+						checkReporterMessage( 'getOverseasRegionInfo' );
+
+						expect( data.wins ).toBeDefined();
+						expect( data.months ).toBeDefined();
+						expect( data.campaigns ).toBeDefined();
+						expect( data.topNonHvc ).toBeDefined();
+
+						done();
+					} );
 				} );
 			} );
 		} );
@@ -534,11 +615,35 @@ describe( 'Backend service', function(){
 					expect( data.wins ).toBeDefined();
 					expect( data.months ).toBeDefined();
 					expect( data.campaigns ).toBeDefined();
-					
-					//expect( data.wins ).toEqual( getBackendStub( '/sector_teams/sector_team' ) );
-					//expect( data.months ).toEqual( getBackendStub( '/sector_teams/months' ) );
-					//expect( data.campaigns ).toEqual( getBackendStub( '/sector_teams/campaigns' ) );
+
 					done();
+				} );
+			} );
+
+			describe( 'When one of the APIs returns after a long time', function(){
+
+				it( 'Should log a message with the reporter', function( done ){
+
+					const groupId = 3;
+
+					const files = [
+						[ `/mi/hvc_groups/${ groupId }/`, '/hvc_groups/group' ],
+						[ `/mi/hvc_groups/${ groupId }/months/`, '/hvc_groups/months' ],
+						[ `/mi/hvc_groups/${ groupId }/campaigns/`, '/hvc_groups/campaigns' ],
+					];
+
+					interceptWithDelay( files );
+
+					backendService.getHvcGroupInfo( alice, groupId ).then( ( data ) => {
+
+						checkReporterMessage( 'getHvcGroupInfo' );
+
+						expect( data.wins ).toBeDefined();
+						expect( data.months ).toBeDefined();
+						expect( data.campaigns ).toBeDefined();
+
+						done();
+					} );
 				} );
 			} );
 		} );
@@ -584,7 +689,29 @@ describe( 'Backend service', function(){
 					} );
 				} );
 			} );
-		
+
+			describe( 'When one API returns afte a long time', function(){
+
+				it( 'Should log a message with the reporter', function( done ){
+
+					const files = [
+						[ '/mi/sector_teams/', '/sector_teams/' ],
+						[ '/mi/os_regions/', '/os_regions/' ]
+					];
+
+					interceptWithDelay( files );
+
+					backendService.getSectorTeamsAndOverseasRegions( alice ).then( ( data ) => {
+
+						checkReporterMessage( 'getSectorTeamsAndOverseasRegions' );
+
+						expect( data.sectorTeams ).toBeDefined();
+						expect( data.overseasRegionGroups ).toBeDefined();
+
+						done();
+					} );
+				} );
+			} );
 		} );
 	} );
 } );
