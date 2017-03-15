@@ -4,6 +4,7 @@ const USE_MOCKS = config.backend.mock;
 const USE_STUBS = config.backend.stub;
 
 const logger = require( '../logger' );
+const reporter = require( '../reporter' );
 const backend = ( USE_STUBS ? require( '../backend.stub' ) : require( '../backend' ) );
 const mocks = ( USE_MOCKS ? require( '../../../mocks' ) : null );
 
@@ -60,6 +61,28 @@ function get( alice, path, transform ){
 				}
 			}
 		} );
+	} );
+}
+
+function checkTime( start, end, name ){
+
+	const time = ( end - start );
+
+	if( time > config.backend.timeout ){
+
+		reporter.message( 'info', `Long aggregate response time from backendService.${ name }`, { time, name } );
+	}
+}
+
+function getAll( name, promises, dataFormatter ){
+
+	const start = Date.now();
+
+	return Promise.all( promises ).then( ( data ) => {
+
+		checkTime( start, Date.now(), name );
+
+		return dataFormatter( data );
 	} );
 }
 
@@ -203,14 +226,14 @@ module.exports = {
 
 	getSectorTeamInfo: function( alice, teamId ){
 
-		return Promise.all( [
+		return getAll( 'getSectorTeamInfo', [
 
 			getSectorTeam( alice, teamId ),
 			getSectorTeamMonths( alice, teamId ),
 			getSectorTeamTopNonHvc( alice, teamId ),
 			getSectorTeamCampaigns( alice, teamId )
 
-		] ).then( function( data ){
+		], function( data ){
 
 			return {
 				wins: data[ 0 ],
@@ -233,14 +256,14 @@ module.exports = {
 
 	getOverseasRegionInfo: function( alice, regionId ){
 
-		return Promise.all( [
+		return getAll( 'getOverseasRegionInfo', [
 
 			getOverseasRegion( alice, regionId ),
 			getOverseasRegionMonths( alice, regionId ),
 			getOverseasRegionTopNonHvc( alice, regionId ),
 			getOverseasRegionCampaigns( alice, regionId )
 
-		] ).then( function( data ){
+		], function( data ){
 
 			return {
 				wins: data[ 0 ],
@@ -253,12 +276,12 @@ module.exports = {
 
 	getSectorTeamsAndOverseasRegions: function( alice ){
 
-		return Promise.all( [
+		return getAll( 'getSectorTeamsAndOverseasRegions', [
 
 			getSectorTeams( alice ),
 			getOverseasRegionGroups( alice )
 
-		] ).then( function( data ){
+		], function( data ){
 
 			return {
 				sectorTeams: data[ 0 ],
@@ -276,13 +299,13 @@ module.exports = {
 
 	getHvcGroupInfo: function( alice, parentId ){
 
-		return Promise.all( [
+		return getAll( 'getHvcGroupInfo', [
 
 			getHvcGroup( alice, parentId ),
 			getHvcGroupMonths( alice, parentId ),
 			getHvcGroupCampaigns( alice, parentId )
 
-		] ).then( function( data ){
+		], function( data ){
 
 			return {
 				wins: data[ 0 ],
