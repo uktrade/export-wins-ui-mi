@@ -21,10 +21,12 @@ module.exports = {
 	create: function(){
 
 		const app = express();
-		const pathToPublic = path.resolve( __dirname, '../../public' );
-		const pathToUkTradePublic = path.resolve( __dirname, '../../../node_modules/@uktrade/trade_elements/dist' );
 		const env = app.get( 'env' );
 		const isDev = ( 'development' === env );
+
+		const pathToPublic = path.resolve( __dirname, '../../public' );
+		const pathToUkTradeElements = path.resolve( __dirname, ( isDev ? '../../../' : '../../' ), 'node_modules/@uktrade/trade_elements' );
+		const pathToUkTradePublic = path.resolve( __dirname, pathToUkTradeElements, 'dist' );
 
 		let nunjucksEnv;
 		let staticMaxAge = 0;
@@ -34,7 +36,7 @@ module.exports = {
 
 		nunjucksEnv = nunjucks.configure( [
 				`${__dirname}/../views`,
-				`${__dirname}/../../../node_modules/@uktrade/trade_elements/dist/nunjucks`,
+				`${pathToUkTradeElements}/dist/nunjucks`,
 			], {
 			autoescape: true,
 			watch: config.isDev,

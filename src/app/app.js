@@ -28,15 +28,18 @@ function startApp(){
 
 	app.listen( serverConfig.port, function(){
 
+		let messages = [];
+
 		if( isClustered ){
 
-			logger.info( 'Worker ' + cluster.worker.id + ' created: App running in %s mode, listening at http://%s:%s', env, serverConfig.host, serverConfig.port );
-
-		} else {
-
-			logger.info( 'App running in %s mode', env );
-			logger.info( 'Listening at http://%s:%s', serverConfig.host, serverConfig.port );
+			messages.push( `Worker ${cluster.worker.id} created` );
 		}
+
+		messages.push( `App running in ${env} mode` );
+		messages.push( `Listening at http://${serverConfig.host}:${serverConfig.port}` );
+		messages.push( `Connecting to backend at ${config.backend.href}` );
+
+		logger.info( messages.join( '   ' ) );
 	});
 
 	if( isClustered ){
