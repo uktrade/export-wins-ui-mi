@@ -68,3 +68,21 @@ To test the client side code:
 ```bash
 npm run test-client
 ```
+
+# Docker
+
+## Docker compose
+
+To start all the services you can use docker compose:
+
+```bash
+docker-compose up
+```
+
+Which will require a database to be running and DATABASE_URL env var to be defined
+
+To start a clean db, use with the over ride file:
+
+```bash
+docker-compose -f docker-compose.yml -f docker-compose.clean.yml up
+```
