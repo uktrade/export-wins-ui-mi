@@ -1,0 +1,62 @@
+version: '3.1'
+
+services:
+
+  ui-mi:
+    image: ukti/export-wins-ui-mi:latest
+    ports:
+      - "5080:8080"
+    depends_on:
+      - ew-be
+    environment:
+      - MI_SECRET='mi-secret'
+      - COOKIE_SECRET='cookie-secret'
+      - MI_HOST=ew-be
+
+  ew-be:
+    image: ukti/export-wins-data:latest
+    ports:
+      - "5000:8000"
+    depends_on:
+      - maildev
+    environment:
+      - SECRET_KEY='django-data-secret'
+      - ADMIN_SECRET='admin-secret'
+      - UI_SECRET='ui-secret'
+      - MI_SECRET='mi-secret'
+      - DATABASE_URL
+      - DEBUG='True'
+      - API_DEBUG='True'
+      - EMAIL_HOST=maildev
+      - EMAIL_PORT=25
+
+  ew-ui:
+    image: ukti/export-wins-ui:latest
+    ports:
+      - "5180:8001"
+    depends_on:
+      - ew-be
+    environment:
+      - SECRET_KEY='django-ui-secret'
+      - COOKIE_SECRET='cookie-secret'
+      - UI_SECRET='ui-secret'
+      - DEBUG='True'
+      - DATA_SERVER=http://ew-be:8000
+
+  maildev:
+    image: djfarrelly/maildev
+    ports:
+      - "5280:80"
+
+# ew-ui-admin:
+#   image: ukti/export-wins-ui:latest
+#   ports:
+#     - "5380:8001"
+#   depends_on:
+#     - ew-be
+#   environment:
+#     - SECRET_KEY='django-ui-secret'
+#     - COOKIE_SECRET='cookie-secret'
+#     - UI_SECRET='admin-secret'
+#     - DEBUG='True'
+#     - DATA_SERVER=http://ew-be:8000

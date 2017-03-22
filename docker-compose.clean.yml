@@ -1,0 +1,17 @@
+version: '3.1'
+
+services:
+
+  ew-be:
+    environment:
+      - DATABASE_URL=postgres://postgres@db:5432/export-wins-data
+    depends_on:
+      - db
+    restart: always
+
+  db:
+    image: postgres:9
+    environment:
+      POSTGRES_DB: 'export-wins-data'
+      POSTGRES_USER: postgres
+
