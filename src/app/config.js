@@ -1,3 +1,4 @@
+const os = require( 'os' );
 
 function env( name, defaultValue ){
 
@@ -11,13 +12,17 @@ function bool( name, defaultValue ){
 	return ( env( name, defaultValue ) + '' ) === 'true';
 }
 
+const cpus = ( os.cpus().length || 1 );
+const defaultWorkers = ( cpus > 1 ? cpus - 1 : cpus );
+
 let config = {
 	version: env( 'npm_package_version', 'unknown' ),
 	server: {
 		protocol: env( 'SERVER_PROTOCOL', 'http' ),
 		host: env( 'SERVER_HOST', 'localhost' ),
 		port: env( 'SERVER_PORT', env( 'PORT', 8080 ) ),
-		workers: env( 'SERVER_WORKERS', 1 ),
+		cpus,
+		workers: env( 'SERVER_WORKERS', defaultWorkers ),
 		uuid: env( 'SERVER_UUID', '05422c73-064a-4277-aca8-07774dd3e3a0' )
 	},
 	views: {
