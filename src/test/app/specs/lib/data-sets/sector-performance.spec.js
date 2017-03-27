@@ -163,7 +163,7 @@ describe( 'Sector performance data set for Sector Teams data', function(){
 		expect( target.marker.color ).toBeDefined();
 		expect( target.marker.size ).toEqual( 4 );
 		expect( target.line.color ).toBeDefined();
-		expect( target.line.width ).toEqual( 2 );
+		expect( target.line.width ).toEqual( 3 );
 
 		expect( hvcConfirmed.name ).toEqual( 'hvc confirmed' );
 		expect( hvcConfirmed.mode ).toEqual( 'lines+markers' );
@@ -248,7 +248,7 @@ describe( 'Sector performance data set for HVC Group data', function(){
 		expect( target.marker.color ).toBeDefined();
 		expect( target.marker.size ).toEqual( 4 );
 		expect( target.line.color ).toBeDefined();
-		expect( target.line.width ).toEqual( 2 );
+		expect( target.line.width ).toEqual( 3 );
 
 		expect( hvcConfirmed.name ).toEqual( 'hvc confirmed' );
 		expect( hvcConfirmed.mode ).toEqual( 'lines+markers' );

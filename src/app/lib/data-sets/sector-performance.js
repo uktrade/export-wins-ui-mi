@@ -30,7 +30,7 @@ function createTargetTrace( name, x, y ){
 		},
 		line: {
 			color: targetColour,
-			width: 2
+			width: 3
 		}
 	};
 

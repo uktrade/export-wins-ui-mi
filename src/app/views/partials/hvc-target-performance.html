@@ -35,12 +35,12 @@
 		<thead>
 			<tr>
 				<th class="hvc-perf_table_cell_heading hvc-perf_table_cell_heading--campaign">HVC name</th>
-				<th class="hvc-perf_table_cell_heading">Percentage of HVC target</th>
+				<th class="hvc-perf_table_cell_heading">HVC target progress</th>
 				<th><span class="visually-hidden">Over target</span></th>
+				<th class="hvc-perf_table_cell_heading">Percentage of HVC target</th>
 				<th class="hvc-perf_table_cell_heading">Export value &pound;</th>
 				<th class="hvc-perf_table_cell_heading">Incl. unconfirmed</th>
 				<th class="hvc-perf_table_cell_heading">Target &pound;</th>
-				<th class="hvc-perf_table_cell_heading">Percentage of HVC target</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -75,14 +75,14 @@
 					<span class="hvc-perf_table_cell_over-marker hvc-perf_table_cell_over-marker--{% if item.progress.target.unconfirmed > 0 %}unconfirmed{% else %}{{ item.status }}{% endif %}"></span>
 					{%- endif -%}
 				</td>
-				<td class="hvc-perf_table_cell hvc-perf_table_cell--confirmed">{{ item.value.confirmed | largeNumber }}</td>
-				<td class="hvc-perf_table_cell hvc-perf_table_cell--combined">{{ item.value.total | largeNumber }}</td>
-				<td class="hvc-perf_table_cell hvc-perf_table_cell--target">{{ item.target | largeNumber }}</td>
 				<td class="hvc-perf_table_cell hvc-perf_table_cell--hvc-percent">
 					<span class="hvc-perf_status hvc-perf_status--{{ item.status }}">
 						{{ item.progress.confirmed | tablePercentage }}%
 					</span>
 				</td>
+				<td class="hvc-perf_table_cell hvc-perf_table_cell--confirmed">{{ item.value.confirmed | largeNumber }}</td>
+				<td class="hvc-perf_table_cell hvc-perf_table_cell--combined">{{ item.value.total | largeNumber }}</td>
+				<td class="hvc-perf_table_cell hvc-perf_table_cell--target">{{ item.target | largeNumber }}</td>
 			</tr>
 			{% endfor %}
 

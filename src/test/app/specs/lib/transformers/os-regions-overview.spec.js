@@ -26,6 +26,16 @@ describe( 'Overseas Regions Overview transformer', function(){
 			} );
 		} );
 
+
+		it( 'Should have the correct name', function(){
+		
+			expect( output[ 0 ].name ).toEqual( 'Europe' );
+			expect( output[ 1 ].name ).toEqual( 'Near East & North Africa' );
+			expect( output[ 2 ].name ).toEqual( 'East' );
+			expect( output[ 3 ].name ).toEqual( 'South Pacific' );
+			expect( output[ 4 ].name ).toEqual( 'East, West & South Africa' );
+			expect( output[ 5 ].name ).toEqual( 'Americas' );
+		} );
 	} );
 
 	describe( 'The regions', function(){
@@ -75,6 +85,5 @@ describe( 'Overseas Regions Overview transformer', function(){
 			expect( output[ 0 ].regions[ 0 ].confirmedPercent.hvc ).toEqual( 22 );
 			expect( output[ 1 ].regions[ 0 ].confirmedPercent.hvc ).toEqual( 46 );
 		} );
-
 	} );
 } );
