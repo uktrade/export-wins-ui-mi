@@ -12,6 +12,37 @@
 			</tr>
 		</thead>
 		<tbody>
+
+			<tr class="top-non-hvc_table_markers-row top-non-hvc_table_markers-row--top">
+				<td colspan="2"></td>
+				<td>
+				 	<div class="top-non-hvc_value-markers">
+						<span class="top-non-hvc_value-markers_marker top-non-hvc_value-markers_marker--first">
+							<span class="top-non-hvc_value-markers_marker_line"></span>
+							<span class="visually-hidden">25% of value: </span>
+							<span class="top-non-hvc_value-markers_marker_text">
+								&pound;{{ topNonHvcScale.low | largeNumber }}
+							</span>
+						</span>
+						<span class="top-non-hvc_value-markers_marker top-non-hvc_value-markers_marker--second">
+							<span class="top-non-hvc_value-markers_marker_line"></span>
+							<span class="visually-hidden">/ 50% of value: </span>
+							<span class="top-non-hvc_value-markers_marker_text">
+								&pound;{{ topNonHvcScale.mid | largeNumber }}
+							</span>
+						</span>
+						<span class="top-non-hvc_value-markers_marker top-non-hvc_value-markers_marker--third">
+							<span class="top-non-hvc_value-markers_marker_line"></span>
+							<span class="visually-hidden">/ 100% of value: </span>
+							<span class="top-non-hvc_value-markers_marker_text">
+								&pound;{{ topNonHvcScale.high | largeNumber }}
+							</span>
+						</span>
+					</div>
+				</td>
+				<td colspan="4"></td>
+			</tr>
+
 			{% for item in topNonHvc %}
 			<tr class="top-non-hvc_table_row">
 				<td class="top-non-hvc_table_cell top-non-hvc_table_cell--region">{{ item.region }}</td>

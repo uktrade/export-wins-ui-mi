@@ -1,6 +1,7 @@
 
 const groups = [
 	{
+		name: 'Europe',
 		image: {
 			url: '/public/img/overseas-region-maps/1.png',
 			width: 265,
@@ -14,6 +15,7 @@ const groups = [
 		]
 	},
 	{
+		name: 'Near East & North Africa',
 		image: {
 			url: '/public/img/overseas-region-maps/2.png',
 			width: 265,
@@ -26,6 +28,7 @@ const groups = [
 		]
 	},
 	{
+		name: 'East',
 		image: {
 			url: '/public/img/overseas-region-maps/3.png',
 			width: 265,
@@ -38,6 +41,7 @@ const groups = [
 		]
 	},
 	{
+		name: 'South Pacific',
 		image: {
 			url: '/public/img/overseas-region-maps/4.png',
 			width: 265,
@@ -49,6 +53,7 @@ const groups = [
 		],
 	},
 	{
+		name: 'East, West & South Africa',
 		image: {
 			url: '/public/img/overseas-region-maps/5.png',
 			width: 265,
@@ -61,6 +66,7 @@ const groups = [
 		],
 	},
 	{
+		name: 'Americas',
 		image: {
 			url: '/public/img/overseas-region-maps/6.png',
 			width: 265,
@@ -95,6 +101,7 @@ module.exports = function( input ){
 
 		output.push( {
 
+			name: group.name,
 			image: group.image,
 			regions: group.regions.map( ( regionConfig ) => {
 				

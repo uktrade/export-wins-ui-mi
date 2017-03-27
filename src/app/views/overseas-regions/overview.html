@@ -18,75 +18,87 @@
 		</div>
 	</section>
 
-	<ol class="overseas-region-groups">
-	{% set loopIndex = 0 %}
-	{% for group in regionGroups -%}
-		
-		<li class="overseas-region-groups_group">
-			
-			<img src="{{ group.image.url }}" width="{{ group.image.width }}" height="{{ group.image.height }}" alt="group map" class="overseas-region-groups_group_image">
+	<table class="overseas-region-overview-data" cellspacing="0">
 
-			<div class="overseas-region-groups_group_data-wrapper">{# wrapper for flex #}
-			<table class="overseas-region-overview-data">
+		<caption class="visually-hidden">
+			Region overview group {{ loop.index }}
+		</caption>
 
-				<caption class="visually-hidden">
-					Region overview group {{ loop.index }}
-				</caption>
+		<thead{% if loop.index > 1 %} class="visually-hidden"{% endif %}>
+			<tr class="overseas-region-overview-data_headings">
+				<th class="overseas-region-overview-data_headings_heading" colspan="2">Regions<span class="visually-hidden"> (and countries)</span></th>
+				<th class="overseas-region-overview-data_headings_heading">HVC performance<span class="overseas-region-overview-data_headings_heading_sub">(each square equals 1 HVC)</span></th>
+				<th class="overseas-region-overview-data_headings_heading">Confirmed &pound;</th>
+				<th class="overseas-region-overview-data_headings_heading overseas-region-overview-data_headings_heading--target">HVC target &pound;</th>
+				<th class="overseas-region-overview-data_headings_heading"><span class="visually-hidden">Progress against target</span></th>
+				<th class="overseas-region-overview-data_headings_heading overseas-region-overview-data_headings_heading--hvc-non-hvc">
+					Confirmed<br>
+					<span class="overseas-region-overview-data_heading_hvc-non-hvc_block overseas-region-overview-data_heading_hvc-non-hvc_block--hvc"></span>
+					HVC<br>
+					<span class="overseas-region-overview-data_heading_hvc-non-hvc_block overseas-region-overview-data_heading_hvc-non-hvc_block--non-hvc"></span>
+					non-HVC
+				</th>
+			</tr>
+		</thead>
 
-				<thead{% if loop.index > 1 %} class="visually-hidden"{% endif %}>
-					<tr class="overseas-region-overview-data_headings">
-						<th class="overseas-region-overview-data_headings_heading"><span class="visually-hidden">Region name (and countries)</span></th>
-						<th class="overseas-region-overview-data_headings_heading">HVCs<br>(each square equals 1 HVC)</th>
-						<th class="overseas-region-overview-data_headings_heading">Current value</th>
-						<th class="overseas-region-overview-data_headings_heading overseas-region-overview-data_headings_heading--target">Target</th>
-						<th class="overseas-region-overview-data_headings_heading"><span class="visually-hidden">Progress against target</span></th>
-						<th class="overseas-region-overview-data_headings_heading overseas-region-overview-data_headings_heading--hvc-non-hvc">
-							<span class="overseas-region-overview-data_heading_hvc-non-hvc_block overseas-region-overview-data_heading_hvc-non-hvc_block--hvc"></span>
-							HVC<br>
-							<span class="overseas-region-overview-data_heading_hvc-non-hvc_block overseas-region-overview-data_heading_hvc-non-hvc_block--non-hvc"></span>
-							non-HVC
-						</th>
-					</tr>
-				</thead>
+		<tbody>
+		{% set loopIndex = 0 -%}
 
-				<tbody>
-				{%- for region in group.regions -%}
+		{%- for group in regionGroups -%}
 
-					{% set loopIndex = ( loopIndex + 1 ) %}
+		{%- for region in group.regions -%}
 
-					<tr class="overseas-region-overview-data_region{% if loopIndex % 2 === 1 %} overseas-region-overview-data_region--odd{% endif %}">
+		{%- set loopIndex = ( loopIndex + 1 ) -%}
 
-						<td class="overseas-region-overview-data_cell overseas-region-overview-data_region_name overseas-region-overview-data_region_name--{{ region.colour }}">
-							<a href="{{ uuid }}/overseas-regions/{{ region.id }}/">{{ region.name }}</a>
-							<span class="overseas-region-overview-data_region_name_countries">
-								{{- region.markets | pluralise( 'country', 'countries' ) -}}
-							</span>
-						</td>
-						<td class="overseas-region-overview-data_cell overseas-region-overview-data_region_performance">
-							{{- overviewBlocks( region.hvcPerformance ) -}}
-						</td>
-						<td class="overseas-region-overview-data_cell overseas-region-overview-data_region_current">
-							{{- currentValueOver( region.values.hvc ) -}}
-						</td>
-						<td class="overseas-region-overview-data_cell overseas-region-overview-data_region_target">
-							&pound;{{ region.values.hvc.target | largeNumber }}
-						</td>
-						<td class="overseas-region-overview-data_cell overseas-region-overview-data_region_progress">
-							<span class="visually-hidden">{{ region.value.percentage }}%</span>
-						</td>
-						<td class="overseas-region-overview-data_cell overseas-region-overview-data_region_hvc-non-hvc">
-							{{ overviewPie( region.confirmedPercent.nonHvc ) }}
-						</td>
+		{%- if loopIndex % 2 === 0 -%}
+			{%- set rowClass = ' overseas-region-overview-data_region--even' -%}
+		{%- else -%}
+			{%- set rowClass = '' -%}
+		{%- endif -%}
 
-					</tr>
-			
-				{%- endfor -%}
-				</tbody>
+		{%- if loopIndex > 1 and loop.index == 1 -%}
+			{%- set firstRowClass = 'overseas-region-overview-data_cell--first ' -%}
+		{%- elif loopIndex == 1 and loop.index == 1 -%}
+			{%- set firstRowClass = 'overseas-region-overview-data_cell--first-region ' -%}
+		{%- else -%}
+			{%- set firstRowClass = '' -%}
+		{%- endif -%}
 
-			</table>
-			</div>
-		</li>
+			<tr class="overseas-region-overview-data_region{{ rowClass }}">
 
-	{%- endfor %}
-	</ol>
+			{%- if loop.index == 1 %}
+				<td class="{{ firstRowClass }}overseas-region-overview-data_cell overseas-region-overview-data_cell--region" rowspan="{{ loop.length }}">
+					{{ group.name }}
+					<img src="{{ group.image.url }}" width="{{ group.image.width }}" height="{{ group.image.height }}" alt="group map" class="overseas-region-groups_group_image">
+				</td>
+			{% endif -%}
+
+				<td class="{{ firstRowClass }}overseas-region-overview-data_cell overseas-region-overview-data_cell--name overseas-region-overview-data_cell--{{ region.colour }}">
+					<a href="{{ uuid }}/overseas-regions/{{ region.id }}/">{{ region.name }}</a>
+					<span class="overseas-region-overview-data_cell_countries">
+						{{- region.markets | pluralise( 'country', 'countries' ) -}}
+					</span>
+				</td>
+				<td class="{{ firstRowClass }}overseas-region-overview-data_cell overseas-region-overview-data_cell--performance">
+					{{- overviewBlocks( region.hvcPerformance ) -}}
+				</td>
+				<td class="{{ firstRowClass }}overseas-region-overview-data_cell overseas-region-overview-data_cell--current">
+					{{- currentValueOver( region.values.hvc ) -}}
+				</td>
+				<td class="{{ firstRowClass }}overseas-region-overview-data_cell overseas-region-overview-data_cell--target">
+					&pound;{{ region.values.hvc.target | largeNumber -}}
+				</td>
+				<td class="{{ firstRowClass }}overseas-region-overview-data_cell overseas-region-overview-data_cell--progress">
+					<span class="visually-hidden">{{- region.value.percentage }}%</span>
+				</td>
+				<td class="{{ firstRowClass }}overseas-region-overview-data_cell overseas-region-overview-data_cell--hvc-non-hvc">
+					{{- overviewPie( region.confirmedPercent.nonHvc ) -}}
+				</td>
+
+			</tr>	
+		{%- endfor -%}
+		{%- endfor %}
+		</tbody>
+
+	</table>
 {% endblock %}

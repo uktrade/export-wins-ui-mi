@@ -35,7 +35,7 @@
 		{% set overClass = ' overview-progress--unconfirmed-over' %}
 	{% endif -%}
 
-	&pound;{{ values.current.confirmed | largeNumber }}
+	{{ values.current.confirmed | largeNumber }}
 	<span class="overview-progress{% if isSectorTeam %} overview-progress--large{% endif %}{{ overClass }}">
 
 		<span class="overview-progress_amount" style="width: {{ values.targetPercent.confirmed.capped }}%"></span>

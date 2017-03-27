@@ -24,11 +24,11 @@ $keyBoxSize: 12px;
 .hvc-perf_table_cell_heading {
 	@include bold-14;
 	vertical-align: bottom;
+	text-align: left;
 }
 
 .hvc-perf_table_cell_heading--campaign {
 	@include bold-16;
-	text-align: left;
 }
 
 .hvc-perf_table_cell {
@@ -38,11 +38,11 @@ $keyBoxSize: 12px;
 	overflow: hidden;//IE 11 fix as it calculates the wrong height of .hvc-perf_table_cell_50-percent and .hvc-perf_table_cell_over-percentage 
 }
 
-$campaign-width: 25%;
-$percent-complete-width: 33%;
+$campaign-width: 24%;
+$percent-complete-width: 31%;
 $over-target-width: 4%;
-$confirmed-width: 10%;
-$combined-width: 10%;
+$confirmed-width: 12%;
+$combined-width: 11%;
 $target-width: 8%;
 $hvc-percent: 10%;
 //above should equal 100%

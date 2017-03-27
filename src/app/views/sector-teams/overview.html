@@ -13,39 +13,42 @@
 		{% set urlPath = 'sector-teams' %}
 	{%- endif -%}
 
-	<tr class="sector-teams-list_team_row{% if isHvcGroup %} sector-teams-list_team_row--hvc{% endif %}">
-		<td class="sector-teams-list_team_cell sector-teams-list_team_cell--name{% if isHvcGroup %} sector-teams-list_team_cell--hvc-group{% endif %}">
+	<tr class="sector-teams-ov-table_row{% if isHvcGroup %} sector-teams-ov-table_row--hvc{% endif %}">
+		<td class="sector-teams-ov-table_cell sector-teams-ov-table_cell--name{% if isHvcGroup %} sector-teams-ov-table_cell--hvc-group{% endif %}">
+			{% if not isHvcGroup %}
+				<img class="sector-teams-ov-table_image" src="{{ sector.image.url }}" width="{{ sector.image.width }}" height="{{ sector.image.height }}" alt="{{ sector.image.alt }}">
+			{% endif %}
 			<a href="{{ uuid }}/{{ urlPath }}/{{ sector.id }}/">{{ sector.name }}</a>
 		</td>
-		<td class="sector-teams-list_team_cell sector-teams-list_team_cell--performance">
+		<td class="sector-teams-ov-table_cell sector-teams-ov-table_cell--performance">
 			{% if isHvcGroup %}
 			{{- overviewBlocks( sector.hvcPerformance ) -}}
 			{% else %}
 				{{ sector.totalHvcs }} HVCs
 			{% endif %}
 		</td>
-		<td class="sector-teams-list_team_cell sector-teams-list_team_cell--current-value{% if not isHvcGroup %} sector-teams-list_team_cell--large{% endif %}">
+		<td class="sector-teams-ov-table_cell sector-teams-ov-table_cell--current-value{% if not isHvcGroup %} sector-teams-ov-table_cell--large{% endif %}">
 			{{- currentValueOver( sector.values.hvc, ( not isHvcGroup ) ) -}}
 		</td>
-		<td class="sector-teams-list_team_cell sector-teams-list_team_cell--target-value{% if not isHvcGroup %} sector-teams-list_team_cell--large{% endif %}">
-			&pound;{{ sector.values.hvc.target | largeNumber -}}
+		<td class="sector-teams-ov-table_cell sector-teams-ov-table_cell--target-value{% if not isHvcGroup %} sector-teams-ov-table_cell--large{% endif %}">
+			{{ sector.values.hvc.target | largeNumber -}}
 		</td>
-		<td class="sector-teams-list_team_cell sector-teams-list_team_cell--value-percentage">
+		<td class="sector-teams-ov-table_cell sector-teams-ov-table_cell--value-percentage">
 			<span class="visually-hidden">{{ sector.value.percentage.value }}%</span>
 		</td>
-		<td class="sector-teams-list_team_cell sector-teams-list_team_cell--hvc-non-hvc">
+		<td class="sector-teams-ov-table_cell sector-teams-ov-table_cell--hvc-non-hvc">
 			{%- if sector.confirmedPercent -%}
 			{{ overviewPie( sector.confirmedPercent.nonHvc ) }}
 			{%- endif -%}
 		</td>
-		<td class="sector-teams-list_team_cell sector-teams-list_team_cell--non-hvc-value">
+		<td class="sector-teams-ov-table_cell sector-teams-ov-table_cell--non-hvc-value">
 			{%- if sector.values.nonHvc -%}
-			&pound;{{ sector.values.nonHvc.current.confirmed | largeNumber }}
+			{{ sector.values.nonHvc.current.confirmed | largeNumber }}
 			{%- endif -%}
 		</td>
-		<td class="sector-teams-list_team_cell sector-teams-list_team_cell--total-value">
+		<td class="sector-teams-ov-table_cell sector-teams-ov-table_cell--total-value">
 			{%- if sector.values.totals -%}
-			&pound;{{ sector.values.totals.confirmed | largeNumber }}
+			{{ sector.values.totals.confirmed | largeNumber }}
 			{%- endif -%}
 		</td>
 	</tr>
@@ -58,7 +61,7 @@
 	<section class="grid-row">
 		<div class="column-half column--relative">
 			<h3 class="column-date">{{ financialYear() }}</h3>
-			<h3 class="sectors-overview-date-heading">Confirmed wins values</h3>
+			<h3 class="visually-hidden">Confirmed wins values</h3>
 		</div>
 		<div class="column-half">
 			{% include 'partials/key.html' %}
@@ -67,46 +70,37 @@
 
 	{%- set loopIndex = 0 -%}
 
-	<ol class="sector-teams-list">
+	<table class="sector-teams-ov-table">
+		<thead{% if loop.index > 1 %} class="visually-hidden"{% endif %}>
+			<tr>
+				<th class="sector-teams-ov-table_heading">Sectors</th>
+				<th class="sector-teams-ov-table_heading">HVCs<span class="sector-teams-ov-table_heading_sub">(each square equals one HVC)</span></th>
+				<th class="sector-teams-ov-table_heading">Confirmed &pound;</th>
+				<th class="sector-teams-ov-table_heading sector-teams-ov-table_heading--target">HVC Target &pound;</th>
+				<th class="sector-teams-ov-table_heading"><span class="visually-hidden">Progress against target</span></th>
+				<th class="sector-teams-ov-table_heading sector-teams-ov-table_heading--hvc-non-hvc">
+					Confirmed<br>
+					<span class="overseas-region-overview-data_heading_hvc-non-hvc_block overseas-region-overview-data_heading_hvc-non-hvc_block--hvc"></span>
+					HVC<br>
+					<span class="overseas-region-overview-data_heading_hvc-non-hvc_block overseas-region-overview-data_heading_hvc-non-hvc_block--non-hvc"></span>
+					non-HVC
+				</th>
+				<th class="sector-teams-ov-table_heading">non-HVC value &pound;</th>
+				<th class="sector-teams-ov-table_heading">Total confirmed value incl. non-HVC &pound;</th>
+			</tr>
+		</thead>
+		<tbody>
+
 		{%- for team in sectorTeams -%}
-		
-			<li class="sector-teams-list_item">
+			{% set loopIndex = ( loopIndex + 1 ) %}
+			
+			{{ row( team, loopIndex ) }}
 
-				<img class="sector-teams-list_image" src="{{ team.image.url }}" width="{{ team.image.width }}" height="{{ team.image.height }}" alt="{{ team.image.alt }}">
-
-				<table class="sector-teams-list_team">
-					<thead{% if loop.index > 1 %} class="visually-hidden"{% endif %}>
-						<tr>
-							<th class="sector-teams-list_team_heading">Sectors</th>
-							<th class="sector-teams-list_team_heading">HVCs<br>(each square equals 1 HVC)</th>
-							<th class="sector-teams-list_team_heading">Current value</th>
-							<th class="sector-teams-list_team_heading sector-teams-list_team_heading--target">Target</th>
-							<th class="sector-teams-list_team_heading"><span class="visually-hidden">Progress against target</span></th>
-							<th class="sector-teams-list_team_heading sector-teams-list_team_heading--hvc-non-hvc">
-								<span class="overseas-region-overview-data_heading_hvc-non-hvc_block overseas-region-overview-data_heading_hvc-non-hvc_block--hvc"></span>
-								HVC<br>
-								<span class="overseas-region-overview-data_heading_hvc-non-hvc_block overseas-region-overview-data_heading_hvc-non-hvc_block--non-hvc"></span>
-								non-HVC
-							</th>
-							<th class="sector-teams-list_team_heading">non-HVC value &pound;</th>
-							<th class="sector-teams-list_team_heading">Total value incl. non-HVC &pound;</th>
-						</tr>
-					</thead>
-					<tbody>
-
-						{% set loopIndex = ( loopIndex + 1 ) %}
-						
-						{{ row( team, loopIndex ) }}
-
-						{% for hvcGroup in team.hvcGroups %}
-							{% set loopIndex = ( loopIndex + 1 ) %}
-							{{ row( hvcGroup, loopIndex, true ) }}
-						{% endfor %}
-
-					</tbody>
-				</table>
-
-			</li>
+			{% for hvcGroup in team.hvcGroups %}
+				{% set loopIndex = ( loopIndex + 1 ) %}
+				{{ row( hvcGroup, loopIndex, true ) }}
+			{% endfor %}
 		{% endfor %}
-	</ol>
+		</tbody>
+	</table>
 {% endblock %}

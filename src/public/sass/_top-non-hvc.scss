@@ -1,5 +1,5 @@
 @import 'typography';
-@import 'colours';
+@import 'mi-colours';
 @import 'helpers';
 
 $right-padding: 2em;
@@ -11,6 +11,7 @@ $right-padding: 2em;
 .top-non-hvc {
 	position: relative;
 	padding-bottom: 1em;
+	margin-top: -1em;
 }
 
 .top-non-hvc_table {
@@ -26,6 +27,9 @@ $right-padding: 2em;
 
 .top-non-hvc_table_heading {
 	@include core-14;
+	position: relative;
+	top: 1.5em;
+	line-height: 1.2 !important;
 }
 
 .top-non-hvc_table_heading--left {
@@ -86,7 +90,7 @@ $average-win-width: 7%;
 .top-non-hvc_table_cell_bar {
 	background-color: $non-hvc;
 	display: inline-block;
-	height: 10px;
+	height: 20px;
 }
 
 .top-non-hvc_table_markers-row {
@@ -102,9 +106,9 @@ $average-win-width: 7%;
 }
 
 .top-non-hvc_value-markers_marker {
-	@include core-14;
+	@include bold-14;
 	position: absolute;
-	padding-top: 1em;
+	padding-top: pem( 10, 14 );
 }
 
 .top-non-hvc_value-markers_marker--first {
@@ -129,4 +133,24 @@ $average-win-width: 7%;
 
 .top-non-hvc_value-markers_marker_text {
 	margin-left: -50%;
+}
+
+.top-non-hvc_table_markers-row--top {
+
+	border-top: 0;
+	border-bottom: 1px solid #000;
+
+	.top-non-hvc_value-markers {
+		margin-bottom: 1.75em;
+	}
+	
+	.top-non-hvc_value-markers_marker {
+		padding-top: 0;
+		padding-bottom: pem( 10, 14 );
+	}
+
+	.top-non-hvc_value-markers_marker_line {
+		top: auto;
+		bottom: 0;
+	}
 }
