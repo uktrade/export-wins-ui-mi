@@ -1,6 +1,6 @@
 const dateFormat = require( 'dateformat' );
 
-module.exports = function( datestr ){
+module.exports = function( datestr, maxDate ){
 
 	let date;
 
@@ -11,6 +11,16 @@ module.exports = function( datestr ){
 	} else {
 
 		date = new Date();
+	}
+
+	if( maxDate ){
+
+		let mDate = new Date( maxDate );
+
+		if( date > mDate ){
+
+			date = mDate;
+		}
 	}
 
 	return dateFormat( date, 'h:MMtt d mmmm yyyy' );
