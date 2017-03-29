@@ -44,6 +44,9 @@ module.exports = {
 			express: app
 		} );
 
+		//add as a global so that it's available to macros
+		nunjucksEnv.addGlobal( 'uuid', '/' + config.server.uuid );
+
 		nunjucksFilters( nunjucksEnv );
 
 		reporter.setup( app );

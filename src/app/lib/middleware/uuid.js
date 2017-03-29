@@ -8,7 +8,6 @@ module.exports = function( req, res, next ){
 	if( uuidPattern.test( req.url ) ){
 		
 		req.url = req.url.replace( uuidPattern, '$1' );
-		res.locals.uuid = ( '/' + uuid );
 		next();
 
 	} else {

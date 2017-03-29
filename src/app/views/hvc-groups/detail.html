@@ -1,6 +1,7 @@
 {% extends 'layout.html' %}
 
 {% from 'macros/dates.html' import financialYear %}
+{% from 'macros/hvc-target-performance.html' import hvcTargetPerformanceTable %}
 
 {% set pageName %}HVC Group - {{ sectorName | safe }}{% endset %}
 
@@ -60,7 +61,7 @@
 		<div class="column-single">
 			<h2 class="sector-heading">{{ sectorName }} HVCs</h2>
 			<h3 class="sub-heading-date">{{ financialYear() }}</h3>
-			{% include 'partials/hvc-target-performance.html' %}
+			{{ hvcTargetPerformanceTable( hvcTargetPerformance.withTarget, linkHvc=linkHvc ) }}
 		</div>
 	</section>
 

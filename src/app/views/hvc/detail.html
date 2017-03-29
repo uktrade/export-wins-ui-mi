@@ -1,0 +1,64 @@
+{% extends 'layout.html' %}
+
+{% set pageName %}{{ name | safe }}{% endset %}
+
+{% from 'macros/dates.html' import financialYear %}
+{% from 'macros/top-markets.html' import topMarketsTable %}
+{% from 'macros/hvc-target-performance.html' import hvcTargetPerformanceTable %}
+
+{% block page_content %}
+
+	<h1 class="page-heading">{{ name }} <span class="page-heading-secondary">HVC</span></h1>
+	<h2 class="page-date page-date--hvc">{{ financialYear() }}</h2>
+
+	<section class="grid-row">
+		<div class="column-half">
+			<h4 class="hvc-heading hvc-heading--target">Total confirmed against target</h4>
+			{% include 'partials/hvc-performance-summary.html' -%}
+		</div>
+		<div class="column-one-quarter">
+			<h3 class="sector-overview_confirmed-heading">Confirmed and unconfirmed wins value</h3>
+			{% include 'partials/confirmed-vs-unconfirmed-wins.html' -%}
+		</div>
+		<div class="column-one-quarter">
+			<p class="hvc-average-time_text">
+				Average time to confirm <span class="hvc-average-time_value">{{ averageTimeToConfirm | pluralise( 'day' ) }}</span>
+			</p>
+		</div>
+	</section>
+
+	<section class="grid-row">
+		<div class="column-single">
+			<h2 class="hvc-heading">{{ name }} target performance</h2>
+			<h3 class="sub-heading-date">{{ financialYear() }}</h3>
+			{{ hvcTargetPerformanceTable( hvcTargetPerformance.withTarget ) }}
+		</div>
+	</section>
+
+	<section class="grid-row">
+		<div class="column-single">
+			<h2 class="hvc-heading hvc-heading--separator">{{ name }} monthly performance</h2>
+			<h3 class="sub-heading-date">{{ financialYear() }}</h3>
+			<div id="monthly-performance"></div>
+		</div>
+	</section>
+
+	<section class="grid-row">
+		<div class="column-single">
+			<h2 class="hvc-heading hvc-heading--separator">{{ name }} top markets and sectors</h2>
+			<h3 class="sub-heading-date">{{ financialYear() }}</h3>
+			{{ topMarketsTable( topMarkets, 'hvc' ) }}
+		</div>
+	</section>
+
+{%- endblock -%}
+
+{%- block pageScript %}
+	<script>
+		mi.pages.hvc({
+			performanceId: 'monthly-performance',
+			performance: {{ performance | dump | safe }},
+			targetProgress: {{ hvcSummary.progress.gauge | dump | safe }}
+		});
+	</script>
+{% endblock pageScript -%}

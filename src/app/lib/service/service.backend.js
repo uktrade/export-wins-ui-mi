@@ -6,7 +6,7 @@ const USE_STUBS = config.backend.stub;
 const logger = require( '../logger' );
 const reporter = require( '../reporter' );
 const backend = ( USE_STUBS ? require( '../backend.stub' ) : require( '../backend' ) );
-const mocks = ( USE_MOCKS ? require( '../../../mocks' ) : null );
+const mocks = ( USE_MOCKS ? require( '../../../data/mocks' ) : null );
 
 const transformMonths = require( '../transformers/months' );
 const transformCampaigns = require( '../transformers/campaigns' );
@@ -200,6 +200,22 @@ function getHvcGroupMonths( alice, groupId ){
 	return get( alice, `/mi/hvc_groups/${ groupId }/months/`, transformMonths );
 }
 
+function getHvc( /* alice, hvcId */ ){
+
+	//`/mi/hvc/${ hvcId }/`
+
+	let data = require( '../../../data/mocks' ).hvc().then( function ( data ){
+
+		data = Object.create( data );
+
+		data.campaigns = transformCampaigns( data );
+
+		return data;
+	} );
+
+	return data;
+}
+
 
 /*eslint-disable no-func-assign */
 if( USE_MOCKS ){
@@ -313,5 +329,7 @@ module.exports = {
 				campaigns: data[ 2 ]
 			};
 		} );
-	}
+	},
+
+	getHvc
 };

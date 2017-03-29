@@ -8,36 +8,36 @@ $right-padding: 2em;
 	border-left: 1px solid #000;
 }
 
-.top-non-hvc {
+.top-markets {
 	position: relative;
 	padding-bottom: 1em;
 	margin-top: -1em;
 }
 
-.top-non-hvc_table {
+.top-markets_table {
 	border-collapse: collapse;
 }
 
-.top-non-hvc_table_row:first-of-type {
+.top-markets_table_row:first-of-type {
 	border-top: 1px solid #000;
 }
-.top-non-hvc_table_row:nth-of-type(even) {
+.top-markets_table_row:nth-of-type(even) {
 	background-color: $grey-4;
 }	
 
-.top-non-hvc_table_heading {
+.top-markets_table_heading {
 	@include core-14;
 	position: relative;
 	top: 1.5em;
 	line-height: 1.2 !important;
 }
 
-.top-non-hvc_table_heading--left {
+.top-markets_table_heading--left {
 	text-align: left;
 	padding-left: pem( 8, 14 );
 }
 
-.top-non-hvc_table_cell {
+.top-markets_table_cell {
 	padding: pem( 8, 16 );
 	line-height: 1;
 }
@@ -49,22 +49,22 @@ $total-value-width: 9%;
 $total-wins-width: 6%;
 $average-win-width: 7%;
 
-.top-non-hvc_table_cell--region {
+.top-markets_table_cell--region {
 	width: $region-width;
 }
 
-.top-non-hvc_table_cell--sector {
+.top-markets_table_cell--sector {
 	width: $sector-width;
 }
 
-.top-non-hvc_table_cell--percent {
+.top-markets_table_cell--percent {
 	@include left-border;
 	width: $percent-width;
 	padding-left: 0;
 	padding-right: $right-padding;
 }
 
-.top-non-hvc_table_cell--total-value {
+.top-markets_table_cell--total-value {
 	width: $total-value-width;
 	@include left-border;
 	@include bold-14;
@@ -72,14 +72,14 @@ $average-win-width: 7%;
 	padding-right: 1.5em;
 }
 
-.top-non-hvc_table_cell--total-wins {
+.top-markets_table_cell--total-wins {
 	width: $total-wins-width;
 	@include left-border;
 	@include core-14;
 	padding-left: 1.5em;
 }
 
-.top-non-hvc_table_cell--average-win-value {
+.top-markets_table_cell--average-win-value {
 	width: $average-win-width;
 	@include left-border;
 	@include core-14;
@@ -87,17 +87,17 @@ $average-win-width: 7%;
 	text-align: right;
 }
 
-.top-non-hvc_table_cell_bar {
+.top-markets_table_cell_bar {
 	background-color: $non-hvc;
 	display: inline-block;
 	height: 20px;
 }
 
-.top-non-hvc_table_markers-row {
+.top-markets_table_markers-row {
 	border-top: 1px solid #000;
 }
 
-.top-non-hvc_value-markers {
+.top-markets_value-markers {
 	padding-left: 0;
 	width: 100%;
 	position: relative;
@@ -105,25 +105,25 @@ $average-win-width: 7%;
 	left: -$right-padding;
 }
 
-.top-non-hvc_value-markers_marker {
+.top-markets_value-markers_marker {
 	@include bold-14;
 	position: absolute;
 	padding-top: pem( 10, 14 );
 }
 
-.top-non-hvc_value-markers_marker--first {
+.top-markets_value-markers_marker--first {
 	left: 33.3%;
 }
 
-.top-non-hvc_value-markers_marker--second {
+.top-markets_value-markers_marker--second {
 	left: 66.6%;
 }
 
-.top-non-hvc_value-markers_marker--third {
+.top-markets_value-markers_marker--third {
 	left: 100%;
 }
 
-.top-non-hvc_value-markers_marker_line {
+.top-markets_value-markers_marker_line {
 	position: absolute;
 	left: 0;
 	top: 0;
@@ -131,26 +131,33 @@ $average-win-width: 7%;
 	border-left: 2px solid #000;
 }
 
-.top-non-hvc_value-markers_marker_text {
+.top-markets_value-markers_marker_text {
 	margin-left: -50%;
 }
 
-.top-non-hvc_table_markers-row--top {
+.top-markets_table_markers-row--top {
 
 	border-top: 0;
 	border-bottom: 1px solid #000;
 
-	.top-non-hvc_value-markers {
+	.top-markets_value-markers {
 		margin-bottom: 1.75em;
 	}
 	
-	.top-non-hvc_value-markers_marker {
+	.top-markets_value-markers_marker {
 		padding-top: 0;
 		padding-bottom: pem( 10, 14 );
 	}
 
-	.top-non-hvc_value-markers_marker_line {
+	.top-markets_value-markers_marker_line {
 		top: auto;
 		bottom: 0;
+	}
+}
+
+.top-markets--hvc {
+
+	.top-markets_table_cell_bar {
+		background-color: $hvc;
 	}
 }

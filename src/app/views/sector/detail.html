@@ -1,6 +1,8 @@
 {% extends 'layout.html' %}
 
 {% from 'macros/dates.html' import financialYear %}
+{% from 'macros/top-markets.html' import topMarketsTable %}
+{% from 'macros/hvc-target-performance.html' import hvcTargetPerformanceTable %}
 
 {% block page_content %}
 
@@ -79,7 +81,7 @@
 		<div class="column-single">
 			<h2 class="sector-heading">{{ sectorName }} HVCs</h2>
 			<h3 class="sub-heading-date">{{ financialYear() }}</h3>
-			{% include 'partials/hvc-target-performance.html' %}
+			{{ hvcTargetPerformanceTable( hvcTargetPerformance.withTarget, linkHvc=linkHvc ) }}
 		</div>
 	</section>
 
@@ -104,7 +106,7 @@
 		<div class="column-single">
 			<h2 class="sector-heading sector-heading--separator">Top performing markets and sectors (wins with no HVC tagged)</h2>
 			<h3 class="sub-heading-date">{{ financialYear() }}</h3>
-			{% include 'partials/top-non-hvc.html' %}
+			{{ topMarketsTable( topMarkets ) }}
 		</div>
 	</section>
 

@@ -1,0 +1,26 @@
+@import 'typography';
+
+.page-date--hvc {
+	margin-bottom: pem( 15 );
+}
+
+.hvc-heading {
+	@extend .sector-heading;
+}
+
+.hvc-heading--target {
+	@extend .sector-heading--target;
+}
+
+.hvc-heading--separator {
+	@extend .sector-heading--separator
+}
+
+.hvc-average-time_text {
+	@include bold-14;
+}
+
+.hvc-average-time_value {
+	@include bold-24;
+	display: block;
+}

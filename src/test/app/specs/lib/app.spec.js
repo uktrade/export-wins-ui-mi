@@ -206,6 +206,22 @@ describe( 'App', function(){
 		} );
 	} );
 
+	describe( 'HVC', function(){
+	
+		describe( 'Detail', function(){
+		
+			it( 'Should return 200', function( done ){
+		
+				supertest( app ).get( '/hvc/E022/' ).end( ( err, res ) => {
+
+					expect( res.statusCode ).toEqual( 200 );
+					expect( getTitle( res ) ).toEqual( 'MI - E1234 Abc Advanced Manufacturing - Marine' );
+					done();
+				} );
+			} );
+		} );
+	} );
+
 	describe( 'Overseas Regions', function(){
 
 		describe( 'Overview', function(){
