@@ -10,7 +10,7 @@ const interceptBackend = require( '../../helpers/intercept-backend' );
 
 let controller;
 
-describe( 'Overseas Regions controller', function(){
+describe( 'HVC Groups controller', function(){
 
 	beforeEach( function(){
 

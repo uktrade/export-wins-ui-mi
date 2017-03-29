@@ -7,13 +7,14 @@
 @import 'pie';
 @import 'key';
 @import 'sector-wins-list';
-@import 'top-non-hvc';
+@import 'top-markets';
 @import 'hvc-target-performance';
 @import 'zero-target-perf-table';
 @import 'overview-blocks';
 @import 'overview-progress';
 @import 'overseas-regions-overview';
 @import 'sectors-overview';
+@import 'hvc';
 
 .error-heading {
 	background-color: rgba( $error-colour, 0.15 );
@@ -27,6 +28,11 @@
 .page-heading {
 	@include bold-36;
 	margin-top: pem( 30, 36 );
+}
+
+.page-heading-secondary {
+	@include bold-19;
+	color: $grey-1;
 }
 
 .page-sub-heading {

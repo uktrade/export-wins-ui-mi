@@ -1,7 +1,4 @@
-
-module.exports = {
-
-	create: function( data ){
+function createScale( data ){
 
 		let highest = 0;
 
@@ -14,6 +11,17 @@ module.exports = {
 			high: highest,
 			mid: ( highest / 2 ),
 			low: ( highest / 4 )
+		};
+	}
+
+module.exports = {
+
+	create: function( data ){
+
+		return {
+
+			items: data,
+			scale: createScale( data )
 		};
 	}
 };
