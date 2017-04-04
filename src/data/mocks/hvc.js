@@ -2,6 +2,7 @@ module.exports = {
 	id: 'E1234',
 	name: 'Abc Advanced Manufacturing - Marine',
 	target: 100000000,
+	targetName: '£100m',
 	campaigns: [
 		{
 			"campaign_id": 29713,

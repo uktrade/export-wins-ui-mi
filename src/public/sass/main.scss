@@ -15,9 +15,15 @@
 @import 'overseas-regions-overview';
 @import 'sectors-overview';
 @import 'hvc';
+@import 'monthly-performance';
+@import 'monthly-performance-key';
 
 .error-heading {
 	background-color: rgba( $error-colour, 0.15 );
+}
+
+.row-separator {
+	margin-top: pem( 60, 16 );
 }
 
 .unit-marker {

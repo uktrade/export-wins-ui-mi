@@ -3,8 +3,6 @@ const largeNumber = require( '../nunjucks-filters/large-number' );
 module.exports = function( input ){
 
 	const output = {
-		//max: input.hvcs.target,
-		//min: 0,
 		target: input.hvcs.target,
 		targetName: ( '£' + largeNumber( input.hvcs.target ) ),
 		months: []
@@ -44,8 +42,6 @@ module.exports = function( input ){
 		}
 
 		output.months.push( data );
-
-		//output.max = Math.max( output.max, confirmedHvc, unconfirmedHvc, confirmedNonHvc, unconfirmedNonHvc, confirmedNonExport, unconfirmedNonExport );
 	} );
 
 	return output;

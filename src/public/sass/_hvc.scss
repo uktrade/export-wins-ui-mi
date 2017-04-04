@@ -12,10 +12,6 @@
 	@extend .sector-heading--target;
 }
 
-.hvc-heading--separator {
-	@extend .sector-heading--separator
-}
-
 .hvc-average-time_text {
 	@include bold-14;
 }

@@ -2,11 +2,6 @@
 @import 'helpers';
 @import 'typography';
 
-#sector-performance {
-	width: 100%;
-	height: 400px;
-}
-
 .sector-detail {
 	margin-top: pem( 50 );
 	padding-bottom: pem( 15 );
@@ -78,10 +73,6 @@
 
 .sector-heading {
 	@include bold-19;
-}
-
-.sector-heading--separator {
-	margin-top: pem( 60, 19 );
 }
 
 .sector-heading--target {

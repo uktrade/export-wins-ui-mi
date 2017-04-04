@@ -2,9 +2,8 @@
 const backendService = require( '../lib/service/service.backend' );
 const renderError = require( '../lib/render-error' );
 
-const hvcPerformanceDataSet = require( '../lib/data-sets/hvc-performance' );
-
 const hvcTargetPerformance = require( '../lib/view-models/hvc-target-performance' );
+const monthlyPerformance = require( '../lib/view-models/monthly-performance' );
 const topMarkets = require( '../lib/view-models/top-markets' );
 
 module.exports = {
@@ -27,8 +26,8 @@ module.exports = {
 						}
 					}
 				},
-				performance: hvcPerformanceDataSet.create( hvc ),
 				hvcTargetPerformance: hvcTargetPerformance.create( hvc.campaigns ),
+				monthlyPerformance: monthlyPerformance.create( hvc ),
 				hvcSummary: {
 					progress: {
 						percent: 50,

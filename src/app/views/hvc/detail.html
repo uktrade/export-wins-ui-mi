@@ -27,7 +27,7 @@
 		</div>
 	</section>
 
-	<section class="grid-row">
+	<section class="grid-row row-separator">
 		<div class="column-single">
 			<h2 class="hvc-heading">{{ name }} target performance</h2>
 			<h3 class="sub-heading-date">{{ financialYear() }}</h3>
@@ -35,17 +35,25 @@
 		</div>
 	</section>
 
-	<section class="grid-row">
-		<div class="column-single">
-			<h2 class="hvc-heading hvc-heading--separator">{{ name }} monthly performance</h2>
+	<section class="grid-row row-separator">
+		<div class="column-two-thirds">
+			<h2 class="hvc-heading">{{ name }} monthly performance</h2>
 			<h3 class="sub-heading-date">{{ financialYear() }}</h3>
-			<div id="monthly-performance"></div>
+		</div>
+		<div class="column-one-third">
+			{% include 'partials/monthly-performance-key.html' %}
 		</div>
 	</section>
 
 	<section class="grid-row">
 		<div class="column-single">
-			<h2 class="hvc-heading hvc-heading--separator">{{ name }} top markets and sectors</h2>
+			{% include 'partials/monthly-performance.html' %}
+		</div>
+	</section>
+
+	<section class="grid-row row-separator">
+		<div class="column-single">
+			<h2 class="hvc-heading">{{ name }} top markets and sectors</h2>
 			<h3 class="sub-heading-date">{{ financialYear() }}</h3>
 			{{ topMarketsTable( topMarkets, 'hvc' ) }}
 		</div>
@@ -56,8 +64,6 @@
 {%- block pageScript %}
 	<script>
 		mi.pages.hvc({
-			performanceId: 'monthly-performance',
-			performance: {{ performance | dump | safe }},
 			targetProgress: {{ hvcSummary.progress.gauge | dump | safe }}
 		});
 	</script>
