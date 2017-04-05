@@ -65,6 +65,15 @@
 		</div>
 	</section>
 
+	{% if hvcTargetPerformance.zeroTarget.length %}
+	<section class="grid-row">
+		<div class="column-single">
+			<h2 class="sector-heading sector-heading--zero-target">HVCs with no target in 2016-17</h2>
+			{% include 'partials/zero-target-performance.html' %}
+		</div>
+	</section>
+	{% endif %}
+
 	<section class="grid-row row-separator">
 		<div class="column-two-thirds">
 			<h2 class="sector-heading">{{ sectorName }} HVCs monthly performance</h2>
