@@ -65,11 +65,19 @@
 		</div>
 	</section>
 
+	<section class="grid-row row-separator">
+		<div class="column-two-thirds">
+			<h2 class="sector-heading">{{ sectorName }} HVCs monthly performance</h2>
+			<h3 class="sub-heading-date">{{ financialYear() }}</h3>
+		</div>
+		<div class="column-one-third">
+			{% include 'partials/monthly-performance-key.html' %}
+		</div>
+	</section>
+
 	<section class="grid-row">
 		<div class="column-single">
-			<h2 class="sector-heading sector-heading--separator">{{ sectorName }} HVCs monthly performance</h2>
-			<h3 class="sub-heading-date">{{ financialYear() }}</h3>
-			<div id="sector-performance"></div>
+			{% include 'partials/monthly-performance.html' %}
 		</div>
 	</section>
 
@@ -79,7 +87,6 @@
 {% block pageScript %}
 	<script>
 		mi.pages.sector({
-			sectorPerformance: {{ sectorPerformance | dump | safe }},
 			targetProgress: {{ hvcSummary.progress.gauge | dump | safe }}
 		});
 	</script>

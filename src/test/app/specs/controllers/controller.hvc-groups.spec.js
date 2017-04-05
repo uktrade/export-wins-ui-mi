@@ -5,6 +5,7 @@ const errorHandler = require( '../../../../app/lib/render-error' );
 const sectorSummary = require( '../../../../app/lib/view-models/sector-summary' );
 const hvcSummary = require( '../../../../app/lib/view-models/sector-hvc-summary' );
 const hvcTargetPerformance = require( '../../../../app/lib/view-models/hvc-target-performance' );
+const monthlyPerformance = require( '../../../../app/lib/view-models/monthly-performance' );
 
 const interceptBackend = require( '../../helpers/intercept-backend' );
 
@@ -19,7 +20,8 @@ describe( 'HVC Groups controller', function(){
 			'../lib/render-error': errorHandler,
 			'../lib/view-models/sector-summary': sectorSummary,
 			'../lib/view-models/sector-hvc-summary': hvcSummary,
-			'../lib/view-models/hvc-target-performance': hvcTargetPerformance
+			'../lib/view-models/hvc-target-performance': hvcTargetPerformance,
+			'../lib/view-models/monthly-performance': monthlyPerformance
 		};
 
 		controller = proxyquire( '../../../../app/controllers/controller.hvc-groups', stubs );
@@ -58,6 +60,7 @@ describe( 'HVC Groups controller', function(){
 			spyOn( sectorSummary, 'create' ).and.callThrough();
 			spyOn( hvcSummary, 'create' ).and.callThrough();
 			spyOn( hvcTargetPerformance, 'create' ).and.callThrough();
+			spyOn( monthlyPerformance, 'create' ).and.callThrough();
 
 			const req = {
 				alice: '1234',
@@ -78,12 +81,13 @@ describe( 'HVC Groups controller', function(){
 				expect( sectorSummary.create ).toHaveBeenCalled();
 				expect( hvcSummary.create ).toHaveBeenCalled();
 				expect( hvcTargetPerformance.create ).toHaveBeenCalled();
+				expect( monthlyPerformance.create ).toHaveBeenCalled();
 
 				expect( data.sectorName ).toBeDefined();
 				expect( data.summary ).toBeDefined();
 				expect( data.hvcSummary ).toBeDefined();
-				expect( data.sectorPerformance ).toBeDefined();
 				expect( data.hvcTargetPerformance ).toBeDefined();
+				expect( data.monthlyPerformance ).toBeDefined();
 				
 				expect( view ).toEqual( 'hvc-groups/detail.html' );
 				done();

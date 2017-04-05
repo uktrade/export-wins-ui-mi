@@ -1,0 +1,10 @@
+<div class="mp-key">
+	<ul class="mp-key_list">
+		{% for key in monthlyPerformance.keys %}
+			<li class="mp-key_list_item mp-key_list_item--{{ key.modifyer }}">
+				<span class="mp-key_list_item_block mp-key_list_item_block--{{ key.modifyer }}"></span>
+				{{ key.name }}
+			</li>
+		{% endfor %}
+	</ul>
+</div>

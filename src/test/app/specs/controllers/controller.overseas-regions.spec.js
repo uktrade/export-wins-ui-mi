@@ -6,6 +6,7 @@ const sectorSummary = require( '../../../../app/lib/view-models/sector-summary' 
 const hvcSummary = require( '../../../../app/lib/view-models/sector-hvc-summary' );
 const hvcTargetPerformance = require( '../../../../app/lib/view-models/hvc-target-performance' );
 const topMarkets = require( '../../../../app/lib/view-models/top-markets' );
+const monthlyPerformance = require( '../../../../app/lib/view-models/monthly-performance' );
 
 const interceptBackend = require( '../../helpers/intercept-backend' );
 
@@ -22,7 +23,8 @@ describe( 'Overseas Regions controller', function(){
 			'../lib/view-models/sector-summary': sectorSummary,
 			'../lib/view-models/sector-hvc-summary': hvcSummary,
 			'../lib/view-models/hvc-target-performance': hvcTargetPerformance,
-			'../lib/view-models/top-markets': topMarkets
+			'../lib/view-models/top-markets': topMarkets,
+			'../lib/view-models/monthly-performance': monthlyPerformance
 		};
 
 		controller = proxyquire( '../../../../app/controllers/controller.overseas-regions', stubs );
@@ -95,6 +97,7 @@ describe( 'Overseas Regions controller', function(){
 			spyOn( hvcSummary, 'create' ).and.callThrough();
 			spyOn( hvcTargetPerformance, 'create' ).and.callThrough();
 			spyOn( topMarkets, 'create' ).and.callThrough();
+			spyOn( monthlyPerformance, 'create' ).and.callThrough();
 
 			interceptBackend.getStub( `/mi/os_regions/${ regionId }/`, 200, '/os_regions/region' );
 			interceptBackend.getStub( `/mi/os_regions/${ regionId }/months/`, 200, '/os_regions/months' );
@@ -109,12 +112,13 @@ describe( 'Overseas Regions controller', function(){
 				expect( hvcSummary.create ).toHaveBeenCalled();
 				expect( hvcTargetPerformance.create ).toHaveBeenCalled();
 				expect( topMarkets.create ).toHaveBeenCalled();
+				expect( monthlyPerformance.create ).toHaveBeenCalled();
 
 				expect( data.regionName ).toBeDefined();
 				expect( data.summary ).toBeDefined();
 				expect( data.hvcSummary ).toBeDefined();
 				expect( data.hvcTargetPerformance ).toBeDefined();
-				expect( data.sectorPerformance ).toBeDefined();
+				expect( data.monthlyPerformance ).toBeDefined();
 				expect( data.topMarkets ).toBeDefined();
 
 				expect( view ).toEqual( 'overseas-regions/detail.html' );

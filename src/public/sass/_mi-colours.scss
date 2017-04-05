@@ -14,7 +14,13 @@ $pie-default-wedge: $mauve;
 $mi-pink: $pink;
 
 $hvc: $link-hover-colour;
+$hvc-unconfirmed: tint( $hvc, 50 );
+
 $non-hvc: tint( $pink, 40 );
+$non-hvc-unconfirmed: tint( $non-hvc, 50 );
+
+$non-export: tint( $mauve, 25 );
+$non-export-unconfirmed: tint( $non-export, 50 );
 
 $confirmed: #000;
 $unconfirmed: $grey-2;

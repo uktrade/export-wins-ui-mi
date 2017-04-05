@@ -2,12 +2,11 @@
 const backendService = require( '../lib/service/service.backend' );
 const renderError = require( '../lib/render-error' );
 
-const sectorPerformanceDataSet = require( '../lib/data-sets/sector-performance' );
-
 const hvcTargetPerformance = require( '../lib/view-models/hvc-target-performance' );
 const sectorSummary = require( '../lib/view-models/sector-summary' );
 const hvcSummary = require( '../lib/view-models/sector-hvc-summary' );
 const topMarkets = require( '../lib/view-models/top-markets' );
+const monthlyPerformance = require( '../lib/view-models/monthly-performance' );
 
 module.exports = { 
 
@@ -41,7 +40,7 @@ module.exports = {
 				summary: sectorSummary.create( data.wins ),
 				hvcSummary: hvcSummary.create( data.wins ),
 				hvcTargetPerformance: hvcTargetPerformance.create( data.campaigns ),
-				sectorPerformance: sectorPerformanceDataSet.create( data.months ),
+				monthlyPerformance: monthlyPerformance.create( data.months ),
 				topMarkets: topMarkets.create( data.topNonHvc ),
 			} );
 

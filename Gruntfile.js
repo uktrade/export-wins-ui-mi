@@ -49,11 +49,6 @@ module.exports = function( grunt ){
 						cwd: 'src/',
 						src: [ 'public/**/*', '!*/{sass,css,js}/**', '!**/*.{js,es}hintrc', '!**/*.map' ],
 						dest: 'dist/'
-					},{
-						expand: true,
-						cwd: 'src/',
-						src: [ 'public/js/vendor/plotly/*' ],
-						dest: 'dist/'
 					}
 				]
 			},
