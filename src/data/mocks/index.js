@@ -16,5 +16,6 @@ module.exports = {
 	regionsOverview: createPromise( './region-overview' ),
 	sectorTeamsOverview: createPromise( './sector-teams-overview' ),
 	win: createPromise( './win' ),
-	hvc: createPromise( './hvc' )
+	hvc: createPromise( './hvc' ),
+	winList: createPromise( '../fake-stubs/mocks/hvc-table' )
 };

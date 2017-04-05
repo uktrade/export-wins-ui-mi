@@ -1,0 +1,134 @@
+@import 'mi-colours';
+
+.win-table {
+	border-collapse: collapse;
+	line-height: 1;
+}
+
+.win-table_head_row {
+	border-top: 1px solid #000;
+	border-bottom: 1px solid #000;
+	text-align: left;
+}
+
+.win-table_body_row {
+
+	border-bottom: 1px solid $grey-2;
+
+	&:last-of-type {
+		border-bottom: 0;
+	}
+}
+
+$win-table-cell-padding: 5;
+
+.win-table_head_cell {
+	padding: pem( 5 ) pem( $win-table-cell-padding );
+	font-size: 95%;
+}
+
+.win-table_head_cell--date {
+	text-align: center;
+}
+
+.win-table_head_cell_sub-heading {
+	color: $grey-1;
+	font-size: 90%;
+	display: block;
+	padding-top: pem( 3, 14 );
+}
+
+.win-table_cell {
+	padding: pem( 8 ) pem( $win-table-cell-padding );
+}
+
+.win-table_cell--company {
+	width: 20%;
+}
+
+.win-table_cell--hvc {
+	width: 23%;
+}
+
+.win-table_cell--officer {
+	width: 18%;
+}
+
+.win-table_cell--credited {
+	text-align: center;
+	width: 9%;
+}
+
+.win-table_cell--date {
+	width: 10%;
+	font-size: 90%;
+}
+
+.win-table_cell--export {
+	width: 10%;
+	font-size: 95%;
+	font-weight: bold;
+}
+
+.win-table_cell--status {
+	width: 10%;
+}
+
+.win-table_cell_company-name {
+	@include bold-16;
+	display: block;
+	text-decoration: none;
+}
+
+.win-table_cell_cdms-ref {
+	color: $grey-1;
+	@include core-14;
+}
+
+.win-table_cell_hvc {
+	color: $grey-1;
+	@include bold-16;
+}
+
+.win-table_cell_hvc-name {
+	display: block;
+	padding-top: pem( 5 );
+}
+
+.win-table_cell_officer-details {
+	margin: 0;
+}
+
+.win-table_cell_officer-details_value {
+	margin: 0;
+}
+
+.win-table_cell_officer-details_value--sub {
+	color: $grey-1;
+	font-size: 90%;
+}
+
+.win-table_cell_credit-name {
+	display: inline-block;
+	padding: pem( 4 );
+	color: #fff;
+	background-color: #000;
+	width: 60%;
+}
+
+.win-table_cell_credit-name--yes {
+	background-color: tint( $green, 25 );	
+}
+
+.win-table_cell--status-not-sent {
+	color: $grey-1;
+}
+
+.win-table_cell--status-confirmed {
+	color: tint( $green, 25 );
+	font-weight: bold;
+}
+
+.win-table_cell--status-rejected {
+	color: $mellow-red;
+}
