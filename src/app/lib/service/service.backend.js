@@ -216,6 +216,18 @@ function getHvc( /* alice, hvcId */ ){
 	return data;
 }
 
+function getWinList( /* alice */ ){
+
+	return require( '../../../data/mocks' ).winList().then( ( mockData ) => {
+		
+		let data = mockData.map( Object.create );
+
+		data = require( '../transformers/win-list' )( data );
+
+		return data;
+	} );
+}
+
 
 /*eslint-disable no-func-assign */
 if( USE_MOCKS ){
@@ -331,5 +343,6 @@ module.exports = {
 		} );
 	},
 
-	getHvc
+	getHvc,
+	getWinList
 };

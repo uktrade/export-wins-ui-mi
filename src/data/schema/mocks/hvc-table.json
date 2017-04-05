@@ -1,0 +1,94 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "List of wins",
+
+	"type": "array",
+	"minItems": 10,
+	"maxItems": 20,
+	"items": {
+		"type": "object",
+		"required": [ "id", "company", "hvc", "lead_officer", "credit", "win_date", "export_amount", "status" ],
+		"properties": {
+
+			"id": {
+				"type": "number",
+				"faker": "random.number"
+			},
+
+			"company": {
+				"type": "object",
+				"required": [ "id", "name", "cdms_id" ],
+				"properties": {
+					"id": {
+						"type": "number",
+						"faker": "random.number"
+					},
+					"name": {
+						"type": "string",
+						"faker": "company.companyName"
+					},
+					"cdms_id": {
+						"type": "number",
+						"faker": "random.number"
+					}
+				}
+			},
+
+			"hvc": {
+				"type": "object",
+				"required": [ "id", "name" ],
+				"properties": {
+					"id": {
+						"type": "number",
+						"faker": "random.number"
+					},
+					"name": {
+						"type": "string",
+						"faker": "lorem.words"
+					}
+				}
+			},
+
+			"lead_officer": {
+				"type": "object",
+				"required": [ "name", "location", "role" ],
+				"properties": {
+					"name": {
+						"type": "string",
+						"faker": "name.findName"
+					},
+					"location": {
+						"type": "stirng",
+						"faker": "address.country"
+					},
+					"role": {
+						"type": "string",
+						"faker": "name.jobDescriptor"
+					}
+				}
+			},
+
+			"credit": {
+				"type": "boolean",
+				"faker": "random.boolean"
+			},
+
+			"win_date": {
+				"type": "string",
+				"faker": "date.recent"
+			},
+
+			"export_amount": {
+				"type": "number",
+				"faker": {
+					"finance.amount": [ 1000000, 1000000000 ]
+				}
+			},
+
+			"status": {
+				"type": "string",
+				"pattern": "0|1|2|3"
+			}
+		}
+	}
+}
