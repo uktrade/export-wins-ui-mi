@@ -24,11 +24,11 @@ describe( 'Sector months transformer', function(){
 
 			expect( outputMonth.date ).toEqual( month.date );
 			expect( outputMonth.totals.hvc.confirmed ).toEqual( month.totals.export.hvc.value.confirmed );
-			expect( outputMonth.totals.hvc.unconfirmed ).toEqual( month.totals.export.hvc.value.total );
+			expect( outputMonth.totals.hvc.unconfirmed ).toEqual( month.totals.export.hvc.value.unconfirmed );
 			expect( outputMonth.totals.nonHvc.confirmed ).toEqual( month.totals.export.non_hvc.value.confirmed );
-			expect( outputMonth.totals.nonHvc.unconfirmed ).toEqual( month.totals.export.non_hvc.value.total );
+			expect( outputMonth.totals.nonHvc.unconfirmed ).toEqual( month.totals.export.non_hvc.value.unconfirmed );
 			expect( outputMonth.totals.nonExport.confirmed ).toEqual( month.totals.non_export.value.confirmed );
-			expect( outputMonth.totals.nonExport.unconfirmed ).toEqual( month.totals.non_export.value.total );
+			expect( outputMonth.totals.nonExport.unconfirmed ).toEqual( month.totals.non_export.value.unconfirmed );
 		} );
 	}
 
@@ -47,10 +47,10 @@ describe( 'Sector months transformer', function(){
 
 			expect( outputMonth.date ).toEqual( month.date );
 			expect( outputMonth.totals.hvc.confirmed ).toEqual( month.totals.export.hvc.value.confirmed );
-			expect( outputMonth.totals.hvc.unconfirmed ).toEqual( month.totals.export.hvc.value.total );
+			expect( outputMonth.totals.hvc.unconfirmed ).toEqual( month.totals.export.hvc.value.unconfirmed );
 			expect( outputMonth.totals.nonHvc ).not.toBeDefined();
 			expect( outputMonth.totals.nonExport.confirmed ).toEqual( month.totals.non_export.value.confirmed );
-			expect( outputMonth.totals.nonExport.unconfirmed ).toEqual( month.totals.non_export.value.total );
+			expect( outputMonth.totals.nonExport.unconfirmed ).toEqual( month.totals.non_export.value.unconfirmed );
 		} );
 	}
 

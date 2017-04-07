@@ -13,8 +13,8 @@ module.exports = function( input ){
 		const confirmedHvc = month.totals.export.hvc.value.confirmed;
 		const confirmedNonExport = month.totals.non_export.value.confirmed;
 
-		const unconfirmedHvc = month.totals.export.hvc.value.total;
-		const unconfirmedNonExport = month.totals.non_export.value.total;
+		const unconfirmedHvc = month.totals.export.hvc.value.unconfirmed;
+		const unconfirmedNonExport = month.totals.non_export.value.unconfirmed;
 
 		let data = {
 			date: month.date,
@@ -33,7 +33,7 @@ module.exports = function( input ){
 		if( month.totals.export.non_hvc ){
 
 			const confirmedNonHvc = month.totals.export.non_hvc.value.confirmed;
-			const unconfirmedNonHvc = month.totals.export.non_hvc.value.total;
+			const unconfirmedNonHvc = month.totals.export.non_hvc.value.unconfirmed;
 
 			data.totals.nonHvc = {
 				confirmed: confirmedNonHvc,
