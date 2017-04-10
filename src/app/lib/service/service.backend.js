@@ -201,7 +201,7 @@ function getHvcGroupMonths( alice, groupId ){
 }
 
 
-const getWin = require( '../../../data/mocks' ).win;
+const getWin = function(){ return require( '../../../data/mocks' ).win(); };
 
 function getHvc( /* alice, hvcId */ ){
 
