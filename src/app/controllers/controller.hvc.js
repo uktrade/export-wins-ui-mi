@@ -33,8 +33,8 @@ module.exports = {
 						percent: 50,
 						gauge: 0.25
 					},
-					totalConfirmed: 50000000,
-					total: 55000000,
+					confirmedValue: 50000000,
+					unconfirmedValue: 5000000,
 					target: 100000000
 				},
 				averageTimeToConfirm: 11,

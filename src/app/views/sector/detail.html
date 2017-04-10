@@ -13,13 +13,13 @@
 		<div class="column-export-value">
 
 			<h3 class="sector-export-heading">Total confirmed export value</h3>
-			<p class="sector-export-confirmed-value"><span class="sector-export-value-currency">&pound;</span>{{ summary.exportValue | largeNumber( true ) | safe }}</p>
+			<p class="sector-export-confirmed-value"><span class="sector-export-value-currency">&pound;</span>{{ summary.confirmedExportValue | largeNumber( true ) | safe }}</p>
 
 		</div>
 		<div class="column-export-value">
 
-			<h3 class="sector-export-heading">Total incl. unconfirmed</h3>
-			<p class="sector-export-unconfirmed-value"><span class="sector-export-value-currency">&pound;</span>{{ summary.exportValueTotal | largeNumber( true ) | safe }}</p>
+			<h3 class="sector-export-heading">Total unconfirmed export value</h3>
+			<p class="sector-export-unconfirmed-value"><span class="sector-export-value-currency">&pound;</span>{{ summary.unconfirmedExportValue | largeNumber( true ) | safe }}</p>
 
 		</div>
 		<div class="column-charts">

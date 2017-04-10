@@ -1,0 +1,313 @@
+{% extends 'layout.html' %}
+
+{% set pageName='Win detail' %}
+
+{% block page_content %}
+
+	<h1>
+		Export win
+	</h1>
+
+	<span class="win-details-id">Unique ID: {{ win.id }}</span>
+
+	<p class="win-details-confirmed">
+		Confirmed by customer<span class="visually-hidden">: Yes</span><span class="win-details-checkmark"><span class="win-details-checkmark_check"></span></span>
+	</p>
+
+	<table class="win-details-table">
+		<thead>
+			<tr>
+				<th class="win-details-table_heading">
+					UK Company <span class="visually-hidden">and </span>
+					<span class="win-details-table_heading_cdms-id">CDMS ref</span></th>
+				<th class="win-details-table_heading">Market / Sector / HVC</th>
+				<th class="win-details-table_heading">Amount</th>
+				<th class="win-details-table_heading">Win date</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td class="win-details-table_cell win-details-table_cell--name">
+					<span class="win-details-table_cell_company_name">{{ win.company.name }}</span>
+					<span class="win-details-table_cell_cdms-id">{{ win.company.cdms_id }}</span>
+				</td>
+				<td class="win-details-table_cell win-details-table_cell--market">
+					{{ win.market }}, {{ win.sector }}
+					<span class="win-details-table_cell_hvc">{{ win.hvc.id }} {{ win.hvc.name }}</span>
+				</td>
+				<td class="win-details-table_cell win-details-table_cell--value">
+					&pound;{{ win.value | largeNumber }}
+				</td>
+				<td class="win-details-table_cell win-details-table_cell--date">
+					{{ win.date | dateOnly	 }}
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<section class="grid-row">
+		<div class="column-one-quarter">
+			<p></p>
+		</div>
+		<div class="column-three-quarters">
+			<p class="win-details_update-message">
+				If there is inacurate information you can contact the lead or reporting officer. If you reported the win, you can ammend it by logging into your <a href="{{ exportWinsUrl }}">Export wins homepage</a>.
+			</p>	
+		</div>
+	</section>
+
+	<section class="grid-row">
+		<div class="column-one-quarter">
+
+			<nav class="win-details_page-nav">
+				<a class="win-details_page-nav_link" href="#lead-officer">Lead and reporting officers</a>
+				<a class="win-details_page-nav_link" href="#contributors">Contributing team(s)</a>
+				<a class="win-details_page-nav_link" href="#customer">Customer details</a>
+				<a class="win-details_page-nav_link" href="#win-details">Win details</a>
+				<a class="win-details_page-nav_link" href="#dit-help">DIT help details</a>
+				<a class="win-details_page-nav_link" href="#customer-feedback">Customer feedback</a>
+			</nav>
+
+		</div>
+		<div class="column-three-quarters">
+
+			<h3 id="lead-officer" class="win-details_section-heading">Lead and reporting officers</h3>
+			<div class="win-details_section">
+				<ul class="win-details_section_list">
+					<li class="win-details_section-list_item">
+						<span class="win-details_section_list_term">Lead officer</span>
+						<span class="win-details_section_list_data">{{ win.lead_officer.name }}</span>
+					</li>
+					<li class="win-details_section-list_item">
+						<span class="win-details_section_list_term">Team</span>
+						<span class="win-details_section_list_data">{{ win.lead_officer.team }}</span>
+					</li>
+					<li class="win-details_section-list_item">
+						<span class="win-details_section_list_term">HQ, Region or Post</span>
+						<span class="win-details_section_list_data">{{ win.lead_officer.type }}</span>
+					</li>
+				</dl>
+
+				<h4 class="win-details_section_sub-heading">Contacts</h4>
+				<ul class="win-details_section_simple-list">
+					{% for contact in win.contacts %}
+					<li class="win-details_section-list_item">
+						<span class="win-details_section_simple-list_term">{{ contact.name }}</span>
+						<span class="win-details_section_simple-list_data">{{ contact.email }}</span>
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+
+			<h3 id="contributors" class="win-details_section-heading">Contributing team(s)</h3>
+			<div class="win-details_section">
+				<table class="win-details_section_table">
+					<thead>
+						<tr>
+							<th class="win-details_section_table_heading">Officer name</th>
+							<th class="win-details_section_table_heading">Team</th>
+							<th class="win-details_section_table_heading">HQ, Region or Post</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for contributor in win.contributors %}
+						<tr>
+							<td class="win-details_section_table_cell">{{ contributor.name }}</td>
+							<td class="win-details_section_table_cell">{{ contributor.team }}</td>
+							<td class="win-details_section_table_cell">{{ contributor.type }}</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+
+			<h3 id="customer" class="win-details_section-heading">Customer details</h3>
+			<div class="win-details_section">
+				<ul class="win-details_section_list">
+					<li class="win-details_section-list_item">
+						<span class="win-details_section_list_term">Organisation</span>
+						<span class="win-details_section_list_data">{{ win.customer.organisation }}</span>
+					</li>
+					<li class="win-details_section-list_item">
+						<span class="win-details_section_list_term">CDMS Ref</span>
+						<span class="win-details_section_list_data">{{ win.customer.cdms_id }}</span>
+					</li>
+					<li class="win-details_section-list_item">
+						<span class="win-details_section_list_term">Customer contact name</span>
+						<span class="win-details_section_list_data">{{ win.customer.contact.name }}</span>
+					</li>
+					<li class="win-details_section-list_item">
+						<span class="win-details_section_list_term">Email</span>
+						<span class="win-details_section_list_data">{{ win.customer.contact.email }}</span>
+					</li>
+					<li class="win-details_section-list_item">
+						<span class="win-details_section_list_term">Job title</span>
+						<span class="win-details_section_list_data">{{ win.customer.job_title }}</span>
+					</li>
+					<li class="win-details_section-list_item">
+						<span class="win-details_section_list_term">HQ Location</span>
+						<span class="win-details_section_list_data">{{ win.customer.hq_location }}</span>
+					</li>
+					<li class="win-details_section-list_item">
+						<span class="win-details_section_list_term">Post code</span>
+						<span class="win-details_section_list_data">{{ win.customer.post_code }}</span>
+					</li>
+					<li class="win-details_section-list_item">
+						<span class="win-details_section_list_term">Number of wins this financial year</span>
+						<span class="win-details_section_list_data">{{ win.customer.number_of_wins }}</span>
+					</li>
+				</ul>
+			</div>
+
+			<h3 id="win-details" class="win-details_section-heading">Win details</h3>
+			<div class="win-details_section">
+				<ul class="win-details_section_list">
+					<li class="win-details_section-list_item">
+						<span class="win-details_section_list_term">Country</span>
+						<span class="win-details_section_list_data">{{ win.country }}</span>
+					</li>
+					<li class="win-details_section-list_item">
+						<span class="win-details_section_list_term">Date won</span>
+						<span class="win-details_section_list_data">{{ win.date | dateOnly }}</span>
+					</li>
+					<li class="win-details_section-list_item">
+						<span class="win-details_section_list_term">Status of win form</span>
+						<span class="win-details_section_list_data">{{ win.status.type }} {{ win.status.date | dateOnly }}</span>
+					</li>
+					<li class="win-details_section-list_item">
+						<span class="win-details_section_list_term">Number of daty to confirm</span>
+						<span class="win-details_section_list_data">{{ win.days_to_confirm }}</span>
+					</li>
+					<li class="win-details_section-list_item">
+						<span class="win-details_section_list_term">Has this win been counted as a new exporter win</span>
+						<span class="win-details_section_list_data">{{ win.export_experience }}</span>
+					</li>
+					<li class="win-details_section-list_item">
+						<span class="win-details_section_list_term">Overseas customer</span>
+						<span class="win-details_section_list_data">{{ win.overseas_customer }}</span>
+					</li>
+					<li class="win-details_section-list_item">
+						<span class="win-details_section_list_term">Type of business deal</span>
+						<span class="win-details_section_list_data">{{ win.type_of_deal }}</span>
+					</li>
+					<li class="win-details_section-list_item">
+						<span class="win-details_section_list_term">Type of win</span>
+						<span class="win-details_section_list_data">{{ win.type }}</span>
+					</li>
+					<li class="win-details_section-list_item">
+						<span class="win-details_section_list_term">Export value</span>
+						<span class="win-details_section_list_data">{{ win.value | largeNumber }}</span>
+					</li>
+					<li class="win-details_section-list_item">
+						<span class="win-details_section_list_term">Over how many years?</span>
+						<span class="win-details_section_list_data">{{ win.value_breakdown.years }}</span>
+					</li>
+					<li class="win-details_section-list_item">
+						<span class="win-details_section_list_term">Goods or services</span>
+						<span class="win-details_section_list_data">{{ win.goods_or_services.type }}</span>
+					</li>
+					<li class="win-details_section-list_item">
+						<span class="win-details_section_list_term">Specific goods or services</span>
+						<span class="win-details_section_list_data">{{ win.goods_or_services.details }}</span>
+					</li>
+					<li class="win-details_section-list_item">
+						<span class="win-details_section_list_term">Sector</span>
+						<span class="win-details_section_list_data">{{ win.sector }}</span>
+					</li>
+				</ul>
+			</div>
+
+			<h3 id="dit-help" class="win-details_section-heading">DIT help details</h3>
+			<div class="win-details_section">
+				<ul class="win-details_section_list">
+					<li class="win-details_section-list_item">
+						<span class="win-details_section_list_term">High Value Campaign (HVC)</span>
+						<span class="win-details_section_list_data win-details_section_list_data--hvc">{{ win.hvc.id }} {{ win.hvc.name }}</span>
+					</li>
+					<li class="win-details_section-list_item">
+						<span class="win-details_section_list_term">Type of support given</span>
+						<span class="win-details_section_list_data">
+							<ul class="win-details_section_sub-list">
+								{% for type in win.help.types %}
+								<li class="win-details_section_sub-list_item">- {{ type }}</li>
+								{% endfor %}
+							</ul>
+						</span>
+					</li>
+					<li class="win-details_section-list_item">
+						<span class="win-details_section_list_term">Summary of help provided</span>
+						<span class="win-details_section_list_data">{{ win.help.summary }}</span>
+					</li>
+				</ul>
+			</div>
+
+			<h3 id="customer-feedback" class="win-details_section-heading">Customer feedback</h3>
+			<div class="win-details_section">
+				<ul class="win-details_section_list">
+					<li class="win-details_section-list_item">
+						<span class="win-details_section_list_term">Customer comment</span>
+						<span class="win-details_section_list_data">{{ win.feedback.comment }}</span>
+					</li>
+					<li class="win-details_section-list_item">
+						Extent of DIT help
+						<ul class="win-details_section_feedback-list">
+							{% for item in win.feedback.help %}
+							<li class="win-details_section_feedback-list_item win-details_section_feedback-list_item--{{ item.answer.id }}">
+								<span class="win-details_section_feedback-list_question">{{ item.question }}</span>
+								<span class="win-details_section_feedback-list_answer">- {{ item.answer.description }}</span>
+							</li>
+							{% endfor %}
+						</ul>
+					</li>
+					<li class="win-details_section-list_item">
+						<span class="win-details_section_list_term">
+							Value the customer estimates they would've achieved without DIT support
+						</span>
+						<p class="win-details_section_list_data">
+							<span class="win-details_section_list_data_percent">{{ win.feedback.value_achieved.percentage }}</span>
+							<span class="win-details_section_list_data_description">{{ win.feedback.value_achieved.description }}</span>
+						</p>
+					</li>
+					<li class="win-details_section-list_item">
+						<span class="win-details_section_list_term">Applies to this win</span>
+						<div class="win-details_section_list_data">
+							<ul class="win-details_section_sub-list">
+								{% for item in win.feedback.applied_items %}
+								<li class="win-details_section_sub-list_item">- {{ item }}</li>
+								{% endfor %}
+							</ul>
+						</div>
+					</li>
+					<li class="win-details_section-list_item">
+						<span class="win-details_section_list_term">Reported export experience</span>
+						<span class="win-details_section_list_data">{{ win.feedback.reported_experience }}</span>
+					</li>
+					<li class="win-details_section-list_item">
+						<span class="win-details_section_list_term">Detail of export experience</span>
+						<div class="win-details_section_list_data">
+							<ul class="win-details_section_sub-list">
+								{% for item in win.feedback.detail_experience %}
+								<li class="win-details_section_sub-list_item">- {{ item }}</li>
+								{% endfor %}
+							</ul>
+						</div>
+					</li>
+					<li class="win-details_section-list_item">
+						<span class="win-details_section_list_term">Has customer authorised DIT to use win in marketing materials</span>
+						<span class="win-details_section_list_data">
+							{% if win.feedback.marketing %}
+								Yes
+							{% else %}
+								No
+							{% endif %}
+						</span>
+					</li>
+				</ul>
+			</div>
+
+		</div>
+	</section>
+
+		
+
+{% endblock %}
