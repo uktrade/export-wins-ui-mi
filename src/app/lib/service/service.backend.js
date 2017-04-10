@@ -19,12 +19,12 @@ const transformOsRegions = require( '../transformers/os-regions' );
 function get( alice, path, transform ){
 
 	return new Promise( ( resolve, reject ) => {
-		
+
 		backend.get( alice, path, function( err, response, data ){
 
 			if( err ){
 
-				if( err.code === 'ECONNREFUSED' ){ 
+				if( err.code === 'ECONNREFUSED' ){
 
 					err = new Error( 'The backend is not available.' );
 				}
@@ -36,7 +36,7 @@ function get( alice, path, transform ){
 				if( response.isSuccess ){
 
 					if( transform ){
-						
+
 						try {
 
 							data = transform( data );
@@ -51,7 +51,7 @@ function get( alice, path, transform ){
 
 					} else {
 
-						resolve( data );						
+						resolve( data );
 					}
 
 				} else {
@@ -200,6 +200,9 @@ function getHvcGroupMonths( alice, groupId ){
 	return get( alice, `/mi/hvc_groups/${ groupId }/months/`, transformMonths );
 }
 
+
+const getWin = require( '../../../data/mocks' ).win;
+
 function getHvc( /* alice, hvcId */ ){
 
 	//`/mi/hvc/${ hvcId }/`
@@ -219,7 +222,7 @@ function getHvc( /* alice, hvcId */ ){
 function getWinList( /* alice */ ){
 
 	return require( '../../../data/mocks' ).winList().then( ( mockData ) => {
-		
+
 		let data = mockData.map( Object.create );
 
 		data = require( '../transformers/win-list' )( data );
@@ -344,5 +347,6 @@ module.exports = {
 	},
 
 	getHvc,
+	getWin,
 	getWinList
 };

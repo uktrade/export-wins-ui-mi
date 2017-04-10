@@ -1,0 +1,263 @@
+@import 'mi-colours';
+
+.win-details-id {
+	color: $grey-1;
+	@include core-14;
+}
+
+$win-details-confirmed-colour: $turquoise;
+
+.win-details-confirmed {
+	color: $win-details-confirmed-colour;
+	@include bold-24;
+}
+
+$win-details-checkbox-check-size: 7px;
+
+.win-details-checkmark {
+
+	display:inline-block;
+	padding-left: $win-details-checkbox-check-size;
+	margin-left: 15px;
+	width: 16px;
+	height: 26px;
+	overflow: hidden;
+	position: relative;
+	top: 4px;
+}
+
+.win-details-checkmark_check {
+	/*Add another block-level blank space*/
+	display: block;
+
+	/*Make it a small rectangle so the border will create an L-shape*/
+	width: $win-details-checkbox-check-size * 2;
+	height: $win-details-checkbox-check-size * 3.5;
+
+	/*Add a white border on the bottom and left, creating that 'L' */
+	border: solid $win-details-confirmed-colour;
+	border-width: 0 $win-details-checkbox-check-size $win-details-checkbox-check-size 0;
+
+	/*Rotate the L 45 degrees to turn it into a checkmark*/
+	transform: rotate(45deg);
+
+	position: relative;
+	left: -6px;
+	top: -10px;
+}
+
+.win-details-table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.win-details-table_heading {
+	text-align: left;
+	vertical-align: bottom;
+}
+
+.win-details-table_heading_cdms-id {
+	color: $grey-1;
+	@include core-14;
+	display: block;
+}
+
+.win-details-table_cell {
+	border-top: 3px solid $grey-3;
+	border-bottom: 3px solid $grey-2;
+	background-color: $grey-4;
+	@include bold-16;
+	padding: pem( 10 ) 0;
+}
+
+.win-details-table_cell--name {
+	width: 30%;
+}
+
+.win-details-table_cell--market {
+	width: 38%;
+}
+
+.win-details-table_cell--value {
+	width: 12%;
+	@include bold-19;
+}
+
+.win-details-table_cell--date {
+	width: 20%;
+}
+
+.win-details-table_cell_company_name {
+	@include bold-19;
+}
+
+.win-details-table_cell_cdms-id {
+	color: $grey-1;
+	display: block;
+	padding-top: pem( 5, 14 );
+}
+
+.win-details-table_cell_hvc {
+	display: block;
+	padding-top: pem( 10, 16 );
+}
+
+.win-details_update-message {
+	border-bottom: 3px solid $grey-2;
+	margin: pem( 60 ) 0 pem( 30 ) pem( -15 );
+	padding: 0 0 pem( 10 ) pem( 15 );
+}
+
+.win-details_page-nav_link {
+	@include bold-16;
+	display: block;
+	text-decoration: none;
+	line-height: 1.1;
+	margin-bottom: pem( 20 );
+}
+
+.win-details_section-heading {
+	
+	line-height: 1;
+	margin: pem( 25 ) 0 pem( 10 ) 0;
+	padding-bottom: pem( 5 );
+
+	&:first-of-type {
+		margin-top: 0;
+	}
+}
+
+.win-details_section {
+
+	border-bottom: 3px solid $grey-2;
+	padding-bottom: pem( 15 );
+	margin-bottom: pem( 15 );
+
+	&:last-of-type {
+		margin-bottom: pem( 60 );
+	}
+}
+
+.win-details_section_sub-heading {
+	margin: pem( 10 )0;
+}
+
+.win-details_section_list,
+.win-details_section_simple-list {
+	margin: 0;
+	padding: 0;
+}
+
+.win-details_section-list_item {
+	
+	overflow: hidden;
+	border-bottom: 1px solid $grey-2;
+	padding-bottom: pem( 5 );
+	margin-bottom: pem( 5 );
+
+	&:last-of-type {
+		border-bottom: 0;
+		margin-bottom: 0;
+	}
+}
+
+.win-details_section_list_term,
+.win-details_section_simple-list_term {
+	float: left;
+	clear: left;
+	width: 32%;
+	padding-right: 3%;
+}
+
+.win-details_section_list_data,
+.win-details_section_simple-list_data {
+	float: left;
+	margin: 0;
+	width: 65%;
+}
+
+.win-details_section_simple-list_term,
+.win-details_section_simple-list_data {
+	padding-bottom: pem( 5 );
+}
+
+.win-details_section_list_data--hvc {
+	font-weight: bold;
+}
+
+.win-details_section_table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.win-details_section_table_heading {
+	text-align: left;
+	padding-bottom: pem( 5 );
+}
+
+.win-details_section_table_cell {
+	border-top: 1px solid $grey-2;
+	padding: pem( 10 ) 0;
+}
+
+.win-details_section_sub-list {
+	padding: 0;
+}
+
+.win-details_section_sub-list_item {
+	
+}
+
+.win-details_section_feedback-list {
+	padding: 0;
+	@include core-14;
+}
+
+.win-details_section_feedback-list_item {
+	padding: pem( 3 ) 0;
+	overflow: hidden;
+	border-top: 2px solid #fff;
+	margin-left: 3%;
+}
+
+.win-details_section_feedback-list_question {
+	padding: 0 5% 0 2%;
+	float: left;
+	width: 65%;
+}
+
+.win-details_section_feedback-list_answer {
+	float: left;
+	width: 25%;
+}
+
+.win-details_section_feedback-list_item--0 {
+
+	.win-details_section_feedback-list_answer {
+
+		color: $grey-1;
+	}
+}
+
+.win-details_section_feedback-list_item--1 {
+	background-color: $grey-3;
+}
+
+.win-details_section_feedback-list_item--2 {
+	background-color: tint( $turquoise, 75 );
+}
+
+.win-details_section_feedback-list_item--3 {
+	background-color: tint( $turquoise, 50 );
+}
+
+.win-details_section_feedback-list_item--4 {
+	background-color: $turquoise;
+	color: #fff;
+}
+
+.win-details_section_list_data_percent {
+	@include bold-19;
+	display: block;
+}
+

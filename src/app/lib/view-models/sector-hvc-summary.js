@@ -6,8 +6,8 @@ module.exports = {
 
 		return {
 			target: winsData.hvcs.target,
-			totalConfirmed: winsData.wins.export.hvc.value.confirmed,
-			total: winsData.wins.export.hvc.value.total,
+			confirmedValue: winsData.wins.export.hvc.value.confirmed,
+			unconfirmedValue: winsData.wins.export.hvc.value.unconfirmed,
 			progress: targetProgressDataSet.create( winsData )
 		};
 	}

@@ -2,8 +2,9 @@ const indexController = require( './controllers/controller.index' );
 const sectorTeamController = require( './controllers/controller.sector-teams' );
 const regionController = require( './controllers/controller.overseas-regions' );
 const hvcGroupController = require( './controllers/controller.hvc-groups' );
+const winController =  require( './controllers/controller.win' );
 const hvcController = require( './controllers/controller.hvc' );
-const winController = require( './controllers/controller.wins' );
+const winsController = require( './controllers/controller.wins' );
 const linkHvc = require( './lib/middleware/link-hvc' );
 
 module.exports = function( express, app ){
@@ -19,9 +20,10 @@ module.exports = function( express, app ){
 	app.get( '/overseas-regions/:id', regionController.region );
 
 	app.get( '/hvc-groups/', hvcGroupController.list );
-	app.get( '/hvc-groups/:id', linkHvc, hvcGroupController.group );
+	app.get( '/hvc-groups/:id', hvcGroupController.group );
+
+	app.get( '/win/:id', winController.win );
+	app.get( '/wins/', winsController.list );
 
 	app.get( '/hvc/:id', hvcController.hvc );
-
-	app.get( '/wins/', winController.list );
 };
