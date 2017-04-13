@@ -5,17 +5,17 @@ const input = getBackendStub( '/os_regions/overview' );
 
 describe( 'Overseas Regions Overview transformer', function(){
 
-	let output = transform( input );
+	let output = transform( input.results );
 
 	describe( 'Grouping the regions', function(){
-	
+
 		it( 'Should group the regions', function(){
-		
+
 			expect( output.length ).toEqual( 6 );
 		} );
 
 		it( 'Should add an image to each group', function(){
-		
+
 			output.forEach( ( group ) => {
 
 				const image = group.image;
@@ -28,7 +28,7 @@ describe( 'Overseas Regions Overview transformer', function(){
 
 
 		it( 'Should have the correct name', function(){
-		
+
 			expect( output[ 0 ].name ).toEqual( 'Europe' );
 			expect( output[ 1 ].name ).toEqual( 'Near East & North Africa' );
 			expect( output[ 2 ].name ).toEqual( 'East' );
@@ -39,9 +39,9 @@ describe( 'Overseas Regions Overview transformer', function(){
 	} );
 
 	describe( 'The regions', function(){
-	
+
 		it( 'Should have the right properties and add a colour to each region in the group', function(){
-		
+
 			output.forEach( ( group ) => {
 
 				group.regions.forEach( ( region ) => {
@@ -66,7 +66,7 @@ describe( 'Overseas Regions Overview transformer', function(){
 		} );
 
 		it( 'Should add a capped percentage of 100, along with a marker to say it is over', function() {
-			
+
 			expect( output[ 0 ].regions[ 0 ].values.hvc.targetPercent.unconfirmed.isOver ).toEqual( true );
 			expect( output[ 0 ].regions[ 0 ].values.hvc.targetPercent.unconfirmed.capped ).toEqual( 100 );
 			expect( output[ 0 ].regions[ 0 ].values.hvc.targetPercent.unconfirmed.value ).toEqual( 105 );

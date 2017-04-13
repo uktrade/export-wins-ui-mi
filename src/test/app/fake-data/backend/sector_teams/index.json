@@ -1,58 +1,69 @@
-[
-   {
-      "id": 44255,
-      "name": "facere velit sit",
-      "hvc_groups": [
-         {
-            "id": 96133,
-            "name": "itaque nihil vel"
-         }
-      ]
+{
+   "timestamp": 1491810587486,
+   "financial_year": {
+      "id": 2016,
+      "description": "2016-17"
    },
-   {
-      "id": 25002,
-      "name": "ut rem aut",
-      "hvc_groups": [
-         {
-            "id": 8131,
-            "name": "ad voluptatibus minus"
-         },
-         {
-            "id": 25968,
-            "name": "ea sapiente non"
-         },
-         {
-            "id": 64287,
-            "name": "ut omnis nesciunt"
-         },
-         {
-            "id": 93802,
-            "name": "rerum eos tempora"
-         },
-         {
-            "id": 94179,
-            "name": "ipsum est est"
-         }
-      ]
+   "date_range": {
+      "start": 1459468800,
+      "end": 1483228800
    },
-   {
-      "id": 55629,
-      "name": "qui qui et",
-      "hvc_groups": [
-         {
-            "id": 2712,
-            "name": "consequatur fugit eum"
-         }
-      ]
-   },
-   {
-      "id": 55216,
-      "name": "voluptates est voluptate",
-      "hvc_groups": [
-         {
-            "id": 62441,
-            "name": "pariatur voluptatem suscipit"
-         }
-      ]
-   }
-]
+   "results": [
+	   {
+	      "id": 44255,
+	      "name": "facere velit sit",
+	      "hvc_groups": [
+	         {
+	            "id": 96133,
+	            "name": "itaque nihil vel"
+	         }
+	      ]
+	   },
+	   {
+	      "id": 25002,
+	      "name": "ut rem aut",
+	      "hvc_groups": [
+	         {
+	            "id": 8131,
+	            "name": "ad voluptatibus minus"
+	         },
+	         {
+	            "id": 25968,
+	            "name": "ea sapiente non"
+	         },
+	         {
+	            "id": 64287,
+	            "name": "ut omnis nesciunt"
+	         },
+	         {
+	            "id": 93802,
+	            "name": "rerum eos tempora"
+	         },
+	         {
+	            "id": 94179,
+	            "name": "ipsum est est"
+	         }
+	      ]
+	   },
+	   {
+	      "id": 55629,
+	      "name": "qui qui et",
+	      "hvc_groups": [
+	         {
+	            "id": 2712,
+	            "name": "consequatur fugit eum"
+	         }
+	      ]
+	   },
+	   {
+	      "id": 55216,
+	      "name": "voluptates est voluptate",
+	      "hvc_groups": [
+	         {
+	            "id": 62441,
+	            "name": "pariatur voluptatem suscipit"
+	         }
+	      ]
+	   }
+	]
+}

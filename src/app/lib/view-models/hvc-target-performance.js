@@ -56,28 +56,34 @@ module.exports = {
 	create: function( data ){
 
 		let output = {
+			dateRange: {},
 			zeroTarget: [],
 			withTarget: []
 		};
 
 		if( data ){
 
-			data.forEach( function( item ){
+			output.dateRange = data.date_range;
 
-				if( item.target > 0 ){
+			if( data.results ){
 
-					//clone the item to prevent updating the original (issue when this is a stub in memory)
-					let newItem = Object.create( item );
-					calculateTarget( newItem );
-					output.withTarget.push( newItem );
+				data.results.forEach( function( item ){
 
-				} else {
+					if( item.target > 0 ){
 
-					output.zeroTarget.push( item );
-				}
-			} );
+						//clone the item to prevent updating the original (issue when this is a stub in memory)
+						let newItem = Object.create( item );
+						calculateTarget( newItem );
+						output.withTarget.push( newItem );
+
+					} else {
+
+						output.zeroTarget.push( item );
+					}
+				} );
+			}
 		}
-		
+
 		return output;
 	}
 };

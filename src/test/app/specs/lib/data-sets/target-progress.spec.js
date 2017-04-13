@@ -76,7 +76,7 @@ const input5 = {
 describe( 'Target progress data set', function(){
 
 	describe( 'When the number is below the target', function(){
-	
+
 		it( 'Should return the progress as a number', function(){
 
 			const output = dataset.create( input );
@@ -98,9 +98,9 @@ describe( 'Target progress data set', function(){
 	} );
 
 	describe( 'When the number is above the target', function(){
-	
+
 		it( 'Should return 100 percent', function(){
-	
+
 			const output5 = dataset.create( input5 );
 
 			expect( output5 ).toEqual( { percent: 100, gauge: 0.5 } );
@@ -108,14 +108,14 @@ describe( 'Target progress data set', function(){
 	} );
 
 	describe( 'With a stub file', function(){
-	
+
 		it( 'Does not throw an error', function(){
-	
+
 			function createDataSet(){
 
 				const stub = getBackendStub( '/sector_teams/sector_team' );
-				
-				dataset.create( stub );
+
+				dataset.create( stub.results );
 			}
 
 			expect( createDataSet ).not.toThrow();

@@ -8,14 +8,14 @@ describe( 'OS Regions List', function(){
 	let output;
 
 	beforeEach( function(){
-	
+
 		output = transform( input );
 	} );
 
 	describe( 'Grouping the regions', function(){
-	
+
 		it( 'Should create 6 groups of regions', function(){
-	
+
 			expect( output.length ).toEqual( 6 );
 
 			expect( output[ 0 ].name ).toEqual( 'Europe' );

@@ -9,7 +9,7 @@ describe( 'Sector campaigns transformer', function(){
 
 	function check( input ){
 
-		const output = transform( input );
+		const output = transform( input.results );
 
 		expect( Array.isArray( output ) ).toEqual( true );
 		expect( output.length ).toBeGreaterThan( 0 );
@@ -31,7 +31,7 @@ describe( 'Sector campaigns transformer', function(){
 	}
 
 	describe( 'Sector team', function(){
-	
+
 		it( 'Should return the correct format', function(){
 
 			check( sectorTeamCampaigns );
@@ -39,7 +39,7 @@ describe( 'Sector campaigns transformer', function(){
 	} );
 
 	describe( 'Overseas region', function(){
-	
+
 		it( 'Should return the correct format', function(){
 
 			check( osRegionCampaigns );
@@ -47,7 +47,7 @@ describe( 'Sector campaigns transformer', function(){
 	} );
 
 	describe( 'HVC Group Sector', function(){
-	
+
 		it( 'Should return the correct format', function(){
 
 			check( hvcGroupCampaigns );

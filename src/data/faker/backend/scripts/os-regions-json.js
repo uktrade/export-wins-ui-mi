@@ -9,7 +9,7 @@ module.exports = {
 		
 		let overview = generateSchema( '/os_regions/overview.schema' );
 
-		for( let region of overview ){
+		for( let region of overview.results ){
 
 			region.id = regionId++;//Regions need to be from 1 to 17 to make the grouping work
 			calculateOverviewValues( region.values );
@@ -23,7 +23,7 @@ module.exports = {
 		let list = generateSchema( '/os_regions/index.schema' );
 		let id = 1;
 
-		for( let region of list ){
+		for( let region of list.results ){
 
 			region.id = id++;//Regions need to be from 1 to 17 to make the grouping work
 		}

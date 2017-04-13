@@ -26,6 +26,19 @@ function returnStub( file ){
 
 describe( 'Backend service', function(){
 
+	let oldTimeout;
+
+	beforeEach( function(){
+
+		oldTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
+		jasmine.DEFAULT_TIMEOUT_INTERVAL = 500;
+	} );
+
+	afterEach( function(){
+
+		jasmine.DEFAULT_TIMEOUT_INTERVAL = oldTimeout;
+	} );
+
 	describe( 'Singe methods', function(){
 
 		beforeEach( function(){
@@ -55,6 +68,47 @@ describe( 'Backend service', function(){
 			backendService = proxyquire( '../../../../../app/lib/service/service.backend', stubs );
 		} );
 
+		describe( 'The date_range', function(){
+
+			describe( 'An enpoint that has a date_range', function(){
+
+				it( 'Should convert it from seconds to milliseconds', function( done ){
+
+					const teamId = '3';
+
+					returnStub( '/sector_teams/' );
+
+					backendService.getSectorTeam( alice, teamId ).then( ( data ) => {
+
+						expect( data.date_range ).toBeDefined();
+						expect( data.date_range.start ).toEqual( 1459468800 * 1000 );
+						expect( data.date_range.end ).toEqual( 1483228800 * 1000 );
+
+						done();
+
+					} ).catch( done );
+				} );
+			} );
+
+			describe( 'An enpoint the does not have a date_range', function(){
+
+				it( 'Should do nothing', function( done ){
+
+					returnStub( '/os_regions/' );
+
+					backendService.getOverseasRegions( alice ).then( ( data ) => {
+
+						expect( data.date_range ).not.toBeDefined();
+						done();
+
+					} ).catch( done );
+
+					done();
+				} );
+			} );
+
+		} );
+
 		describe( 'Getting the sector team', function(){
 
 			it( 'Should use the sector transformer', function( done ){
@@ -68,9 +122,10 @@ describe( 'Backend service', function(){
 					const args = backend.get.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( `/mi/sector_teams/${ teamId }/` );
+					expect( args[ 1 ] ).toEqual( `/mi/sector_teams/${ teamId }/?year=2016` );
 					done();
-				} );
+
+				} ).catch( done );
 			} );
 		} );
 
@@ -87,12 +142,13 @@ describe( 'Backend service', function(){
 					const args = backend.get.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( `/mi/sector_teams/${ teamId }/months/` );
+					expect( args[ 1 ] ).toEqual( `/mi/sector_teams/${ teamId }/months/?year=2016` );
 
 					expect( monthsSpy ).toHaveBeenCalled();
 					expect( monthsSpy.calls.count() ).toEqual( 1 );
 					done();
-				} );
+
+				} ).catch( done );
 			} );
 		} );
 
@@ -109,12 +165,13 @@ describe( 'Backend service', function(){
 					const args = backend.get.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( `/mi/sector_teams/${ teamId }/campaigns/` );
+					expect( args[ 1 ] ).toEqual( `/mi/sector_teams/${ teamId }/campaigns/?year=2016` );
 
 					expect( campaignsSpy ).toHaveBeenCalled();
 					expect( campaignsSpy.calls.count() ).toEqual( 1 );
 					done();
-				} );
+
+				} ).catch( done );
 			} );
 		} );
 
@@ -131,12 +188,13 @@ describe( 'Backend service', function(){
 					const args = backend.get.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( `/mi/sector_teams/${ teamId }/top_non_hvcs/` );
+					expect( args[ 1 ] ).toEqual( `/mi/sector_teams/${ teamId }/top_non_hvcs/?year=2016` );
 					done();
-				} );
+
+				} ).catch( done );
 			} );
 		} );
-		
+
 		describe( 'Getting the sector team overview', function(){
 
 			it( 'Should use the sector teams overview transformer', function( done ){
@@ -148,12 +206,13 @@ describe( 'Backend service', function(){
 					const args = backend.get.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( '/mi/sector_teams/overview/' );
+					expect( args[ 1 ] ).toEqual( '/mi/sector_teams/overview/?year=2016' );
 
 					expect( sectorTeamsOverviewSpy ).toHaveBeenCalled();
 					expect( sectorTeamsOverviewSpy.calls.count() ).toEqual( 1 );
 					done();
-				} );
+
+				} ).catch( done );
 			} );
 		} );
 
@@ -168,11 +227,12 @@ describe( 'Backend service', function(){
 					const args = backend.get.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( '/mi/os_regions/' );
+					expect( args[ 1 ] ).toEqual( '/mi/os_regions/?year=2016' );
 
 					expect( osRegionsSpy ).not.toHaveBeenCalled();
 					done();
-				} );
+
+				} ).catch( done );
 			} );
 		} );
 
@@ -187,12 +247,13 @@ describe( 'Backend service', function(){
 					const args = backend.get.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( '/mi/os_regions/' );
+					expect( args[ 1 ] ).toEqual( '/mi/os_regions/?year=2016' );
 
 					expect( osRegionsSpy ).toHaveBeenCalled();
 					expect( osRegionsSpy.calls.count() ).toEqual( 1 );
 					done();
-				} );
+
+				} ).catch( done );
 			} );
 		} );
 
@@ -209,9 +270,10 @@ describe( 'Backend service', function(){
 					const args = backend.get.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( `/mi/os_regions/${ regionId }/` );
+					expect( args[ 1 ] ).toEqual( `/mi/os_regions/${ regionId }/?year=2016` );
 					done();
-				} );
+
+				} ).catch( done );
 			} );
 		} );
 
@@ -228,12 +290,13 @@ describe( 'Backend service', function(){
 					const args = backend.get.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( `/mi/os_regions/${ regionId }/months/` );
+					expect( args[ 1 ] ).toEqual( `/mi/os_regions/${ regionId }/months/?year=2016` );
 
 					expect( monthsSpy ).toHaveBeenCalled();
 					expect( monthsSpy.calls.count() ).toEqual( 1 );
 					done();
-				} );
+
+				} ).catch( done );
 			} );
 		} );
 
@@ -250,12 +313,13 @@ describe( 'Backend service', function(){
 					const args = backend.get.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( `/mi/os_regions/${ regionId }/campaigns/` );
+					expect( args[ 1 ] ).toEqual( `/mi/os_regions/${ regionId }/campaigns/?year=2016` );
 
 					expect( campaignsSpy ).toHaveBeenCalled();
 					expect( campaignsSpy.calls.count() ).toEqual( 1 );
 					done();
-				} );
+
+				} ).catch( done );
 			} );
 		} );
 
@@ -272,9 +336,10 @@ describe( 'Backend service', function(){
 					const args = backend.get.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( `/mi/os_regions/${ regionId }/top_non_hvcs/` );
+					expect( args[ 1 ] ).toEqual( `/mi/os_regions/${ regionId }/top_non_hvcs/?year=2016` );
 					done();
-				} );
+
+				} ).catch( done );
 			} );
 		} );
 
@@ -289,12 +354,13 @@ describe( 'Backend service', function(){
 					const args = backend.get.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( '/mi/os_regions/overview/' );
+					expect( args[ 1 ] ).toEqual( '/mi/os_regions/overview/?year=2016' );
 
 					expect( osRegionsOverviewSpy ).toHaveBeenCalled();
 					expect( osRegionsOverviewSpy.calls.count() ).toEqual( 1 );
 					done();
-				} );
+
+				} ).catch( done );
 			} );
 		} );
 
@@ -318,17 +384,18 @@ describe( 'Backend service', function(){
 			it( 'Should return just the hvc groups', function( done ){
 
 				returnStub( '/hvc_groups/' );
-		
+
 				backendService.getHvcGroups( alice ).then( ( hvcGroup ) => {
 
 					const args = backend.get.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( '/mi/hvc_groups/' );
+					expect( args[ 1 ] ).toEqual( '/mi/hvc_groups/?year=2016' );
 
 					expect( hvcGroup ).toEqual( getBackendStub( '/hvc_groups/') );
 					done();
-				} );
+
+				} ).catch( done );
 			} );
 		} );
 
@@ -339,18 +406,19 @@ describe( 'Backend service', function(){
 				const groupId = '1';
 
 				returnStub( '/hvc_groups/group' );
-		
+
 				backendService.getHvcGroup( alice, groupId ).then( () => {
 
 					const args = backend.get.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( `/mi/hvc_groups/${ groupId }/` );
+					expect( args[ 1 ] ).toEqual( `/mi/hvc_groups/${ groupId }/?year=2016` );
 
 					expect( hvcGroupSpy ).toHaveBeenCalled();
 					expect( hvcGroupSpy.calls.count() ).toEqual( 1 );
 					done();
-				} );
+
+				} ).catch( done );
 			} );
 		} );
 
@@ -367,12 +435,13 @@ describe( 'Backend service', function(){
 					const args = backend.get.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( `/mi/hvc_groups/${ groupId }/campaigns/` );
+					expect( args[ 1 ] ).toEqual( `/mi/hvc_groups/${ groupId }/campaigns/?year=2016` );
 
 					expect( campaignsSpy ).toHaveBeenCalled();
 					expect( campaignsSpy.calls.count() ).toEqual( 1 );
-					done();	
-				} );
+					done();
+
+				} ).catch( done );
 			} );
 		} );
 
@@ -389,12 +458,13 @@ describe( 'Backend service', function(){
 					const args = backend.get.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( `/mi/hvc_groups/${ groupId }/months/` );
+					expect( args[ 1 ] ).toEqual( `/mi/hvc_groups/${ groupId }/months/?year=2016` );
 
 					expect( monthsSpy ).toHaveBeenCalled();
 					expect( monthsSpy.calls.count() ).toEqual( 1 );
 					done();
-				} );
+
+				} ).catch( done );
 			} );
 		} );
 	} );
@@ -451,7 +521,7 @@ describe( 'Backend service', function(){
 			expect( args[ 2 ].time ).toBeDefined();
 			expect( args[ 2 ].name ).toEqual( methodName );
 		}
-	
+
 		describe( 'Getting the Sector Team info', function(){
 
 			describe( 'When all the APIs return a 200', function(){
@@ -461,10 +531,10 @@ describe( 'Backend service', function(){
 					const teamId = 3;
 
 					const files = [
-						[ `/mi/sector_teams/${ teamId }/`, '/sector_teams/sector_team' ],
-						[ `/mi/sector_teams/${ teamId }/months/`, '/sector_teams/months' ],
-						[ `/mi/sector_teams/${ teamId }/campaigns/`, '/sector_teams/campaigns' ],
-						[ `/mi/sector_teams/${ teamId }/top_non_hvcs/`, '/sector_teams/top_non_hvcs' ]
+						[ `/mi/sector_teams/${ teamId }/?year=2016`, '/sector_teams/sector_team' ],
+						[ `/mi/sector_teams/${ teamId }/months/?year=2016`, '/sector_teams/months' ],
+						[ `/mi/sector_teams/${ teamId }/campaigns/?year=2016`, '/sector_teams/campaigns' ],
+						[ `/mi/sector_teams/${ teamId }/top_non_hvcs/?year=2016`, '/sector_teams/top_non_hvcs' ]
 					];
 
 					intercept( files );
@@ -477,7 +547,8 @@ describe( 'Backend service', function(){
 						expect( data.topNonHvc ).toBeDefined();
 
 						done();
-					} );
+
+					} ).catch( done );
 				} );
 			} );
 
@@ -488,10 +559,10 @@ describe( 'Backend service', function(){
 					const teamId = 3;
 
 					const files = [
-						[ `/mi/sector_teams/${ teamId }/`, '/sector_teams/sector_team' ],
-						[ `/mi/sector_teams/${ teamId }/months/`, '/sector_teams/months' ],
-						[ `/mi/sector_teams/${ teamId }/campaigns/`, '/sector_teams/campaigns' ],
-						[ `/mi/sector_teams/${ teamId }/top_non_hvcs/`, '/sector_teams/top_non_hvcs' ]
+						[ `/mi/sector_teams/${ teamId }/?year=2016`, '/sector_teams/sector_team' ],
+						[ `/mi/sector_teams/${ teamId }/months/?year=2016`, '/sector_teams/months' ],
+						[ `/mi/sector_teams/${ teamId }/campaigns/?year=2016`, '/sector_teams/campaigns' ],
+						[ `/mi/sector_teams/${ teamId }/top_non_hvcs/?year=2016`, '/sector_teams/top_non_hvcs' ]
 					];
 
 					interceptWithDelay( files );
@@ -506,7 +577,8 @@ describe( 'Backend service', function(){
 						expect( data.topNonHvc ).toBeDefined();
 
 						done();
-					} );
+
+					} ).catch( done );
 				} );
 			} );
 
@@ -517,10 +589,10 @@ describe( 'Backend service', function(){
 					const teamId = 4;
 
 					const files = [
-						[ `/mi/sector_teams/${ teamId }/`, '/sector_teams/sector_team' ],
-						[ `/mi/sector_teams/${ teamId }/months/`, null, 500 ],
-						[ `/mi/sector_teams/${ teamId }/campaigns/`, '/sector_teams/campaigns' ],
-						[ `/mi/sector_teams/${ teamId }/top_non_hvcs/`, '/sector_teams/top_non_hvcs' ]
+						[ `/mi/sector_teams/${ teamId }/?year=2016`, '/sector_teams/sector_team' ],
+						[ `/mi/sector_teams/${ teamId }/months/?year=2016`, null, 500 ],
+						[ `/mi/sector_teams/${ teamId }/campaigns/?year=2016`, '/sector_teams/campaigns' ],
+						[ `/mi/sector_teams/${ teamId }/top_non_hvcs/?year=2016`, '/sector_teams/top_non_hvcs' ]
 					];
 
 					intercept( files );
@@ -547,10 +619,10 @@ describe( 'Backend service', function(){
 				const regionId = 3;
 
 				const files = [
-					[ `/mi/os_regions/${ regionId }/`, '/os_regions/region' ],
-					[ `/mi/os_regions/${ regionId }/months/`, '/os_regions/months' ],
-					[ `/mi/os_regions/${ regionId }/campaigns/`, '/os_regions/campaigns' ],
-					[ `/mi/os_regions/${ regionId }/top_non_hvcs/`, '/os_regions/top_non_hvcs' ]
+					[ `/mi/os_regions/${ regionId }/?year=2016`, '/os_regions/region' ],
+					[ `/mi/os_regions/${ regionId }/months/?year=2016`, '/os_regions/months' ],
+					[ `/mi/os_regions/${ regionId }/campaigns/?year=2016`, '/os_regions/campaigns' ],
+					[ `/mi/os_regions/${ regionId }/top_non_hvcs/?year=2016`, '/os_regions/top_non_hvcs' ]
 				];
 
 				intercept( files );
@@ -563,7 +635,8 @@ describe( 'Backend service', function(){
 					expect( data.topNonHvc ).toBeDefined();
 
 					done();
-				} );
+
+				} ).catch( done );
 			} );
 
 			describe( 'When one of APIs returns after a long time', function(){
@@ -573,10 +646,10 @@ describe( 'Backend service', function(){
 					const regionId = 4;
 
 					const files = [
-						[ `/mi/os_regions/${ regionId }/`, '/os_regions/region' ],
-						[ `/mi/os_regions/${ regionId }/months/`, '/os_regions/months' ],
-						[ `/mi/os_regions/${ regionId }/campaigns/`, '/os_regions/campaigns' ],
-						[ `/mi/os_regions/${ regionId }/top_non_hvcs/`, '/os_regions/top_non_hvcs' ]
+						[ `/mi/os_regions/${ regionId }/?year=2016`, '/os_regions/region' ],
+						[ `/mi/os_regions/${ regionId }/months/?year=2016`, '/os_regions/months' ],
+						[ `/mi/os_regions/${ regionId }/campaigns/?year=2016`, '/os_regions/campaigns' ],
+						[ `/mi/os_regions/${ regionId }/top_non_hvcs/?year=2016`, '/os_regions/top_non_hvcs' ]
 					];
 
 					interceptWithDelay( files );
@@ -591,7 +664,8 @@ describe( 'Backend service', function(){
 						expect( data.topNonHvc ).toBeDefined();
 
 						done();
-					} );
+
+					} ).catch( done );
 				} );
 			} );
 		} );
@@ -603,9 +677,9 @@ describe( 'Backend service', function(){
 				const groupId = 3;
 
 				const files = [
-					[ `/mi/hvc_groups/${ groupId }/`, '/hvc_groups/group' ],
-					[ `/mi/hvc_groups/${ groupId }/months/`, '/hvc_groups/months' ],
-					[ `/mi/hvc_groups/${ groupId }/campaigns/`, '/hvc_groups/campaigns' ],
+					[ `/mi/hvc_groups/${ groupId }/?year=2016`, '/hvc_groups/group' ],
+					[ `/mi/hvc_groups/${ groupId }/months/?year=2016`, '/hvc_groups/months' ],
+					[ `/mi/hvc_groups/${ groupId }/campaigns/?year=2016`, '/hvc_groups/campaigns' ],
 				];
 
 				intercept( files );
@@ -617,7 +691,8 @@ describe( 'Backend service', function(){
 					expect( data.campaigns ).toBeDefined();
 
 					done();
-				} );
+
+				} ).catch( done );
 			} );
 
 			describe( 'When one of the APIs returns after a long time', function(){
@@ -627,9 +702,9 @@ describe( 'Backend service', function(){
 					const groupId = 3;
 
 					const files = [
-						[ `/mi/hvc_groups/${ groupId }/`, '/hvc_groups/group' ],
-						[ `/mi/hvc_groups/${ groupId }/months/`, '/hvc_groups/months' ],
-						[ `/mi/hvc_groups/${ groupId }/campaigns/`, '/hvc_groups/campaigns' ],
+						[ `/mi/hvc_groups/${ groupId }/?year=2016`, '/hvc_groups/group' ],
+						[ `/mi/hvc_groups/${ groupId }/months/?year=2016`, '/hvc_groups/months' ],
+						[ `/mi/hvc_groups/${ groupId }/campaigns/?year=2016`, '/hvc_groups/campaigns' ],
 					];
 
 					interceptWithDelay( files );
@@ -643,7 +718,8 @@ describe( 'Backend service', function(){
 						expect( data.campaigns ).toBeDefined();
 
 						done();
-					} );
+
+					} ).catch( done );
 				} );
 			} );
 		} );
@@ -655,8 +731,8 @@ describe( 'Backend service', function(){
 				it( 'Should return both bits of data', function( done ){
 
 					const files = [
-						[ '/mi/sector_teams/', '/sector_teams/' ],
-						[ '/mi/os_regions/', '/os_regions/' ]
+						[ '/mi/sector_teams/?year=2016', '/sector_teams/' ],
+						[ '/mi/os_regions/?year=2016', '/os_regions/' ]
 					];
 
 					intercept( files );
@@ -667,7 +743,8 @@ describe( 'Backend service', function(){
 						expect( data.overseasRegionGroups ).toBeDefined();
 
 						done();
-					} );
+
+					} ).catch( done );
 				} );
 			} );
 
@@ -676,8 +753,8 @@ describe( 'Backend service', function(){
 				it( 'Should throw an error', function( done ){
 
 					const files = [
-						[ '/mi/sector_teams/', null, 500 ],
-						[ '/mi/os_regions/', '/os_regions/' ]
+						[ '/mi/sector_teams/?year=2016', null, 500 ],
+						[ '/mi/os_regions/?year=2016', '/os_regions/' ]
 					];
 
 					intercept( files );
@@ -686,7 +763,8 @@ describe( 'Backend service', function(){
 
 						expect( err ).toBeDefined();
 						done();
-					} );
+
+					} ).catch( done );
 				} );
 			} );
 
@@ -695,8 +773,8 @@ describe( 'Backend service', function(){
 				it( 'Should log a message with the reporter', function( done ){
 
 					const files = [
-						[ '/mi/sector_teams/', '/sector_teams/' ],
-						[ '/mi/os_regions/', '/os_regions/' ]
+						[ '/mi/sector_teams/?year=2016', '/sector_teams/' ],
+						[ '/mi/os_regions/?year=2016', '/os_regions/' ]
 					];
 
 					interceptWithDelay( files );
@@ -709,7 +787,8 @@ describe( 'Backend service', function(){
 						expect( data.overseasRegionGroups ).toBeDefined();
 
 						done();
-					} );
+
+					} ).catch( done );
 				} );
 			} );
 		} );

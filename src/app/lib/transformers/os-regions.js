@@ -32,7 +32,7 @@ module.exports = function( regions ){
 	let groups = [];
 
 	//put all regions in an object keyed by id
-	for( let region of regions ){
+	for( let region of regions.results ){
 
 		regionList[ region.id ] = region;
 	}

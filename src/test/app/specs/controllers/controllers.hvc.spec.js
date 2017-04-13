@@ -1,3 +1,4 @@
+const config = require( '../../../../app/config' );
 const proxyquire = require( 'proxyquire' );
 
 const backendService = require( '../../../../app/lib/service/service.backend' );
@@ -8,7 +9,22 @@ const monthlyPerformance = require( '../../../../app/lib/view-models/monthly-per
 
 let controller;
 
+if( !config.backend.mock ){ return; }
+
 describe( 'HVC controller', function(){
+
+	let oldTimeout;
+
+	beforeEach( function(){
+
+		oldTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
+		jasmine.DEFAULT_TIMEOUT_INTERVAL = 500;
+	} );
+
+	afterEach( function(){
+
+		jasmine.DEFAULT_TIMEOUT_INTERVAL = oldTimeout;
+	} );
 
 	beforeEach( function(){
 
@@ -24,9 +40,9 @@ describe( 'HVC controller', function(){
 	} );
 
 	describe( 'Detail', function(){
-	
+
 		it( 'Should get the HVC data and render the correct view', function( done ){
-	
+
 			const req = {
 				alice: '1234',
 				params: {
@@ -37,7 +53,7 @@ describe( 'HVC controller', function(){
 			const hvcId = req.params.id;
 
 			spyOn( backendService, 'getHvc' ).and.callThrough();
-			spyOn( errorHandler, 'createHandler' ).and.callThrough();
+			spyOn( errorHandler, 'createHandler' ).and.callFake( () => done );
 			spyOn( hvcTargetPerformance, 'create' ).and.callThrough();
 			spyOn( topMarkets, 'create' ).and.callThrough();
 			spyOn( monthlyPerformance, 'create' ).and.callThrough();
@@ -49,7 +65,7 @@ describe( 'HVC controller', function(){
 				expect( hvcTargetPerformance.create ).toHaveBeenCalled();
 				expect( topMarkets.create ).toHaveBeenCalled();
 				expect( monthlyPerformance.create ).toHaveBeenCalled();
-				
+
 				expect( data.id ).toBeDefined();
 				expect( data.name ).toBeDefined();
 				expect( data.hvcSummary ).toBeDefined();

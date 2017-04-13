@@ -60,7 +60,7 @@
 
 	<section class="grid-row">
 		<div class="column-half column--relative">
-			<h3 class="column-date">{{ financialYear() }}</h3>
+			<h3 class="column-date">{{ financialYear( dateRange ) }}</h3>
 			<h3 class="visually-hidden">Confirmed wins values</h3>
 		</div>
 		<div class="column-half">
@@ -93,7 +93,7 @@
 
 		{%- for team in sectorTeams -%}
 			{% set loopIndex = ( loopIndex + 1 ) %}
-			
+
 			{{ row( team, loopIndex ) }}
 
 			{% for hvcGroup in team.hvcGroups %}

@@ -8,12 +8,12 @@ describe( 'Sector teams overview transformer', function(){
 	let output;
 
 	beforeEach( function(){
-	
-		output = transform( input );
+
+		output = transform( input.results );
 	} );
 
 	it( 'Should add the images', function(){
-	
+
 		for( let team of output ){
 
 			expect( team.image.url ).toBeDefined();
@@ -23,7 +23,7 @@ describe( 'Sector teams overview transformer', function(){
 	} );
 
 	it( 'Should give the sector teams the correct properties', function(){
-	
+
 		for( let team of output ){
 
 			expect( team.id ).toBeDefined();
@@ -50,7 +50,7 @@ describe( 'Sector teams overview transformer', function(){
 	} );
 
 	it( 'Should give the HVC Groups the correct properties', function(){
-	
+
 		for( let team of output ){
 
 			for( let hvcGroup of team.hvcGroups ){
@@ -74,7 +74,7 @@ describe( 'Sector teams overview transformer', function(){
 	} );
 
 	it( 'Should add a capped percentage of 100, along with a marker to say it is over', function(){
-	
+
 		expect( output[ 0 ].values.hvc.targetPercent.confirmed.capped ).toEqual( 100 );
 		expect( output[ 0 ].values.hvc.targetPercent.confirmed.isOver ).toEqual( true );
 		expect( output[ 0 ].values.hvc.targetPercent.confirmed.value ).toEqual( 125 );
@@ -85,7 +85,7 @@ describe( 'Sector teams overview transformer', function(){
 	} );
 
 	it( 'Should define all HVC types and ensure they have a min of 0', function(){
-	
+
 		expect( output[ 0 ].hvcPerformance.red ).toEqual( 0 );
 		expect( output[ 0 ].hvcPerformance.amber ).toEqual( 13 );
 		expect( output[ 0 ].hvcPerformance.green ).toEqual( 0 );
@@ -108,7 +108,7 @@ describe( 'Sector teams overview transformer', function(){
 	} );
 
 	it( 'Should calculate the total amount of HVCs', function(){
-	
+
 		expect( output[ 0 ].totalHvcs ).toEqual( 22 );
 		expect( output[ 3 ].totalHvcs ).toEqual( 54 );
 		expect( output[ 4 ].totalHvcs ).toEqual( 54 );

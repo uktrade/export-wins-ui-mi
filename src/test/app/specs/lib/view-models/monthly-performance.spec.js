@@ -1,5 +1,16 @@
 const viewModel = require( '../../../../../app/lib/view-models/monthly-performance' );
 
+function createViewModel( data ){
+
+	return viewModel.create( {
+		date_range: {
+			start: 10000,
+			end: 30000
+		},
+		results: data
+	} );
+}
+
 describe( 'Monthly Performance view model', function(){
 
 	describe( 'Create', function(){
@@ -33,10 +44,15 @@ describe( 'Monthly Performance view model', function(){
 			};
 
 			beforeEach( function(){
-			
-				output = viewModel.create( hvcData );
+
+				output = createViewModel( hvcData );
 			} );
-		
+
+			it( 'Should output the date range', function(){
+
+				expect( output.dateRange ).toEqual( { start: 10000, end: 30000 } );
+			} );
+
 			it( 'Should create the view model with just HVC data', function(){
 
 				const month1 = output.months[ 0 ];
@@ -65,7 +81,7 @@ describe( 'Monthly Performance view model', function(){
 			} );
 
 			it( 'Should create a key with just hvc', function(){
-			
+
 				expect( output.keys.length ).toEqual( 3 );
 				expect( output.keys[ 0 ].name ).toEqual( '£0.01m target' );
 				expect( output.keys[ 0 ].modifyer ).toEqual( 'target' );
@@ -77,7 +93,7 @@ describe( 'Monthly Performance view model', function(){
 		} );
 
 		describe( 'With HVC and non export data', function(){
-		
+
 			let output;
 			const hvcAndNonExportData = {
 
@@ -113,8 +129,8 @@ describe( 'Monthly Performance view model', function(){
 			};
 
 			beforeEach( function(){
-			
-				output = viewModel.create( hvcAndNonExportData );
+
+				output = createViewModel( hvcAndNonExportData );
 			} );
 
 			it( 'Should create the view model with HVC and non export data', function(){
@@ -163,7 +179,7 @@ describe( 'Monthly Performance view model', function(){
 			} );
 
 			it( 'Should create a key with hvc and non export', function(){
-			
+
 				expect( output.keys.length ).toEqual( 5 );
 
 				expect( output.keys[ 0 ].name ).toEqual( '£1m target' );
@@ -212,10 +228,10 @@ describe( 'Monthly Performance view model', function(){
 			};
 
 			beforeEach( function(){
-			
-				output = viewModel.create( nonHvcData );
+
+				output = createViewModel( nonHvcData );
 			} );
-		
+
 			it( 'Should create the view model with non hvc data', function(){
 
 				const month1 = output.months[ 0 ];
@@ -244,7 +260,7 @@ describe( 'Monthly Performance view model', function(){
 			} );
 
 			it( 'Should create a key with non hvc', function(){
-			
+
 				expect( output.keys.length ).toEqual( 3 );
 
 				expect( output.keys[ 0 ].name ).toEqual( '£1m target' );
@@ -289,10 +305,10 @@ describe( 'Monthly Performance view model', function(){
 			};
 
 			beforeEach( function(){
-			
-				output = viewModel.create( hvcNonHvcAndNonExportData );
+
+				output = createViewModel( hvcNonHvcAndNonExportData );
 			} );
-	
+
 		it( 'Should create the bars in the correct order', function(){
 
 			const month = output.months[ 0 ];
@@ -307,7 +323,7 @@ describe( 'Monthly Performance view model', function(){
 		} );
 
 		it( 'Should create the keys in the correct order', function(){
-		
+
 			expect( output.keys.length ).toEqual( 7 );
 			expect( output.keys[ 0 ].modifyer ).toEqual( 'target' );
 			expect( output.keys[ 1 ].modifyer ).toEqual( 'hvc-confirmed' );
@@ -338,10 +354,10 @@ describe( 'Monthly Performance view model', function(){
 					}
 				]
 			};
-		
+
 			it( 'Should create the scale with the target as the highest', function(){
-			
-				const output = viewModel.create( highTargetData );
+
+				const output = createViewModel( highTargetData );
 
 				expect( output.scale.p100 ).toEqual( 1000 );
 				expect( output.scale.p80 ).toEqual( 800 );
@@ -369,10 +385,10 @@ describe( 'Monthly Performance view model', function(){
 					}
 				]
 			};
-		
+
 			it( 'Should create the scale with the confirmed as the highest', function(){
-		
-				const output = viewModel.create( highConfirmedData );
+
+				const output = createViewModel( highConfirmedData );
 
 				expect( output.scale.p100 ).toEqual( 500 );
 				expect( output.scale.p80 ).toEqual( 400 );
@@ -384,7 +400,7 @@ describe( 'Monthly Performance view model', function(){
 		} );
 
 		describe( 'The target styles', function(){
-		
+
 			const targetData = {
 				target: 500,
 				months: [
@@ -401,8 +417,8 @@ describe( 'Monthly Performance view model', function(){
 			};
 
 			it( 'Should calculate the target styles', function(){
-		
-				const output = viewModel.create( targetData );
+
+				const output = createViewModel( targetData );
 
 				expect( output.scale.targetOffset ).toEqual( '250px' );
 			} );
@@ -425,12 +441,12 @@ describe( 'Monthly Performance view model', function(){
 				}
 			]
 		};
-	
+
 		it( 'Should calculate the bar styles', function(){
 
-			const output = viewModel.create( barData );
+			const output = createViewModel( barData );
 			const bars = output.months[ 0 ].bars;
-	
+
 			expect( bars[ 0 ].style.height ).toEqual( '125px' );
 			expect( bars[ 0 ].style.margin ).toEqual( '125px' );
 
@@ -439,4 +455,4 @@ describe( 'Monthly Performance view model', function(){
 		} );
 	} );
 } );
-	
+

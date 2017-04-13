@@ -8,12 +8,12 @@
 {% block page_content %}
 
 	<h1 class="page-heading">{{ sectorName }} HVC Group</h1>
-	<h2 class="page-date">{{ financialYear() }}</h2>
+	<h2 class="page-date">{{ financialYear( summary.dateRange ) }}</h2>
 
 	<h2 class="visually-hidden">Summary</h2>
 	<section class="sector-detail grid-row">
 		<div class="column-two-sevenths">
-			
+
 			<h3 class="sector-export-heading">Total confirmed export value</h3>
 			<p class="sector-export-confirmed-value"><span class="sector-export-value-currency">&pound;</span>{{ summary.confirmedExportValue | largeNumber( true ) | safe }}</p>
 
@@ -60,7 +60,7 @@
 	<section class="grid-row">
 		<div class="column-single">
 			<h2 class="sector-heading">{{ sectorName }} HVCs</h2>
-			<h3 class="sub-heading-date">{{ financialYear() }}</h3>
+			<h3 class="sub-heading-date">{{ financialYear( hvcTargetPerformance.dateRange ) }}</h3>
 			{{ hvcTargetPerformanceTable( hvcTargetPerformance.withTarget, linkHvc=linkHvc ) }}
 		</div>
 	</section>
@@ -77,7 +77,7 @@
 	<section class="grid-row row-separator">
 		<div class="column-two-thirds">
 			<h2 class="sector-heading">{{ sectorName }} HVCs monthly performance</h2>
-			<h3 class="sub-heading-date">{{ financialYear() }}</h3>
+			<h3 class="sub-heading-date">{{ financialYear( monthlyPerformance.dateRange ) }}</h3>
 		</div>
 		<div class="column-one-third">
 			{% include 'partials/monthly-performance-key.html' %}

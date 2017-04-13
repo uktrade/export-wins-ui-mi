@@ -36,6 +36,14 @@ const stubs = [
 	[ /^\/mi\/hvc_groups\/[0-9]+\/months\/$/, 'hvc_groups/months' ]
 ];
 
+//ensure that we don't return a modified response
+function getStub( path ){
+
+	const json = JSON.stringify( require( path ) );
+
+	return JSON.parse( json );
+}
+
 module.exports = {
 
 	get: function( alice, url, cb ){
@@ -43,6 +51,7 @@ module.exports = {
 		let data;
 		let path;
 		let stub;
+		let paramsIndex;
 
 		response.request = {
 			uri: {
@@ -52,9 +61,16 @@ module.exports = {
 
 		for( [ path, stub ] of stubs ){
 
+			paramsIndex = url.indexOf( '?' );
+
+			if( paramsIndex > 0 ){
+
+				url = url.substr( 0, paramsIndex );
+			}
+
 			if( path.test( url ) ){
 
-				data = require( stubPath + stub );
+				data = getStub( stubPath + stub );
 				break;
 			}
 		}

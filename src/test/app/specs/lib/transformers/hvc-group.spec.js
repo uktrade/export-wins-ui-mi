@@ -8,14 +8,14 @@ describe( 'HVC Group transformer', function(){
 	let output;
 
 	describe( 'With a hvc group', function(){
-		
+
 		beforeEach( function(){
-		
-			output = transform( hvcGroupInput );
+
+			output = transform( hvcGroupInput.results );
 		} );
-	
+
 		it( 'Should calculate the total confirmed', function(){
-		
+
 			expect( output.exportValue ).toEqual( 59481 );
 		} );
 	} );

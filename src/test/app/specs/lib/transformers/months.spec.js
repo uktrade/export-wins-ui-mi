@@ -9,16 +9,14 @@ const input20161212 = getBackendStub( '/sector_teams/months' );
 
 describe( 'Sector months transformer', function(){
 
-	function checkOutput( input, max, target = ( ( input.hvcs.target / 1e+6 ) + 'm' ) ){
+	function checkOutput( input, target = ( ( input.results.hvcs.target / 1e+6 ) + 'm' ) ){
 
-		const output = transform( input );
+		const output = transform( input.results );
 
-		//expect( output.max ).toEqual( max );
-		//expect( output.min ).toEqual( 0 );
-		expect( output.target ).toEqual( input.hvcs.target );
+		expect( output.target ).toEqual( input.results.hvcs.target );
 		expect( output.targetName ).toEqual( '£' + target );
 
-		input.months.forEach( ( month, i ) => {
+		input.results.months.forEach( ( month, i ) => {
 
 			const outputMonth = output.months[ i ];
 
@@ -32,16 +30,14 @@ describe( 'Sector months transformer', function(){
 		} );
 	}
 
-	function checkGroupOutput( input, max, target ){
+	function checkGroupOutput( input, target ){
 
-		const output = transform( input );
+		const output = transform( input.results );
 
-		//expect( output.max ).toEqual( max );
-		//expect( output.min ).toEqual( 0 );
-		expect( output.target ).toEqual( input.hvcs.target );
+		expect( output.target ).toEqual( input.results.hvcs.target );
 		expect( output.targetName ).toEqual( '£' + target );
 
-		input.months.forEach( ( month, i ) => {
+		input.results.months.forEach( ( month, i ) => {
 
 			const outputMonth = output.months[ i ];
 
@@ -55,29 +51,29 @@ describe( 'Sector months transformer', function(){
 	}
 
 	describe( 'With a sector team', function(){
-	
+
 		it( 'Should return the correct format', function(){
 
-			checkOutput( input, 92882566 );
+			checkOutput( input );
 		} );
 
 		it( 'Should return the correct format when over target', function(){
 
-			checkOutput( inputOverTarget, 504321098 );
+			checkOutput( inputOverTarget );
 		} );
 
 		it( 'Should return the correct format for 2016-12-12', function(){
 
-			checkOutput( input20161212, 501286154 );
+			checkOutput( input20161212 );
 		} );
 	} );
 
 	describe( 'With a HVC Group', function(){
-	
+
 		it( 'Should return the correct format - without non-hvc', function(){
-	
-			checkGroupOutput( hvcGroupInput, 12223, '0.04m' );
+
+			checkGroupOutput( hvcGroupInput, '0.04m' );
 		} );
 	} );
-	
+
 } );

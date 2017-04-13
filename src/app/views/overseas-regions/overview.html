@@ -11,7 +11,7 @@
 
 	<section class="grid-row">
 		<div class="column-half">
-			<h3 class="column-date">{{ financialYear() }}</h3>
+			<h3 class="column-date">{{ financialYear( dateRange ) }}</h3>
 		</div>
 		<div class="column-half">
 			{% include 'partials/key.html' %}
@@ -95,7 +95,7 @@
 					{{- overviewPie( region.confirmedPercent.nonHvc ) -}}
 				</td>
 
-			</tr>	
+			</tr>
 		{%- endfor -%}
 		{%- endfor %}
 		</tbody>

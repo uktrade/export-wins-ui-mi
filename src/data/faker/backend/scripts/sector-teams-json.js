@@ -13,7 +13,7 @@ module.exports = {
 		let sectorId = 1;
 		let overview = generateSchema( '/sector_teams/overview.schema' );
 
-		for( let sector of overview ){
+		for( let sector of overview.results ){
 
 			sector.id = sectorId++; // id's need to match icon ids
 			calculateOverviewValues( sector.values );

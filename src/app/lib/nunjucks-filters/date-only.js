@@ -7,12 +7,12 @@ module.exports = function( datestr ){
 	if( datestr ){
 
 		date = new Date( datestr );
-	
+
 	} else {
 
 		date = new Date();
 	}
 
 	//return date.getMonth() date.getFullYear();
-	return dateFormat( date, 'd mmmm yyyy' );
+	return dateFormat( date, 'UTC:d mmmm yyyy' );
 };

@@ -25,12 +25,25 @@ function createBackend( opts = {} ){
 
 describe( 'Backend lib', function(){
 
+	let oldTimeout;
+
+	beforeEach( function(){
+
+		oldTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
+		jasmine.DEFAULT_TIMEOUT_INTERVAL = 500;
+	} );
+
+	afterEach( function(){
+
+		jasmine.DEFAULT_TIMEOUT_INTERVAL = oldTimeout;
+	} );
+
 	describe( 'GET request', function(){
 
 		beforeEach( function(){
-		
+
 			reporter = {
-				message: jasmine.createSpy( 'reporter.message' ) 
+				message: jasmine.createSpy( 'reporter.message' )
 			};
 
 			logger = {
@@ -46,7 +59,7 @@ describe( 'Backend lib', function(){
 		} );
 
 		it( 'Should call request with the correct options', function( done ){
-		
+
 			request.and.callFake( function( opts, cb ){
 				cb( null, {
 					statusCode: 200,
@@ -76,7 +89,7 @@ describe( 'Backend lib', function(){
 		describe( 'A slow request', function(){
 
 			it( 'Should log an event with the reporter', function( done ){
-		
+
 				request.and.callFake( function( opts, cb ){
 					cb( null, {
 						statusCode: 200,
@@ -97,7 +110,7 @@ describe( 'Backend lib', function(){
 				} );
 			} );
 		} );
-	
+
 		describe( 'A successful request', function(){
 
 			beforeEach( function(){
@@ -113,13 +126,13 @@ describe( 'Backend lib', function(){
 					}, '{ "test": "testing" }' );
 				} );
 			} );
-		
+
 			describe( 'With a JSON response', function(){
 
 				describe( 'When the response is valid JSON', function(){
-				
+
 					it( 'Should return the response as a JSON object', function( done ){
-				
+
 						backend.get( alice, path, function( err, response, data ){
 
 							expect( request ).toHaveBeenCalled();
@@ -133,9 +146,9 @@ describe( 'Backend lib', function(){
 				} );
 
 				describe( 'When the response is not valid JSON', function(){
-				
+
 					it( 'Should log an error and return the response data as is', function( done ){
-				
+
 						request.and.callFake( function( opts, cb ){
 							cb( null, {
 								statusCode: 200,
@@ -162,9 +175,9 @@ describe( 'Backend lib', function(){
 			} );
 
 			describe( 'A text/plain response', function(){
-			
+
 				it( 'Should return the response', function( done ){
-			
+
 				request.and.callFake( function( opts, cb ){
 						cb( null, {
 							statusCode: 200,
@@ -193,9 +206,9 @@ describe( 'Backend lib', function(){
 		describe( 'A failed request', function(){
 
 			describe( 'A network timeout', function(){
-			
+
 				it( 'Should return the error', function( done ){
-					
+
 					request.and.callFake( function( opts, cb ){
 
 						let err = new Error( 'Network failed' );
@@ -225,13 +238,13 @@ describe( 'Backend lib', function(){
 
 			backend = require( '../../../../app/lib/backend' );
 		} );
-	
+
 		describe( 'A 200 response', function(){
-		
+
 			it( 'Should return the JSON', function( done ){
 
 				interceptBackend.getStub( path, 200, '/sector_teams/' );
-		
+
 				backend.get( alice, path, function( err, response, data ){
 
 					expect( err ).toBeNull();
@@ -244,9 +257,9 @@ describe( 'Backend lib', function(){
 		} );
 
 		describe( 'A 500 response', function(){
-		
+
 			it( 'Should return an error', function( done ){
-		
+
 				interceptBackend.get( path ).reply( 500 );
 
 				backend.get( alice, path, function( err, response, data ){
@@ -261,9 +274,9 @@ describe( 'Backend lib', function(){
 		} );
 
 		describe( 'A 404 response', function(){
-		
+
 			it( 'Should return an error', function( done ){
-		
+
 				interceptBackend.get( path ).reply( 404, 'not found' );
 
 				backend.get( alice, path, function( err, response, data ){

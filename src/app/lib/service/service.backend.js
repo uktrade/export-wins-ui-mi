@@ -16,9 +16,20 @@ const transformHvcGroup = require( '../transformers/hvc-group' );
 const transformOsRegions = require( '../transformers/os-regions' );
 
 
+function convertDateRange( data ){
+
+	if( data.date_range ){
+
+		data.date_range.start = ( data.date_range.start * 1000 );
+		data.date_range.end = ( data.date_range.end * 1000 );
+	}
+}
+
 function get( alice, path, transform ){
 
 	return new Promise( ( resolve, reject ) => {
+
+		path += '?year=2016';
 
 		backend.get( alice, path, function( err, response, data ){
 
@@ -35,11 +46,13 @@ function get( alice, path, transform ){
 
 				if( response.isSuccess ){
 
+					convertDateRange( data );
+
 					if( transform ){
 
 						try {
 
-							data = transform( data );
+							data.results = transform( data.results );
 							resolve( data );
 
 						} catch ( e ){
@@ -133,7 +146,7 @@ function getOverseasRegionName( alice, regionId ){
 
 		let regionName;
 
-		for( let region of regions ){
+		for( let region of regions.results ){
 
 			if( region.id == regionId ){
 
@@ -201,13 +214,16 @@ function getHvcGroupMonths( alice, groupId ){
 }
 
 
-const getWin = function(){ return require( '../../../data/mocks' ).win(); };
+function getWin(){
+
+	return mocks.win();
+}
 
 function getHvc( /* alice, hvcId */ ){
 
 	//`/mi/hvc/${ hvcId }/`
 
-	let data = require( '../../../data/mocks' ).hvc().then( function ( data ){
+	return mocks.hvc().then( function ( data ){
 
 		data = Object.create( data );
 
@@ -215,13 +231,11 @@ function getHvc( /* alice, hvcId */ ){
 
 		return data;
 	} );
-
-	return data;
 }
 
 function getWinList( /* alice */ ){
 
-	return require( '../../../data/mocks' ).winList().then( ( mockData ) => {
+	return mocks.winList().then( ( mockData ) => {
 
 		let data = mockData.map( Object.create );
 
@@ -230,22 +244,6 @@ function getWinList( /* alice */ ){
 		return data;
 	} );
 }
-
-
-/*eslint-disable no-func-assign */
-if( USE_MOCKS ){
-
-	logger.warn( 'Using mocks for backend service' );
-
-	getSectorTeamCampaigns = mocks.sectorTeamCampaigns;
-	getSectorTeamTopNonHvc = mocks.sectorTeamTopNonHvc;
-	getSectorTeamMonths = mocks.sectorTeamMonths;
-	getSectorTeamsOverview = mocks.sectorTeamsOverview;
-
-	getOverseasRegionsOverview = mocks.regionsOverview;
-}
-/*eslint-enable no-func-assign */
-
 
 module.exports = {
 

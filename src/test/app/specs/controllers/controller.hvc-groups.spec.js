@@ -13,6 +13,19 @@ let controller;
 
 describe( 'HVC Groups controller', function(){
 
+	let oldTimeout;
+
+	beforeEach( function(){
+
+		oldTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
+		jasmine.DEFAULT_TIMEOUT_INTERVAL = 500;
+	} );
+
+	afterEach( function(){
+
+		jasmine.DEFAULT_TIMEOUT_INTERVAL = oldTimeout;
+	} );
+
 	beforeEach( function(){
 
 		const stubs = {
@@ -28,11 +41,11 @@ describe( 'HVC Groups controller', function(){
 	} );
 
 	describe( 'List', function(){
-	
+
 		it( 'Should get the list data and render the correct view', function( done ){
-		
+
 			spyOn( backendService, 'getHvcGroups' ).and.callThrough();
-			spyOn( errorHandler, 'createHandler' ).and.callThrough();
+			spyOn( errorHandler, 'createHandler' ).and.callFake( () => done );
 
 			const req = {
 				alice: '87654'
@@ -45,6 +58,7 @@ describe( 'HVC Groups controller', function(){
 				expect( backendService.getHvcGroups ).toHaveBeenCalledWith( req.alice );
 				expect( view ).toEqual( 'hvc-groups/list.html' );
 				expect( data.hvcGroups ).toBeDefined();
+				expect( data.hvcGroups.length ).toBeGreaterThan( 1 );
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				done();
 			} } );
@@ -52,11 +66,11 @@ describe( 'HVC Groups controller', function(){
 	} );
 
 	describe( 'Group', function(){
-	
+
 		it( 'Should get the group data and render the correct view', function( done ){
-	
+
 			spyOn( backendService, 'getHvcGroupInfo' ).and.callThrough();
-			spyOn( errorHandler, 'createHandler' ).and.callThrough();
+			spyOn( errorHandler, 'createHandler' ).and.callFake( () => done );
 			spyOn( sectorSummary, 'create' ).and.callThrough();
 			spyOn( hvcSummary, 'create' ).and.callThrough();
 			spyOn( hvcTargetPerformance, 'create' ).and.callThrough();
@@ -76,6 +90,8 @@ describe( 'HVC Groups controller', function(){
 
 			controller.group( req, { render: function( view, data ){
 
+				expect( data.sectorSummary.dateRange ).toBeDefined();
+
 				expect( backendService.getHvcGroupInfo ).toHaveBeenCalledWith( req.alice, groupId );
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				expect( sectorSummary.create ).toHaveBeenCalled();
@@ -88,7 +104,7 @@ describe( 'HVC Groups controller', function(){
 				expect( data.hvcSummary ).toBeDefined();
 				expect( data.hvcTargetPerformance ).toBeDefined();
 				expect( data.monthlyPerformance ).toBeDefined();
-				
+
 				expect( view ).toEqual( 'hvc-groups/detail.html' );
 				done();
 			} } );

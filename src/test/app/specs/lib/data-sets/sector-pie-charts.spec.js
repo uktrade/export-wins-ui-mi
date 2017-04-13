@@ -60,7 +60,7 @@ const inputHvcGroup = {
 describe( 'Sector wins data data set', function(){
 
 	describe( 'Sector team input', function(){
-	
+
 		it( 'Should return the correct structure', function(){
 
 			const output = dataset.create( input );
@@ -75,7 +75,7 @@ describe( 'Sector wins data data set', function(){
 	} );
 
 	describe( 'Hvc Group input', function(){
-	
+
 		it( 'Should return the correct structure', function(){
 
 			const output = dataset.create( inputHvcGroup );
@@ -89,11 +89,11 @@ describe( 'Sector wins data data set', function(){
 	} );
 
 	describe( 'Zero values', function(){
-	
+
 		it( 'Should return values', function(){
-	
+
 			const zeroHvcGroup = getBackendStub( '/hvc_groups/group_zero-values' );
-			const output = dataset.create( zeroHvcGroup );
+			const output = dataset.create( zeroHvcGroup.results );
 
 			expect( output.confirmedUnconfirmedValue.confirmed ).toEqual( 0 );
 			expect( output.confirmedUnconfirmedValue.unconfirmed ).toEqual( 0 );
@@ -101,13 +101,13 @@ describe( 'Sector wins data data set', function(){
 	} );
 
 	describe( 'Using a stub', function(){
-	
+
 		it( 'Shoud not throw an error', function(){
-	
+
 			function createDatSet(){
 
 				const stub = getBackendStub( '/sector_teams/sector_team' );
-				dataset.create( stub );
+				dataset.create( stub.results );
 			}
 
 			expect( createDatSet ).not.toThrow();
