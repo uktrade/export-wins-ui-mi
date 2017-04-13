@@ -29,10 +29,14 @@ $overview-progress-height-large: 16px;
 
 .overview-progress--confirmed-over {
 	border-color: $hvc;
+	border-right: 0;//remove borders to limit rendering bug when zooming
+	border-left: 0;//remove borders to limit rendering bug when zooming
 }
 
 .overview-progress--unconfirmed-over {
 	border-color: $unconfirmed;
+	border-right: 0;//remove borders to limit rendering bug when zooming
+	border-left: 0;//remove borders to limit rendering bug when zooming
 }
 
 
@@ -51,8 +55,7 @@ $overview-progress-arrow-size-large: ( ( $overview-progress-height-large + 2 ) /
 .overview-progress_over-marker {
 	position: absolute;
 	top: -1px;//for border
-	right: -( $overview-progress-arrow-size + 1 );//plus one for border
-
+	right: -$overview-progress-arrow-size;
 	width: 0;
 	height: 0;
 	border-top: $overview-progress-arrow-size solid transparent;
@@ -81,8 +84,7 @@ $overview-progress-arrow-size-large: ( ( $overview-progress-height-large + 2 ) /
 	}
 
 	.overview-progress_over-marker {
-		right: -( $overview-progress-arrow-size-large + 1 );//plus one for border
-
+		right: -$overview-progress-arrow-size-large;
 		border-top: $overview-progress-arrow-size-large solid transparent;
 		border-bottom: $overview-progress-arrow-size-large solid transparent;
 		border-left: $overview-progress-arrow-size-large solid $hvc;
