@@ -7,6 +7,19 @@ let controller;
 
 describe( 'Overseas Regions controller', function(){
 
+	let oldTimeout;
+
+	beforeEach( function(){
+
+		oldTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
+		jasmine.DEFAULT_TIMEOUT_INTERVAL = 500;
+	} );
+
+	afterEach( function(){
+
+		jasmine.DEFAULT_TIMEOUT_INTERVAL = oldTimeout;
+	} );
+
 	beforeEach( function(){
 
 		const stubs = {
@@ -18,7 +31,7 @@ describe( 'Overseas Regions controller', function(){
 	} );
 
 	describe( 'Handler', function(){
-	
+
 		it( 'Should get the sectors list data and render the view', function( done ){
 
 			const req = {
@@ -27,7 +40,7 @@ describe( 'Overseas Regions controller', function(){
 			};
 
 			spyOn( backendService, 'getSectorTeams' ).and.callThrough();
-			spyOn( errorHandler, 'createHandler' ).and.callThrough();
+			spyOn( errorHandler, 'createHandler' ).and.callFake( () => done );
 
 			interceptBackend.getStub( '/mi/sector_teams/', 200, '/sector_teams/' );
 
@@ -36,6 +49,7 @@ describe( 'Overseas Regions controller', function(){
 				expect( backendService.getSectorTeams ).toHaveBeenCalledWith( req.alice );
 				expect( view ).toEqual( 'index.html' );
 				expect( data.sectorTeams ).toBeDefined();
+				expect( data.sectorTeams.length ).toBeGreaterThan( 1 );
 				expect( data.overseasRegions ).not.toBeDefined();
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				done();
@@ -44,7 +58,7 @@ describe( 'Overseas Regions controller', function(){
 	} );
 
 	describe( 'When the os-regions query param is true', function(){
-	
+
 		it( 'Should show the Overseas Regions list and render the view', function( done ){
 
 			const req = {
@@ -53,9 +67,9 @@ describe( 'Overseas Regions controller', function(){
 					osRegions: true
 				}
 			};
-	
+
 			spyOn( backendService, 'getSectorTeamsAndOverseasRegions' ).and.callThrough();
-			spyOn( errorHandler, 'createHandler' ).and.callThrough();
+			spyOn( errorHandler, 'createHandler' ).and.callFake( () => done );
 
 			interceptBackend.getStub( '/mi/sector_teams/', 200, '/sector_teams/' );
 			interceptBackend.getStub( '/mi/os_regions/', 200, '/os_regions/' );
@@ -65,7 +79,9 @@ describe( 'Overseas Regions controller', function(){
 				expect( backendService.getSectorTeamsAndOverseasRegions ).toHaveBeenCalledWith( req.alice );
 				expect( view ).toEqual( 'index.html' );
 				expect( data.sectorTeams ).toBeDefined();
+				expect( data.sectorTeams.length ).toBeGreaterThan( 1 );
 				expect( data.overseasRegionGroups ).toBeDefined();
+				expect( data.overseasRegionGroups.length ).toBeGreaterThan( 1 );
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				done();
 			} } );

@@ -7,9 +7,10 @@ const high = 1020000000;
 describe( 'Top non HVC view model', function(){
 
 	it( 'Should calculate the maximum value', function(){
-	
+
 		const output = viewModel.create( input );
 
+		expect( output.dateRange ).toEqual( input.date_range );
 		expect( output.items ).toBeDefined();
 
 		expect( output.scale.high ).toEqual( high );

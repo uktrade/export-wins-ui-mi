@@ -7,7 +7,7 @@ module.exports = function( datestr, maxDate ){
 	if( datestr ){
 
 		date = new Date( datestr );
-	
+
 	} else {
 
 		date = new Date();
@@ -23,5 +23,5 @@ module.exports = function( datestr, maxDate ){
 		}
 	}
 
-	return dateFormat( date, 'h:MMtt d mmmm yyyy' );
+	return dateFormat( date, 'UTC:h:MMtt d mmmm yyyy' );
 };

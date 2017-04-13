@@ -60,7 +60,7 @@ module.exports = {
 
 	create: function( monthsData ){
 
-		const data = Object.create( monthsData );
+		const data = Object.create( monthsData.results );
 		const months = [];
 		const keys = [];
 		const keyTypes = {
@@ -134,6 +134,7 @@ module.exports = {
 		} );
 
 		data.months = months;
+		data.dateRange = monthsData.date_range;
 		data.keys = keys;
 		data.scale = {
 			p0: scale[ 0 ],

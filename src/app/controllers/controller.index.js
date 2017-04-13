@@ -10,7 +10,7 @@ module.exports = function( req, res ){
 
 		backendService.getSectorTeamsAndOverseasRegions( req.alice ).then( ( data ) => {
 
-			const sectorTeams = data.sectorTeams;
+			const sectorTeams = data.sectorTeams.results;
 			const overseasRegionGroups = data.overseasRegionGroups;
 
 			res.render( 'index.html', { sectorTeams, overseasRegionGroups } );
@@ -18,10 +18,10 @@ module.exports = function( req, res ){
 		} ).catch( renderError.createHandler( res ) );
 
 	} else {
-	
+
 		backendService.getSectorTeams( req.alice ).then( ( sectorTeams ) => {
 
-			res.render( 'index.html', { sectorTeams } );
+			res.render( 'index.html', { sectorTeams: sectorTeams.results } );
 
 		} ).catch( renderError.createHandler( res ) );
 	}

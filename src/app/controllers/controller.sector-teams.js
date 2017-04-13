@@ -13,9 +13,12 @@ module.exports = {
 	overview: function( req, res ){
 
 		backendService.getSectorTeamsOverview( req.alice ).then( ( sectorTeams ) => {
-			
-			res.render( 'sector-teams/overview', { sectorTeams } );
-			
+
+			res.render( 'sector-teams/overview', {
+				dateRange: sectorTeams.date_range,
+				sectorTeams: sectorTeams.results
+			} );
+
 		} ).catch( renderError.createHandler( res ) );
 	},
 
@@ -23,7 +26,7 @@ module.exports = {
 
 		backendService.getSectorTeams( req.alice ).then( ( sectorTeams ) => {
 
-			res.render( 'sector-teams/list.html', { sectorTeams } );
+			res.render( 'sector-teams/list.html', { sectorTeams: sectorTeams.results } );
 
 		} ).catch( renderError.createHandler( res ) );
 	},
@@ -35,8 +38,8 @@ module.exports = {
 		backendService.getSectorTeamInfo( req.alice, teamId ).then( ( data ) => {
 
 			res.render( 'sector-teams/detail.html', {
-				
-				sectorName: ( data.wins.name + ' Sector Team' ),
+
+				sectorName: ( data.wins.results.name + ' Sector Team' ),
 				summary: sectorSummary.create( data.wins ),
 				hvcSummary: hvcSummary.create( data.wins ),
 				hvcTargetPerformance: hvcTargetPerformance.create( data.campaigns ),

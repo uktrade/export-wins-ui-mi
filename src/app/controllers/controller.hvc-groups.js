@@ -13,7 +13,7 @@ module.exports = {
 
 		backendService.getHvcGroups( req.alice ).then( ( hvcGroups ) => {
 
-			res.render( 'hvc-groups/list.html', { hvcGroups } );
+			res.render( 'hvc-groups/list.html', { hvcGroups: hvcGroups.results } );
 
 		} ).catch( renderError.createHandler( res ) );
 	},
@@ -25,7 +25,7 @@ module.exports = {
 		backendService.getHvcGroupInfo( req.alice, groupId ).then( ( data ) => {
 
 			res.render( 'hvc-groups/detail.html', {
-				sectorName: data.wins.name,
+				sectorName: data.wins.results.name,
 				summary: sectorSummary.create( data.wins ),
 				hvcSummary: hvcSummary.create( data.wins ),
 				monthlyPerformance: monthlyPerformance.create( data.months ),

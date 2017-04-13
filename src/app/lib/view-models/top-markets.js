@@ -19,9 +19,9 @@ module.exports = {
 	create: function( data ){
 
 		return {
-
-			items: data,
-			scale: createScale( data )
+			dateRange: data.date_range,
+			items: data.results,
+			scale: createScale( data.results )
 		};
 	}
 };

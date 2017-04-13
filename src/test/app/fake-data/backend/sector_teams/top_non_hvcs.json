@@ -1,47 +1,58 @@
-[
-   {
-      "averageWinValue": 91731,
-      "region": "quos in eos",
-      "percentComplete": 89,
-      "averageWinPercent": 82,
-      "totalValue": 24387,
-      "sector": "illo ipsum ullam",
-      "totalWins": 711
+{
+   "timestamp": 1491810587486,
+   "financial_year": {
+      "id": 2016,
+      "description": "2016-17"
    },
-   {
-      "averageWinValue": 4729,
-      "region": "et dignissimos aut",
-      "percentComplete": 46,
-      "averageWinPercent": 71,
-      "totalValue": 1020000000,
-      "sector": "corporis eos qui",
-      "totalWins": 657
+   "date_range": {
+      "start": 1459468800,
+      "end": 1483228800
    },
-   {
-      "averageWinValue": 42049,
-      "region": "nemo optio alias",
-      "percentComplete": 77,
-      "averageWinPercent": 25,
-      "totalValue": 9320,
-      "sector": "accusantium omnis suscipit",
-      "totalWins": 822
-   },
-   {
-      "averageWinValue": 34967,
-      "region": "nisi incidunt eius",
-      "percentComplete": 83,
-      "averageWinPercent": 89,
-      "totalValue": 12780,
-      "sector": "dolore dolores et",
-      "totalWins": 835
-   },
-   {
-      "averageWinValue": 75745,
-      "region": "dignissimos esse saepe",
-      "percentComplete": 31,
-      "averageWinPercent": 85,
-      "totalValue": 71207,
-      "sector": "eum inventore voluptates",
-      "totalWins": 181
-   }
-]
+   "results": [
+	   {
+	      "averageWinValue": 91731,
+	      "region": "quos in eos",
+	      "percentComplete": 89,
+	      "averageWinPercent": 82,
+	      "totalValue": 24387,
+	      "sector": "illo ipsum ullam",
+	      "totalWins": 711
+	   },
+	   {
+	      "averageWinValue": 4729,
+	      "region": "et dignissimos aut",
+	      "percentComplete": 46,
+	      "averageWinPercent": 71,
+	      "totalValue": 1020000000,
+	      "sector": "corporis eos qui",
+	      "totalWins": 657
+	   },
+	   {
+	      "averageWinValue": 42049,
+	      "region": "nemo optio alias",
+	      "percentComplete": 77,
+	      "averageWinPercent": 25,
+	      "totalValue": 9320,
+	      "sector": "accusantium omnis suscipit",
+	      "totalWins": 822
+	   },
+	   {
+	      "averageWinValue": 34967,
+	      "region": "nisi incidunt eius",
+	      "percentComplete": 83,
+	      "averageWinPercent": 89,
+	      "totalValue": 12780,
+	      "sector": "dolore dolores et",
+	      "totalWins": 835
+	   },
+	   {
+	      "averageWinValue": 75745,
+	      "region": "dignissimos esse saepe",
+	      "percentComplete": 31,
+	      "averageWinPercent": 85,
+	      "totalValue": 71207,
+	      "sector": "eum inventore voluptates",
+	      "totalWins": 181
+	   }
+	]
+}

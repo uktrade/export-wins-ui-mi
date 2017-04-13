@@ -11,6 +11,10 @@ module.exports = {
 	hvc: function( req, res ){
 
 		const hvcId = req.params.id;
+		const date_range = {
+			start: 1459468800000,
+			end: 1485907200000
+		};
 
 		backendService.getHvc( req.alice, hvcId ).then( ( hvc ) => {
 
@@ -19,6 +23,7 @@ module.exports = {
 				id: hvc.id,
 				name: `${ hvc.id } ${ hvc.name }`,
 				summary: {
+					dateRange: date_range,
 					pieData: {
 						confirmedUnconfirmedValue: {
 							confirmed: 80,
@@ -26,8 +31,8 @@ module.exports = {
 						}
 					}
 				},
-				hvcTargetPerformance: hvcTargetPerformance.create( hvc.campaigns ),
-				monthlyPerformance: monthlyPerformance.create( hvc ),
+				hvcTargetPerformance: hvcTargetPerformance.create( { date_range, results: hvc.campaigns } ),
+				monthlyPerformance: monthlyPerformance.create( { date_range, results: hvc } ),
 				hvcSummary: {
 					progress: {
 						percent: 50,
@@ -38,7 +43,7 @@ module.exports = {
 					target: 100000000
 				},
 				averageTimeToConfirm: 11,
-				topMarkets: topMarkets.create( hvc.topMarketsAndSectors )
+				topMarkets: topMarkets.create( { date_range, results: hvc.topMarketsAndSectors } )
 			} );
 
 		} ).catch( renderError.createHandler( res ) );

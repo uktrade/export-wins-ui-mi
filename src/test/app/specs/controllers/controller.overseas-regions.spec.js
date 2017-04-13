@@ -15,6 +15,19 @@ let controller;
 
 describe( 'Overseas Regions controller', function(){
 
+	let oldTimeout;
+
+	beforeEach( function(){
+
+		oldTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
+		jasmine.DEFAULT_TIMEOUT_INTERVAL = 500;
+	} );
+
+	afterEach( function(){
+
+		jasmine.DEFAULT_TIMEOUT_INTERVAL = oldTimeout;
+	} );
+
 	beforeEach( function(){
 
 		const stubs = {
@@ -31,7 +44,7 @@ describe( 'Overseas Regions controller', function(){
 	} );
 
 	describe( 'Overview', function(){
-	
+
 		it( 'Should get the overview data and render the correct view', function( done ){
 
 			const req = {
@@ -39,7 +52,7 @@ describe( 'Overseas Regions controller', function(){
 			};
 
 			spyOn( backendService, 'getOverseasRegionsOverview' ).and.callThrough();
-			spyOn( errorHandler, 'createHandler' ).and.callThrough();
+			spyOn( errorHandler, 'createHandler' ).and.callFake( () => done );
 
 			interceptBackend.getStub( '/mi/os_regions/overview/', 200, '/os_regions/overview' );
 
@@ -47,7 +60,9 @@ describe( 'Overseas Regions controller', function(){
 
 				expect( backendService.getOverseasRegionsOverview ).toHaveBeenCalledWith( req.alice );
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
+				expect( data.dateRange ).toBeDefined();
 				expect( data.regionGroups ).toBeDefined();
+				expect( data.regionGroups.length ).toBeGreaterThan( 1 );
 				expect( view ).toEqual( 'overseas-regions/overview.html' );
 				done();
 			} } );
@@ -55,15 +70,15 @@ describe( 'Overseas Regions controller', function(){
 	} );
 
 	describe( 'List', function(){
-	
+
 		it( 'Should get the list data and render the correct view', function( done ){
-		
+
 			const req = {
 				alice: '87654'
 			};
 
 			spyOn( backendService, 'getOverseasRegions' ).and.callThrough();
-			spyOn( errorHandler, 'createHandler' ).and.callThrough();
+			spyOn( errorHandler, 'createHandler' ).and.callFake( () => done );
 
 			interceptBackend.getStub( '/mi/os_regions/', 200, '/os_regions/' );
 
@@ -73,15 +88,16 @@ describe( 'Overseas Regions controller', function(){
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				expect( view ).toEqual( 'overseas-regions/list.html' );
 				expect( data.regions ).toBeDefined();
+				expect( data.regions.length ).toBeGreaterThan( 1 );
 				done();
 			} } );
 		} );
 	} );
 
 	describe( 'Region', function(){
-	
+
 		it( 'Should get the region data and render the correct view', function( done ){
-	
+
 			const req = {
 				alice: '1234',
 				params: {
@@ -92,7 +108,7 @@ describe( 'Overseas Regions controller', function(){
 			const regionId = req.params.id;
 
 			spyOn( backendService, 'getOverseasRegionInfo' ).and.callThrough();
-			spyOn( errorHandler, 'createHandler' ).and.callThrough();
+			spyOn( errorHandler, 'createHandler' ).and.callFake( () => done );
 			spyOn( sectorSummary, 'create' ).and.callThrough();
 			spyOn( hvcSummary, 'create' ).and.callThrough();
 			spyOn( hvcTargetPerformance, 'create' ).and.callThrough();
@@ -107,7 +123,7 @@ describe( 'Overseas Regions controller', function(){
 			controller.region( req, { render: function( view, data ){
 
 				expect( backendService.getOverseasRegionInfo ).toHaveBeenCalledWith( req.alice, regionId );
-				expect( errorHandler.createHandler ).toHaveBeenCalled();
+				expect( errorHandler.createHandler ).callFake( () => done );
 				expect( sectorSummary.create ).toHaveBeenCalled();
 				expect( hvcSummary.create ).toHaveBeenCalled();
 				expect( hvcTargetPerformance.create ).toHaveBeenCalled();

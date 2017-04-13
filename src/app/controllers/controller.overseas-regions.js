@@ -8,14 +8,17 @@ const hvcSummary = require( '../lib/view-models/sector-hvc-summary' );
 const topMarkets = require( '../lib/view-models/top-markets' );
 const monthlyPerformance = require( '../lib/view-models/monthly-performance' );
 
-module.exports = { 
+module.exports = {
 
 	overview: function( req, res ){
 
 		backendService.getOverseasRegionsOverview( req.alice ).then( ( regionGroups ) => {
 
-			res.render( 'overseas-regions/overview.html', { regionGroups } );
-		
+			res.render( 'overseas-regions/overview.html', {
+				dateRange: regionGroups.date_range,
+				regionGroups: regionGroups.results
+			} );
+
 		} ).catch( renderError.createHandler( res ) );
 	},
 
@@ -23,8 +26,8 @@ module.exports = {
 
 		backendService.getOverseasRegions( req.alice ).then( ( regions ) => {
 
-			res.render( 'overseas-regions/list.html', { regions } );
-		
+			res.render( 'overseas-regions/list.html', { regions: regions.results } );
+
 		} ).catch( renderError.createHandler( res ) );
 	},
 
@@ -35,8 +38,8 @@ module.exports = {
 		backendService.getOverseasRegionInfo( req.alice, regionId ).then( ( data ) => {
 
 			res.render( 'overseas-regions/detail.html', {
-				
-				regionName: data.wins.name,
+
+				regionName: data.wins.results.name,
 				summary: sectorSummary.create( data.wins ),
 				hvcSummary: hvcSummary.create( data.wins ),
 				hvcTargetPerformance: hvcTargetPerformance.create( data.campaigns ),

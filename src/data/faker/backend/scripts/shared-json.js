@@ -16,10 +16,11 @@ module.exports = {
 	createSector: function(){
 
 		let sector = generateSchema( '/shared/sector.schema' );
+		let results = sector.results;
 
-		calculateTotals( sector.wins, [ 'non_export' ] );
-		calculateTotals( sector.wins.export, [ 'hvc', 'non_hvc' ] );
-		calculateExportTotals( sector.wins.export );
+		calculateTotals( results.wins, [ 'non_export' ] );
+		calculateTotals( results.wins.export, [ 'hvc', 'non_hvc' ] );
+		calculateExportTotals( results.wins.export );
 
 		return sector;
 	},
@@ -28,7 +29,7 @@ module.exports = {
 
 		let campaigns = generateSchema( '/shared/campaigns.schema' );
 
-		for( let campaign of campaigns.campaigns ){
+		for( let campaign of campaigns.results.campaigns ){
 
 			calculateTotals( campaign.totals, [ 'hvc' ] );
 			calculateUnconfirmedPercent( campaign.totals, [ 'progress' ] );
@@ -41,7 +42,7 @@ module.exports = {
 
 		let months = generateSchema( '/shared/months.schema' );
 
-		for( let month of months.months ){
+		for( let month of months.results.months ){
 
 			createMonthDate( month );
 			calculateTotals( month.totals, [ 'non_export' ] );

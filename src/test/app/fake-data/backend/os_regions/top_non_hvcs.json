@@ -1,47 +1,58 @@
-[
-   {
-      "averageWinValue": 13753,
-      "region": "quos facere totam",
-      "percentComplete": 65,
-      "averageWinPercent": 94,
-      "totalValue": 96283,
-      "sector": "omnis ducimus dolorem",
-      "totalWins": 802
+{
+   "timestamp": 1491810587486,
+   "financial_year": {
+      "id": 2016,
+      "description": "2016-17"
    },
-   {
-      "averageWinValue": 75050,
-      "region": "non consequatur labore",
-      "percentComplete": 7,
-      "averageWinPercent": 5,
-      "totalValue": 24914,
-      "sector": "accusamus dolor placeat",
-      "totalWins": 252
+   "date_range": {
+      "start": 1459468800,
+      "end": 1483228800
    },
-   {
-      "averageWinValue": 76856,
-      "region": "autem ea ad",
-      "percentComplete": 28,
-      "averageWinPercent": 8,
-      "totalValue": 28694,
-      "sector": "molestiae ut deleniti",
-      "totalWins": 966
-   },
-   {
-      "averageWinValue": 54617,
-      "region": "id error laborum",
-      "percentComplete": 1,
-      "averageWinPercent": 47,
-      "totalValue": 98978,
-      "sector": "sed nostrum aut",
-      "totalWins": 91
-   },
-   {
-      "averageWinValue": 2161,
-      "region": "perspiciatis rerum quia",
-      "percentComplete": 59,
-      "averageWinPercent": 71,
-      "totalValue": 85172,
-      "sector": "et minima dolore",
-      "totalWins": 274
-   }
-]
+   "results": [
+	   {
+	      "averageWinValue": 13753,
+	      "region": "quos facere totam",
+	      "percentComplete": 65,
+	      "averageWinPercent": 94,
+	      "totalValue": 96283,
+	      "sector": "omnis ducimus dolorem",
+	      "totalWins": 802
+	   },
+	   {
+	      "averageWinValue": 75050,
+	      "region": "non consequatur labore",
+	      "percentComplete": 7,
+	      "averageWinPercent": 5,
+	      "totalValue": 24914,
+	      "sector": "accusamus dolor placeat",
+	      "totalWins": 252
+	   },
+	   {
+	      "averageWinValue": 76856,
+	      "region": "autem ea ad",
+	      "percentComplete": 28,
+	      "averageWinPercent": 8,
+	      "totalValue": 28694,
+	      "sector": "molestiae ut deleniti",
+	      "totalWins": 966
+	   },
+	   {
+	      "averageWinValue": 54617,
+	      "region": "id error laborum",
+	      "percentComplete": 1,
+	      "averageWinPercent": 47,
+	      "totalValue": 98978,
+	      "sector": "sed nostrum aut",
+	      "totalWins": 91
+	   },
+	   {
+	      "averageWinValue": 2161,
+	      "region": "perspiciatis rerum quia",
+	      "percentComplete": 59,
+	      "averageWinPercent": 71,
+	      "totalValue": 85172,
+	      "sector": "et minima dolore",
+	      "totalWins": 274
+	   }
+	]
+}

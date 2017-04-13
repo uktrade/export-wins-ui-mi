@@ -1,668 +1,679 @@
 {
-	"name": "aut cumque maxime",
-	"hvcs": {
-		"target": 60000000
-	},
-	"months": [
-		{
-			"date": "2016-6",
-			"totals": {
-				"non_export": {
-					"number": {
-						"unconfirmed": 18355,
-						"confirmed": 82699,
-						"total": 101054
-					},
-					"value": {
-						"unconfirmed": 11585,
-						"confirmed": 70070,
-						"total": 81655
-					}
-				},
-				"export": {
-					"hvc": {
-						"number": {
-							"unconfirmed": 53335,
-							"confirmed": 79350,
-							"total": 132685
-						},
-						"value": {
-							"unconfirmed": 81798,
-							"confirmed": 87942,
-							"total": 169740
-						}
-					},
-					"non_hvc": {
-						"number": {
-							"unconfirmed": 77213,
-							"confirmed": 65328,
-							"total": 142541
-						},
-						"value": {
-							"unconfirmed": 79367,
-							"confirmed": 20092,
-							"total": 99459
-						}
-					},
-					"totals": {
-						"number": {
-							"unconfirmed": 130548,
-							"confirmed": 144678,
-							"grand_total": 275226
-						},
-						"value": {
-							"unconfirmed": 161165,
-							"confirmed": 108034,
-							"grand_total": 269199
-						}
-					}
-				}
-			}
+   "timestamp": 1491810587486,
+   "financial_year": {
+      "id": 2016,
+      "description": "2016-17"
+   },
+   "date_range": {
+      "start": 1459468800,
+      "end": 1483228800
+   },
+   "results": {
+		"name": "aut cumque maxime",
+		"hvcs": {
+			"target": 60000000
 		},
-		{
-			"date": "2016-6",
-			"totals": {
-				"non_export": {
-					"number": {
-						"unconfirmed": 78143,
-						"confirmed": 34986,
-						"total": 113129
+		"months": [
+			{
+				"date": "2016-6",
+				"totals": {
+					"non_export": {
+						"number": {
+							"unconfirmed": 18355,
+							"confirmed": 82699,
+							"total": 101054
+						},
+						"value": {
+							"unconfirmed": 11585,
+							"confirmed": 70070,
+							"total": 81655
+						}
 					},
-					"value": {
-						"unconfirmed": 2158,
-						"confirmed": 85839,
-						"total": 87997
+					"export": {
+						"hvc": {
+							"number": {
+								"unconfirmed": 53335,
+								"confirmed": 79350,
+								"total": 132685
+							},
+							"value": {
+								"unconfirmed": 81798,
+								"confirmed": 87942,
+								"total": 169740
+							}
+						},
+						"non_hvc": {
+							"number": {
+								"unconfirmed": 77213,
+								"confirmed": 65328,
+								"total": 142541
+							},
+							"value": {
+								"unconfirmed": 79367,
+								"confirmed": 20092,
+								"total": 99459
+							}
+						},
+						"totals": {
+							"number": {
+								"unconfirmed": 130548,
+								"confirmed": 144678,
+								"grand_total": 275226
+							},
+							"value": {
+								"unconfirmed": 161165,
+								"confirmed": 108034,
+								"grand_total": 269199
+							}
+						}
 					}
-				},
-				"export": {
-					"hvc": {
+				}
+			},
+			{
+				"date": "2016-6",
+				"totals": {
+					"non_export": {
 						"number": {
-							"unconfirmed": 30010,
-							"confirmed": 11507,
-							"total": 41517
+							"unconfirmed": 78143,
+							"confirmed": 34986,
+							"total": 113129
 						},
 						"value": {
-							"unconfirmed": 26861,
-							"confirmed": 8406,
-							"total": 35267
+							"unconfirmed": 2158,
+							"confirmed": 85839,
+							"total": 87997
 						}
 					},
-					"non_hvc": {
+					"export": {
+						"hvc": {
+							"number": {
+								"unconfirmed": 30010,
+								"confirmed": 11507,
+								"total": 41517
+							},
+							"value": {
+								"unconfirmed": 26861,
+								"confirmed": 8406,
+								"total": 35267
+							}
+						},
+						"non_hvc": {
+							"number": {
+								"unconfirmed": 28381,
+								"confirmed": 15995,
+								"total": 44376
+							},
+							"value": {
+								"unconfirmed": 32596,
+								"confirmed": 15961,
+								"total": 48557
+							}
+						},
+						"totals": {
+							"number": {
+								"unconfirmed": 58391,
+								"confirmed": 27502,
+								"grand_total": 85893
+							},
+							"value": {
+								"unconfirmed": 59457,
+								"confirmed": 24367,
+								"grand_total": 83824
+							}
+						}
+					}
+				}
+			},
+			{
+				"date": "2016-10",
+				"totals": {
+					"non_export": {
 						"number": {
-							"unconfirmed": 28381,
-							"confirmed": 15995,
-							"total": 44376
+							"unconfirmed": 21000,
+							"confirmed": 59601,
+							"total": 80601
 						},
 						"value": {
-							"unconfirmed": 32596,
-							"confirmed": 15961,
-							"total": 48557
+							"unconfirmed": 92934,
+							"confirmed": 17982,
+							"total": 110916
 						}
 					},
-					"totals": {
+					"export": {
+						"hvc": {
+							"number": {
+								"unconfirmed": 49976,
+								"confirmed": 4745,
+								"total": 54721
+							},
+							"value": {
+								"unconfirmed": 56591,
+								"confirmed": 63917,
+								"total": 120508
+							}
+						},
+						"non_hvc": {
+							"number": {
+								"unconfirmed": 56835,
+								"confirmed": 33189,
+								"total": 90024
+							},
+							"value": {
+								"unconfirmed": 83359,
+								"confirmed": 56058,
+								"total": 139417
+							}
+						},
+						"totals": {
+							"number": {
+								"unconfirmed": 106811,
+								"confirmed": 37934,
+								"grand_total": 144745
+							},
+							"value": {
+								"unconfirmed": 139950,
+								"confirmed": 119975,
+								"grand_total": 259925
+							}
+						}
+					}
+				}
+			},
+			{
+				"date": "2016-3",
+				"totals": {
+					"non_export": {
 						"number": {
-							"unconfirmed": 58391,
-							"confirmed": 27502,
-							"grand_total": 85893
+							"unconfirmed": 46876,
+							"confirmed": 11998,
+							"total": 58874
 						},
 						"value": {
-							"unconfirmed": 59457,
-							"confirmed": 24367,
-							"grand_total": 83824
+							"unconfirmed": 30772,
+							"confirmed": 76525,
+							"total": 107297
+						}
+					},
+					"export": {
+						"hvc": {
+							"number": {
+								"unconfirmed": 43995,
+								"confirmed": 91858,
+								"total": 135853
+							},
+							"value": {
+								"unconfirmed": 95683,
+								"confirmed": 58908,
+								"total": 154591
+							}
+						},
+						"non_hvc": {
+							"number": {
+								"unconfirmed": 87164,
+								"confirmed": 8174,
+								"total": 95338
+							},
+							"value": {
+								"unconfirmed": 56373,
+								"confirmed": 70819,
+								"total": 127192
+							}
+						},
+						"totals": {
+							"number": {
+								"unconfirmed": 131159,
+								"confirmed": 100032,
+								"grand_total": 231191
+							},
+							"value": {
+								"unconfirmed": 152056,
+								"confirmed": 129727,
+								"grand_total": 281783
+							}
+						}
+					}
+				}
+			},
+			{
+				"date": "2016-12",
+				"totals": {
+					"non_export": {
+						"number": {
+							"unconfirmed": 60856,
+							"confirmed": 43267,
+							"total": 104123
+						},
+						"value": {
+							"unconfirmed": 39899,
+							"confirmed": 99961,
+							"total": 139860
+						}
+					},
+					"export": {
+						"hvc": {
+							"number": {
+								"unconfirmed": 64572,
+								"confirmed": 84671,
+								"total": 149243
+							},
+							"value": {
+								"unconfirmed": 23131,
+								"confirmed": 28339,
+								"total": 51470
+							}
+						},
+						"non_hvc": {
+							"number": {
+								"unconfirmed": 54032,
+								"confirmed": 83822,
+								"total": 137854
+							},
+							"value": {
+								"unconfirmed": 2700,
+								"confirmed": 34658,
+								"total": 37358
+							}
+						},
+						"totals": {
+							"number": {
+								"unconfirmed": 118604,
+								"confirmed": 168493,
+								"grand_total": 287097
+							},
+							"value": {
+								"unconfirmed": 25831,
+								"confirmed": 62997,
+								"grand_total": 88828
+							}
+						}
+					}
+				}
+			},
+			{
+				"date": "2016-3",
+				"totals": {
+					"non_export": {
+						"number": {
+							"unconfirmed": 32219,
+							"confirmed": 69615,
+							"total": 101834
+						},
+						"value": {
+							"unconfirmed": 55243,
+							"confirmed": 17539,
+							"total": 72782
+						}
+					},
+					"export": {
+						"hvc": {
+							"number": {
+								"unconfirmed": 41938,
+								"confirmed": 30046,
+								"total": 71984
+							},
+							"value": {
+								"unconfirmed": 54014,
+								"confirmed": 62578,
+								"total": 116592
+							}
+						},
+						"non_hvc": {
+							"number": {
+								"unconfirmed": 10932,
+								"confirmed": 67147,
+								"total": 78079
+							},
+							"value": {
+								"unconfirmed": 89910,
+								"confirmed": 14947,
+								"total": 104857
+							}
+						},
+						"totals": {
+							"number": {
+								"unconfirmed": 52870,
+								"confirmed": 97193,
+								"grand_total": 150063
+							},
+							"value": {
+								"unconfirmed": 143924,
+								"confirmed": 77525,
+								"grand_total": 221449
+							}
+						}
+					}
+				}
+			},
+			{
+				"date": "2016-3",
+				"totals": {
+					"non_export": {
+						"number": {
+							"unconfirmed": 92172,
+							"confirmed": 10013,
+							"total": 102185
+						},
+						"value": {
+							"unconfirmed": 76973,
+							"confirmed": 80411,
+							"total": 157384
+						}
+					},
+					"export": {
+						"hvc": {
+							"number": {
+								"unconfirmed": 46736,
+								"confirmed": 50310,
+								"total": 97046
+							},
+							"value": {
+								"unconfirmed": 80604,
+								"confirmed": 58713,
+								"total": 139317
+							}
+						},
+						"non_hvc": {
+							"number": {
+								"unconfirmed": 93440,
+								"confirmed": 58270,
+								"total": 151710
+							},
+							"value": {
+								"unconfirmed": 93691,
+								"confirmed": 66086,
+								"total": 159777
+							}
+						},
+						"totals": {
+							"number": {
+								"unconfirmed": 140176,
+								"confirmed": 108580,
+								"grand_total": 248756
+							},
+							"value": {
+								"unconfirmed": 174295,
+								"confirmed": 124799,
+								"grand_total": 299094
+							}
+						}
+					}
+				}
+			},
+			{
+				"date": "2016-7",
+				"totals": {
+					"non_export": {
+						"number": {
+							"unconfirmed": 41961,
+							"confirmed": 46193,
+							"total": 88154
+						},
+						"value": {
+							"unconfirmed": 20183,
+							"confirmed": 8968,
+							"total": 29151
+						}
+					},
+					"export": {
+						"hvc": {
+							"number": {
+								"unconfirmed": 23905,
+								"confirmed": 50606,
+								"total": 74511
+							},
+							"value": {
+								"unconfirmed": 29756,
+								"confirmed": 38979,
+								"total": 68735
+							}
+						},
+						"non_hvc": {
+							"number": {
+								"unconfirmed": 50147,
+								"confirmed": 46428,
+								"total": 96575
+							},
+							"value": {
+								"unconfirmed": 23835,
+								"confirmed": 35824,
+								"total": 59659
+							}
+						},
+						"totals": {
+							"number": {
+								"unconfirmed": 74052,
+								"confirmed": 97034,
+								"grand_total": 171086
+							},
+							"value": {
+								"unconfirmed": 53591,
+								"confirmed": 74803,
+								"grand_total": 128394
+							}
+						}
+					}
+				}
+			},
+			{
+				"date": "2016-9",
+				"totals": {
+					"non_export": {
+						"number": {
+							"unconfirmed": 85083,
+							"confirmed": 5951,
+							"total": 91034
+						},
+						"value": {
+							"unconfirmed": 75267,
+							"confirmed": 95383,
+							"total": 170650
+						}
+					},
+					"export": {
+						"hvc": {
+							"number": {
+								"unconfirmed": 84450,
+								"confirmed": 96604,
+								"total": 181054
+							},
+							"value": {
+								"unconfirmed": 22443,
+								"confirmed": 95200,
+								"total": 117643
+							}
+						},
+						"non_hvc": {
+							"number": {
+								"unconfirmed": 26083,
+								"confirmed": 44662,
+								"total": 70745
+							},
+							"value": {
+								"unconfirmed": 52367,
+								"confirmed": 36470,
+								"total": 88837
+							}
+						},
+						"totals": {
+							"number": {
+								"unconfirmed": 110533,
+								"confirmed": 141266,
+								"grand_total": 251799
+							},
+							"value": {
+								"unconfirmed": 74810,
+								"confirmed": 131670,
+								"grand_total": 206480
+							}
+						}
+					}
+				}
+			},
+			{
+				"date": "2016-12",
+				"totals": {
+					"non_export": {
+						"number": {
+							"unconfirmed": 65841,
+							"confirmed": 67657,
+							"total": 133498
+						},
+						"value": {
+							"unconfirmed": 94427,
+							"confirmed": 64334,
+							"total": 158761
+						}
+					},
+					"export": {
+						"hvc": {
+							"number": {
+								"unconfirmed": 11424,
+								"confirmed": 73604,
+								"total": 85028
+							},
+							"value": {
+								"unconfirmed": 24501,
+								"confirmed": 4446,
+								"total": 28947
+							}
+						},
+						"non_hvc": {
+							"number": {
+								"unconfirmed": 22626,
+								"confirmed": 52181,
+								"total": 74807
+							},
+							"value": {
+								"unconfirmed": 78041,
+								"confirmed": 89313,
+								"total": 167354
+							}
+						},
+						"totals": {
+							"number": {
+								"unconfirmed": 34050,
+								"confirmed": 125785,
+								"grand_total": 159835
+							},
+							"value": {
+								"unconfirmed": 102542,
+								"confirmed": 93759,
+								"grand_total": 196301
+							}
+						}
+					}
+				}
+			},
+			{
+				"date": "2016-10",
+				"totals": {
+					"non_export": {
+						"number": {
+							"unconfirmed": 84263,
+							"confirmed": 1042,
+							"total": 85305
+						},
+						"value": {
+							"unconfirmed": 33397,
+							"confirmed": 35158,
+							"total": 68555
+						}
+					},
+					"export": {
+						"hvc": {
+							"number": {
+								"unconfirmed": 73321,
+								"confirmed": 27682,
+								"total": 101003
+							},
+							"value": {
+								"unconfirmed": 93775,
+								"confirmed": 67426,
+								"total": 161201
+							}
+						},
+						"non_hvc": {
+							"number": {
+								"unconfirmed": 93660,
+								"confirmed": 52609,
+								"total": 146269
+							},
+							"value": {
+								"unconfirmed": 29063,
+								"confirmed": 28952,
+								"total": 58015
+							}
+						},
+						"totals": {
+							"number": {
+								"unconfirmed": 166981,
+								"confirmed": 80291,
+								"grand_total": 247272
+							},
+							"value": {
+								"unconfirmed": 122838,
+								"confirmed": 96378,
+								"grand_total": 219216
+							}
+						}
+					}
+				}
+			},
+			{
+				"date": "2017-1",
+				"totals": {
+					"non_export": {
+						"number": {
+							"unconfirmed": 63254,
+							"confirmed": 45807,
+							"total": 109061
+						},
+						"value": {
+							"unconfirmed": 79666,
+							"confirmed": 12019,
+							"total": 91685
+						}
+					},
+					"export": {
+						"hvc": {
+							"number": {
+								"unconfirmed": 32505,
+								"confirmed": 28269,
+								"total": 60774
+							},
+							"value": {
+								"unconfirmed": 61624,
+								"confirmed": 650000000,
+								"total": 85568
+							}
+						},
+						"non_hvc": {
+							"number": {
+								"unconfirmed": 68726,
+								"confirmed": 44670,
+								"total": 113396
+							},
+							"value": {
+								"unconfirmed": 78737,
+								"confirmed": 21438,
+								"total": 100175
+							}
+						},
+						"totals": {
+							"number": {
+								"unconfirmed": 101231,
+								"confirmed": 72939,
+								"grand_total": 174170
+							},
+							"value": {
+								"unconfirmed": 140361,
+								"confirmed": 650000000,
+								"grand_total": 185743
+							}
 						}
 					}
 				}
 			}
-		},
-		{
-			"date": "2016-10",
-			"totals": {
-				"non_export": {
-					"number": {
-						"unconfirmed": 21000,
-						"confirmed": 59601,
-						"total": 80601
-					},
-					"value": {
-						"unconfirmed": 92934,
-						"confirmed": 17982,
-						"total": 110916
-					}
-				},
-				"export": {
-					"hvc": {
-						"number": {
-							"unconfirmed": 49976,
-							"confirmed": 4745,
-							"total": 54721
-						},
-						"value": {
-							"unconfirmed": 56591,
-							"confirmed": 63917,
-							"total": 120508
-						}
-					},
-					"non_hvc": {
-						"number": {
-							"unconfirmed": 56835,
-							"confirmed": 33189,
-							"total": 90024
-						},
-						"value": {
-							"unconfirmed": 83359,
-							"confirmed": 56058,
-							"total": 139417
-						}
-					},
-					"totals": {
-						"number": {
-							"unconfirmed": 106811,
-							"confirmed": 37934,
-							"grand_total": 144745
-						},
-						"value": {
-							"unconfirmed": 139950,
-							"confirmed": 119975,
-							"grand_total": 259925
-						}
-					}
-				}
-			}
-		},
-		{
-			"date": "2016-3",
-			"totals": {
-				"non_export": {
-					"number": {
-						"unconfirmed": 46876,
-						"confirmed": 11998,
-						"total": 58874
-					},
-					"value": {
-						"unconfirmed": 30772,
-						"confirmed": 76525,
-						"total": 107297
-					}
-				},
-				"export": {
-					"hvc": {
-						"number": {
-							"unconfirmed": 43995,
-							"confirmed": 91858,
-							"total": 135853
-						},
-						"value": {
-							"unconfirmed": 95683,
-							"confirmed": 58908,
-							"total": 154591
-						}
-					},
-					"non_hvc": {
-						"number": {
-							"unconfirmed": 87164,
-							"confirmed": 8174,
-							"total": 95338
-						},
-						"value": {
-							"unconfirmed": 56373,
-							"confirmed": 70819,
-							"total": 127192
-						}
-					},
-					"totals": {
-						"number": {
-							"unconfirmed": 131159,
-							"confirmed": 100032,
-							"grand_total": 231191
-						},
-						"value": {
-							"unconfirmed": 152056,
-							"confirmed": 129727,
-							"grand_total": 281783
-						}
-					}
-				}
-			}
-		},
-		{
-			"date": "2016-12",
-			"totals": {
-				"non_export": {
-					"number": {
-						"unconfirmed": 60856,
-						"confirmed": 43267,
-						"total": 104123
-					},
-					"value": {
-						"unconfirmed": 39899,
-						"confirmed": 99961,
-						"total": 139860
-					}
-				},
-				"export": {
-					"hvc": {
-						"number": {
-							"unconfirmed": 64572,
-							"confirmed": 84671,
-							"total": 149243
-						},
-						"value": {
-							"unconfirmed": 23131,
-							"confirmed": 28339,
-							"total": 51470
-						}
-					},
-					"non_hvc": {
-						"number": {
-							"unconfirmed": 54032,
-							"confirmed": 83822,
-							"total": 137854
-						},
-						"value": {
-							"unconfirmed": 2700,
-							"confirmed": 34658,
-							"total": 37358
-						}
-					},
-					"totals": {
-						"number": {
-							"unconfirmed": 118604,
-							"confirmed": 168493,
-							"grand_total": 287097
-						},
-						"value": {
-							"unconfirmed": 25831,
-							"confirmed": 62997,
-							"grand_total": 88828
-						}
-					}
-				}
-			}
-		},
-		{
-			"date": "2016-3",
-			"totals": {
-				"non_export": {
-					"number": {
-						"unconfirmed": 32219,
-						"confirmed": 69615,
-						"total": 101834
-					},
-					"value": {
-						"unconfirmed": 55243,
-						"confirmed": 17539,
-						"total": 72782
-					}
-				},
-				"export": {
-					"hvc": {
-						"number": {
-							"unconfirmed": 41938,
-							"confirmed": 30046,
-							"total": 71984
-						},
-						"value": {
-							"unconfirmed": 54014,
-							"confirmed": 62578,
-							"total": 116592
-						}
-					},
-					"non_hvc": {
-						"number": {
-							"unconfirmed": 10932,
-							"confirmed": 67147,
-							"total": 78079
-						},
-						"value": {
-							"unconfirmed": 89910,
-							"confirmed": 14947,
-							"total": 104857
-						}
-					},
-					"totals": {
-						"number": {
-							"unconfirmed": 52870,
-							"confirmed": 97193,
-							"grand_total": 150063
-						},
-						"value": {
-							"unconfirmed": 143924,
-							"confirmed": 77525,
-							"grand_total": 221449
-						}
-					}
-				}
-			}
-		},
-		{
-			"date": "2016-3",
-			"totals": {
-				"non_export": {
-					"number": {
-						"unconfirmed": 92172,
-						"confirmed": 10013,
-						"total": 102185
-					},
-					"value": {
-						"unconfirmed": 76973,
-						"confirmed": 80411,
-						"total": 157384
-					}
-				},
-				"export": {
-					"hvc": {
-						"number": {
-							"unconfirmed": 46736,
-							"confirmed": 50310,
-							"total": 97046
-						},
-						"value": {
-							"unconfirmed": 80604,
-							"confirmed": 58713,
-							"total": 139317
-						}
-					},
-					"non_hvc": {
-						"number": {
-							"unconfirmed": 93440,
-							"confirmed": 58270,
-							"total": 151710
-						},
-						"value": {
-							"unconfirmed": 93691,
-							"confirmed": 66086,
-							"total": 159777
-						}
-					},
-					"totals": {
-						"number": {
-							"unconfirmed": 140176,
-							"confirmed": 108580,
-							"grand_total": 248756
-						},
-						"value": {
-							"unconfirmed": 174295,
-							"confirmed": 124799,
-							"grand_total": 299094
-						}
-					}
-				}
-			}
-		},
-		{
-			"date": "2016-7",
-			"totals": {
-				"non_export": {
-					"number": {
-						"unconfirmed": 41961,
-						"confirmed": 46193,
-						"total": 88154
-					},
-					"value": {
-						"unconfirmed": 20183,
-						"confirmed": 8968,
-						"total": 29151
-					}
-				},
-				"export": {
-					"hvc": {
-						"number": {
-							"unconfirmed": 23905,
-							"confirmed": 50606,
-							"total": 74511
-						},
-						"value": {
-							"unconfirmed": 29756,
-							"confirmed": 38979,
-							"total": 68735
-						}
-					},
-					"non_hvc": {
-						"number": {
-							"unconfirmed": 50147,
-							"confirmed": 46428,
-							"total": 96575
-						},
-						"value": {
-							"unconfirmed": 23835,
-							"confirmed": 35824,
-							"total": 59659
-						}
-					},
-					"totals": {
-						"number": {
-							"unconfirmed": 74052,
-							"confirmed": 97034,
-							"grand_total": 171086
-						},
-						"value": {
-							"unconfirmed": 53591,
-							"confirmed": 74803,
-							"grand_total": 128394
-						}
-					}
-				}
-			}
-		},
-		{
-			"date": "2016-9",
-			"totals": {
-				"non_export": {
-					"number": {
-						"unconfirmed": 85083,
-						"confirmed": 5951,
-						"total": 91034
-					},
-					"value": {
-						"unconfirmed": 75267,
-						"confirmed": 95383,
-						"total": 170650
-					}
-				},
-				"export": {
-					"hvc": {
-						"number": {
-							"unconfirmed": 84450,
-							"confirmed": 96604,
-							"total": 181054
-						},
-						"value": {
-							"unconfirmed": 22443,
-							"confirmed": 95200,
-							"total": 117643
-						}
-					},
-					"non_hvc": {
-						"number": {
-							"unconfirmed": 26083,
-							"confirmed": 44662,
-							"total": 70745
-						},
-						"value": {
-							"unconfirmed": 52367,
-							"confirmed": 36470,
-							"total": 88837
-						}
-					},
-					"totals": {
-						"number": {
-							"unconfirmed": 110533,
-							"confirmed": 141266,
-							"grand_total": 251799
-						},
-						"value": {
-							"unconfirmed": 74810,
-							"confirmed": 131670,
-							"grand_total": 206480
-						}
-					}
-				}
-			}
-		},
-		{
-			"date": "2016-12",
-			"totals": {
-				"non_export": {
-					"number": {
-						"unconfirmed": 65841,
-						"confirmed": 67657,
-						"total": 133498
-					},
-					"value": {
-						"unconfirmed": 94427,
-						"confirmed": 64334,
-						"total": 158761
-					}
-				},
-				"export": {
-					"hvc": {
-						"number": {
-							"unconfirmed": 11424,
-							"confirmed": 73604,
-							"total": 85028
-						},
-						"value": {
-							"unconfirmed": 24501,
-							"confirmed": 4446,
-							"total": 28947
-						}
-					},
-					"non_hvc": {
-						"number": {
-							"unconfirmed": 22626,
-							"confirmed": 52181,
-							"total": 74807
-						},
-						"value": {
-							"unconfirmed": 78041,
-							"confirmed": 89313,
-							"total": 167354
-						}
-					},
-					"totals": {
-						"number": {
-							"unconfirmed": 34050,
-							"confirmed": 125785,
-							"grand_total": 159835
-						},
-						"value": {
-							"unconfirmed": 102542,
-							"confirmed": 93759,
-							"grand_total": 196301
-						}
-					}
-				}
-			}
-		},
-		{
-			"date": "2016-10",
-			"totals": {
-				"non_export": {
-					"number": {
-						"unconfirmed": 84263,
-						"confirmed": 1042,
-						"total": 85305
-					},
-					"value": {
-						"unconfirmed": 33397,
-						"confirmed": 35158,
-						"total": 68555
-					}
-				},
-				"export": {
-					"hvc": {
-						"number": {
-							"unconfirmed": 73321,
-							"confirmed": 27682,
-							"total": 101003
-						},
-						"value": {
-							"unconfirmed": 93775,
-							"confirmed": 67426,
-							"total": 161201
-						}
-					},
-					"non_hvc": {
-						"number": {
-							"unconfirmed": 93660,
-							"confirmed": 52609,
-							"total": 146269
-						},
-						"value": {
-							"unconfirmed": 29063,
-							"confirmed": 28952,
-							"total": 58015
-						}
-					},
-					"totals": {
-						"number": {
-							"unconfirmed": 166981,
-							"confirmed": 80291,
-							"grand_total": 247272
-						},
-						"value": {
-							"unconfirmed": 122838,
-							"confirmed": 96378,
-							"grand_total": 219216
-						}
-					}
-				}
-			}
-		},
-		{
-			"date": "2017-1",
-			"totals": {
-				"non_export": {
-					"number": {
-						"unconfirmed": 63254,
-						"confirmed": 45807,
-						"total": 109061
-					},
-					"value": {
-						"unconfirmed": 79666,
-						"confirmed": 12019,
-						"total": 91685
-					}
-				},
-				"export": {
-					"hvc": {
-						"number": {
-							"unconfirmed": 32505,
-							"confirmed": 28269,
-							"total": 60774
-						},
-						"value": {
-							"unconfirmed": 61624,
-							"confirmed": 650000000,
-							"total": 85568
-						}
-					},
-					"non_hvc": {
-						"number": {
-							"unconfirmed": 68726,
-							"confirmed": 44670,
-							"total": 113396
-						},
-						"value": {
-							"unconfirmed": 78737,
-							"confirmed": 21438,
-							"total": 100175
-						}
-					},
-					"totals": {
-						"number": {
-							"unconfirmed": 101231,
-							"confirmed": 72939,
-							"grand_total": 174170
-						},
-						"value": {
-							"unconfirmed": 140361,
-							"confirmed": 650000000,
-							"grand_total": 185743
-						}
-					}
-				}
-			}
-		}
-	]
+		]
+	}
 }

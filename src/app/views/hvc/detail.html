@@ -9,7 +9,7 @@
 {% block page_content %}
 
 	<h1 class="page-heading">{{ name }} <span class="page-heading-secondary">HVC</span></h1>
-	<h2 class="page-date page-date--hvc">{{ financialYear() }}</h2>
+	<h2 class="page-date page-date--hvc">{{ financialYear( summary.dateRange ) }}</h2>
 
 	<section class="grid-row">
 		<div class="column-half">
@@ -30,7 +30,7 @@
 	<section class="grid-row row-separator">
 		<div class="column-single">
 			<h2 class="hvc-heading">{{ name }} target performance</h2>
-			<h3 class="sub-heading-date">{{ financialYear() }}</h3>
+			<h3 class="sub-heading-date">{{ financialYear( hvcTargetPerformance.dateRange ) }}</h3>
 			{{ hvcTargetPerformanceTable( hvcTargetPerformance.withTarget ) }}
 		</div>
 	</section>
@@ -38,7 +38,7 @@
 	<section class="grid-row row-separator">
 		<div class="column-two-thirds">
 			<h2 class="hvc-heading">{{ name }} monthly performance</h2>
-			<h3 class="sub-heading-date">{{ financialYear() }}</h3>
+			<h3 class="sub-heading-date">{{ financialYear( monthlyPerformance.dateRange ) }}</h3>
 		</div>
 		<div class="column-one-third">
 			{% include 'partials/monthly-performance-key.html' %}
@@ -54,7 +54,7 @@
 	<section class="grid-row row-separator">
 		<div class="column-single">
 			<h2 class="hvc-heading">{{ name }} top markets and sectors</h2>
-			<h3 class="sub-heading-date">{{ financialYear() }}</h3>
+			<h3 class="sub-heading-date">{{ financialYear( topMarkets.dateRange ) }}</h3>
 			{{ topMarketsTable( topMarkets, 'hvc' ) }}
 		</div>
 	</section>

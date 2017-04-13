@@ -14,6 +14,19 @@ let controller;
 
 describe( 'Sector Teams controller', function(){
 
+	let oldTimeout;
+
+	beforeEach( function(){
+
+		oldTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
+		jasmine.DEFAULT_TIMEOUT_INTERVAL = 500;
+	} );
+
+	afterEach( function(){
+
+		jasmine.DEFAULT_TIMEOUT_INTERVAL = oldTimeout;
+	} );
+
 	beforeEach( function(){
 
 		const stubs = {
@@ -30,7 +43,7 @@ describe( 'Sector Teams controller', function(){
 	} );
 
 	describe( 'Overview', function(){
-	
+
 		it( 'Should get the overview data and render the correct view', function( done ){
 
 			const req = {
@@ -38,14 +51,16 @@ describe( 'Sector Teams controller', function(){
 			};
 
 			spyOn( backendService, 'getSectorTeamsOverview' ).and.callThrough();
-			spyOn( errorHandler, 'createHandler' ).and.callThrough();
+			spyOn( errorHandler, 'createHandler' ).and.callFake( () => done );
 
 			interceptBackend.getStub( '/mi/sector_teams/overview/', 200, '/sector_teams/overview' );
 
 			controller.overview( req, { render: function( view, data ){
 
 				expect( backendService.getSectorTeamsOverview ).toHaveBeenCalledWith( req.alice );
+				expect( data.dateRange ).toBeDefined();
 				expect( data.sectorTeams ).toBeDefined();
+				expect( data.sectorTeams.length ).toBeGreaterThan( 1 );
 				expect( view ).toEqual( 'sector-teams/overview' );
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				done();
@@ -54,15 +69,15 @@ describe( 'Sector Teams controller', function(){
 	} );
 
 	describe( 'List', function(){
-	
+
 		it( 'Should get the list data and render the correct view', function( done ){
-			
+
 			const req = {
 				alice: '87654'
 			};
-		
+
 			spyOn( backendService, 'getSectorTeams' ).and.callThrough();
-			spyOn( errorHandler, 'createHandler' ).and.callThrough();
+			spyOn( errorHandler, 'createHandler' ).and.callFake( () => done );
 
 			interceptBackend.getStub( '/mi/sector_teams/', 200, '/sector_teams/' );
 
@@ -71,6 +86,7 @@ describe( 'Sector Teams controller', function(){
 				expect( backendService.getSectorTeams ).toHaveBeenCalledWith( req.alice );
 				expect( view ).toEqual( 'sector-teams/list.html' );
 				expect( data.sectorTeams ).toBeDefined();
+				expect( data.sectorTeams.length ).toBeGreaterThan( 1 );
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				done();
 			} } );
@@ -78,9 +94,9 @@ describe( 'Sector Teams controller', function(){
 	} );
 
 	describe( 'Team', function(){
-	
+
 		it( 'Should get the team data and render the correct view', function( done ){
-	
+
 			const req = {
 				alice: '1234',
 				params: {
@@ -91,7 +107,7 @@ describe( 'Sector Teams controller', function(){
 			const teamId = req.params.id;
 
 			spyOn( backendService, 'getSectorTeamInfo' ).and.callThrough();
-			spyOn( errorHandler, 'createHandler' ).and.callThrough();
+			spyOn( errorHandler, 'createHandler' ).and.callFake( () => done );
 			spyOn( sectorSummary, 'create' ).and.callThrough();
 			spyOn( hvcSummary, 'create' ).and.callThrough();
 			spyOn( hvcTargetPerformance, 'create' ).and.callThrough();
@@ -112,7 +128,7 @@ describe( 'Sector Teams controller', function(){
 				expect( hvcTargetPerformance.create ).toHaveBeenCalled();
 				expect( topMarkets.create ).toHaveBeenCalled();
 				expect( monthlyPerformance.create ).toHaveBeenCalled();
-				
+
 				expect( data.sectorName ).toBeDefined();
 				expect( data.summary ).toBeDefined();
 				expect( data.hvcSummary ).toBeDefined();
