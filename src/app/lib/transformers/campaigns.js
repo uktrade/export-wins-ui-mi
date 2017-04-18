@@ -18,6 +18,7 @@ module.exports = function( input ){
 			},
 			value: {
 				confirmed: totals.hvc.value.confirmed,
+				unconfirmed: totals.hvc.value.unconfirmed,
 				total: totals.hvc.value.total
 			}
 		});

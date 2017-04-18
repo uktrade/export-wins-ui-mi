@@ -7,30 +7,36 @@
 
 {% block page_content %}
 
-	<h1 class="page-heading">{{ sectorName }} HVC Group</h1>
+	<h1 class="page-heading">{{ sectorName }} HVCs review</h1>
 	<h2 class="page-date">{{ financialYear( summary.dateRange ) }}</h2>
 
 	<h2 class="visually-hidden">Summary</h2>
 	<section class="sector-detail grid-row">
-		<div class="column-two-sevenths">
+		<div class="column-one-fifth">
 
 			<h3 class="sector-export-heading">Total confirmed export value</h3>
 			<p class="sector-export-confirmed-value"><span class="sector-export-value-currency">&pound;</span>{{ summary.confirmedExportValue | largeNumber( true ) | safe }}</p>
 
 		</div>
-		<div class="column-four-sevenths">
 
-			<ul class="sector-overview_charts sector-overview_charts--single">
-				<li class="sector-overview_charts_chart">
+		<div class="column-one-fifth">
 
-					<h3 class="sector-overview_confirmed-heading">Confirmed vs. unconfirmed wins value</h3>
-					{% include 'partials/confirmed-vs-unconfirmed-wins.html' %}
-
-				</li>
-			</ul>
+			<h3 class="sector-export-heading">Total unconfirmed export value</h3>
+			<p class="sector-export-unconfirmed-value"><span class="sector-export-value-currency">&pound;</span>{{ summary.unconfirmedExportValue | largeNumber( true ) | safe }}</p>
 
 		</div>
-		<div class="column-one-seventh">
+
+		<div class="column-two-fifths">
+
+			<div class="hvc-group_chart">
+
+					<h3 class="hvc-group_confirmed-heading">Confirmed and unconfirmed wins value</h3>
+					{% include 'partials/confirmed-vs-unconfirmed-wins.html' %}
+
+			</div>
+
+		</div>
+		<div class="column-one-fifth">
 
 			<p class="sector-overview_charts_chart_average-time">
 				Average time to confirm <span class="sector-overview_charts_chart_average-time_days">{{ summary.averageTimeToConfirm | pluralise( 'day' ) }}</span>

@@ -30,12 +30,24 @@
 	@include grid-column( 3/4 );
 }
 
+.column-one-fifth {
+	@include grid-column( 1/5 );
+}
+
+.column-two-fifths {
+	@include grid-column( 2/5 );
+}
+
 .column-one-seventh {
 	@include grid-column( 1/7 );
 }
 
 .column-two-sevenths {
 	@include grid-column( 2/7 );
+}
+
+.column-three-sevenths {
+	@include grid-column( 3/7 );
 }
 
 .column-four-sevenths {

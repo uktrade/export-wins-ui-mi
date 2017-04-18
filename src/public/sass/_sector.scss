@@ -140,10 +140,15 @@
 }
 
 .sector-overview_charts_chart_average-time {
+
 	@include bold-14;
 	max-width: 100px;
 	float: right;
 	margin: 0 0 0 pem( 10, 14 );
+
+	@include media( mobile ){
+		float: none;
+	}
 }
 
 .sector-overview_charts_chart_average-time_days {

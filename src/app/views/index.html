@@ -5,17 +5,17 @@
 {% block page_content %}
 
 	<h1 class="page-heading">
-		DIT Management Information
+		Export Wins performance
 	</h1>
 
-	<h2 class="page-sub-heading">Export Wins 2016 to 2017 financial year</h2>
+	<h2 class="page-sub-heading">2016 to 2017 financial year</h2>
 
 	<div class="grid-row">
 		<div class="column-one-third">
-			
+
 			<h2 class="sector-list-heading">Sector Teams</h2>
 
-			<a href="{{ uuid }}/sector-teams/overview/" class="sectors-overview-link">Sector Teams overview</a>
+			<a href="{{ uuid }}/sector-teams/overview/" class="sectors-overview-link">All sector teams review</a>
 
 			<ul class="sector-list">
 			{% for team in sectorTeams %}
@@ -33,18 +33,18 @@
 			{% endfor %}
 			</ul>
 		</div>
-	
+
 		<div class="column-one-third">
-			
+
 		</div>
 
 		<div class="column-one-third">
-			
+
 			{% if overseasRegionGroups.length %}
 
 			<h2 class="sector-list-heading">Overseas Regions</h2>
 
-			<a href="{{ uuid }}/overseas-regions/overview/" class="regions-overview-link">Overseas regions overview</a>
+			<a href="{{ uuid }}/overseas-regions/overview/" class="regions-overview-link">All overseas regions review</a>
 
 			<ul class="sector-group-list">
 			{% for group in overseasRegionGroups %}
