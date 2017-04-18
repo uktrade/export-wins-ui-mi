@@ -1,0 +1,13 @@
+.hvc-group_chart {
+	float: right;
+
+	@include media( mobile ){
+		float: none;
+	}
+}
+
+.hvc-group_confirmed-heading {
+	@include bold-14;
+	min-height: 3em;
+	max-width: 80%;
+}

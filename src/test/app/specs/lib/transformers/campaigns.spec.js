@@ -24,6 +24,7 @@ describe( 'Sector campaigns transformer', function(){
 			expect( item.progress.unconfirmed ).toBeDefined();
 			expect( item.value ).toBeDefined();
 			expect( item.value.confirmed ).toBeDefined();
+			expect( item.value.unconfirmed ).toBeDefined();
 			expect( item.value.total ).toBeDefined();
 			expect( item.target ).toBeDefined();
 			expect( item.status ).toBeDefined();
