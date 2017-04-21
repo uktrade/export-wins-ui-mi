@@ -19,7 +19,7 @@ let backend;
 
 function returnStub( file ){
 
-	spyOn( backend, 'get' ).and.callFake( function( alice, path, cb ){
+	spyOn( backend, 'sessionGet' ).and.callFake( function( alice, path, cb ){
 
 		cb( null, { isSuccess: true, elapsedTime: 0 }, getBackendStub( file ) );
 	} );
@@ -52,7 +52,7 @@ describe( 'Backend service', function(){
 			osRegionsSpy = jasmine.createSpy( 'os-regions' );
 			backend = {
 				get: function(){},
-				getSimple: function(){}
+				sesisonGet: function(){}
 			};
 
 			stubs = {
@@ -121,7 +121,7 @@ describe( 'Backend service', function(){
 
 				backendService.getSectorTeam( alice, teamId ).then( () => {
 
-					const args = backend.get.calls.argsFor( 0 );
+					const args = backend.sessionGet.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
 					expect( args[ 1 ] ).toEqual( `/mi/sector_teams/${ teamId }/?year=2016` );
@@ -141,7 +141,7 @@ describe( 'Backend service', function(){
 
 				backendService.getSectorTeamMonths( alice, teamId ).then( () => {
 
-					const args = backend.get.calls.argsFor( 0 );
+					const args = backend.sessionGet.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
 					expect( args[ 1 ] ).toEqual( `/mi/sector_teams/${ teamId }/months/?year=2016` );
@@ -164,7 +164,7 @@ describe( 'Backend service', function(){
 
 				backendService.getSectorTeamCampaigns( alice, teamId ).then( () => {
 
-					const args = backend.get.calls.argsFor( 0 );
+					const args = backend.sessionGet.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
 					expect( args[ 1 ] ).toEqual( `/mi/sector_teams/${ teamId }/campaigns/?year=2016` );
@@ -187,7 +187,7 @@ describe( 'Backend service', function(){
 
 				backendService.getSectorTeamTopNonHvc( alice, teamId ).then( () => {
 
-					const args = backend.get.calls.argsFor( 0 );
+					const args = backend.sessionGet.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
 					expect( args[ 1 ] ).toEqual( `/mi/sector_teams/${ teamId }/top_non_hvcs/?year=2016` );
@@ -205,7 +205,7 @@ describe( 'Backend service', function(){
 
 				backendService.getSectorTeamsOverview( alice ).then( () => {
 
-					const args = backend.get.calls.argsFor( 0 );
+					const args = backend.sessionGet.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
 					expect( args[ 1 ] ).toEqual( '/mi/sector_teams/overview/?year=2016' );
@@ -226,7 +226,7 @@ describe( 'Backend service', function(){
 
 				backendService.getOverseasRegions( alice ).then( () => {
 
-					const args = backend.get.calls.argsFor( 0 );
+					const args = backend.sessionGet.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
 					expect( args[ 1 ] ).toEqual( '/mi/os_regions/?year=2016' );
@@ -246,7 +246,7 @@ describe( 'Backend service', function(){
 
 				backendService.getOverseasRegionGroups( alice ).then( () => {
 
-					const args = backend.get.calls.argsFor( 0 );
+					const args = backend.sessionGet.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
 					expect( args[ 1 ] ).toEqual( '/mi/os_regions/?year=2016' );
@@ -269,7 +269,7 @@ describe( 'Backend service', function(){
 
 				backendService.getOverseasRegion( alice, regionId ).then( () => {
 
-					const args = backend.get.calls.argsFor( 0 );
+					const args = backend.sessionGet.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
 					expect( args[ 1 ] ).toEqual( `/mi/os_regions/${ regionId }/?year=2016` );
@@ -289,7 +289,7 @@ describe( 'Backend service', function(){
 
 				backendService.getOverseasRegionMonths( alice, regionId ).then( () => {
 
-					const args = backend.get.calls.argsFor( 0 );
+					const args = backend.sessionGet.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
 					expect( args[ 1 ] ).toEqual( `/mi/os_regions/${ regionId }/months/?year=2016` );
@@ -312,7 +312,7 @@ describe( 'Backend service', function(){
 
 				backendService.getOverseasRegionCampaigns( alice, regionId ).then( () => {
 
-					const args = backend.get.calls.argsFor( 0 );
+					const args = backend.sessionGet.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
 					expect( args[ 1 ] ).toEqual( `/mi/os_regions/${ regionId }/campaigns/?year=2016` );
@@ -335,7 +335,7 @@ describe( 'Backend service', function(){
 
 				backendService.getOverseasRegionTopNonHvc( alice, regionId ).then( () => {
 
-					const args = backend.get.calls.argsFor( 0 );
+					const args = backend.sessionGet.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
 					expect( args[ 1 ] ).toEqual( `/mi/os_regions/${ regionId }/top_non_hvcs/?year=2016` );
@@ -353,7 +353,7 @@ describe( 'Backend service', function(){
 
 				backendService.getOverseasRegionsOverview( alice ).then( () => {
 
-					const args = backend.get.calls.argsFor( 0 );
+					const args = backend.sessionGet.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
 					expect( args[ 1 ] ).toEqual( '/mi/os_regions/overview/?year=2016' );
@@ -389,7 +389,7 @@ describe( 'Backend service', function(){
 
 				backendService.getHvcGroups( alice ).then( ( hvcGroup ) => {
 
-					const args = backend.get.calls.argsFor( 0 );
+					const args = backend.sessionGet.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
 					expect( args[ 1 ] ).toEqual( '/mi/hvc_groups/?year=2016' );
@@ -411,7 +411,7 @@ describe( 'Backend service', function(){
 
 				backendService.getHvcGroup( alice, groupId ).then( () => {
 
-					const args = backend.get.calls.argsFor( 0 );
+					const args = backend.sessionGet.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
 					expect( args[ 1 ] ).toEqual( `/mi/hvc_groups/${ groupId }/?year=2016` );
@@ -434,7 +434,7 @@ describe( 'Backend service', function(){
 
 				backendService.getHvcGroupCampaigns( alice, groupId ).then( () => {
 
-					const args = backend.get.calls.argsFor( 0 );
+					const args = backend.sessionGet.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
 					expect( args[ 1 ] ).toEqual( `/mi/hvc_groups/${ groupId }/campaigns/?year=2016` );
@@ -457,7 +457,7 @@ describe( 'Backend service', function(){
 
 				backendService.getHvcGroupMonths( alice, groupId ).then( () => {
 
-					const args = backend.get.calls.argsFor( 0 );
+					const args = backend.sessionGet.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
 					expect( args[ 1 ] ).toEqual( `/mi/hvc_groups/${ groupId }/months/?year=2016` );
@@ -474,16 +474,39 @@ describe( 'Backend service', function(){
 
 			it( 'Should return the metadata', function( done ){
 
-				spyOn( backend, 'getSimple' ).and.callFake( function( path, cb ){
+				spyOn( backend, 'get' ).and.callFake( function( path, cb ){
 
 					cb( null, { isSuccess: true, elapsedTime: 0 }, getBackendFile( '/saml2/metadata.xml' ) );
 				} );
 
 				backendService.getSamlMetadata().then( () => {
 
-					const args = backend.getSimple.calls.argsFor( 0 );
+					const args = backend.get.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( `/saml2/metadata/` );
+					done();
+
+				} ).catch( done.fail );
+			} );
+		} );
+
+		describe( 'SAML acs', function(){
+
+			it( 'Should post the XML', function( done ){
+
+				spyOn( backend, 'post' ).and.callFake( function( path, body, cb ){
+
+					cb( null, { isSuccess: true, elapsedTime: 0 }, 'success' );
+				} );
+
+				const xml = '<xml response="true"/>';
+
+				backendService.sendSamlXml( xml ).then( () => {
+
+					const args = backend.post.calls.argsFor( 0 );
+
+					expect( args[ 0 ] ).toEqual( `/saml2/acs/` );
+					expect( args[ 1 ] ).toEqual( xml );
 					done();
 
 				} ).catch( done.fail );

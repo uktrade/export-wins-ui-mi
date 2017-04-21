@@ -338,4 +338,21 @@ if( config.backend.mock ){
 			} );
 		} );
 	} );
+
+	describe( 'Saml acs', function(){
+
+		it( 'Should redirect', function( done ){
+
+			const response = 'test';
+
+			interceptBackend.post( '/saml2/acs/' ).reply( 200, response );
+
+			supertest( app ).post( '/saml2/acs/' ).end( ( err, res ) => {
+
+				expect( res.statusCode ).toEqual( 302 );
+				expect( res.text ).toEqual( 'Found. Redirecting to /' );
+				done();
+			} );
+		} );
+	} );
 } );

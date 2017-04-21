@@ -32,17 +32,34 @@ describe( 'SAML controller', function(){
 
 	xdescribe( 'acs', function(){
 
-		describe( 'When the response is success', function(){
+		describe( 'When the post data is XML', function(){
 
-			it( '', function(){
+			describe( 'When the backend response is success', function(){
 
+				it( 'Should send the post data to the backend and set a cookie', function( done ){
 
+					spyOn( backendService, 'sendSamlXml' ).and.callThrough();
+					spyOn( errorHandler, 'createHandler' ).and.callFake( () => done.fail );
+
+					const response = 'success';
+
+					const req = {
+						data: '<xml>'
+					};
+
+					const res = {
+						redirect: function( location ){
+
+							expect( backendService.sendSamlXml ).toHaveBeenCalledWith( req.data );
+							expect( location ).toEqual( '/' );
+						}
+					};
+
+					interceptBackend.post( '/saml2/acs/' ).reply( 200, response );
+
+					controller.acs( req, res );
+				} );
 			} );
-		} );
-
-		it( 'Should send the post data to the backend', function(){
-
-
 		} );
 	} );
 

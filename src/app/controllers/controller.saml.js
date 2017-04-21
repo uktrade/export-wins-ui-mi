@@ -5,6 +5,11 @@ module.exports = {
 
 	acs: function( req, res ){
 
+		backendService.sendSamlXml( req.data ).then( ( response ) => {
+
+			res.redirect( '/' );
+
+		} ).catch( renderError.createHandler( res ) );
 	},
 
 	metadata: function( req, res ){

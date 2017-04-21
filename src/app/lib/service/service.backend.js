@@ -31,7 +31,7 @@ function get( alice, path, transform ){
 
 		path += '?year=2016';
 
-		backend.get( alice, path, function( err, response, data ){
+		backend.sessionGet( alice, path, function( err, response, data ){
 
 			if( err ){
 
@@ -249,7 +249,7 @@ function getSamlMetadata(){
 
 	return new Promise( ( resolve, reject ) => {
 
-		backend.getSimple( '/saml2/metadata/', function( err, response, data ){
+		backend.get( '/saml2/metadata/', function( err, response, data ){
 
 			if( err ){
 
@@ -266,6 +266,24 @@ function getSamlMetadata(){
 					logger.error( 'Got a %s status code for url: %s', response.statusCode, response.request.uri.href );
 					reject( new Error( 'Not a successful response from the backend' ) );
 				}
+			}
+		} );
+	} );
+}
+
+function sendSamlXml( xml ){
+
+	return new Promise( ( resolve, reject ) => {
+
+		backend.post( '/saml2/acs/', xml, function( err, response, data ){
+
+			if( err ){
+
+				reject( err );
+
+			} else {
+
+				resolve( data );
 			}
 		} );
 	} );
@@ -374,5 +392,6 @@ module.exports = {
 	getWin,
 	getWinList,
 
-	getSamlMetadata
+	getSamlMetadata,
+	sendSamlXml
 };
