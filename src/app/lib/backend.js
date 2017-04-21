@@ -39,7 +39,7 @@ function handleResponse( cb ){
 	return function( err, response, data ){
 
 		if( !err ){
-			
+
 			const isSuccess = ( response.statusCode >= 200 && response.statusCode < 300 );
 			const isJson = ( response.headers[ 'content-type' ] === 'application/json' );
 
@@ -54,11 +54,11 @@ function handleResponse( cb ){
 					data = JSON.parse( data );
 
 				} catch( e ){
-					
+
 					logger.error( 'Unable to convert response to JSON for uri: %s', response.request.uri.href );
 				}
 			}
-		}		
+		}
 
 		cb( err, response, data );
 	};
@@ -71,5 +71,18 @@ module.exports = {
 		logger.debug( 'Backend GET request to: ' + path );
 
 		request( createRequestOptions( 'GET', alice, path ), handleResponse( cb ) );
+	},
+
+	getSimple: function( path, cb ){
+
+		logger.debug( 'Backend GET request to: ' + path );
+
+		request( {
+
+			url: ( backendHref + path ),
+			time: true,
+			method: 'GET'
+
+		}, handleResponse( cb ) );
 	}
 };

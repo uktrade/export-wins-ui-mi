@@ -245,6 +245,32 @@ function getWinList( /* alice */ ){
 	} );
 }
 
+function getSamlMetadata(){
+
+	return new Promise( ( resolve, reject ) => {
+
+		backend.getSimple( '/saml2/metadata/', function( err, response, data ){
+
+			if( err ){
+
+				reject( err );
+
+			} else {
+
+				if( response.isSuccess ){
+
+					resolve( data );
+
+				} else {
+
+					logger.error( 'Got a %s status code for url: %s', response.statusCode, response.request.uri.href );
+					reject( new Error( 'Not a successful response from the backend' ) );
+				}
+			}
+		} );
+	} );
+}
+
 module.exports = {
 
 	getSectorTeams,
@@ -346,5 +372,7 @@ module.exports = {
 
 	getHvc,
 	getWin,
-	getWinList
+	getWinList,
+
+	getSamlMetadata
 };
