@@ -321,4 +321,21 @@ if( config.backend.mock ){
 			} );
 		} );
 	} );
+
+	describe( 'Saml metadata', function(){
+
+		it( 'Should return the metadata', function( done ){
+
+			const xml = '<test>';
+
+			interceptBackend.get( '/saml2/metadata/' ).reply( 200, xml );
+
+			supertest( app ).get( '/saml2/metadata/' ).end( ( err, res ) => {
+
+				expect( res.statusCode ).toEqual( 200 );
+				expect( res.text ).toEqual( xml );
+				done();
+			} );
+		} );
+	} );
 } );

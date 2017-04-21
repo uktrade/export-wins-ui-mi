@@ -1,4 +1,5 @@
 const proxyquire = require( 'proxyquire' );
+const getBackendFile = require( '../../../helpers/get-backend-file' );
 const getBackendStub = require( '../../../helpers/get-backend-stub' );
 const interceptBackend = require( '../../../helpers/intercept-backend' );
 
@@ -50,7 +51,8 @@ describe( 'Backend service', function(){
 			hvcGroupSpy = jasmine.createSpy( 'hvc-group' );
 			osRegionsSpy = jasmine.createSpy( 'os-regions' );
 			backend = {
-				get: function(){}
+				get: function(){},
+				getSimple: function(){}
 			};
 
 			stubs = {
@@ -467,7 +469,28 @@ describe( 'Backend service', function(){
 				} ).catch( done );
 			} );
 		} );
+
+		describe( 'SAML metadata', function(){
+
+			it( 'Should return the metadata', function( done ){
+
+				spyOn( backend, 'getSimple' ).and.callFake( function( path, cb ){
+
+					cb( null, { isSuccess: true, elapsedTime: 0 }, getBackendFile( '/saml2/metadata.xml' ) );
+				} );
+
+				backendService.getSamlMetadata().then( () => {
+
+					const args = backend.getSimple.calls.argsFor( 0 );
+
+					expect( args[ 0 ] ).toEqual( `/saml2/metadata/` );
+					done();
+
+				} ).catch( done.fail );
+			} );
+		} );
 	} );
+
 
 	describe( 'Aggregate methods', function(){
 
