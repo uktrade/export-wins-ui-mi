@@ -494,19 +494,22 @@ describe( 'Backend service', function(){
 
 			it( 'Should post the XML', function( done ){
 
+				const response = 'success';
+
 				spyOn( backend, 'post' ).and.callFake( function( path, body, cb ){
 
-					cb( null, { isSuccess: true, elapsedTime: 0 }, 'success' );
+					cb( null, { isSuccess: true, elapsedTime: 0 }, response );
 				} );
 
 				const xml = '<xml response="true"/>';
 
-				backendService.sendSamlXml( xml ).then( () => {
+				backendService.sendSamlXml( xml ).then( ( responseText ) => {
 
 					const args = backend.post.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( `/saml2/acs/` );
 					expect( args[ 1 ] ).toEqual( xml );
+					expect( responseText ).toEqual( response );
 					done();
 
 				} ).catch( done.fail );

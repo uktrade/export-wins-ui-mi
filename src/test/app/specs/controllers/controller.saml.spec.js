@@ -30,7 +30,7 @@ describe( 'SAML controller', function(){
 		controller = proxyquire( '../../../../app/controllers/controller.saml', stubs );
 	} );
 
-	xdescribe( 'acs', function(){
+	describe( 'acs', function(){
 
 		describe( 'When the post data is XML', function(){
 
@@ -52,6 +52,7 @@ describe( 'SAML controller', function(){
 
 							expect( backendService.sendSamlXml ).toHaveBeenCalledWith( req.data );
 							expect( location ).toEqual( '/' );
+							done();
 						}
 					};
 
