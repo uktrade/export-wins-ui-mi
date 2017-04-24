@@ -492,27 +492,53 @@ describe( 'Backend service', function(){
 
 		describe( 'SAML acs', function(){
 
+			const xml = '<xml response="true"/>';
+			const session_id = '1234';
+			const successResponse = {
+				isSuccess: true,
+				elapsedTime: 0,
+				headers: { 'set-cookie': `session_id=${ session_id }` }
+			};
+
 			it( 'Should post the XML', function( done ){
 
-				const response = 'success';
+				const responseBody = 'success';
 
 				spyOn( backend, 'post' ).and.callFake( function( path, body, cb ){
 
-					cb( null, { isSuccess: true, elapsedTime: 0 }, response );
+					cb( null, successResponse, responseBody );
 				} );
 
-				const xml = '<xml response="true"/>';
-
-				backendService.sendSamlXml( xml ).then( ( responseText ) => {
+				backendService.sendSamlXml( xml ).then( () => {
 
 					const args = backend.post.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( `/saml2/acs/` );
 					expect( args[ 1 ] ).toEqual( xml );
-					expect( responseText ).toEqual( response );
 					done();
 
 				} ).catch( done.fail );
+			} );
+
+			describe( 'When the response is success', function(){
+
+				it( 'Should get the sessionId from the cookie', function( done ){
+
+					const responseBody = 'success';
+
+					spyOn( backend, 'post' ).and.callFake( function( path, body, cb ){
+
+						cb( null, successResponse, responseBody );
+					} );
+
+					backendService.sendSamlXml( xml ).then( ( data  ) => {
+
+						expect( data.sessionId ).toEqual( session_id );
+						expect( data.data ).toEqual( responseBody );
+						done();
+
+					} ).catch( done.fail );
+				} );
 			} );
 		} );
 	} );

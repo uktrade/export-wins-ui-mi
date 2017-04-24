@@ -5,8 +5,9 @@ module.exports = {
 
 	acs: function( req, res ){
 
-		backendService.sendSamlXml( req.data ).then( ( response ) => {
+		backendService.sendSamlXml( req.data ).then( ( data ) => {
 
+			res.cookie( 'session-id', data.sessionId );
 			res.redirect( '/' );
 
 		} ).catch( renderError.createHandler( res ) );

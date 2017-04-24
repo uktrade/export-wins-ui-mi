@@ -1,5 +1,7 @@
 const config = require( '../../config' );
 
+const cookie = require( 'cookie' );
+
 const USE_MOCKS = config.backend.mock;
 const USE_STUBS = config.backend.stub;
 
@@ -283,7 +285,18 @@ function sendSamlXml( xml ){
 
 			} else {
 
-				resolve( data );
+				const setCookie = response.headers[ 'set-cookie' ] || '';
+				const cookies = cookie.parse( setCookie );
+				const sessionId = cookies.session_id;
+
+				if( !sessionId ){
+
+					reject( new Error( 'Unable to create session' ) );
+
+				} else {
+
+					resolve( { sessionId, data } );
+				}
 			}
 		} );
 	} );

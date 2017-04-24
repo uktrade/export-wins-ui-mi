@@ -42,21 +42,24 @@ describe( 'SAML controller', function(){
 					spyOn( errorHandler, 'createHandler' ).and.callFake( () => done.fail );
 
 					const response = 'success';
-
-					const req = {
-						data: '<xml>'
-					};
+					const req = { data: '<xml>' };
+					const session_id = 'abc1234';
+					const cookieSpy = jasmine.createSpy( 'res.cookie' );
 
 					const res = {
+						cookie: cookieSpy,
 						redirect: function( location ){
 
 							expect( backendService.sendSamlXml ).toHaveBeenCalledWith( req.data );
+							expect( cookieSpy ).toHaveBeenCalledWith( 'session-id', session_id );
 							expect( location ).toEqual( '/' );
 							done();
 						}
 					};
 
-					interceptBackend.post( '/saml2/acs/' ).reply( 200, response );
+					interceptBackend.post( '/saml2/acs/' ).reply( 200, response, {
+						'Set-Cookie': `session_id=${ session_id }`
+					} );
 
 					controller.acs( req, res );
 				} );
