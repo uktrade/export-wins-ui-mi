@@ -90,6 +90,7 @@
     "karma-chrome-launcher": "*",
     "karma-jasmine": "*",
     "load-grunt-tasks": "*",
+    "mockdate": "2.0.1",
     "nock": "9.0.6",
     "node-sass": "4.3.0",
     "nodemon": "*",

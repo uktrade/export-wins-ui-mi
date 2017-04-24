@@ -28,6 +28,7 @@ let config = {
 	views: {
 		cache: bool( 'CACHE_VIEWS', true )
 	},
+	financialYearStart: env( 'FINANCIAL_YEAR_START', 2016 ),
 	feedbackEmail: env( 'FEEDBACK_EMAIL' ),
 	cookieSecret: env( 'COOKIE_SECRET' ),
 	logLevel: env( 'LOG_LEVEL', 'warn' ),

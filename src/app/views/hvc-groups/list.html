@@ -10,12 +10,12 @@
 
 	<div class="grid-row">
 		<div class="column-one-third">
-			
+
 			<h2 class="sector-list-heading">HVC Groups</h2>
 
 			<ul class="sector-list">
 			{% for group in hvcGroups %}
-				<li><a href="{{ uuid }}/hvc-groups/{{ group.id }}/">{{ group.name }}</a></li>
+				<li><a href="{{ urls.hvcGroup( group.id ) }}">{{ group.name }}</a></li>
 			{% endfor %}
 			</ul>
 		</div>

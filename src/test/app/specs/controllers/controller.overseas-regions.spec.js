@@ -9,8 +9,9 @@ const topMarkets = require( '../../../../app/lib/view-models/top-markets' );
 const monthlyPerformance = require( '../../../../app/lib/view-models/monthly-performance' );
 
 const interceptBackend = require( '../../helpers/intercept-backend' );
+const createErrorHandler = require( '../../helpers/create-error-handler' );
 
-
+const year = 2017;
 let controller;
 
 describe( 'Overseas Regions controller', function(){
@@ -48,17 +49,18 @@ describe( 'Overseas Regions controller', function(){
 		it( 'Should get the overview data and render the correct view', function( done ){
 
 			const req = {
-				alice: '123'
+				alice: '123',
+				year
 			};
 
 			spyOn( backendService, 'getOverseasRegionsOverview' ).and.callThrough();
-			spyOn( errorHandler, 'createHandler' ).and.callFake( () => done );
+			spyOn( errorHandler, 'createHandler' ).and.callFake( createErrorHandler( done ) );
 
-			interceptBackend.getStub( '/mi/os_regions/overview/', 200, '/os_regions/overview' );
+			interceptBackend.getStub( `/mi/os_regions/overview/?year=${ req.year }`, 200, '/os_regions/overview' );
 
 			controller.overview( req, { render: function( view, data ){
 
-				expect( backendService.getOverseasRegionsOverview ).toHaveBeenCalledWith( req.alice );
+				expect( backendService.getOverseasRegionsOverview ).toHaveBeenCalledWith( req.alice, req.year );
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				expect( data.dateRange ).toBeDefined();
 				expect( data.regionGroups ).toBeDefined();
@@ -74,17 +76,18 @@ describe( 'Overseas Regions controller', function(){
 		it( 'Should get the list data and render the correct view', function( done ){
 
 			const req = {
-				alice: '87654'
+				alice: '87654',
+				year
 			};
 
 			spyOn( backendService, 'getOverseasRegions' ).and.callThrough();
-			spyOn( errorHandler, 'createHandler' ).and.callFake( () => done );
+			spyOn( errorHandler, 'createHandler' ).and.callFake( createErrorHandler( done ) );
 
-			interceptBackend.getStub( '/mi/os_regions/', 200, '/os_regions/' );
+			interceptBackend.getStub( `/mi/os_regions/?year=${ req.year }`, 200, '/os_regions/' );
 
 			controller.list( req, { render: function( view, data ){
 
-				expect( backendService.getOverseasRegions ).toHaveBeenCalledWith( req.alice );
+				expect( backendService.getOverseasRegions ).toHaveBeenCalledWith( req.alice, req.year );
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				expect( view ).toEqual( 'overseas-regions/list.html' );
 				expect( data.regions ).toBeDefined();
@@ -100,6 +103,7 @@ describe( 'Overseas Regions controller', function(){
 
 			const req = {
 				alice: '1234',
+				year,
 				params: {
 					id: 1234
 				}
@@ -108,22 +112,22 @@ describe( 'Overseas Regions controller', function(){
 			const regionId = req.params.id;
 
 			spyOn( backendService, 'getOverseasRegionInfo' ).and.callThrough();
-			spyOn( errorHandler, 'createHandler' ).and.callFake( () => done );
+			spyOn( errorHandler, 'createHandler' ).and.callFake( createErrorHandler( done ) );
 			spyOn( sectorSummary, 'create' ).and.callThrough();
 			spyOn( hvcSummary, 'create' ).and.callThrough();
 			spyOn( hvcTargetPerformance, 'create' ).and.callThrough();
 			spyOn( topMarkets, 'create' ).and.callThrough();
 			spyOn( monthlyPerformance, 'create' ).and.callThrough();
 
-			interceptBackend.getStub( `/mi/os_regions/${ regionId }/`, 200, '/os_regions/region' );
-			interceptBackend.getStub( `/mi/os_regions/${ regionId }/months/`, 200, '/os_regions/months' );
-			interceptBackend.getStub( `/mi/os_regions/${ regionId }/campaigns/`, 200, '/os_regions/campaigns' );
-			interceptBackend.getStub( `/mi/os_regions/${ regionId }/top_non_hvcs/`, 200, '/os_regions/top_non_hvcs' );
+			interceptBackend.getStub( `/mi/os_regions/${ regionId }/?year=${ req.year }`, 200, '/os_regions/region' );
+			interceptBackend.getStub( `/mi/os_regions/${ regionId }/months/?year=${ req.year }`, 200, '/os_regions/months' );
+			interceptBackend.getStub( `/mi/os_regions/${ regionId }/campaigns/?year=${ req.year }`, 200, '/os_regions/campaigns' );
+			interceptBackend.getStub( `/mi/os_regions/${ regionId }/top_non_hvcs/?year=${ req.year }`, 200, '/os_regions/top_non_hvcs' );
 
 			controller.region( req, { render: function( view, data ){
 
-				expect( backendService.getOverseasRegionInfo ).toHaveBeenCalledWith( req.alice, regionId );
-				expect( errorHandler.createHandler ).callFake( () => done );
+				expect( backendService.getOverseasRegionInfo ).toHaveBeenCalledWith( req.alice, req.year, regionId );
+				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				expect( sectorSummary.create ).toHaveBeenCalled();
 				expect( hvcSummary.create ).toHaveBeenCalled();
 				expect( hvcTargetPerformance.create ).toHaveBeenCalled();

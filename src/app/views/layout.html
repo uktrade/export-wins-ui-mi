@@ -1,5 +1,7 @@
 {% extends 'layouts/ukti_template.html' %}
 
+{% import 'macros/url.html' as urls %}
+
 {% set homepage_url = "/" %}
 {% block service_name %}Datahub{% endblock %}
 {% block page_title %}MI - {{ pageName }}{% endblock page_title %}
@@ -16,12 +18,13 @@
 		<div class="phase-banner">
 			<p>
 				<strong class="phase-tag">ALPHA</strong>
-				<span>This is a new service – your <a href="mailto:{{ feedbackEmail }}">feedback</a> will help us to improve it.</span>
+				<span>This is a new service – your <a href="{{ urls.email() }}">feedback</a> will help us to improve it.</span>
 			</p>
 		</div>
 
 		<nav class="top-nav">
-			<a href="{{ uuid }}/">Management information</a>
+			<a href="{{ urls.index() }}">Management information{% if currentYear %} ({{ currentYear }}){% endif %}</a>
+			<a class="top-nav_change-year" href="{{ urls.changeYear() }}">Change financial year</a>
 		</nav>
 
 		{% block page_content %}{% endblock %}
@@ -34,7 +37,7 @@
     <div class="footer-wrapper">
       <div class="footer-meta">
         <div class="footer-meta-inner">
-          <p class="footer-feedback-link">If you have any issues or feedback please <a href="mailto:{{ feedbackEmail }}">contact the MI team</a></p>
+          <p class="footer-feedback-link">If you have any issues or feedback please <a href="{{ urls.email() }}">contact the MI team</a></p>
           <ul>
             <li><a href="/terms_and_conditions">Terms and conditions</a></li>
           </ul>

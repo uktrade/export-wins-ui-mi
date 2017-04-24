@@ -74,7 +74,7 @@
 			{% endif -%}
 
 				<td class="{{ firstRowClass }}overseas-region-overview-data_cell overseas-region-overview-data_cell--name overseas-region-overview-data_cell--{{ region.colour }}">
-					<a href="{{ uuid }}/overseas-regions/{{ region.id }}/">{{ region.name }}</a>
+					<a href="{{ urls.osRegion( region.id ) }}">{{ region.name }}</a>
 					<span class="overseas-region-overview-data_cell_countries">
 						{{- region.markets | pluralise( 'country', 'countries' ) -}}
 					</span>

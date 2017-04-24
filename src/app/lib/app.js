@@ -13,8 +13,10 @@ const reporter = require( './reporter' );
 const nunjucksFilters = require( './nunjucks-filters' );
 const alice = require( './middleware/alice' );
 const uuid = require( './middleware/uuid' );
-const locals = require( './middleware/locals' );
+const staticGlobals = require( './static-globals' );
 const ping = require( './middleware/ping' );
+const year = require( './middleware/year' );
+const globals = require( './middleware/globals' );
 
 module.exports = {
 
@@ -44,9 +46,7 @@ module.exports = {
 			express: app
 		} );
 
-		//add as a global so that it's available to macros
-		nunjucksEnv.addGlobal( 'uuid', '/' + config.server.uuid );
-
+		staticGlobals( nunjucksEnv );
 		nunjucksFilters( nunjucksEnv );
 
 		reporter.setup( app );
@@ -63,8 +63,9 @@ module.exports = {
 		app.use( cookieParser() );
 		app.use( ping );
 		app.use( uuid );
-		app.use( locals );
+		app.use( year );
 		app.use( alice );
+		app.use( globals( nunjucksEnv ) );
 
 		routes( express, app );
 
