@@ -81,7 +81,8 @@ describe( 'Backend lib', function(){
 					time: true,
 					method: 'POST',
 					headers: {
-						'X-Signature': 'test-hash'
+						'X-Signature': 'test-hash',
+						'Content-Type': 'application/x-www-form-urlencoded'
 					},
 					body
 				} );
