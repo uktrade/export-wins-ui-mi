@@ -285,17 +285,49 @@ function sendSamlXml( xml ){
 
 			} else {
 
-				const setCookie = response.headers[ 'set-cookie' ] || '';
-				const cookies = cookie.parse( setCookie );
-				const sessionId = cookies.session_id;
+				if( response.isSuccess ){
 
-				if( !sessionId ){
+					const setCookie = response.headers[ 'set-cookie' ] || '';
+					const cookies = cookie.parse( setCookie );
+					const sessionId = cookies.session_id;
 
-					reject( new Error( 'Unable to create session' ) );
+					if( !sessionId ){
+
+						reject( new Error( 'Unable to create session' ) );
+
+					} else {
+
+						resolve( { sessionId, data } );
+					}
 
 				} else {
 
-					resolve( { sessionId, data } );
+					reject( new Error( 'Unable to login' ) );
+				}
+			}
+		} );
+	} );
+}
+
+function getSamlLogin(){
+
+	return new Promise( ( resolve, reject ) => {
+
+		backend.get( '/saml2/login/', function( err, response, data ){
+
+			if( err ){
+
+				reject( new Error( 'Unable to make request for login token' ) );
+
+			} else {
+
+				if( response.isSuccess ){
+
+					resolve( data );
+
+				} else {
+
+					reject( new Error( 'Unable to get login token' ) );
 				}
 			}
 		} );
@@ -406,5 +438,6 @@ module.exports = {
 	getWinList,
 
 	getSamlMetadata,
-	sendSamlXml
+	sendSamlXml,
+	getSamlLogin
 };

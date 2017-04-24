@@ -522,22 +522,119 @@ describe( 'Backend service', function(){
 
 			describe( 'When the response is success', function(){
 
-				it( 'Should get the sessionId from the cookie', function( done ){
+				describe( 'When there is a set-cookie header', function(){
 
-					const responseBody = 'success';
+					it( 'Should get the sessionId from the cookie', function( done ){
+
+						const responseBody = 'success';
+
+						spyOn( backend, 'post' ).and.callFake( function( path, body, cb ){
+
+							cb( null, successResponse, responseBody );
+						} );
+
+						backendService.sendSamlXml( xml ).then( ( data  ) => {
+
+							expect( data.sessionId ).toEqual( session_id );
+							expect( data.data ).toEqual( responseBody );
+							done();
+
+						} ).catch( done.fail );
+					} );
+				} );
+
+				describe( 'When there is not a set-cookie header', function(){
+
+					it( 'Should throw an error', function( done ){
+
+						spyOn( backend, 'post' ).and.callFake( function( path, body, cb ){
+
+							cb( null, { isSuccess: true, elapsedTime: 100, headers: {} }, '' );
+						} );
+
+						backendService.sendSamlXml( xml ).then( done.fail ).catch( ( e ) => {
+
+							expect( e ).toEqual( new Error( 'Unable to create session' ) );
+							done();
+						} );
+					} );
+				} );
+			} );
+
+			describe( 'When the response is not a success', function(){
+
+				it( 'Should throw an error', function( done ){
 
 					spyOn( backend, 'post' ).and.callFake( function( path, body, cb ){
 
-						cb( null, successResponse, responseBody );
+						cb( null, { isSuccess: false, elapsedTime: 100 }, '' );
 					} );
 
-					backendService.sendSamlXml( xml ).then( ( data  ) => {
+					backendService.sendSamlXml( xml ).then( done.fail ).catch( ( e ) => {
 
-						expect( data.sessionId ).toEqual( session_id );
-						expect( data.data ).toEqual( responseBody );
+						expect( e ).toEqual( new Error( 'Unable to login' ) );
+						done();
+					} );
+				} );
+			} );
+		} );
+
+		describe( 'SAML Login', function(){
+
+			describe( 'When the response is a success', function(){
+
+				it( 'Should return the response from the backend', function( done ){
+
+					const responseBody = 'abc123';
+
+					spyOn( backend, 'get' ).and.callFake( function( path, cb ){
+
+						cb( null, { isSuccess: true, elapsedTime: 100 }, responseBody );
+					} );
+
+					backendService.getSamlLogin().then( ( data ) => {
+
+						const args = backend.get.calls.argsFor( 0 );
+
+						expect( args[ 0 ] ).toEqual( '/saml2/login/' );
+						expect( data ).toEqual( responseBody );
 						done();
 
 					} ).catch( done.fail );
+				} );
+			} );
+
+			describe( 'When the response is not a success', function(){
+
+				it( 'Should throw an error', function( done ){
+
+					spyOn( backend, 'get' ).and.callFake( function( path, cb ){
+
+						cb( null, { isSuccess: false, elapsedTime: 100 }, '' );
+					} );
+
+					backendService.getSamlLogin().then( done.fail ).catch( ( e ) => {
+
+						expect( e ).toEqual( new Error( 'Unable to get login token' ) );
+						done();
+					} );
+				} );
+			} );
+
+			describe( 'When the request has an error', function(){
+
+				it( 'Should throw an error', function( done ){
+
+					spyOn( backend, 'get' ).and.callFake( function( path, cb ){
+
+						cb( new Error( 'error' ), { isSuccess: false, elapsedTime: 100 }, '' );
+					} );
+
+					backendService.getSamlLogin().then( done.fail ).catch( ( e ) => {
+
+						expect( e ).toEqual( new Error( 'Unable to make request for login token' ) );
+						done();
+					} );
 				} );
 			} );
 		} );
