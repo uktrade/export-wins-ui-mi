@@ -338,4 +338,38 @@ if( config.backend.mock ){
 			} );
 		} );
 	} );
+
+	describe( 'Saml acs', function(){
+
+		it( 'Should redirect', function( done ){
+
+			const response = 'test';
+
+			interceptBackend.post( '/saml2/acs/' ).reply( 200, response, {
+				'Set-Cookie': 'session_id=test'
+			} );
+
+			supertest( app ).post( '/saml2/acs/' ).end( ( err, res ) => {
+
+				expect( res.statusCode ).toEqual( 302 );
+				expect( res.text ).toEqual( 'Found. Redirecting to /' );
+				done();
+			} );
+		} );
+	} );
+
+	describe( 'Login', function(){
+
+		it( 'Should return a 200 with the correct heading', function( done ){
+
+			interceptBackend.get( '/saml2/login/' ).reply( 200, 'test' );
+
+			supertest( app ).get( '/login/' ).end( ( err, res ) => {
+
+				expect( res.statusCode ).toEqual( 200 );
+				expect( getTitle( res ) ).toEqual( 'MI - Login' );
+				done();
+			} );
+		} );
+	} );
 } );

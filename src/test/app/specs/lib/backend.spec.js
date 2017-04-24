@@ -14,6 +14,19 @@ const alice ={ session: 'alice-session' };
 
 function createBackend( opts = {} ){
 
+	reporter = {
+		message: jasmine.createSpy( 'reporter.message' )
+	};
+
+	logger = {
+		warn: jasmine.createSpy( 'logger.warn' ),
+		error: jasmine.createSpy( 'logger.error' ),
+		debug: jasmine.createSpy( 'logger.debug' )
+	};
+
+	request = jasmine.createSpy( 'request' );
+	createSignature = jasmine.createSpy( 'createSignature' ).and.callFake( () => 'test-hash' );
+
 	backend = proxyquire( '../../../../app/lib/backend', {
 		'request': opts.request || request,
 		'./reporter': opts.reporter || reporter,
@@ -38,27 +51,11 @@ describe( 'Backend lib', function(){
 		jasmine.DEFAULT_TIMEOUT_INTERVAL = oldTimeout;
 	} );
 
-	describe( 'GET request', function(){
+	describe( 'POST request', function(){
 
 		beforeEach( function(){
 
-			reporter = {
-				message: jasmine.createSpy( 'reporter.message' )
-			};
-
-			logger = {
-				warn: jasmine.createSpy( 'logger.warn' ),
-				error: jasmine.createSpy( 'logger.error' ),
-				debug: jasmine.createSpy( 'logger.debug' )
-			};
-
-			request = jasmine.createSpy( 'request' );
-			createSignature = jasmine.createSpy( 'createSignature' ).and.callFake( function(){ return 'test-hash'; } );
-
 			createBackend();
-		} );
-
-		it( 'Should call request with the correct options', function( done ){
 
 			request.and.callFake( function( opts, cb ){
 				cb( null, {
@@ -70,21 +67,92 @@ describe( 'Backend lib', function(){
 					request: { uri: { href: '/test' } }
 				}, '{ "test": "testing" }' );
 			} );
+		} );
 
-			backend.get( alice, path, function(){
+		it( 'Creates the correct options', ( done ) => {
+
+			const body = 'Some text';
+
+			backend.post( path, body, function(){
 
 				expect( request.calls.argsFor( 0 )[ 0 ] ).toEqual( {
+
 					url: ( href + path ),
 					time: true,
-					method: 'GET',
+					method: 'POST',
 					headers: {
-						'X-Signature': 'test-hash',
-						'Cookie': ( 'sessionid=' + alice.session )
-					}
+						'X-Signature': 'test-hash'
+					},
+					body
 				} );
 				done();
 			} );
 		} );
+	} );
+
+	describe( 'GET request', function(){
+
+		beforeEach( function(){
+
+			createBackend();
+		} );
+
+		describe( 'GET methods', function(){
+
+			beforeEach( function(){
+
+				request.and.callFake( function( opts, cb ){
+					cb( null, {
+						statusCode: 200,
+						elapsedTime: 100,
+						headers: {
+							'content-type': 'application/json'
+						},
+						request: { uri: { href: '/test' } }
+					}, '{ "test": "testing" }' );
+				} );
+			} );
+
+			describe( 'sessionGet', function(){
+
+				it( 'Should call request with the correct options', function( done ){
+
+					backend.sessionGet( alice, path, function(){
+
+						expect( request.calls.argsFor( 0 )[ 0 ] ).toEqual( {
+							url: ( href + path ),
+							time: true,
+							method: 'GET',
+							headers: {
+								'X-Signature': 'test-hash',
+								'Cookie': ( 'sessionid=' + alice.session )
+							}
+						} );
+						done();
+					} );
+				} );
+			} );
+
+			describe( 'get', function(){
+
+				it( 'Should call request with the correct options', function( done ){
+
+					backend.get( path, function(){
+
+						expect( request.calls.argsFor( 0 )[ 0 ] ).toEqual( {
+							url: ( href + path ),
+							time: true,
+							method: 'GET',
+							headers: {
+								'X-Signature': 'test-hash'
+							}
+						} );
+						done();
+					} );
+				} );
+			} );
+		} );
+
 
 		describe( 'A slow request', function(){
 
@@ -99,7 +167,7 @@ describe( 'Backend lib', function(){
 					}, '{ "test": "testing" }' );
 				} );
 
-				backend.get( alice, path, function( err, response ){
+				backend.sessionGet( alice, path, function( err, response ){
 
 					expect( reporter.message ).toHaveBeenCalledWith( 'info', 'Long response time from backend API: /test', {
 						time: response.elapsedTime,
@@ -133,7 +201,7 @@ describe( 'Backend lib', function(){
 
 					it( 'Should return the response as a JSON object', function( done ){
 
-						backend.get( alice, path, function( err, response, data ){
+						backend.sessionGet( alice, path, function( err, response, data ){
 
 							expect( request ).toHaveBeenCalled();
 							expect( err ).toBeNull();
@@ -160,7 +228,7 @@ describe( 'Backend lib', function(){
 							}, '"test": "testing"' );
 						} );
 
-						backend.get( alice, path, function( err, response, data ){
+						backend.sessionGet( alice, path, function( err, response, data ){
 
 							expect( request ).toHaveBeenCalled();
 							expect( err ).toBeNull();
@@ -189,7 +257,7 @@ describe( 'Backend lib', function(){
 						}, 'test' );
 					} );
 
-					backend.get( alice, path, function( err, response, data ){
+					backend.sessionGet( alice, path, function( err, response, data ){
 
 						expect( request ).toHaveBeenCalled();
 						expect( err ).toBeNull();
@@ -216,7 +284,7 @@ describe( 'Backend lib', function(){
 						cb( err );
 					} );
 
-					backend.get( alice, path, function( err, response, data ){
+					backend.sessionGet( alice, path, function( err, response, data ){
 
 						expect( request ).toHaveBeenCalled();
 						expect( err ).toBeDefined();
@@ -245,7 +313,7 @@ describe( 'Backend lib', function(){
 
 				interceptBackend.getStub( path, 200, '/sector_teams/' );
 
-				backend.get( alice, path, function( err, response, data ){
+				backend.sessionGet( alice, path, function( err, response, data ){
 
 					expect( err ).toBeNull();
 					expect( response.statusCode ).toEqual( 200 );
@@ -262,7 +330,7 @@ describe( 'Backend lib', function(){
 
 				interceptBackend.get( path ).reply( 500 );
 
-				backend.get( alice, path, function( err, response, data ){
+				backend.sessionGet( alice, path, function( err, response, data ){
 
 					expect( err ).toBeDefined();
 					expect( response.statusCode ).toEqual( 500 );
@@ -279,7 +347,7 @@ describe( 'Backend lib', function(){
 
 				interceptBackend.get( path ).reply( 404, 'not found' );
 
-				backend.get( alice, path, function( err, response, data ){
+				backend.sessionGet( alice, path, function( err, response, data ){
 
 					expect( err ).toBeDefined();
 					expect( response.statusCode ).toEqual( 404 );

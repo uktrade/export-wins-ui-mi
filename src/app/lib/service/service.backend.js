@@ -1,5 +1,7 @@
 const config = require( '../../config' );
 
+const cookie = require( 'cookie' );
+
 const USE_MOCKS = config.backend.mock;
 const USE_STUBS = config.backend.stub;
 
@@ -31,7 +33,7 @@ function get( alice, path, transform ){
 
 		path += '?year=2016';
 
-		backend.get( alice, path, function( err, response, data ){
+		backend.sessionGet( alice, path, function( err, response, data ){
 
 			if( err ){
 
@@ -249,7 +251,7 @@ function getSamlMetadata(){
 
 	return new Promise( ( resolve, reject ) => {
 
-		backend.getSimple( '/saml2/metadata/', function( err, response, data ){
+		backend.get( '/saml2/metadata/', function( err, response, data ){
 
 			if( err ){
 
@@ -265,6 +267,67 @@ function getSamlMetadata(){
 
 					logger.error( 'Got a %s status code for url: %s', response.statusCode, response.request.uri.href );
 					reject( new Error( 'Not a successful response from the backend' ) );
+				}
+			}
+		} );
+	} );
+}
+
+function sendSamlXml( xml ){
+
+	return new Promise( ( resolve, reject ) => {
+
+		backend.post( '/saml2/acs/', xml, function( err, response, data ){
+
+			if( err ){
+
+				reject( err );
+
+			} else {
+
+				if( response.isSuccess ){
+
+					const setCookie = response.headers[ 'set-cookie' ] || '';
+					const cookies = cookie.parse( setCookie );
+					const sessionId = cookies.session_id;
+
+					if( !sessionId ){
+
+						reject( new Error( 'Unable to create session' ) );
+
+					} else {
+
+						resolve( { sessionId, data } );
+					}
+
+				} else {
+
+					reject( new Error( 'Unable to login' ) );
+				}
+			}
+		} );
+	} );
+}
+
+function getSamlLogin(){
+
+	return new Promise( ( resolve, reject ) => {
+
+		backend.get( '/saml2/login/', function( err, response, data ){
+
+			if( err ){
+
+				reject( new Error( 'Unable to make request for login token' ) );
+
+			} else {
+
+				if( response.isSuccess ){
+
+					resolve( data );
+
+				} else {
+
+					reject( new Error( 'Unable to get login token' ) );
 				}
 			}
 		} );
@@ -374,5 +437,7 @@ module.exports = {
 	getWin,
 	getWinList,
 
-	getSamlMetadata
+	getSamlMetadata,
+	sendSamlXml,
+	getSamlLogin
 };

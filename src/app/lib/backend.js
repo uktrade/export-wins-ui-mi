@@ -6,17 +6,28 @@ const createSignature = require( './create-signature' );
 
 const backendHref = config.backend.href;
 
-function createRequestOptions( method, alice, path, body ){
+function createRequestOptions( method, path, opts = { body: null, alice: null } ){
 
-	return {
+	const options = {
 		url: ( backendHref + path ),
 		time: true,
 		method: method,
 		headers: {
-			'X-Signature': createSignature( path, body ),
-			'Cookie': ( 'sessionid=' + alice.session )
+			'X-Signature': createSignature( path, opts.body )
 		}
 	};
+
+	if( opts.alice ){
+
+		options.headers[ 'Cookie' ] = ( 'sessionid=' + opts.alice.session );
+	}
+
+	if( opts.body ){
+
+		options.body = opts.body;
+	}
+
+	return options;
 }
 
 function checkResponseTime( response ){
@@ -66,23 +77,24 @@ function handleResponse( cb ){
 
 module.exports = {
 
-	get: function( alice, path, cb ){
+	get: function( path, cb ){
 
 		logger.debug( 'Backend GET request to: ' + path );
 
-		request( createRequestOptions( 'GET', alice, path ), handleResponse( cb ) );
+		request( createRequestOptions( 'GET', path ), handleResponse( cb ) );
 	},
 
-	getSimple: function( path, cb ){
+	sessionGet: function( alice, path, cb ){
 
 		logger.debug( 'Backend GET request to: ' + path );
 
-		request( {
+		request( createRequestOptions( 'GET', path, { alice } ), handleResponse( cb ) );
+	},
 
-			url: ( backendHref + path ),
-			time: true,
-			method: 'GET'
+	post: function( path, body, cb ){
 
-		}, handleResponse( cb ) );
+		logger.debug( 'Backend POST request to: ' + path );
+
+		request( createRequestOptions( 'POST', path, { body } ), handleResponse( cb ) );
 	}
 };
