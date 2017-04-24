@@ -514,7 +514,7 @@ describe( 'Backend service', function(){
 					const args = backend.post.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( `/saml2/acs/` );
-					expect( args[ 1 ] ).toEqual( `SAMLResponse=${ xml }` );
+					expect( args[ 1 ] ).toEqual( xml );
 					done();
 
 				} ).catch( done.fail );
