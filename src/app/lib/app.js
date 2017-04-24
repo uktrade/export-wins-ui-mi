@@ -15,6 +15,9 @@ const alice = require( './middleware/alice' );
 const uuid = require( './middleware/uuid' );
 const locals = require( './middleware/locals' );
 const ping = require( './middleware/ping' );
+const data = require( './middleware/data' );
+const samlController = require( '../controllers/controller.saml' );
+const loginController = require( '../controllers/controller.login' );
 
 module.exports = {
 
@@ -62,8 +65,11 @@ module.exports = {
 		app.use( morganLogger( ( isDev ? 'dev' : 'combined' ) ) );
 		app.use( cookieParser() );
 		app.use( ping );
-		app.use( uuid );
 		app.use( locals );
+		app.get( '/saml2/metadata/', samlController.metadata );
+		app.post( '/saml2/acs/', data, samlController.acs );
+		app.get( '/login/', loginController );
+		app.use( uuid );
 		app.use( alice );
 
 		routes( express, app );
