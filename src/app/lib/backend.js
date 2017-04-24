@@ -25,6 +25,11 @@ function createRequestOptions( method, path, opts = { body: null, alice: null } 
 	if( opts.body ){
 
 		options.body = opts.body;
+
+		if( method === 'POST' ){
+
+			options.headers[ 'Content-Type' ] = 'application/x-www-form-urlencoded';
+		}
 	}
 
 	return options;

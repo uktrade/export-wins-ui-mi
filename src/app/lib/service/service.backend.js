@@ -277,7 +277,7 @@ function sendSamlXml( xml ){
 
 	return new Promise( ( resolve, reject ) => {
 
-		backend.post( '/saml2/acs/', xml, function( err, response, data ){
+		backend.post( '/saml2/acs/', `SAMLResponse=${ xml }`, function( err, response, data ){
 
 			if( err ){
 
