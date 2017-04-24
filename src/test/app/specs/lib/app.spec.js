@@ -352,7 +352,7 @@ if( config.backend.mock ){
 			supertest( app ).post( '/saml2/acs/' ).end( ( err, res ) => {
 
 				expect( res.statusCode ).toEqual( 302 );
-				expect( res.text ).toEqual( 'Found. Redirecting to /' );
+				expect( res.text ).toEqual( 'Found. Redirecting to /' + config.server.uuid + '/' );
 				done();
 			} );
 		} );

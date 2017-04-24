@@ -4,6 +4,7 @@ const errorHandler = require( '../../../../app/lib/render-error' );
 const interceptBackend = require( '../../helpers/intercept-backend' );
 
 let controller;
+let config;
 
 describe( 'SAML controller', function(){
 
@@ -22,9 +23,12 @@ describe( 'SAML controller', function(){
 
 	beforeEach( function(){
 
+		config = {};
+
 		const stubs = {
 			'../lib/service/service.backend': backendService,
-			'../lib/render-error': errorHandler
+			'../lib/render-error': errorHandler,
+			'../config': config
 		};
 
 		controller = proxyquire( '../../../../app/controllers/controller.saml', stubs );
@@ -52,7 +56,7 @@ describe( 'SAML controller', function(){
 
 							expect( backendService.sendSamlXml ).toHaveBeenCalledWith( req.data );
 							expect( cookieSpy ).toHaveBeenCalledWith( 'session-id', session_id );
-							expect( location ).toEqual( '/' );
+							expect( location ).toEqual( '/' + config.server.uuid + '/' );
 							done();
 						}
 					};
@@ -60,6 +64,10 @@ describe( 'SAML controller', function(){
 					interceptBackend.post( '/saml2/acs/' ).reply( 200, response, {
 						'Set-Cookie': `session_id=${ session_id }`
 					} );
+
+					config.server = {
+						uuid: 'testing'
+					};
 
 					controller.acs( req, res );
 				} );
