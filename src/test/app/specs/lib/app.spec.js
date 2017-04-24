@@ -357,4 +357,19 @@ if( config.backend.mock ){
 			} );
 		} );
 	} );
+
+	describe( 'Login', function(){
+
+		it( 'Should return a 200 with the correct heading', function( done ){
+
+			interceptBackend.get( '/saml2/login/' ).reply( 200, 'test' );
+
+			supertest( app ).get( '/login/' ).end( ( err, res ) => {
+
+				expect( res.statusCode ).toEqual( 200 );
+				expect( getTitle( res ) ).toEqual( 'MI - Login' );
+				done();
+			} );
+		} );
+	} );
 } );
