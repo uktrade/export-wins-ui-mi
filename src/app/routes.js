@@ -7,15 +7,12 @@ const hvcGroupController = require( './controllers/controller.hvc-groups' );
 const winController =  require( './controllers/controller.win' );
 const hvcController = require( './controllers/controller.hvc' );
 const winsController = require( './controllers/controller.wins' );
-const loginController = require( './controllers/controller.login' );
 
 const linkHvc = require( './lib/middleware/link-hvc' );
 
 module.exports = function( express, app ){
 
 	app.get( '/', indexController );
-
-	app.get( '/login/', loginController );
 
 	app.get( '/sector-teams/', sectorTeamController.list );
 	app.get( '/sector-teams/overview/', sectorTeamController.overview );
