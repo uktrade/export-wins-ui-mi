@@ -60,7 +60,7 @@ describe( 'Sector Teams controller', function(){
 
 			controller.overview( req, { render: function( view, data ){
 
-				expect( backendService.getSectorTeamsOverview ).toHaveBeenCalledWith( req.alice, req.year );
+				expect( backendService.getSectorTeamsOverview ).toHaveBeenCalledWith( req );
 				expect( data.dateRange ).toBeDefined();
 				expect( data.sectorTeams ).toBeDefined();
 				expect( data.sectorTeams.length ).toBeGreaterThan( 1 );
@@ -87,7 +87,7 @@ describe( 'Sector Teams controller', function(){
 
 			controller.list( req, { render: function( view, data ){
 
-				expect( backendService.getSectorTeams ).toHaveBeenCalledWith( req.alice, req.year );
+				expect( backendService.getSectorTeams ).toHaveBeenCalledWith( req );
 				expect( view ).toEqual( 'sector-teams/list.html' );
 				expect( data.sectorTeams ).toBeDefined();
 				expect( data.sectorTeams.length ).toBeGreaterThan( 1 );
@@ -126,7 +126,7 @@ describe( 'Sector Teams controller', function(){
 
 			controller.team( req, { render: function( view, data ){
 
-				expect( backendService.getSectorTeamInfo ).toHaveBeenCalledWith( req.alice, req.year, teamId );
+				expect( backendService.getSectorTeamInfo ).toHaveBeenCalledWith( req, teamId );
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				expect( sectorSummary.create ).toHaveBeenCalled();
 				expect( hvcSummary.create ).toHaveBeenCalled();

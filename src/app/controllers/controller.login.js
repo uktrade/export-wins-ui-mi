@@ -3,7 +3,8 @@ const renderError = require( '../lib/render-error' );
 
 module.exports = function( req, res ){
 
-	backendService.getSamlLogin().then( ( token ) => {
+	backendService.getSamlLogin( req ).then( ( token ) => {
+
 
 		res.render( 'login.html', { token } );
 

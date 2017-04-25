@@ -19,6 +19,7 @@ const ping = require( './middleware/ping' );
 const data = require( './middleware/data' );
 const year = require( './middleware/year' );
 const globals = require( './middleware/globals' );
+const loginCheck = require( './middleware/login-check' );
 
 const loginController = require( '../controllers/controller.login' );
 const samlController = require( '../controllers/controller.saml' );
@@ -70,6 +71,7 @@ module.exports = {
 		app.get( '/saml2/metadata/', samlController.metadata );
 		app.post( '/saml2/acs/', data, samlController.acs );
 		app.get( '/login/', loginController );
+		//app.use( loginCheck );
 		app.use( uuid );
 		app.use( alice );
 		app.use( year );

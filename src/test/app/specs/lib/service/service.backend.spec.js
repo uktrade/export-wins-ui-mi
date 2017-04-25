@@ -16,6 +16,10 @@ let osRegionsOverviewSpy;
 let hvcGroupSpy;
 let osRegionsSpy;
 let backend;
+let req = {
+	alice,
+	year
+};
 
 
 function returnStub( file ){
@@ -81,7 +85,7 @@ describe( 'Backend service', function(){
 
 					returnStub( '/sector_teams/' );
 
-					backendService.getSectorTeam( alice, year, teamId ).then( ( data ) => {
+					backendService.getSectorTeam( req, teamId ).then( ( data ) => {
 
 						expect( data.date_range ).toBeDefined();
 						expect( data.date_range.start ).toEqual( 1459468800 * 1000 );
@@ -99,7 +103,7 @@ describe( 'Backend service', function(){
 
 					returnStub( '/os_regions/' );
 
-					backendService.getOverseasRegions( alice, year ).then( ( data ) => {
+					backendService.getOverseasRegions( req ).then( ( data ) => {
 
 						expect( data.date_range ).not.toBeDefined();
 						done();
@@ -120,7 +124,7 @@ describe( 'Backend service', function(){
 
 				returnStub( '/sector_teams/' );
 
-				backendService.getSectorTeam( alice, year, teamId ).then( () => {
+				backendService.getSectorTeam( req, teamId ).then( () => {
 
 					const args = backend.sessionGet.calls.argsFor( 0 );
 
@@ -140,7 +144,7 @@ describe( 'Backend service', function(){
 
 				returnStub( '/sector_teams/months' );
 
-				backendService.getSectorTeamMonths( alice, year, teamId ).then( () => {
+				backendService.getSectorTeamMonths( req, teamId ).then( () => {
 
 					const args = backend.sessionGet.calls.argsFor( 0 );
 
@@ -163,7 +167,7 @@ describe( 'Backend service', function(){
 
 				returnStub( '/sector_teams/campaigns' );
 
-				backendService.getSectorTeamCampaigns( alice, year, teamId ).then( () => {
+				backendService.getSectorTeamCampaigns( req, teamId ).then( () => {
 
 					const args = backend.sessionGet.calls.argsFor( 0 );
 
@@ -186,7 +190,7 @@ describe( 'Backend service', function(){
 
 				returnStub( '/sector_teams/top_non_hvcs' );
 
-				backendService.getSectorTeamTopNonHvc( alice, year, teamId ).then( () => {
+				backendService.getSectorTeamTopNonHvc( req, teamId ).then( () => {
 
 					const args = backend.sessionGet.calls.argsFor( 0 );
 
@@ -204,7 +208,7 @@ describe( 'Backend service', function(){
 
 				returnStub( '/sector_teams/overview' );
 
-				backendService.getSectorTeamsOverview( alice, year ).then( () => {
+				backendService.getSectorTeamsOverview( req ).then( () => {
 
 					const args = backend.sessionGet.calls.argsFor( 0 );
 
@@ -225,7 +229,7 @@ describe( 'Backend service', function(){
 
 				returnStub( '/os_regions/' );
 
-				backendService.getOverseasRegions( alice, year ).then( () => {
+				backendService.getOverseasRegions( req ).then( () => {
 
 					const args = backend.sessionGet.calls.argsFor( 0 );
 
@@ -245,7 +249,7 @@ describe( 'Backend service', function(){
 
 				returnStub( '/os_regions/' );
 
-				backendService.getOverseasRegionGroups( alice, year ).then( () => {
+				backendService.getOverseasRegionGroups( req ).then( () => {
 
 					const args = backend.sessionGet.calls.argsFor( 0 );
 
@@ -268,7 +272,7 @@ describe( 'Backend service', function(){
 
 				returnStub( '/os_regions/region' );
 
-				backendService.getOverseasRegion( alice, year, regionId ).then( () => {
+				backendService.getOverseasRegion( req, regionId ).then( () => {
 
 					const args = backend.sessionGet.calls.argsFor( 0 );
 
@@ -288,7 +292,7 @@ describe( 'Backend service', function(){
 
 				returnStub( '/os_regions/months' );
 
-				backendService.getOverseasRegionMonths( alice, year, regionId ).then( () => {
+				backendService.getOverseasRegionMonths( req, regionId ).then( () => {
 
 					const args = backend.sessionGet.calls.argsFor( 0 );
 
@@ -311,7 +315,7 @@ describe( 'Backend service', function(){
 
 				returnStub( '/os_regions/campaigns' );
 
-				backendService.getOverseasRegionCampaigns( alice, year, regionId ).then( () => {
+				backendService.getOverseasRegionCampaigns( req, regionId ).then( () => {
 
 					const args = backend.sessionGet.calls.argsFor( 0 );
 
@@ -334,7 +338,7 @@ describe( 'Backend service', function(){
 
 				returnStub( '/os_regions/top_non_hvcs' );
 
-				backendService.getOverseasRegionTopNonHvc( alice, year, regionId ).then( () => {
+				backendService.getOverseasRegionTopNonHvc( req, regionId ).then( () => {
 
 					const args = backend.sessionGet.calls.argsFor( 0 );
 
@@ -352,7 +356,7 @@ describe( 'Backend service', function(){
 
 				returnStub( '/os_regions/overview' );
 
-				backendService.getOverseasRegionsOverview( alice, year ).then( () => {
+				backendService.getOverseasRegionsOverview( req ).then( () => {
 
 					const args = backend.sessionGet.calls.argsFor( 0 );
 
@@ -373,7 +377,7 @@ describe( 'Backend service', function(){
 
 				returnStub( '/hvc_groups/' );
 
-				backendService.getHvcGroups( alice, year ).then( ( hvcGroup ) => {
+				backendService.getHvcGroups( req ).then( ( hvcGroup ) => {
 
 					const args = backend.sessionGet.calls.argsFor( 0 );
 
@@ -395,7 +399,7 @@ describe( 'Backend service', function(){
 
 				returnStub( '/hvc_groups/group' );
 
-				backendService.getHvcGroup( alice, year, groupId ).then( () => {
+				backendService.getHvcGroup( req, groupId ).then( () => {
 
 					const args = backend.sessionGet.calls.argsFor( 0 );
 
@@ -418,7 +422,7 @@ describe( 'Backend service', function(){
 
 				returnStub( '/hvc_groups/campaigns' );
 
-				backendService.getHvcGroupCampaigns( alice, year, groupId ).then( () => {
+				backendService.getHvcGroupCampaigns( req, groupId ).then( () => {
 
 					const args = backend.sessionGet.calls.argsFor( 0 );
 
@@ -441,7 +445,7 @@ describe( 'Backend service', function(){
 
 				returnStub( '/hvc_groups/months' );
 
-				backendService.getHvcGroupMonths( alice, year, groupId ).then( () => {
+				backendService.getHvcGroupMonths( req, groupId ).then( () => {
 
 					const args = backend.sessionGet.calls.argsFor( 0 );
 
@@ -578,7 +582,7 @@ describe( 'Backend service', function(){
 						cb( null, { isSuccess: true, elapsedTime: 100 }, responseBody );
 					} );
 
-					backendService.getSamlLogin().then( ( data ) => {
+					backendService.getSamlLogin( req ).then( ( data ) => {
 
 						const args = backend.get.calls.argsFor( 0 );
 
@@ -697,7 +701,7 @@ describe( 'Backend service', function(){
 
 					intercept( files );
 
-					backendService.getSectorTeamInfo( alice, year, teamId ).then( ( data ) => {
+					backendService.getSectorTeamInfo( req, teamId ).then( ( data ) => {
 
 						expect( data.wins ).toBeDefined();
 						expect( data.months ).toBeDefined();
@@ -725,7 +729,7 @@ describe( 'Backend service', function(){
 
 					interceptWithDelay( files );
 
-					backendService.getSectorTeamInfo( alice, year, teamId ).then( ( data ) => {
+					backendService.getSectorTeamInfo( req, teamId ).then( ( data ) => {
 
 						checkReporterMessage( 'getSectorTeamInfo' );
 
@@ -755,7 +759,7 @@ describe( 'Backend service', function(){
 
 					intercept( files );
 
-					backendService.getSectorTeamInfo( alice, year, teamId ).then( ( data ) => {
+					backendService.getSectorTeamInfo( req, teamId ).then( ( data ) => {
 
 						expect( data ).not.toBeDefined();
 						done();
@@ -785,7 +789,7 @@ describe( 'Backend service', function(){
 
 				intercept( files );
 
-				backendService.getOverseasRegionInfo( alice, year, regionId ).then( ( data ) => {
+				backendService.getOverseasRegionInfo( req, regionId ).then( ( data ) => {
 
 					expect( data.wins ).toBeDefined();
 					expect( data.months ).toBeDefined();
@@ -812,7 +816,7 @@ describe( 'Backend service', function(){
 
 					interceptWithDelay( files );
 
-					backendService.getOverseasRegionInfo( alice, year, regionId ).then( ( data ) => {
+					backendService.getOverseasRegionInfo( req, regionId ).then( ( data ) => {
 
 						checkReporterMessage( 'getOverseasRegionInfo' );
 
@@ -842,7 +846,7 @@ describe( 'Backend service', function(){
 
 				intercept( files );
 
-				backendService.getHvcGroupInfo( alice, year, groupId ).then( ( data ) => {
+				backendService.getHvcGroupInfo( req, groupId ).then( ( data ) => {
 
 					expect( data.wins ).toBeDefined();
 					expect( data.months ).toBeDefined();
@@ -867,7 +871,7 @@ describe( 'Backend service', function(){
 
 					interceptWithDelay( files );
 
-					backendService.getHvcGroupInfo( alice, year, groupId ).then( ( data ) => {
+					backendService.getHvcGroupInfo( req, groupId ).then( ( data ) => {
 
 						checkReporterMessage( 'getHvcGroupInfo' );
 
@@ -895,7 +899,7 @@ describe( 'Backend service', function(){
 
 					intercept( files );
 
-					backendService.getSectorTeamsAndOverseasRegions( alice, year ).then( ( data ) => {
+					backendService.getSectorTeamsAndOverseasRegions( req ).then( ( data ) => {
 
 						expect( data.sectorTeams ).toBeDefined();
 						expect( data.overseasRegionGroups ).toBeDefined();
@@ -917,7 +921,7 @@ describe( 'Backend service', function(){
 
 					intercept( files );
 
-					backendService.getSectorTeamsAndOverseasRegions( alice, year ).catch( ( err ) => {
+					backendService.getSectorTeamsAndOverseasRegions( req ).catch( ( err ) => {
 
 						expect( err ).toBeDefined();
 						done();
@@ -937,7 +941,7 @@ describe( 'Backend service', function(){
 
 					interceptWithDelay( files );
 
-					backendService.getSectorTeamsAndOverseasRegions( alice, year ).then( ( data ) => {
+					backendService.getSectorTeamsAndOverseasRegions( req ).then( ( data ) => {
 
 						checkReporterMessage( 'getSectorTeamsAndOverseasRegions' );
 

@@ -60,7 +60,7 @@ describe( 'Overseas Regions controller', function(){
 
 			controller.overview( req, { render: function( view, data ){
 
-				expect( backendService.getOverseasRegionsOverview ).toHaveBeenCalledWith( req.alice, req.year );
+				expect( backendService.getOverseasRegionsOverview ).toHaveBeenCalledWith( req );
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				expect( data.dateRange ).toBeDefined();
 				expect( data.regionGroups ).toBeDefined();
@@ -87,7 +87,7 @@ describe( 'Overseas Regions controller', function(){
 
 			controller.list( req, { render: function( view, data ){
 
-				expect( backendService.getOverseasRegions ).toHaveBeenCalledWith( req.alice, req.year );
+				expect( backendService.getOverseasRegions ).toHaveBeenCalledWith( req );
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				expect( view ).toEqual( 'overseas-regions/list.html' );
 				expect( data.regions ).toBeDefined();
@@ -126,7 +126,7 @@ describe( 'Overseas Regions controller', function(){
 
 			controller.region( req, { render: function( view, data ){
 
-				expect( backendService.getOverseasRegionInfo ).toHaveBeenCalledWith( req.alice, req.year, regionId );
+				expect( backendService.getOverseasRegionInfo ).toHaveBeenCalledWith( req, regionId );
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				expect( sectorSummary.create ).toHaveBeenCalled();
 				expect( hvcSummary.create ).toHaveBeenCalled();

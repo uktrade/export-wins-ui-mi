@@ -50,7 +50,7 @@ describe( 'Overseas Regions controller', function(){
 
 			controller( req, { render: function( view, data ){
 
-				expect( backendService.getSectorTeams ).toHaveBeenCalledWith( req.alice, req.year );
+				expect( backendService.getSectorTeams ).toHaveBeenCalledWith( req );
 				expect( view ).toEqual( 'index.html' );
 				expect( data.sectorTeams ).toBeDefined();
 				expect( data.sectorTeams.length ).toBeGreaterThan( 1 );
@@ -81,7 +81,7 @@ describe( 'Overseas Regions controller', function(){
 
 			controller( req, { render: function( view, data ){
 
-				expect( backendService.getSectorTeamsAndOverseasRegions ).toHaveBeenCalledWith( req.alice, req.year );
+				expect( backendService.getSectorTeamsAndOverseasRegions ).toHaveBeenCalledWith( req );
 				expect( view ).toEqual( 'index.html' );
 				expect( data.sectorTeams ).toBeDefined();
 				expect( data.sectorTeams.length ).toBeGreaterThan( 1 );

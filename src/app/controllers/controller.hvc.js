@@ -16,7 +16,7 @@ module.exports = {
 			end: 1485907200000
 		};
 
-		backendService.getHvc( req.alice, hvcId ).then( ( hvc ) => {
+		backendService.getHvc( req, hvcId ).then( ( hvc ) => {
 
 			res.render( 'hvc/detail.html', {
 

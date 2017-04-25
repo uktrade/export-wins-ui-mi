@@ -8,7 +8,7 @@ module.exports = function( req, res ){
 
 	if( showOsRegions ){
 
-		backendService.getSectorTeamsAndOverseasRegions( req.alice, req.year ).then( ( data ) => {
+		backendService.getSectorTeamsAndOverseasRegions( req ).then( ( data ) => {
 
 			const sectorTeams = data.sectorTeams.results;
 			const overseasRegionGroups = data.overseasRegionGroups;
@@ -19,7 +19,7 @@ module.exports = function( req, res ){
 
 	} else {
 
-		backendService.getSectorTeams( req.alice, req.year ).then( ( sectorTeams ) => {
+		backendService.getSectorTeams( req ).then( ( sectorTeams ) => {
 
 			res.render( 'index.html', { sectorTeams: sectorTeams.results } );
 
