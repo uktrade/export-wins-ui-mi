@@ -9,11 +9,7 @@ module.exports = {
 
 			const response = info.response;
 
-			for( let cookie of response.headers[ 'set-cookie' ] ){
-
-				res.set( 'Set-Cookie', cookie );
-			}
-
+			res.set( 'Set-Cookie', response.headers[ 'set-cookie' ] );
 			res.redirect( '/' );
 
 		} ).catch( renderError.createHandler( res ) );

@@ -8,10 +8,7 @@ module.exports = function( req, res ){
 		const response = info.response;
 		const token = info.data;
 
-		for( let cookie of response.headers[ 'set-cookie' ] ){
-
-			res.set( 'Set-Cookie', cookie );
-		}
+		res.set( 'Set-Cookie', response.headers[ 'set-cookie' ] );
 
 		res.render( 'login.html', { token } );
 
