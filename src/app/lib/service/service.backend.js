@@ -249,6 +249,7 @@ function getSamlMetadata( req ){
 	return new Promise( ( resolve, reject ) => {
 
 		backend.sessionGet( req.cookies.sessionid, '/saml2/metadata/', createResponseHandler( resolve, reject ) );
+
 	} ).then( ( info ) => info.data );
 }
 
@@ -256,24 +257,7 @@ function sendSamlXml( req ){
 
 	return new Promise( ( resolve, reject ) => {
 
-		backend.sessionPost( req.cookies.sessionid, '/saml2/acs/', req.data, function( err, response, data ){
-
-			if( err ){
-
-				reject( err );
-
-			} else {
-
-				if( response.isSuccess ){
-
-					resolve( data );
-
-				} else {
-
-					reject( new Error( 'Unable to login' ) );
-				}
-			}
-		} );
+		backend.sessionPost( req.cookies.sessionid, '/saml2/acs/', req.data, createResponseHandler( resolve, reject ) );
 	} );
 }
 
