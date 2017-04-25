@@ -5,7 +5,14 @@ module.exports = {
 
 	acs: function( req, res ){
 
-		backendService.sendSamlXml( req ).then( () => {
+		backendService.sendSamlXml( req ).then( ( info ) => {
+
+			const response = info.response;
+
+			for( let cookie of response.headers[ 'set-cookie' ] ){
+
+				res.set( 'Set-Cookie', cookie );
+			}
 
 			res.redirect( '/' );
 
