@@ -60,7 +60,7 @@ describe( 'Globals middleware', function(){
 			} );
 		} );
 
-		xdescribe( 'Not the current year', function(){
+		describe( 'Not the current year', function(){
 
 			beforeEach( function(){
 
