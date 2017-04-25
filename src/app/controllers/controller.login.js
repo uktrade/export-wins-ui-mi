@@ -7,5 +7,5 @@ module.exports = function( req, res ){
 
 		res.render( 'login.html', { token } );
 
-	} ).catch( renderError.createHandler( req ) );
+	} ).catch( renderError.createHandler( res ) );
 };
