@@ -22,8 +22,7 @@ let config = {
 		host: env( 'SERVER_HOST', 'localhost' ),
 		port: env( 'SERVER_PORT', env( 'PORT', 8080 ) ),
 		cpus,
-		workers: env( 'SERVER_WORKERS', defaultWorkers ),
-		uuid: env( 'SERVER_UUID', '05422c73-064a-4277-aca8-07774dd3e3a0' )
+		workers: env( 'SERVER_WORKERS', defaultWorkers )
 	},
 	views: {
 		cache: bool( 'CACHE_VIEWS', true )

@@ -15,9 +15,7 @@ describe( 'Globals middleware', function(){
 	beforeEach( function(){
 
 		middleware = proxyquire( '../../../../../app/lib/middleware/globals', {
-			'../../config': {
-				server: { uuid }
-			}
+			'../../config': {}
 		} );
 
 		env = {
@@ -48,7 +46,7 @@ describe( 'Globals middleware', function(){
 				const args = env.addGlobal.calls.argsFor( 0 );
 
 				expect( args[ 0 ] ).toEqual( 'urlPrefix' );
-				expect( args[ 1 ] ).toEqual( `/${ uuid }` );
+				expect( args[ 1 ] ).toEqual( '' );
 			} );
 
 			it( 'Should not add the year to the baseUrlPrefix', function(){
@@ -56,7 +54,7 @@ describe( 'Globals middleware', function(){
 				const args = env.addGlobal.calls.argsFor( 1 );
 
 				expect( args[ 0 ] ).toEqual( 'baseUrlPrefix' );
-				expect( args[ 1 ] ).toEqual( `/${ uuid }` );
+				expect( args[ 1 ] ).toEqual( '' );
 			} );
 		} );
 

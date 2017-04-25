@@ -49,7 +49,7 @@ describe( 'Overseas Regions controller', function(){
 		it( 'Should get the overview data and render the correct view', function( done ){
 
 			const req = {
-				alice: '123',
+				cookies: { sessionid: '123' },
 				year
 			};
 
@@ -76,7 +76,7 @@ describe( 'Overseas Regions controller', function(){
 		it( 'Should get the list data and render the correct view', function( done ){
 
 			const req = {
-				alice: '87654',
+				cookies: { sessionid: '456' },
 				year
 			};
 
@@ -102,7 +102,7 @@ describe( 'Overseas Regions controller', function(){
 		it( 'Should get the region data and render the correct view', function( done ){
 
 			const req = {
-				alice: '1234',
+				cookies: { sessionid: '789' },
 				year,
 				params: {
 					id: 1234

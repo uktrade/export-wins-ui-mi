@@ -50,7 +50,7 @@ describe( 'HVC Groups controller', function(){
 			spyOn( errorHandler, 'createHandler' ).and.callFake( createErrorHandler( done ) );
 
 			const req = {
-				alice: '87654',
+				cookies: { sessionid: '123' },
 				year
 			};
 
@@ -80,7 +80,7 @@ describe( 'HVC Groups controller', function(){
 			spyOn( monthlyPerformance, 'create' ).and.callThrough();
 
 			const req = {
-				alice: '1234',
+				cookies: { sessionid: '456' },
 				year,
 				params: {
 					id: 1234

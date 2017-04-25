@@ -46,7 +46,7 @@ describe( 'SAML controller', function(){
 					spyOn( errorHandler, 'createHandler' ).and.callFake( () => done.fail );
 
 					const response = 'success';
-					const req = { data: '<xml>' };
+					const req = { cookies: {}, data: '<xml>' };
 					const session_id = 'abc1234';
 					const cookieSpy = jasmine.createSpy( 'res.cookie' );
 
@@ -54,9 +54,8 @@ describe( 'SAML controller', function(){
 						cookie: cookieSpy,
 						redirect: function( location ){
 
-							expect( backendService.sendSamlXml ).toHaveBeenCalledWith( req.data );
-							expect( cookieSpy ).toHaveBeenCalledWith( 'session-id', session_id );
-							expect( location ).toEqual( '/' + config.server.uuid + '/' );
+							expect( backendService.sendSamlXml ).toHaveBeenCalledWith( req );
+							expect( location ).toEqual( '/' );
 							done();
 						}
 					};
@@ -64,10 +63,6 @@ describe( 'SAML controller', function(){
 					interceptBackend.post( '/saml2/acs/' ).reply( 200, response, {
 						'Set-Cookie': `session_id=${ session_id }`
 					} );
-
-					config.server = {
-						uuid: 'testing'
-					};
 
 					controller.acs( req, res );
 				} );
@@ -83,14 +78,14 @@ describe( 'SAML controller', function(){
 			spyOn( errorHandler, 'createHandler' ).and.callFake( () => done.fail );
 
 			const xml = '<xml test=true"/>';
-			const req = {};
+			const req = { cookies: {} };
 			const res = {
 
 				set: jasmine.createSpy( 'res.set' ),
 
 				send: function( data ){
 
-					expect( backendService.getSamlMetadata ).toHaveBeenCalled();
+					expect( backendService.getSamlMetadata ).toHaveBeenCalledWith( req );
 					expect( res.set ).toHaveBeenCalledWith( 'Content-Type', 'text/xml' );
 					expect( data ).toEqual( xml );
 					expect( errorHandler.createHandler ).toHaveBeenCalled();

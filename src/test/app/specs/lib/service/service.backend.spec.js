@@ -30,7 +30,7 @@ function returnStub( file ){
 	} );
 }
 
-describe( 'Backend service', function(){
+xdescribe( 'Backend service', function(){
 
 	let oldTimeout;
 

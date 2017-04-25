@@ -4,7 +4,7 @@ module.exports = function( env ){
 
 	return function( req, res, next ){
 
-		const basePrefix = `/${ config.server.uuid }`;
+		const basePrefix = '';
 		let prefix = basePrefix;
 
 		/* TODO: Add back

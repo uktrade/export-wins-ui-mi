@@ -17,7 +17,14 @@ module.exports = {
 
 		return function( err ){
 
-			sendResponse( res, err );
+			if( err.code === 403 ){
+
+				res.redirect( '/login/' );
+
+			} else {
+
+				sendResponse( res, err );
+			}
 		};
 	}
 };

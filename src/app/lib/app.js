@@ -13,8 +13,6 @@ const reporter = require( './reporter' );
 const nunjucksFilters = require( './nunjucks-filters' );
 const staticGlobals = require( './static-globals' );
 
-const alice = require( './middleware/alice' );
-const uuid = require( './middleware/uuid' );
 const ping = require( './middleware/ping' );
 const data = require( './middleware/data' );
 const year = require( './middleware/year' );
@@ -72,8 +70,6 @@ module.exports = {
 		app.post( '/saml2/acs/', data, samlController.acs );
 		app.get( '/login/', loginController );
 		//app.use( loginCheck );
-		app.use( uuid );
-		app.use( alice );
 		app.use( year );
 		app.use( globals( nunjucksEnv ) );
 
