@@ -256,7 +256,7 @@ function sendSamlXml( req ){
 
 	return new Promise( ( resolve, reject ) => {
 
-		backend.post( '/saml2/acs/', req.data, function( err, response, data ){
+		backend.sessionPost( req.cookies.sessionid, '/saml2/acs/', req.data, function( err, response, data ){
 
 			if( err ){
 
