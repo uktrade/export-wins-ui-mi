@@ -7,12 +7,14 @@ const hvcGroupController = require( './controllers/controller.hvc-groups' );
 const winController =  require( './controllers/controller.win' );
 const hvcController = require( './controllers/controller.hvc' );
 const winsController = require( './controllers/controller.wins' );
+const selectYearController = require( './controllers/controller.select-year' );
 
 const linkHvc = require( './lib/middleware/link-hvc' );
 
 module.exports = function( express, app ){
 
 	app.get( '/', indexController );
+	app.get( '/select-year/', selectYearController.choose );
 
 	app.get( '/sector-teams/', sectorTeamController.list );
 	app.get( '/sector-teams/overview/', sectorTeamController.overview );

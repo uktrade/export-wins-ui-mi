@@ -1,6 +1,6 @@
 {
   "name": "export-wins-ui-mi",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "description": "An MI dashboard for Export Wins",
   "main": "server.js",
   "engines": {
@@ -90,6 +90,7 @@
     "karma-chrome-launcher": "*",
     "karma-jasmine": "*",
     "load-grunt-tasks": "*",
+    "mockdate": "2.0.1",
     "nock": "9.0.6",
     "node-sass": "4.3.0",
     "nodemon": "*",

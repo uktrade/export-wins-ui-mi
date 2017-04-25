@@ -27,7 +27,7 @@ function getTitle( res ){
 	return title;
 }
 
-describe( 'App', function(){
+xdescribe( 'App', function(){
 
 	let app;
 	let oldTimeout;
@@ -51,7 +51,7 @@ describe( 'App', function(){
 
 			it( 'Should return a 200 with the correct heading', function( done ){
 
-				interceptBackend.getStub( '/mi/sector_teams/?year=2016', 200, '/sector_teams/' );
+				interceptBackend.getStub( '/mi/sector_teams/?year=2017', 200, '/sector_teams/' );
 
 				supertest( app ).get( '/' ).end( ( err, res ) => {
 
@@ -66,7 +66,7 @@ describe( 'App', function(){
 
 			it( 'Should return a 500', function( done ){
 
-				interceptBackend.getStub( '/mi/sector_teams/?year=2016', 500 );
+				interceptBackend.getStub( '/mi/sector_teams/?year=2017', 500 );
 
 				supertest( app ).get( '/' ).end( ( err, res ) => {
 
@@ -82,8 +82,8 @@ describe( 'App', function(){
 
 				it( 'Should return a 500', function( done ){
 
-					interceptBackend.getStub( '/mi/sector_teams/?year=2016', 200, '/sector_teams/' );
-					interceptBackend.getStub( '/mi/os_regions/?year=2016', 500 );
+					interceptBackend.getStub( '/mi/sector_teams/?year=2017', 200, '/sector_teams/' );
+					interceptBackend.getStub( '/mi/os_regions/?year=2017', 500 );
 
 					supertest( app ).get( '/?osRegions=true' ).end( ( err, res ) => {
 
@@ -97,8 +97,8 @@ describe( 'App', function(){
 
 				it( 'Should return a 500', function( done ){
 
-					interceptBackend.getStub( '/mi/sector_teams/?year=2016', 500 );
-					interceptBackend.getStub( '/mi/os_regions/?year=2016', 500 );
+					interceptBackend.getStub( '/mi/sector_teams/?year=2017', 500 );
+					interceptBackend.getStub( '/mi/os_regions/?year=2017', 500 );
 
 					supertest( app ).get( '/?osRegions=true' ).end( ( err, res ) => {
 
@@ -118,7 +118,7 @@ describe( 'App', function(){
 
 				it( 'Should return a 200 with the correct heading', function( done ){
 
-					interceptBackend.getStub( '/mi/sector_teams/overview/?year=2016', 200, '/sector_teams/overview' );
+					interceptBackend.getStub( '/mi/sector_teams/overview/?year=2017', 200, '/sector_teams/overview' );
 
 					supertest( app ).get( '/sector-teams/overview/' ).end( ( err, res ) => {
 
@@ -136,7 +136,7 @@ describe( 'App', function(){
 
 				it( 'Should return a 200 with the correct heading', function( done ){
 
-					interceptBackend.getStub( '/mi/sector_teams/?year=2016', 200, '/sector_teams/' );
+					interceptBackend.getStub( '/mi/sector_teams/?year=2017', 200, '/sector_teams/' );
 
 					supertest( app ).get( '/sector-teams/' ).end( ( err, res ) => {
 
@@ -154,10 +154,10 @@ describe( 'App', function(){
 
 				it( 'Should return a 200 with the correct heading', function( done ){
 
-					interceptBackend.getStub( '/mi/sector_teams/1/?year=2016', 200, '/sector_teams/sector_team' );
-					interceptBackend.getStub( '/mi/sector_teams/1/months/?year=2016', 200, '/sector_teams/months' );
-					interceptBackend.getStub( '/mi/sector_teams/1/campaigns/?year=2016', 200, '/sector_teams/campaigns' );
-					interceptBackend.getStub( '/mi/sector_teams/1/top_non_hvcs/?year=2016', 200, '/sector_teams/top_non_hvcs' );
+					interceptBackend.getStub( '/mi/sector_teams/1/?year=2017', 200, '/sector_teams/sector_team' );
+					interceptBackend.getStub( '/mi/sector_teams/1/months/?year=2017', 200, '/sector_teams/months' );
+					interceptBackend.getStub( '/mi/sector_teams/1/campaigns/?year=2017', 200, '/sector_teams/campaigns' );
+					interceptBackend.getStub( '/mi/sector_teams/1/top_non_hvcs/?year=2017', 200, '/sector_teams/top_non_hvcs' );
 
 					supertest( app ).get( '/sector-teams/1/' ).end( ( err, res ) => {
 
@@ -178,7 +178,7 @@ describe( 'App', function(){
 
 				it( 'Should return a 200 with the correct heading', function( done ){
 
-					interceptBackend.getStub( '/mi/hvc_groups/?year=2016', 200, '/hvc_groups/' );
+					interceptBackend.getStub( '/mi/hvc_groups/?year=2017', 200, '/hvc_groups/' );
 
 					supertest( app ).get( '/hvc-groups/' ).end( ( err, res ) => {
 
@@ -196,9 +196,9 @@ describe( 'App', function(){
 
 				it( 'Should return a 200 with the correct heading', function( done ){
 
-					interceptBackend.getStub( '/mi/hvc_groups/1/?year=2016', 200, '/hvc_groups/group' );
-					interceptBackend.getStub( '/mi/hvc_groups/1/months/?year=2016', 200, '/hvc_groups/months' );
-					interceptBackend.getStub( '/mi/hvc_groups/1/campaigns/?year=2016', 200, '/hvc_groups/campaigns' );
+					interceptBackend.getStub( '/mi/hvc_groups/1/?year=2017', 200, '/hvc_groups/group' );
+					interceptBackend.getStub( '/mi/hvc_groups/1/months/?year=2017', 200, '/hvc_groups/months' );
+					interceptBackend.getStub( '/mi/hvc_groups/1/campaigns/?year=2017', 200, '/hvc_groups/campaigns' );
 
 					supertest( app ).get( '/hvc-groups/1/' ).end( ( err, res ) => {
 
@@ -270,7 +270,7 @@ if( config.backend.mock ){
 
 				it( 'Should return a 200 with the correct heading', function( done ){
 
-					interceptBackend.getStub( '/mi/os_regions/overview/?year=2016', 200, '/os_regions/overview' );
+					interceptBackend.getStub( '/mi/os_regions/overview/?year=2017', 200, '/os_regions/overview' );
 
 					supertest( app ).get( '/overseas-regions/overview/' ).end( ( err, res ) => {
 
@@ -288,7 +288,7 @@ if( config.backend.mock ){
 
 				it( 'Should return a 200 with the correct heading', function( done ){
 
-					interceptBackend.getStub( '/mi/os_regions/?year=2016', 200, '/os_regions/' );
+					interceptBackend.getStub( '/mi/os_regions/?year=2017', 200, '/os_regions/' );
 
 					supertest( app ).get( '/overseas-regions/' ).end( ( err, res ) => {
 
@@ -306,10 +306,10 @@ if( config.backend.mock ){
 
 				it( 'Should return a 200 with the correct heading', function( done ){
 
-					interceptBackend.getStub( '/mi/os_regions/1/?year=2016', 200, '/os_regions/region' );
-					interceptBackend.getStub( '/mi/os_regions/1/months/?year=2016', 200, '/os_regions/months' );
-					interceptBackend.getStub( '/mi/os_regions/1/campaigns/?year=2016', 200, '/os_regions/campaigns' );
-					interceptBackend.getStub( '/mi/os_regions/1/top_non_hvcs/?year=2016', 200, '/os_regions/top_non_hvcs' );
+					interceptBackend.getStub( '/mi/os_regions/1/?year=2017', 200, '/os_regions/region' );
+					interceptBackend.getStub( '/mi/os_regions/1/months/?year=2017', 200, '/os_regions/months' );
+					interceptBackend.getStub( '/mi/os_regions/1/campaigns/?year=2017', 200, '/os_regions/campaigns' );
+					interceptBackend.getStub( '/mi/os_regions/1/top_non_hvcs/?year=2017', 200, '/os_regions/top_non_hvcs' );
 
 					supertest( app ).get( '/overseas-regions/1/' ).end( ( err, res ) => {
 
@@ -318,6 +318,19 @@ if( config.backend.mock ){
 						done();
 					} );
 				} );
+			} );
+		} );
+	} );
+
+	describe( 'Select Year', function(){
+
+		it( 'Should render the view', function( done ){
+
+			supertest( app ).get( '/select-year' ).end( ( err, res ) => {
+
+				expect( res.statusCode ).toEqual( 200 );
+				expect( getTitle( res ) ).toEqual( 'MI - Select year' );
+				done();
 			} );
 		} );
 	} );

@@ -18,7 +18,7 @@
 
 			<ul class="sector-list">
 			{% for region in regions %}
-				<li><a href="{{ uuid }}/overseas-regions/{{ region.id }}/">{{ region.name }}</a></li>
+				<li><a href="{{ urls.osRegion( region.id ) }}">{{ region.name }}</a></li>
 			{% endfor %}
 			</ul>
 
