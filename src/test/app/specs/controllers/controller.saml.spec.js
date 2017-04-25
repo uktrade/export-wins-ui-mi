@@ -51,6 +51,7 @@ describe( 'SAML controller', function(){
 					const cookieSpy = jasmine.createSpy( 'res.cookie' );
 
 					const res = {
+						set: jasmine.createSpy( 'res.set' ),
 						cookie: cookieSpy,
 						redirect: function( location ){
 
