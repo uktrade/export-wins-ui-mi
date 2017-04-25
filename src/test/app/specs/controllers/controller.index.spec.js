@@ -1,8 +1,11 @@
 const proxyquire = require( 'proxyquire' );
 const backendService = require( '../../../../app/lib/service/service.backend' );
 const errorHandler = require( '../../../../app/lib/render-error' );
-const interceptBackend = require( '../../helpers/intercept-backend' );
 
+const interceptBackend = require( '../../helpers/intercept-backend' );
+const createErrorHandler = require( '../../helpers/create-error-handler' );
+
+const year = 2017;
 let controller;
 
 describe( 'Overseas Regions controller', function(){
@@ -35,18 +38,19 @@ describe( 'Overseas Regions controller', function(){
 		it( 'Should get the sectors list data and render the view', function( done ){
 
 			const req = {
-				alice: '87654',
+				cookies: { sessionid: '123' },
+				year,
 				query: {}
 			};
 
 			spyOn( backendService, 'getSectorTeams' ).and.callThrough();
-			spyOn( errorHandler, 'createHandler' ).and.callFake( () => done );
+			spyOn( errorHandler, 'createHandler' ).and.callFake( createErrorHandler( done ) );
 
-			interceptBackend.getStub( '/mi/sector_teams/', 200, '/sector_teams/' );
+			interceptBackend.getStub( `/mi/sector_teams/?year=${ year }`, 200, '/sector_teams/' );
 
 			controller( req, { render: function( view, data ){
 
-				expect( backendService.getSectorTeams ).toHaveBeenCalledWith( req.alice );
+				expect( backendService.getSectorTeams ).toHaveBeenCalledWith( req );
 				expect( view ).toEqual( 'index.html' );
 				expect( data.sectorTeams ).toBeDefined();
 				expect( data.sectorTeams.length ).toBeGreaterThan( 1 );
@@ -62,21 +66,22 @@ describe( 'Overseas Regions controller', function(){
 		it( 'Should show the Overseas Regions list and render the view', function( done ){
 
 			const req = {
-				alice: '87654',
+				cookies: { sessionid: '456' },
+				year,
 				query: {
 					osRegions: true
 				}
 			};
 
 			spyOn( backendService, 'getSectorTeamsAndOverseasRegions' ).and.callThrough();
-			spyOn( errorHandler, 'createHandler' ).and.callFake( () => done );
+			spyOn( errorHandler, 'createHandler' ).and.callFake( createErrorHandler( done ) );
 
-			interceptBackend.getStub( '/mi/sector_teams/', 200, '/sector_teams/' );
-			interceptBackend.getStub( '/mi/os_regions/', 200, '/os_regions/' );
+			interceptBackend.getStub( `/mi/sector_teams/?year=${ year }`, 200, '/sector_teams/' );
+			interceptBackend.getStub( `/mi/os_regions/?year=${ year }`, 200, '/os_regions/' );
 
 			controller( req, { render: function( view, data ){
 
-				expect( backendService.getSectorTeamsAndOverseasRegions ).toHaveBeenCalledWith( req.alice );
+				expect( backendService.getSectorTeamsAndOverseasRegions ).toHaveBeenCalledWith( req );
 				expect( view ).toEqual( 'index.html' );
 				expect( data.sectorTeams ).toBeDefined();
 				expect( data.sectorTeams.length ).toBeGreaterThan( 1 );

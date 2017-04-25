@@ -10,7 +10,7 @@ let backend;
 const timeout = 500;
 const href = 'testing.local';
 const path = '/test';
-const alice ={ session: 'alice-session' };
+const sessionId = 'session1234';
 
 function createBackend( opts = {} ){
 
@@ -118,7 +118,7 @@ describe( 'Backend lib', function(){
 
 				it( 'Should call request with the correct options', function( done ){
 
-					backend.sessionGet( alice, path, function(){
+					backend.sessionGet( sessionId, path, function(){
 
 						expect( request.calls.argsFor( 0 )[ 0 ] ).toEqual( {
 							url: ( href + path ),
@@ -126,7 +126,7 @@ describe( 'Backend lib', function(){
 							method: 'GET',
 							headers: {
 								'X-Signature': 'test-hash',
-								'Cookie': ( 'sessionid=' + alice.session )
+								'Cookie': ( 'sessionid=' + sessionId )
 							}
 						} );
 						done();
@@ -168,7 +168,7 @@ describe( 'Backend lib', function(){
 					}, '{ "test": "testing" }' );
 				} );
 
-				backend.sessionGet( alice, path, function( err, response ){
+				backend.sessionGet( sessionId, path, function( err, response ){
 
 					expect( reporter.message ).toHaveBeenCalledWith( 'info', 'Long response time from backend API: /test', {
 						time: response.elapsedTime,
@@ -202,7 +202,7 @@ describe( 'Backend lib', function(){
 
 					it( 'Should return the response as a JSON object', function( done ){
 
-						backend.sessionGet( alice, path, function( err, response, data ){
+						backend.sessionGet( sessionId, path, function( err, response, data ){
 
 							expect( request ).toHaveBeenCalled();
 							expect( err ).toBeNull();
@@ -229,7 +229,7 @@ describe( 'Backend lib', function(){
 							}, '"test": "testing"' );
 						} );
 
-						backend.sessionGet( alice, path, function( err, response, data ){
+						backend.sessionGet( sessionId, path, function( err, response, data ){
 
 							expect( request ).toHaveBeenCalled();
 							expect( err ).toBeNull();
@@ -258,7 +258,7 @@ describe( 'Backend lib', function(){
 						}, 'test' );
 					} );
 
-					backend.sessionGet( alice, path, function( err, response, data ){
+					backend.sessionGet( sessionId, path, function( err, response, data ){
 
 						expect( request ).toHaveBeenCalled();
 						expect( err ).toBeNull();
@@ -285,7 +285,7 @@ describe( 'Backend lib', function(){
 						cb( err );
 					} );
 
-					backend.sessionGet( alice, path, function( err, response, data ){
+					backend.sessionGet( sessionId, path, function( err, response, data ){
 
 						expect( request ).toHaveBeenCalled();
 						expect( err ).toBeDefined();
@@ -314,7 +314,7 @@ describe( 'Backend lib', function(){
 
 				interceptBackend.getStub( path, 200, '/sector_teams/' );
 
-				backend.sessionGet( alice, path, function( err, response, data ){
+				backend.sessionGet( sessionId, path, function( err, response, data ){
 
 					expect( err ).toBeNull();
 					expect( response.statusCode ).toEqual( 200 );
@@ -331,7 +331,7 @@ describe( 'Backend lib', function(){
 
 				interceptBackend.get( path ).reply( 500 );
 
-				backend.sessionGet( alice, path, function( err, response, data ){
+				backend.sessionGet( sessionId, path, function( err, response, data ){
 
 					expect( err ).toBeDefined();
 					expect( response.statusCode ).toEqual( 500 );
@@ -348,12 +348,29 @@ describe( 'Backend lib', function(){
 
 				interceptBackend.get( path ).reply( 404, 'not found' );
 
-				backend.sessionGet( alice, path, function( err, response, data ){
+				backend.sessionGet( sessionId, path, function( err, response, data ){
 
 					expect( err ).toBeDefined();
 					expect( response.statusCode ).toEqual( 404 );
 					expect( response.isSuccess ).toEqual( false );
 					expect( data ).toEqual( 'not found' );
+					done();
+				} );
+			} );
+		} );
+
+		describe( 'A 403 response', function(){
+
+			it( 'Should return an error', function( done ){
+
+				interceptBackend.get( path ).reply( 403, 'not authorised' );
+
+				backend.sessionGet( sessionId, path, function( err, response, data ){
+
+					expect( err ).toBeDefined();
+					expect( response.statusCode ).toEqual( 403 );
+					expect( response.isSuccess ).toEqual( false );
+					expect( data ).toEqual( 'not authorised' );
 					done();
 				} );
 			} );

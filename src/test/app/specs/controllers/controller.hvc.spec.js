@@ -7,6 +7,9 @@ const hvcTargetPerformance = require( '../../../../app/lib/view-models/hvc-targe
 const topMarkets = require( '../../../../app/lib/view-models/top-markets' );
 const monthlyPerformance = require( '../../../../app/lib/view-models/monthly-performance' );
 
+const createErrorHandler = require( '../../helpers/create-error-handler' );
+
+const year = 2017;
 let controller;
 
 if( !config.backend.mock ){ return; }
@@ -44,7 +47,8 @@ describe( 'HVC controller', function(){
 		it( 'Should get the HVC data and render the correct view', function( done ){
 
 			const req = {
-				alice: '1234',
+				cookies: { sessionid: '123' },
+				year,
 				params: {
 					id: 1234
 				}
@@ -53,14 +57,14 @@ describe( 'HVC controller', function(){
 			const hvcId = req.params.id;
 
 			spyOn( backendService, 'getHvc' ).and.callThrough();
-			spyOn( errorHandler, 'createHandler' ).and.callFake( () => done );
+			spyOn( errorHandler, 'createHandler' ).and.callFake( createErrorHandler( done ) );
 			spyOn( hvcTargetPerformance, 'create' ).and.callThrough();
 			spyOn( topMarkets, 'create' ).and.callThrough();
 			spyOn( monthlyPerformance, 'create' ).and.callThrough();
 
 			controller.hvc( req, { render: function( view, data ){
 
-				expect( backendService.getHvc ).toHaveBeenCalledWith( req.alice, hvcId );
+				expect( backendService.getHvc ).toHaveBeenCalledWith( req, hvcId );
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				expect( hvcTargetPerformance.create ).toHaveBeenCalled();
 				expect( topMarkets.create ).toHaveBeenCalled();

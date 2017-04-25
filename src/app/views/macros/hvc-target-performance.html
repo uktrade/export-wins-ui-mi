@@ -1,3 +1,5 @@
+{% from 'macros/url.html' import hvc as hvcUrl %}
+
 {% macro percentMarkers( modifyer='top' ) %}
 
 	<tr class="hvc-perf_row_percent-markers hvc-perf_row_percent-markers--{{ modifyer }}">
@@ -52,8 +54,8 @@
 			<tr class="hvc-perf_table_row">
 				<td class="hvc-perf_table_cell hvc-perf_table_cell--campaign">
 					{% if linkHvc -%}
-					<a href="{{ uuid }}/hvc/{{ item.id }}/" class="hvc-perf_table_cell_hvc-id">{{ item.id }}</a>
-					<a href="{{ uuid }}/hvc/{{ item.id }}/" class="hvc-perf_table_cell_hvc-name">{{ item.name }}</a>
+					<a href="{{ hvcUrl( item.id ) }}" class="hvc-perf_table_cell_hvc-id">{{ item.id }}</a>
+					<a href="{{ hvcUrl( item.id ) }}" class="hvc-perf_table_cell_hvc-name">{{ item.name }}</a>
 					{%- else -%}
 					<span class="hvc-perf_table_cell_hvc-id">{{ item.id }}</span>
 					<span class="hvc-perf_table_cell_hvc-name">{{ item.name }}</span>

@@ -11,7 +11,7 @@ module.exports = {
 
 	list: function( req, res ){
 
-		backendService.getHvcGroups( req.alice ).then( ( hvcGroups ) => {
+		backendService.getHvcGroups( req ).then( ( hvcGroups ) => {
 
 			res.render( 'hvc-groups/list.html', { hvcGroups: hvcGroups.results } );
 
@@ -22,7 +22,7 @@ module.exports = {
 
 		const groupId = req.params.id;
 
-		backendService.getHvcGroupInfo( req.alice, groupId ).then( ( data ) => {
+		backendService.getHvcGroupInfo( req, groupId ).then( ( data ) => {
 
 			res.render( 'hvc-groups/detail.html', {
 				sectorName: data.wins.results.name,

@@ -70,6 +70,11 @@
 	border-bottom: 1px solid $grey-2;
 	padding: 0.5em 0;
  	margin-bottom: 0.5em;
+ 	overflow: hidden;
+}
+
+.top-nav_change-year {
+	float: right;
 }
 
 .page-content {

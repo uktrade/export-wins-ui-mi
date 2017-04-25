@@ -10,12 +10,12 @@
 
 	<div class="grid-row">
 		<div class="column-one-third">
-			
+
 			<h2 class="sector-list-heading">Sector Teams</h2>
 
 			<ul class="sector-list">
 			{% for team in sectorTeams %}
-				<li><a href="{{ uuid }}/sector-teams/{{ team.id }}/">{{ team.name }} Sector Team</a></li>
+				<li><a href="{{ urls.sectorTeam( team.id ) }}">{{ team.name }} Sector Team</a></li>
 			{% endfor %}
 			</ul>
 		</div>

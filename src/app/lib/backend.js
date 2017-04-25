@@ -6,7 +6,7 @@ const createSignature = require( './create-signature' );
 
 const backendHref = config.backend.href;
 
-function createRequestOptions( method, path, opts = { body: null, alice: null } ){
+function createRequestOptions( method, path, opts = { body: null, sessionId: null } ){
 
 	const options = {
 		url: ( backendHref + path ),
@@ -17,9 +17,9 @@ function createRequestOptions( method, path, opts = { body: null, alice: null } 
 		}
 	};
 
-	if( opts.alice ){
+	if( opts.sessionId ){
 
-		options.headers[ 'Cookie' ] = ( 'sessionid=' + opts.alice.session );
+		options.headers[ 'Cookie' ] = ( 'sessionid=' + opts.sessionId );
 	}
 
 	if( opts.body ){
@@ -89,11 +89,11 @@ module.exports = {
 		request( createRequestOptions( 'GET', path ), handleResponse( cb ) );
 	},
 
-	sessionGet: function( alice, path, cb ){
+	sessionGet: function( sessionId, path, cb ){
 
 		logger.debug( 'Backend GET request to: ' + path );
 
-		request( createRequestOptions( 'GET', path, { alice } ), handleResponse( cb ) );
+		request( createRequestOptions( 'GET', path, { sessionId } ), handleResponse( cb ) );
 	},
 
 	post: function( path, body, cb ){

@@ -12,7 +12,7 @@ module.exports = {
 
 	overview: function( req, res ){
 
-		backendService.getSectorTeamsOverview( req.alice ).then( ( sectorTeams ) => {
+		backendService.getSectorTeamsOverview( req ).then( ( sectorTeams ) => {
 
 			res.render( 'sector-teams/overview', {
 				dateRange: sectorTeams.date_range,
@@ -24,7 +24,7 @@ module.exports = {
 
 	list: function( req, res ){
 
-		backendService.getSectorTeams( req.alice ).then( ( sectorTeams ) => {
+		backendService.getSectorTeams( req ).then( ( sectorTeams ) => {
 
 			res.render( 'sector-teams/list.html', { sectorTeams: sectorTeams.results } );
 
@@ -35,7 +35,7 @@ module.exports = {
 
 		const teamId = req.params.id;
 
-		backendService.getSectorTeamInfo( req.alice, teamId ).then( ( data ) => {
+		backendService.getSectorTeamInfo( req, teamId ).then( ( data ) => {
 
 			res.render( 'sector-teams/detail.html', {
 

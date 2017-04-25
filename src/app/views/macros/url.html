@@ -1,0 +1,48 @@
+{% macro url( path ) %}
+	{{- urlPrefix }}{{ path }}
+{%- endmacro %}
+
+{% macro index() %}
+	{{- url( '/' ) }}
+{%- endmacro %}
+
+{% macro year( fy, yr ) %}
+	{%- if fy == yr %}
+		{{- url( '/' ) }}
+	{%- else %}
+		{{- url( '/' + yr + '/' ) }}
+	{%- endif %}
+{%- endmacro %}
+
+{% macro sectorTeamsOverview() %}
+	{{- url( '/sector-teams/overview/' ) }}
+{%- endmacro %}
+
+{% macro sectorTeam( teamId ) %}
+	{{- urlPrefix }}/sector-teams/{{ teamId }}/
+{%- endmacro %}
+
+{% macro hvcGroup( groupId ) %}
+	{{- urlPrefix }}/hvc-groups/{{ groupId }}/
+{%- endmacro %}
+
+{% macro osRegionsOverview() %}
+	{{- url( '/overseas-regions/overview/' ) }}
+{%- endmacro %}
+
+{% macro osRegion( regionId ) %}
+	{{- urlPrefix }}/overseas-regions/{{ regionId }}/
+{%- endmacro %}
+
+{% macro hvc( hvcId ) %}
+	{{- urlPrefix }}/hvc/{{ hvcId }}/
+{%- endmacro %}
+
+{% macro changeYear() -%}
+	{{- baseUrlPrefix }}/select-year/
+{%- endmacro %}
+
+{% macro email() -%}
+	mailto:{{ feedbackEmail -}}
+{% endmacro %}
+
