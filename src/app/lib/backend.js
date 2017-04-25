@@ -101,5 +101,12 @@ module.exports = {
 		logger.debug( 'Backend POST request to: ' + path );
 
 		request( createRequestOptions( 'POST', path, { body } ), handleResponse( cb ) );
+	},
+
+	sessionPost: function( sessionId, path, body, cb ){
+
+		logger.debug( 'Backend POST request to: ' + path );
+
+		request( createRequestOptions( 'POST', path, { sessionId, body } ), handleResponse( cb ) );
 	}
 };
