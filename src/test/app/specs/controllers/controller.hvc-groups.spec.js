@@ -8,7 +8,9 @@ const hvcTargetPerformance = require( '../../../../app/lib/view-models/hvc-targe
 const monthlyPerformance = require( '../../../../app/lib/view-models/monthly-performance' );
 
 const interceptBackend = require( '../../helpers/intercept-backend' );
+const createErrorHandler = require( '../../helpers/create-error-handler' );
 
+const year = 2017;
 let controller;
 
 describe( 'HVC Groups controller', function(){
@@ -45,17 +47,18 @@ describe( 'HVC Groups controller', function(){
 		it( 'Should get the list data and render the correct view', function( done ){
 
 			spyOn( backendService, 'getHvcGroups' ).and.callThrough();
-			spyOn( errorHandler, 'createHandler' ).and.callFake( () => done );
+			spyOn( errorHandler, 'createHandler' ).and.callFake( createErrorHandler( done ) );
 
 			const req = {
-				alice: '87654'
+				alice: '87654',
+				year
 			};
 
-			interceptBackend.getStub( '/mi/hvc_groups/', 200, '/hvc_groups/' );
+			interceptBackend.getStub( `/mi/hvc_groups/?year=${ year }`, 200, '/hvc_groups/' );
 
 			controller.list( req, { render: function( view, data ){
 
-				expect( backendService.getHvcGroups ).toHaveBeenCalledWith( req.alice );
+				expect( backendService.getHvcGroups ).toHaveBeenCalledWith( req.alice, req.year );
 				expect( view ).toEqual( 'hvc-groups/list.html' );
 				expect( data.hvcGroups ).toBeDefined();
 				expect( data.hvcGroups.length ).toBeGreaterThan( 1 );
@@ -70,7 +73,7 @@ describe( 'HVC Groups controller', function(){
 		it( 'Should get the group data and render the correct view', function( done ){
 
 			spyOn( backendService, 'getHvcGroupInfo' ).and.callThrough();
-			spyOn( errorHandler, 'createHandler' ).and.callFake( () => done );
+			spyOn( errorHandler, 'createHandler' ).and.callFake( createErrorHandler( done ) );
 			spyOn( sectorSummary, 'create' ).and.callThrough();
 			spyOn( hvcSummary, 'create' ).and.callThrough();
 			spyOn( hvcTargetPerformance, 'create' ).and.callThrough();
@@ -78,21 +81,22 @@ describe( 'HVC Groups controller', function(){
 
 			const req = {
 				alice: '1234',
+				year,
 				params: {
 					id: 1234
 				}
 			};
 			const groupId = req.params.id;
 
-			interceptBackend.getStub( `/mi/hvc_groups/${ groupId }/`, 200, '/hvc_groups/group' );
-			interceptBackend.getStub( `/mi/hvc_groups/${ groupId }/months/`, 200, '/hvc_groups/months' );
-			interceptBackend.getStub( `/mi/hvc_groups/${ groupId }/campaigns/`, 200, '/hvc_groups/campaigns' );
+			interceptBackend.getStub( `/mi/hvc_groups/${ groupId }/?year=${ year }`, 200, '/hvc_groups/group' );
+			interceptBackend.getStub( `/mi/hvc_groups/${ groupId }/months/?year=${ year }`, 200, '/hvc_groups/months' );
+			interceptBackend.getStub( `/mi/hvc_groups/${ groupId }/campaigns/?year=${ year }`, 200, '/hvc_groups/campaigns' );
 
 			controller.group( req, { render: function( view, data ){
 
-				expect( data.sectorSummary.dateRange ).toBeDefined();
+				expect( data.summary.dateRange ).toBeDefined();
 
-				expect( backendService.getHvcGroupInfo ).toHaveBeenCalledWith( req.alice, groupId );
+				expect( backendService.getHvcGroupInfo ).toHaveBeenCalledWith( req.alice, req.year, groupId );
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				expect( sectorSummary.create ).toHaveBeenCalled();
 				expect( hvcSummary.create ).toHaveBeenCalled();

@@ -6,6 +6,7 @@ const interceptBackend = require( '../../../helpers/intercept-backend' );
 const configStub = { backend: { stub: false, fake: false, mock: false } };
 
 let alice = 'test';
+let year = '2017';
 let stubs;
 let backendService;
 let monthsSpy;
@@ -40,7 +41,7 @@ describe( 'Backend service', function(){
 		jasmine.DEFAULT_TIMEOUT_INTERVAL = oldTimeout;
 	} );
 
-	describe( 'Singe methods', function(){
+	describe( 'Single methods', function(){
 
 		beforeEach( function(){
 
@@ -80,7 +81,7 @@ describe( 'Backend service', function(){
 
 					returnStub( '/sector_teams/' );
 
-					backendService.getSectorTeam( alice, teamId ).then( ( data ) => {
+					backendService.getSectorTeam( alice, year, teamId ).then( ( data ) => {
 
 						expect( data.date_range ).toBeDefined();
 						expect( data.date_range.start ).toEqual( 1459468800 * 1000 );
@@ -98,7 +99,7 @@ describe( 'Backend service', function(){
 
 					returnStub( '/os_regions/' );
 
-					backendService.getOverseasRegions( alice ).then( ( data ) => {
+					backendService.getOverseasRegions( alice, year ).then( ( data ) => {
 
 						expect( data.date_range ).not.toBeDefined();
 						done();
@@ -119,12 +120,12 @@ describe( 'Backend service', function(){
 
 				returnStub( '/sector_teams/' );
 
-				backendService.getSectorTeam( alice, teamId ).then( () => {
+				backendService.getSectorTeam( alice, year, teamId ).then( () => {
 
 					const args = backend.sessionGet.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( `/mi/sector_teams/${ teamId }/?year=2016` );
+					expect( args[ 1 ] ).toEqual( `/mi/sector_teams/${ teamId }/?year=${ year }` );
 					done();
 
 				} ).catch( done );
@@ -139,12 +140,12 @@ describe( 'Backend service', function(){
 
 				returnStub( '/sector_teams/months' );
 
-				backendService.getSectorTeamMonths( alice, teamId ).then( () => {
+				backendService.getSectorTeamMonths( alice, year, teamId ).then( () => {
 
 					const args = backend.sessionGet.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( `/mi/sector_teams/${ teamId }/months/?year=2016` );
+					expect( args[ 1 ] ).toEqual( `/mi/sector_teams/${ teamId }/months/?year=${ year }` );
 
 					expect( monthsSpy ).toHaveBeenCalled();
 					expect( monthsSpy.calls.count() ).toEqual( 1 );
@@ -162,12 +163,12 @@ describe( 'Backend service', function(){
 
 				returnStub( '/sector_teams/campaigns' );
 
-				backendService.getSectorTeamCampaigns( alice, teamId ).then( () => {
+				backendService.getSectorTeamCampaigns( alice, year, teamId ).then( () => {
 
 					const args = backend.sessionGet.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( `/mi/sector_teams/${ teamId }/campaigns/?year=2016` );
+					expect( args[ 1 ] ).toEqual( `/mi/sector_teams/${ teamId }/campaigns/?year=${ year }` );
 
 					expect( campaignsSpy ).toHaveBeenCalled();
 					expect( campaignsSpy.calls.count() ).toEqual( 1 );
@@ -185,12 +186,12 @@ describe( 'Backend service', function(){
 
 				returnStub( '/sector_teams/top_non_hvcs' );
 
-				backendService.getSectorTeamTopNonHvc( alice, teamId ).then( () => {
+				backendService.getSectorTeamTopNonHvc( alice, year, teamId ).then( () => {
 
 					const args = backend.sessionGet.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( `/mi/sector_teams/${ teamId }/top_non_hvcs/?year=2016` );
+					expect( args[ 1 ] ).toEqual( `/mi/sector_teams/${ teamId }/top_non_hvcs/?year=${ year }` );
 					done();
 
 				} ).catch( done );
@@ -203,12 +204,12 @@ describe( 'Backend service', function(){
 
 				returnStub( '/sector_teams/overview' );
 
-				backendService.getSectorTeamsOverview( alice ).then( () => {
+				backendService.getSectorTeamsOverview( alice, year ).then( () => {
 
 					const args = backend.sessionGet.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( '/mi/sector_teams/overview/?year=2016' );
+					expect( args[ 1 ] ).toEqual( `/mi/sector_teams/overview/?year=${ year }` );
 
 					expect( sectorTeamsOverviewSpy ).toHaveBeenCalled();
 					expect( sectorTeamsOverviewSpy.calls.count() ).toEqual( 1 );
@@ -224,12 +225,12 @@ describe( 'Backend service', function(){
 
 				returnStub( '/os_regions/' );
 
-				backendService.getOverseasRegions( alice ).then( () => {
+				backendService.getOverseasRegions( alice, year ).then( () => {
 
 					const args = backend.sessionGet.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( '/mi/os_regions/?year=2016' );
+					expect( args[ 1 ] ).toEqual( `/mi/os_regions/?year=${ year }` );
 
 					expect( osRegionsSpy ).not.toHaveBeenCalled();
 					done();
@@ -244,12 +245,12 @@ describe( 'Backend service', function(){
 
 				returnStub( '/os_regions/' );
 
-				backendService.getOverseasRegionGroups( alice ).then( () => {
+				backendService.getOverseasRegionGroups( alice, year ).then( () => {
 
 					const args = backend.sessionGet.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( '/mi/os_regions/?year=2016' );
+					expect( args[ 1 ] ).toEqual( `/mi/os_regions/?year=${ year }` );
 
 					expect( osRegionsSpy ).toHaveBeenCalled();
 					expect( osRegionsSpy.calls.count() ).toEqual( 1 );
@@ -267,12 +268,12 @@ describe( 'Backend service', function(){
 
 				returnStub( '/os_regions/region' );
 
-				backendService.getOverseasRegion( alice, regionId ).then( () => {
+				backendService.getOverseasRegion( alice, year, regionId ).then( () => {
 
 					const args = backend.sessionGet.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( `/mi/os_regions/${ regionId }/?year=2016` );
+					expect( args[ 1 ] ).toEqual( `/mi/os_regions/${ regionId }/?year=${ year }` );
 					done();
 
 				} ).catch( done );
@@ -287,12 +288,12 @@ describe( 'Backend service', function(){
 
 				returnStub( '/os_regions/months' );
 
-				backendService.getOverseasRegionMonths( alice, regionId ).then( () => {
+				backendService.getOverseasRegionMonths( alice, year, regionId ).then( () => {
 
 					const args = backend.sessionGet.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( `/mi/os_regions/${ regionId }/months/?year=2016` );
+					expect( args[ 1 ] ).toEqual( `/mi/os_regions/${ regionId }/months/?year=${ year }` );
 
 					expect( monthsSpy ).toHaveBeenCalled();
 					expect( monthsSpy.calls.count() ).toEqual( 1 );
@@ -310,12 +311,12 @@ describe( 'Backend service', function(){
 
 				returnStub( '/os_regions/campaigns' );
 
-				backendService.getOverseasRegionCampaigns( alice, regionId ).then( () => {
+				backendService.getOverseasRegionCampaigns( alice, year, regionId ).then( () => {
 
 					const args = backend.sessionGet.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( `/mi/os_regions/${ regionId }/campaigns/?year=2016` );
+					expect( args[ 1 ] ).toEqual( `/mi/os_regions/${ regionId }/campaigns/?year=${ year }` );
 
 					expect( campaignsSpy ).toHaveBeenCalled();
 					expect( campaignsSpy.calls.count() ).toEqual( 1 );
@@ -333,12 +334,12 @@ describe( 'Backend service', function(){
 
 				returnStub( '/os_regions/top_non_hvcs' );
 
-				backendService.getOverseasRegionTopNonHvc( alice, regionId ).then( () => {
+				backendService.getOverseasRegionTopNonHvc( alice, year, regionId ).then( () => {
 
 					const args = backend.sessionGet.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( `/mi/os_regions/${ regionId }/top_non_hvcs/?year=2016` );
+					expect( args[ 1 ] ).toEqual( `/mi/os_regions/${ regionId }/top_non_hvcs/?year=${ year }` );
 					done();
 
 				} ).catch( done );
@@ -351,12 +352,12 @@ describe( 'Backend service', function(){
 
 				returnStub( '/os_regions/overview' );
 
-				backendService.getOverseasRegionsOverview( alice ).then( () => {
+				backendService.getOverseasRegionsOverview( alice, year ).then( () => {
 
 					const args = backend.sessionGet.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( '/mi/os_regions/overview/?year=2016' );
+					expect( args[ 1 ] ).toEqual( `/mi/os_regions/overview/?year=${ year }` );
 
 					expect( osRegionsOverviewSpy ).toHaveBeenCalled();
 					expect( osRegionsOverviewSpy.calls.count() ).toEqual( 1 );
@@ -366,33 +367,18 @@ describe( 'Backend service', function(){
 			} );
 		} );
 
-		describe( 'Getting the region name', function(){
-
-			it( 'Should return the correct name', function( done ){
-
-				returnStub( '/os_regions/' );
-
-				backendService.getOverseasRegionName( alice, 2 ).then( ( name ) => {
-
-					expect( name ).toEqual( 'qui voluptas consequatur' );
-					done();
-
-				} ).catch( ( err ) => { expect( err ).not.toBeDefined(); done(); } );
-			} );
-		} );
-
 		describe( 'Getting the list of HVC Groups', function(){
 
 			it( 'Should return just the hvc groups', function( done ){
 
 				returnStub( '/hvc_groups/' );
 
-				backendService.getHvcGroups( alice ).then( ( hvcGroup ) => {
+				backendService.getHvcGroups( alice, year ).then( ( hvcGroup ) => {
 
 					const args = backend.sessionGet.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( '/mi/hvc_groups/?year=2016' );
+					expect( args[ 1 ] ).toEqual( `/mi/hvc_groups/?year=${ year }` );
 
 					expect( hvcGroup ).toEqual( getBackendStub( '/hvc_groups/') );
 					done();
@@ -409,12 +395,12 @@ describe( 'Backend service', function(){
 
 				returnStub( '/hvc_groups/group' );
 
-				backendService.getHvcGroup( alice, groupId ).then( () => {
+				backendService.getHvcGroup( alice, year, groupId ).then( () => {
 
 					const args = backend.sessionGet.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( `/mi/hvc_groups/${ groupId }/?year=2016` );
+					expect( args[ 1 ] ).toEqual( `/mi/hvc_groups/${ groupId }/?year=${ year }` );
 
 					expect( hvcGroupSpy ).toHaveBeenCalled();
 					expect( hvcGroupSpy.calls.count() ).toEqual( 1 );
@@ -432,12 +418,12 @@ describe( 'Backend service', function(){
 
 				returnStub( '/hvc_groups/campaigns' );
 
-				backendService.getHvcGroupCampaigns( alice, groupId ).then( () => {
+				backendService.getHvcGroupCampaigns( alice, year, groupId ).then( () => {
 
 					const args = backend.sessionGet.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( `/mi/hvc_groups/${ groupId }/campaigns/?year=2016` );
+					expect( args[ 1 ] ).toEqual( `/mi/hvc_groups/${ groupId }/campaigns/?year=${ year }` );
 
 					expect( campaignsSpy ).toHaveBeenCalled();
 					expect( campaignsSpy.calls.count() ).toEqual( 1 );
@@ -455,12 +441,12 @@ describe( 'Backend service', function(){
 
 				returnStub( '/hvc_groups/months' );
 
-				backendService.getHvcGroupMonths( alice, groupId ).then( () => {
+				backendService.getHvcGroupMonths( alice, year, groupId ).then( () => {
 
 					const args = backend.sessionGet.calls.argsFor( 0 );
 
 					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( `/mi/hvc_groups/${ groupId }/months/?year=2016` );
+					expect( args[ 1 ] ).toEqual( `/mi/hvc_groups/${ groupId }/months/?year=${ year }` );
 
 					expect( monthsSpy ).toHaveBeenCalled();
 					expect( monthsSpy.calls.count() ).toEqual( 1 );
@@ -703,15 +689,15 @@ describe( 'Backend service', function(){
 					const teamId = 3;
 
 					const files = [
-						[ `/mi/sector_teams/${ teamId }/?year=2016`, '/sector_teams/sector_team' ],
-						[ `/mi/sector_teams/${ teamId }/months/?year=2016`, '/sector_teams/months' ],
-						[ `/mi/sector_teams/${ teamId }/campaigns/?year=2016`, '/sector_teams/campaigns' ],
-						[ `/mi/sector_teams/${ teamId }/top_non_hvcs/?year=2016`, '/sector_teams/top_non_hvcs' ]
+						[ `/mi/sector_teams/${ teamId }/?year=${ year }`, '/sector_teams/sector_team' ],
+						[ `/mi/sector_teams/${ teamId }/months/?year=${ year }`, '/sector_teams/months' ],
+						[ `/mi/sector_teams/${ teamId }/campaigns/?year=${ year }`, '/sector_teams/campaigns' ],
+						[ `/mi/sector_teams/${ teamId }/top_non_hvcs/?year=${ year }`, '/sector_teams/top_non_hvcs' ]
 					];
 
 					intercept( files );
 
-					backendService.getSectorTeamInfo( alice, teamId ).then( ( data ) => {
+					backendService.getSectorTeamInfo( alice, year, teamId ).then( ( data ) => {
 
 						expect( data.wins ).toBeDefined();
 						expect( data.months ).toBeDefined();
@@ -731,15 +717,15 @@ describe( 'Backend service', function(){
 					const teamId = 3;
 
 					const files = [
-						[ `/mi/sector_teams/${ teamId }/?year=2016`, '/sector_teams/sector_team' ],
-						[ `/mi/sector_teams/${ teamId }/months/?year=2016`, '/sector_teams/months' ],
-						[ `/mi/sector_teams/${ teamId }/campaigns/?year=2016`, '/sector_teams/campaigns' ],
-						[ `/mi/sector_teams/${ teamId }/top_non_hvcs/?year=2016`, '/sector_teams/top_non_hvcs' ]
+						[ `/mi/sector_teams/${ teamId }/?year=${ year }`, '/sector_teams/sector_team' ],
+						[ `/mi/sector_teams/${ teamId }/months/?year=${ year }`, '/sector_teams/months' ],
+						[ `/mi/sector_teams/${ teamId }/campaigns/?year=${ year }`, '/sector_teams/campaigns' ],
+						[ `/mi/sector_teams/${ teamId }/top_non_hvcs/?year=${ year }`, '/sector_teams/top_non_hvcs' ]
 					];
 
 					interceptWithDelay( files );
 
-					backendService.getSectorTeamInfo( alice, teamId ).then( ( data ) => {
+					backendService.getSectorTeamInfo( alice, year, teamId ).then( ( data ) => {
 
 						checkReporterMessage( 'getSectorTeamInfo' );
 
@@ -761,15 +747,15 @@ describe( 'Backend service', function(){
 					const teamId = 4;
 
 					const files = [
-						[ `/mi/sector_teams/${ teamId }/?year=2016`, '/sector_teams/sector_team' ],
-						[ `/mi/sector_teams/${ teamId }/months/?year=2016`, null, 500 ],
-						[ `/mi/sector_teams/${ teamId }/campaigns/?year=2016`, '/sector_teams/campaigns' ],
-						[ `/mi/sector_teams/${ teamId }/top_non_hvcs/?year=2016`, '/sector_teams/top_non_hvcs' ]
+						[ `/mi/sector_teams/${ teamId }/?year=${ year }`, '/sector_teams/sector_team' ],
+						[ `/mi/sector_teams/${ teamId }/months/?year=${ year }`, null, 500 ],
+						[ `/mi/sector_teams/${ teamId }/campaigns/?year=${ year }`, '/sector_teams/campaigns' ],
+						[ `/mi/sector_teams/${ teamId }/top_non_hvcs/?year=${ year }`, '/sector_teams/top_non_hvcs' ]
 					];
 
 					intercept( files );
 
-					backendService.getSectorTeamInfo( alice, teamId ).then( ( data ) => {
+					backendService.getSectorTeamInfo( alice, year, teamId ).then( ( data ) => {
 
 						expect( data ).not.toBeDefined();
 						done();
@@ -791,15 +777,15 @@ describe( 'Backend service', function(){
 				const regionId = 3;
 
 				const files = [
-					[ `/mi/os_regions/${ regionId }/?year=2016`, '/os_regions/region' ],
-					[ `/mi/os_regions/${ regionId }/months/?year=2016`, '/os_regions/months' ],
-					[ `/mi/os_regions/${ regionId }/campaigns/?year=2016`, '/os_regions/campaigns' ],
-					[ `/mi/os_regions/${ regionId }/top_non_hvcs/?year=2016`, '/os_regions/top_non_hvcs' ]
+					[ `/mi/os_regions/${ regionId }/?year=${ year }`, '/os_regions/region' ],
+					[ `/mi/os_regions/${ regionId }/months/?year=${ year }`, '/os_regions/months' ],
+					[ `/mi/os_regions/${ regionId }/campaigns/?year=${ year }`, '/os_regions/campaigns' ],
+					[ `/mi/os_regions/${ regionId }/top_non_hvcs/?year=${ year }`, '/os_regions/top_non_hvcs' ]
 				];
 
 				intercept( files );
 
-				backendService.getOverseasRegionInfo( alice, regionId ).then( ( data ) => {
+				backendService.getOverseasRegionInfo( alice, year, regionId ).then( ( data ) => {
 
 					expect( data.wins ).toBeDefined();
 					expect( data.months ).toBeDefined();
@@ -818,15 +804,15 @@ describe( 'Backend service', function(){
 					const regionId = 4;
 
 					const files = [
-						[ `/mi/os_regions/${ regionId }/?year=2016`, '/os_regions/region' ],
-						[ `/mi/os_regions/${ regionId }/months/?year=2016`, '/os_regions/months' ],
-						[ `/mi/os_regions/${ regionId }/campaigns/?year=2016`, '/os_regions/campaigns' ],
-						[ `/mi/os_regions/${ regionId }/top_non_hvcs/?year=2016`, '/os_regions/top_non_hvcs' ]
+						[ `/mi/os_regions/${ regionId }/?year=${ year }`, '/os_regions/region' ],
+						[ `/mi/os_regions/${ regionId }/months/?year=${ year }`, '/os_regions/months' ],
+						[ `/mi/os_regions/${ regionId }/campaigns/?year=${ year }`, '/os_regions/campaigns' ],
+						[ `/mi/os_regions/${ regionId }/top_non_hvcs/?year=${ year }`, '/os_regions/top_non_hvcs' ]
 					];
 
 					interceptWithDelay( files );
 
-					backendService.getOverseasRegionInfo( alice, regionId ).then( ( data ) => {
+					backendService.getOverseasRegionInfo( alice, year, regionId ).then( ( data ) => {
 
 						checkReporterMessage( 'getOverseasRegionInfo' );
 
@@ -849,14 +835,14 @@ describe( 'Backend service', function(){
 				const groupId = 3;
 
 				const files = [
-					[ `/mi/hvc_groups/${ groupId }/?year=2016`, '/hvc_groups/group' ],
-					[ `/mi/hvc_groups/${ groupId }/months/?year=2016`, '/hvc_groups/months' ],
-					[ `/mi/hvc_groups/${ groupId }/campaigns/?year=2016`, '/hvc_groups/campaigns' ],
+					[ `/mi/hvc_groups/${ groupId }/?year=${ year }`, '/hvc_groups/group' ],
+					[ `/mi/hvc_groups/${ groupId }/months/?year=${ year }`, '/hvc_groups/months' ],
+					[ `/mi/hvc_groups/${ groupId }/campaigns/?year=${ year }`, '/hvc_groups/campaigns' ],
 				];
 
 				intercept( files );
 
-				backendService.getHvcGroupInfo( alice, groupId ).then( ( data ) => {
+				backendService.getHvcGroupInfo( alice, year, groupId ).then( ( data ) => {
 
 					expect( data.wins ).toBeDefined();
 					expect( data.months ).toBeDefined();
@@ -874,14 +860,14 @@ describe( 'Backend service', function(){
 					const groupId = 3;
 
 					const files = [
-						[ `/mi/hvc_groups/${ groupId }/?year=2016`, '/hvc_groups/group' ],
-						[ `/mi/hvc_groups/${ groupId }/months/?year=2016`, '/hvc_groups/months' ],
-						[ `/mi/hvc_groups/${ groupId }/campaigns/?year=2016`, '/hvc_groups/campaigns' ],
+						[ `/mi/hvc_groups/${ groupId }/?year=${ year }`, '/hvc_groups/group' ],
+						[ `/mi/hvc_groups/${ groupId }/months/?year=${ year }`, '/hvc_groups/months' ],
+						[ `/mi/hvc_groups/${ groupId }/campaigns/?year=${ year }`, '/hvc_groups/campaigns' ],
 					];
 
 					interceptWithDelay( files );
 
-					backendService.getHvcGroupInfo( alice, groupId ).then( ( data ) => {
+					backendService.getHvcGroupInfo( alice, year, groupId ).then( ( data ) => {
 
 						checkReporterMessage( 'getHvcGroupInfo' );
 
@@ -903,13 +889,13 @@ describe( 'Backend service', function(){
 				it( 'Should return both bits of data', function( done ){
 
 					const files = [
-						[ '/mi/sector_teams/?year=2016', '/sector_teams/' ],
-						[ '/mi/os_regions/?year=2016', '/os_regions/' ]
+						[ '/mi/sector_teams/?year=${ year }', '/sector_teams/' ],
+						[ '/mi/os_regions/?year=${ year }', '/os_regions/' ]
 					];
 
 					intercept( files );
 
-					backendService.getSectorTeamsAndOverseasRegions( alice ).then( ( data ) => {
+					backendService.getSectorTeamsAndOverseasRegions( alice, year ).then( ( data ) => {
 
 						expect( data.sectorTeams ).toBeDefined();
 						expect( data.overseasRegionGroups ).toBeDefined();
@@ -925,13 +911,13 @@ describe( 'Backend service', function(){
 				it( 'Should throw an error', function( done ){
 
 					const files = [
-						[ '/mi/sector_teams/?year=2016', null, 500 ],
-						[ '/mi/os_regions/?year=2016', '/os_regions/' ]
+						[ '/mi/sector_teams/?year=${ year }', null, 500 ],
+						[ '/mi/os_regions/?year=${ year }', '/os_regions/' ]
 					];
 
 					intercept( files );
 
-					backendService.getSectorTeamsAndOverseasRegions( alice ).catch( ( err ) => {
+					backendService.getSectorTeamsAndOverseasRegions( alice, year ).catch( ( err ) => {
 
 						expect( err ).toBeDefined();
 						done();
@@ -945,13 +931,13 @@ describe( 'Backend service', function(){
 				it( 'Should log a message with the reporter', function( done ){
 
 					const files = [
-						[ '/mi/sector_teams/?year=2016', '/sector_teams/' ],
-						[ '/mi/os_regions/?year=2016', '/os_regions/' ]
+						[ '/mi/sector_teams/?year=${ year }', '/sector_teams/' ],
+						[ '/mi/os_regions/?year=${ year }', '/os_regions/' ]
 					];
 
 					interceptWithDelay( files );
 
-					backendService.getSectorTeamsAndOverseasRegions( alice ).then( ( data ) => {
+					backendService.getSectorTeamsAndOverseasRegions( alice, year ).then( ( data ) => {
 
 						checkReporterMessage( 'getSectorTeamsAndOverseasRegions' );
 

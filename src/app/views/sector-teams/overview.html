@@ -8,9 +8,9 @@
 {% macro row( sector, index, isHvcGroup=false ) %}
 
 	{%- if isHvcGroup -%}
-		{% set urlPath = 'hvc-groups' %}
+		{% set sectorUrl = 'hvcGroup' %}
 	{%- else -%}
-		{% set urlPath = 'sector-teams' %}
+		{% set sectorUrl = 'sectorTeam' %}
 	{%- endif -%}
 
 	<tr class="sector-teams-ov-table_row{% if isHvcGroup %} sector-teams-ov-table_row--hvc{% endif %}">
@@ -18,7 +18,7 @@
 			{% if not isHvcGroup %}
 				<img class="sector-teams-ov-table_image" src="{{ sector.image.url }}" width="{{ sector.image.width }}" height="{{ sector.image.height }}" alt="{{ sector.image.alt }}">
 			{% endif %}
-			<a href="{{ uuid }}/{{ urlPath }}/{{ sector.id }}/">{{ sector.name }}</a>
+			<a href="{{ urls[ sectorUrl ]( sector.id ) }}">{{ sector.name }}</a>
 		</td>
 		<td class="sector-teams-ov-table_cell sector-teams-ov-table_cell--performance">
 			{% if isHvcGroup %}

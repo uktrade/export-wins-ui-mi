@@ -11,13 +11,17 @@ const config = require( '../config' );
 
 const reporter = require( './reporter' );
 const nunjucksFilters = require( './nunjucks-filters' );
+const staticGlobals = require( './static-globals' );
+
 const alice = require( './middleware/alice' );
 const uuid = require( './middleware/uuid' );
-const locals = require( './middleware/locals' );
 const ping = require( './middleware/ping' );
 const data = require( './middleware/data' );
-const samlController = require( '../controllers/controller.saml' );
+const year = require( './middleware/year' );
+const globals = require( './middleware/globals' );
+
 const loginController = require( '../controllers/controller.login' );
+const samlController = require( '../controllers/controller.saml' );
 
 module.exports = {
 
@@ -47,9 +51,7 @@ module.exports = {
 			express: app
 		} );
 
-		//add as a global so that it's available to macros
-		nunjucksEnv.addGlobal( 'uuid', '/' + config.server.uuid );
-
+		staticGlobals( nunjucksEnv );
 		nunjucksFilters( nunjucksEnv );
 
 		reporter.setup( app );
@@ -65,12 +67,13 @@ module.exports = {
 		app.use( morganLogger( ( isDev ? 'dev' : 'combined' ) ) );
 		app.use( cookieParser() );
 		app.use( ping );
-		app.use( locals );
 		app.get( '/saml2/metadata/', samlController.metadata );
 		app.post( '/saml2/acs/', data, samlController.acs );
 		app.get( '/login/', loginController );
 		app.use( uuid );
 		app.use( alice );
+		app.use( year );
+		app.use( globals( nunjucksEnv ) );
 
 		routes( express, app );
 

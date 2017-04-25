@@ -7,7 +7,7 @@ module.exports = {
 
 		const winId = req.param.id;
 
-		backendService.getWin( winId ).then( ( win ) => {
+		backendService.getWin( winId, req.year ).then( ( win ) => {
 
 			res.render( 'win/detail.html', {
 				win,
