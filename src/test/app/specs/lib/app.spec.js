@@ -27,7 +27,7 @@ function getTitle( res ){
 	return title;
 }
 
-xdescribe( 'App', function(){
+describe( 'App', function(){
 
 	let app;
 	let oldTimeout;

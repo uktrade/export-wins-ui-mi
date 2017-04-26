@@ -51,6 +51,7 @@
 		</div>
 	</section>
 
+	{% if topMarkets.items.length %}
 	<section class="grid-row row-separator">
 		<div class="column-single">
 			<h2 class="hvc-heading">{{ name }} top markets and sectors</h2>
@@ -58,6 +59,7 @@
 			{{ topMarketsTable( topMarkets, 'hvc' ) }}
 		</div>
 	</section>
+	{% endif %}
 
 {%- endblock -%}
 
