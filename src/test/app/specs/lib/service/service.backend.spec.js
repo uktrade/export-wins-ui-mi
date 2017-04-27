@@ -5,7 +5,6 @@ const interceptBackend = require( '../../../helpers/intercept-backend' );
 
 const configStub = { backend: { stub: false, fake: false, mock: false } };
 
-let alice = 'test';
 let year = '2017';
 let stubs;
 let backendService;
@@ -16,10 +15,7 @@ let osRegionsOverviewSpy;
 let hvcGroupSpy;
 let osRegionsSpy;
 let backend;
-let req = {
-	alice,
-	year
-};
+let req = {};
 
 
 function returnStub( file ){
@@ -30,7 +26,15 @@ function returnStub( file ){
 	} );
 }
 
-xdescribe( 'Backend service', function(){
+function checkBackendArgs( path, req ){
+
+	const args = backend.sessionGet.calls.argsFor( 0 );
+
+	expect( args[ 0 ] ).toEqual( req.cookies.sessionid );
+	expect( args[ 1 ] ).toEqual( path );
+}
+
+describe( 'Backend service', function(){
 
 	let oldTimeout;
 
@@ -38,6 +42,11 @@ xdescribe( 'Backend service', function(){
 
 		oldTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
 		jasmine.DEFAULT_TIMEOUT_INTERVAL = 500;
+
+		req = {
+			cookies: { sessionid: '123abc' },
+			year
+		};
 	} );
 
 	afterEach( function(){
@@ -126,10 +135,7 @@ xdescribe( 'Backend service', function(){
 
 				backendService.getSectorTeam( req, teamId ).then( () => {
 
-					const args = backend.sessionGet.calls.argsFor( 0 );
-
-					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( `/mi/sector_teams/${ teamId }/?year=${ year }` );
+					checkBackendArgs( `/mi/sector_teams/${ teamId }/?year=${ year }`, req );
 					done();
 
 				} ).catch( done );
@@ -146,10 +152,7 @@ xdescribe( 'Backend service', function(){
 
 				backendService.getSectorTeamMonths( req, teamId ).then( () => {
 
-					const args = backend.sessionGet.calls.argsFor( 0 );
-
-					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( `/mi/sector_teams/${ teamId }/months/?year=${ year }` );
+					checkBackendArgs( `/mi/sector_teams/${ teamId }/months/?year=${ year }`, req );
 
 					expect( monthsSpy ).toHaveBeenCalled();
 					expect( monthsSpy.calls.count() ).toEqual( 1 );
@@ -169,10 +172,7 @@ xdescribe( 'Backend service', function(){
 
 				backendService.getSectorTeamCampaigns( req, teamId ).then( () => {
 
-					const args = backend.sessionGet.calls.argsFor( 0 );
-
-					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( `/mi/sector_teams/${ teamId }/campaigns/?year=${ year }` );
+					checkBackendArgs( `/mi/sector_teams/${ teamId }/campaigns/?year=${ year }`, req );
 
 					expect( campaignsSpy ).toHaveBeenCalled();
 					expect( campaignsSpy.calls.count() ).toEqual( 1 );
@@ -192,10 +192,7 @@ xdescribe( 'Backend service', function(){
 
 				backendService.getSectorTeamTopNonHvc( req, teamId ).then( () => {
 
-					const args = backend.sessionGet.calls.argsFor( 0 );
-
-					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( `/mi/sector_teams/${ teamId }/top_non_hvcs/?year=${ year }` );
+					checkBackendArgs( `/mi/sector_teams/${ teamId }/top_non_hvcs/?year=${ year }`, req );
 					done();
 
 				} ).catch( done );
@@ -210,10 +207,7 @@ xdescribe( 'Backend service', function(){
 
 				backendService.getSectorTeamsOverview( req ).then( () => {
 
-					const args = backend.sessionGet.calls.argsFor( 0 );
-
-					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( `/mi/sector_teams/overview/?year=${ year }` );
+					checkBackendArgs( `/mi/sector_teams/overview/?year=${ year }`, req );
 
 					expect( sectorTeamsOverviewSpy ).toHaveBeenCalled();
 					expect( sectorTeamsOverviewSpy.calls.count() ).toEqual( 1 );
@@ -231,10 +225,7 @@ xdescribe( 'Backend service', function(){
 
 				backendService.getOverseasRegions( req ).then( () => {
 
-					const args = backend.sessionGet.calls.argsFor( 0 );
-
-					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( `/mi/os_regions/?year=${ year }` );
+					checkBackendArgs( `/mi/os_regions/?year=${ year }`, req );
 
 					expect( osRegionsSpy ).not.toHaveBeenCalled();
 					done();
@@ -251,10 +242,7 @@ xdescribe( 'Backend service', function(){
 
 				backendService.getOverseasRegionGroups( req ).then( () => {
 
-					const args = backend.sessionGet.calls.argsFor( 0 );
-
-					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( `/mi/os_regions/?year=${ year }` );
+					checkBackendArgs( `/mi/os_regions/?year=${ year }`, req );
 
 					expect( osRegionsSpy ).toHaveBeenCalled();
 					expect( osRegionsSpy.calls.count() ).toEqual( 1 );
@@ -274,10 +262,7 @@ xdescribe( 'Backend service', function(){
 
 				backendService.getOverseasRegion( req, regionId ).then( () => {
 
-					const args = backend.sessionGet.calls.argsFor( 0 );
-
-					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( `/mi/os_regions/${ regionId }/?year=${ year }` );
+					checkBackendArgs( `/mi/os_regions/${ regionId }/?year=${ year }`, req );
 					done();
 
 				} ).catch( done );
@@ -294,10 +279,7 @@ xdescribe( 'Backend service', function(){
 
 				backendService.getOverseasRegionMonths( req, regionId ).then( () => {
 
-					const args = backend.sessionGet.calls.argsFor( 0 );
-
-					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( `/mi/os_regions/${ regionId }/months/?year=${ year }` );
+					checkBackendArgs( `/mi/os_regions/${ regionId }/months/?year=${ year }`, req );
 
 					expect( monthsSpy ).toHaveBeenCalled();
 					expect( monthsSpy.calls.count() ).toEqual( 1 );
@@ -317,10 +299,7 @@ xdescribe( 'Backend service', function(){
 
 				backendService.getOverseasRegionCampaigns( req, regionId ).then( () => {
 
-					const args = backend.sessionGet.calls.argsFor( 0 );
-
-					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( `/mi/os_regions/${ regionId }/campaigns/?year=${ year }` );
+					checkBackendArgs( `/mi/os_regions/${ regionId }/campaigns/?year=${ year }`, req );
 
 					expect( campaignsSpy ).toHaveBeenCalled();
 					expect( campaignsSpy.calls.count() ).toEqual( 1 );
@@ -340,10 +319,7 @@ xdescribe( 'Backend service', function(){
 
 				backendService.getOverseasRegionTopNonHvc( req, regionId ).then( () => {
 
-					const args = backend.sessionGet.calls.argsFor( 0 );
-
-					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( `/mi/os_regions/${ regionId }/top_non_hvcs/?year=${ year }` );
+					checkBackendArgs( `/mi/os_regions/${ regionId }/top_non_hvcs/?year=${ year }`, req );
 					done();
 
 				} ).catch( done );
@@ -358,10 +334,7 @@ xdescribe( 'Backend service', function(){
 
 				backendService.getOverseasRegionsOverview( req ).then( () => {
 
-					const args = backend.sessionGet.calls.argsFor( 0 );
-
-					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( `/mi/os_regions/overview/?year=${ year }` );
+					checkBackendArgs( `/mi/os_regions/overview/?year=${ year }`, req );
 
 					expect( osRegionsOverviewSpy ).toHaveBeenCalled();
 					expect( osRegionsOverviewSpy.calls.count() ).toEqual( 1 );
@@ -379,10 +352,7 @@ xdescribe( 'Backend service', function(){
 
 				backendService.getHvcGroups( req ).then( ( hvcGroup ) => {
 
-					const args = backend.sessionGet.calls.argsFor( 0 );
-
-					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( `/mi/hvc_groups/?year=${ year }` );
+					checkBackendArgs( `/mi/hvc_groups/?year=${ year }`, req );
 
 					expect( hvcGroup ).toEqual( getBackendStub( '/hvc_groups/') );
 					done();
@@ -401,10 +371,7 @@ xdescribe( 'Backend service', function(){
 
 				backendService.getHvcGroup( req, groupId ).then( () => {
 
-					const args = backend.sessionGet.calls.argsFor( 0 );
-
-					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( `/mi/hvc_groups/${ groupId }/?year=${ year }` );
+					checkBackendArgs( `/mi/hvc_groups/${ groupId }/?year=${ year }`, req );
 
 					expect( hvcGroupSpy ).toHaveBeenCalled();
 					expect( hvcGroupSpy.calls.count() ).toEqual( 1 );
@@ -424,10 +391,7 @@ xdescribe( 'Backend service', function(){
 
 				backendService.getHvcGroupCampaigns( req, groupId ).then( () => {
 
-					const args = backend.sessionGet.calls.argsFor( 0 );
-
-					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( `/mi/hvc_groups/${ groupId }/campaigns/?year=${ year }` );
+					checkBackendArgs( `/mi/hvc_groups/${ groupId }/campaigns/?year=${ year }`, req );
 
 					expect( campaignsSpy ).toHaveBeenCalled();
 					expect( campaignsSpy.calls.count() ).toEqual( 1 );
@@ -447,10 +411,7 @@ xdescribe( 'Backend service', function(){
 
 				backendService.getHvcGroupMonths( req, groupId ).then( () => {
 
-					const args = backend.sessionGet.calls.argsFor( 0 );
-
-					expect( args[ 0 ] ).toEqual( alice );
-					expect( args[ 1 ] ).toEqual( `/mi/hvc_groups/${ groupId }/months/?year=${ year }` );
+					checkBackendArgs( `/mi/hvc_groups/${ groupId }/months/?year=${ year }`, req );
 
 					expect( monthsSpy ).toHaveBeenCalled();
 					expect( monthsSpy.calls.count() ).toEqual( 1 );
@@ -464,47 +425,44 @@ xdescribe( 'Backend service', function(){
 
 			it( 'Should return the metadata', function( done ){
 
-				spyOn( backend, 'get' ).and.callFake( function( path, cb ){
+				spyOn( backend, 'sessionGet' ).and.callFake( function( sessionId, path, cb ){
 
 					cb( null, { isSuccess: true, elapsedTime: 0 }, getBackendFile( '/saml2/metadata.xml' ) );
 				} );
 
-				backendService.getSamlMetadata().then( () => {
+				backendService.getSamlMetadata( req ).then( () => {
 
-					const args = backend.get.calls.argsFor( 0 );
-
-					expect( args[ 0 ] ).toEqual( `/saml2/metadata/` );
+					checkBackendArgs( `/saml2/metadata/`, req );
 					done();
 
 				} ).catch( done.fail );
 			} );
 		} );
 
-		describe( 'SAML acs', function(){
+		xdescribe( 'SAML acs', function(){
 
 			const xml = '<xml response="true"/>';
 			const session_id = '1234';
 			const successResponse = {
 				isSuccess: true,
 				elapsedTime: 0,
-				headers: { 'set-cookie': `session_id=${ session_id }` }
+				headers: { 'set-cookie': `sessionid=${ session_id }` }
 			};
+
+			req.data = xml;
 
 			it( 'Should post the XML', function( done ){
 
 				const responseBody = 'success';
 
-				spyOn( backend, 'post' ).and.callFake( function( path, body, cb ){
+				spyOn( backend, 'sessionPost' ).and.callFake( function( sessionId, path, body, cb ){
 
 					cb( null, successResponse, responseBody );
 				} );
 
-				backendService.sendSamlXml( xml ).then( () => {
+				backendService.sendSamlXml( req ).then( () => {
 
-					const args = backend.post.calls.argsFor( 0 );
-
-					expect( args[ 0 ] ).toEqual( `/saml2/acs/` );
-					expect( args[ 1 ] ).toEqual( xml );
+					checkBackendArgs( `/saml2/acs/`, req );
 					done();
 
 				} ).catch( done.fail );
@@ -518,12 +476,12 @@ xdescribe( 'Backend service', function(){
 
 						const responseBody = 'success';
 
-						spyOn( backend, 'post' ).and.callFake( function( path, body, cb ){
+						spyOn( backend, 'sessionPost' ).and.callFake( function( sessionId, path, body, cb ){
 
 							cb( null, successResponse, responseBody );
 						} );
 
-						backendService.sendSamlXml( xml ).then( ( data  ) => {
+						backendService.sendSamlXml( req ).then( ( data  ) => {
 
 							expect( data.sessionId ).toEqual( session_id );
 							expect( data.data ).toEqual( responseBody );
@@ -537,12 +495,12 @@ xdescribe( 'Backend service', function(){
 
 					it( 'Should throw an error', function( done ){
 
-						spyOn( backend, 'post' ).and.callFake( function( path, body, cb ){
+						spyOn( backend, 'sessionPost' ).and.callFake( function( sessionId, path, body, cb ){
 
 							cb( null, { isSuccess: true, elapsedTime: 100, headers: {} }, '' );
 						} );
 
-						backendService.sendSamlXml( xml ).then( done.fail ).catch( ( e ) => {
+						backendService.sendSamlXml( req ).then( done.fail ).catch( ( e ) => {
 
 							expect( e ).toEqual( new Error( 'Unable to create session' ) );
 							done();
@@ -555,12 +513,12 @@ xdescribe( 'Backend service', function(){
 
 				it( 'Should throw an error', function( done ){
 
-					spyOn( backend, 'post' ).and.callFake( function( path, body, cb ){
+					spyOn( backend, 'sessionPost' ).and.callFake( function( sessionId, path, body, cb ){
 
 						cb( null, { isSuccess: false, elapsedTime: 100 }, '' );
 					} );
 
-					backendService.sendSamlXml( xml ).then( done.fail ).catch( ( e ) => {
+					backendService.sendSamlXml( req ).then( done.fail ).catch( ( e ) => {
 
 						expect( e ).toEqual( new Error( 'Unable to login' ) );
 						done();
@@ -569,7 +527,7 @@ xdescribe( 'Backend service', function(){
 			} );
 		} );
 
-		describe( 'SAML Login', function(){
+		xdescribe( 'SAML Login', function(){
 
 			describe( 'When the response is a success', function(){
 

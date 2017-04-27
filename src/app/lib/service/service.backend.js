@@ -1,7 +1,5 @@
 const config = require( '../../config' );
 
-const cookie = require( 'cookie' );
-
 const USE_MOCKS = config.backend.mock;
 const USE_STUBS = config.backend.stub;
 
@@ -218,7 +216,7 @@ function getWin(){
 	return mocks.win();
 }
 
-function getHvc( /* alice, hvcId */ ){
+function getHvc( /* req, hvcId */ ){
 
 	//`/mi/hvc/${ hvcId }/`
 
@@ -232,7 +230,7 @@ function getHvc( /* alice, hvcId */ ){
 	} );
 }
 
-function getWinList( /* alice */ ){
+function getWinList( /* req */ ){
 
 	return mocks.winList().then( ( mockData ) => {
 

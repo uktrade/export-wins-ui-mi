@@ -2,7 +2,6 @@ const urlYear = /^\/([0-9]{4})\//;
 
 module.exports = function( req, res, next ){
 
-	/* TODO: Add back
 	const matches = urlYear.exec( req.url );
 
 	if( matches && matches.length > 1 ){
@@ -29,8 +28,6 @@ module.exports = function( req, res, next ){
 		req.year = String( year );
 		req.isCurrentYear = true;
 	}
-	*/
-	req.year = '2016';
 
 	res.locals.currentYear = Number( req.year );
 
