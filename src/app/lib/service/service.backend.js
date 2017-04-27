@@ -79,6 +79,8 @@ function createResponseHandler( resolve, reject ){
 
 					let e = new Error( 'Not logged in' );
 					e.code = 403;
+					e.response = response;
+					e.data = data;
 
 					logger.debug( 'Got a %s status code for url: %s', response.statusCode, response.request.uri.href );
 					reject( e );
