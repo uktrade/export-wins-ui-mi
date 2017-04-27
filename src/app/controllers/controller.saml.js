@@ -12,7 +12,17 @@ module.exports = {
 			res.set( 'Set-Cookie', response.headers[ 'set-cookie' ] );
 			res.redirect( '/' );
 
-		} ).catch( renderError.createHandler( res ) );
+		} ).catch( ( e ) => {
+
+			if( e.code === 403 ){
+
+				res.render( 'error-not-mi.html' );
+
+			} else {
+
+				renderError.sendResponse( e );
+			}
+		} );
 	},
 
 	metadata: function( req, res ){

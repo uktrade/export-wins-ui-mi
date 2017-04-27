@@ -1,7 +1,5 @@
 const config = require( '../../config' );
 
-const cookie = require( 'cookie' );
-
 const USE_MOCKS = config.backend.mock;
 const USE_STUBS = config.backend.stub;
 
@@ -81,6 +79,8 @@ function createResponseHandler( resolve, reject ){
 
 					let e = new Error( 'Not logged in' );
 					e.code = 403;
+					e.response = response;
+					e.data = data;
 
 					logger.debug( 'Got a %s status code for url: %s', response.statusCode, response.request.uri.href );
 					reject( e );
@@ -218,7 +218,7 @@ function getWin(){
 	return mocks.win();
 }
 
-function getHvc( /* alice, hvcId */ ){
+function getHvc( /* req, hvcId */ ){
 
 	//`/mi/hvc/${ hvcId }/`
 
@@ -232,7 +232,7 @@ function getHvc( /* alice, hvcId */ ){
 	} );
 }
 
-function getWinList( /* alice */ ){
+function getWinList( /* req */ ){
 
 	return mocks.winList().then( ( mockData ) => {
 

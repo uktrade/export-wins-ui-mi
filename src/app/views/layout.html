@@ -3,7 +3,7 @@
 {% import 'macros/url.html' as urls %}
 
 {% set homepage_url = "/" %}
-{% block service_name %}Datahub{% endblock %}
+{% block service_name %}Data Hub{% endblock %}
 {% block page_title %}MI - {{ pageName }}{% endblock page_title %}
 
 {% block head %}
@@ -23,8 +23,8 @@
 		</div>
 
 		<nav class="top-nav">
-			<a href="{{ urls.index() }}">Management information{# if currentYear %} ({{ currentYear }}){% endif #}</a>
-			{# <a class="top-nav_change-year" href="{{ urls.changeYear() }}">Change financial year</a> #}
+			<a href="{{ urls.index() }}">Management information{% if currentYear %} ({{ currentYear }}){% endif %}</a>
+			<a class="top-nav_change-year" href="{{ urls.changeYear() }}">Change financial year</a>
 		</nav>
 
 		{% block page_content %}{% endblock %}

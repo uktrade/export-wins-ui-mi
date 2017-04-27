@@ -17,10 +17,11 @@ const ping = require( './middleware/ping' );
 const data = require( './middleware/data' );
 const year = require( './middleware/year' );
 const globals = require( './middleware/globals' );
-const loginCheck = require( './middleware/login-check' );
+//const loginCheck = require( './middleware/login-check' );
 
 const loginController = require( '../controllers/controller.login' );
 const samlController = require( '../controllers/controller.saml' );
+
 
 module.exports = {
 

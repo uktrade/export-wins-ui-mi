@@ -1,11 +1,11 @@
 {
   "name": "export-wins-ui-mi",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "description": "An MI dashboard for Export Wins",
   "main": "server.js",
   "engines": {
-    "node": "6.9.1",
-    "npm": "3.10.8"
+    "node": "6.10.2",
+    "npm": "3.10.10"
   },
   "scripts": {
     "preversion": "npm test",
@@ -55,7 +55,7 @@
   },
   "homepage": "https://github.com/uktrade/export-wins-ui-mi#readme",
   "dependencies": {
-    "@uktrade/trade_elements": "1.3.0",
+    "@uktrade/trade_elements": "3.1.3",
     "body-parser": "1.17.1",
     "compression": "^1.6.2",
     "cookie": "https://registry.npmjs.org/cookie/-/cookie-0.3.1.tgz",
@@ -65,13 +65,13 @@
     "morgan": "1.8.1",
     "nunjucks": "^3.0.0",
     "random-int": "^1.0.0",
-    "raven": "1.2.0",
+    "raven": "1.2.1",
     "request": "2.81.0",
     "serve-static": "1.12.1",
     "winston": "2.3.1"
   },
   "devDependencies": {
-    "eslint": "3.14.0",
+    "eslint": "3.19.0",
     "grunt": "*",
     "grunt-contrib-clean": "*",
     "grunt-contrib-compress": "1.4.1",
@@ -86,15 +86,15 @@
     "jasmine": "2.5.3",
     "jasmine-core": "*",
     "json-schema-faker": "0.4.0",
-    "karma": "1.4.0",
+    "karma": "1.6.0",
     "karma-chrome-launcher": "*",
     "karma-jasmine": "*",
     "load-grunt-tasks": "*",
     "mockdate": "2.0.1",
-    "nock": "9.0.6",
-    "node-sass": "4.3.0",
+    "nock": "9.0.13",
+    "node-sass": "4.5.2",
     "nodemon": "*",
-    "npm-run-all": "3.1.2",
+    "npm-run-all": "4.0.2",
     "proxyquire": "1.7.11",
     "supertest": "3.0.0"
   },

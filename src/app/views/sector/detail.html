@@ -110,13 +110,15 @@
 		</div>
 	</section>
 
+	{% if topMarkets.items.length %}
 	<section class="grid-row row-separator">
 		<div class="column-single">
-			<h2 class="sector-heading">Top performing markets and sectors (wins with no HVC tagged)</h2>
+			<h2 class="sector-heading">Top performing markets (wins with no HVC tagged)</h2>
 			<h3 class="sub-heading-date">{{ financialYear( topMarkets.dateRange ) }}</h3>
 			{{ topMarketsTable( topMarkets ) }}
 		</div>
 	</section>
+	{% endif %}
 
 {%- endblock -%}
 

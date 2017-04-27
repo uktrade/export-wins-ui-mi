@@ -1,7 +1,7 @@
 const mockdate = require( 'mockdate' );
 const middleware = require( '../../../../../app/lib/middleware/year' );
 
-xdescribe( 'Year middleware', function(){
+describe( 'Year middleware', function(){
 
 	let req;
 	let res;
