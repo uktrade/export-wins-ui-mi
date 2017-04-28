@@ -49,7 +49,7 @@ describe( 'Overseas Regions controller', function(){
 		it( 'Should get the overview data and render the correct view', function( done ){
 
 			const req = {
-				alice: '123',
+				cookies: { sessionid: '123' },
 				year
 			};
 
@@ -60,7 +60,7 @@ describe( 'Overseas Regions controller', function(){
 
 			controller.overview( req, { render: function( view, data ){
 
-				expect( backendService.getOverseasRegionsOverview ).toHaveBeenCalledWith( req.alice, req.year );
+				expect( backendService.getOverseasRegionsOverview ).toHaveBeenCalledWith( req );
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				expect( data.dateRange ).toBeDefined();
 				expect( data.regionGroups ).toBeDefined();
@@ -76,7 +76,7 @@ describe( 'Overseas Regions controller', function(){
 		it( 'Should get the list data and render the correct view', function( done ){
 
 			const req = {
-				alice: '87654',
+				cookies: { sessionid: '456' },
 				year
 			};
 
@@ -87,7 +87,7 @@ describe( 'Overseas Regions controller', function(){
 
 			controller.list( req, { render: function( view, data ){
 
-				expect( backendService.getOverseasRegions ).toHaveBeenCalledWith( req.alice, req.year );
+				expect( backendService.getOverseasRegions ).toHaveBeenCalledWith( req );
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				expect( view ).toEqual( 'overseas-regions/list.html' );
 				expect( data.regions ).toBeDefined();
@@ -102,7 +102,7 @@ describe( 'Overseas Regions controller', function(){
 		it( 'Should get the region data and render the correct view', function( done ){
 
 			const req = {
-				alice: '1234',
+				cookies: { sessionid: '789' },
 				year,
 				params: {
 					id: 1234
@@ -126,7 +126,7 @@ describe( 'Overseas Regions controller', function(){
 
 			controller.region( req, { render: function( view, data ){
 
-				expect( backendService.getOverseasRegionInfo ).toHaveBeenCalledWith( req.alice, req.year, regionId );
+				expect( backendService.getOverseasRegionInfo ).toHaveBeenCalledWith( req, regionId );
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				expect( sectorSummary.create ).toHaveBeenCalled();
 				expect( hvcSummary.create ).toHaveBeenCalled();

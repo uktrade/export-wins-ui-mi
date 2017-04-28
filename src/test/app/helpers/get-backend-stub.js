@@ -1,9 +1,5 @@
-const fs = require( 'fs' );
-const path = require( 'path' );
+const getBackendFile = require( './get-backend-file' );
 
-/*
-	Read each file from disk to ensure it's a clean version of the data
-*/
 module.exports = function( file ){
 
 	if( file.substr( -1 ) === '/' ){
@@ -11,8 +7,8 @@ module.exports = function( file ){
 		file += 'index';
 	}
 
-	const fileWithPath = path.resolve( __dirname, '../fake-data/backend' + file + '.json' );
-	const data = fs.readFileSync( fileWithPath );
+	const fileWithExt = ( file + '.json' );
+	const data = getBackendFile( fileWithExt );
 
 	try {
 
@@ -20,7 +16,7 @@ module.exports = function( file ){
 
 	} catch ( e ){
 
-		console.error( 'Unable to transform JSON for file: %s', fileWithPath );
+		console.error( 'Unable to transform JSON for file: %s', fileWithExt );
 		console.error( e );
 	}
 };

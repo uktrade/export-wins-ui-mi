@@ -38,7 +38,7 @@ describe( 'Overseas Regions controller', function(){
 		it( 'Should get the sectors list data and render the view', function( done ){
 
 			const req = {
-				alice: '87654',
+				cookies: { sessionid: '123' },
 				year,
 				query: {}
 			};
@@ -50,7 +50,7 @@ describe( 'Overseas Regions controller', function(){
 
 			controller( req, { render: function( view, data ){
 
-				expect( backendService.getSectorTeams ).toHaveBeenCalledWith( req.alice, req.year );
+				expect( backendService.getSectorTeams ).toHaveBeenCalledWith( req );
 				expect( view ).toEqual( 'index.html' );
 				expect( data.sectorTeams ).toBeDefined();
 				expect( data.sectorTeams.length ).toBeGreaterThan( 1 );
@@ -66,7 +66,7 @@ describe( 'Overseas Regions controller', function(){
 		it( 'Should show the Overseas Regions list and render the view', function( done ){
 
 			const req = {
-				alice: '87654',
+				cookies: { sessionid: '456' },
 				year,
 				query: {
 					osRegions: true
@@ -81,7 +81,7 @@ describe( 'Overseas Regions controller', function(){
 
 			controller( req, { render: function( view, data ){
 
-				expect( backendService.getSectorTeamsAndOverseasRegions ).toHaveBeenCalledWith( req.alice, req.year );
+				expect( backendService.getSectorTeamsAndOverseasRegions ).toHaveBeenCalledWith( req );
 				expect( view ).toEqual( 'index.html' );
 				expect( data.sectorTeams ).toBeDefined();
 				expect( data.sectorTeams.length ).toBeGreaterThan( 1 );

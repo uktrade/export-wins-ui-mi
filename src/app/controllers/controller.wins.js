@@ -6,7 +6,7 @@ module.exports = {
 
 	list: function( req, res ){
 
-		backendService.getWinList( req.alice, req.year ).then( ( wins ) => {
+		backendService.getWinList( req ).then( ( wins ) => {
 
 			res.render( 'wins/list.html', { wins } );
 

@@ -50,7 +50,7 @@ describe( 'HVC Groups controller', function(){
 			spyOn( errorHandler, 'createHandler' ).and.callFake( createErrorHandler( done ) );
 
 			const req = {
-				alice: '87654',
+				cookies: { sessionid: '123' },
 				year
 			};
 
@@ -58,7 +58,7 @@ describe( 'HVC Groups controller', function(){
 
 			controller.list( req, { render: function( view, data ){
 
-				expect( backendService.getHvcGroups ).toHaveBeenCalledWith( req.alice, req.year );
+				expect( backendService.getHvcGroups ).toHaveBeenCalledWith( req );
 				expect( view ).toEqual( 'hvc-groups/list.html' );
 				expect( data.hvcGroups ).toBeDefined();
 				expect( data.hvcGroups.length ).toBeGreaterThan( 1 );
@@ -80,7 +80,7 @@ describe( 'HVC Groups controller', function(){
 			spyOn( monthlyPerformance, 'create' ).and.callThrough();
 
 			const req = {
-				alice: '1234',
+				cookies: { sessionid: '456' },
 				year,
 				params: {
 					id: 1234
@@ -96,7 +96,7 @@ describe( 'HVC Groups controller', function(){
 
 				expect( data.summary.dateRange ).toBeDefined();
 
-				expect( backendService.getHvcGroupInfo ).toHaveBeenCalledWith( req.alice, req.year, groupId );
+				expect( backendService.getHvcGroupInfo ).toHaveBeenCalledWith( req, groupId );
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				expect( sectorSummary.create ).toHaveBeenCalled();
 				expect( hvcSummary.create ).toHaveBeenCalled();

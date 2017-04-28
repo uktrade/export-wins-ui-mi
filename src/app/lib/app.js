@@ -11,12 +11,16 @@ const config = require( '../config' );
 
 const reporter = require( './reporter' );
 const nunjucksFilters = require( './nunjucks-filters' );
-const alice = require( './middleware/alice' );
-const uuid = require( './middleware/uuid' );
 const staticGlobals = require( './static-globals' );
+
 const ping = require( './middleware/ping' );
+const data = require( './middleware/data' );
 const year = require( './middleware/year' );
 const globals = require( './middleware/globals' );
+
+const loginController = require( '../controllers/controller.login' );
+const samlController = require( '../controllers/controller.saml' );
+
 
 module.exports = {
 
@@ -62,9 +66,10 @@ module.exports = {
 		app.use( morganLogger( ( isDev ? 'dev' : 'combined' ) ) );
 		app.use( cookieParser() );
 		app.use( ping );
-		app.use( uuid );
+		app.get( '/saml2/metadata/', samlController.metadata );
+		app.post( '/saml2/acs/', data, samlController.acs );
+		app.get( '/login/', loginController );
 		app.use( year );
-		app.use( alice );
 		app.use( globals( nunjucksEnv ) );
 
 		routes( express, app );

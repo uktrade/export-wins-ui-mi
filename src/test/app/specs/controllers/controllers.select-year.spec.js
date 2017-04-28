@@ -41,7 +41,7 @@ describe( 'Select Year controller', function(){
 		it( 'Should remove the current year from the locals and add it as a hidden local', function( done ){
 
 			const req = {
-				alice: '87654',
+				cookies: { sessionid: '123' },
 				year
 			};
 
