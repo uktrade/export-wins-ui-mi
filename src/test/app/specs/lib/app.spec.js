@@ -341,19 +341,67 @@ if( config.backend.mock ){
 
 	describe( 'Saml acs', function(){
 
-		it( 'Should redirect', function( done ){
+		const xml = '<xml/>';
 
-			const response = 'test';
+		describe( 'When the response is success', function(){
 
-			interceptBackend.post( '/saml2/acs/' ).reply( 200, response, {
-				'Set-Cookie': 'session_id=test'
+			it( 'Should redirect', function( done ){
+
+				const response = 'test';
+
+				interceptBackend.post( '/saml2/acs/', xml ).reply( 200, response, {
+					'Set-Cookie': 'sessionid=test'
+				} );
+
+				supertest( app ).post( '/saml2/acs/' ).end( ( err, res ) => {
+
+					expect( res.statusCode ).toEqual( 302 );
+					expect( res.text ).toEqual( 'Found. Redirecting to /' );
+					done();
+				} );
+			} );
+		} );
+
+		describe( 'When the response is not a success', function(){
+
+			describe( 'When it is a 403', function(){
+
+				it( 'Should render the access denied page', function( done ){
+
+					const response = '{ "code": 1, "message": "not in group" }';
+
+					interceptBackend.post( '/saml2/acs/', xml ).reply( 403, response, {
+						'Set-Cookie': 'sessionid=test',
+						'Content-Type': 'application/json'
+					} );
+
+					supertest( app ).post( '/saml2/acs/' ).end( ( err, res ) => {
+
+						expect( res.statusCode ).toEqual( 200 );
+						expect( getTitle( res ) ).toEqual( 'MI - Access denied' );
+						done();
+					} );
+				} );
 			} );
 
-			supertest( app ).post( '/saml2/acs/' ).end( ( err, res ) => {
+			describe( 'When it is a 500', function(){
 
-				expect( res.statusCode ).toEqual( 302 );
-				expect( res.text ).toEqual( 'Found. Redirecting to /' );
-				done();
+				it( 'Should render the default error page', function( done ){
+
+					const response = '{ "code": 2, "message": "error" }';
+
+					interceptBackend.post( '/saml2/acs/', xml ).reply( 500, response, {
+						'Set-Cookie': 'sessionid=test',
+						'Content-Type': 'application/json'
+					} );
+
+					supertest( app ).post( '/saml2/acs/' ).end( ( err, res ) => {
+
+						expect( res.statusCode ).toEqual( 500 );
+						expect( getTitle( res ) ).toEqual( 'MI - Error' );
+						done();
+					} );
+				} );
 			} );
 		} );
 	} );
