@@ -20,7 +20,7 @@ module.exports = {
 
 			} else {
 
-				renderError.sendResponse( e );
+				renderError.sendResponse( res, e );
 			}
 		} );
 	},
