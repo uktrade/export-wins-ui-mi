@@ -57,7 +57,7 @@
 {% endblock %}
 
 {% block body_end %}
-	{% block script %}
+	{%- block script -%}
 	<!-- build:js(src) /public/js/jessie.min.js -->
 	<script src="/public/js/vendor/jessie/jessie.js"></script>
 	<!-- endbuild -->
@@ -66,8 +66,19 @@
 		<script src="/public/js/pages/page.sector.js"></script>
 		<script src="/public/js/pages/page.hvc.js"></script>
 	<!-- endbuild -->
-	{% endblock script %}
+	{%- endblock script -%}
 
-	{% block pageScript %}
-	{% endblock pageScript %}
-{% endblock body_end %}
+	{%- if analyticsId %}
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', '{{ analyticsId }}', 'auto');
+		ga('send', 'pageview');
+	</script>
+	{%- endif -%}
+
+	{% block pageScript %}{% endblock pageScript %}
+{%- endblock body_end %}

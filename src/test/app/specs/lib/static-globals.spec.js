@@ -3,6 +3,7 @@ const proxyquire = require( 'proxyquire' );
 describe( 'Static globals', function(){
 
 	const feedbackEmail = 'test@test.com';
+	const analyticsId = 'abc123';
 
 	let calls;
 	let staticGlobals;
@@ -11,7 +12,8 @@ describe( 'Static globals', function(){
 
 		const stubs = {
 			'../config': {
-				feedbackEmail
+				feedbackEmail,
+				analyticsId
 			}
 		};
 
@@ -39,5 +41,13 @@ describe( 'Static globals', function(){
 
 		expect( args[ 0 ] ).toEqual( 'asset_path' );
 		expect( args[ 1 ] ).toEqual( '/public/uktrade/' );
+	} );
+
+	it( 'Should add the analyticsId to the nunjucks env', function(){
+
+		const args = calls.argsFor( 2 );
+
+		expect( args[ 0 ] ).toEqual( 'analyticsId' );
+		expect( args[ 1 ] ).toEqual( analyticsId );
 	} );
 } );

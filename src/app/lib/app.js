@@ -74,6 +74,12 @@ module.exports = {
 
 		routes( express, app );
 
+		app.use( function( req, res ){
+
+			res.status( 404 );
+			res.render( '404.html' );
+		} );
+
 		reporter.handleErrors( app );
 
 		return app;

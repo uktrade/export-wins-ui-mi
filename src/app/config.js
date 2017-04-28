@@ -32,6 +32,7 @@ let config = {
 	cookieSecret: env( 'COOKIE_SECRET' ),
 	logLevel: env( 'LOG_LEVEL', 'warn' ),
 	sentryDsn: env( 'SENTRY_DSN' ),
+	analyticsId: env( 'ANALYTICS_ID' ),
 	exportWinsUrl: env( 'EXPORT_WINS_URL', 'https://www.exportwins.service.trade.gov.uk/' ),
 	backend: {
 		secret: env( 'MI_SECRET' ),

@@ -262,6 +262,7 @@ if( config.backend.mock ){
 	} );
 }
 
+
 	describe( 'Overseas Regions', function(){
 
 		describe( 'Overview', function(){
@@ -416,6 +417,19 @@ if( config.backend.mock ){
 
 				expect( res.statusCode ).toEqual( 200 );
 				expect( getTitle( res ) ).toEqual( 'MI - Login' );
+				done();
+			} );
+		} );
+	} );
+
+	describe( '404 page', function(){
+
+		it( 'Should render the 404 page', function( done ){
+
+			supertest( app ).get( '/abc123' ).end( ( err, res ) => {
+
+				expect( res.statusCode ).toEqual( 404 );
+				expect( getTitle( res ) ).toEqual( 'MI - Not found' );
 				done();
 			} );
 		} );
