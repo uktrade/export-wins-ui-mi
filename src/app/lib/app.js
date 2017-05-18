@@ -17,6 +17,7 @@ const staticGlobals = require( './static-globals' );
 const ping = require( './middleware/ping' );
 const year = require( './middleware/year' );
 const globals = require( './middleware/globals' );
+const forceHttps = require( './middleware/force-https' );
 
 module.exports = {
 
@@ -57,6 +58,7 @@ module.exports = {
 			staticMaxAge = '2y';
 		}
 
+		app.use( forceHttps( isDev ) );
 		app.use( '/public', serveStatic( pathToPublic, { maxAge: staticMaxAge } ) );
 		app.use( '/public/uktrade', serveStatic( pathToUkTradePublic, { maxAge: staticMaxAge } ) );
 		app.use( morganLogger( ( isDev ? 'dev' : 'combined' ) ) );
