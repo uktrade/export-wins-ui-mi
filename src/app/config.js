@@ -30,6 +30,7 @@ let config = {
 	},
 	financialYearStart: env( 'FINANCIAL_YEAR_START', 2016 ),
 	feedbackEmail: env( 'FEEDBACK_EMAIL' ),
+	feedbackSurvey: env( 'FEEDBACK_SURVEY' ),
 	cookieSecret: env( 'COOKIE_SECRET' ),
 	logLevel: env( 'LOG_LEVEL', 'warn' ),
 	sentryDsn: env( 'SENTRY_DSN' ),
