@@ -3,6 +3,7 @@ const proxyquire = require( 'proxyquire' );
 describe( 'Static globals', function(){
 
 	const feedbackEmail = 'test@test.com';
+	const feedbackSurvey = 'http://123abc';
 	const analyticsId = 'abc123';
 
 	let calls;
@@ -13,6 +14,7 @@ describe( 'Static globals', function(){
 		const stubs = {
 			'../config': {
 				feedbackEmail,
+				feedbackSurvey,
 				analyticsId
 			}
 		};
@@ -53,7 +55,7 @@ describe( 'Static globals', function(){
 
 	it( 'Should add the analyticsId to the nunjucks env', function(){
 
-		const args = calls.argsFor( 2 );
+		const args = calls.argsFor( 3 );
 
 		expect( args[ 0 ] ).toEqual( 'analyticsId' );
 		expect( args[ 1 ] ).toEqual( analyticsId );
