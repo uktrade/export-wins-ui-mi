@@ -17,6 +17,8 @@ const ping = require( './middleware/ping' );
 const data = require( './middleware/data' );
 const year = require( './middleware/year' );
 const globals = require( './middleware/globals' );
+const forceHttps = require( './middleware/force-https' );
+const headers = require( './middleware/headers' );
 
 const loginController = require( '../controllers/controller.login' );
 const samlController = require( '../controllers/controller.saml' );
@@ -40,6 +42,8 @@ module.exports = {
 		app.set( 'view engine', 'html' );
 		app.set( 'view cache', config.views.cache );
 
+		app.disable( 'x-powered-by' );
+
 		nunjucksEnv = nunjucks.configure( [
 				`${__dirname}/../views`,
 				`${pathToUkTradeElements}/dist/nunjucks`,
@@ -61,10 +65,12 @@ module.exports = {
 			staticMaxAge = '2y';
 		}
 
+		app.use( forceHttps( isDev ) );
 		app.use( '/public', serveStatic( pathToPublic, { maxAge: staticMaxAge } ) );
 		app.use( '/public/uktrade', serveStatic( pathToUkTradePublic, { maxAge: staticMaxAge } ) );
 		app.use( morganLogger( ( isDev ? 'dev' : 'combined' ) ) );
 		app.use( cookieParser() );
+		app.use( headers( isDev ) );
 		app.use( ping );
 		app.get( '/saml2/metadata/', samlController.metadata );
 		app.post( '/saml2/acs/', data, samlController.acs );
@@ -77,7 +83,7 @@ module.exports = {
 		app.use( function( req, res ){
 
 			res.status( 404 );
-			res.render( '404.html' );
+			res.render( 'error/404.html' );
 		} );
 
 		reporter.handleErrors( app );

@@ -75,21 +75,23 @@ function createResponseHandler( resolve, reject ){
 
 			} else {
 
+				let message = 'Not a successful response from the backend.';
+				let logType = 'error';
+
 				if( response.statusCode === 403 ){
 
-					let e = new Error( 'Not logged in' );
-					e.code = 403;
-					e.response = response;
-					e.data = data;
-
-					logger.debug( 'Got a %s status code for url: %s', response.statusCode, response.request.uri.href );
-					reject( e );
-
-				} else {
-
-					logger.error( 'Got a %s status code for url: %s', response.statusCode, response.request.uri.href );
-					reject( new Error( 'Not a successful response from the backend.' ) );
+					message = 'Not logged in';
+					logType = 'debug';
 				}
+
+				const e = new Error( message );
+
+				e.code = response.statusCode;
+				e.response = response;
+				e.data = data;
+
+				logger[ logType ]( 'Got a %s status code for url: %s', response.statusCode, response.request.uri.href );
+				reject( e );
 			}
 		}
 	};

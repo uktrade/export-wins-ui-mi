@@ -68,6 +68,8 @@
 	<!-- endbuild -->
 	{%- endblock script -%}
 
+	{%- block pageScript %}{% endblock pageScript -%}
+
 	{%- if analyticsId %}
 	<script>
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -80,5 +82,4 @@
 	</script>
 	{%- endif -%}
 
-	{% block pageScript %}{% endblock pageScript %}
 {%- endblock body_end %}

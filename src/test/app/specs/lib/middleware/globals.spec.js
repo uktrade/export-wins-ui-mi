@@ -91,5 +91,4 @@ describe( 'Globals middleware', function(){
 			expect( next ).toHaveBeenCalled();
 		} );
 	} );
-
 } );

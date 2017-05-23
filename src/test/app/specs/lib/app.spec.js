@@ -27,6 +27,17 @@ function getTitle( res ){
 	return title;
 }
 
+function checkResponse( res, statusCode ){
+
+	const headers = res.headers;
+
+	expect( res.statusCode ).toEqual( statusCode );
+	expect( headers[ 'x-download-options' ] ).toBeDefined();
+	expect( headers[ 'x-xss-protection' ] ).toBeDefined();
+	expect( headers[ 'x-content-type-options' ] ).toBeDefined();
+	expect( headers[ 'x-frame-options' ] ).toBeDefined();
+}
+
 describe( 'App', function(){
 
 	let app;
@@ -55,7 +66,7 @@ describe( 'App', function(){
 
 				supertest( app ).get( '/' ).end( ( err, res ) => {
 
-					expect( res.statusCode ).toEqual( 200 );
+					checkResponse( res, 200 );
 					expect( getTitle( res ) ).toEqual( 'MI - Homepage' );
 					done();
 				} );
@@ -70,7 +81,7 @@ describe( 'App', function(){
 
 				supertest( app ).get( '/' ).end( ( err, res ) => {
 
-					expect( res.statusCode ).toEqual( 500 );
+					checkResponse( res, 500 );
 					done();
 				} );
 			} );
@@ -87,7 +98,7 @@ describe( 'App', function(){
 
 					supertest( app ).get( '/?osRegions=true' ).end( ( err, res ) => {
 
-						expect( res.statusCode ).toEqual( 500 );
+						checkResponse( res, 500 );
 						done();
 					} );
 				} );
@@ -102,7 +113,7 @@ describe( 'App', function(){
 
 					supertest( app ).get( '/?osRegions=true' ).end( ( err, res ) => {
 
-						expect( res.statusCode ).toEqual( 500 );
+						checkResponse( res, 500 );
 						done();
 					} );
 				} );
@@ -122,7 +133,7 @@ describe( 'App', function(){
 
 					supertest( app ).get( '/sector-teams/overview/' ).end( ( err, res ) => {
 
-						expect( res.statusCode ).toEqual( 200 );
+						checkResponse( res, 200 );
 						expect( getTitle( res ) ).toEqual( 'MI - Sector Teams Overview' );
 						done();
 					} );
@@ -140,7 +151,7 @@ describe( 'App', function(){
 
 					supertest( app ).get( '/sector-teams/' ).end( ( err, res ) => {
 
-						expect( res.statusCode ).toEqual( 200 );
+						checkResponse( res, 200 );
 						expect( getTitle( res ) ).toEqual( 'MI - Sector Teams' );
 						done();
 					} );
@@ -161,7 +172,7 @@ describe( 'App', function(){
 
 					supertest( app ).get( '/sector-teams/1/' ).end( ( err, res ) => {
 
-						expect( res.statusCode ).toEqual( 200 );
+						checkResponse( res, 200 );
 						expect( getTitle( res ) ).toEqual( 'MI - distinctio quas &amp; numquam Sector Team' );
 						done();
 					} );
@@ -182,7 +193,7 @@ describe( 'App', function(){
 
 					supertest( app ).get( '/hvc-groups/' ).end( ( err, res ) => {
 
-						expect( res.statusCode ).toEqual( 200 );
+						checkResponse( res, 200 );
 						expect( getTitle( res ) ).toEqual( 'MI - HVC Groups' );
 						done();
 					} );
@@ -202,7 +213,7 @@ describe( 'App', function(){
 
 					supertest( app ).get( '/hvc-groups/1/' ).end( ( err, res ) => {
 
-						expect( res.statusCode ).toEqual( 200 );
+						checkResponse( res, 200 );
 						expect( getTitle( res ) ).toEqual( 'MI - HVC Group - sunt laborum &amp; quos' );
 						done();
 					} );
@@ -275,7 +286,7 @@ if( config.backend.mock ){
 
 					supertest( app ).get( '/overseas-regions/overview/' ).end( ( err, res ) => {
 
-						expect( res.statusCode ).toEqual( 200 );
+						checkResponse( res, 200 );
 						expect( getTitle( res ) ).toEqual( 'MI - Overseas Regions Overview' );
 						done();
 					} );
@@ -293,7 +304,7 @@ if( config.backend.mock ){
 
 					supertest( app ).get( '/overseas-regions/' ).end( ( err, res ) => {
 
-						expect( res.statusCode ).toEqual( 200 );
+						checkResponse( res, 200 );
 						expect( getTitle( res ) ).toEqual( 'MI - Overseas Regions' );
 						done();
 					} );
@@ -314,7 +325,7 @@ if( config.backend.mock ){
 
 					supertest( app ).get( '/overseas-regions/1/' ).end( ( err, res ) => {
 
-						expect( res.statusCode ).toEqual( 200 );
+						checkResponse( res, 200 );
 						expect( getTitle( res ) ).toEqual( 'MI - Overseas Region - minima explicabo &amp; architecto' );
 						done();
 					} );
@@ -333,7 +344,7 @@ if( config.backend.mock ){
 
 			supertest( app ).get( '/saml2/metadata/' ).end( ( err, res ) => {
 
-				expect( res.statusCode ).toEqual( 200 );
+				checkResponse( res, 200 );
 				expect( res.text ).toEqual( xml );
 				done();
 			} );
@@ -356,7 +367,7 @@ if( config.backend.mock ){
 
 				supertest( app ).post( '/saml2/acs/' ).end( ( err, res ) => {
 
-					expect( res.statusCode ).toEqual( 302 );
+					checkResponse( res, 302 );
 					expect( res.text ).toEqual( 'Found. Redirecting to /' );
 					done();
 				} );
@@ -378,7 +389,7 @@ if( config.backend.mock ){
 
 					supertest( app ).post( '/saml2/acs/' ).end( ( err, res ) => {
 
-						expect( res.statusCode ).toEqual( 200 );
+						checkResponse( res, 200 );
 						expect( getTitle( res ) ).toEqual( 'MI - Access denied' );
 						done();
 					} );
@@ -387,7 +398,7 @@ if( config.backend.mock ){
 
 			describe( 'When it is a 500', function(){
 
-				it( 'Should render the default error page', function( done ){
+				it( 'Should render an unable to login error', function( done ){
 
 					const response = '{ "code": 2, "message": "error" }';
 
@@ -398,8 +409,8 @@ if( config.backend.mock ){
 
 					supertest( app ).post( '/saml2/acs/' ).end( ( err, res ) => {
 
-						expect( res.statusCode ).toEqual( 500 );
-						expect( getTitle( res ) ).toEqual( 'MI - Error' );
+						checkResponse( res, 200 );
+						expect( getTitle( res ) ).toEqual( 'MI - Unable to login' );
 						done();
 					} );
 				} );
@@ -415,7 +426,7 @@ if( config.backend.mock ){
 
 			supertest( app ).get( '/login/' ).end( ( err, res ) => {
 
-				expect( res.statusCode ).toEqual( 200 );
+				checkResponse( res, 200 );
 				expect( getTitle( res ) ).toEqual( 'MI - Login' );
 				done();
 			} );
@@ -428,7 +439,7 @@ if( config.backend.mock ){
 
 			supertest( app ).get( '/abc123' ).end( ( err, res ) => {
 
-				expect( res.statusCode ).toEqual( 404 );
+				checkResponse( res, 404 );
 				expect( getTitle( res ) ).toEqual( 'MI - Not found' );
 				done();
 			} );
@@ -441,7 +452,7 @@ if( config.backend.mock ){
 
 			supertest( app ).get( '/select-year' ).end( ( err, res ) => {
 
-				expect( res.statusCode ).toEqual( 200 );
+				checkResponse( res, 200 );
 				expect( getTitle( res ) ).toEqual( 'MI - Select year' );
 				done();
 			} );

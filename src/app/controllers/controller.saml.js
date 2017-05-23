@@ -14,13 +14,23 @@ module.exports = {
 
 		} ).catch( ( e ) => {
 
-			if( e.code === 403 ){
+			switch( e.code ){
 
-				res.render( 'error-not-mi.html' );
+				case 403:
 
-			} else {
+					res.render( 'error/not-mi.html' );
 
-				renderError.sendResponse( res, e );
+				break;
+				case 500:
+
+					res.render( 'error/unable-to-login.html' );
+
+				break;
+				default:
+
+					renderError.sendResponse( res, e );
+
+				break;
 			}
 		} );
 	},

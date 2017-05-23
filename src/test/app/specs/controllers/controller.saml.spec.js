@@ -99,7 +99,30 @@ describe( 'SAML controller', function(){
 								expect( errorHandler.createHandler ).not.toHaveBeenCalled();
 								expect( errorHandler.sendResponse ).not.toHaveBeenCalled();
 
-								expect( view ).toEqual( 'error-not-mi.html' );
+								expect( view ).toEqual( 'error/not-mi.html' );
+								done();
+							}
+						} );
+					} );
+				} );
+
+				describe( 'When the response is a 500', function(){
+
+					it( 'Should render an unable to login error page', function( done ){
+
+						spyOn( errorHandler, 'sendResponse' ).and.callFake( () => {} );
+
+						interceptBackend.post( '/saml2/acs/' ).reply( 500, '{ "code": 2, "message": "server error" }', {
+							'Content-Type': 'application/json'
+						} );
+
+						controller.acs( req, {
+							render: function( view ){
+
+								expect( errorHandler.createHandler ).not.toHaveBeenCalled();
+								expect( errorHandler.sendResponse ).not.toHaveBeenCalled();
+
+								expect( view ).toEqual( 'error/unable-to-login.html' );
 								done();
 							}
 						} );
@@ -117,7 +140,7 @@ describe( 'SAML controller', function(){
 							done();
 						} );
 
-						interceptBackend.post( '/saml2/acs/' ).reply( 500, '' );
+						interceptBackend.post( '/saml2/acs/' ).reply( 404, '' );
 
 						controller.acs( req, {} );
 					} );

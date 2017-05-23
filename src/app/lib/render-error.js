@@ -6,7 +6,7 @@ function sendResponse( res, err ){
 	logger.error( err );
 
 	res.status( 500 );
-	res.render( 'error', { error: err } );
+	res.render( 'error/default.html', { error: err } );
 }
 
 module.exports = {
