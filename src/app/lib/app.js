@@ -23,7 +23,6 @@ const headers = require( './middleware/headers' );
 const loginController = require( '../controllers/controller.login' );
 const samlController = require( '../controllers/controller.saml' );
 
-
 module.exports = {
 
 	create: function(){
