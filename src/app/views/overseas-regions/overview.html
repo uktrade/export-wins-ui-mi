@@ -7,11 +7,11 @@
 
 {% block page_content %}
 
-	<h2 class="overseas-regions-overview-heading">All overseas regions review</h2>
+	<h1 class="overseas-regions-overview-heading">All overseas regions review</h1>
 
 	<section class="grid-row">
 		<div class="column-half">
-			<h3 class="column-date">{{ financialYear( dateRange ) }}</h3>
+			<h2 class="column-date">{{ financialYear( dateRange ) }}</h2>
 		</div>
 		<div class="column-half">
 			{% include 'partials/key.html' %}
@@ -19,18 +19,14 @@
 	</section>
 
 	<table class="overseas-region-overview-data" cellspacing="0">
-
-		<caption class="visually-hidden">
-			Region overview group {{ loop.index }}
-		</caption>
-
-		<thead{% if loop.index > 1 %} class="visually-hidden"{% endif %}>
+		<caption class="visually-hidden">Overview of all regions performance</caption>
+		<thead>
 			<tr class="overseas-region-overview-data_headings">
 				<th class="overseas-region-overview-data_headings_heading" colspan="2">Regions<span class="visually-hidden"> (and countries)</span></th>
 				<th class="overseas-region-overview-data_headings_heading">HVC performance<span class="overseas-region-overview-data_headings_heading_sub">(each square equals 1 HVC)</span></th>
 				<th class="overseas-region-overview-data_headings_heading">Confirmed wins &pound;</th>
 				<th class="overseas-region-overview-data_headings_heading overseas-region-overview-data_headings_heading--target">HVC target &pound;</th>
-				<th class="overseas-region-overview-data_headings_heading"><span class="visually-hidden">Progress against target</span></th>
+				<th class="overseas-region-overview-data_headings_heading"><span class="visually-hidden">Value against target</span></th>
 				<th class="overseas-region-overview-data_headings_heading overseas-region-overview-data_headings_heading--hvc-non-hvc">
 					Confirmed<br>
 					<span class="overseas-region-overview-data_heading_hvc-non-hvc_block overseas-region-overview-data_heading_hvc-non-hvc_block--hvc"></span>
@@ -89,7 +85,7 @@
 					&pound;{{ region.values.hvc.target | largeNumber -}}
 				</td>
 				<td class="{{ firstRowClass }}overseas-region-overview-data_cell overseas-region-overview-data_cell--progress">
-					<span class="visually-hidden">{{- region.value.percentage }}%</span>
+					<span class="visually-hidden">{{- region.values.hvc.targetPercent.confirmed.value }}%</span>
 				</td>
 				<td class="{{ firstRowClass }}overseas-region-overview-data_cell overseas-region-overview-data_cell--hvc-non-hvc">
 					{{- overviewPie( region.confirmedPercent.nonHvc ) -}}

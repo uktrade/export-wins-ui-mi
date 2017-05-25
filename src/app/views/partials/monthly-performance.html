@@ -29,7 +29,7 @@
 	<ul class="monthly-performance_list">
 	{%- for month in monthlyPerformance.months -%}
 
-		<li class="monthly-performance_list_item">
+		<li class="monthly-performance_list_item" aria-labelledby="monthly-performance-{{ loop.index }}">
 
 			<dl class="monthly-performance_bars">
 			{%- for bar in month.bars %}
@@ -39,8 +39,8 @@
 
 			{%- endfor %}
 			</dl>
-			
-			<span class="monthly-performance_list_item_date">{{ month.date }}</span>
+
+			<span id="monthly-performance-{{ loop.index }}" class="monthly-performance_list_item_date">{{ month.date }}</span>
 
 		</li>
 
