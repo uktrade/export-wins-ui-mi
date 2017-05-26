@@ -6,4 +6,5 @@ module.exports = function( env ){
 	env.addGlobal( 'feedbackSurvey', config.feedbackSurvey );
 	env.addGlobal( 'asset_path', '/public/uktrade/' );
 	env.addGlobal( 'analyticsId', config.analyticsId );
+	env.addGlobal( 'faqLink', config.faqLink );
 };
