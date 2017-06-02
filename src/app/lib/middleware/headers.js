@@ -1,3 +1,5 @@
+const config = require( '../../config' );
+
 const cspValues = [
 
 	`default-src 'none'`,
@@ -6,7 +8,7 @@ const cspValues = [
 	`style-src 'self' 'unsafe-inline'`,
 	`font-src 'self'`,
 	`img-src 'self' www.google-analytics.com`,
-	`form-action https://adfsmobile.azurecore.com/adfs/ls/`
+	`form-action ${ config.coreLoginUrl }`
 
 ].join( ';' );
 
