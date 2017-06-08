@@ -12,7 +12,7 @@ jobs:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: ""
           POSTGRES_DB: export-wins-data
-      - image: ukti/export-wins-data:docker-wait
+      - image: ukti/export-wins-data
         environment:
           DEBUG: "True"
           API_DEBUG: "True"
