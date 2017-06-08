@@ -33,31 +33,32 @@
 
 {% block footer %}
 
-  <footer class="group js-footer footer--govuk" id="footer" role="contentinfo">
-    <div class="footer-wrapper">
-      <div class="footer-meta">
-        <div class="footer-meta-inner">
-          <p class="footer-feedback-link">If you have any issues or feedback please <a href="{{ urls.email() }}">contact the MI team</a></p>
-          <ul>
-            <li><a href="/terms_and_conditions">Terms and conditions</a></li>
-          </ul>
+	<footer class="group js-footer footer--govuk" id="footer" role="contentinfo">
+		<div class="footer-wrapper">
+			<div class="footer-meta">
+				<div class="footer-meta-inner">
+					<p class="footer-feedback-link">If you have any issues or feedback please <a href="{{ urls.email() }}">contact the MI team</a></p>
+			 		{% if faqLink -%}
+					<ul>
+						<li><a href="{{ faqLink }}">View our FAQs</a></li>
+					</ul>
+					{%- endif -%}
+					<div class="open-government-licence">
+						<p class="logo"><a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a></p>
+						<p>All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+					</div>
+				</div>
 
-          <div class="open-government-licence">
-            <p class="logo"><a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a></p>
-            <p>All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
-          </div>
-        </div>
-
-        <div class="copyright">
-          <a href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/" rel="Copyright">© Crown copyright</a>
-        </div>
-      </div>
-    </div>
+				<div class="copyright">
+					<a href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/" rel="Copyright">© Crown copyright</a>
+				</div>
+			</div>
+		</div>
   </footer>
 {% endblock %}
 
 {% block body_end %}
-	{% block script %}
+	{%- block script -%}
 	<!-- build:js(src) /public/js/jessie.min.js -->
 	<script src="/public/js/vendor/jessie/jessie.js"></script>
 	<!-- endbuild -->
@@ -66,8 +67,20 @@
 		<script src="/public/js/pages/page.sector.js"></script>
 		<script src="/public/js/pages/page.hvc.js"></script>
 	<!-- endbuild -->
-	{% endblock script %}
+	{%- endblock script -%}
 
-	{% block pageScript %}
-	{% endblock pageScript %}
-{% endblock body_end %}
+	{%- block pageScript %}{% endblock pageScript -%}
+
+	{%- if analyticsId %}
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', '{{ analyticsId }}', 'auto');
+		ga('send', 'pageview');
+	</script>
+	{%- endif -%}
+
+{%- endblock body_end %}

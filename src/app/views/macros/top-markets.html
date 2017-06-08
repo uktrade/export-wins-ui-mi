@@ -1,7 +1,7 @@
 {% macro topMarketsTable( topMarkets, type ) %}
 <div class="top-markets{% if type %} top-markets--{{ type }}{% endif %}">
 	<table class="top-markets_table">
-
+		<caption class="visually-hidden">Top performing markets without an HVC tagged</caption>
 		<thead>
 			<tr>
 				<th class="top-markets_table_heading top-markets_table_heading--left">Market</th>

@@ -47,7 +47,7 @@ describe( 'HVC controller', function(){
 		it( 'Should get the HVC data and render the correct view', function( done ){
 
 			const req = {
-				alice: '1234',
+				cookies: { sessionid: '123' },
 				year,
 				params: {
 					id: 1234
@@ -64,7 +64,7 @@ describe( 'HVC controller', function(){
 
 			controller.hvc( req, { render: function( view, data ){
 
-				expect( backendService.getHvc ).toHaveBeenCalledWith( req.alice, req.year, hvcId );
+				expect( backendService.getHvc ).toHaveBeenCalledWith( req, hvcId );
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				expect( hvcTargetPerformance.create ).toHaveBeenCalled();
 				expect( topMarkets.create ).toHaveBeenCalled();

@@ -25,55 +25,83 @@ function convertDateRange( data ){
 	}
 }
 
-function get( path, alice, year, transform ){
+function getJson( path, req, transform ){
 
-	return new Promise( ( resolve, reject ) => {
+	path = `${ path }?year=${ req.year }`;
 
-		path = `${ path }?year=${ year }`;
+	return sessionGet( path, req ).then( ( info ) => {
 
-		backend.get( alice, path, function( err, response, data ){
+		const response = info.response;
+		const data = info.data;
 
-			if( err ){
+		convertDateRange( data );
 
-				if( err.code === 'ECONNREFUSED' ){
+		if( transform ){
 
-					err = new Error( 'The backend is not available.' );
-				}
+			try {
 
-				reject( err );
+				data.results = transform( data.results );
+
+			} catch ( e ){
+
+				logger.error( 'Unable to transform API response for url: %s', response.request.uri.href );
+				logger.error( e );
+				throw( new Error( 'Unable to transform API response' ) );
+			}
+		}
+
+		return data;
+	} );
+}
+
+function createResponseHandler( resolve, reject ){
+
+	return function( err, response, data ){
+
+		if( err ){
+
+			if( err.code === 'ECONNREFUSED' ){
+
+				err = new Error( 'The backend is not available.' );
+			}
+
+			reject( err );
+
+		} else {
+
+			if( response.isSuccess ){
+
+				resolve( { response, data } );
 
 			} else {
 
-				if( response.isSuccess ){
+				let message = 'Not a successful response from the backend.';
+				let logType = 'error';
 
-					convertDateRange( data );
+				if( response.statusCode === 403 ){
 
-					if( transform ){
-
-						try {
-
-							data.results = transform( data.results );
-							resolve( data );
-
-						} catch ( e ){
-
-							logger.error( 'Unable to transform API response for url: %s', response.request.uri.path );
-							logger.error( e );
-							reject( new Error( 'Unable to transform API response' ) );
-						}
-
-					} else {
-
-						resolve( data );
-					}
-
-				} else {
-
-					logger.error( 'Got a %s status code for url: %s', response.statusCode, response.request.uri.href );
-					reject( new Error( 'Not a successful response from the backend.' ) );
+					message = 'Not logged in';
+					logType = 'debug';
 				}
+
+				const e = new Error( message );
+
+				e.code = response.statusCode;
+				e.response = response;
+				e.data = data;
+
+				logger[ logType ]( 'Got a %s status code for url: %s', response.statusCode, response.request.uri.href );
+				reject( e );
 			}
-		} );
+		}
+	};
+}
+
+function sessionGet( path, req ){
+
+	return new Promise( ( resolve, reject ) => {
+
+		backend.sessionGet( req.cookies.sessionid, path, createResponseHandler( resolve, reject ) );
 	} );
 }
 
@@ -99,91 +127,92 @@ function getAll( name, promises, dataFormatter ){
 	} );
 }
 
-function getSectorTeams( alice, year ){
 
-	return get( '/mi/sector_teams/', alice, year );
+function getSectorTeams( req ){
+
+	return getJson( '/mi/sector_teams/', req );
 }
 
-function getSectorTeam( alice, year, teamId ){
+function getSectorTeam( req, teamId ){
 
-	return get( `/mi/sector_teams/${ teamId }/`, alice, year );
+	return getJson( `/mi/sector_teams/${ teamId }/`, req );
 }
 
-function getSectorTeamMonths( alice, year, teamId ){
+function getSectorTeamMonths( req, teamId ){
 
-	return get( `/mi/sector_teams/${ teamId }/months/`, alice, year, transformMonths );
+	return getJson( `/mi/sector_teams/${ teamId }/months/`, req, transformMonths );
 }
 
-function getSectorTeamCampaigns( alice, year, teamId ){
+function getSectorTeamCampaigns( req, teamId ){
 
-	return get( `/mi/sector_teams/${ teamId }/campaigns/`, alice, year, transformCampaigns );
+	return getJson( `/mi/sector_teams/${ teamId }/campaigns/`, req, transformCampaigns );
 }
 
-function getSectorTeamTopNonHvc( alice, year, teamId ){
+function getSectorTeamTopNonHvc( req, teamId ){
 
-	return get( `/mi/sector_teams/${ teamId }/top_non_hvcs/`, alice, year );
+	return getJson( `/mi/sector_teams/${ teamId }/top_non_hvcs/`, req );
 }
 
-function getSectorTeamsOverview( alice, year ){
+function getSectorTeamsOverview( req ){
 
-	return get( '/mi/sector_teams/overview/', alice, year, transformSectorTeamsOverview );
-}
-
-
-function getOverseasRegions( alice, year ){
-
-	return get( '/mi/os_regions/', alice, year );
-}
-
-function getOverseasRegionGroups( alice, year ){
-
-	return getOverseasRegions( alice, year ).then( transformOsRegions );
-}
-
-function getOverseasRegion( alice, year, regionId ){
-
-	return get( `/mi/os_regions/${ regionId }/`, alice, year );
-}
-
-function getOverseasRegionMonths( alice, year, regionId ){
-
-	return get( `/mi/os_regions/${ regionId }/months/`, alice, year, transformMonths );
-}
-
-function getOverseasRegionCampaigns( alice, year, regionId ){
-
-	return get( `/mi/os_regions/${ regionId }/campaigns/`, alice, year, transformCampaigns );
-}
-
-function getOverseasRegionTopNonHvc( alice, year, regionId ){
-
-	return get( `/mi/os_regions/${ regionId }/top_non_hvcs/`, alice, year );
-}
-
-function getOverseasRegionsOverview( alice, year ){
-
-	return get( '/mi/os_regions/overview/', alice, year, transformOverseasRegionsOverview );
+	return getJson( '/mi/sector_teams/overview/', req, transformSectorTeamsOverview );
 }
 
 
-function getHvcGroups( alice, year ){
+function getOverseasRegions( req ){
 
-	return get( '/mi/hvc_groups/', alice, year );
+	return getJson( '/mi/os_regions/', req );
 }
 
-function getHvcGroup( alice, year, groupId ){
+function getOverseasRegionGroups( req ){
 
-	return get( `/mi/hvc_groups/${ groupId }/`, alice, year, transformHvcGroup );
+	return getOverseasRegions( req ).then( transformOsRegions );
 }
 
-function getHvcGroupCampaigns( alice, year, groupId ){
+function getOverseasRegion( req, regionId ){
 
-	return get( `/mi/hvc_groups/${ groupId }/campaigns/`, alice, year, transformCampaigns );
+	return getJson( `/mi/os_regions/${ regionId }/`, req );
 }
 
-function getHvcGroupMonths( alice, year, groupId ){
+function getOverseasRegionMonths( req, regionId ){
 
-	return get( `/mi/hvc_groups/${ groupId }/months/`, alice, year, transformMonths );
+	return getJson( `/mi/os_regions/${ regionId }/months/`, req, transformMonths );
+}
+
+function getOverseasRegionCampaigns( req, regionId ){
+
+	return getJson( `/mi/os_regions/${ regionId }/campaigns/`, req, transformCampaigns );
+}
+
+function getOverseasRegionTopNonHvc( req, regionId ){
+
+	return getJson( `/mi/os_regions/${ regionId }/top_non_hvcs/`, req );
+}
+
+function getOverseasRegionsOverview( req ){
+
+	return getJson( '/mi/os_regions/overview/', req, transformOverseasRegionsOverview );
+}
+
+
+function getHvcGroups( req ){
+
+	return getJson( '/mi/hvc_groups/', req );
+}
+
+function getHvcGroup( req, groupId ){
+
+	return getJson( `/mi/hvc_groups/${ groupId }/`, req, transformHvcGroup );
+}
+
+function getHvcGroupCampaigns( req, groupId ){
+
+	return getJson( `/mi/hvc_groups/${ groupId }/campaigns/`, req, transformCampaigns );
+}
+
+function getHvcGroupMonths( req, groupId ){
+
+	return getJson( `/mi/hvc_groups/${ groupId }/months/`, req, transformMonths );
 }
 
 
@@ -192,7 +221,7 @@ function getWin(){
 	return mocks.win();
 }
 
-function getHvc( /* alice, hvcId */ ){
+function getHvc( /* req, hvcId */ ){
 
 	//`/mi/hvc/${ hvcId }/`
 
@@ -206,7 +235,7 @@ function getHvc( /* alice, hvcId */ ){
 	} );
 }
 
-function getWinList( /* alice */ ){
+function getWinList( /* req */ ){
 
 	return mocks.winList().then( ( mockData ) => {
 
@@ -218,6 +247,31 @@ function getWinList( /* alice */ ){
 	} );
 }
 
+function getSamlMetadata( req ){
+
+	return new Promise( ( resolve, reject ) => {
+
+		backend.sessionGet( req.cookies.sessionid, '/saml2/metadata/', createResponseHandler( resolve, reject ) );
+
+	} ).then( ( info ) => info.data );
+}
+
+function sendSamlXml( req ){
+
+	return new Promise( ( resolve, reject ) => {
+
+		backend.sessionPost( req.cookies.sessionid, '/saml2/acs/', req.data, createResponseHandler( resolve, reject ) );
+	} );
+}
+
+function getSamlLogin( req ){
+
+	return new Promise( ( resolve, reject ) => {
+
+		backend.sessionGet( req.cookies.sessionid, '/saml2/login/', createResponseHandler( resolve, reject ) );
+	} );
+}
+
 module.exports = {
 
 	getSectorTeams,
@@ -226,14 +280,14 @@ module.exports = {
 	getSectorTeamCampaigns,
 	getSectorTeamTopNonHvc,
 
-	getSectorTeamInfo: function( alice, year, teamId ){
+	getSectorTeamInfo: function( req, teamId ){
 
 		return getAll( 'getSectorTeamInfo', [
 
-			getSectorTeam( alice, year, teamId ),
-			getSectorTeamMonths( alice, year, teamId ),
-			getSectorTeamTopNonHvc( alice, year, teamId ),
-			getSectorTeamCampaigns( alice, year, teamId )
+			getSectorTeam( req, teamId ),
+			getSectorTeamMonths( req, teamId ),
+			getSectorTeamTopNonHvc( req, teamId ),
+			getSectorTeamCampaigns( req, teamId )
 
 		], function( data ){
 
@@ -255,14 +309,14 @@ module.exports = {
 	getOverseasRegionTopNonHvc,
 	getOverseasRegionCampaigns,
 
-	getOverseasRegionInfo: function( alice, year, regionId ){
+	getOverseasRegionInfo: function( req, regionId ){
 
 		return getAll( 'getOverseasRegionInfo', [
 
-			getOverseasRegion( alice, year, regionId ),
-			getOverseasRegionMonths( alice, year, regionId ),
-			getOverseasRegionTopNonHvc( alice, year, regionId ),
-			getOverseasRegionCampaigns( alice, year, regionId )
+			getOverseasRegion( req, regionId ),
+			getOverseasRegionMonths( req, regionId ),
+			getOverseasRegionTopNonHvc( req, regionId ),
+			getOverseasRegionCampaigns( req, regionId )
 
 		], function( data ){
 
@@ -275,12 +329,12 @@ module.exports = {
 		} );
 	},
 
-	getSectorTeamsAndOverseasRegions: function( alice, year ){
+	getSectorTeamsAndOverseasRegions: function( req ){
 
 		return getAll( 'getSectorTeamsAndOverseasRegions', [
 
-			getSectorTeams( alice, year ),
-			getOverseasRegionGroups( alice, year )
+			getSectorTeams( req ),
+			getOverseasRegionGroups( req )
 
 		], function( data ){
 
@@ -298,13 +352,13 @@ module.exports = {
 	getHvcGroupMonths,
 	getHvcGroupCampaigns,
 
-	getHvcGroupInfo: function( alice, year, parentId ){
+	getHvcGroupInfo: function( req, parentId ){
 
 		return getAll( 'getHvcGroupInfo', [
 
-			getHvcGroup( alice, year, parentId ),
-			getHvcGroupMonths( alice, year, parentId ),
-			getHvcGroupCampaigns( alice, year, parentId )
+			getHvcGroup( req, parentId ),
+			getHvcGroupMonths( req, parentId ),
+			getHvcGroupCampaigns( req, parentId )
 
 		], function( data ){
 
@@ -318,5 +372,9 @@ module.exports = {
 
 	getHvc,
 	getWin,
-	getWinList
+	getWinList,
+
+	getSamlMetadata,
+	sendSamlXml,
+	getSamlLogin
 };

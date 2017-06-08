@@ -34,7 +34,7 @@
 			{{ sector.values.hvc.target | largeNumber -}}
 		</td>
 		<td class="sector-teams-ov-table_cell sector-teams-ov-table_cell--value-percentage">
-			<span class="visually-hidden">{{ sector.value.percentage.value }}%</span>
+			<span class="visually-hidden">{{ sector.values.hvc.targetPercent.confirmed.value }}%</span>
 		</td>
 		<td class="sector-teams-ov-table_cell sector-teams-ov-table_cell--hvc-non-hvc">
 			{%- if sector.confirmedPercent -%}
@@ -56,11 +56,11 @@
 
 {% block page_content %}
 
-	<h2 class="sectors-overview-heading">All sector teams review</h2>
+	<h1 class="sectors-overview-heading">All sector teams review</h1>
 
 	<section class="grid-row">
 		<div class="column-half column--relative">
-			<h3 class="column-date">{{ financialYear( dateRange ) }}</h3>
+			<h2 class="column-date">{{ financialYear( dateRange ) }}</h2>
 			<h3 class="visually-hidden">Confirmed wins values</h3>
 		</div>
 		<div class="column-half">
@@ -71,13 +71,14 @@
 	{%- set loopIndex = 0 -%}
 
 	<table class="sector-teams-ov-table">
-		<thead{% if loop.index > 1 %} class="visually-hidden"{% endif %}>
+		<caption class="visually-hidden">Performance summary of all sector teams</caption>
+		<thead>
 			<tr>
 				<th class="sector-teams-ov-table_heading">Sectors</th>
 				<th class="sector-teams-ov-table_heading">HVCs<span class="sector-teams-ov-table_heading_sub">(each square equals one HVC)</span></th>
 				<th class="sector-teams-ov-table_heading">Confirmed wins &pound;</th>
 				<th class="sector-teams-ov-table_heading sector-teams-ov-table_heading--target">HVC Target &pound;</th>
-				<th class="sector-teams-ov-table_heading"><span class="visually-hidden">Progress against target</span></th>
+				<th class="sector-teams-ov-table_heading"><span class="visually-hidden">Value against target</span></th>
 				<th class="sector-teams-ov-table_heading sector-teams-ov-table_heading--hvc-non-hvc">
 					Confirmed<br>
 					<span class="overseas-region-overview-data_heading_hvc-non-hvc_block overseas-region-overview-data_heading_hvc-non-hvc_block--hvc"></span>

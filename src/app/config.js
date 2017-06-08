@@ -22,8 +22,7 @@ let config = {
 		host: env( 'SERVER_HOST', 'localhost' ),
 		port: env( 'SERVER_PORT', env( 'PORT', 8080 ) ),
 		cpus,
-		workers: env( 'SERVER_WORKERS', defaultWorkers ),
-		uuid: env( 'SERVER_UUID', '05422c73-064a-4277-aca8-07774dd3e3a0' )
+		workers: env( 'SERVER_WORKERS', defaultWorkers )
 	},
 	views: {
 		cache: bool( 'CACHE_VIEWS', true )
@@ -31,9 +30,12 @@ let config = {
 	financialYearStart: env( 'FINANCIAL_YEAR_START', 2016 ),
 	feedbackEmail: env( 'FEEDBACK_EMAIL' ),
 	feedbackSurvey: env( 'FEEDBACK_SURVEY' ),
+	faqLink: env( 'FAQ_LINK' ),
 	cookieSecret: env( 'COOKIE_SECRET' ),
 	logLevel: env( 'LOG_LEVEL', 'warn' ),
 	sentryDsn: env( 'SENTRY_DSN' ),
+	analyticsId: env( 'ANALYTICS_ID' ),
+	coreLoginUrl: env( 'CORE_LOGIN_URL', 'https://adfsmobile.azurecore.com/adfs/ls/' ),
 	exportWinsUrl: env( 'EXPORT_WINS_URL', 'https://www.exportwins.service.trade.gov.uk/' ),
 	backend: {
 		secret: env( 'MI_SECRET' ),

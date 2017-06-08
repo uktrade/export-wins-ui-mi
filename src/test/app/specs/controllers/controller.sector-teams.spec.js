@@ -49,7 +49,7 @@ describe( 'Sector Teams controller', function(){
 		it( 'Should get the overview data and render the correct view', function( done ){
 
 			const req = {
-				alice: '123',
+				cookies: { sessionid: '123' },
 				year
 			};
 
@@ -60,7 +60,7 @@ describe( 'Sector Teams controller', function(){
 
 			controller.overview( req, { render: function( view, data ){
 
-				expect( backendService.getSectorTeamsOverview ).toHaveBeenCalledWith( req.alice, req.year );
+				expect( backendService.getSectorTeamsOverview ).toHaveBeenCalledWith( req );
 				expect( data.dateRange ).toBeDefined();
 				expect( data.sectorTeams ).toBeDefined();
 				expect( data.sectorTeams.length ).toBeGreaterThan( 1 );
@@ -76,7 +76,7 @@ describe( 'Sector Teams controller', function(){
 		it( 'Should get the list data and render the correct view', function( done ){
 
 			const req = {
-				alice: '87654',
+				cookies: { sessionid: '456' },
 				year
 			};
 
@@ -87,7 +87,7 @@ describe( 'Sector Teams controller', function(){
 
 			controller.list( req, { render: function( view, data ){
 
-				expect( backendService.getSectorTeams ).toHaveBeenCalledWith( req.alice, req.year );
+				expect( backendService.getSectorTeams ).toHaveBeenCalledWith( req );
 				expect( view ).toEqual( 'sector-teams/list.html' );
 				expect( data.sectorTeams ).toBeDefined();
 				expect( data.sectorTeams.length ).toBeGreaterThan( 1 );
@@ -102,7 +102,7 @@ describe( 'Sector Teams controller', function(){
 		it( 'Should get the team data and render the correct view', function( done ){
 
 			const req = {
-				alice: '1234',
+				cookies: { sessionid: '789' },
 				year,
 				params: {
 					id: 1234
@@ -126,7 +126,7 @@ describe( 'Sector Teams controller', function(){
 
 			controller.team( req, { render: function( view, data ){
 
-				expect( backendService.getSectorTeamInfo ).toHaveBeenCalledWith( req.alice, req.year, teamId );
+				expect( backendService.getSectorTeamInfo ).toHaveBeenCalledWith( req, teamId );
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				expect( sectorSummary.create ).toHaveBeenCalled();
 				expect( hvcSummary.create ).toHaveBeenCalled();

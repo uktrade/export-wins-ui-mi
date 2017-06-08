@@ -11,13 +11,17 @@ const config = require( '../config' );
 
 const reporter = require( './reporter' );
 const nunjucksFilters = require( './nunjucks-filters' );
-const alice = require( './middleware/alice' );
-const uuid = require( './middleware/uuid' );
 const staticGlobals = require( './static-globals' );
+
 const ping = require( './middleware/ping' );
+const data = require( './middleware/data' );
 const year = require( './middleware/year' );
 const globals = require( './middleware/globals' );
 const forceHttps = require( './middleware/force-https' );
+const headers = require( './middleware/headers' );
+
+const loginController = require( '../controllers/controller.login' );
+const samlController = require( '../controllers/controller.saml' );
 
 module.exports = {
 
@@ -36,6 +40,8 @@ module.exports = {
 
 		app.set( 'view engine', 'html' );
 		app.set( 'view cache', config.views.cache );
+
+		app.disable( 'x-powered-by' );
 
 		nunjucksEnv = nunjucks.configure( [
 				`${__dirname}/../views`,
@@ -63,13 +69,21 @@ module.exports = {
 		app.use( '/public/uktrade', serveStatic( pathToUkTradePublic, { maxAge: staticMaxAge } ) );
 		app.use( morganLogger( ( isDev ? 'dev' : 'combined' ) ) );
 		app.use( cookieParser() );
+		app.use( headers( isDev ) );
 		app.use( ping );
-		app.use( uuid );
+		app.get( '/saml2/metadata/', samlController.metadata );
+		app.post( '/saml2/acs/', data, samlController.acs );
+		app.get( '/login/', loginController );
 		app.use( year );
-		app.use( alice );
 		app.use( globals( nunjucksEnv ) );
 
 		routes( express, app );
+
+		app.use( function( req, res ){
+
+			res.status( 404 );
+			res.render( 'error/404.html' );
+		} );
 
 		reporter.handleErrors( app );
 

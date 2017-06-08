@@ -1,10 +1,8 @@
-const config = require( '../../config' );
-
 module.exports = function( env ){
 
 	return function( req, res, next ){
 
-		const basePrefix = `/${ config.server.uuid }`;
+		const basePrefix = '';
 		let prefix = basePrefix;
 
 		if( !req.isCurrentYear ){

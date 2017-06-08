@@ -12,7 +12,7 @@ module.exports = {
 
 	overview: function( req, res ){
 
-		backendService.getOverseasRegionsOverview( req.alice, req.year ).then( ( regionGroups ) => {
+		backendService.getOverseasRegionsOverview( req ).then( ( regionGroups ) => {
 
 			res.render( 'overseas-regions/overview.html', {
 				dateRange: regionGroups.date_range,
@@ -24,7 +24,7 @@ module.exports = {
 
 	list: function( req, res ){
 
-		backendService.getOverseasRegions( req.alice, req.year ).then( ( regions ) => {
+		backendService.getOverseasRegions( req ).then( ( regions ) => {
 
 			res.render( 'overseas-regions/list.html', { regions: regions.results } );
 
@@ -35,7 +35,7 @@ module.exports = {
 
 		const regionId = req.params.id;
 
-		backendService.getOverseasRegionInfo( req.alice, req.year, regionId ).then( ( data ) => {
+		backendService.getOverseasRegionInfo( req, regionId ).then( ( data ) => {
 
 			res.render( 'overseas-regions/detail.html', {
 

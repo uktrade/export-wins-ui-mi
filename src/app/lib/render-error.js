@@ -6,7 +6,7 @@ function sendResponse( res, err ){
 	logger.error( err );
 
 	res.status( 500 );
-	res.render( 'error', { error: err } );
+	res.render( 'error/default.html', { error: err } );
 }
 
 module.exports = {
@@ -17,7 +17,14 @@ module.exports = {
 
 		return function( err ){
 
-			sendResponse( res, err );
+			if( err.code === 403 ){
+
+				res.redirect( '/login/' );
+
+			} else {
+
+				sendResponse( res, err );
+			}
 		};
 	}
 };
