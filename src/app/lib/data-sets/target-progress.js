@@ -4,22 +4,38 @@ module.exports = {
 	create: function( winsData ){
 
 		const target = winsData.hvcs.target;
-		const confirmed = winsData.wins.export.hvc.value.confirmed;
-		let progress;
+		const confirmedValue = winsData.wins.export.hvc.value.confirmed;
+		const unconfirmedValue = ( confirmedValue + winsData.wins.export.hvc.value.unconfirmed );
+		const parts = ( 100 / target );
 
-		if( confirmed > target ){
+		function getPercent( num ){
 
-			progress = 100;
+			let percent;
+			let over = false;
 
-		} else {
+			if( num > target ){
 
-			const parts = ( 100 / target );
-			progress = ( parts * confirmed );
+				percent = 100;
+				over = true;
+
+			} else {
+
+				percent = Number( ( parts * num ).toFixed( 2 ) );
+			}
+
+			return {	percent, over };
 		}
 
+		const confirmed = getPercent( confirmedValue );
+		const unconfirmed = getPercent( unconfirmedValue );
+		const over = ( confirmed.over || unconfirmed.over );
+		const overModifyer = ( over ? ( confirmed.over ? 'confirmed' :  'unconfirmed' ) : null );
+
 		return {
-			percent: Number( progress.toFixed( 2 ) ),
-			gauge: Number( ( ( progress / 2 ) / 100 ).toFixed( 2 ) )
+			confirmed: confirmed.percent,
+			unconfirmed: unconfirmed.percent,
+			over,
+			overModifyer
 		};
 	}
 };

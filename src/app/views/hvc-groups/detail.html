@@ -99,10 +99,12 @@
 
 {% endblock %}
 
-{% block pageScript %}
-	<script>
-		mi.pages.sector({
-			targetProgress: {{ hvcSummary.progress.gauge | dump | safe }}
-		});
-	</script>
-{% endblock pageScript %}
+{%- block pageScript %}
+<script>
+	mi.pages.sector({
+		isOver: '{{ hvcSummary.progress.over }}',
+		confirmedPercent: '{{ hvcSummary.progress.confirmed }}',
+		unconfirmedPercent: '{{ hvcSummary.progress.confirmed }}'
+	});
+</script>
+{% endblock pageScript -%}

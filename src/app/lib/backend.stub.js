@@ -44,44 +44,50 @@ function getStub( path ){
 	return JSON.parse( json );
 }
 
+function get( url, cb ){
+
+	let data;
+	let path;
+	let stub;
+	let paramsIndex;
+
+	response.request = {
+		uri: {
+			path: url
+		}
+	};
+
+	for( [ path, stub ] of stubs ){
+
+		paramsIndex = url.indexOf( '?' );
+
+		if( paramsIndex > 0 ){
+
+			url = url.substr( 0, paramsIndex );
+		}
+
+		if( path.test( url ) ){
+
+			data = getStub( stubPath + stub );
+			break;
+		}
+	}
+
+	if( data ){
+
+		cb( null, response, data );
+
+	} else {
+
+		cb( new Error( 'Stub not matched' ) );
+	}
+}
+
 module.exports = {
 
-	get: function( alice, url, cb ){
+	get,
+	sessionGet: function( sessionId, path, cb ){
 
-		let data;
-		let path;
-		let stub;
-		let paramsIndex;
-
-		response.request = {
-			uri: {
-				path: url
-			}
-		};
-
-		for( [ path, stub ] of stubs ){
-
-			paramsIndex = url.indexOf( '?' );
-
-			if( paramsIndex > 0 ){
-
-				url = url.substr( 0, paramsIndex );
-			}
-
-			if( path.test( url ) ){
-
-				data = getStub( stubPath + stub );
-				break;
-			}
-		}
-
-		if( data ){
-
-			cb( null, response, data );
-
-		} else {
-
-			cb( new Error( 'Stub not matched' ) );
-		}
+		get( path, cb );
 	}
 };
