@@ -4,7 +4,9 @@ module.exports = function( isDev ){
 
 	return function( req, res, next ){
 
-		if( FORCE_HTTPS && req.headers[ 'x-forwarded-proto' ] !== 'https' ){
+		const header = req.headers[ 'x-forwarded-proto' ];
+
+		if( FORCE_HTTPS && typeof header !== 'undefined' && header !== 'https' ){
 
 			res.redirect( [ 'https://', req.get( 'Host' ), req.url ].join( '' ) );
 

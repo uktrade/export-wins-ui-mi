@@ -1,0 +1,45 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/app
+    docker:
+      - image: circleci/node:6.10
+        environment:
+          SERVER_WORKERS: 2
+          MI_SECRET: "JKL123"
+      - image: postgres:9
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: ""
+          POSTGRES_DB: export-wins-data
+      - image: ukti/export-wins-data:docker-wait
+        environment:
+          DEBUG: "True"
+          API_DEBUG: "True"
+          SECRET_KEY: "ABC123"
+          ADMIN_SECRET: "DEF456"
+          UI_SECRET: "GHI789"
+          MI_SECRET: "JKL123"
+          DATABASE_URL: "postgres://postgres@localhost/export-wins-data"
+          EMAIL_HOST: "$EMAIL_HOST"
+          EMAIL_PORT: "$EMAIL_PORT"
+        command: ./start-wait-for-db.sh
+      - image: selenium/standalone-chrome:3.4
+    steps:
+      - checkout
+      - restore_cache:
+          key: deps1-{{ checksum "npm-shrinkwrap.json" }}
+      - run: npm install
+      #- run: npm run check:backend
+      - run: npm rebuild node-sass
+      - run: npm test
+      - run: npm run build:dist
+      - save_cache:
+          key: deps1-{{ checksum "npm-shrinkwrap.json" }}
+          paths:
+            - "node_modules"
+            - "dist/node_modules"
+      - run:
+          command: npm start
+          background: true
+      - run: TEST_BROWSER=chrome npm run test:integration
