@@ -2,18 +2,18 @@ const dataset = require( '../../../../../app/lib/data-sets/target-progress' );
 const getBackendStub = require( '../../../helpers/get-backend-stub' );
 
 const input = {
-	"hvcs": { "target": 165000000 },
+	"hvcs": { "target": 150000000 },
 	"wins": {
 		"export": {
 			"hvc": {
 				"number": {
-					"non_confirmed": 49,
-					"confirmed": 21,
+					"confirmed": 100000000,
+					"unconfirmed": 50000000,
 					"total": 70
 				},
 				"value": {
-					"non_confirmed": 4900000,
-					"confirmed": 2100000,
+					"confirmed": 100000000,
+					"unconfirmed": 45000000,
 					"total": 7000000
 				}
 			}
@@ -27,7 +27,8 @@ const input2 = {
 		"export": {
 			"hvc": {
 				"value": {
-					"confirmed": 50
+					"confirmed": 50,
+					"unconfirmed": 20
 				}
 			}
 		}
@@ -40,7 +41,8 @@ const input3 = {
 		"export": {
 			"hvc": {
 				"value": {
-					"confirmed": 250
+					"confirmed": 250,
+					"unconfirmed": 100
 				}
 			}
 		}
@@ -53,7 +55,8 @@ const input4 = {
 		"export": {
 			"hvc": {
 				"value": {
-					"confirmed": 21
+					"confirmed": 21,
+					"unconfirmed": 40
 				}
 			}
 		}
@@ -66,7 +69,8 @@ const input5 = {
 		"export": {
 			"hvc": {
 				"value": {
-					"confirmed": 800
+					"confirmed": 800,
+					"unconfirmed": 100
 				}
 			}
 		}
@@ -81,19 +85,15 @@ describe( 'Target progress data set', function(){
 
 			const output = dataset.create( input );
 
-			expect( output ).toEqual( { percent: 1.27, gauge: 0.01 } );
+			expect( output ).toEqual( { confirmed: 66.67, unconfirmed: 96.67, over: false, overModifyer: null } );
 
 			const output2 = dataset.create( input2 );
 
-			expect( output2 ).toEqual( { percent: 50, gauge: 0.25 } );
+			expect( output2 ).toEqual( { confirmed: 50, unconfirmed: 70, over: false, overModifyer: null } );
 
 			const output3 = dataset.create( input3 );
 
-			expect( output3 ).toEqual( { percent: 25, gauge: 0.13 } );
-
-			const output4 = dataset.create( input4 );
-
-			expect( output4 ).toEqual( { percent: 35, gauge: 0.17 } );
+			expect( output3 ).toEqual( { confirmed: 25, unconfirmed: 35, over: false, overModifyer: null } );
 		} );
 	} );
 
@@ -101,9 +101,13 @@ describe( 'Target progress data set', function(){
 
 		it( 'Should return 100 percent', function(){
 
+			const output4 = dataset.create( input4 );
+
+			expect( output4 ).toEqual( { confirmed: 35, unconfirmed: 100, over: true, overModifyer: 'unconfirmed' } );
+
 			const output5 = dataset.create( input5 );
 
-			expect( output5 ).toEqual( { percent: 100, gauge: 0.5 } );
+			expect( output5 ).toEqual( { confirmed: 100, unconfirmed: 100, over: true, overModifyer: 'confirmed' } );
 		} );
 	} );
 

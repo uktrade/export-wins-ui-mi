@@ -1,0 +1,102 @@
+@import 'mi-colours';
+
+$target-progress-width: 135px;
+$target-progress-arrow-width-mobile: 18px;
+$target-progress-arrow-width: 25px;
+
+$target-progress-arrow-border-width-mobile: ( $target-progress-arrow-width-mobile + 1px );
+$target-progress-arrow-border-width: ( $target-progress-arrow-width + 1px );
+
+.target-progress-bar {
+
+	width: $target-progress-width;
+	height: 32px;
+	display: block;
+	position: relative;
+	border: 1px solid #000;
+	z-index: 5;
+	margin-right: 30px;
+
+	@include media( tablet ){
+		height: 48px;
+	}
+}
+
+.target-progress-bar_progress {
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	transition: width 1.5s;
+}
+
+.target-progress-bar_progress--confirmed {
+	background-color: $hvc;
+	z-index: 15;
+}
+
+.target-progress-bar_progress--unconfirmed {
+	background-color: $unconfirmed;
+	z-index: 10;
+}
+
+.target-progress-bar_over-marker {
+
+	position: absolute;
+	top: -2px;
+	left: 100%;
+	display: block;
+	height: 0;
+	width: 0;
+	border-top: $target-progress-arrow-width-mobile solid transparent;
+	border-bottom: $target-progress-arrow-width-mobile solid transparent;
+	border-left: $target-progress-arrow-width-mobile solid #000;
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+	z-index: 10;
+
+	@include media( tablet ){
+		border-top-width: $target-progress-arrow-border-width;
+		border-bottom-width: $target-progress-arrow-border-width;
+		border-left-width: $target-progress-arrow-border-width;
+	}
+}
+
+.target-progress-bar_over-marker:after {
+	content: '';
+	display: block;
+	z-index: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-color: transparent transparent transparent $hvc;
+	border-width: $target-progress-arrow-width-mobile;
+	margin-left: -$target-progress-arrow-border-width-mobile;
+	margin-top: -$target-progress-arrow-width-mobile;
+	border-top-left-radius: 6px;
+	border-bottom-left-radius: 6px;
+
+	@include media( tablet ){
+		border-width: $target-progress-arrow-width;
+		margin-left: -$target-progress-arrow-border-width;
+		margin-top: -$target-progress-arrow-width;
+		border-top-left-radius: 1px;
+		border-bottom-left-radius: 1px;
+	}
+}
+
+.target-progress-bar_over-marker--unconfirmed:after {
+	border-left-color: $unconfirmed;
+}
+
+.target-progress-bar_target {
+	position: absolute;
+	left: 0;
+	bottom: -1.5em;
+	text-align: right;
+	width: $target-progress-width;
+	@include bold-14;
+}

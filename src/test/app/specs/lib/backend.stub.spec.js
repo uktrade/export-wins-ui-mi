@@ -40,7 +40,7 @@ describe( 'Backend stub', function(){
 
 	function checkStub( url, stub, done ){
 
-		backendStub.get( 'fake-alice-str', url, ( err, response, data ) => {
+		backendStub.get( url, ( err, response, data ) => {
 
 			expect( err ).toBeNull();
 			expect( response.statusCode ).toEqual( 200 );
