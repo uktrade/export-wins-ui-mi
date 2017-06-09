@@ -44,6 +44,6 @@ jobs:
           background: true
       - run: TEST_BROWSER=chrome npm run test:integration
       - store_artifacts:
-        path: src/test/ci/screenshots
-        destination: screenshots
+          path: src/test/ci/screenshots
+          destination: screenshots
 
