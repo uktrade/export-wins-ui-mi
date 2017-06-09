@@ -43,3 +43,7 @@ jobs:
           command: npm start
           background: true
       - run: TEST_BROWSER=chrome npm run test:integration
+      - store_artifacts:
+        path: src/test/ci/screenshots
+        destination: screenshots
+
