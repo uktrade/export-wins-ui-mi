@@ -1,6 +1,6 @@
 {
   "name": "export-wins-ui-mi",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "description": "An MI dashboard for Export Wins",
   "main": "server.js",
   "engines": {
@@ -19,6 +19,8 @@
     "test:faker": "JASMINE_CONFIG_PATH=src/test/data/faker/jasmine.json jasmine",
     "test:client": "karma start",
     "heroku-postbuild": "npm run build:dist",
+    "check:backend": "node src/test/ci/wait-for-backend",
+    "test:integration": "cd src/test/ci/; ./setup.sh; node wait.js && JASMINE_CONFIG_PATH=jasmine.json jasmine",
     "start": "NODE_ENV=production node --use-strict dist/server.js",
     "start:server": "node --use-strict server.js",
     "start:docker": "docker run -d -p 8080:8080 export-wins-ui-mi:${npm_package_version}",
@@ -97,6 +99,7 @@
     "nodemon": "*",
     "npm-run-all": "4.0.2",
     "proxyquire": "1.7.11",
+    "selenium-webdriver": "3.4.0",
     "supertest": "3.0.0"
   },
   "optionalDependencies": {

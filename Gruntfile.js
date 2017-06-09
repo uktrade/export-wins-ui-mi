@@ -12,7 +12,7 @@ module.exports = function( grunt ){
 		},
 
 		clean: {
-			dist: [ 'dist' ]
+			dist: { src: [ 'dist/**/*', '!dist/node_modules/**' ] }
 		},
 
 		copy: {
@@ -132,6 +132,4 @@ module.exports = function( grunt ){
 			'usemin'
 		]);
 	} );
-
-	grunt.registerTask( 'template-font', 'Remove the govuk font from the template', [ 'replace:govuk'] );
 };
