@@ -1,8 +1,14 @@
 @import 'colours';
 
 @import 'layout';
-@import 'index';
-@import 'sector';
+
+@import 'page/index';
+@import 'page/sector';
+@import 'page/sectors-overview';
+@import 'page/overseas-regions-overview';
+@import 'page/hvc';
+@import 'page/win';
+
 @import 'target-progress-bar';
 @import 'pie';
 @import 'key';
@@ -12,15 +18,11 @@
 @import 'zero-target-perf-table';
 @import 'overview-blocks';
 @import 'overview-progress';
-@import 'overseas-regions-overview';
-@import 'sectors-overview';
-@import 'hvc';
 @import 'monthly-performance';
 @import 'monthly-performance-key';
 @import 'win-table';
-@import 'win';
 @import 'hvc-group';
-@import 'select-year';
+@import 'year-selector';
 
 .error-heading {
 	background-color: rgba( $error-colour, 0.15 );
@@ -37,7 +39,8 @@
 
 .page-heading {
 	@include bold-36;
-	margin-top: pem( 30, 36 );
+	margin-top: pem( 20, 36 );
+	margin-bottom: pem( 20, 36 );
 }
 
 .page-heading-secondary {
@@ -47,14 +50,12 @@
 
 .page-sub-heading {
 	@include bold-24;
-	margin-top: pem( 15, 24 );
 }
 
 .page-date {
 	@include core-16;
 	background-color: $date-bg;
 	padding: pem( 5 );
-	margin-top: pem( 15 );
 }
 
 .page-date--half {

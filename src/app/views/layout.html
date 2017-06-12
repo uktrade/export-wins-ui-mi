@@ -23,8 +23,7 @@
 		</div>
 
 		<nav class="top-nav">
-			<a href="{{ urls.index() }}">Management information{% if currentYear %} ({{ currentYear }}){% endif %}</a>
-			<a class="top-nav_change-year" href="{{ urls.changeYear() }}">Change financial year</a>
+			<a href="{{ urls.index() }}">Management information{% if selectedYear %} ({{ selectedYear }}){% endif %}</a>
 		</nav>
 
 		{% block page_content %}{% endblock %}

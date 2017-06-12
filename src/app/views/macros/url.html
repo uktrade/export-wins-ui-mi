@@ -38,10 +38,6 @@
 	{{- urlPrefix }}/hvc/{{ hvcId }}/
 {%- endmacro %}
 
-{% macro changeYear() -%}
-	{{- baseUrlPrefix }}/select-year/
-{%- endmacro %}
-
 {% macro email() -%}
 	mailto:{{ feedbackEmail -}}
 {% endmacro %}
@@ -50,3 +46,10 @@
 	{{- feedbackSurvey -}}
 {% endmacro %}
 
+{% macro current( year ) -%}
+	{%- if year == currentYear %}
+		{{- baseUrlPrefix }}{{ currentUrl }}
+	{%- else %}
+		{{- baseUrlPrefix }}/{{ year }}{{ currentUrl }}
+	{%- endif %}
+{% endmacro %}

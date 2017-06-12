@@ -7,6 +7,7 @@
 {% block page_content %}
 
 	<h1 class="page-heading">{{ sectorName }} review</h1>
+	{% include 'partials/year-selector.html' %}
 	<h2 class="page-date">{{ financialYear( summary.dateRange ) }}</h2>
 
 	<section class="sector-detail grid-row">

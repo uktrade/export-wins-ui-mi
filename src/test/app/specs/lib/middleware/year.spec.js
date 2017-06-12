@@ -30,9 +30,9 @@ describe( 'Year middleware', function(){
 				expect( req.year ).toEqual( '2016' );
 			} );
 
-			it( 'Should set isCurrentYear to false', function(){
+			it( 'Should set isDefaultYear to false', function(){
 
-				expect( req.isCurrentYear ).toEqual( false );
+				expect( req.isDefaultYear ).toEqual( false );
 			} );
 
 			it( 'Should remove the year from the URL', function(){
@@ -47,8 +47,8 @@ describe( 'Year middleware', function(){
 
 			it( 'Should add the year as a local and it should be a number', function(){
 
-				expect( res.locals.currentYear ).toEqual( Number( req.year ) );
-				expect( typeof res.locals.currentYear ).toEqual( 'number' );
+				expect( res.locals.selectedYear ).toEqual( Number( req.year ) );
+				expect( typeof res.locals.selectedYear ).toEqual( 'number' );
 			} );
 		} );
 	} );
@@ -67,14 +67,14 @@ describe( 'Year middleware', function(){
 				expect( next ).toHaveBeenCalled();
 			} );
 
-			it( 'Should set isCurrentYear to true', function(){
+			it( 'Should set isDefaultYear to true', function(){
 
-				expect( req.isCurrentYear ).toEqual( true );
+				expect( req.isDefaultYear ).toEqual( true );
 			} );
 
 			it( 'Should add the year as a local', function(){
 
-				expect( res.locals.currentYear ).toEqual( Number( req.year ) );
+				expect( res.locals.selectedYear ).toEqual( Number( req.year ) );
 			} );
 		} );
 

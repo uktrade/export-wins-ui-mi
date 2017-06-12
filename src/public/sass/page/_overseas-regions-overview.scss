@@ -1,9 +1,4 @@
-@import 'mi-colours';
-
-.overseas-regions-overview-heading {
-	@extend .page-sub-heading;
-	margin-bottom: 1em;
-}
+@import '../mi-colours';
 
 .overseas-region-overview-data {
 	margin-top: pem( 10 );
