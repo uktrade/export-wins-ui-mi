@@ -19,9 +19,9 @@
 
 			<ul class="sector-list">
 			{% for team in sectorTeams %}
-				<li class="sector-list_item"><a href="{{ urls.sectorTeam( team.id ) }}">{{ team.name }}</a></li>
+				<li class="sector-list_item"><a href="{{ urls.sectorTeam( team.id ) }}">{{ team.name }}</a>
 
-				{% if team.hvc_groups.length %}
+				{%- if team.hvc_groups.length %}
 					<ul class="sector-list_parent-sectors">
 						{% for hvcGroup in team.hvc_groups %}
 						<li>
@@ -29,7 +29,9 @@
 						</li>
 						{% endfor %}
 					</ul>
-				{% endif %}
+				{% endif -%}
+
+				</li>
 			{% endfor %}
 			</ul>
 		</div>

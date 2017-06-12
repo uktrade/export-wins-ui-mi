@@ -270,6 +270,18 @@
       "from": "aws4@>=1.2.1 <2.0.0",
       "resolved": "https://registry.npmjs.org/aws4/-/aws4-1.6.0.tgz"
     },
+    "axe-core": {
+      "version": "2.2.3",
+      "from": "axe-core@latest",
+      "resolved": "https://registry.npmjs.org/axe-core/-/axe-core-2.2.3.tgz",
+      "dev": true
+    },
+    "axe-webdriverjs": {
+      "version": "1.1.1",
+      "from": "axe-webdriverjs@latest",
+      "resolved": "https://registry.npmjs.org/axe-webdriverjs/-/axe-webdriverjs-1.1.1.tgz",
+      "dev": true
+    },
     "axios": {
       "version": "0.15.3",
       "from": "axios@>=0.15.3 <0.16.0",
