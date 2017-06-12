@@ -33,7 +33,7 @@ describe( 'Globals middleware', function(){
 
 				req = {
 					year: '2017',
-					isCurrentYear: true
+					isDefaultYear: true
 				};
 
 				globalMiddleware( req, res, next );
@@ -62,7 +62,7 @@ describe( 'Globals middleware', function(){
 
 				req = {
 					year: '2016',
-					isCurrentYear: false
+					isDefaultYear: false
 				};
 				globalMiddleware( req, res, next );
 			} );
@@ -89,6 +89,23 @@ describe( 'Globals middleware', function(){
 			globalMiddleware( req, res, next );
 
 			expect( next ).toHaveBeenCalled();
+		} );
+	} );
+
+	describe( 'currentUrl', function(){
+
+		it( 'Should add the current url to the page', function(){
+
+			req = {
+				url: '/my/test/url'
+			};
+
+			globalMiddleware( req, res, next );
+
+			const args = env.addGlobal.calls.argsFor( 2 );
+
+				expect( args[ 0 ] ).toEqual( 'currentUrl' );
+				expect( args[ 1 ] ).toEqual( req.url );
 		} );
 	} );
 } );

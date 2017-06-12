@@ -1,4 +1,4 @@
-@import 'mi-colours';
+@import '../mi-colours';
 
 .win-details-id {
 	color: $grey-1;
@@ -117,7 +117,7 @@ $win-details-checkbox-check-size: 7px;
 }
 
 .win-details_section-heading {
-	
+
 	line-height: 1;
 	margin: pem( 25 ) 0 pem( 10 ) 0;
 	padding-bottom: pem( 5 );
@@ -149,7 +149,7 @@ $win-details-checkbox-check-size: 7px;
 }
 
 .win-details_section-list_item {
-	
+
 	overflow: hidden;
 	border-bottom: 1px solid $grey-2;
 	padding-bottom: pem( 5 );
@@ -205,7 +205,7 @@ $win-details-checkbox-check-size: 7px;
 }
 
 .win-details_section_sub-list_item {
-	
+
 }
 
 .win-details_section_feedback-list {

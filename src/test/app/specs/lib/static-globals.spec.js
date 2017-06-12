@@ -6,6 +6,7 @@ describe( 'Static globals', function(){
 	const feedbackSurvey = 'http://123abc';
 	const analyticsId = 'abc123';
 	const faqLink = 'http://abc123.com';
+	const financialYearStart = 2016;
 
 	let calls;
 	let staticGlobals;
@@ -17,7 +18,8 @@ describe( 'Static globals', function(){
 				feedbackEmail,
 				feedbackSurvey,
 				analyticsId,
-				faqLink
+				faqLink,
+				financialYearStart
 			}
 		};
 
@@ -69,5 +71,73 @@ describe( 'Static globals', function(){
 
 		expect( args[ 0 ] ).toEqual( 'faqLink' );
 		expect( args[ 1 ] ).toEqual( faqLink );
+	} );
+
+	describe( 'financialYearStart', function(){
+
+		describe( 'When the financialYearStart is a Number', function(){
+
+			it( 'Should add the list of years to the nunjucks env', function(){
+
+				const args = calls.argsFor( 5 );
+				const currentYear = ( new Date() ).getFullYear();
+				const years = [];
+				let year = financialYearStart;
+
+				while( year <= currentYear ){
+					years.push( year++ );
+				}
+
+				expect( args[ 0 ] ).toEqual( 'yearList' );
+				expect( args[ 1 ] ).toEqual( years );
+			} );
+		} );
+
+		describe( 'When the financialYearStart is a String from an env var', function(){
+
+			it( 'Should add the list of years to the nunjucks env and they should all be Numbers', function(){
+
+				const financialYearStart = '2016';
+
+				const stubs = {
+					'../config': {
+						feedbackEmail,
+						feedbackSurvey,
+						analyticsId,
+						faqLink,
+						financialYearStart
+					}
+				};
+
+				staticGlobals = proxyquire( '../../../../app/lib/static-globals', stubs );
+
+				const env = {
+					addGlobal: jasmine.createSpy( 'env.addGlobal' )
+				};
+
+				staticGlobals( env );
+
+
+				const args = env.addGlobal.calls.argsFor( 5 );
+				const currentYear = ( new Date() ).getFullYear();
+				const years = [];
+				let year = 2016;
+
+				while( year <= currentYear ){
+					years.push( year++ );
+				}
+
+				expect( args[ 0 ] ).toEqual( 'yearList' );
+				expect( args[ 1 ] ).toEqual( years );
+			} );
+		} );
+	} );
+
+	it( 'Should add the currentYear to the nunjucks env', function(){
+
+		const args = calls.argsFor( 6 );
+
+		expect( args[ 0 ] ).toEqual( 'currentYear' );
+		expect( args[ 1 ] ).toEqual( ( new Date() ).getFullYear() );
 	} );
 } );

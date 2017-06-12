@@ -445,17 +445,4 @@ if( config.backend.mock ){
 			} );
 		} );
 	} );
-
-	describe( 'Select Year', function(){
-
-		it( 'Should render the view', function( done ){
-
-			supertest( app ).get( '/select-year' ).end( ( err, res ) => {
-
-				checkResponse( res, 200 );
-				expect( getTitle( res ) ).toEqual( 'MI - Select year' );
-				done();
-			} );
-		} );
-	} );
 } );

@@ -1,10 +1,5 @@
-@import 'mi-colours';
 @import 'helpers';
-
-.sectors-overview-heading {
-	@extend .page-sub-heading;
-	margin-bottom: 1em;
-}
+@import '../mi-colours';
 
 $sector-teams-list-font-size: 14;
 

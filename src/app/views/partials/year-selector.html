@@ -1,0 +1,11 @@
+<div class="year-selector">
+	<h4 class="year-selector_text">Choose financial year</h4>
+
+	<ol class="year-selector_year-list">
+		{% for year in yearList %}
+		<li class="year-selector_year-list_item">
+			<a class="year-selector_year-list_link{% if year == selectedYear %} year-selector_year-list_link--active{% endif %}" href="{{ urls.current( year ) }}">{{ year }}</a>
+		</li>
+		{% endfor %}
+	</ol>
+</div>

@@ -9,7 +9,7 @@ module.exports = function( req, res, next ){
 		const year = matches[ 1 ];
 
 		req.year = year;
-		req.isCurrentYear = false;
+		req.isDefaultYear = false;
 		req.url = req.url.substr( 5 );
 
 	} else {
@@ -26,10 +26,10 @@ module.exports = function( req, res, next ){
 		}
 
 		req.year = String( year );
-		req.isCurrentYear = true;
+		req.isDefaultYear = true;
 	}
 
-	res.locals.currentYear = Number( req.year );
+	res.locals.selectedYear = Number( req.year );
 
 	next();
 };

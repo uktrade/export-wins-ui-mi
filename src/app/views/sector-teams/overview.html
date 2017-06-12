@@ -56,10 +56,11 @@
 
 {% block page_content %}
 
-	<h1 class="sectors-overview-heading">All sector teams review</h1>
+	<h1 class="page-heading">All sector teams review</h1>
 
 	<section class="grid-row">
 		<div class="column-half column--relative">
+			{% include 'partials/year-selector.html' %}
 			<h2 class="column-date">{{ financialYear( dateRange ) }}</h2>
 			<h3 class="visually-hidden">Confirmed wins values</h3>
 		</div>
