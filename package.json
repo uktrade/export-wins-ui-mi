@@ -74,6 +74,8 @@
     "winston": "2.3.1"
   },
   "devDependencies": {
+    "axe-core": "2.2.3",
+    "axe-webdriverjs": "1.1.1",
     "eslint": "3.19.0",
     "grunt": "*",
     "grunt-contrib-clean": "*",

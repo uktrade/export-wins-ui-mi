@@ -15,6 +15,7 @@ module.exports = {
 	browser: ( process.env.TEST_BROWSER || 'safari' ),
 	baseUrl: `http://${ host }:${ port }`,
 	seleniumServerUrl: `http://${ seleniumServer }:${ seleniumServerPort }/wd/hub`,
-	screenshotDir: path.resolve( __dirname, 'screenshots' ),
+	screenshotDir: path.resolve( __dirname, 'output/screenshots' ),
+	accessibilityReportDir: path.resolve( __dirname, 'output/accessibility-reports' ),
 	backendUrl: appConfig.backend.href
 };

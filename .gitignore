@@ -12,6 +12,6 @@ src/data/mocks
 src/test/stubs
 src/data/faker/**/output
 src/data/fake-stubs
-src/test/ci/screenshots
+src/test/ci/output
 run/node.log
 run/node.pid
