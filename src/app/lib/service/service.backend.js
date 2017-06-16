@@ -12,8 +12,9 @@ const transformMonths = require( '../transformers/months' );
 const transformCampaigns = require( '../transformers/campaigns' );
 const transformSectorTeamsOverview = require( '../transformers/sector-teams-overview' );
 const transformOverseasRegionsOverview = require( '../transformers/os-regions-overview' );
+const transformOverseasRegionsOverviewGroups = require( '../transformers/os-regions-overview-groups' );
 const transformHvcGroup = require( '../transformers/hvc-group' );
-const transformOsRegions = require( '../transformers/os-regions' );
+//const transformOsRegions = require( '../transformers/os-regions' );
 
 
 function convertDateRange( data ){
@@ -166,7 +167,8 @@ function getOverseasRegions( req ){
 
 function getOverseasRegionGroups( req ){
 
-	return getOverseasRegions( req ).then( transformOsRegions );
+	//return getOverseasRegions( req ).then( transformOsRegions );
+	return getJson( '/mi/os_region_groups/', req );
 }
 
 function getOverseasRegion( req, regionId ){
@@ -346,6 +348,23 @@ module.exports = {
 	},
 
 	getOverseasRegionsOverview,
+	getOverseasRegionsOverviewGroups: function( req ){
+
+		return getAll( 'getOverseasRegionsOverviewGroups', [
+
+			getOverseasRegionGroups( req ),
+			getOverseasRegionsOverview( req )
+
+		], function( data ){
+
+			const groups = data[ 0 ];
+			const regions = data[ 1 ];
+
+			const out = transformOverseasRegionsOverviewGroups( groups, regions );
+
+			return out;
+		} );
+	},
 
 	getHvcGroups,
 	getHvcGroup,

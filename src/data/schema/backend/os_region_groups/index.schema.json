@@ -1,0 +1,46 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "List of OS region groups",
+
+	"type": "array",
+	"minItems": 6,
+	"maxItems": 6,
+	"items": {
+		"type": "object",
+		"required": [ "id", "name", "regions" ],
+		"properties": {
+
+			"id": {
+				"type": "number",
+				"faker": "random.number"
+			},
+
+			"name": {
+				"type": "string",
+				"faker": "lorem.words"
+			},
+
+			"regions": {
+				"type": "array",
+				"minItems": 1,
+				"maxItems": 6,
+				"items": {
+					"type": "object",
+					"required": [ "id", "name" ],
+					"properties": {
+
+						"id": {
+							"type": "number",
+							"faker": "random.number"
+						},
+
+						"name": {
+							"type": "string",
+							"faker": "lorem.words"
+						}
+					}
+				}
+			}
+		}
+	}
+}

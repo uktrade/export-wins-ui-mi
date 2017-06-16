@@ -94,7 +94,7 @@ describe( 'App', function(){
 				it( 'Should return a 500', function( done ){
 
 					interceptBackend.getStub( '/mi/sector_teams/?year=2017', 200, '/sector_teams/' );
-					interceptBackend.getStub( '/mi/os_regions/?year=2017', 500 );
+					interceptBackend.getStub( '/mi/os_region_groups/?year=2017', 500 );
 
 					supertest( app ).get( '/?osRegions=true' ).end( ( err, res ) => {
 
@@ -109,7 +109,7 @@ describe( 'App', function(){
 				it( 'Should return a 500', function( done ){
 
 					interceptBackend.getStub( '/mi/sector_teams/?year=2017', 500 );
-					interceptBackend.getStub( '/mi/os_regions/?year=2017', 500 );
+					interceptBackend.getStub( '/mi/os_region_groups/?year=2017', 500 );
 
 					supertest( app ).get( '/?osRegions=true' ).end( ( err, res ) => {
 
@@ -282,7 +282,8 @@ if( config.backend.mock ){
 
 				it( 'Should return a 200 with the correct heading', function( done ){
 
-					interceptBackend.getStub( '/mi/os_regions/overview/?year=2017', 200, '/os_regions/overview' );
+					interceptBackend.getStub( '/mi/os_regions/overview/?year=2017', 200, '/os_regions/overview.2017' );
+					interceptBackend.getStub( '/mi/os_region_groups/?year=2017', 200, '/os_region_groups/index.2017' );
 
 					supertest( app ).get( '/overseas-regions/overview/' ).end( ( err, res ) => {
 

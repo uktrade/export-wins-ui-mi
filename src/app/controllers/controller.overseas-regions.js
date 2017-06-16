@@ -12,7 +12,7 @@ module.exports = {
 
 	overview: function( req, res ){
 
-		backendService.getOverseasRegionsOverview( req ).then( ( regionGroups ) => {
+		backendService.getOverseasRegionsOverviewGroups( req ).then( ( regionGroups ) => {
 
 			res.render( 'overseas-regions/overview.html', {
 				dateRange: regionGroups.date_range,

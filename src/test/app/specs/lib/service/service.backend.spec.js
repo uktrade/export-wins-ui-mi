@@ -2,6 +2,7 @@ const proxyquire = require( 'proxyquire' );
 const getBackendFile = require( '../../../helpers/get-backend-file' );
 const getBackendStub = require( '../../../helpers/get-backend-stub' );
 const interceptBackend = require( '../../../helpers/intercept-backend' );
+const transformOverseasRegionsOverviewGroups = require( '../../../../../app/lib/transformers/os-regions-overview-groups' );
 
 const configStub = { backend: { stub: false, fake: false, mock: false } };
 
@@ -12,6 +13,7 @@ let monthsSpy;
 let campaignsSpy;
 let sectorTeamsOverviewSpy;
 let osRegionsOverviewSpy;
+let osRegionsOverviewGroupsSpy;
 let hvcGroupSpy;
 let osRegionsSpy;
 let backend;
@@ -64,6 +66,7 @@ describe( 'Backend service', function(){
 			osRegionsOverviewSpy = jasmine.createSpy( 'os-regions-overview' );
 			hvcGroupSpy = jasmine.createSpy( 'hvc-group' );
 			osRegionsSpy = jasmine.createSpy( 'os-regions' );
+
 			backend = {
 				get: function(){},
 				sessionGet: function(){},
@@ -103,7 +106,7 @@ describe( 'Backend service', function(){
 
 						done();
 
-					} ).catch( done );
+					} ).catch( done.fail );
 				} );
 			} );
 
@@ -118,7 +121,7 @@ describe( 'Backend service', function(){
 						expect( data.date_range ).not.toBeDefined();
 						done();
 
-					} ).catch( done );
+					} ).catch( done.fail );
 
 					done();
 				} );
@@ -139,7 +142,7 @@ describe( 'Backend service', function(){
 					checkBackendArgs( `/mi/sector_teams/${ teamId }/?year=${ year }`, req );
 					done();
 
-				} ).catch( done );
+				} ).catch( done.fail );
 			} );
 		} );
 
@@ -160,7 +163,7 @@ describe( 'Backend service', function(){
 					expect( monthsSpy.calls.count() ).toEqual( 1 );
 					done();
 
-				} ).catch( done );
+				} ).catch( done.fail );
 			} );
 		} );
 
@@ -180,7 +183,7 @@ describe( 'Backend service', function(){
 					expect( campaignsSpy.calls.count() ).toEqual( 1 );
 					done();
 
-				} ).catch( done );
+				} ).catch( done.fail );
 			} );
 		} );
 
@@ -197,7 +200,7 @@ describe( 'Backend service', function(){
 					checkBackendArgs( `/mi/sector_teams/${ teamId }/top_non_hvcs/?year=${ year }`, req );
 					done();
 
-				} ).catch( done );
+				} ).catch( done.fail );
 			} );
 		} );
 
@@ -215,7 +218,7 @@ describe( 'Backend service', function(){
 					expect( sectorTeamsOverviewSpy.calls.count() ).toEqual( 1 );
 					done();
 
-				} ).catch( done );
+				} ).catch( done.fail );
 			} );
 		} );
 
@@ -232,25 +235,23 @@ describe( 'Backend service', function(){
 					expect( osRegionsSpy ).not.toHaveBeenCalled();
 					done();
 
-				} ).catch( done );
+				} ).catch( done.fail );
 			} );
 		} );
 
 		describe( 'Getting the Grouped overseas regions list', function(){
 
-			it( 'Should use the os-regions transformer', function( done ){
+			it( 'Should call the correct API', function( done ){
 
-				returnStub( '/os_regions/' );
+				returnStub( '/os_region_groups/index.2017' );
 
 				backendService.getOverseasRegionGroups( req ).then( () => {
 
-					checkBackendArgs( `/mi/os_regions/?year=${ year }`, req );
+					checkBackendArgs( `/mi/os_region_groups/?year=${ year }`, req );
 
-					expect( osRegionsSpy ).toHaveBeenCalled();
-					expect( osRegionsSpy.calls.count() ).toEqual( 1 );
 					done();
 
-				} ).catch( done );
+				} ).catch( done.fail );
 			} );
 		} );
 
@@ -267,7 +268,7 @@ describe( 'Backend service', function(){
 					checkBackendArgs( `/mi/os_regions/${ regionId }/?year=${ year }`, req );
 					done();
 
-				} ).catch( done );
+				} ).catch( done.fail );
 			} );
 		} );
 
@@ -287,7 +288,7 @@ describe( 'Backend service', function(){
 					expect( monthsSpy.calls.count() ).toEqual( 1 );
 					done();
 
-				} ).catch( done );
+				} ).catch( done.fail );
 			} );
 		} );
 
@@ -307,7 +308,7 @@ describe( 'Backend service', function(){
 					expect( campaignsSpy.calls.count() ).toEqual( 1 );
 					done();
 
-				} ).catch( done );
+				} ).catch( done.fail );
 			} );
 		} );
 
@@ -324,7 +325,7 @@ describe( 'Backend service', function(){
 					checkBackendArgs( `/mi/os_regions/${ regionId }/top_non_hvcs/?year=${ year }`, req );
 					done();
 
-				} ).catch( done );
+				} ).catch( done.fail );
 			} );
 		} );
 
@@ -332,7 +333,7 @@ describe( 'Backend service', function(){
 
 			it( 'Should use the overseas regions overview transformer', function( done ){
 
-				returnStub( '/os_regions/overview' );
+				returnStub( '/os_regions/overview.2016' );
 
 				backendService.getOverseasRegionsOverview( req ).then( () => {
 
@@ -342,7 +343,7 @@ describe( 'Backend service', function(){
 					expect( osRegionsOverviewSpy.calls.count() ).toEqual( 1 );
 					done();
 
-				} ).catch( done );
+				} ).catch( done.fail );
 			} );
 		} );
 
@@ -359,7 +360,7 @@ describe( 'Backend service', function(){
 					expect( hvcGroup ).toEqual( getBackendStub( '/hvc_groups/') );
 					done();
 
-				} ).catch( done );
+				} ).catch( done.fail );
 			} );
 		} );
 
@@ -379,7 +380,7 @@ describe( 'Backend service', function(){
 					expect( hvcGroupSpy.calls.count() ).toEqual( 1 );
 					done();
 
-				} ).catch( done );
+				} ).catch( done.fail );
 			} );
 		} );
 
@@ -399,7 +400,7 @@ describe( 'Backend service', function(){
 					expect( campaignsSpy.calls.count() ).toEqual( 1 );
 					done();
 
-				} ).catch( done );
+				} ).catch( done.fail );
 			} );
 		} );
 
@@ -419,7 +420,7 @@ describe( 'Backend service', function(){
 					expect( monthsSpy.calls.count() ).toEqual( 1 );
 					done();
 
-				} ).catch( done );
+				} ).catch( done.fail );
 			} );
 		} );
 
@@ -578,12 +579,14 @@ describe( 'Backend service', function(){
 			let aggConfigStub = Object.assign( {}, configStub );
 			aggConfigStub.backend.timeout = 25;
 
+			osRegionsOverviewGroupsSpy = jasmine.createSpy( 'os-regions-overview-groups', transformOverseasRegionsOverviewGroups ).and.callThrough();
 			reporter = { message: jasmine.createSpy( 'reporter.message' ) };
 
 			stubs = {
 				'../../config': aggConfigStub,
 				'../logger': require( '../../../helpers/mock-logger' ),
-				'../reporter': reporter
+				'../reporter': reporter,
+				'../transformers/os-regions-overview-groups': osRegionsOverviewGroupsSpy
 			};
 
 			backendService = proxyquire( '../../../../../app/lib/service/service.backend', stubs );
@@ -593,7 +596,7 @@ describe( 'Backend service', function(){
 
 			files.forEach( ( file ) => {
 
-				let [ uri, stub, status = 200 ] = file;
+				const [ uri, stub, status = 200 ] = file;
 
 				interceptBackend.getStub( uri, status, stub );
 			} );
@@ -648,7 +651,7 @@ describe( 'Backend service', function(){
 
 						done();
 
-					} ).catch( done );
+					} ).catch( done.fail );
 				} );
 			} );
 
@@ -678,7 +681,7 @@ describe( 'Backend service', function(){
 
 						done();
 
-					} ).catch( done );
+					} ).catch( done.fail );
 				} );
 			} );
 
@@ -736,7 +739,7 @@ describe( 'Backend service', function(){
 
 					done();
 
-				} ).catch( done );
+				} ).catch( done.fail );
 			} );
 
 			describe( 'When one of APIs returns after a long time', function(){
@@ -765,8 +768,31 @@ describe( 'Backend service', function(){
 
 						done();
 
-					} ).catch( done );
+					} ).catch( done.fail );
 				} );
+			} );
+		} );
+
+		describe( 'Getting the overseas regions overview groups', function(){
+
+			it( 'Should get the OS groups and OS overview and merge them', function( done ){
+
+				const files = [
+					[ `/mi/os_regions/overview/?year=${ year }`, '/os_regions/overview.2017' ],
+					[ `/mi/os_region_groups/?year=${ year }`, '/os_region_groups/index.2017' ]
+				];
+
+				intercept( files );
+
+				backendService.getOverseasRegionsOverviewGroups( req ).then( ( items ) => {
+
+					expect( items ).toBeDefined();
+					expect( osRegionsOverviewGroupsSpy ).toHaveBeenCalled();
+					expect( osRegionsOverviewGroupsSpy.calls.count() ).toEqual( 1 );
+
+					done();
+
+				} ).catch( done.fail );
 			} );
 		} );
 
@@ -792,7 +818,7 @@ describe( 'Backend service', function(){
 
 					done();
 
-				} ).catch( done );
+				} ).catch( done.fail );
 			} );
 
 			describe( 'When one of the APIs returns after a long time', function(){
@@ -819,7 +845,7 @@ describe( 'Backend service', function(){
 
 						done();
 
-					} ).catch( done );
+					} ).catch( done.fail );
 				} );
 			} );
 		} );
@@ -831,8 +857,8 @@ describe( 'Backend service', function(){
 				it( 'Should return both bits of data', function( done ){
 
 					const files = [
-						[ '/mi/sector_teams/?year=${ year }', '/sector_teams/' ],
-						[ '/mi/os_regions/?year=${ year }', '/os_regions/' ]
+						[ `/mi/sector_teams/?year=${ year }`, '/sector_teams/' ],
+						[ `/mi/os_region_groups/?year=${ year }`, '/os_region_groups/index.2017' ]
 					];
 
 					intercept( files );
@@ -844,7 +870,7 @@ describe( 'Backend service', function(){
 
 						done();
 
-					} ).catch( done );
+					} ).catch( done.fail );
 				} );
 			} );
 
@@ -853,8 +879,8 @@ describe( 'Backend service', function(){
 				it( 'Should throw an error', function( done ){
 
 					const files = [
-						[ '/mi/sector_teams/?year=${ year }', null, 500 ],
-						[ '/mi/os_regions/?year=${ year }', '/os_regions/' ]
+						[ `/mi/sector_teams/?year=${ year }`, null, 500 ],
+						[ `/mi/os_region_groups/?year=${ year }`, '/os_region_groups/index.2017' ]
 					];
 
 					intercept( files );
@@ -864,7 +890,7 @@ describe( 'Backend service', function(){
 						expect( err ).toBeDefined();
 						done();
 
-					} ).catch( done );
+					} ).catch( done.fail );
 				} );
 			} );
 
@@ -873,8 +899,8 @@ describe( 'Backend service', function(){
 				it( 'Should log a message with the reporter', function( done ){
 
 					const files = [
-						[ '/mi/sector_teams/?year=${ year }', '/sector_teams/' ],
-						[ '/mi/os_regions/?year=${ year }', '/os_regions/' ]
+						[ `/mi/sector_teams/?year=${ year }`, '/sector_teams/' ],
+						[ `/mi/os_region_groups/?year=${ year }`, '/os_region_groups/index.2017' ]
 					];
 
 					interceptWithDelay( files );
@@ -888,7 +914,7 @@ describe( 'Backend service', function(){
 
 						done();
 
-					} ).catch( done );
+					} ).catch( done.fail );
 				} );
 			} );
 		} );

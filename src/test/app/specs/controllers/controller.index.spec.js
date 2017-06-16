@@ -77,7 +77,7 @@ describe( 'Overseas Regions controller', function(){
 			spyOn( errorHandler, 'createHandler' ).and.callFake( createErrorHandler( done ) );
 
 			interceptBackend.getStub( `/mi/sector_teams/?year=${ year }`, 200, '/sector_teams/' );
-			interceptBackend.getStub( `/mi/os_regions/?year=${ year }`, 200, '/os_regions/' );
+			interceptBackend.getStub( `/mi/os_region_groups/?year=${ year }`, 200, '/os_region_groups/index.2017' );
 
 			controller( req, { render: function( view, data ){
 

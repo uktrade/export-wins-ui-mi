@@ -28,12 +28,17 @@ const overseasRegionCampaignsStub = getStub( '/os_regions/campaigns' );
 const overseasRegionMonthsStub = getStub( '/os_regions/months' );
 const overseasRegionStub = getStub( '/os_regions/region' );
 const overseasRegionsStub = getStub( '/os_regions/' );
-const overseasRegionsOverviewStub = getStub( '/os_regions/overview' );
+const overseasRegionsOverviewStub2016 = getStub( '/os_regions/overview.2016' );
+const overseasRegionsOverviewStub2017 = getStub( '/os_regions/overview.2017' );
+
+const overseasRegionGroups2017 = getStub( '/os_region_groups/index.2017' );
+const overseasRegionGroups2016 = getStub( '/os_region_groups/index.2016' );
 
 const hvcGroupsStub = getStub( '/hvc_groups' );
 const hvcGroupStub = getStub( '/hvc_groups/group' );
 const hvcGroupCampaignsStub = getStub( '/hvc_groups/campaigns' );
 const hvcGroupMonthsStub = getStub( '/hvc_groups/months' );
+
 
 
 describe( 'Backend stub', function(){
@@ -45,7 +50,8 @@ describe( 'Backend stub', function(){
 			expect( err ).toBeNull();
 			expect( response.statusCode ).toEqual( 200 );
 			expect( response.isSuccess ).toEqual( true );
-			expect( data ).toEqual( stub );
+			expect( data.timestamp ).toBeDefined();
+			expect( data.results ).toEqual( stub );
 			done();
 		} );
 	}
@@ -168,13 +174,52 @@ describe( 'Backend stub', function(){
 
 		describe( 'Getting the overview', function(){
 
+			describe( 'For 2016', function(){
+
 				it( 'Should return the overview', function( done ){
 
 					const url = '/mi/os_regions/overview/?year=2016';
 
-					checkStub( url, overseasRegionsOverviewStub, done );
+					checkStub( url, overseasRegionsOverviewStub2016, done );
 				} );
 			} );
+
+			describe( 'For 2017', function(){
+
+				it( 'Should return the overview', function( done ){
+
+					const url = '/mi/os_regions/overview/?year=2017';
+
+					checkStub( url, overseasRegionsOverviewStub2017, done );
+				} );
+			} );
+		} );
+	} );
+
+	describe( 'Overseas Regions Groups', function(){
+
+		describe( 'Getting the groups', function(){
+
+			describe( 'For 2017', function(){
+
+				it( 'Should return the 2017 groups', function( done ){
+
+					const url = '/mi/os_region_groups/?year=2017';
+
+					checkStub( url, overseasRegionGroups2017, done );
+				} );
+			} );
+
+			describe( 'For 2016', function(){
+
+				it( 'Should return the 2016 groups', function( done ){
+
+					const url = '/mi/os_region_groups/?year=2016';
+
+					checkStub( url, overseasRegionGroups2016, done );
+				} );
+			} );
+		} );
 	} );
 
 	describe( 'HVC Groups', function(){

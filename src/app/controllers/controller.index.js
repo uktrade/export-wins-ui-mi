@@ -11,7 +11,7 @@ module.exports = function( req, res ){
 		backendService.getSectorTeamsAndOverseasRegions( req ).then( ( data ) => {
 
 			const sectorTeams = data.sectorTeams.results;
-			const overseasRegionGroups = data.overseasRegionGroups;
+			const overseasRegionGroups = data.overseasRegionGroups.results;
 
 			res.render( 'index.html', { sectorTeams, overseasRegionGroups } );
 

@@ -39,6 +39,7 @@ module.exports = function( path ){
 		case '/os_regions/index.schema':
 		case '/shared/index.schema':
 		case '/sector_teams/index.schema':
+		case '/os_region_groups/index.schema':
 			hasDateRange = false;
 		break;
 	}
