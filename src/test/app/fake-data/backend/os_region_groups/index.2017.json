@@ -1,0 +1,123 @@
+{
+   "timestamp": 1497427105399,
+   "financial_year": {
+      "id": 2017,
+      "description": "2016-17"
+   },
+   "results": [
+      {
+         "id": 11,
+         "name": "est et repellendus",
+         "regions": [
+            {
+               "id": 18,
+               "name": "dolores non iste"
+            },
+            {
+               "id": 1,
+               "name": "et eaque reprehenderit"
+            }
+         ]
+      },
+      {
+         "id": 13,
+         "name": "et tempore deleniti",
+         "regions": [
+            {
+               "id": 7,
+               "name": "sapiente voluptas quidem"
+            },
+            {
+               "id": 13,
+               "name": "architecto unde odit"
+            },
+            {
+               "id": 2,
+               "name": "sint facilis odio"
+            }
+         ]
+      },
+      {
+         "id": 8,
+         "name": "adipisci cumque autem",
+         "regions": [
+            {
+               "id": 12,
+               "name": "ut ut fugit"
+            }
+         ]
+      },
+      {
+         "id": 12,
+         "name": "et rerum excepturi",
+         "regions": [
+            {
+               "id": 16,
+               "name": "voluptatem blanditiis id"
+            }
+         ]
+      },
+      {
+         "id": 4,
+         "name": "commodi ullam et",
+         "regions": [
+            {
+               "id": 10,
+               "name": "ipsam aut quo"
+            },
+            {
+               "id": 17,
+               "name": "rerum ducimus ad"
+            },
+            {
+               "id": 11,
+               "name": "et eaque reprehenderit"
+            },
+            {
+               "id": 5,
+               "name": "nam tenetur sunt"
+            }
+         ]
+      },
+      {
+         "id": 9,
+         "name": "ut nisi error",
+         "regions": [
+            {
+               "id": 6,
+               "name": "quis ad veritatis"
+            }
+         ]
+      },
+      {
+         "id": 7,
+         "name": "ut nisi error",
+         "regions": [
+            {
+               "id": 14,
+               "name": "quis in repudiandae"
+            }
+         ]
+      },
+      {
+         "id": 10,
+         "name": "ut nisi error",
+         "regions": [
+            {
+               "id": 3,
+               "name": "consequatur assumenda ut"
+            }
+         ]
+      },
+      {
+         "id": 14,
+         "name": "ut nisi error",
+         "regions": [
+            {
+               "id": 9,
+               "name": "quis in repudiandae"
+            }
+         ]
+      }
+   ]
+}

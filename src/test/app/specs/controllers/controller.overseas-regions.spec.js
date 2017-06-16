@@ -53,14 +53,15 @@ describe( 'Overseas Regions controller', function(){
 				year
 			};
 
-			spyOn( backendService, 'getOverseasRegionsOverview' ).and.callThrough();
+			spyOn( backendService, 'getOverseasRegionsOverviewGroups' ).and.callThrough();
 			spyOn( errorHandler, 'createHandler' ).and.callFake( createErrorHandler( done ) );
 
-			interceptBackend.getStub( `/mi/os_regions/overview/?year=${ req.year }`, 200, '/os_regions/overview' );
+			interceptBackend.getStub( `/mi/os_regions/overview/?year=${ req.year }`, 200, '/os_regions/overview.2017' );
+			interceptBackend.getStub( `/mi/os_region_groups/?year=${ req.year }`, 200, '/os_region_groups/index.2017' );
 
 			controller.overview( req, { render: function( view, data ){
 
-				expect( backendService.getOverseasRegionsOverview ).toHaveBeenCalledWith( req );
+				expect( backendService.getOverseasRegionsOverviewGroups ).toHaveBeenCalledWith( req );
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				expect( data.dateRange ).toBeDefined();
 				expect( data.regionGroups ).toBeDefined();

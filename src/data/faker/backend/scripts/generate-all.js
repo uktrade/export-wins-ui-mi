@@ -2,6 +2,7 @@ const path = require( 'path' );
 const writeJsonFiles = require( '../../helpers/write-json-files' );
 
 const osRegionsJson = require( './os-regions-json' );
+const osRegionGroupsJson = require( './os-regions-groups-json' );
 const sectorTeamsJson = require( './sector-teams-json' );
 const sharedJson = require( './shared-json' );
 
@@ -16,7 +17,9 @@ const jsonFiles = {
 	'shared/sector': sharedJson.createSector(),
 	'shared/campaigns': sharedJson.createCampaigns(),
 	'shared/months': sharedJson.createMonths(),
-	'shared/top_non_hvcs': sharedJson.createTopNonHvcs()
+	'shared/top_non_hvcs': sharedJson.createTopNonHvcs(),
+	'os_region_groups/index.2017': osRegionGroupsJson.createList(),
+	'os_region_groups/index.2016': osRegionGroupsJson.createList()
 };
 
 writeJsonFiles( outputPath, jsonFiles );

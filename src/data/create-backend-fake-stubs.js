@@ -3,6 +3,7 @@ const writeJsonFiles = require( './faker/helpers/write-json-files' );
 
 const hvcGroupsJson = require( './faker/backend/scripts/hvc-groups-json' );
 const osRegionsJson = require( './faker/backend/scripts/os-regions-json' );
+const osRegionGroupsJson = require( './faker/backend/scripts/os-region-groups-json' );
 const sectorTeamsJson = require( './faker/backend/scripts/sector-teams-json' );
 const sharedJson = require( './faker/backend/scripts/shared-json' );
 
@@ -21,6 +22,9 @@ const jsonFiles = {
 	'os_regions/months': sharedJson.createMonths(),
 	'os_regions/region': sharedJson.createSector(),
 	'os_regions/top_non_hvcs': sharedJson.createTopNonHvcs(),
+
+	'os_region_groups/index.2016': osRegionGroupsJson.createList(),
+	'os_region_groups/index.2017': osRegionGroupsJson.createList(),
 
 	'sector_teams/index': sectorTeamsJson.createIndex(),
 	'sector_teams/overview': sectorTeamsJson.createOverview(),

@@ -1,0 +1,113 @@
+{
+   "timestamp": 1497427105396,
+   "financial_year": {
+      "id": 2016,
+      "description": "2016-17"
+   },
+   "results": [
+      {
+         "id": 1,
+         "name": "sapiente accusantium molestias",
+         "regions": [
+            {
+               "id": 1,
+               "name": "soluta et sit"
+            },
+            {
+               "id": 14,
+               "name": "adipisci et neque"
+            },
+            {
+               "id": 12,
+               "name": "natus atque ut"
+            }
+         ]
+      },
+      {
+         "id": 2,
+         "name": "magni veritatis natus",
+         "regions": [
+            {
+               "id": 3,
+               "name": "quod est iusto"
+            },
+            {
+               "id": 6,
+               "name": "asperiores dolor nulla"
+            }
+         ]
+      },
+      {
+         "id": 3,
+         "name": "id tempore inventore",
+         "regions": [
+            {
+               "id": 7,
+               "name": "repellendus et rerum"
+            },
+            {
+               "id": 2,
+               "name": "et eius in"
+            }
+         ]
+      },
+      {
+         "id": 4,
+         "name": "reiciendis vero neque",
+         "regions": [
+            {
+               "id": 10,
+               "name": "veniam odio tempore"
+            },
+            {
+               "id": 17,
+               "name": "sunt qui architecto"
+            },
+            {
+               "id": 11,
+               "name": "facilis et id"
+            },
+            {
+               "id": 5,
+               "name": "eligendi et rerum"
+            }
+         ]
+      },
+      {
+         "id": 5,
+         "name": "fuga architecto blanditiis",
+         "regions": [
+            {
+               "id": 16,
+               "name": "aliquam at sit"
+            },
+            {
+               "id": 13,
+               "name": "reiciendis quia aspernatur"
+            },
+            {
+               "id": 9,
+               "name": "et eaque reprehenderit"
+            }
+         ]
+      },
+      {
+         "id": 6,
+         "name": "et dolorem et",
+         "regions": [
+            {
+               "id": 8,
+               "name": "repudiandae nesciunt maxime"
+            },
+            {
+               "id": 15,
+               "name": "accusamus culpa corrupti"
+            },
+            {
+               "id": 4,
+               "name": "non quis non"
+            }
+         ]
+      }
+   ]
+}
