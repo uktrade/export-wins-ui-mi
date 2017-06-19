@@ -9,6 +9,31 @@ const regionsInput2016 = getBackendStub( '/os_regions/overview.2016' );
 const groupInput2017 = getBackendStub( '/os_region_groups/index.2017' );
 const regionsInput2017 = getBackendStub( '/os_regions/overview.2017' );
 
+const imageNameRegex = /^.+\/(.+)$/;
+
+const imageNameMap = {
+	1: '4.png',
+	2: '1.png',
+	3: '2.png',
+	4: '3.png',
+	5: '5.png',
+	6: '6.png'
+};
+
+function getImageName( url ){
+
+	const matches = imageNameRegex.exec( url );
+
+	if( matches && matches.length > 1 ){
+
+		return matches[ 1 ];
+
+	} else {
+
+		throw new Error( 'Unable to get image name' );
+	}
+}
+
 describe( 'Overseas Regions Overview Groups transformer', function(){
 
 	function checkGroup( group ){
@@ -16,6 +41,17 @@ describe( 'Overseas Regions Overview Groups transformer', function(){
 		expect( group.image.url ).toBeDefined();
 		expect( group.image.width ).toBeDefined();
 		expect( group.image.height ).toBeDefined();
+
+		const imageName = getImageName( group.image.url );
+
+		if( imageNameMap.hasOwnProperty( group.id ) ){
+
+			expect( imageName ).toEqual( imageNameMap[ group.id ] );
+
+		} else {
+
+			expect( imageName ).toEqual( '0.jpg' );
+		}
 	}
 
 	describe( '2016', function(){

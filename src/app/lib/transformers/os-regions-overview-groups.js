@@ -2,18 +2,18 @@
 const groupImages = {
 	// unknown
 	0: '/public/img/overseas-region-maps/0.jpg',
-	// Near East & North Africa
-	1: '/public/img/overseas-region-maps/2.png',
-	// Americas
-	2: '/public/img/overseas-region-maps/6.png',
 	// South Pacific
-	3: '/public/img/overseas-region-maps/4.png',
+	1: '/public/img/overseas-region-maps/4.png',
 	// Europe
-	4: '/public/img/overseas-region-maps/1.png',
+	2: '/public/img/overseas-region-maps/1.png',
+	// Near East & North Africa
+	3: '/public/img/overseas-region-maps/2.png',
 	// East
-	5: '/public/img/overseas-region-maps/3.png',
+	4: '/public/img/overseas-region-maps/3.png',
 	// East, West & South Africa
-	6: '/public/img/overseas-region-maps/5.png',
+	5: '/public/img/overseas-region-maps/5.png',
+	// Americas
+	6: '/public/img/overseas-region-maps/6.png',
 };
 
 const regionConfigs = {
