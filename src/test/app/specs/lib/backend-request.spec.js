@@ -27,7 +27,7 @@ function createBackend( opts = {} ){
 	request = jasmine.createSpy( 'request' );
 	createSignature = jasmine.createSpy( 'createSignature' ).and.callFake( () => 'test-hash' );
 
-	backend = proxyquire( '../../../../app/lib/backend', {
+	backend = proxyquire( '../../../../app/lib/backend-request', {
 		'request': opts.request || request,
 		'./reporter': opts.reporter || reporter,
 		'./logger': opts.logger || logger,
@@ -305,7 +305,7 @@ describe( 'Backend lib', function(){
 
 		beforeEach( function(){
 
-			backend = require( '../../../../app/lib/backend' );
+			backend = require( '../../../../app/lib/backend-request' );
 		} );
 
 		describe( 'A 200 response', function(){

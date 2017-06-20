@@ -5,7 +5,7 @@ const USE_STUBS = config.backend.stub;
 
 const logger = require( '../logger' );
 const reporter = require( '../reporter' );
-const backend = ( USE_STUBS ? require( '../backend.stub' ) : require( '../backend' ) );
+const backend = ( USE_STUBS ? require( '../backend-request.stub' ) : require( '../backend-request' ) );
 const mocks = ( USE_MOCKS ? require( '../../../data/mocks' ) : null );
 
 const transformMonths = require( '../transformers/months' );
@@ -14,7 +14,6 @@ const transformSectorTeamsOverview = require( '../transformers/sector-teams-over
 const transformOverseasRegionsOverview = require( '../transformers/os-regions-overview' );
 const transformOverseasRegionsOverviewGroups = require( '../transformers/os-regions-overview-groups' );
 const transformHvcGroup = require( '../transformers/hvc-group' );
-//const transformOsRegions = require( '../transformers/os-regions' );
 
 
 function convertDateRange( data ){
@@ -253,6 +252,7 @@ function getSamlMetadata( req ){
 
 	return new Promise( ( resolve, reject ) => {
 
+		//TODO: This probably doesn't need the session here
 		backend.sessionGet( req.cookies.sessionid, '/saml2/metadata/', createResponseHandler( resolve, reject ) );
 
 	} ).then( ( info ) => info.data );

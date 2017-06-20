@@ -8,7 +8,7 @@ if( process.env.HAS_STUBS == 'true' ){
 }
 
 const proxyquire = require( 'proxyquire' );
-const backendStub = proxyquire( '../../../../app/lib/backend.stub', {
+const backendStub = proxyquire( '../../../../app/lib/backend-request.stub', {
 	'../config':  { backend: { stub: true, fake: false } }
 } );
 

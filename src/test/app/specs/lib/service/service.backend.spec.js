@@ -82,7 +82,7 @@ describe( 'Backend service', function(){
 				'../transformers/os-regions-overview': osRegionsOverviewSpy,
 				'../transformers/hvc-group': hvcGroupSpy,
 				'../transformers/os-regions': osRegionsSpy,
-				'../backend': backend
+				'../backend-request': backend
 			};
 
 			backendService = proxyquire( '../../../../../app/lib/service/service.backend', stubs );
