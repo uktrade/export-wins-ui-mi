@@ -8,6 +8,16 @@
 		Error
 	</h1>
 
-	<p>{{ error }}</p>
+	{%- if showErrors -%}
+
+		<p>{{ error }}</p>
+
+	{%- else -%}
+
+		<p>
+			Sorry, something went wrong. This error has been reported to the team.
+		</p>
+
+	{%- endif -%}
 
 {% endblock  %}

@@ -5,17 +5,11 @@ const logger = require( '../../helpers/mock-logger' );
 
 let backendService;
 let controller;
-let config;
+let reporter;
 
 describe( 'SAML controller', function(){
 
 	let oldTimeout;
-
-	beforeEach( function(){
-
-		oldTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
-		jasmine.DEFAULT_TIMEOUT_INTERVAL = 500;
-	} );
 
 	afterEach( function(){
 
@@ -24,7 +18,12 @@ describe( 'SAML controller', function(){
 
 	beforeEach( function(){
 
-		config = {};
+		oldTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
+		jasmine.DEFAULT_TIMEOUT_INTERVAL = 500;
+
+		reporter = {
+			captureException: jasmine.createSpy( 'reporter.captureException' )
+		};
 
 		backendService = proxyquire( '../../../../app/lib/service/service.backend', {
 			'../logger': logger
@@ -33,7 +32,7 @@ describe( 'SAML controller', function(){
 		controller = proxyquire( '../../../../app/controllers/controller.saml', {
 			'../lib/service/service.backend': backendService,
 			'../lib/render-error': errorHandler,
-			'../config': config
+			'../lib/reporter': reporter
 		} );
 	} );
 
@@ -108,7 +107,7 @@ describe( 'SAML controller', function(){
 
 				describe( 'When the response is a 500', function(){
 
-					it( 'Should render an unable to login error page', function( done ){
+					it( 'Should render an unable to login error page and send the error to sentry', function( done ){
 
 						spyOn( errorHandler, 'sendResponse' ).and.callFake( () => {} );
 
@@ -123,6 +122,7 @@ describe( 'SAML controller', function(){
 								expect( errorHandler.sendResponse ).not.toHaveBeenCalled();
 
 								expect( view ).toEqual( 'error/unable-to-login.html' );
+
 								done();
 							}
 						} );

@@ -1,12 +1,12 @@
-
-const logger = require( './logger' );
+const config = require( '../config' );
+const reporter = require( './reporter' );
 
 function sendResponse( res, err ){
 
-	logger.error( err );
-
 	res.status( 500 );
-	res.render( 'error/default.html', { error: err } );
+	res.render( 'error/default.html', { error: err, showErrors: config.showErrors } );
+
+	reporter.captureException( err );
 }
 
 module.exports = {
