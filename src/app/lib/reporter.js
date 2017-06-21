@@ -40,6 +40,17 @@ module.exports = {
 
 			logger.warn( msg, JSON.stringify( extra ) );
 		}
+	},
 
+	captureException: function( err ){
+
+		if( useSentry ){
+
+			raven.captureException( err );
+
+		} else {
+
+			logger.error( err );
+		}
 	}
 };

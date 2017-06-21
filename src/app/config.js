@@ -16,6 +16,7 @@ const cpus = ( os.cpus().length || 1 );
 const defaultWorkers = ( cpus > 1 ? cpus - 1 : cpus );
 
 let config = {
+	showErrors: ( process.env.NODE_ENV !== 'production' ),
 	version: env( 'npm_package_version', 'unknown' ),
 	server: {
 		protocol: env( 'SERVER_PROTOCOL', 'http' ),
