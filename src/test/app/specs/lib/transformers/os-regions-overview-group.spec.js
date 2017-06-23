@@ -36,50 +36,109 @@ function getImageName( url ){
 
 describe( 'Overseas Regions Overview Groups transformer', function(){
 
-	function checkGroup( group ){
+	describe( 'Without required params', function(){
 
-		expect( group.image.url ).toBeDefined();
-		expect( group.image.width ).toBeDefined();
-		expect( group.image.height ).toBeDefined();
+		describe( 'Without groups', function(){
 
-		const imageName = getImageName( group.image.url );
+			it( 'Should throw an error', function(){
 
-		if( imageNameMap.hasOwnProperty( group.id ) ){
+				expect( transform ).toThrow( new Error( 'Groups are required' ) );
+			} );
+		} );
 
-			expect( imageName ).toEqual( imageNameMap[ group.id ] );
+		describe( 'Without regions', function(){
 
-		} else {
+			it( 'Should throw an error', function(){
 
-			expect( imageName ).toEqual( '0.jpg' );
+				expect( () => {
+
+					transform( [] );
+
+				} ).toThrow( new Error( 'Regions are required' ) );
+			} );
+		} );
+	} );
+
+	describe( 'With required params', function(){
+
+		function checkGroup( group ){
+
+			expect( group.image.url ).toBeDefined();
+			expect( group.image.width ).toBeDefined();
+			expect( group.image.height ).toBeDefined();
+
+			const imageName = getImageName( group.image.url );
+
+			if( imageNameMap.hasOwnProperty( group.id ) ){
+
+				expect( imageName ).toEqual( imageNameMap[ group.id ] );
+
+			} else {
+
+				expect( imageName ).toEqual( '0.jpg' );
+			}
 		}
-	}
 
-	describe( '2016', function(){
+		describe( '2016', function(){
 
-		let output;
+			let output;
 
-		beforeAll( function(){
+			beforeAll( function(){
 
-			regionsInput2016.results = transformOverview( regionsInput2016.results );
-			output = transform( groupInput2016, regionsInput2016 );
-		} );
-
-		describe( 'The overview groups', function(){
-
-			it( 'Should add the image to each group', function(){
-
-				output.results.forEach( checkGroup );
+				regionsInput2016.results = transformOverview( regionsInput2016.results );
+				output = transform( groupInput2016, regionsInput2016 );
 			} );
 
-			describe( 'The regions', function(){
+			describe( 'The overview groups', function(){
 
-				it( 'Should add the colour to each region', function(){
+				it( 'Should add the image to each group', function(){
 
-					output.results.forEach( ( group ) => {
+					output.results.forEach( checkGroup );
+				} );
 
-						group.regions.forEach( ( region ) => {
+				describe( 'The regions', function(){
 
-							expect( region.colour ).toBeDefined();
+					it( 'Should add the colour to each region', function(){
+
+						output.results.forEach( ( group ) => {
+
+							group.regions.forEach( ( region ) => {
+
+								expect( region.colour ).toBeDefined();
+							} );
+						} );
+					} );
+				} );
+			} );
+		} );
+
+		describe( '2017', function(){
+
+			let output;
+
+			beforeAll( function(){
+
+				regionsInput2017.results = transformOverview( regionsInput2017.results );
+				output = transform( groupInput2017, regionsInput2017 );
+			} );
+
+			describe( 'The overview groups', function(){
+
+				it( 'Should add the image to each group', function(){
+
+					output.results.forEach( checkGroup );
+				} );
+
+				describe( 'The regions', function(){
+
+					it( 'Should add the colour to each region', function(){
+
+						output.results.forEach( ( group ) => {
+
+							group.regions.forEach( ( region ) => {
+
+								expect( region.colour ).toBeDefined();
+							} );
 						} );
 					} );
 				} );
@@ -87,36 +146,4 @@ describe( 'Overseas Regions Overview Groups transformer', function(){
 		} );
 	} );
 
-	describe( '2017', function(){
-
-		let output;
-
-		beforeAll( function(){
-
-			regionsInput2017.results = transformOverview( regionsInput2017.results );
-			output = transform( groupInput2017, regionsInput2017 );
-		} );
-
-		describe( 'The overview groups', function(){
-
-			it( 'Should add the image to each group', function(){
-
-				output.results.forEach( checkGroup );
-			} );
-
-			describe( 'The regions', function(){
-
-				it( 'Should add the colour to each region', function(){
-
-					output.results.forEach( ( group ) => {
-
-						group.regions.forEach( ( region ) => {
-
-							expect( region.colour ).toBeDefined();
-						} );
-					} );
-				} );
-			} );
-		} );
-	} );
 } );

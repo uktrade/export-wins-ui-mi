@@ -6,6 +6,8 @@ dist
 .env
 jinja_govuk_template-*
 .sass-cache
+.nyc_output
+coverage
 src/public/css
 src/data/stubs
 src/data/mocks

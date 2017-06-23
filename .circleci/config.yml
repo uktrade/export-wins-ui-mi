@@ -32,7 +32,7 @@ jobs:
       - run: npm install
       #- run: npm run check:backend
       - run: npm rebuild node-sass
-      - run: npm test
+      - run: npm run coverage
       - run: npm run build:dist
       - save_cache:
           key: deps1-{{ checksum "npm-shrinkwrap.json" }}
@@ -49,4 +49,7 @@ jobs:
       - store_artifacts:
           path: src/test/ci/output/accessibility-reports
           destination: accessibility-reports
+      - store_artifacts:
+          path: coverage
+          destination: coverage
 

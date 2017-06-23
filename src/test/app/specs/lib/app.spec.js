@@ -446,4 +446,16 @@ if( config.backend.mock ){
 			} );
 		} );
 	} );
+
+	describe( 'Ping', function(){
+
+		it( 'Should return a status of 200', function( done ){
+
+			supertest( app ).get( '/ping/' ).end( ( err, res ) => {
+
+				checkResponse( res, 200 );
+				done();
+			} );
+		} );
+	} );
 } );
