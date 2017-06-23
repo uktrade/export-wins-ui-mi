@@ -19,6 +19,7 @@ const year = require( './middleware/year' );
 const globals = require( './middleware/globals' );
 const forceHttps = require( './middleware/force-https' );
 const headers = require( './middleware/headers' );
+const errors = require( './middleware/errors' );
 
 const loginController = require( '../controllers/controller.login' );
 const samlController = require( '../controllers/controller.saml' );
@@ -79,13 +80,11 @@ module.exports = {
 
 		routes( express, app );
 
-		app.use( function( req, res ){
-
-			res.status( 404 );
-			res.render( 'error/404.html' );
-		} );
+		app.use( errors.handle404 );
 
 		reporter.handleErrors( app );
+
+		app.use( errors.catchAll );
 
 		return app;
 	}

@@ -1,0 +1,15 @@
+.error-heading {
+	border-left: 4px solid $error-colour;
+	@include bold-19;
+	padding-left: pem( 10, 19 );
+	margin-top: $gutter;
+}
+
+.stack-trace {
+  @include core-14;
+  margin-bottom: $gutter;
+  font-family: monospace;
+  overflow: auto;
+  word-wrap: normal;
+  white-space: pre;
+}

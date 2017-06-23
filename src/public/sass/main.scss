@@ -9,6 +9,7 @@
 @import 'page/hvc';
 @import 'page/win';
 
+@import 'error';
 @import 'target-progress-bar';
 @import 'pie';
 @import 'key';
@@ -23,10 +24,6 @@
 @import 'win-table';
 @import 'hvc-group';
 @import 'year-selector';
-
-.error-heading {
-	background-color: rgba( $error-colour, 0.15 );
-}
 
 .row-separator {
 	margin-top: pem( 60, 16 );
