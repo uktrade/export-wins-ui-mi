@@ -1,6 +1,6 @@
 {
   "name": "export-wins-ui-mi",
-  "version": "4.6.0",
+  "version": "4.7.0",
   "description": "An MI dashboard for Export Wins",
   "main": "server.js",
   "engines": {
@@ -10,10 +10,12 @@
   "scripts": {
     "preversion": "npm test",
     "postversion": "git push && git push --tags",
+    "clean": "if [ -d coverage ]; then rm -r coverage; fi;",
     "test": "npm run test:unit",
     "test-all": "run-s test:*",
     "test-mock-unit": "NODE_ENV=development; LOG_LEVEL=error; STUB_MI=false; FAKE_MI=false; MOCK_MI=true; JASMINE_CONFIG_PATH=src/test/app/jasmine.json jasmine",
     "test:unit": "NODE_ENV=development; LOG_LEVEL=error; STUB_MI=false; FAKE_MI=false; MOCK_MI=false; JASMINE_CONFIG_PATH=src/test/app/jasmine.json jasmine",
+    "coverage": "npm run clean; NODE_ENV=development; LOG_LEVEL=error; STUB_MI=false; FAKE_MI=false; MOCK_MI=false; JASMINE_CONFIG_PATH=src/test/app/jasmine.json nyc jasmine",
     "test:stubs": "JASMINE_CONFIG_PATH=src/test/data/stubs/jasmine.json jasmine",
     "test:mocks": "JASMINE_CONFIG_PATH=src/test/data/mocks/jasmine.json jasmine",
     "test:faker": "JASMINE_CONFIG_PATH=src/test/data/faker/jasmine.json jasmine",
@@ -100,6 +102,7 @@
     "node-sass": "4.5.2",
     "nodemon": "*",
     "npm-run-all": "4.0.2",
+    "nyc": "11.0.2",
     "proxyquire": "1.7.11",
     "selenium-webdriver": "3.4.0",
     "supertest": "3.0.0"
