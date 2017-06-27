@@ -1,15 +1,16 @@
 {
 	"check-coverage": true,
-	"lines": 90,
-	"statements": 90,
-	"functions": 90,
-	"branches": 80,
+	"lines": 95,
+	"statements": 95,
+	"functions": 95,
+	"branches": 95,
 	"include": [
 		"src/app/**/*.js"
 	],
 	"exclude": [
 		"src/app/**/controller.{hvc,win,wins}.js",
-		"src/app/app.js"
+		"src/app/app.js",
+		"src/app/lib/backend-request.stub.js"
 	],
 	"reporter": [
 		"lcov",

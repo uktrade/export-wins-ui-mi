@@ -146,4 +146,22 @@ describe( 'Overseas Regions Overview Groups transformer', function(){
 		} );
 	} );
 
+	describe( 'When the region is not found', function(){
+
+		it( 'Should throw an error', function(){
+
+			const groupResults = [
+				{
+					regions: [ { id: 100 } ]
+				}
+			];
+			const regionResults = [];
+
+			expect( () => {
+
+				transform( { results: groupResults }, { financial_year: { id: 2017 }, results: regionResults } );
+
+			} ).toThrow( new Error( 'Region not found for id 100' ) );
+		} );
+	} );
 } );

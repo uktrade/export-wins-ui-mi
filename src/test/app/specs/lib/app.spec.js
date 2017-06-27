@@ -8,9 +8,6 @@ const logger = require( '../../../../app/lib/logger' );
 const interceptBackend = require( '../../helpers/intercept-backend' );
 
 const app = proxyquire( '../../../../app/lib/app', {
-
-	'./middleware/alice': function( req, res, next ){ req.alice = {}; next(); },
-	'./middleware/uuid': function ( req, res, next ){ next(); },
 	'morgan': function(){ return function ( req, res, next ){ next(); }; }
 } );
 
@@ -455,6 +452,72 @@ if( config.backend.mock ){
 
 				checkResponse( res, 200 );
 				done();
+			} );
+		} );
+	} );
+
+	describe( 'Environments', function(){
+
+		let morgan;
+		let disable;
+		let compression;
+
+		beforeEach( function(){
+
+			morgan = jasmine.createSpy( 'morgan' );
+			disable = jasmine.createSpy( 'app.disable' );
+			compression = jasmine.createSpy( 'compression' );
+		} );
+
+		describe( 'Dev mode', function(){
+
+			it( 'Should setup the app in dev mode', function(){
+
+				const app = proxyquire( '../../../../app/lib/app', {
+					'morgan': morgan,
+					'compression': compression,
+					'express': function(){
+						return {
+							use: jasmine.createSpy( 'app.use' ),
+							get: () => 'development',
+							set: jasmine.createSpy( 'app.set' ),
+							disable,
+							post: jasmine.createSpy( 'app.post' ),
+						};
+					}
+				} );
+
+				app.create();
+
+				expect( morgan ).toHaveBeenCalledWith( 'dev' );
+				expect( compression ).not.toHaveBeenCalled();
+				expect( disable ).toHaveBeenCalledWith( 'x-powered-by' );
+			} );
+		} );
+
+		describe( 'Prod mode', function(){
+
+			it( 'Should setup the app in dev mode', function(){
+
+				const app = proxyquire( '../../../../app/lib/app', {
+					'morgan': morgan,
+					'compression': compression,
+					'express': function(){
+						return {
+							use: jasmine.createSpy( 'app.use' ),
+							get: () => 'production',
+							set: jasmine.createSpy( 'app.set' ),
+							disable,
+							post: jasmine.createSpy( 'app.post' ),
+						};
+					}
+				} );
+
+				app.create();
+
+				expect( morgan ).toHaveBeenCalledWith( 'combined' );
+				expect( compression ).toHaveBeenCalled();
+				expect( disable ).toHaveBeenCalledWith( 'x-powered-by' );
 			} );
 		} );
 	} );
