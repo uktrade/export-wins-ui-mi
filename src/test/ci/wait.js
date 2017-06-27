@@ -21,9 +21,11 @@ new EndpointCheck( backendUrl, ( err ) => {
 				console.log( 'Could not connect to app:' );
 				console.log( err );
 				process.exit( 1 );
-			}
 
-			process.exit();
+			} else {
+
+				process.exit();
+			}
 		} );
 	}
 } );

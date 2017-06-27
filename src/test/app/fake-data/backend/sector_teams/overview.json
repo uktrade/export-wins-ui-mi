@@ -651,7 +651,7 @@
 	            "name": "nam quod molestiae",
 	            "hvc_performance": {
 	               "red": 25,
-	               "amber": 4,
+	               "amber": 0,
 	               "green": 12,
 	               "zero": 13
 	            },

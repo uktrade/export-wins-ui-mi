@@ -24,7 +24,7 @@ function returnStub( file ){
 
 	spyOn( backend, 'sessionGet' ).and.callFake( function( alice, path, cb ){
 
-		cb( null, { isSuccess: true, elapsedTime: 0 }, getBackendStub( file ) );
+		cb( null, { isSuccess: true, elapsedTime: 0, request: { uri: { href: 'test.com' } } }, getBackendStub( file ) );
 	} );
 }
 
@@ -131,18 +131,41 @@ describe( 'Backend service', function(){
 
 		describe( 'Getting the sector team', function(){
 
-			it( 'Should use the sector transformer', function( done ){
+			describe( 'When the backend is available', function(){
 
-				const teamId = '3';
+				it( 'Should use the sector transformer', function( done ){
 
-				returnStub( '/sector_teams/' );
+					const teamId = '3';
 
-				backendService.getSectorTeam( req, teamId ).then( () => {
+					returnStub( '/sector_teams/' );
 
-					checkBackendArgs( `/mi/sector_teams/${ teamId }/?year=${ year }`, req );
-					done();
+					backendService.getSectorTeam( req, teamId ).then( () => {
 
-				} ).catch( done.fail );
+						checkBackendArgs( `/mi/sector_teams/${ teamId }/?year=${ year }`, req );
+						done();
+
+					} ).catch( done.fail );
+				} );
+			} );
+
+			describe( 'When the backend is not available', function(){
+
+				it( 'Should throw an error', function( done ){
+
+					spyOn( backend, 'sessionGet' ).and.callFake( function( alice, path, cb ){
+
+						const err = new Error();
+						err.code = 'ECONNREFUSED';
+
+						cb( err, { isSuccess: false, elapsedTime: 0 } );
+					} );
+
+					backendService.getSectorTeam( req ).then( done.fail ).catch( ( e ) => {
+
+						expect( e ).toEqual( new Error( 'The backend is not available.' ) );
+						done();
+					} );
+				} );
 			} );
 		} );
 
@@ -154,7 +177,6 @@ describe( 'Backend service', function(){
 
 				returnStub( '/sector_teams/months' );
 
-
 				backendService.getSectorTeamMonths( req, teamId ).then( () => {
 
 					checkBackendArgs( `/mi/sector_teams/${ teamId }/months/?year=${ year }`, req );
@@ -164,6 +186,29 @@ describe( 'Backend service', function(){
 					done();
 
 				} ).catch( done.fail );
+			} );
+
+			describe( 'With incorrect data', function(){
+
+				it( 'Should throw an error', function( done ){
+
+					const stubs = {
+						'../../config': configStub,
+						'../logger': require( '../../../helpers/mock-logger' ),
+						'../transformers/months': monthsSpy.and.callFake( () => { throw new Error( 'test' ); } ),
+						'../backend-request': backend
+					};
+
+					const backendService = proxyquire( '../../../../../app/lib/service/service.backend', stubs );
+
+					returnStub( '/sector_teams/months' );
+
+					backendService.getSectorTeamMonths( req, 1 ).then( done.fail ).catch( ( e ) => {
+
+						expect( e ).toEqual( new Error( 'Unable to transform API response' ) );
+						done();
+					} );
+				} );
 			} );
 		} );
 
@@ -917,6 +962,45 @@ describe( 'Backend service', function(){
 					} ).catch( done.fail );
 				} );
 			} );
+		} );
+	} );
+
+	describe( 'Stubbed mode', function(){
+
+		it( 'Should use the stubbed backend-request', function( done ){
+
+			const stubbedBackendRequest = {
+				sessionGet: jasmine.createSpy( 'backend-request.stub.sessionGet' ).and.callFake( ( sessionId, path, cb ) => cb( null, { isSuccess: true, request:{ uri: {} } }, {} ) )
+			};
+			const backendService = proxyquire( '../../../../../app/lib/service/service.backend', {
+				'../backend-request.stub': stubbedBackendRequest,
+				'../../config': { backend: { stub: true, fake: false, mock: false } }
+			} );
+
+			backendService.getSectorTeams( req ).then( () => {
+
+				expect( stubbedBackendRequest.sessionGet ).toHaveBeenCalled();
+				done();
+
+			} ).catch( done.fail );
+		} );
+	} );
+
+	describe( 'Mocked mode', function(){
+
+		it( 'Should require the mocks', function(){
+
+			const win = jasmine.createSpy( 'win' );
+
+			const backendService = proxyquire( '../../../../../app/lib/service/service.backend', {
+				'../../config': { backend: { stub: false, fake: false, mock: true } },
+				'../../../data/mocks': {
+					win
+				}
+			} );
+
+			backendService.getWin();
+			expect( win ).toHaveBeenCalled();
 		} );
 	} );
 } );

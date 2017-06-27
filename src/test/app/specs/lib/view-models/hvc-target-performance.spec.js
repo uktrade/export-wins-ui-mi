@@ -166,6 +166,18 @@ describe( 'HVC target performance data set', function(){
 		} );
 	} );
 
+	describe( 'With data but without out any results', function(){
+
+		it( 'Should user the date_range and return empty arrays', function(){
+
+			const out = dataset.create( { date_range: {} } );
+
+			expect( out.dateRange ).toBeDefined();
+			expect( out.withTarget.length ).toEqual( 0 );
+			expect( out.zeroTarget.length ).toEqual( 0 );
+		} );
+	} );
+
 	describe( 'With data', function(){
 
 		it( 'Should output the date range', function(){
@@ -253,5 +265,4 @@ describe( 'HVC target performance data set', function(){
 			} );
 		} );
 	} );
-
 } );
