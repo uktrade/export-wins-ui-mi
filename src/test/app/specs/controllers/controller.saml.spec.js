@@ -1,6 +1,5 @@
 const proxyquire = require( 'proxyquire' );
 const errorHandler = require( '../../../../app/lib/render-error' );
-const interceptBackend = require( '../../helpers/intercept-backend' );
 const logger = require( '../../helpers/mock-logger' );
 
 let backendService;
@@ -22,7 +21,8 @@ describe( 'SAML controller', function(){
 		jasmine.DEFAULT_TIMEOUT_INTERVAL = 500;
 
 		reporter = {
-			captureException: jasmine.createSpy( 'reporter.captureException' )
+			captureException: jasmine.createSpy( 'reporter.captureException' ),
+			message: jasmine.createSpy( 'reported.message' )
 		};
 
 		backendService = proxyquire( '../../../../app/lib/service/service.backend', {
@@ -34,6 +34,8 @@ describe( 'SAML controller', function(){
 			'../lib/render-error': errorHandler,
 			'../lib/reporter': reporter
 		} );
+
+		spyOn( errorHandler, 'createHandler' ).and.callFake( () => {} );
 	} );
 
 	describe( 'acs', function(){
@@ -41,42 +43,49 @@ describe( 'SAML controller', function(){
 		describe( 'When the post data is XML', function(){
 
 			let req;
+			let res;
 
 			beforeEach( function(){
 
 				req = { cookies: { sessionid: 'abc123' }, data: '<xml>' };
-
-				spyOn( backendService, 'sendSamlXml' ).and.callThrough();
-				spyOn( errorHandler, 'createHandler' ).and.callFake( () => {} );
+				res = {
+					set: jasmine.createSpy( 'res.set' ),
+					redirect: jasmine.createSpy( 'res.redirect' ),
+					render: jasmine.createSpy( 'res.render' )
+				};
 			} );
 
 			describe( 'When the backend response is success', function(){
 
 				it( 'Should send the post data to the backend and set a cookie', function( done ){
 
-					spyOn( errorHandler, 'sendResponse' ).and.callFake( () => {} );
-
-					const response = 'success';
 					const setCookieResponse = 'sessionid=abc1234';
+					const promise = new Promise( ( resolve ) => {
 
-					const res = {
-						set: jasmine.createSpy( 'res.set' ),
-						redirect: function( location ){
+						resolve( {
+							response: {
+								headers: {
+									'set-cookie': [ setCookieResponse ]
+								}
+							}
+						} );
 
-							expect( backendService.sendSamlXml ).toHaveBeenCalledWith( req );
-							expect( errorHandler.createHandler ).not.toHaveBeenCalled();
-							expect( errorHandler.sendResponse ).not.toHaveBeenCalled();
-							expect( res.set ).toHaveBeenCalledWith( 'Set-Cookie', setCookieResponse );
-							expect( location ).toEqual( '/' );
-							done();
-						}
-					};
-
-					interceptBackend.post( '/saml2/acs/' ).reply( 200, response, {
-						'Set-Cookie': setCookieResponse
 					} );
 
+					spyOn( errorHandler, 'sendResponse' ).and.callFake( () => {} );
+					spyOn( backendService, 'sendSamlXml' ).and.callFake( () => promise );
+
 					controller.acs( req, res );
+
+					promise.then( () => {
+
+						expect( backendService.sendSamlXml ).toHaveBeenCalledWith( req );
+						expect( errorHandler.createHandler ).not.toHaveBeenCalled();
+						expect( errorHandler.sendResponse ).not.toHaveBeenCalled();
+						expect( res.set ).toHaveBeenCalledWith( 'Set-Cookie', [ setCookieResponse ] );
+						expect( res.redirect ).toHaveBeenCalledWith( '/' );
+						done();
+					} );
 				} );
 			} );
 
@@ -84,24 +93,30 @@ describe( 'SAML controller', function(){
 
 				describe( 'When the response is a 403', function(){
 
-					it( 'Should render an MI group error page', function( done ){
+					it( 'Should render an MI group error page and log to sentry', function( done ){
 
-						spyOn( errorHandler, 'sendResponse' ).and.callFake( () => {} );
+						const promise = new Promise( ( resolve, reject ) => {
 
-						interceptBackend.post( '/saml2/acs/' ).reply( 403, '{ "code": 1, "message": "not in MI group" }', {
-							'Content-Type': 'application/json'
-						} );
+							const err = new Error( 'not in MI group' );
+							err.code = 403;
 
-						controller.acs( req, {
-							render: function( view ){
+							reject( err );
+
+							process.nextTick( () => {
 
 								expect( errorHandler.createHandler ).not.toHaveBeenCalled();
 								expect( errorHandler.sendResponse ).not.toHaveBeenCalled();
+								expect( res.render ).toHaveBeenCalledWith( 'error/not-mi.html' );
+								expect( reporter.message ).toHaveBeenCalledWith( 'info', 'User not in MI group' );
 
-								expect( view ).toEqual( 'error/not-mi.html' );
 								done();
-							}
+							} );
 						} );
+
+						spyOn( errorHandler, 'sendResponse' ).and.callFake( () => {} );
+						spyOn( backendService, 'sendSamlXml' ).and.callFake( () => promise );
+
+						controller.acs( req, res );
 					} );
 				} );
 
@@ -109,23 +124,28 @@ describe( 'SAML controller', function(){
 
 					it( 'Should render an unable to login error page and send the error to sentry', function( done ){
 
-						spyOn( errorHandler, 'sendResponse' ).and.callFake( () => {} );
+						const promise = new Promise( ( resolve, reject ) => {
 
-						interceptBackend.post( '/saml2/acs/' ).reply( 500, '{ "code": 2, "message": "server error" }', {
-							'Content-Type': 'application/json'
-						} );
+							const err = new Error( 'server error' );
+							err.code = 500;
 
-						controller.acs( req, {
-							render: function( view ){
+							reject( err );
+
+							process.nextTick( () => {
 
 								expect( errorHandler.createHandler ).not.toHaveBeenCalled();
 								expect( errorHandler.sendResponse ).not.toHaveBeenCalled();
-
-								expect( view ).toEqual( 'error/unable-to-login.html' );
+								expect( res.render ).toHaveBeenCalledWith( 'error/unable-to-login.html' );
+								expect( reporter.captureException ).toHaveBeenCalledWith( err );
 
 								done();
-							}
+							} );
 						} );
+
+						spyOn( errorHandler, 'sendResponse' ).and.callFake( () => {} );
+						spyOn( backendService, 'sendSamlXml' ).and.callFake( () => promise );
+
+						controller.acs( req, res );
 					} );
 				} );
 
@@ -133,16 +153,26 @@ describe( 'SAML controller', function(){
 
 					it( 'Should render the generic error page', function( done ){
 
-						spyOn( errorHandler, 'sendResponse' ).and.callFake( ( e ) => {
+						const promise = new Promise( ( resolve, reject ) => {
 
-							expect( errorHandler.createHandler ).not.toHaveBeenCalled();
-							expect( e ).toBeDefined();
-							done();
+							const err = new Error( 'not found' );
+							err.code = 404;
+
+							reject( err );
+
+							process.nextTick( () => {
+
+								expect( errorHandler.createHandler ).not.toHaveBeenCalled();
+								expect( errorHandler.sendResponse ).toHaveBeenCalledWith( res, err );
+								expect( reporter.captureException ).toHaveBeenCalledWith( err );
+								done();
+							} );
 						} );
 
-						interceptBackend.post( '/saml2/acs/' ).reply( 404, '' );
+						spyOn( backendService, 'sendSamlXml' ).and.callFake( () => promise );
+						spyOn( errorHandler, 'sendResponse' ).and.callFake( () => {} );
 
-						controller.acs( req, {} );
+						controller.acs( req, res );
 					} );
 				} );
 			} );
@@ -154,28 +184,30 @@ describe( 'SAML controller', function(){
 
 		it( 'Should get the metadata and return it', function( done ){
 
-			spyOn( backendService, 'getSamlMetadata' ).and.callThrough();
-			spyOn( errorHandler, 'createHandler' ).and.callFake( () => done.fail );
-
 			const xml = '<xml test=true"/>';
 			const req = { cookies: {} };
 			const res = {
-
 				set: jasmine.createSpy( 'res.set' ),
-
-				send: function( data ){
-
-					expect( backendService.getSamlMetadata ).toHaveBeenCalledWith( req );
-					expect( res.set ).toHaveBeenCalledWith( 'Content-Type', 'text/xml' );
-					expect( data ).toEqual( xml );
-					expect( errorHandler.createHandler ).toHaveBeenCalled();
-					done();
-				}
+				send: jasmine.createSpy( 'res.send' )
 			};
 
-			interceptBackend.get( '/saml2/metadata/' ).reply( 200, xml );
+			const promise = new Promise( ( resolve ) => {
+
+				resolve( xml );
+			} );
+
+			spyOn( backendService, 'getSamlMetadata' ).and.callFake( () => promise );
 
 			controller.metadata( req, res );
+
+			promise.then( () => {
+
+				expect( backendService.getSamlMetadata ).toHaveBeenCalledWith( req );
+				expect( res.set ).toHaveBeenCalledWith( 'Content-Type', 'text/xml' );
+				expect( res.send ).toHaveBeenCalledWith( xml );
+				expect( errorHandler.createHandler ).toHaveBeenCalled();
+				done();
+			} );
 		} );
 	} );
 } );
