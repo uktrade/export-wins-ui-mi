@@ -20,6 +20,7 @@ module.exports = {
 				case 403:
 
 					res.render( 'error/not-mi.html' );
+					reporter.message( 'info', 'User not in MI group' );
 
 				break;
 				case 500:
@@ -31,6 +32,7 @@ module.exports = {
 				default:
 
 					renderError.sendResponse( res, e );
+					reporter.captureException( e );
 
 				break;
 			}
