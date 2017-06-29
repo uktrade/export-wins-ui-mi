@@ -1,0 +1,56 @@
+{
+	"id": "dev-test",
+	"viewports": [
+		{
+			"name": "destop",
+			"width": 1200,
+			"height": 800
+		},
+		{
+			"name": "tablet_h",
+			"width": 1024,
+			"height": 568
+		},
+		{
+			"name": "tablet_v",
+			"width": 568,
+			"height": 1024
+		}
+	],
+	"scenarios": [
+		{
+			"label": "Homepage",
+			"url": "http://localhost:9001/",
+			"selectors": [
+				"document"
+			],
+			"misMatchThreshold": 0,
+			"requireSameDimensions": true
+		},
+		{
+			"label": "Sector Teams Review",
+			"url": "http://localhost:9001/sector-teams/overview/",
+			"selectors": [
+				"document"
+			],
+			"hideSelectors": [
+				".column-date"
+			],
+			"misMatchThreshold": 0,
+			"requireSameDimensions": true
+		}
+	],
+	"paths": {
+		"bitmaps_reference": "src/test/backstop/data/bitmaps-reference",
+		"bitmaps_test": "src/test/backstop/data/bitmaps-test",
+		"casper_scripts": "src/test/backstop/data/casper-scripts",
+		"html_report": "src/test/backstop/data/html-report",
+		"ci_report": "src/test/backstop/data/ci-report"
+	},
+	"casperFlags": [],
+	"engine": "phantomjs",
+	"report": [
+		"browser", "CI"
+	],
+	"debug": false
+}

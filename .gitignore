@@ -17,3 +17,4 @@ src/data/fake-stubs
 src/test/ci/output
 run/node.log
 run/node.pid
+src/test/backstop/data
