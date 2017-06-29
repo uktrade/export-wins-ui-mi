@@ -75,21 +75,27 @@ describe( 'Static globals', function(){
 
 	describe( 'financialYearStart', function(){
 
+		let yearList = [];
+
+		beforeAll( function(){
+
+			const currentYear = ( new Date() ).getFullYear();
+			let year = 2016;
+
+			while( year <= currentYear ){
+				yearList.push( { year, label: `${ year }/${ ( year + 1 ).toString().substr( 2, 4) }` } );
+				year++;
+			}
+		} );
+
 		describe( 'When the financialYearStart is a Number', function(){
 
 			it( 'Should add the list of years to the nunjucks env', function(){
 
 				const args = calls.argsFor( 5 );
-				const currentYear = ( new Date() ).getFullYear();
-				const years = [];
-				let year = financialYearStart;
-
-				while( year <= currentYear ){
-					years.push( year++ );
-				}
 
 				expect( args[ 0 ] ).toEqual( 'yearList' );
-				expect( args[ 1 ] ).toEqual( years );
+				expect( args[ 1 ] ).toEqual( yearList );
 			} );
 		} );
 
@@ -119,16 +125,13 @@ describe( 'Static globals', function(){
 
 
 				const args = env.addGlobal.calls.argsFor( 5 );
-				const currentYear = ( new Date() ).getFullYear();
-				const years = [];
-				let year = 2016;
-
-				while( year <= currentYear ){
-					years.push( year++ );
-				}
 
 				expect( args[ 0 ] ).toEqual( 'yearList' );
-				expect( args[ 1 ] ).toEqual( years );
+				expect( args[ 1 ] ).toEqual( yearList );
+
+				for( let { year } of args[ 1 ] ){
+					expect( typeof year ).toEqual( 'number' );
+				}
 			} );
 		} );
 	} );
