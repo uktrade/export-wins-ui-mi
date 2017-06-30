@@ -19,6 +19,7 @@ const teamIcons = {
 	12: [ '/public/img/sector-team-icons/healthcare.png', 120, 120 ],
 	13: [ '/public/img/sector-team-icons/bio-economy.png', 120, 120 ],
 	14: [ '/public/img/sector-team-icons/defence.png', 120, 113 ],
+	15: [ '/public/img/sector-team-icons/consumer-creative.png', 120, 120 ]
 };
 
 function getImage( team ){
@@ -79,7 +80,7 @@ function mapValues( sector, nameSuffix ){
 			current: hvcValues.current,
 			targetPercent: {
 				confirmed: createTargetPercent( hvcValues.target_percent.confirmed ),
-				unconfirmed: createTargetPercent( hvcValues.target_percent.unconfirmed ) 
+				unconfirmed: createTargetPercent( hvcValues.target_percent.unconfirmed )
 			}
 		}
 	};

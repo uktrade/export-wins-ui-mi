@@ -3,7 +3,8 @@
 	"title": "Sector overview",
 
 	"type": "array",
-	"minItems": 5,
+	"minItems": 15,
+	"maxItems": 15,
 	"items": {
 		"type": "object",
 		"required": [ "hvc_performance", "id", "name", "hvc_groups", "values" ],
@@ -48,7 +49,7 @@
 			}
 		}
 	},
-	
+
 	"definitions": {
 
 		"hvc-performance": {
@@ -234,7 +235,7 @@
 				}
 			}
 		},
-		
+
 		"hvc-values": {
 			"type": "object",
 			"required": [ "hvc" ],
