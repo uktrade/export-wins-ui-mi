@@ -1,0 +1,19 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "User info",
+
+	"type": "object",
+	"required": [ "email", "last_login" ],
+	"properties": {
+
+		"email": {
+			"type": "string",
+			"faker": "internet.email"
+		},
+
+		"last_login": {
+			"type": "string",
+			"faker": "date.past"
+		}
+	}
+}

@@ -35,6 +35,10 @@ function checkResponse( res, statusCode ){
 	expect( headers[ 'x-frame-options' ] ).toBeDefined();
 }
 
+function returnUser(){
+	interceptBackend.getStub( '/user/me/', 200, '/user/me' );
+}
+
 describe( 'App', function(){
 
 	let app;
@@ -59,6 +63,7 @@ describe( 'App', function(){
 
 			it( 'Should return a 200 with the correct heading', function( done ){
 
+				returnUser();
 				interceptBackend.getStub( '/mi/sector_teams/?year=2017', 200, '/sector_teams/' );
 
 				supertest( app ).get( '/' ).end( ( err, res ) => {
@@ -74,6 +79,7 @@ describe( 'App', function(){
 
 			it( 'Should return a 500', function( done ){
 
+				returnUser();
 				interceptBackend.getStub( '/mi/sector_teams/?year=2017', 500 );
 
 				supertest( app ).get( '/' ).end( ( err, res ) => {
@@ -90,6 +96,7 @@ describe( 'App', function(){
 
 				it( 'Should return a 500', function( done ){
 
+					returnUser();
 					interceptBackend.getStub( '/mi/sector_teams/?year=2017', 200, '/sector_teams/' );
 					interceptBackend.getStub( '/mi/os_region_groups/?year=2017', 500 );
 
@@ -105,6 +112,7 @@ describe( 'App', function(){
 
 				it( 'Should return a 500', function( done ){
 
+					returnUser();
 					interceptBackend.getStub( '/mi/sector_teams/?year=2017', 500 );
 					interceptBackend.getStub( '/mi/os_region_groups/?year=2017', 500 );
 
@@ -126,6 +134,7 @@ describe( 'App', function(){
 
 				it( 'Should return a 200 with the correct heading', function( done ){
 
+					returnUser();
 					interceptBackend.getStub( '/mi/sector_teams/overview/?year=2017', 200, '/sector_teams/overview' );
 
 					supertest( app ).get( '/sector-teams/overview/' ).end( ( err, res ) => {
@@ -144,6 +153,7 @@ describe( 'App', function(){
 
 				it( 'Should return a 200 with the correct heading', function( done ){
 
+					returnUser();
 					interceptBackend.getStub( '/mi/sector_teams/?year=2017', 200, '/sector_teams/' );
 
 					supertest( app ).get( '/sector-teams/' ).end( ( err, res ) => {
@@ -162,6 +172,7 @@ describe( 'App', function(){
 
 				it( 'Should return a 200 with the correct heading', function( done ){
 
+					returnUser();
 					interceptBackend.getStub( '/mi/sector_teams/1/?year=2017', 200, '/sector_teams/sector_team' );
 					interceptBackend.getStub( '/mi/sector_teams/1/months/?year=2017', 200, '/sector_teams/months' );
 					interceptBackend.getStub( '/mi/sector_teams/1/campaigns/?year=2017', 200, '/sector_teams/campaigns' );
@@ -186,6 +197,7 @@ describe( 'App', function(){
 
 				it( 'Should return a 200 with the correct heading', function( done ){
 
+					returnUser();
 					interceptBackend.getStub( '/mi/hvc_groups/?year=2017', 200, '/hvc_groups/' );
 
 					supertest( app ).get( '/hvc-groups/' ).end( ( err, res ) => {
@@ -204,6 +216,7 @@ describe( 'App', function(){
 
 				it( 'Should return a 200 with the correct heading', function( done ){
 
+					returnUser();
 					interceptBackend.getStub( '/mi/hvc_groups/1/?year=2017', 200, '/hvc_groups/group' );
 					interceptBackend.getStub( '/mi/hvc_groups/1/months/?year=2017', 200, '/hvc_groups/months' );
 					interceptBackend.getStub( '/mi/hvc_groups/1/campaigns/?year=2017', 200, '/hvc_groups/campaigns' );
@@ -279,6 +292,7 @@ if( config.backend.mock ){
 
 				it( 'Should return a 200 with the correct heading', function( done ){
 
+					returnUser();
 					interceptBackend.getStub( '/mi/os_regions/overview/?year=2017', 200, '/os_regions/overview.2017' );
 					interceptBackend.getStub( '/mi/os_region_groups/?year=2017', 200, '/os_region_groups/index.2017' );
 
@@ -298,6 +312,7 @@ if( config.backend.mock ){
 
 				it( 'Should return a 200 with the correct heading', function( done ){
 
+					returnUser();
 					interceptBackend.getStub( '/mi/os_regions/?year=2017', 200, '/os_regions/' );
 
 					supertest( app ).get( '/overseas-regions/' ).end( ( err, res ) => {
@@ -316,6 +331,7 @@ if( config.backend.mock ){
 
 				it( 'Should return a 200 with the correct heading', function( done ){
 
+					returnUser();
 					interceptBackend.getStub( '/mi/os_regions/1/?year=2017', 200, '/os_regions/region' );
 					interceptBackend.getStub( '/mi/os_regions/1/months/?year=2017', 200, '/os_regions/months' );
 					interceptBackend.getStub( '/mi/os_regions/1/campaigns/?year=2017', 200, '/os_regions/campaigns' );

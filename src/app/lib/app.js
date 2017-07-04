@@ -78,7 +78,7 @@ module.exports = {
 		app.use( year );
 		app.use( globals( nunjucksEnv ) );
 
-		routes( express, app );
+		routes( express, app, isDev );
 
 		app.use( errors.handle404 );
 

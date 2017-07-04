@@ -126,7 +126,6 @@ describe( 'Backend service', function(){
 					done();
 				} );
 			} );
-
 		} );
 
 		describe( 'Getting the sector team', function(){
@@ -466,6 +465,22 @@ describe( 'Backend service', function(){
 					done();
 
 				} ).catch( done.fail );
+			} );
+		} );
+
+		describe( 'Getting the user info', function(){
+
+			it( 'Should return the user info', function( done ){
+
+				const userStub = getBackendStub( '/user/me' );
+
+				returnStub( '/user/me' );
+
+				backendService.getUserInfo( req ).then( ( user ) => {
+
+					expect( user ).toEqual( userStub );
+					done();
+				} );
 			} );
 		} );
 

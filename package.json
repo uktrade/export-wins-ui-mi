@@ -1,6 +1,6 @@
 {
   "name": "export-wins-ui-mi",
-  "version": "4.8.1",
+  "version": "4.9.0",
   "description": "An MI dashboard for Export Wins",
   "main": "server.js",
   "engines": {
@@ -32,7 +32,7 @@
     "watch-fake-stub": "export STUB_MI=true; export FAKE_MI=true; npm run watch",
     "watch-mock-fake-stub": "export MOCK_MI=true; export STUB_MI=true; export FAKE_MI=true; npm run watch",
     "watch": "run-p watch:*",
-    "watch:node": "export LOG_LEVEL=debug; nodemon src/app/app.js --ignore 'src/public/**/*' --ignore 'src/test/**/*'",
+    "watch:node": "export LOG_LEVEL=debug; nodemon src/app/app.js --ignore 'src/public/**/*' --ignore 'src/test/**/*' --ignore 'src/data/**/*'",
     "build": "grunt dist",
     "build:docker": "docker build -t export-wins-ui-mi:${npm_package_version} .",
     "build:dist": "npm run sass:prod && grunt dist && npm run dist-install",
@@ -70,6 +70,7 @@
     "cookie-parser": "^1.4.3",
     "dateformat": "2.0.0",
     "express": "4.15.3",
+    "jsonwebtoken": "7.4.1",
     "morgan": "1.8.2",
     "node-sass": "4.5.3",
     "nunjucks": "3.0.1",

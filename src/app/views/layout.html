@@ -24,6 +24,7 @@
 
 		<nav class="top-nav">
 			<a href="{{ urls.index() }}">Management information{% if selectedYear %} ({{ selectedYear }}){% endif %}</a>
+			<span class="username">User: {{ user.email }}</span>
 		</nav>
 
 		{% block page_content %}{% endblock %}

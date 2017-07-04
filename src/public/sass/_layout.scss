@@ -73,6 +73,16 @@
  	overflow: hidden;
 }
 
+.username {
+
+	display: block;
+
+	@include media( tablet ){
+
+		float: right;
+	}
+}
+
 .page-content {
 	@extend %site-width-container;
 }
