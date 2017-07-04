@@ -1,6 +1,6 @@
 {
   "name": "export-wins-ui-mi",
-  "version": "4.8.1",
+  "version": "4.9.0",
   "description": "An MI dashboard for Export Wins",
   "main": "server.js",
   "engines": {
