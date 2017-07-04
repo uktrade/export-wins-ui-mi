@@ -50,21 +50,14 @@
 }
 
 .page-date {
-	@include core-16;
-	background-color: $date-bg;
+	@include bold-16;
 	padding: pem( 5 );
 }
 
-.page-date--half {
-	width: 50%;
-}
-
 .sub-heading-date {
-	@include core-16;
-	background-color: $date-bg;
-	padding: pem( 2 ) pem( 5 );
+	@include bold-16;
+	padding: pem( 2 ) 0;
 	margin-top: pem( 5 );
-	width: 50%;
 }
 
 .column-date {
