@@ -274,6 +274,7 @@ function getSamlLogin( req ){
 	} );
 }
 
+
 module.exports = {
 
 	getSectorTeams,
@@ -395,5 +396,10 @@ module.exports = {
 
 	getSamlMetadata,
 	sendSamlXml,
-	getSamlLogin
+	getSamlLogin,
+
+	getUserInfo: function( req ){
+
+		return sessionGet( '/user/me/', req ).then( ( info ) => info.data );
+	}
 };

@@ -34,18 +34,32 @@ function createWrapper( results, hasDateRange ){
 module.exports = function( path ){
 
 	let hasDateRange = true;
+	let hasWrapper = true;
 
 	switch( path ){
-		case '/os_regions/index.schema':
-		case '/shared/index.schema':
-		case '/sector_teams/index.schema':
-		case '/os_region_groups/index.schema':
-			hasDateRange = false;
+		case '/user/me.schema':
+			hasWrapper = false;
 		break;
 	}
 
 	const result = require( schemaPath + path );
-	const wrapper = createWrapper( jsf( result ), hasDateRange );
+	const json = jsf( result );
 
-	return wrapper;
+	if( hasWrapper ){
+
+		switch( path ){
+			case '/os_regions/index.schema':
+			case '/shared/index.schema':
+			case '/sector_teams/index.schema':
+			case '/os_region_groups/index.schema':
+				hasDateRange = false;
+			break;
+		}
+
+		return createWrapper( json, hasDateRange );
+
+	} else {
+
+		return json;
+	}
 };

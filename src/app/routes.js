@@ -9,21 +9,24 @@ const hvcController = require( './controllers/controller.hvc' );
 const winsController = require( './controllers/controller.wins' );
 
 const linkHvc = require( './lib/middleware/link-hvc' );
+const createUserMiddleware = require( './lib/middleware/user' );
 
-module.exports = function( express, app ){
+module.exports = function( express, app, isDev ){
 
-	app.get( '/', indexController );
+	const user = createUserMiddleware( isDev );
 
-	app.get( '/sector-teams/', sectorTeamController.list );
-	app.get( '/sector-teams/overview/', sectorTeamController.overview );
-	app.get( '/sector-teams/:id', linkHvc, sectorTeamController.team );
+	app.get( '/', user, indexController );
 
-	app.get( '/overseas-regions/', regionController.list );
-	app.get( '/overseas-regions/overview/', regionController.overview );
-	app.get( '/overseas-regions/:id', regionController.region );
+	app.get( '/sector-teams/', user, sectorTeamController.list );
+	app.get( '/sector-teams/overview/', user, sectorTeamController.overview );
+	app.get( '/sector-teams/:id', user, linkHvc, sectorTeamController.team );
 
-	app.get( '/hvc-groups/', hvcGroupController.list );
-	app.get( '/hvc-groups/:id', hvcGroupController.group );
+	app.get( '/overseas-regions/', user, regionController.list );
+	app.get( '/overseas-regions/overview/', user, regionController.overview );
+	app.get( '/overseas-regions/:id', user, regionController.region );
+
+	app.get( '/hvc-groups/', user, hvcGroupController.list );
+	app.get( '/hvc-groups/:id', user, hvcGroupController.group );
 
 	if( config.backend.mock ){
 
