@@ -26,8 +26,7 @@
 			],
 			"misMatchThreshold": 0,
 			"requireSameDimensions": true
-		},
-		{
+		},{
 			"label": "Sector Teams Review",
 			"url": "http://localhost:9001/sector-teams/overview/",
 			"selectors": [
@@ -35,6 +34,28 @@
 			],
 			"hideSelectors": [
 				".column-date"
+			],
+			"misMatchThreshold": 0,
+			"requireSameDimensions": true
+		},{
+			"label": "Sector team detail",
+			"url": "http://localhost:9001/sector-teams/1/",
+			"selectors": [
+				"document"
+			],
+			"hideSelectors": [
+				".page-date"
+			],
+			"misMatchThreshold": 0,
+			"requireSameDimensions": true
+		},{
+			"label": "HVC Group detail",
+			"url": "http://localhost:9001/hvc-groups/1/",
+			"selectors": [
+				"document"
+			],
+			"hideSelectors": [
+				".page-date"
 			],
 			"misMatchThreshold": 0,
 			"requireSameDimensions": true

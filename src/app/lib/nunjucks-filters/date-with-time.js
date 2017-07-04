@@ -23,5 +23,5 @@ module.exports = function( datestr, maxDate ){
 		}
 	}
 
-	return dateFormat( date, 'UTC:h:MMtt d mmmm yyyy' );
+	return dateFormat( date, 'GMT:h:MMtt d mmmm yyyy Z' );
 };
