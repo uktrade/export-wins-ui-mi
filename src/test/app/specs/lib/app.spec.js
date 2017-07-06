@@ -59,12 +59,13 @@ describe( 'App', function(){
 
 	describe( 'Index page', function(){
 
-		describe( 'When the API returns a status of 200', function(){
+		describe( 'When both APIs returns a status of 200', function(){
 
 			it( 'Should return a 200 with the correct heading', function( done ){
 
 				returnUser();
 				interceptBackend.getStub( '/mi/sector_teams/?year=2017', 200, '/sector_teams/' );
+				interceptBackend.getStub( '/mi/os_region_groups/?year=2017', 200, '/os_region_groups/index.2017' );
 
 				supertest( app ).get( '/' ).end( ( err, res ) => {
 
@@ -75,12 +76,13 @@ describe( 'App', function(){
 			} );
 		} );
 
-		describe( 'When the API returns a status of 500', function(){
+		describe( 'When one the APIs returns a status of 500', function(){
 
 			it( 'Should return a 500', function( done ){
 
 				returnUser();
-				interceptBackend.getStub( '/mi/sector_teams/?year=2017', 500 );
+				interceptBackend.getStub( '/mi/sector_teams/?year=2017', 200, '/sector_teams/' );
+				interceptBackend.getStub( '/mi/os_region_groups/?year=2017', 500 );
 
 				supertest( app ).get( '/' ).end( ( err, res ) => {
 
@@ -90,37 +92,18 @@ describe( 'App', function(){
 			} );
 		} );
 
-		describe( 'When the osRegions query param is used', function(){
+		describe( 'When both the API returns a status of 500', function(){
 
-			describe( 'When one the APIs returns a status of 500', function(){
+			it( 'Should return a 500', function( done ){
 
-				it( 'Should return a 500', function( done ){
+				returnUser();
+				interceptBackend.getStub( '/mi/sector_teams/?year=2017', 500 );
+				interceptBackend.getStub( '/mi/os_region_groups/?year=2017', 500 );
 
-					returnUser();
-					interceptBackend.getStub( '/mi/sector_teams/?year=2017', 200, '/sector_teams/' );
-					interceptBackend.getStub( '/mi/os_region_groups/?year=2017', 500 );
+				supertest( app ).get( '/' ).end( ( err, res ) => {
 
-					supertest( app ).get( '/?osRegions=true' ).end( ( err, res ) => {
-
-						checkResponse( res, 500 );
-						done();
-					} );
-				} );
-			} );
-
-			describe( 'When both the API returns a status of 500', function(){
-
-				it( 'Should return a 500', function( done ){
-
-					returnUser();
-					interceptBackend.getStub( '/mi/sector_teams/?year=2017', 500 );
-					interceptBackend.getStub( '/mi/os_region_groups/?year=2017', 500 );
-
-					supertest( app ).get( '/?osRegions=true' ).end( ( err, res ) => {
-
-						checkResponse( res, 500 );
-						done();
-					} );
+					checkResponse( res, 500 );
+					done();
 				} );
 			} );
 		} );

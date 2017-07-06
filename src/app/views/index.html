@@ -19,7 +19,7 @@
 
 			<a href="{{ urls.sectorTeamsOverview() }}" class="sectors-overview-link">All sector teams review</a>
 
-			<ul class="sector-list">
+			<ul class="sector-list" id="sector-teams-list">
 			{% for team in sectorTeams %}
 				<li class="sector-list_item"><a href="{{ urls.sectorTeam( team.id ) }}">{{ team.name }}</a>
 
@@ -50,7 +50,7 @@
 
 			<a href="{{ urls.osRegionsOverview() }}" class="regions-overview-link">All overseas regions review</a>
 
-			<ul class="sector-group-list">
+			<ul class="sector-group-list" id="os-regions-list">
 			{% for group in overseasRegionGroups %}
 				<li class="sector-group-list_item">
 					{{ group.name }}
