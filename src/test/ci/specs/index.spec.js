@@ -52,13 +52,63 @@ describe( 'The homepage', function(){
 		} );
 	} );
 
-	describe( 'Lists', function(){
+	describe( 'Headings', function(){
 
-		it( 'There should only be one list', function( done ){
+		let headings;
 
-			driver.findElements( By.className( 'sector-list' ) ).then( ( lists ) => {
+		beforeAll( function( done ){
 
-				expect( lists.length ).toEqual( 1 );
+			driver.findElements( By.className( 'sector-list-heading' ) ).then( ( headingElems ) => {
+
+				headings = headingElems;
+				done();
+			} );
+		} );
+
+		it( 'Should have a heading for each list', function( done ){
+
+			expect( headings.length ).toEqual( 2 );
+			done();
+		} );
+
+		it( 'Should have the correct text for the first heading', function( done ){
+
+			headings[ 0 ].getText().then( ( text ) => {
+
+				expect( text ).toEqual( 'Sector Teams' );
+				done();
+			} );
+		} );
+
+		it( 'Should have the correct text for the second heading', function( done ){
+
+			headings[ 1 ].getText().then( ( text ) => {
+
+				expect( text ).toEqual( 'Overseas Regions' );
+				done();
+			} );
+		} );
+	} );
+
+	describe( 'Sector team list', function(){
+
+		it( 'Should find the list', function( done ){
+
+			driver.findElements( By.id( 'sector-teams-list' ) ).then( ( list ) => {
+
+				expect( list.length ).toEqual( 1 );
+				done();
+			} );
+		} );
+	} );
+
+	describe( 'OS regions list', function(){
+
+		it( 'Should find the list', function( done ){
+
+			driver.findElements( By.id( 'os-regions-list' ) ).then( ( list ) => {
+
+				expect( list.length ).toEqual( 1 );
 				done();
 			} );
 		} );
@@ -72,31 +122,6 @@ describe( 'The homepage', function(){
 
 				expect( results.violations.length ).toEqual( 0 );
 				writeReport( 'index', results ).then( done );
-			} );
-		} );
-	} );
-} );
-
-describe( 'The homepage with osRegions feature flag', function(){
-
-	beforeAll( function( done ){
-
-		fetch( '/?osRegions=true' ).then( done );
-	} );
-
-	afterAll( function( done ){
-
-		takeScreenshot( 'index-osRegions', done );
-	} );
-
-	describe( 'Group List', function(){
-
-		it( 'There should only be one group list', function( done ){
-
-			driver.findElements( By.className( 'sector-group-list' ) ).then( ( lists ) => {
-
-				expect( lists.length ).toEqual( 1 );
-				done();
 			} );
 		} );
 	} );

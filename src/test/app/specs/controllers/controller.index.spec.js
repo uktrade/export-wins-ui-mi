@@ -8,7 +8,7 @@ const createErrorHandler = require( '../../helpers/create-error-handler' );
 const year = 2017;
 let controller;
 
-describe( 'Overseas Regions controller', function(){
+describe( 'Index controller', function(){
 
 	let oldTimeout;
 
@@ -34,34 +34,6 @@ describe( 'Overseas Regions controller', function(){
 	} );
 
 	describe( 'Handler', function(){
-
-		it( 'Should get the sectors list data and render the view', function( done ){
-
-			const req = {
-				cookies: { sessionid: '123' },
-				year,
-				query: {}
-			};
-
-			spyOn( backendService, 'getSectorTeams' ).and.callThrough();
-			spyOn( errorHandler, 'createHandler' ).and.callFake( createErrorHandler( done ) );
-
-			interceptBackend.getStub( `/mi/sector_teams/?year=${ year }`, 200, '/sector_teams/' );
-
-			controller( req, { render: function( view, data ){
-
-				expect( backendService.getSectorTeams ).toHaveBeenCalledWith( req );
-				expect( view ).toEqual( 'index.html' );
-				expect( data.sectorTeams ).toBeDefined();
-				expect( data.sectorTeams.length ).toBeGreaterThan( 1 );
-				expect( data.overseasRegions ).not.toBeDefined();
-				expect( errorHandler.createHandler ).toHaveBeenCalled();
-				done();
-			} } );
-		} );
-	} );
-
-	describe( 'When the os-regions query param is true', function(){
 
 		it( 'Should show the Overseas Regions list and render the view', function( done ){
 
