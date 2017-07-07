@@ -15,15 +15,23 @@ function combineData( data1, data2 ){
 	};
 }
 
+function createConfirmedUnconfirmedPercentages( total, confirmed, unconfirmed ){
+
+	const parts = ( 100 / total );
+
+	return {
+		confirmed: ( confirmed ? Math.round( parts * confirmed ) : 0 ),
+		unconfirmed: ( unconfirmed ? Math.round( parts * unconfirmed ) : 0 )
+	};
+}
 
 function createConfirmedUnconfirmedData( data ){
 
-	const parts = ( 100 / data.value.total );
+	const total = data.value.total;
+	const confirmed = data.value.confirmed;
+	const unconfirmed = data.value.unconfirmed;
 
-	return {
-		confirmed: ( data.value.confirmed ? Math.round( parts * data.value.confirmed ) : 0 ),
-		unconfirmed: (  data.value.unconfirmed ? Math.round( parts * data.value.unconfirmed ) : 0 )
-	};
+	return createConfirmedUnconfirmedPercentages( total, confirmed, unconfirmed );
 }
 
 function createHvcNonHvcData( hvc, nonHvc ){
@@ -39,6 +47,8 @@ function createHvcNonHvcData( hvc, nonHvc ){
 
 module.exports = {
 
+	createConfirmedUnconfirmedPercentages,
+
 	create: function( data ){
 
 		if( data.wins.export.non_hvc ){
@@ -49,12 +59,12 @@ module.exports = {
 				hvcNonHvcValue: createHvcNonHvcData( data.wins.export.hvc, data.wins.export.non_hvc ),
 				confirmedUnconfirmedValue: createConfirmedUnconfirmedData( combinedData )
 			};
-		
+
 		} else {
 
 			return {
 				confirmedUnconfirmedValue: createConfirmedUnconfirmedData( data.wins.export.hvc )
-			};		
+			};
 		}
 	}
 };

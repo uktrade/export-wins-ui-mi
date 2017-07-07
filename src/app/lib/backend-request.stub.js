@@ -37,6 +37,8 @@ const stubs = [
 	[ /^\/mi\/hvc_groups\/[0-9]+\/campaigns\/(\?year=[0-9]+)?$/, 'hvc_groups/campaigns'  ],
 	[ /^\/mi\/hvc_groups\/[0-9]+\/months\/(\?year=[0-9]+)?$/, 'hvc_groups/months' ],
 
+	[ /^\/mi\/hvc\/[^/]+?\/(\?year=[0-9]+)?$/, 'hvc/hvc' ],
+
 	[ /^\/user\/me\/$/, 'user/me' ]
 ];
 

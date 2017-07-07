@@ -23,16 +23,16 @@ module.exports = function( express, app, isDev ){
 
 	app.get( '/overseas-regions/', user, regionController.list );
 	app.get( '/overseas-regions/overview/', user, regionController.overview );
-	app.get( '/overseas-regions/:id', user, regionController.region );
+	app.get( '/overseas-regions/:id', user, linkHvc, regionController.region );
+
+	app.get( '/hvc/:id', hvcController.hvc );
 
 	app.get( '/hvc-groups/', user, hvcGroupController.list );
-	app.get( '/hvc-groups/:id', user, hvcGroupController.group );
+	app.get( '/hvc-groups/:id', user, linkHvc, hvcGroupController.group );
 
 	if( config.backend.mock ){
 
 		app.get( '/win/', winController.win );
 		app.get( '/wins/', winsController.list );
-
-		app.get( '/hvc/:id', hvcController.hvc );
 	}
 };

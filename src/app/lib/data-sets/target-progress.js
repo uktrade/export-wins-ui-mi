@@ -1,12 +1,11 @@
 
 module.exports = {
 
-	create: function( winsData ){
+	create: function( target, confirmedValue, unconfirmedValue ){
 
-		const target = winsData.hvcs.target;
-		const confirmedValue = winsData.wins.export.hvc.value.confirmed;
-		const unconfirmedValue = ( confirmedValue + winsData.wins.export.hvc.value.unconfirmed );
 		const parts = ( 100 / target );
+
+		unconfirmedValue = ( confirmedValue + unconfirmedValue );
 
 		function getPercent( num ){
 

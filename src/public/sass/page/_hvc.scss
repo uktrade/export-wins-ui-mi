@@ -1,4 +1,5 @@
 @import 'typography';
+@import '../mi-colours';
 
 .page-date--hvc {
 	margin-bottom: pem( 15 );
@@ -19,4 +20,31 @@
 .hvc-average-time_value {
 	@include bold-24;
 	display: block;
+}
+
+.hvc-rag-heading {
+	@include bold-14;
+}
+
+.hvc-rag {
+	@include core-14;
+	display: inline-block;
+	min-width: pem( 50, 14 );
+	margin-top: pem( 8, 14 );
+	padding: pem( 2, 14 ) pem( 10, 14 );
+	text-align: center;
+}
+
+.hvc-rag--green {
+	background-color: $mi-green;
+	color: #fff;
+}
+
+.hvc-rag--amber {
+	background-color: $mi-amber;
+}
+
+.hvc-rag--red {
+	background-color: $mi-red;
+	color: #fff;
 }

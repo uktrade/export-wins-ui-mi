@@ -9,6 +9,7 @@
 {% block page_content %}
 
 	<h1 class="page-heading">{{ name }} <span class="page-heading-secondary">HVC</span></h1>
+	{% include 'partials/year-selector.html' %}
 	<h2 class="page-date page-date--hvc">{{ financialYear( summary.dateRange ) }}</h2>
 
 	<section class="grid-row">
@@ -21,20 +22,25 @@
 			{% include 'partials/confirmed-vs-unconfirmed-wins.html' -%}
 		</div>
 		<div class="column-one-quarter">
+			<h3 class="hvc-rag-heading">% of HVC target</h3>
+			<p class="hvc-rag hvc-rag--{{ summary.progress.status }}">{{ summary.progress.confirmed }}%</p>
 			<p class="hvc-average-time_text">
 				Average time to confirm <span class="hvc-average-time_value">{{ averageTimeToConfirm | pluralise( 'day' ) }}</span>
 			</p>
 		</div>
 	</section>
 
+	{% if hvcTargetPerformance -%}
 	<section class="grid-row row-separator">
 		<div class="column-single">
 			<h2 class="hvc-heading">{{ name }} target performance</h2>
 			<h3 class="sub-heading-date">{{ financialYear( hvcTargetPerformance.dateRange ) }}</h3>
-			{{ hvcTargetPerformanceTable( hvcTargetPerformance.withTarget ) }}
+			{{ hvcTargetPerformanceTable( hvcTargetPerformance.withTarget, linkHvc=linkHvc ) }}
 		</div>
 	</section>
+	{% endif -%}
 
+	{% if monthlyPerformance -%}
 	<section class="grid-row row-separator">
 		<div class="column-two-thirds">
 			<h2 class="hvc-heading">{{ name }} monthly performance</h2>
@@ -50,6 +56,8 @@
 			{% include 'partials/monthly-performance.html' %}
 		</div>
 	</section>
+	{% endif -%}
+
 
 	{% if topMarkets.items.length %}
 	<section class="grid-row row-separator">
@@ -66,7 +74,9 @@
 {%- block pageScript %}
 	<script>
 		mi.pages.hvc({
-			targetProgress: {{ hvcSummary.progress.gauge | dump | safe }}
+			isOver: '{{ hvcSummary.progress.over }}',
+			confirmedPercent: '{{ hvcSummary.progress.confirmed }}',
+			unconfirmedPercent: '{{ hvcSummary.progress.confirmed }}'
 		});
 	</script>
 {% endblock pageScript -%}

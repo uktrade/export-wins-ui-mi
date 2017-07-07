@@ -28,7 +28,7 @@ describe( 'Sector summary view model', function(){
 		expect( output.target ).toEqual( 20178 );
 		expect( output.confirmedValue ).toEqual( 34275 );
 		expect( output.unconfirmedValue ).toEqual( 23341 );
-		expect( targetProgressSpy.create ).toHaveBeenCalledWith( input.results );
+		expect( targetProgressSpy.create ).toHaveBeenCalledWith( input.results.hvcs.target, input.results.wins.export.hvc.value.confirmed, input.results.wins.export.hvc.value.unconfirmed );
 		expect( output.progress ).toEqual( { a: 1, b: 2 } );
 	} );
 } );

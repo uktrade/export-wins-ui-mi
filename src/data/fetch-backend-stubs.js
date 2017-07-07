@@ -21,7 +21,8 @@ const stubs = [
 	[ 'hvc_groups/index', '/mi/hvc_groups/' ],
 	[ 'hvc_groups/group', '/mi/hvc_groups/1/' ],
 	[ 'hvc_groups/campaigns', '/mi/hvc_groups/1/campaigns/' ],
-	[ 'hvc_groups/months', '/mi/hvc_groups/1/months/' ]
+	[ 'hvc_groups/months', '/mi/hvc_groups/1/months/' ],
+	[ 'hvc/hvc', '/mi/hvc/E100/' ]
 ];
 
 const years = [ 2016, 2017 ];

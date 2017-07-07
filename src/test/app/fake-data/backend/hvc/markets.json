@@ -1,0 +1,58 @@
+{
+   "timestamp": 1491810587523,
+   "financial_year": {
+      "id": 2016,
+      "description": "2016-17"
+   },
+   "results": [
+      {
+         "averageWinValue": 40349,
+         "region": "reiciendis excepturi excepturi",
+         "percentComplete": 22,
+         "averageWinPercent": 4,
+         "totalValue": 84649,
+         "sector": "dicta tempore fugit",
+         "totalWins": 917
+      },
+      {
+         "averageWinValue": 73528,
+         "region": "autem sint velit",
+         "percentComplete": 74,
+         "averageWinPercent": 72,
+         "totalValue": 26842,
+         "sector": "et quibusdam id",
+         "totalWins": 165
+      },
+      {
+         "averageWinValue": 26493,
+         "region": "delectus est sunt",
+         "percentComplete": 49,
+         "averageWinPercent": 33,
+         "totalValue": 69398,
+         "sector": "non illum eius",
+         "totalWins": 255
+      },
+      {
+         "averageWinValue": 94224,
+         "region": "fugiat aut aliquam",
+         "percentComplete": 60,
+         "averageWinPercent": 96,
+         "totalValue": 36327,
+         "sector": "quia qui a",
+         "totalWins": 394
+      },
+      {
+         "averageWinValue": 95503,
+         "region": "dolorem quia aut",
+         "percentComplete": 96,
+         "averageWinPercent": 61,
+         "totalValue": 42057,
+         "sector": "itaque aliquid laborum",
+         "totalWins": 399
+      }
+   ],
+   "date_range": {
+      "start": 1459468800000,
+      "end": 1483228800000
+   }
+}

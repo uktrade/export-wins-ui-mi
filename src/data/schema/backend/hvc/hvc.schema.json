@@ -1,0 +1,127 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "HVC information",
+
+	"type": "object",
+	"required": [ "wins", "name", "campaign_id", "avg_time_to_confirm", "hvcs" ],
+	"properties": {
+
+		"wins": {
+			"type": "object",
+			"required": [ "progress", "totals" ],
+			"properties": {
+
+				"progress": {
+					"type": "object",
+					"required": [ "confirmed_percent", "unconfirmed_percent", "status" ],
+					"properties": {
+						"confirmed_percent": {
+							"type": "number",
+							"faker": {
+								"finance.amount": [ 0, 100 ]
+							}
+						},
+						"unconfirmed_percent": {
+							"type": "number",
+							"faker": {
+								"finance.amount": [ 0, 100 ]
+							}
+						},
+						"status": {
+							"type": "string",
+							"pattern": "red|amber|green"
+						}
+					}
+				},
+
+				"totals": {
+
+					"type": "object",
+					"required": [ "value", "number" ],
+					"properties": {
+						"value": {
+							"type": "object",
+							"required": [ "unconfirmed", "confirmed", "grand_total" ],
+							"properties": {
+								"unconfirmed": {
+									"type": "number",
+									"faker": "random.number"
+								},
+								"confirmed": {
+									"type": "number",
+									"faker": "random.number"
+								},
+								"grand_total": {
+									"type": "number",
+									"faker": "random.number"
+								}
+							}
+						},
+						"number": {
+							"type": "object",
+							"required": [ "unconfirmed", "confirmed", "grand_total" ],
+							"properties": {
+								"unconfirmed": {
+									"type": "number",
+									"faker": {
+										"random.number": [ 1000 ]
+									}
+								},
+								"confirmed": {
+									"type": "number",
+									"faker": {
+										"random.number": [ 1000 ]
+									}
+								},
+								"grand_total": {
+									"type": "number",
+									"faker": "random.number"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+
+		"name":{
+			"type": "string",
+			"faker": "lorem.words"
+		},
+
+		"campaign_id": {
+			"type": "number",
+			"faker": "random.number"
+		},
+
+		"avg_time_to_confirm": {
+			"type": "number",
+			"faker": {
+				"finance.amount": [ 0, 50 ]
+			}
+		},
+
+		"hvcs": {
+			"type": "object",
+			"required": [ "target", "campaigns" ],
+			"properties": {
+
+				"target": {
+					"type": "number",
+					"minimum": 0,
+					"exclusiveMinimum": true,
+					"random.number": [ 5000000000 ]
+				},
+				"campaigns": {
+					"type": "array",
+					"minItems": 1,
+					"maxItems": 1,
+					"items": {
+						"type": "string",
+						"faker": "lorem.sentence"
+					}
+				}
+			}
+		}
+	}
+}

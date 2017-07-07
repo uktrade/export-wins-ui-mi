@@ -1,0 +1,41 @@
+{
+   "timestamp": 1499174002460,
+   "financial_year": {
+      "id": 2016,
+      "description": "2016-17"
+   },
+   "results": {
+      "wins": {
+         "progress": {
+            "confirmed_percent": 71,
+            "unconfirmed_percent": 28,
+            "status": "amber"
+         },
+         "totals": {
+            "value": {
+               "unconfirmed": 250000,
+               "confirmed": 650000,
+               "grand_total": 1000000
+            },
+            "number": {
+               "unconfirmed": 43,
+               "confirmed": 488,
+               "grand_total": 33915
+            }
+         }
+      },
+      "name": "rerum blanditiis rerum",
+      "campaign_id": 29792,
+      "avg_time_to_confirm": 17,
+      "hvcs": {
+         "target": 10338247,
+         "campaigns": [
+            "Cum quos fuga enim repellendus."
+         ]
+      }
+   },
+   "date_range": {
+      "start": 1459468800,
+      "end": 1483228800
+   }
+}

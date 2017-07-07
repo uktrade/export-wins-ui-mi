@@ -1,10 +1,7 @@
-mi.pages.hvc =  function( data ){
+mi.pages.hvc = function( data ){
 
-	if( jessie && jessie.deferUntilReady && jessie.getElement ){
+	if( mi.components.targetProgress ){
 
-		jessie.deferUntilReady( function(){
-
-			jessie.getElement( 'wins-target-progress' ).style.transform = 'rotate(' + data.targetProgress + 'turn)';
-		} );
+		mi.components.targetProgress( data );
 	}
 };

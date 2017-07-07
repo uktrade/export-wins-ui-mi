@@ -53,6 +53,17 @@ describe( 'Backend stub', function(){
 		} );
 	} );
 
+	describe( 'HVC', function(){
+
+		describe( 'Getting the info', function(){
+
+			it( 'Should return the info for the hvc', function( done ){
+
+				checkMultipleYears( '/mi/hvc/1/', '/hvc/hvc', done );
+			} );
+		} );
+	} );
+
 	describe( 'Sectors', function(){
 
 		describe( 'Getting the overview', function(){
