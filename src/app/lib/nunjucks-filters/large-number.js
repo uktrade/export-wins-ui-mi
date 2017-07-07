@@ -15,14 +15,21 @@ function formatNumber( num, zeros, suffix, wrappedUnit ){
 
 module.exports = function( num, wrappedUnit ){
 
-	// Nine Zeroes for Billions
-	if( Math.abs( num ) >= 1.0e+9 ){
+	const absValue = Math.abs( num );
+
+	// Nine zeroes for billions
+	if( absValue >= 1.0e+9 ){
 
 		num = formatNumber( num, 1.0e+9, 'b', wrappedUnit );
 
-	// Six Zeroes for Millions 
-	} else /*if( Math.abs(num) >= 1.0e+6 )*/{
-		
+	// if greater than 0 and less than 10,000 show in k
+	} else if( absValue > 0 && absValue < 1.0e+4 ) {
+
+		num = formatNumber( num, 1.0e+3, 'k', wrappedUnit );
+
+	// else show in millions
+	} else {
+
 		num = formatNumber( num, 1.0e+6, 'm', wrappedUnit );
 	}
 
