@@ -215,23 +215,29 @@ describe( 'App', function(){
 		} );
 	} );
 
-if( config.backend.mock ){
-
 	describe( 'HVC', function(){
 
 		describe( 'Detail', function(){
 
 			it( 'Should return 200', function( done ){
 
-				supertest( app ).get( '/hvc/E022/' ).end( ( err, res ) => {
+				const hvcId = 'E100';
+
+				returnUser();
+				interceptBackend.getStub( `/mi/hvc/${ hvcId }/?year=2017`, 200, '/hvc/hvc' );
+				interceptBackend.getStub( `/mi/hvc/${ hvcId }/top_wins/?year=2017`, 200, '/hvc/markets' );
+
+				supertest( app ).get( `/hvc/${ hvcId }/` ).end( ( err, res ) => {
 
 					expect( res.statusCode ).toEqual( 200 );
-					expect( getTitle( res ) ).toEqual( 'MI - E1234 Abc Advanced Manufacturing - Marine' );
+					expect( getTitle( res ) ).toEqual( 'MI - rerum blanditiis rerum' );
 					done();
 				} );
 			} );
 		} );
 	} );
+
+if( config.backend.mock ){
 
 	describe( 'Wins', function(){
 

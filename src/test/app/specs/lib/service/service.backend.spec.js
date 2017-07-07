@@ -391,6 +391,44 @@ describe( 'Backend service', function(){
 			} );
 		} );
 
+		describe( 'Getting the HVC detail', function(){
+
+			it( 'Should return the hvc detail', function( done ){
+
+				const hvcId = 'E100';
+
+				returnStub( '/hvc/hvc' );
+
+				backendService.getHvc( req, hvcId ).then( ( hvcInfo ) => {
+
+					checkBackendArgs( `/mi/hvc/${ hvcId }/?year=${ year }`, req );
+
+					expect( hvcInfo ).toBeDefined();
+					done();
+
+				} ).catch( done.fail );
+			} );
+		} );
+
+		describe( 'Getting the HVC markets', function(){
+
+			it( 'Should return the hvc markets', function( done ){
+
+				const hvcId = 'E100';
+
+				returnStub( '/hvc/markets' );
+
+				backendService.getHvcMarkets( req, hvcId ).then( ( marketInfo ) => {
+
+					checkBackendArgs( `/mi/hvc/${ hvcId }/top_wins/?year=${ year }`, req );
+
+					expect( marketInfo ).toBeDefined();
+					done();
+
+				} ).catch( done.fail );
+			} );
+		} );
+
 		describe( 'Getting the list of HVC Groups', function(){
 
 			it( 'Should return just the hvc groups', function( done ){
@@ -954,7 +992,7 @@ describe( 'Backend service', function(){
 				} );
 			} );
 
-			describe( 'When one API returns afte a long time', function(){
+			describe( 'When one API returns after a long time', function(){
 
 				it( 'Should log a message with the reporter', function( done ){
 
@@ -971,6 +1009,78 @@ describe( 'Backend service', function(){
 
 						expect( data.sectorTeams ).toBeDefined();
 						expect( data.overseasRegionGroups ).toBeDefined();
+
+						done();
+
+					} ).catch( done.fail );
+				} );
+			} );
+		} );
+
+		describe( 'Getting the HVC Info', function(){
+
+			describe( 'When both APIs return a 200', function(){
+
+				it( 'Should return both bits of data', function( done ){
+
+					const hvcId = 'E100';
+					const files = [
+						[ `/mi/hvc/${ hvcId }/?year=${ year }`, '/hvc/hvc' ],
+						[ `/mi/hvc/${ hvcId }/top_wins/?year=${ year }`, '/hvc/markets' ]
+					];
+
+					intercept( files );
+
+					backendService.getHvcInfo( req, hvcId ).then( ( data ) => {
+
+						expect( data.hvc ).toBeDefined();
+						expect( data.markets ).toBeDefined();
+
+						done();
+
+					} ).catch( done.fail );
+				} );
+			} );
+
+			describe( 'When one API returns a 500', function(){
+
+				it( 'Should throw an error', function( done ){
+
+					const hvcId = 'E100';
+					const files = [
+						[ `/mi/hvc/${ hvcId }/?year=${ year }`, null, 500 ],
+						[ `/mi/hvc/${ hvcId }/top_wins/?year=${ year }`, '/hvc/markets' ]
+					];
+
+					intercept( files );
+
+					backendService.getHvcInfo( req, hvcId ).catch( ( err ) => {
+
+						expect( err ).toBeDefined();
+						done();
+
+					} ).catch( done.fail );
+				} );
+			} );
+
+			describe( 'When one API returns after a long time', function(){
+
+				it( 'Should log a message with the reporter', function( done ){
+
+					const hvcId = 'E100';
+					const files = [
+						[ `/mi/hvc/${ hvcId }/?year=${ year }`, '/hvc/hvc' ],
+						[ `/mi/hvc/${ hvcId }/top_wins/?year=${ year }`, '/hvc/markets' ]
+					];
+
+					interceptWithDelay( files );
+
+					backendService.getHvcInfo( req, hvcId ).then( ( data ) => {
+
+						checkReporterMessage( 'getHvcInfo' );
+
+						expect( data.hvc ).toBeDefined();
+						expect( data.markets ).toBeDefined();
 
 						done();
 

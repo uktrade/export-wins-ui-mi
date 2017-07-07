@@ -196,6 +196,17 @@ function getOverseasRegionsOverview( req ){
 }
 
 
+function getHvc( req, hvcId ){
+
+	return getJson( `/mi/hvc/${ hvcId }/`, req );
+}
+
+function getHvcMarkets( req, hvcId ){
+
+	return getJson( `/mi/hvc/${ hvcId }/top_wins/`, req );
+}
+
+
 function getHvcGroups( req ){
 
 	return getJson( '/mi/hvc_groups/', req );
@@ -220,20 +231,6 @@ function getHvcGroupMonths( req, groupId ){
 function getWin(){
 
 	return mocks.win();
-}
-
-function getHvc( /* req, hvcId */ ){
-
-	//`/mi/hvc/${ hvcId }/`
-
-	return mocks.hvc().then( function ( data ){
-
-		data = Object.create( data );
-
-		data.campaigns = transformCampaigns( data );
-
-		return data;
-	} );
 }
 
 function getWinList( /* req */ ){
@@ -367,6 +364,26 @@ module.exports = {
 		} );
 	},
 
+	getHvc,
+	getHvcMarkets,
+
+	getHvcInfo: function( req, hvcId ){
+
+		return getAll( 'getHvcInfo', [
+
+			getHvc( req, hvcId ),
+			getHvcMarkets( req, hvcId )
+
+			], function( data ){
+
+			return {
+
+				hvc: data[ 0 ],
+				markets: data[ 1 ]
+			};
+		} );
+	},
+
 	getHvcGroups,
 	getHvcGroup,
 	getHvcGroupMonths,
@@ -390,7 +407,6 @@ module.exports = {
 		} );
 	},
 
-	getHvc,
 	getWin,
 	getWinList,
 

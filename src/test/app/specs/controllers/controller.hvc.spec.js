@@ -1,18 +1,16 @@
-const config = require( '../../../../app/config' );
 const proxyquire = require( 'proxyquire' );
 
-const backendService = require( '../../../../app/lib/service/service.backend' );
-const errorHandler = require( '../../../../app/lib/render-error' );
-const hvcTargetPerformance = require( '../../../../app/lib/view-models/hvc-target-performance' );
-const topMarkets = require( '../../../../app/lib/view-models/top-markets' );
-const monthlyPerformance = require( '../../../../app/lib/view-models/monthly-performance' );
-
 const createErrorHandler = require( '../../helpers/create-error-handler' );
+const getBackendStub = require( '../../helpers/get-backend-stub' );
 
-const year = 2017;
 let controller;
-
-if( !config.backend.mock ){ return; }
+let hvcDetail;
+let topMarkets;
+let res;
+let errorHandler;
+let backendService;
+const viewModel = {};
+const topMaketsModel = { test: 1 };
 
 describe( 'HVC controller', function(){
 
@@ -31,56 +29,66 @@ describe( 'HVC controller', function(){
 
 	beforeEach( function(){
 
-		const stubs = {
-			'../lib/service/service.backend': backendService,
-			'../lib/render-error': errorHandler,
-			'../lib/view-models/hvc-target-performance': hvcTargetPerformance,
-			'../lib/view-models/top-markets': topMarkets,
-			'../lib/view-models/monthly-performance': monthlyPerformance
+		hvcDetail = {
+			create: jasmine.createSpy( 'view-models.hvc-detail.create' ).and.callFake( () => viewModel )
+		};
+		topMarkets = {
+			create: jasmine.createSpy( 'view-models.top-markets.create' ).and.callFake( () => topMaketsModel )
+		};
+		res = {
+			render: jasmine.createSpy( 'res.render' )
+		};
+		errorHandler = {
+			createHandler: jasmine.createSpy( 'createHandler' )
+		};
+		backendService = {
+			getHvcInfo: jasmine.createSpy( 'getHvcInfo' )
 		};
 
-		controller = proxyquire( '../../../../app/controllers/controller.hvc', stubs );
+		controller = proxyquire( '../../../../app/controllers/controller.hvc', {
+			'../lib/service/service.backend': backendService,
+			'../lib/render-error': errorHandler,
+			'../lib/view-models/hvc-detail': hvcDetail,
+			'../lib/view-models/top-markets': topMarkets
+		} );
 	} );
 
 	describe( 'Detail', function(){
 
 		it( 'Should get the HVC data and render the correct view', function( done ){
 
+			const hvcData = getBackendStub( '/hvc/hvc' );
+			const hvcMarkets = getBackendStub( '/hvc/markets' );
+			const hvcId = 1234;
 			const req = {
-				cookies: { sessionid: '123' },
-				year,
 				params: {
-					id: 1234
+					id: hvcId
 				}
 			};
 
-			const hvcId = req.params.id;
+			let promise = new Promise( ( resolve ) => {
 
-			spyOn( backendService, 'getHvc' ).and.callThrough();
-			spyOn( errorHandler, 'createHandler' ).and.callFake( createErrorHandler( done ) );
-			spyOn( hvcTargetPerformance, 'create' ).and.callThrough();
-			spyOn( topMarkets, 'create' ).and.callThrough();
-			spyOn( monthlyPerformance, 'create' ).and.callThrough();
+				resolve( { hvc: hvcData, markets: hvcMarkets } );
+			} );
 
-			controller.hvc( req, { render: function( view, data ){
+			backendService.getHvcInfo.and.callFake( () => promise );
+			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
 
-				expect( backendService.getHvc ).toHaveBeenCalledWith( req, hvcId );
+			controller.hvc( req, res );
+
+			promise.then( function(){
+
+				expect( backendService.getHvcInfo ).toHaveBeenCalledWith( req, hvcId );
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
-				expect( hvcTargetPerformance.create ).toHaveBeenCalled();
-				expect( topMarkets.create ).toHaveBeenCalled();
-				expect( monthlyPerformance.create ).toHaveBeenCalled();
+				expect( hvcDetail.create ).toHaveBeenCalledWith( hvcData );
+				expect( topMarkets.create ).toHaveBeenCalledWith( hvcMarkets );
 
-				expect( data.id ).toBeDefined();
-				expect( data.name ).toBeDefined();
-				expect( data.hvcSummary ).toBeDefined();
-				expect( data.hvcTargetPerformance ).toBeDefined();
-				expect( data.monthlyPerformance ).toBeDefined();
-				expect( data.topMarkets ).toBeDefined();
-
-				expect( view ).toEqual( 'hvc/detail.html' );
+				expect( res.render.calls.argsFor( 0 )[ 0 ] ).toEqual( 'hvc/detail.html' );
+				expect( res.render.calls.argsFor( 0 )[ 1 ] ).toEqual( viewModel );
+				expect( viewModel.topMarkets ).toEqual( topMaketsModel );
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				done();
-			} } );
+			} );
 		} );
 	} );
 } );
