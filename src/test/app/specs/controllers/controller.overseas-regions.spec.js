@@ -1,37 +1,38 @@
 const proxyquire = require( 'proxyquire' );
 
-const backendService = require( '../../../../app/lib/service/service.backend' );
-const errorHandler = require( '../../../../app/lib/render-error' );
-const sectorSummary = require( '../../../../app/lib/view-models/sector-summary' );
-const hvcSummary = require( '../../../../app/lib/view-models/sector-hvc-summary' );
-const hvcTargetPerformance = require( '../../../../app/lib/view-models/hvc-target-performance' );
-const topMarkets = require( '../../../../app/lib/view-models/top-markets' );
-const monthlyPerformance = require( '../../../../app/lib/view-models/monthly-performance' );
-
-const interceptBackend = require( '../../helpers/intercept-backend' );
 const createErrorHandler = require( '../../helpers/create-error-handler' );
+const spy = require( '../../helpers/spy' );
 
 const year = 2017;
+
+let backendService;
+let errorHandler;
+let sectorSummary;
+let hvcSummary;
+let hvcTargetPerformance;
+let topMarkets;
+let monthlyPerformance;
+
+let res;
 let controller;
 
 describe( 'Overseas Regions controller', function(){
 
-	let oldTimeout;
-
 	beforeEach( function(){
 
-		oldTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
-		jasmine.DEFAULT_TIMEOUT_INTERVAL = 500;
-	} );
+		backendService = {};
+		errorHandler = { createHandler: spy( 'errorHandler.createHandler' ) };
+		sectorSummary = {};
+		hvcSummary = {};
+		hvcTargetPerformance = {};
+		topMarkets = {};
+		monthlyPerformance = {};
 
-	afterEach( function(){
+		res = {
+			render: spy( 'res.render' )
+		};
 
-		jasmine.DEFAULT_TIMEOUT_INTERVAL = oldTimeout;
-	} );
-
-	beforeEach( function(){
-
-		const stubs = {
+		controller = proxyquire( '../../../../app/controllers/controller.overseas-regions', {
 			'../lib/service/service.backend': backendService,
 			'../lib/render-error': errorHandler,
 			'../lib/view-models/sector-summary': sectorSummary,
@@ -39,36 +40,43 @@ describe( 'Overseas Regions controller', function(){
 			'../lib/view-models/hvc-target-performance': hvcTargetPerformance,
 			'../lib/view-models/top-markets': topMarkets,
 			'../lib/view-models/monthly-performance': monthlyPerformance
-		};
-
-		controller = proxyquire( '../../../../app/controllers/controller.overseas-regions', stubs );
+		} );
 	} );
 
 	describe( 'Overview', function(){
 
-		it( 'Should get the overview data and render the correct view', function( done ){
+		it( 'Should get the overview groups data and render the correct view', function( done ){
 
 			const req = {
 				cookies: { sessionid: '123' },
 				year
 			};
 
-			spyOn( backendService, 'getOverseasRegionsOverviewGroups' ).and.callThrough();
-			spyOn( errorHandler, 'createHandler' ).and.callFake( createErrorHandler( done ) );
+			const regionGroups = {
+				date_range: { test: '1' },
+				results: [ 'testing' ]
+			};
 
-			interceptBackend.getStub( `/mi/os_regions/overview/?year=${ req.year }`, 200, '/os_regions/overview.2017' );
-			interceptBackend.getStub( `/mi/os_region_groups/?year=${ req.year }`, 200, '/os_region_groups/index.2017' );
+			const promise = new Promise( ( resolve ) => {
 
-			controller.overview( req, { render: function( view, data ){
+				resolve( regionGroups );
+			} );
+
+			backendService.getOverseasRegionsOverviewGroups = spy( 'getOverseasRegionsOverviewGroups', promise );
+			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
+
+			controller.overview( req, res );
+
+			promise.then( () => {
 
 				expect( backendService.getOverseasRegionsOverviewGroups ).toHaveBeenCalledWith( req );
-				expect( errorHandler.createHandler ).toHaveBeenCalled();
-				expect( data.dateRange ).toBeDefined();
-				expect( data.regionGroups ).toBeDefined();
-				expect( data.regionGroups.length ).toBeGreaterThan( 1 );
-				expect( view ).toEqual( 'overseas-regions/overview.html' );
+				expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
+				expect( res.render ).toHaveBeenCalledWith( 'overseas-regions/overview.html', {
+					dateRange: regionGroups.date_range,
+					regionGroups: regionGroups.results
+				} );
 				done();
-			} } );
+			} );
 		} );
 	} );
 
@@ -81,20 +89,22 @@ describe( 'Overseas Regions controller', function(){
 				year
 			};
 
-			spyOn( backendService, 'getOverseasRegions' ).and.callThrough();
-			spyOn( errorHandler, 'createHandler' ).and.callFake( createErrorHandler( done ) );
+			const regions = { results: { 'regions': true } };
 
-			interceptBackend.getStub( `/mi/os_regions/?year=${ req.year }`, 200, '/os_regions/' );
+			const promise = new Promise( ( resolve ) => {	resolve( regions ); } );
 
-			controller.list( req, { render: function( view, data ){
+			backendService.getOverseasRegions = spy( 'getOverseasRegions', promise );
+			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
+
+			controller.list( req, res );
+
+			promise.then( () => {
 
 				expect( backendService.getOverseasRegions ).toHaveBeenCalledWith( req );
-				expect( errorHandler.createHandler ).toHaveBeenCalled();
-				expect( view ).toEqual( 'overseas-regions/list.html' );
-				expect( data.regions ).toBeDefined();
-				expect( data.regions.length ).toBeGreaterThan( 1 );
+				expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
+				expect( res.render ).toHaveBeenCalledWith( 'overseas-regions/list.html', { regions: regions.results } );
 				done();
-			} } );
+			} );
 		} );
 	} );
 
@@ -112,39 +122,53 @@ describe( 'Overseas Regions controller', function(){
 
 			const regionId = req.params.id;
 
-			spyOn( backendService, 'getOverseasRegionInfo' ).and.callThrough();
-			spyOn( errorHandler, 'createHandler' ).and.callFake( createErrorHandler( done ) );
-			spyOn( sectorSummary, 'create' ).and.callThrough();
-			spyOn( hvcSummary, 'create' ).and.callThrough();
-			spyOn( hvcTargetPerformance, 'create' ).and.callThrough();
-			spyOn( topMarkets, 'create' ).and.callThrough();
-			spyOn( monthlyPerformance, 'create' ).and.callThrough();
+			const sectorSummaryResponse = { 'sectorSummaryResponse': true };
+			const hvcSummaryResponse = { 'hvcSummaryResponse': true };
+			const hvcTargetPerformanceResponse = { 'hvcTargetPerformanceResponse': true };
+			const topMarketsResponse = { 'topMarketsResponse': true };
+			const monthlyPerformanceResponse = { 'monthlyPerformanceResponse': true };
 
-			interceptBackend.getStub( `/mi/os_regions/${ regionId }/?year=${ req.year }`, 200, '/os_regions/region' );
-			interceptBackend.getStub( `/mi/os_regions/${ regionId }/months/?year=${ req.year }`, 200, '/os_regions/months' );
-			interceptBackend.getStub( `/mi/os_regions/${ regionId }/campaigns/?year=${ req.year }`, 200, '/os_regions/campaigns' );
-			interceptBackend.getStub( `/mi/os_regions/${ regionId }/top_non_hvcs/?year=${ req.year }`, 200, '/os_regions/top_non_hvcs' );
+			const data = {
+				wins: { results: { name: 'test-regions' } },
+				campaigns: [ 'test-campaigns' ],
+				months: [ 'test-months' ],
+				topNonHvc: { top: { non: 'hvc' } }
+			};
 
-			controller.region( req, { render: function( view, data ){
+			const promise = new Promise( ( resolve ) => { resolve( data ); } );
+
+			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
+			backendService.getOverseasRegionInfo = spy( 'getOverseasRegionInfo', promise );
+
+			sectorSummary.create = spy( 'sectorSummary.create', sectorSummaryResponse );
+			hvcSummary.create = spy( 'hvcSummary.create', hvcSummaryResponse );
+			hvcTargetPerformance.create = spy( 'hvcTargetPerformance.create', hvcTargetPerformanceResponse );
+			topMarkets.create = spy( 'topMarkets.create', topMarketsResponse );
+			monthlyPerformance.create = spy( 'monthlyPerformance.create', monthlyPerformanceResponse );
+
+			controller.region( req, res );
+
+			promise.then( () => {
 
 				expect( backendService.getOverseasRegionInfo ).toHaveBeenCalledWith( req, regionId );
-				expect( errorHandler.createHandler ).toHaveBeenCalled();
-				expect( sectorSummary.create ).toHaveBeenCalled();
-				expect( hvcSummary.create ).toHaveBeenCalled();
-				expect( hvcTargetPerformance.create ).toHaveBeenCalled();
-				expect( topMarkets.create ).toHaveBeenCalled();
-				expect( monthlyPerformance.create ).toHaveBeenCalled();
+				expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
+				expect( sectorSummary.create ).toHaveBeenCalledWith( data.wins );
+				expect( hvcSummary.create ).toHaveBeenCalledWith( data.wins );
+				expect( hvcTargetPerformance.create ).toHaveBeenCalledWith( data.campaigns );
+				expect( monthlyPerformance.create ).toHaveBeenCalledWith( data.months );
+				expect( topMarkets.create ).toHaveBeenCalledWith( data.topNonHvc );
 
-				expect( data.regionName ).toBeDefined();
-				expect( data.summary ).toBeDefined();
-				expect( data.hvcSummary ).toBeDefined();
-				expect( data.hvcTargetPerformance ).toBeDefined();
-				expect( data.monthlyPerformance ).toBeDefined();
-				expect( data.topMarkets ).toBeDefined();
+				expect( res.render ).toHaveBeenCalledWith( 'overseas-regions/detail.html', {
 
-				expect( view ).toEqual( 'overseas-regions/detail.html' );
+					regionName: data.wins.results.name,
+					summary: sectorSummaryResponse,
+					hvcSummary: hvcSummaryResponse,
+					hvcTargetPerformance: hvcTargetPerformanceResponse,
+					monthlyPerformance: monthlyPerformanceResponse,
+					topMarkets: topMarketsResponse
+				} );
 				done();
-			} } );
+			} );
 		} );
 	} );
 } );

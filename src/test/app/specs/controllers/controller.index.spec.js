@@ -1,36 +1,22 @@
 const proxyquire = require( 'proxyquire' );
-const backendService = require( '../../../../app/lib/service/service.backend' );
-const errorHandler = require( '../../../../app/lib/render-error' );
 
-const interceptBackend = require( '../../helpers/intercept-backend' );
+const errorHandler = {};
+const backendService = {};
 const createErrorHandler = require( '../../helpers/create-error-handler' );
+const spy = require( '../../helpers/spy' );
 
-const year = 2017;
 let controller;
 
 describe( 'Index controller', function(){
 
-	let oldTimeout;
-
 	beforeEach( function(){
 
-		oldTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
-		jasmine.DEFAULT_TIMEOUT_INTERVAL = 500;
-	} );
+		errorHandler.createHandler = jasmine.createSpy( 'createHandler' );
 
-	afterEach( function(){
-
-		jasmine.DEFAULT_TIMEOUT_INTERVAL = oldTimeout;
-	} );
-
-	beforeEach( function(){
-
-		const stubs = {
+		controller = proxyquire( '../../../../app/controllers/controller.index', {
 			'../lib/service/service.backend': backendService,
 			'../lib/render-error': errorHandler
-		};
-
-		controller = proxyquire( '../../../../app/controllers/controller.index', stubs );
+		} );
 	} );
 
 	describe( 'Handler', function(){
@@ -39,29 +25,44 @@ describe( 'Index controller', function(){
 
 			const req = {
 				cookies: { sessionid: '456' },
-				year,
-				query: {
-					osRegions: true
-				}
+				year: 2017
 			};
 
-			spyOn( backendService, 'getSectorTeamsAndOverseasRegions' ).and.callThrough();
-			spyOn( errorHandler, 'createHandler' ).and.callFake( createErrorHandler( done ) );
+			const res = {
+				render: jasmine.createSpy( 'res.render' )
+			};
 
-			interceptBackend.getStub( `/mi/sector_teams/?year=${ year }`, 200, '/sector_teams/' );
-			interceptBackend.getStub( `/mi/os_region_groups/?year=${ year }`, 200, '/os_region_groups/index.2017' );
+			const sectorTeams = {
+				results: { sectorTeams: true }
+			};
+			const overseasRegionGroups = {
+				results: { overseasRegionGroups: true }
+			};
 
-			controller( req, { render: function( view, data ){
+			const promise = new Promise( ( resolve ) => {
+
+				resolve( {
+					sectorTeams,
+					overseasRegionGroups
+				} );
+			} );
+
+			backendService.getSectorTeamsAndOverseasRegions = spy( 'getSectorTeamsAndOverseasRegions', promise );
+
+			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
+
+			controller( req, res );
+
+			promise.then( () => {
 
 				expect( backendService.getSectorTeamsAndOverseasRegions ).toHaveBeenCalledWith( req );
-				expect( view ).toEqual( 'index.html' );
-				expect( data.sectorTeams ).toBeDefined();
-				expect( data.sectorTeams.length ).toBeGreaterThan( 1 );
-				expect( data.overseasRegionGroups ).toBeDefined();
-				expect( data.overseasRegionGroups.length ).toBeGreaterThan( 1 );
+				expect( res.render ).toHaveBeenCalledWith( 'index.html', {
+					sectorTeams: sectorTeams.results,
+					overseasRegionGroups: overseasRegionGroups.results
+				} );
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				done();
-			} } );
+			} );
 		} );
 	} );
 } );
