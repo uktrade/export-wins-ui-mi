@@ -2,47 +2,38 @@ const proxyquire = require( 'proxyquire' );
 
 const createErrorHandler = require( '../../helpers/create-error-handler' );
 const getBackendStub = require( '../../helpers/get-backend-stub' );
+const spy = require( '../../helpers/spy' );
 
-let controller;
+let res;
+let viewModel;
+let errorHandler;
+
 let hvcDetail;
 let topMarkets;
-let res;
-let errorHandler;
 let backendService;
-const viewModel = {};
-const topMaketsModel = { test: 1 };
+let topMaketsModel;
+
+let controller;
 
 describe( 'HVC controller', function(){
 
-	let oldTimeout;
-
 	beforeEach( function(){
 
-		oldTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
-		jasmine.DEFAULT_TIMEOUT_INTERVAL = 500;
-	} );
-
-	afterEach( function(){
-
-		jasmine.DEFAULT_TIMEOUT_INTERVAL = oldTimeout;
-	} );
-
-	beforeEach( function(){
+		backendService = {};
+		viewModel = {};
+		topMaketsModel = { test: 1 };
 
 		hvcDetail = {
-			create: jasmine.createSpy( 'view-models.hvc-detail.create' ).and.callFake( () => viewModel )
+			create: spy( 'view-models.hvc-detail.create', viewModel )
 		};
 		topMarkets = {
-			create: jasmine.createSpy( 'view-models.top-markets.create' ).and.callFake( () => topMaketsModel )
+			create: spy( 'view-models.top-markets.create', topMaketsModel )
 		};
 		res = {
-			render: jasmine.createSpy( 'res.render' )
+			render: spy( 'res.render' )
 		};
 		errorHandler = {
-			createHandler: jasmine.createSpy( 'createHandler' )
-		};
-		backendService = {
-			getHvcInfo: jasmine.createSpy( 'getHvcInfo' )
+			createHandler: spy( 'createHandler' )
 		};
 
 		controller = proxyquire( '../../../../app/controllers/controller.hvc', {
@@ -71,7 +62,7 @@ describe( 'HVC controller', function(){
 				resolve( { hvc: hvcData, markets: hvcMarkets } );
 			} );
 
-			backendService.getHvcInfo.and.callFake( () => promise );
+			backendService.getHvcInfo = spy( 'getHvcInfo', promise );
 			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
 
 			controller.hvc( req, res );
@@ -83,8 +74,7 @@ describe( 'HVC controller', function(){
 				expect( hvcDetail.create ).toHaveBeenCalledWith( hvcData );
 				expect( topMarkets.create ).toHaveBeenCalledWith( hvcMarkets );
 
-				expect( res.render.calls.argsFor( 0 )[ 0 ] ).toEqual( 'hvc/detail.html' );
-				expect( res.render.calls.argsFor( 0 )[ 1 ] ).toEqual( viewModel );
+				expect( res.render ).toHaveBeenCalledWith( 'hvc/detail.html', viewModel );
 				expect( viewModel.topMarkets ).toEqual( topMaketsModel );
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				done();

@@ -1,83 +1,77 @@
 const proxyquire = require( 'proxyquire' );
 
-const backendService = require( '../../../../app/lib/service/service.backend' );
-const errorHandler = require( '../../../../app/lib/render-error' );
-const sectorSummary = require( '../../../../app/lib/view-models/sector-summary' );
-const hvcSummary = require( '../../../../app/lib/view-models/sector-hvc-summary' );
-const hvcTargetPerformance = require( '../../../../app/lib/view-models/hvc-target-performance' );
-const monthlyPerformance = require( '../../../../app/lib/view-models/monthly-performance' );
+const backendService = {};
+const errorHandler = {};
+const sectorSummary = {};
+const hvcSummary = {};
+const hvcTargetPerformance = {};
+const monthlyPerformance = {};
 
-const interceptBackend = require( '../../helpers/intercept-backend' );
 const createErrorHandler = require( '../../helpers/create-error-handler' );
+const spy = require( '../../helpers/spy' );
 
 const year = 2017;
 let controller;
 
 describe( 'HVC Groups controller', function(){
 
-	let oldTimeout;
-
 	beforeEach( function(){
 
-		oldTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
-		jasmine.DEFAULT_TIMEOUT_INTERVAL = 500;
-	} );
+		errorHandler.createHandler = jasmine.createSpy( 'createHandler' );
 
-	afterEach( function(){
-
-		jasmine.DEFAULT_TIMEOUT_INTERVAL = oldTimeout;
-	} );
-
-	beforeEach( function(){
-
-		const stubs = {
+		controller = proxyquire( '../../../../app/controllers/controller.hvc-groups', {
 			'../lib/service/service.backend': backendService,
 			'../lib/render-error': errorHandler,
 			'../lib/view-models/sector-summary': sectorSummary,
 			'../lib/view-models/sector-hvc-summary': hvcSummary,
 			'../lib/view-models/hvc-target-performance': hvcTargetPerformance,
 			'../lib/view-models/monthly-performance': monthlyPerformance
-		};
-
-		controller = proxyquire( '../../../../app/controllers/controller.hvc-groups', stubs );
+		} );
 	} );
 
 	describe( 'List', function(){
 
 		it( 'Should get the list data and render the correct view', function( done ){
 
-			spyOn( backendService, 'getHvcGroups' ).and.callThrough();
-			spyOn( errorHandler, 'createHandler' ).and.callFake( createErrorHandler( done ) );
-
 			const req = {
 				cookies: { sessionid: '123' },
 				year
 			};
 
-			interceptBackend.getStub( `/mi/hvc_groups/?year=${ year }`, 200, '/hvc_groups/' );
+			const res = {
+				render: jasmine.createSpy( 'res.render' )
+			};
 
-			controller.list( req, { render: function( view, data ){
+			const hvcGroups = {
+				results: { hvcGroups: true }
+			};
+
+			const promise = new Promise( ( resolve ) => {
+
+				resolve( hvcGroups );
+			} );
+
+			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
+			backendService.getHvcGroups = jasmine.createSpy( 'getHvcGroups' );
+			backendService.getHvcGroups.and.callFake( () => promise );
+
+			controller.list( req, res );
+
+			promise.then( () => {
 
 				expect( backendService.getHvcGroups ).toHaveBeenCalledWith( req );
-				expect( view ).toEqual( 'hvc-groups/list.html' );
-				expect( data.hvcGroups ).toBeDefined();
-				expect( data.hvcGroups.length ).toBeGreaterThan( 1 );
+				expect( res.render ).toHaveBeenCalledWith( 'hvc-groups/list.html', {
+					hvcGroups: hvcGroups.results
+				} );
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				done();
-			} } );
+			} );
 		} );
 	} );
 
 	describe( 'Group', function(){
 
 		it( 'Should get the group data and render the correct view', function( done ){
-
-			spyOn( backendService, 'getHvcGroupInfo' ).and.callThrough();
-			spyOn( errorHandler, 'createHandler' ).and.callFake( createErrorHandler( done ) );
-			spyOn( sectorSummary, 'create' ).and.callThrough();
-			spyOn( hvcSummary, 'create' ).and.callThrough();
-			spyOn( hvcTargetPerformance, 'create' ).and.callThrough();
-			spyOn( monthlyPerformance, 'create' ).and.callThrough();
 
 			const req = {
 				cookies: { sessionid: '456' },
@@ -86,32 +80,56 @@ describe( 'HVC Groups controller', function(){
 					id: 1234
 				}
 			};
+
+			const res = {
+				render: jasmine.createSpy( 'res.render' )
+			};
+
 			const groupId = req.params.id;
 
-			interceptBackend.getStub( `/mi/hvc_groups/${ groupId }/?year=${ year }`, 200, '/hvc_groups/group' );
-			interceptBackend.getStub( `/mi/hvc_groups/${ groupId }/months/?year=${ year }`, 200, '/hvc_groups/months' );
-			interceptBackend.getStub( `/mi/hvc_groups/${ groupId }/campaigns/?year=${ year }`, 200, '/hvc_groups/campaigns' );
+			const wins = { results: { name: 'test hvc-groups' } };
+			const months = { results: { months: true } };
+			const campaigns = { results: { campaigns: true } };
 
-			controller.group( req, { render: function( view, data ){
+			const sectorSummaryResponse = { sectorSummary: true };
+			const hvcSummaryResponse = { hvcSummaryResponse: true };
+			const hvcTargetPerformanceResponse = { hvcTargetPerformance: true };
+			const monthlyPerformanceResponse = { monthlyPerformance: true };
 
-				expect( data.summary.dateRange ).toBeDefined();
+			const promise = new Promise( ( resolve ) => {
+
+				resolve( { wins, months, campaigns } );
+			} );
+
+			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
+
+			backendService.getHvcGroupInfo = spy( 'getHvcGroupInfo', promise );
+			sectorSummary.create = spy( 'sectorSummary.create', sectorSummaryResponse );
+			hvcSummary.create = spy( 'hvcSummary.create', hvcSummaryResponse );
+			hvcTargetPerformance.create = spy( 'hvcTargetPerformance.create', hvcTargetPerformanceResponse );
+			monthlyPerformance.create = spy( 'monthlyPerformance.create', monthlyPerformanceResponse );
+
+			controller.group( req, res );
+
+			promise.then( () => {
 
 				expect( backendService.getHvcGroupInfo ).toHaveBeenCalledWith( req, groupId );
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
-				expect( sectorSummary.create ).toHaveBeenCalled();
-				expect( hvcSummary.create ).toHaveBeenCalled();
-				expect( hvcTargetPerformance.create ).toHaveBeenCalled();
-				expect( monthlyPerformance.create ).toHaveBeenCalled();
+				expect( sectorSummary.create ).toHaveBeenCalledWith( wins );
+				expect( hvcSummary.create ).toHaveBeenCalledWith( wins );
+				expect( hvcTargetPerformance.create ).toHaveBeenCalledWith( campaigns );
+				expect( monthlyPerformance.create ).toHaveBeenCalledWith( months );
 
-				expect( data.sectorName ).toBeDefined();
-				expect( data.summary ).toBeDefined();
-				expect( data.hvcSummary ).toBeDefined();
-				expect( data.hvcTargetPerformance ).toBeDefined();
-				expect( data.monthlyPerformance ).toBeDefined();
+				expect( res.render ).toHaveBeenCalledWith( 'hvc-groups/detail.html', {
 
-				expect( view ).toEqual( 'hvc-groups/detail.html' );
+					sectorName: wins.results.name,
+					summary: sectorSummaryResponse,
+					hvcSummary: hvcSummaryResponse,
+					monthlyPerformance: monthlyPerformanceResponse,
+					hvcTargetPerformance: hvcTargetPerformanceResponse
+				} );
 				done();
-			} } );
+			} );
 		} );
 	} );
 } );

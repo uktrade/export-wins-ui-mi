@@ -1,54 +1,61 @@
 const proxyquire = require( 'proxyquire' );
-const backendService = require( '../../../../app/lib/service/service.backend' );
-const errorHandler = require( '../../../../app/lib/render-error' );
-const interceptBackend = require( '../../helpers/intercept-backend' );
+
+const createErrorHandler = require( '../../helpers/create-error-handler' );
+const spy = require( '../../helpers/spy' );
 
 let controller;
+let errorHandler;
+let backendService;
+let res;
+let req;
 
 describe( 'Login controller', function(){
 
-	let oldTimeout;
-
 	beforeEach( function(){
 
-		oldTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
-		jasmine.DEFAULT_TIMEOUT_INTERVAL = 500;
-	} );
-
-	afterEach( function(){
-
-		jasmine.DEFAULT_TIMEOUT_INTERVAL = oldTimeout;
-	} );
-
-	beforeEach( function(){
-
-		const stubs = {
-			'../lib/service/service.backend': backendService,
-			'../lib/render-error': errorHandler
+		backendService = {};
+		errorHandler = {
+			createHandler: spy( 'createHandler' )
 		};
 
-		controller = proxyquire( '../../../../app/controllers/controller.login', stubs );
+		req = {
+			cookies: 'test'
+		};
+		res = {
+			set: spy( 'res.set' ),
+			render: spy( 'res.render' )
+		};
+
+		controller = proxyquire( '../../../../app/controllers/controller.login', {
+			'../lib/service/service.backend': backendService,
+			'../lib/render-error': errorHandler
+		} );
 	} );
 
 	describe( 'Login', function(){
 
-		it( 'Should get the sectors list data and render the view', function( done ){
+		it( 'Should get the login token and render the view', function( done ){
 
-			const responseBody = 'test response';
+			const token = 'test response';
+			const response = {
+				headers: {
+					'set-cookie': [ 'abc' ]
+				}
+			};
+			const promise = new Promise( ( resolve ) => { resolve( { response, data: token } ); } );
 
-			spyOn( backendService, 'getSamlLogin' ).and.callThrough();
-			spyOn( errorHandler, 'createHandler' ).and.callFake( () => done );
+			backendService.getSamlLogin = spy( 'getSamlLogin', promise );
+			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
 
-			interceptBackend.get( '/saml2/login/' ).reply( 200, responseBody );
+			controller( req, res );
 
-			controller( {}, { render: function( view, data ){
-
-				expect( backendService.getSectorTeams ).toHaveBeenCalled();
-				expect( view ).toEqual( 'login.html' );
-				expect( data.token ).toEqual( responseBody );
+			promise.then( () => {
+				expect( backendService.getSamlLogin ).toHaveBeenCalledWith( req );
+				expect( res.set ).toHaveBeenCalledWith( 'Set-Cookie', response.headers[ 'set-cookie' ] );
+				expect( res.render ).toHaveBeenCalledWith( 'login.html', { token } );
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				done();
-			} } );
+			} );
 		} );
 	} );
 } );

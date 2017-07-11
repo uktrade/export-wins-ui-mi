@@ -4,12 +4,12 @@ const renderError = require( '../lib/render-error' );
 
 module.exports = function( req, res ){
 
-		backendService.getSectorTeamsAndOverseasRegions( req ).then( ( data ) => {
+	backendService.getSectorTeamsAndOverseasRegions( req ).then( ( data ) => {
 
-			const sectorTeams = data.sectorTeams.results;
-			const overseasRegionGroups = data.overseasRegionGroups.results;
+		const sectorTeams = data.sectorTeams.results;
+		const overseasRegionGroups = data.overseasRegionGroups.results;
 
-			res.render( 'index.html', { sectorTeams, overseasRegionGroups } );
+		res.render( 'index.html', { sectorTeams, overseasRegionGroups } );
 
-		} ).catch( renderError.createHandler( res ) );
+	} ).catch( renderError.createHandler( res ) );
 };
