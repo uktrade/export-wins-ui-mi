@@ -3,6 +3,8 @@ const config = require( '../../config' );
 const USE_MOCKS = config.backend.mock;
 const USE_STUBS = config.backend.stub;
 
+const internalUsers = config.internalUsers.split( ',' );
+
 const logger = require( '../logger' );
 const reporter = require( '../reporter' );
 const backend = ( USE_STUBS ? require( '../backend-request.stub' ) : require( '../backend-request' ) );
@@ -126,7 +128,6 @@ function getAll( name, promises, dataFormatter ){
 		return dataFormatter( data );
 	} );
 }
-
 
 function getSectorTeams( req ){
 
@@ -416,6 +417,13 @@ module.exports = {
 
 	getUserInfo: function( req ){
 
-		return sessionGet( '/user/me/', req ).then( ( info ) => info.data );
+		return sessionGet( '/user/me/', req ).then( ( info ) => {
+
+			const user = info.data;
+
+			user.internal = !!~internalUsers.indexOf( user.email );
+
+			return user;
+		} );
 	}
 };

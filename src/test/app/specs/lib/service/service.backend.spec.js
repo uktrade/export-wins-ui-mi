@@ -1,12 +1,13 @@
 const proxyquire = require( 'proxyquire' );
+
 const getBackendFile = require( '../../../helpers/get-backend-file' );
 const getBackendStub = require( '../../../helpers/get-backend-stub' );
 const interceptBackend = require( '../../../helpers/intercept-backend' );
+
 const transformOverseasRegionsOverviewGroups = require( '../../../../../app/lib/transformers/os-regions-overview-groups' );
 
-const configStub = { backend: { stub: false, fake: false, mock: false } };
-
 let year = '2017';
+let configStub;
 let stubs;
 let backendService;
 let monthsSpy;
@@ -59,6 +60,8 @@ describe( 'Backend service', function(){
 	describe( 'Single methods', function(){
 
 		beforeEach( function(){
+
+			configStub = { backend: { stub: false, fake: false, mock: false } };
 
 			monthsSpy = jasmine.createSpy( 'months' );
 			campaignsSpy = jasmine.createSpy( 'campaigns' );
@@ -508,16 +511,64 @@ describe( 'Backend service', function(){
 
 		describe( 'Getting the user info', function(){
 
-			it( 'Should return the user info', function( done ){
+			describe( 'When the user is not in the interal users list', function(){
 
-				const userStub = getBackendStub( '/user/me' );
+				it( 'Should set the internal flag to false and return the user info', function( done ){
 
-				returnStub( '/user/me' );
+					const userStub = getBackendStub( '/user/me' );
+					userStub.internal = false;
 
-				backendService.getUserInfo( req ).then( ( user ) => {
+					returnStub( '/user/me' );
 
-					expect( user ).toEqual( userStub );
-					done();
+					backendService.getUserInfo( req ).then( ( user ) => {
+
+						expect( user ).toEqual( userStub );
+						done();
+					} );
+				} );
+			} );
+
+			describe( 'When the user is in the internal users list', function(){
+
+				function setInternalUsers( str ){
+
+					configStub.internalUsers = str;
+
+					stubs[ '../../config' ] = configStub;
+
+					backendService = proxyquire( '../../../../../app/lib/service/service.backend', stubs );
+				}
+
+				function testUser( done ){
+
+					const userStub = getBackendStub( '/user/me.internal' );
+					userStub.internal = true;
+
+					returnStub( '/user/me.internal' );
+
+					backendService.getUserInfo( req ).then( ( user ) => {
+
+						expect( user ).toEqual( userStub );
+						done();
+					} );
+				}
+
+				describe( 'When the list is just one item', function(){
+
+					it( 'Should set the internal flag to true and return the user info', function( done ){
+
+						setInternalUsers( 'Brianne31@gmail.com' );
+						testUser( done );
+					} );
+				} );
+
+				describe( 'When the list has many items', function(){
+
+					it( 'Should set the internal flag to true and return the user info', function( done ){
+
+						setInternalUsers( 'Brianne31@gmail.com,test@test.com' );
+						testUser( done );
+					} );
 				} );
 			} );
 		} );
