@@ -41,6 +41,7 @@ let config = {
 	jwt: {
 		secret: env( 'JWT_SECRET', 'thisshouldbeavalidsecret' )
 	},
+	internalUsers: env( 'INTERNAL_USERS', '' ),
 	backend: {
 		secret: env( 'MI_SECRET' ),
 		protocol: env( 'MI_PROTOCOL', 'http' ),
