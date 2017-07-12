@@ -59,13 +59,14 @@ describe( 'App', function(){
 
 	describe( 'Index page', function(){
 
-		describe( 'When both APIs returns a status of 200', function(){
+		describe( 'When all APIs return a status of 200', function(){
 
 			it( 'Should return a 200 with the correct heading', function( done ){
 
 				returnUser();
 				interceptBackend.getStub( '/mi/sector_teams/?year=2017', 200, '/sector_teams/' );
 				interceptBackend.getStub( '/mi/os_region_groups/?year=2017', 200, '/os_region_groups/index.2017' );
+				interceptBackend.getStub( '/mi/global_hvcs/?year=2017', 200, '/global_hvcs/' );
 
 				supertest( app ).get( '/' ).end( ( err, res ) => {
 
@@ -76,13 +77,14 @@ describe( 'App', function(){
 			} );
 		} );
 
-		describe( 'When one the APIs returns a status of 500', function(){
+		describe( 'When one of the APIs returns a status of 500', function(){
 
 			it( 'Should return a 500', function( done ){
 
 				returnUser();
 				interceptBackend.getStub( '/mi/sector_teams/?year=2017', 200, '/sector_teams/' );
 				interceptBackend.getStub( '/mi/os_region_groups/?year=2017', 500 );
+				interceptBackend.getStub( '/mi/global_hvcs/?year=2017', 200, '/global_hvcs/' );
 
 				supertest( app ).get( '/' ).end( ( err, res ) => {
 
@@ -92,13 +94,14 @@ describe( 'App', function(){
 			} );
 		} );
 
-		describe( 'When both the API returns a status of 500', function(){
+		describe( 'When all the APIs returns a status of 500', function(){
 
 			it( 'Should return a 500', function( done ){
 
 				returnUser();
 				interceptBackend.getStub( '/mi/sector_teams/?year=2017', 500 );
 				interceptBackend.getStub( '/mi/os_region_groups/?year=2017', 500 );
+				interceptBackend.getStub( '/mi/global_hvcs/?year=2017', 500 );
 
 				supertest( app ).get( '/' ).end( ( err, res ) => {
 

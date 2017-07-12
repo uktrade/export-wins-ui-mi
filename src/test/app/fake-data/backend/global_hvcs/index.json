@@ -1,0 +1,37 @@
+{
+   "timestamp": 1499841320658,
+   "financial_year": {
+      "id": 2016,
+      "description": "2016-17"
+   },
+   "results": [
+      {
+         "name": "id quasi temporibus",
+         "code": "135"
+      },
+      {
+         "name": "eaque necessitatibus minus",
+         "code": "70"
+      },
+      {
+         "name": "minima laboriosam qui",
+         "code": "126"
+      },
+      {
+         "name": "est pariatur tenetur",
+         "code": "171"
+      },
+      {
+         "name": "sequi quos quibusdam",
+         "code": "114"
+      },
+      {
+         "name": "alias sequi recusandae",
+         "code": "60"
+      }
+   ],
+   "date_range": {
+      "start": 1459468800,
+      "end": 1483228800
+   }
+}

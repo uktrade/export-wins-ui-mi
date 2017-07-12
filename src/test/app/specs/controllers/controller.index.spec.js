@@ -32,22 +32,20 @@ describe( 'Index controller', function(){
 				render: jasmine.createSpy( 'res.render' )
 			};
 
-			const sectorTeams = {
-				results: { sectorTeams: true }
-			};
-			const overseasRegionGroups = {
-				results: { overseasRegionGroups: true }
-			};
+			const sectorTeams = { results: { sectorTeams: true } };
+			const overseasRegionGroups = { results: { overseasRegionGroups: true } };
+			const globalHvcs = { results: { globalHvcs: true } };
 
 			const promise = new Promise( ( resolve ) => {
 
 				resolve( {
 					sectorTeams,
-					overseasRegionGroups
+					overseasRegionGroups,
+					globalHvcs
 				} );
 			} );
 
-			backendService.getSectorTeamsAndOverseasRegions = spy( 'getSectorTeamsAndOverseasRegions', promise );
+			backendService.getHomepageData = spy( 'getHomepageData', promise );
 
 			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
 
@@ -55,10 +53,11 @@ describe( 'Index controller', function(){
 
 			promise.then( () => {
 
-				expect( backendService.getSectorTeamsAndOverseasRegions ).toHaveBeenCalledWith( req );
+				expect( backendService.getHomepageData ).toHaveBeenCalledWith( req );
 				expect( res.render ).toHaveBeenCalledWith( 'index.html', {
 					sectorTeams: sectorTeams.results,
-					overseasRegionGroups: overseasRegionGroups.results
+					overseasRegionGroups: overseasRegionGroups.results,
+					globalHvcs: globalHvcs.results
 				} );
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				done();

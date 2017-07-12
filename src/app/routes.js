@@ -15,7 +15,7 @@ module.exports = function( express, app, isDev ){
 
 	const user = createUserMiddleware( isDev );
 
-	app.get( '/', user, indexController );
+	app.get( '/', user, linkHvc, indexController );
 
 	app.get( '/sector-teams/', user, sectorTeamController.list );
 	app.get( '/sector-teams/overview/', user, sectorTeamController.overview );

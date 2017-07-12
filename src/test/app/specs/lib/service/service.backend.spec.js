@@ -432,6 +432,28 @@ describe( 'Backend service', function(){
 			} );
 		} );
 
+		describe( 'Getting the global HVCs', function(){
+
+			it( 'Should return the global HVCs', function( done ){
+
+				returnStub( '/global_hvcs/' );
+
+				backendService.getGlobalHvcs( req ).then( ( hvcs ) => {
+
+					checkBackendArgs( `/mi/global_hvcs/?year=${ year }`, req );
+
+					const globalHvcData = getBackendStub( '/global_hvcs/' );
+
+					globalHvcData.date_range.start = ( globalHvcData.date_range.start * 1000 );
+					globalHvcData.date_range.end = ( globalHvcData.date_range.end * 1000 );
+
+					expect( hvcs ).toEqual( globalHvcData );
+					done();
+
+				} ).catch( done.fail );
+			} );
+		} );
+
 		describe( 'Getting the list of HVC Groups', function(){
 
 			it( 'Should return just the hvc groups', function( done ){
@@ -999,23 +1021,25 @@ describe( 'Backend service', function(){
 			} );
 		} );
 
-		describe( 'Getting the Sectors List and Overseas Regions List', function(){
+		describe( 'Getting the home page data', function(){
 
-			describe( 'When both APIs return a 200', function(){
+			describe( 'When all APIs return a 200', function(){
 
-				it( 'Should return both bits of data', function( done ){
+				it( 'Should return all bits of data', function( done ){
 
 					const files = [
 						[ `/mi/sector_teams/?year=${ year }`, '/sector_teams/' ],
-						[ `/mi/os_region_groups/?year=${ year }`, '/os_region_groups/index.2017' ]
+						[ `/mi/os_region_groups/?year=${ year }`, '/os_region_groups/index.2017' ],
+						[ `/mi/global_hvcs/?year=${ year }`, '/global_hvcs/' ]
 					];
 
 					intercept( files );
 
-					backendService.getSectorTeamsAndOverseasRegions( req ).then( ( data ) => {
+					backendService.getHomepageData( req ).then( ( data ) => {
 
 						expect( data.sectorTeams ).toBeDefined();
 						expect( data.overseasRegionGroups ).toBeDefined();
+						expect( data.globalHvcs ).toBeDefined();
 
 						done();
 
@@ -1029,12 +1053,13 @@ describe( 'Backend service', function(){
 
 					const files = [
 						[ `/mi/sector_teams/?year=${ year }`, null, 500 ],
-						[ `/mi/os_region_groups/?year=${ year }`, '/os_region_groups/index.2017' ]
+						[ `/mi/os_region_groups/?year=${ year }`, '/os_region_groups/index.2017' ],
+						[ `/mi/global_hvcs/?year=${ year }`, '/global_hvcs/' ]
 					];
 
 					intercept( files );
 
-					backendService.getSectorTeamsAndOverseasRegions( req ).catch( ( err ) => {
+					backendService.getHomepageData( req ).catch( ( err ) => {
 
 						expect( err ).toBeDefined();
 						done();
@@ -1049,17 +1074,19 @@ describe( 'Backend service', function(){
 
 					const files = [
 						[ `/mi/sector_teams/?year=${ year }`, '/sector_teams/' ],
-						[ `/mi/os_region_groups/?year=${ year }`, '/os_region_groups/index.2017' ]
+						[ `/mi/os_region_groups/?year=${ year }`, '/os_region_groups/index.2017' ],
+						[ `/mi/global_hvcs/?year=${ year }`, '/global_hvcs/' ]
 					];
 
 					interceptWithDelay( files );
 
-					backendService.getSectorTeamsAndOverseasRegions( req ).then( ( data ) => {
+					backendService.getHomepageData( req ).then( ( data ) => {
 
-						checkReporterMessage( 'getSectorTeamsAndOverseasRegions' );
+						checkReporterMessage( 'getHomepageData' );
 
 						expect( data.sectorTeams ).toBeDefined();
 						expect( data.overseasRegionGroups ).toBeDefined();
+						expect( data.globalHvcs ).toBeDefined();
 
 						done();
 
