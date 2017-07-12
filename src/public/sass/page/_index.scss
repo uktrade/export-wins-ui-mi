@@ -46,3 +46,13 @@
 .sector-group-list_item {
 	margin-bottom: pem( 10 );
 }
+
+.global-hvc-heading {
+	@include bold-19;
+	margin-left: pem( 10, 19 );
+}
+
+.global-hvc-list {
+	margin-left: pem( 20 );
+	padding: 0;
+}

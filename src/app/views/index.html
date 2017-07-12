@@ -40,10 +40,6 @@
 
 		<div class="column-one-third">
 
-		</div>
-
-		<div class="column-one-third">
-
 			{% if overseasRegionGroups.length %}
 
 			<h2 class="sector-list-heading">Overseas Regions</h2>
@@ -63,6 +59,20 @@
 			{% endfor %}
 			</ul>
 
+			{% if globalHvcs.length %}
+			<h3 class="global-hvc-heading">Global HVCs (coming soon)</h3>
+			<ul class="global-hvc-list">
+				{% for hvc in globalHvcs %}
+					<li>
+						{%- if linkHvc -%}
+						<a href="/hvc/{{ hvc.code }}/">{{ hvc.name }}</a>
+						{% else %}
+						{{ hvc.name }}
+						{% endif %}
+					</li>
+				{% endfor %}
+			</ul>
+			{% endif %}
 			{% endif %}
 		</div>
 	</div>

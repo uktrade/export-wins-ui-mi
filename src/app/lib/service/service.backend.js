@@ -207,6 +207,11 @@ function getHvcMarkets( req, hvcId ){
 	return getJson( `/mi/hvc/${ hvcId }/top_wins/`, req );
 }
 
+function getGlobalHvcs( req ){
+
+	return getJson( '/mi/global_hvcs/', req );
+}
+
 
 function getHvcGroups( req ){
 
@@ -330,18 +335,20 @@ module.exports = {
 		} );
 	},
 
-	getSectorTeamsAndOverseasRegions: function( req ){
+	getHomepageData: function( req ){
 
-		return getAll( 'getSectorTeamsAndOverseasRegions', [
+		return getAll( 'getHomepageData', [
 
 			getSectorTeams( req ),
-			getOverseasRegionGroups( req )
+			getOverseasRegionGroups( req ),
+			getGlobalHvcs( req )
 
 		], function( data ){
 
 			return {
 				sectorTeams: data[ 0 ],
-				overseasRegionGroups: data[ 1 ]
+				overseasRegionGroups: data[ 1 ],
+				globalHvcs: data[ 2 ]
 			};
 		} );
 	},
@@ -367,6 +374,7 @@ module.exports = {
 
 	getHvc,
 	getHvcMarkets,
+	getGlobalHvcs,
 
 	getHvcInfo: function( req, hvcId ){
 
