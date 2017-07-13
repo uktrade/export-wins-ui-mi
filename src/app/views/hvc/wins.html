@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+
+{% set pageName %}{{ hvc.name | safe }}{% endset %}
+
+{% from 'macros/dates.html' import financialYear %}
+
+{% block page_content %}
+	<h1 class="page-heading">
+		{{ hvc.name }} <span class="page-heading-secondary">HVC</span>
+	</h1>
+	<h2 class="page-date page-date--hvc">{{ financialYear( dateRange ) }}</h2>
+
+	<ul class="page-tabs">
+		<li class="page-tabs_tab">
+			<a class="page-tabs_tab_text" href="{{ urls.hvc( hvc.code ) }}">Performance</a>
+		</li>
+		<li class="page-tabs_tab page-tabs_tab--active">
+			<span class="page-tabs_tab_text">Individual wins</span>
+		</li>
+	</ul>
+
+	{%- if wins.length -%}
+
+		<p>
+			All individual export wins recorded.
+		</p>
+		{% include 'partials/win-table.html' -%}
+
+	{%- else -%}
+
+		<p class="no-wins-message">No wins have been recored yet for this HVC.</p>
+
+	{%- endif %}
+{% endblock %}

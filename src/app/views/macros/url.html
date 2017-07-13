@@ -38,6 +38,10 @@
 	{{- urlPrefix }}/hvc/{{ hvcId }}/
 {%- endmacro %}
 
+{% macro hvcWins( hvcId ) %}
+	{{- urlPrefix }}/hvc/{{ hvcId }}/wins/
+{%- endmacro %}
+
 {% macro email() -%}
 	mailto:{{ feedbackEmail -}}
 {% endmacro %}

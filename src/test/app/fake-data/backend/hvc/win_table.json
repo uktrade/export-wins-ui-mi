@@ -1,0 +1,243 @@
+{
+   "timestamp": 1499976890867,
+   "financial_year": {
+      "id": 2016,
+      "description": "2016-17"
+   },
+   "results": {
+      "hvc": {
+         "name": "dolores molestias temporibus",
+         "code": "98221"
+      },
+      "wins": [
+      	{
+            "id": "45416116-72d7-4bf1-9058-60a73f98271d",
+            "win_date": "Thu Jul 13 2017 11:46:32 GMT+0100 (BST)",
+            "status": "email_not_sent",
+            "company": {
+               "name": "Hansen - Lubowitz",
+               "cdms_id": "50937"
+            },
+            "export_amount": 356057188,
+            "credit": false,
+            "lead_officer": {
+               "name": "Garrick Bernier"
+            }
+         },
+         {
+            "id": "408ca557-5a00-42d4-8ed8-b539d295766a",
+            "win_date": "Thu Jul 13 2017 11:19:50 GMT+0100 (BST)",
+            "status": "customer_rejected",
+            "company": {
+               "name": "Bernhard - Leuschke",
+               "cdms_id": "14269"
+            },
+            "export_amount": 252109870,
+            "credit": true,
+            "lead_officer": {
+               "name": "Kayla Gusikowski"
+            }
+         },
+         {
+            "id": "ba9c9a2a-c73c-4895-a778-9a09fe37c96a",
+            "win_date": "Wed Jul 12 2017 22:53:19 GMT+0100 (BST)",
+            "status": "customer_confirmed",
+            "company": {
+               "name": "Schmitt Group",
+               "cdms_id": "46600"
+            },
+            "export_amount": 267035418,
+            "credit": true,
+            "lead_officer": {
+               "name": "Christiana Mraz"
+            }
+         },
+         {
+            "id": "caf58911-f97b-4cba-8661-86c47b39f07d",
+            "win_date": "Thu Jul 13 2017 13:03:25 GMT+0100 (BST)",
+            "status": "response_not_received",
+            "company": {
+               "name": "Pacocha - Wolf",
+               "cdms_id": "28243"
+            },
+            "export_amount": 275108984,
+            "credit": true,
+            "lead_officer": {
+               "name": "Kimberly Renner"
+            }
+         },
+         {
+            "id": "eb6da6ab-62b2-4748-8872-87361ac2f726",
+            "win_date": "Thu Jul 13 2017 02:36:33 GMT+0100 (BST)",
+            "status": "response_not_received",
+            "company": {
+               "name": "Rippin - Runolfsdottir",
+               "cdms_id": "9755"
+            },
+            "export_amount": 308173700,
+            "credit": true,
+            "lead_officer": {
+               "name": "Norwood Keeling"
+            }
+         },
+         {
+            "id": "a48b2db2-6cc6-403d-8277-a8d7aa6ec405",
+            "win_date": "Thu Jul 13 2017 01:10:51 GMT+0100 (BST)",
+            "status": "email_not_sent",
+            "company": {
+               "name": "Ratke - Lockman",
+               "cdms_id": "2961"
+            },
+            "export_amount": 514699761,
+            "credit": true,
+            "lead_officer": {
+               "name": "Clyde Heathcote"
+            }
+         },
+         {
+            "id": "788a79e8-37e0-415e-8559-67142971efbf",
+            "win_date": "Thu Jul 13 2017 20:30:34 GMT+0100 (BST)",
+            "status": "customer_rejected",
+            "company": {
+               "name": "Mraz, Dickinson and Will",
+               "cdms_id": "74592"
+            },
+            "export_amount": 909331334,
+            "credit": false,
+            "lead_officer": {
+               "name": "Rebeca Jenkins"
+            }
+         },
+         {
+            "id": "70bf5a71-a30c-40c3-b0fe-0397f1620eb2",
+            "win_date": "Thu Jul 13 2017 08:44:49 GMT+0100 (BST)",
+            "status": "customer_rejected",
+            "company": {
+               "name": "Bode and Sons",
+               "cdms_id": "77489"
+            },
+            "export_amount": 598308313,
+            "credit": true,
+            "lead_officer": {
+               "name": "Dr. Sophia Muller"
+            }
+         },
+         {
+            "id": "bed6f502-fad8-46b4-92b0-2b5f6e1ec06b",
+            "win_date": "Thu Jul 13 2017 08:43:55 GMT+0100 (BST)",
+            "status": "customer_rejected",
+            "company": {
+               "name": "Corkery Inc",
+               "cdms_id": "67048"
+            },
+            "export_amount": 30840241,
+            "credit": true,
+            "lead_officer": {
+               "name": "Audie Crooks"
+            }
+         },
+         {
+            "id": "61bd29d2-c815-426b-abb3-c9d09e608254",
+            "win_date": "Thu Jul 13 2017 12:51:37 GMT+0100 (BST)",
+            "status": "customer_rejected",
+            "company": {
+               "name": "Watsica Inc",
+               "cdms_id": "56514"
+            },
+            "export_amount": 692266809,
+            "credit": true,
+            "lead_officer": {
+               "name": "Nels Aufderhar"
+            }
+         },
+         {
+            "id": "a2504f44-577a-4489-9941-9326503795a8",
+            "win_date": "Wed Jul 12 2017 21:33:06 GMT+0100 (BST)",
+            "status": "response_not_received",
+            "company": {
+               "name": "Moen LLC",
+               "cdms_id": "53417"
+            },
+            "export_amount": 244674753,
+            "credit": false,
+            "lead_officer": {
+               "name": "Genoveva Spencer"
+            }
+         },
+         {
+            "id": "4154a222-e01c-4aad-b5b8-9ac2da1477e9",
+            "win_date": "Thu Jul 13 2017 12:37:29 GMT+0100 (BST)",
+            "status": "email_not_sent",
+            "company": {
+               "name": "Strosin and Sons",
+               "cdms_id": "9908"
+            },
+            "export_amount": 826806711,
+            "credit": true,
+            "lead_officer": {
+               "name": "Godfrey Wyman"
+            }
+         },
+         {
+            "id": "e791bc07-da9f-4f57-b7a2-6b6e6841b291",
+            "win_date": "Thu Jul 13 2017 19:44:19 GMT+0100 (BST)",
+            "status": "email_not_sent",
+            "company": {
+               "name": "West - West",
+               "cdms_id": "32904"
+            },
+            "export_amount": 691364505,
+            "credit": true,
+            "lead_officer": {
+               "name": "Pasquale Hintz"
+            }
+         },
+         {
+            "id": "ac618865-e6f2-469e-8466-97f181086538",
+            "win_date": "Thu Jul 13 2017 17:25:26 GMT+0100 (BST)",
+            "status": "response_not_received",
+            "company": {
+               "name": "Gleason Group",
+               "cdms_id": "24815"
+            },
+            "export_amount": 33971656,
+            "credit": false,
+            "lead_officer": {
+               "name": "Kory Fay"
+            }
+         },
+         {
+            "id": "3b8a4704-677d-4dd3-9d90-6e5229ff48c6",
+            "win_date": "Wed Jul 12 2017 22:35:03 GMT+0100 (BST)",
+            "status": "customer_rejected",
+            "company": {
+               "name": "Yundt - Jones",
+               "cdms_id": "58398"
+            },
+            "export_amount": 832176374,
+            "credit": true,
+            "lead_officer": {
+               "name": "Johnny Casper Sr."
+            }
+         },
+         {
+            "id": "612f572a-7130-468b-81c4-71948134db72",
+            "win_date": "Thu Jul 13 2017 03:22:55 GMT+0100 (BST)",
+            "status": "response_not_received",
+            "company": {
+               "name": "Hodkiewicz, Emard and Mertz",
+               "cdms_id": "59784"
+            },
+            "export_amount": 753241106,
+            "credit": true,
+            "lead_officer": {
+               "name": "Adolph Moen"
+            }
+         }
+      ]
+   },
+   "date_range": {
+      "start": 1459468800,
+      "end": 1483228800
+   }
+}

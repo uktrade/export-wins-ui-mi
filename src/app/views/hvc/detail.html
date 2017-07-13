@@ -9,8 +9,16 @@
 {% block page_content %}
 
 	<h1 class="page-heading">{{ name }} <span class="page-heading-secondary">HVC</span></h1>
-	{% include 'partials/year-selector.html' %}
 	<h2 class="page-date page-date--hvc">{{ financialYear( summary.dateRange ) }}</h2>
+
+	<ul class="page-tabs">
+		<li class="page-tabs_tab page-tabs_tab--active">
+			<span class="page-tabs_tab_text">Performance</span>
+		</li>
+		<li class="page-tabs_tab">
+			<a class="page-tabs_tab_text" href="{{ urls.hvcWins( id ) }}">Individual wins</a>
+		</li>
+	</ul>
 
 	<section class="grid-row">
 		<div class="column-half">

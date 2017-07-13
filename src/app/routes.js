@@ -6,7 +6,6 @@ const regionController = require( './controllers/controller.overseas-regions' );
 const hvcGroupController = require( './controllers/controller.hvc-groups' );
 const winController =  require( './controllers/controller.win' );
 const hvcController = require( './controllers/controller.hvc' );
-const winsController = require( './controllers/controller.wins' );
 
 const linkHvc = require( './lib/middleware/link-hvc' );
 const createUserMiddleware = require( './lib/middleware/user' );
@@ -26,6 +25,7 @@ module.exports = function( express, app, isDev ){
 	app.get( '/overseas-regions/:id', user, linkHvc, regionController.region );
 
 	app.get( '/hvc/:id', user, hvcController.hvc );
+	app.get( '/hvc/:id/wins', user, hvcController.winList );
 
 	app.get( '/hvc-groups/', user, hvcGroupController.list );
 	app.get( '/hvc-groups/:id', user, linkHvc, hvcGroupController.group );
@@ -33,6 +33,5 @@ module.exports = function( express, app, isDev ){
 	if( config.backend.mock ){
 
 		app.get( '/win/', winController.win );
-		app.get( '/wins/', winsController.list );
 	}
 };

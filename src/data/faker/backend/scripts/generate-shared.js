@@ -10,7 +10,8 @@ let jsonFiles = {
 	sector: sharedJson.createSector(),
 	campaigns: sharedJson.createCampaigns(),
 	months: sharedJson.createMonths(),
-	top_non_hvcs: sharedJson.createTopNonHvcs()
+	top_non_hvcs: sharedJson.createTopNonHvcs(),
+	win_table: sharedJson.createWinTable()
 };
 
 writeJsonFiles( outputPath, jsonFiles );

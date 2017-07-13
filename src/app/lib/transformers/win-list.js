@@ -11,7 +11,7 @@ function createStatus( win, name, modifyer ){
 
 module.exports = function( input ){
 
-	input.forEach( ( win ) => {
+	input.wins.forEach( ( win ) => {
 
 		if( win.credit ){
 
@@ -24,16 +24,16 @@ module.exports = function( input ){
 
 		switch( win.status ){
 
-			case '0':
+			case 'email_not_sent':
 				createStatus( win, 'Not yet sent', 'not-sent' );
 			break;
-			case '1':
+			case 'response_not_received':
 				createStatus( win, 'Sent but not confirmed', 'sent' );
 			break;
-			case '2':
+			case 'customer_confirmed':
 				createStatus( win, 'Confirmed', 'confirmed' );
 			break;
-			case '3':
+			case 'customer_rejected':
 				createStatus( win, 'Rejected', 'rejected' );
 			break;
 		}

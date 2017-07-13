@@ -6,10 +6,17 @@ const osRegionsJson = require( './faker/backend/scripts/os-regions-json' );
 const osRegionGroupsJson = require( './faker/backend/scripts/os-region-groups-json' );
 const sectorTeamsJson = require( './faker/backend/scripts/sector-teams-json' );
 const sharedJson = require( './faker/backend/scripts/shared-json' );
+const userJson = require( './faker/backend/scripts/user-json' );
+const hvcJson = require( './faker/backend/scripts/hvc-json' );
 
 const outputPath = path.resolve( __dirname, 'fake-stubs/backend' );
 
 const jsonFiles = {
+
+	'user/me': userJson.createMe(),
+
+	'hvc/hvc': hvcJson.createHvc(),
+	'hvc/win_table': sharedJson.createWinTable(),
 
 	'hvc_groups/index': sharedJson.createIndex(),
 	'hvc_groups/group': sharedJson.createSector(),

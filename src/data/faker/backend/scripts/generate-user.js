@@ -1,12 +1,12 @@
 const path = require( 'path' );
 
-const generateSchema = require( './lib/generate-schema' );
+const userJson = require( './lib/user-json' );
 const writeJsonFiles = require( '../../helpers/write-json-files' );
 
 let outputPath = path.resolve( __dirname, '../output/user/' );
 
 let jsonFiles = {
-	me: generateSchema( '/user/me.schema' )
+	me: userJson.createMe()
 };
 
 writeJsonFiles( outputPath, jsonFiles );
