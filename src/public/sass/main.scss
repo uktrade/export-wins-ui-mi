@@ -8,6 +8,7 @@
 @import 'page/overseas-regions-overview';
 @import 'page/hvc';
 @import 'page/win';
+@import 'page/wins';
 
 @import 'error';
 @import 'target-progress-bar';
@@ -24,6 +25,7 @@
 @import 'win-table';
 @import 'hvc-group';
 @import 'year-selector';
+@import 'page-tabs';
 
 .row-separator {
 	margin-top: pem( 60, 16 );

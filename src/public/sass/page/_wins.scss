@@ -1,0 +1,5 @@
+.no-wins-message {
+	text-align: center;
+	@include core-24;
+	padding: pem( 45, 24 );
+}

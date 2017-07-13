@@ -8,10 +8,14 @@ let res;
 let viewModel;
 let errorHandler;
 
+let backendService;
+
 let hvcDetail;
 let topMarkets;
-let backendService;
+let hvcWins;
+
 let topMaketsModel;
+let hvcWinsViewModel;
 
 let controller;
 
@@ -29,6 +33,9 @@ describe( 'HVC controller', function(){
 		topMarkets = {
 			create: spy( 'view-models.top-markets.create', topMaketsModel )
 		};
+		hvcWins = {
+			create: spy( 'view-models.hvc-wins.create', hvcWinsViewModel )
+		};
 		res = {
 			render: spy( 'res.render' )
 		};
@@ -40,7 +47,8 @@ describe( 'HVC controller', function(){
 			'../lib/service/service.backend': backendService,
 			'../lib/render-error': errorHandler,
 			'../lib/view-models/hvc-detail': hvcDetail,
-			'../lib/view-models/top-markets': topMarkets
+			'../lib/view-models/top-markets': topMarkets,
+			'../lib/view-models/hvc-wins': hvcWins
 		} );
 	} );
 
@@ -76,6 +84,40 @@ describe( 'HVC controller', function(){
 
 				expect( res.render ).toHaveBeenCalledWith( 'hvc/detail.html', viewModel );
 				expect( viewModel.topMarkets ).toEqual( topMaketsModel );
+				expect( errorHandler.createHandler ).toHaveBeenCalled();
+				done();
+			} );
+		} );
+	} );
+
+	describe( 'Win List', function(){
+
+		it( 'Should get the list of HVC wins and render the correct view', function( done ){
+
+			const winList = { winList: true };
+			const hvcId = 1234;
+			const req = {
+				params: {
+					id: hvcId
+				}
+			};
+
+			let promise = new Promise( ( resolve ) => {
+
+				resolve( winList );
+			} );
+
+			backendService.getHvcWinList = spy( 'getHvcWinList', promise );
+			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
+
+			controller.winList( req, res );
+
+			promise.then( function(){
+
+				expect( backendService.getHvcWinList ).toHaveBeenCalledWith( req, hvcId );
+				expect( hvcWins.create ).toHaveBeenCalledWith( winList );
+
+				expect( res.render ).toHaveBeenCalledWith( 'hvc/wins.html', hvcWinsViewModel );
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				done();
 			} );

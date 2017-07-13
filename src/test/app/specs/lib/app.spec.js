@@ -238,6 +238,24 @@ describe( 'App', function(){
 				} );
 			} );
 		} );
+
+		describe( 'Win list', function(){
+
+			it( 'Should return 200', function( done ){
+
+				const hvcId = 'E100';
+
+				returnUser();
+				interceptBackend.getStub( `/mi/hvc/${ hvcId }/win_table/?year=2017`, 200, '/hvc/win_table' );
+
+				supertest( app ).get( `/hvc/${ hvcId }/wins/` ).end( ( err, res ) => {
+
+					expect( res.statusCode ).toEqual( 200 );
+					expect( getTitle( res ) ).toEqual( 'MI - dolores molestias temporibus' );
+					done();
+				} );
+			} );
+		} );
 	} );
 
 if( config.backend.mock ){

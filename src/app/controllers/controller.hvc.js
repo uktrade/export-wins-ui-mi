@@ -4,6 +4,7 @@ const renderError = require( '../lib/render-error' );
 
 const hvcDetail = require( '../lib/view-models/hvc-detail' );
 const topMarkets = require( '../lib/view-models/top-markets' );
+const hvcWins = require( '../lib/view-models/hvc-wins' );
 
 module.exports = {
 
@@ -18,6 +19,17 @@ module.exports = {
 			viewModel.topMarkets = topMarkets.create( info.markets );
 
 			res.render( 'hvc/detail.html', viewModel );
+
+		} ).catch( renderError.createHandler( res ) );
+	},
+
+	winList: function( req, res ){
+
+		const hvcId = req.params.id;
+
+		backendService.getHvcWinList( req, hvcId ).then( ( winList ) => {
+
+			res.render( 'hvc/wins.html', hvcWins.create( winList ) );
 
 		} ).catch( renderError.createHandler( res ) );
 	}

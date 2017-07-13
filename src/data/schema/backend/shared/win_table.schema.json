@@ -1,0 +1,89 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "List of wins for table",
+
+	"type": "object",
+	"required": [ "hvc", "wins" ],
+	"properties": {
+
+		"hvc": {
+			"type": "object",
+			"required": [ "name", "code" ],
+			"properties": {
+				"name": {
+					"type": "string",
+					"faker": "lorem.words"
+				},
+				"code": {
+					"type": "string",
+					"faker": "random.number"
+				}
+			}
+		},
+
+		"wins": {
+			"type": "array",
+			"minItems": 10,
+			"maxItems": 20,
+			"items": {
+				"type": "object",
+				"required": [ "id", "win_date", "status", "company", "export_amount", "credit", "lead_officer" ],
+				"properties": {
+
+					"id": {
+						"type": "string",
+						"faker": "random.uuid"
+					},
+
+					"win_date": {
+						"type": "string",
+						"faker": "date.recent"
+					},
+
+					"status": {
+						"type": "string",
+						"pattern": "email_not_sent|response_not_received|customer_confirmed|customer_rejected"
+					},
+
+					"company": {
+						"type": "object",
+						"required": [ "name", "cdms_id" ],
+						"properties": {
+							"name": {
+								"type": "string",
+								"faker": "company.companyName"
+							},
+							"cdms_id": {
+								"type": "string",
+								"faker": "random.number"
+							}
+						}
+					},
+
+					"export_amount": {
+						"type": "number",
+						"faker": {
+							"finance.amount": [ 1000000, 1000000000 ]
+						}
+					},
+
+					"credit": {
+						"type": "boolean",
+						"faker": "random.boolean"
+					},
+
+					"lead_officer": {
+						"type": "object",
+						"required": [ "name" ],
+						"properties": {
+							"name": {
+								"type": "string",
+								"faker": "name.findName"
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

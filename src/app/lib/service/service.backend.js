@@ -16,6 +16,7 @@ const transformSectorTeamsOverview = require( '../transformers/sector-teams-over
 const transformOverseasRegionsOverview = require( '../transformers/os-regions-overview' );
 const transformOverseasRegionsOverviewGroups = require( '../transformers/os-regions-overview-groups' );
 const transformHvcGroup = require( '../transformers/hvc-group' );
+const transformWinList = require( '../transformers/win-list' );
 
 
 function convertDateRange( data ){
@@ -207,6 +208,12 @@ function getHvcMarkets( req, hvcId ){
 	return getJson( `/mi/hvc/${ hvcId }/top_wins/`, req );
 }
 
+function getHvcWinList( req, hvcId ){
+
+	return getJson( `/mi/hvc/${ hvcId }/win_table/`, req, transformWinList );
+}
+
+
 function getGlobalHvcs( req ){
 
 	return getJson( '/mi/global_hvcs/', req );
@@ -239,17 +246,6 @@ function getWin(){
 	return mocks.win();
 }
 
-function getWinList( /* req */ ){
-
-	return mocks.winList().then( ( mockData ) => {
-
-		let data = mockData.map( Object.create );
-
-		data = require( '../transformers/win-list' )( data );
-
-		return data;
-	} );
-}
 
 function getSamlMetadata( req ){
 
@@ -374,6 +370,8 @@ module.exports = {
 
 	getHvc,
 	getHvcMarkets,
+	getHvcWinList,
+
 	getGlobalHvcs,
 
 	getHvcInfo: function( req, hvcId ){
@@ -417,7 +415,6 @@ module.exports = {
 	},
 
 	getWin,
-	getWinList,
 
 	getSamlMetadata,
 	sendSamlXml,

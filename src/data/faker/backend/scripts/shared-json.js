@@ -56,5 +56,10 @@ module.exports = {
 	createTopNonHvcs: function(){
 
 		return generateSchema( '/shared/top_non_hvcs.schema' );
+	},
+
+	createWinTable: function(){
+
+		return generateSchema( '/shared/win_table.schema' );
 	}
 };

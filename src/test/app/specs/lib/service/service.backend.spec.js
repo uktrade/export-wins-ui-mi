@@ -432,6 +432,25 @@ describe( 'Backend service', function(){
 			} );
 		} );
 
+		describe( 'Getting the HVC win list', function(){
+
+			it( 'Should return the hvc win list', function( done ){
+
+				const hvcId = 'E100';
+
+				returnStub( '/hvc/win_table' );
+
+				backendService.getHvcWinList( req, hvcId ).then( ( winList ) => {
+
+					checkBackendArgs( `/mi/hvc/${ hvcId }/win_table/?year=${ year }`, req );
+
+					expect( winList ).toBeDefined();
+					done();
+
+				} ).catch( done.fail );
+			} );
+		} );
+
 		describe( 'Getting the global HVCs', function(){
 
 			it( 'Should return the global HVCs', function( done ){

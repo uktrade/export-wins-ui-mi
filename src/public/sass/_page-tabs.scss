@@ -1,0 +1,21 @@
+.page-tabs {
+	padding: 0;
+	border-bottom: 2px solid $grey-2;
+	margin-top: pem( 25 );
+}
+
+.page-tabs_tab {
+	display: inline-block;
+	border: 2px solid $grey-2;
+	position: relative;
+	top: 2px;
+	margin-right: pem( 6 );
+}
+.page-tabs_tab--active {
+	border-bottom: 2px solid #fff;
+}
+.page-tabs_tab_text {
+	@include bold-19;
+	padding: pem( 12, 19 ) pem( 25, 19 );
+	display: inline-block;
+}

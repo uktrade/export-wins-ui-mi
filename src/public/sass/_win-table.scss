@@ -43,12 +43,12 @@ $win-table-cell-padding: 5;
 }
 
 .win-table_cell--company {
-	width: 20%;
+	width: 30%;
 }
 
-.win-table_cell--hvc {
+/* .win-table_cell--hvc {
 	width: 23%;
-}
+} */
 
 .win-table_cell--officer {
 	width: 18%;
@@ -56,11 +56,11 @@ $win-table-cell-padding: 5;
 
 .win-table_cell--credited {
 	text-align: center;
-	width: 9%;
+	width: 10%;
 }
 
 .win-table_cell--date {
-	width: 10%;
+	width: 14%;
 	font-size: 90%;
 }
 
@@ -71,7 +71,7 @@ $win-table-cell-padding: 5;
 }
 
 .win-table_cell--status {
-	width: 10%;
+	width: 18%;
 }
 
 .win-table_cell_company-name {
@@ -85,15 +85,15 @@ $win-table-cell-padding: 5;
 	@include core-14;
 }
 
-.win-table_cell_hvc {
+/* .win-table_cell_hvc {
 	color: $grey-1;
 	@include bold-16;
-}
+} */
 
-.win-table_cell_hvc-name {
+/* .win-table_cell_hvc-name {
 	display: block;
 	padding-top: pem( 5 );
-}
+} */
 
 .win-table_cell_officer-details {
 	margin: 0;
@@ -117,7 +117,7 @@ $win-table-cell-padding: 5;
 }
 
 .win-table_cell_credit-name--yes {
-	background-color: tint( $green, 25 );	
+	background-color: tint( $green, 25 );
 }
 
 .win-table_cell--status-not-sent {
