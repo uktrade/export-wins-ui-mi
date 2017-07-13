@@ -4,7 +4,7 @@
   "description": "An MI dashboard for Export Wins",
   "main": "server.js",
   "engines": {
-    "node": "6.10.2",
+    "node": "6.11.1",
     "npm": "3.10.10"
   },
   "scripts": {
