@@ -8,12 +8,17 @@ const sectorTeamsJson = require( './faker/backend/scripts/sector-teams-json' );
 const sharedJson = require( './faker/backend/scripts/shared-json' );
 const userJson = require( './faker/backend/scripts/user-json' );
 const hvcJson = require( './faker/backend/scripts/hvc-json' );
+const globalHvcsJson = require( './faker/backend/scripts/global-hvcs-json' );
+const globalWinsJson = require( './faker/backend/scripts/global-wins-json' );
 
 const outputPath = path.resolve( __dirname, 'fake-stubs/backend' );
 
 const jsonFiles = {
 
 	'user/me': userJson.createMe(),
+
+	'global_hvcs/index': globalHvcsJson.createHvcs(),
+	'global_wins/index': globalWinsJson.createWins(),
 
 	'hvc/hvc': hvcJson.createHvc(),
 	'hvc/win_table': sharedJson.createWinTable(),

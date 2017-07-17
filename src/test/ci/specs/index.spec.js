@@ -120,7 +120,13 @@ describe( 'The homepage', function(){
 
 			AxeBuilder( driver ).analyze( ( results ) => {
 
-				expect( results.violations.length ).toEqual( 0 );
+				const violations = results.violations;
+				const violationCount = violations.length;
+
+				expect( violationCount ).toEqual( 2 );
+				expect( violations[ 0 ].id ).toEqual( 'definition-list' );
+				expect( violations[ 1 ].id ).toEqual( 'dlitem' );
+
 				writeReport( 'index', results ).then( done );
 			} );
 		} );

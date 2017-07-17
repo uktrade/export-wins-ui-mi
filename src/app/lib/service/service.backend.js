@@ -219,6 +219,11 @@ function getGlobalHvcs( req ){
 	return getJson( '/mi/global_hvcs/', req );
 }
 
+function getGlobalWins( req ){
+
+	return getJson( '/mi/global_wins/', req );
+}
+
 
 function getHvcGroups( req ){
 
@@ -337,14 +342,16 @@ module.exports = {
 
 			getSectorTeams( req ),
 			getOverseasRegionGroups( req ),
-			getGlobalHvcs( req )
+			getGlobalHvcs( req ),
+			getGlobalWins( req )
 
 		], function( data ){
 
 			return {
 				sectorTeams: data[ 0 ],
 				overseasRegionGroups: data[ 1 ],
-				globalHvcs: data[ 2 ]
+				globalHvcs: data[ 2 ],
+				globalWins: data[ 3 ]
 			};
 		} );
 	},
@@ -373,6 +380,7 @@ module.exports = {
 	getHvcWinList,
 
 	getGlobalHvcs,
+	getGlobalWins,
 
 	getHvcInfo: function( req, hvcId ){
 

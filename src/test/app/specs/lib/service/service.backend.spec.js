@@ -473,6 +473,28 @@ describe( 'Backend service', function(){
 			} );
 		} );
 
+		describe( 'Getting the global wins', function(){
+
+			it( 'Should return the global wins', function( done ){
+
+				returnStub( '/global_wins/' );
+
+				backendService.getGlobalWins( req ).then( ( globalWins ) => {
+
+					checkBackendArgs( `/mi/global_wins/?year=${ year }`, req );
+
+					const globalWinsData = getBackendStub( '/global_wins/' );
+
+					globalWinsData.date_range.start = ( globalWinsData.date_range.start * 1000 );
+					globalWinsData.date_range.end = ( globalWinsData.date_range.end * 1000 );
+
+					expect( globalWins ).toEqual( globalWinsData );
+					done();
+
+				} ).catch( done.fail );
+			} );
+		} );
+
 		describe( 'Getting the list of HVC Groups', function(){
 
 			it( 'Should return just the hvc groups', function( done ){
@@ -1049,7 +1071,8 @@ describe( 'Backend service', function(){
 					const files = [
 						[ `/mi/sector_teams/?year=${ year }`, '/sector_teams/' ],
 						[ `/mi/os_region_groups/?year=${ year }`, '/os_region_groups/index.2017' ],
-						[ `/mi/global_hvcs/?year=${ year }`, '/global_hvcs/' ]
+						[ `/mi/global_hvcs/?year=${ year }`, '/global_hvcs/' ],
+						[ `/mi/global_wins/?year=${ year }`, '/global_wins/' ]
 					];
 
 					intercept( files );
@@ -1059,6 +1082,7 @@ describe( 'Backend service', function(){
 						expect( data.sectorTeams ).toBeDefined();
 						expect( data.overseasRegionGroups ).toBeDefined();
 						expect( data.globalHvcs ).toBeDefined();
+						expect( data.globalWins ).toBeDefined();
 
 						done();
 
@@ -1073,7 +1097,8 @@ describe( 'Backend service', function(){
 					const files = [
 						[ `/mi/sector_teams/?year=${ year }`, null, 500 ],
 						[ `/mi/os_region_groups/?year=${ year }`, '/os_region_groups/index.2017' ],
-						[ `/mi/global_hvcs/?year=${ year }`, '/global_hvcs/' ]
+						[ `/mi/global_hvcs/?year=${ year }`, '/global_hvcs/' ],
+						[ `/mi/global_wins/?year=${ year }`, '/global_wins/' ]
 					];
 
 					intercept( files );
@@ -1094,7 +1119,8 @@ describe( 'Backend service', function(){
 					const files = [
 						[ `/mi/sector_teams/?year=${ year }`, '/sector_teams/' ],
 						[ `/mi/os_region_groups/?year=${ year }`, '/os_region_groups/index.2017' ],
-						[ `/mi/global_hvcs/?year=${ year }`, '/global_hvcs/' ]
+						[ `/mi/global_hvcs/?year=${ year }`, '/global_hvcs/' ],
+						[ `/mi/global_wins/?year=${ year }`, '/global_wins/' ]
 					];
 
 					interceptWithDelay( files );

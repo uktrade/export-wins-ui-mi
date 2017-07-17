@@ -1,0 +1,70 @@
+.global-performance-heading {
+	@include bold-24;
+}
+
+.global-performance-content {
+	padding-top: pem( 30 );
+}
+
+.global-performance-figures {
+	margin: 0;
+}
+
+.global-performance-figures_headline-figure {
+	@include bold-36;
+	margin: 0;
+}
+
+$global-performance-figures_breakdown_margin: 20;
+.global-performance-figures_breakdown-heading {
+	@include bold-16;
+	color: $link-colour;
+	display: inline-block;
+	margin-top: pem( $global-performance-figures_breakdown_margin, 16 );
+}
+
+.global-performance-figures_breakdown-figure {
+	@include core-16;
+	display: inline-block;
+	margin: pem( $global-performance-figures_breakdown_margin, 16 ) 0 0 0;
+	padding: 0 pem( 40 ) 0 0;
+}
+
+.global-performance_hvc-progress_item {
+
+	margin-top: pem( 20 );
+
+	@include media( tablet ){
+
+		display: inline-block;
+		padding-left: pem( 30 );
+		margin: 0 0 0 pem( 30 );
+		border-left: 1px solid $grey-2;
+
+		&:first-of-type {
+			border: 0;
+			padding-left: 0;
+			margin: 0;
+		}
+	}
+}
+
+.global-performance_hvc-progress {
+	margin-top: pem( 60 );
+}
+
+.global-performance_hvc-progress_heading {
+	@include bold-16;
+}
+
+
+.global-performance_hvc-progress_figure {
+	@include bold-36;
+	margin: pem( 8, 36 ) 0 0 0;
+}
+
+.global-performance_hvc-progress_heading--right {
+}
+
+.global-performance_hvc-progress_figure--right {
+}

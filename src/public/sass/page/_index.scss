@@ -2,10 +2,14 @@
 @import 'helpers';
 @import '../mi-colours';
 
+.global-performance-heading-row {
+	margin-top: pem( 40 );
+}
+
 .sector-list-heading {
 	border-top: 10px solid #000;
 	@include bold-24;
-	margin-top: 1em;
+	margin-top: pem( 60, 24 );
 	padding: 0.5em 0 0 pem( 10, 19 );
 	margin-bottom: 0.75em;
 }

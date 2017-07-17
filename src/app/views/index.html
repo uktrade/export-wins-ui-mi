@@ -2,6 +2,8 @@
 
 {% set pageName='Homepage' %}
 
+{% from 'macros/dates.html' import financialYear %}
+
 {% block page_content %}
 
 	<h1 class="page-heading">
@@ -12,8 +14,84 @@
 
 	<h2 class="page-sub-heading">{{ selectedYear }} to {{ selectedYear + 1 }} financial year</h2>
 
+	<div class="grid-row global-performance-heading-row">
+		<div class="column-half">
+			<h2 class="global-performance-heading">Global performance</h2>
+		</div>
+		<div class="column-half column-text-right">
+			{{ financialYear( summary.dateRange ) }}
+		</div>
+	</div>
+
+	<section class="global-performance-content">
+
+		<div class="grid-row">
+			<div class="column-half">
+				<h3>Total value of confirmed export wins</h3>
+				<dl class="global-performance-figures">
+					<dt class="visually-hidden">Total</dt>
+					<dd class="global-performance-figures_headline-figure">
+						&pound;{{ summary.wins.total.value.confirmed | largeNumber }}
+					</dd>
+
+					<dt class="global-performance-figures_breakdown-heading">HVC</dt>
+					<dd class="global-performance-figures_breakdown-figure">
+						{{ summary.wins.hvc.value.confirmed | largeNumber }}
+					</dd>
+
+					<dt class="global-performance-figures_breakdown-heading">Non HVC</dt>
+					<dd class="global-performance-figures_breakdown-figure">
+						{{ summary.wins.non_hvc.value.confirmed | largeNumber }}
+					</dd>
+				</dl>
+			</div>
+			<div class="column-half">
+				<h3>Total number of confirmed wins</h3>
+				<dl class="global-performance-figures">
+					<dt class="visually-hidden">Total</dt>
+					<dd class="global-performance-figures_headline-figure">
+						{{ summary.wins.total.number.confirmed }}
+					</dd>
+
+					<dt class="global-performance-figures_breakdown-heading">HVC</dt>
+					<dd class="global-performance-figures_breakdown-figure">
+						{{ summary.wins.hvc.number.confirmed }}
+					</dd>
+
+					<dt class="global-performance-figures_breakdown-heading">Non HVC</dt>
+					<dd class="global-performance-figures_breakdown-figure">
+						{{ summary.wins.non_hvc.number.confirmed }}
+					</dd>
+				</dl>
+			</div>
+		</div>
+
+		<div class="grid-row">
+			<div class="column-single">
+				<h3 class="visually-hidden">HVC target progress</h3>
+
+				<dl class="global-performance_hvc-progress">
+					<div class="global-performance_hvc-progress_item">
+						<dt class="global-performance_hvc-progress_heading">Total value of HVC target</dt>
+						<dd class="global-performance_hvc-progress_figure">
+							&pound;{{ summary.target | largeNumber }}
+						</dd>
+					</div>
+
+					<div class="global-performance_hvc-progress_item">
+						<dt class="global-performance_hvc-progress_heading global-performance_hvc-progress_heading--right">HVC target achieved</dt>
+						<dd class="global-performance_hvc-progress_figure global-performance_hvc-progress_figure--right">
+							{{ summary.progress.confirmed }}%
+						</dd>
+					</div>
+				</dl>
+			</div>
+		</div>
+	</section>
+
+
 	<div class="grid-row">
-		<div class="column-one-third">
+		<div class="column-one-third ">
 
 			<h2 class="sector-list-heading">Sector Teams</h2>
 
