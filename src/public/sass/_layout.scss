@@ -66,6 +66,10 @@
   @include phase-banner();
 }
 
+.column-text-right {
+	text-align: right;
+}
+
 .top-nav {
 	border-bottom: 1px solid $grey-2;
 	padding: 0.5em 0;

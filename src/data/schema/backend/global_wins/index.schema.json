@@ -1,0 +1,165 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "Global data",
+
+	"type": "object",
+	"required": [ "wins", "total_target" ],
+	"properties": {
+		"wins": {
+			"type": "object",
+			"required": [ "hvc", "non_hvc", "total" ],
+			"properties": {
+				"hvc": {
+					"$ref": "#/definitions/item"
+				},
+				"non_hvc": {
+					"$ref": "#/definitions/item2"
+				},
+				"total": {
+					"$ref": "#/definitions/total"
+				}
+			}
+		},
+		"total_target": {
+			"type": "number",
+			"faker": {
+				"random.number": [ 1000000, 5000000000 ]
+			}
+		}
+	},
+
+	"definitions": {
+
+		"item": {
+			"type": "object",
+			"required": [ "number", "value" ],
+			"properties": {
+				"number": {
+					"type": "object",
+					"required": [ "unconfirmed", "confirmed", "total" ],
+					"properties": {
+						"unconfirmed": {
+							"type": "number",
+							"faker": "random.number"
+						},
+						"total": {
+							"type": "number",
+							"faker": "random.number"
+						},
+						"confirmed": {
+							"type": "number",
+							"faker": "random.number"
+						}
+					}
+				},
+				"value": {
+					"type": "object",
+					"required": [ "unconfirmed", "confirmed", "total" ],
+					"properties": {
+						"unconfirmed": {
+							"type": "number",
+							"faker": "random.number"
+						},
+						"total": {
+							"type": "number",
+							"faker": "random.number"
+						},
+						"confirmed": {
+							"type": "number",
+							"faker": "random.number"
+						}
+					}
+				}
+			}
+		},
+
+		"item2": {
+			"type": "object",
+			"required": [ "number", "value" ],
+			"properties": {
+				"number": {
+					"type": "object",
+					"required": [ "unconfirmed", "confirmed", "total" ],
+					"properties": {
+						"unconfirmed": {
+							"type": "number",
+							"faker": "random.number"
+						},
+						"total": {
+							"type": "number",
+							"maximum": 1000,
+							"faker": "random.number"
+						},
+						"confirmed": {
+							"type": "number",
+							"faker": "random.number"
+						}
+					}
+				},
+				"value": {
+					"type": "object",
+					"required": [ "unconfirmed", "confirmed", "total" ],
+					"properties": {
+						"unconfirmed": {
+							"type": "number",
+							"faker": "random.number"
+						},
+						"total": {
+							"type": "number",
+							"maximum": 1000,
+							"faker": "random.number"
+						},
+						"confirmed": {
+							"type": "number",
+							"faker": "random.number"
+						}
+					}
+				}
+			}
+		},
+
+		"total": {
+			"type": "object",
+			"required": [ "number", "value" ],
+			"properties": {
+				"number": {
+					"type": "object",
+					"required": [ "unconfirmed", "confirmed", "total" ],
+					"properties": {
+						"confirmed": {
+							"type": "number",
+							"faker": "random.number"
+						},
+						"unconfirmed": {
+							"type": "number",
+							"maximum": 1000,
+							"faker": "random.number"
+						},
+						"total": {
+							"type": "number",
+							"faker": "random.number"
+						}
+					}
+				},
+				"value": {
+					"type": "object",
+					"required": [ "unconfirmed", "confirmed", "total" ],
+					"properties": {
+						"confirmed": {
+							"type": "number",
+							"faker": "random.number"
+						},
+						"unconfirmed": {
+							"type": "number",
+							"faker": "random.number"
+						},
+						"total": {
+							"type": "number",
+							"faker": "random.number"
+						}
+					}
+				}
+			}
+		}
+	}
+}

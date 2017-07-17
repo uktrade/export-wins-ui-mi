@@ -6,22 +6,27 @@ const createErrorHandler = require( '../../helpers/create-error-handler' );
 const spy = require( '../../helpers/spy' );
 
 let controller;
+let globalSummary;
+let globalSummaryData;
 
 describe( 'Index controller', function(){
 
 	beforeEach( function(){
 
+		globalSummaryData = { globalSummaryData: true };
 		errorHandler.createHandler = jasmine.createSpy( 'createHandler' );
+		globalSummary = { create: spy( 'globalSummary.create', globalSummaryData ) };
 
 		controller = proxyquire( '../../../../app/controllers/controller.index', {
 			'../lib/service/service.backend': backendService,
-			'../lib/render-error': errorHandler
+			'../lib/render-error': errorHandler,
+			'../lib/view-models/global-summary': globalSummary
 		} );
 	} );
 
 	describe( 'Handler', function(){
 
-		it( 'Should show the Overseas Regions list and render the view', function( done ){
+		it( 'Should render the view with the corect data', function( done ){
 
 			const req = {
 				cookies: { sessionid: '456' },
@@ -35,13 +40,15 @@ describe( 'Index controller', function(){
 			const sectorTeams = { results: { sectorTeams: true } };
 			const overseasRegionGroups = { results: { overseasRegionGroups: true } };
 			const globalHvcs = { results: { globalHvcs: true } };
+			const globalWins = { date_range: { test: 1 }, results: { globalWins: true } };
 
 			const promise = new Promise( ( resolve ) => {
 
 				resolve( {
 					sectorTeams,
 					overseasRegionGroups,
-					globalHvcs
+					globalHvcs,
+					globalWins
 				} );
 			} );
 
@@ -54,10 +61,12 @@ describe( 'Index controller', function(){
 			promise.then( () => {
 
 				expect( backendService.getHomepageData ).toHaveBeenCalledWith( req );
+				expect( globalSummary.create ).toHaveBeenCalledWith( globalWins );
 				expect( res.render ).toHaveBeenCalledWith( 'index.html', {
 					sectorTeams: sectorTeams.results,
 					overseasRegionGroups: overseasRegionGroups.results,
-					globalHvcs: globalHvcs.results
+					globalHvcs: globalHvcs.results,
+					summary: globalSummaryData
 				} );
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				done();

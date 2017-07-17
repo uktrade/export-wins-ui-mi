@@ -1,0 +1,52 @@
+{
+   "timestamp": 1500025283424,
+   "financial_year": {
+      "id": 2016,
+      "description": "2016-17"
+   },
+   "results": {
+      "wins": {
+         "hvc": {
+            "number": {
+               "unconfirmed": 9805,
+               "confirmed": 98285,
+               "total": 66757
+            },
+            "value": {
+               "unconfirmed": 49742,
+               "confirmed": 42500,
+               "total": 16298
+            }
+         },
+         "non_hvc": {
+            "number": {
+               "unconfirmed": 9844,
+               "confirmed": 85690,
+               "total": 88466
+            },
+            "value": {
+               "unconfirmed": 49748,
+               "confirmed": 68688,
+               "total": 30622
+            }
+         },
+         "total": {
+            "number": {
+               "unconfirmed": 26086,
+               "confirmed": 73270,
+               "total": 48575
+            },
+            "value": {
+               "unconfirmed": 92205,
+               "confirmed": 94058,
+               "total": 49948
+            }
+         }
+      },
+      "total_target": 762685
+   },
+   "date_range": {
+      "start": 1459468800,
+      "end": 1483228800
+   }
+}

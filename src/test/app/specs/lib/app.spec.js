@@ -67,6 +67,7 @@ describe( 'App', function(){
 				interceptBackend.getStub( '/mi/sector_teams/?year=2017', 200, '/sector_teams/' );
 				interceptBackend.getStub( '/mi/os_region_groups/?year=2017', 200, '/os_region_groups/index.2017' );
 				interceptBackend.getStub( '/mi/global_hvcs/?year=2017', 200, '/global_hvcs/' );
+				interceptBackend.getStub( '/mi/global_wins/?year=2017', 200, '/global_wins/' );
 
 				supertest( app ).get( '/' ).end( ( err, res ) => {
 
@@ -85,6 +86,7 @@ describe( 'App', function(){
 				interceptBackend.getStub( '/mi/sector_teams/?year=2017', 200, '/sector_teams/' );
 				interceptBackend.getStub( '/mi/os_region_groups/?year=2017', 500 );
 				interceptBackend.getStub( '/mi/global_hvcs/?year=2017', 200, '/global_hvcs/' );
+				interceptBackend.getStub( '/mi/global_wins/?year=2017', 200, '/global_wins/' );
 
 				supertest( app ).get( '/' ).end( ( err, res ) => {
 
@@ -94,7 +96,7 @@ describe( 'App', function(){
 			} );
 		} );
 
-		describe( 'When all the APIs returns a status of 500', function(){
+		describe( 'When all the APIs return a status of 500', function(){
 
 			it( 'Should return a 500', function( done ){
 
@@ -102,6 +104,7 @@ describe( 'App', function(){
 				interceptBackend.getStub( '/mi/sector_teams/?year=2017', 500 );
 				interceptBackend.getStub( '/mi/os_region_groups/?year=2017', 500 );
 				interceptBackend.getStub( '/mi/global_hvcs/?year=2017', 500 );
+				interceptBackend.getStub( '/mi/global_wins/?year=2017', 500 );
 
 				supertest( app ).get( '/' ).end( ( err, res ) => {
 
