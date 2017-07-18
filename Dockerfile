@@ -1,4 +1,4 @@
-FROM node:6.10
+FROM node:6.11
 
 RUN mkdir /app
 
@@ -9,8 +9,7 @@ COPY server.js /app/server.js
 COPY src /app/src
 
 WORKDIR /app
-RUN npm install
-RUN npm run build:dist
+RUN npm install && npm run build:dist; rm -rf /app/src
 
 EXPOSE 8080
 CMD [ "npm", "start" ]
