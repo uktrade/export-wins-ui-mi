@@ -117,7 +117,7 @@ $win-table-cell-padding: 5;
 }
 
 .win-table_cell_credit-name--yes {
-	background-color: tint( $green, 25 );
+	background-color: $mi-green;
 }
 
 .win-table_cell--status-not-sent {
@@ -125,10 +125,10 @@ $win-table-cell-padding: 5;
 }
 
 .win-table_cell--status-confirmed {
-	color: tint( $green, 25 );
+	color: $mi-green;
 	font-weight: bold;
 }
 
 .win-table_cell--status-rejected {
-	color: $mellow-red;
+	color: $mi-red;
 }

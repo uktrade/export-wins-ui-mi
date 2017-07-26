@@ -1,13 +1,9 @@
 const driver = require( './driver' );
 const writeImage = require( './write-image' );
 
-module.exports = function( name, done ){
+module.exports = function( name ){
 
-	driver.takeScreenshot()
+	return driver.takeScreenshot()
 		.then( ( base64Data ) => writeImage( name, base64Data ) )
-		.then( done )
-		.catch( function( err ){
-
-			console.error( err );
-		} );
+		.catch( ( err ) => console.error( err ) );
 };
