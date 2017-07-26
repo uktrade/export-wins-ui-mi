@@ -4,25 +4,29 @@
 	@return mix( white, $color, $percentage );
 }
 
+@function shade( $color, $percentage ){
+	@return mix( black, $color, $percentage );
+}
+
 $mi-red: $mellow-red;
 $mi-amber: $yellow;
-$mi-green: $green-50;
+$mi-green: tint( $green, 25 );
 
 $pie-default: $grey-2;
 $pie-default-wedge: $mauve;
 
 $mi-pink: $pink;
 
-$hvc: $link-hover-colour;
+$hvc: shade( $link-hover-colour, 2 );
 $hvc-unconfirmed: tint( $hvc, 50 );
 
-$non-hvc: tint( $pink, 40 );
+$non-hvc: tint( $pink, 15 );
 $non-hvc-unconfirmed: tint( $non-hvc, 50 );
 
 $non-export: tint( $mauve, 25 );
 $non-export-unconfirmed: tint( $non-export, 50 );
 
 $confirmed: #000;
-$unconfirmed: $grey-2;
+$unconfirmed: shade( $grey-2, 5 );
 
 $date-bg: #ffefd2;

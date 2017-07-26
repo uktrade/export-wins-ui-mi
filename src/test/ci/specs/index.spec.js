@@ -12,12 +12,7 @@ describe( 'The homepage', function(){
 
 	beforeAll( function( done ){
 
-		fetch( '/' ).then( done );
-	} );
-
-	afterAll( function( done ){
-
-		takeScreenshot( 'index', done );
+		fetch( '/' ).then( takeScreenshot( 'index' ) ).then( done );
 	} );
 
 	describe( 'Page heading', function(){
