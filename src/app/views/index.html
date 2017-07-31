@@ -138,15 +138,11 @@
 			</ul>
 
 			{% if globalHvcs.length %}
-			<h3 class="global-hvc-heading">Global HVCs (coming soon)</h3>
+			<h3 class="global-hvc-heading">Global HVCs</h3>
 			<ul class="global-hvc-list">
 				{% for hvc in globalHvcs %}
 					<li>
-						{%- if linkHvc -%}
 						<a href="/hvc/{{ hvc.code }}/">{{ hvc.name }}</a>
-						{% else %}
-						{{ hvc.name }}
-						{% endif %}
 					</li>
 				{% endfor %}
 			</ul>
