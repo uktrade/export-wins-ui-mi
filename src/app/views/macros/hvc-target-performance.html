@@ -32,7 +32,7 @@
 
 {% endmacro %}
 
-{% macro hvcTargetPerformanceTable( items, linkHvc=false ) %}
+{% macro hvcTargetPerformanceTable( items ) %}
 <div class="hvc-perf">
 	<table class="hvc-perf_table">
 		<caption class="visually-hidden">HVC Performance</caption>
@@ -54,13 +54,8 @@
 			{% for item in items %}
 			<tr class="hvc-perf_table_row">
 				<td class="hvc-perf_table_cell hvc-perf_table_cell--campaign">
-					{% if linkHvc -%}
 					<a href="{{ hvcUrl( item.id ) }}" class="hvc-perf_table_cell_hvc-id">{{ item.id }}</a>
 					<a href="{{ hvcUrl( item.id ) }}" class="hvc-perf_table_cell_hvc-name">{{ item.name }}</a>
-					{%- else -%}
-					<span class="hvc-perf_table_cell_hvc-id">{{ item.id }}</span>
-					<span class="hvc-perf_table_cell_hvc-name">{{ item.name }}</span>
-					{%- endif %}
 				</td>
 				<td class="hvc-perf_table_cell hvc-perf_table_cell--percent-complete">
 					<span class="visually-hidden">{{ item.progress.target.confirmed }}% confirmed</span>
