@@ -38,13 +38,28 @@ module.exports = {
 		backendService.getOverseasRegionInfo( req, regionId ).then( ( data ) => {
 
 			res.render( 'overseas-regions/detail.html', {
-
+				regionId,
 				regionName: data.wins.results.name,
 				summary: sectorSummary.create( data.wins ),
 				hvcSummary: hvcSummary.create( data.wins ),
 				hvcTargetPerformance: hvcTargetPerformance.create( data.campaigns ),
 				monthlyPerformance: monthlyPerformance.create( data.months ),
 				topMarkets: topMarkets.create( data.topNonHvc ),
+			} );
+
+		} ).catch( renderError.createHandler( res ) );
+	},
+
+	wins: function( req, res ){
+
+		const regionId = req.params.id;
+
+		backendService.getOverseasRegionWinTable( req, regionId ).then( ( data ) => {
+
+			res.render( 'overseas-regions/wins.html', {
+				dateRange: data.date_range,
+				region: data.results.os_region,
+				wins: data.results.wins
 			} );
 
 		} ).catch( renderError.createHandler( res ) );

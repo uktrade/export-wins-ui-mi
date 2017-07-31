@@ -22,8 +22,16 @@
 	{{- urlPrefix }}/sector-teams/{{ teamId }}/
 {%- endmacro %}
 
+{% macro sectorTeamWins( teamId ) %}
+	{{- urlPrefix }}/sector-teams/{{ teamId }}/wins/
+{%- endmacro %}
+
 {% macro hvcGroup( groupId ) %}
 	{{- urlPrefix }}/hvc-groups/{{ groupId }}/
+{%- endmacro %}
+
+{% macro hvcGroupWins( groupId ) %}
+	{{- urlPrefix }}/hvc-groups/{{ groupId }}/wins/
 {%- endmacro %}
 
 {% macro osRegionsOverview() %}
@@ -32,6 +40,10 @@
 
 {% macro osRegion( regionId ) %}
 	{{- urlPrefix }}/overseas-regions/{{ regionId }}/
+{%- endmacro %}
+
+{% macro osRegionWins( regionId ) %}
+	{{- urlPrefix }}/overseas-regions/{{ regionId }}/wins/
 {%- endmacro %}
 
 {% macro hvc( hvcId ) %}

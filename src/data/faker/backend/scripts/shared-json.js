@@ -8,58 +8,57 @@ const createMonthDate = require( './lib/create-month-date' );
 
 module.exports = {
 
-	createIndex: function(){
+	createIndex: function( year ){
 
-		return generateSchema( '/shared/index.schema' );
+		return generateSchema( '/shared/index.schema', year );
 	},
 
-	createSector: function(){
+	createSector: function( year ){
 
-		let sector = generateSchema( '/shared/sector.schema' );
-		let results = sector.results;
+		return generateSchema( '/shared/sector.schema', year ).then( ( sector ) => {
 
-		calculateTotals( results.wins, [ 'non_export' ] );
-		calculateTotals( results.wins.export, [ 'hvc', 'non_hvc' ] );
-		calculateExportTotals( results.wins.export );
+			let results = sector.results;
 
-		return sector;
+			calculateTotals( results.wins, [ 'non_export' ] );
+			calculateTotals( results.wins.export, [ 'hvc', 'non_hvc' ] );
+			calculateExportTotals( results.wins.export );
+
+			return sector;
+		} );
 	},
 
-	createCampaigns: function(){
+	createCampaigns: function( year ){
 
-		let campaigns = generateSchema( '/shared/campaigns.schema' );
+		return generateSchema( '/shared/campaigns.schema', year ).then( ( campaigns ) => {
 
-		for( let campaign of campaigns.results.campaigns ){
+			for( let campaign of campaigns.results.campaigns ){
 
-			calculateTotals( campaign.totals, [ 'hvc' ] );
-			calculateUnconfirmedPercent( campaign.totals, [ 'progress' ] );
-		}
+				calculateTotals( campaign.totals, [ 'hvc' ] );
+				calculateUnconfirmedPercent( campaign.totals, [ 'progress' ] );
+			}
 
-		return campaigns;
+			return campaigns;
+		} );
 	},
 
-	createMonths: function(){
+	createMonths: function( year ){
 
-		let months = generateSchema( '/shared/months.schema' );
+		return generateSchema( '/shared/months.schema', year ).then( ( months ) => {
 
-		for( let month of months.results.months ){
+			for( let month of months.results.months ){
 
-			createMonthDate( month );
-			calculateTotals( month.totals, [ 'non_export' ] );
-			calculateTotals( month.totals.export, [ 'hvc', 'non_hvc' ] );
-			calculateExportTotals( month.totals.export );
-		}
+				createMonthDate( month );
+				calculateTotals( month.totals, [ 'non_export' ] );
+				calculateTotals( month.totals.export, [ 'hvc', 'non_hvc' ] );
+				calculateExportTotals( month.totals.export );
+			}
 
-		return months;
+			return months;
+		} );
 	},
 
-	createTopNonHvcs: function(){
+	createTopNonHvcs: function( year ){
 
-		return generateSchema( '/shared/top_non_hvcs.schema' );
-	},
-
-	createWinTable: function(){
-
-		return generateSchema( '/shared/win_table.schema' );
+		return generateSchema( '/shared/top_non_hvcs.schema', year );
 	}
 };

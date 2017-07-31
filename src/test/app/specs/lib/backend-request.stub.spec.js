@@ -62,6 +62,44 @@ describe( 'Backend stub', function(){
 				checkMultipleYears( '/mi/hvc/1/', '/hvc/hvc', done );
 			} );
 		} );
+
+		describe( 'Getting the top wins', function(){
+
+			it( 'Should return the top wins', function( done ){
+
+				checkMultipleYears( '/mi/hvc/1/top_wins/', '/hvc/top_wins', done );
+			} );
+		} );
+
+		describe( 'Getting the win table', function(){
+
+			it( 'Should return the win table', function( done ){
+
+				checkMultipleYears( '/mi/hvc/1/win_table/', '/hvc/win_table', done );
+			} );
+		} );
+	} );
+
+	describe( 'Global HVCs', function(){
+
+		describe( 'Getting the hvcs', function(){
+
+			it( 'Should return the list of HVCs', function( done ){
+
+				checkMultipleYears( '/mi/global_hvcs/', '/global_hvcs/index', done );
+			} );
+		} );
+	} );
+
+	describe( 'Global wins', function(){
+
+		describe( 'Getting the wins', function(){
+
+			it( 'Should return the list of wins', function( done ){
+
+				checkMultipleYears( '/mi/global_wins/', '/global_wins/index', done );
+			} );
+		} );
 	} );
 
 	describe( 'Sectors', function(){
@@ -103,6 +141,14 @@ describe( 'Backend stub', function(){
 			it( 'Should return the sector stub', function( done ){
 
 				checkMultipleYears( '/mi/sector_teams/3/', '/sector_teams/sector_team', done );
+			} );
+		} );
+
+		describe( 'Getting sector win table', function(){
+
+			it( 'Should return the sector win table stub', function( done ){
+
+				checkMultipleYears( '/mi/sector_teams/3/win_table/', '/sector_teams/win_table', done );
 			} );
 		} );
 
@@ -158,6 +204,14 @@ describe( 'Backend stub', function(){
 			} );
 		} );
 
+		describe( 'Getting a region win table', function(){
+
+			it( 'Should return the region win table stub', function( done ){
+
+				checkMultipleYears( '/mi/os_regions/3/win_table/', '/os_regions/win_table', done );
+			} );
+		} );
+
 		describe( 'Getting the overview', function(){
 
 			it( 'Should return the overview', function( done ){
@@ -209,6 +263,14 @@ describe( 'Backend stub', function(){
 			it( 'Should return the month info', function( done ){
 
 				checkMultipleYears( '/mi/hvc_groups/3/months/', '/hvc_groups/months', done );
+			} );
+		} );
+
+		describe( 'Getting the win table', function(){
+
+			it( 'Should return the win table stub', function( done ){
+
+				checkMultipleYears( '/mi/hvc_groups/3/win_table/', '/hvc_groups/win_table', done );
 			} );
 		} );
 	} );

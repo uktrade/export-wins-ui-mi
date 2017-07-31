@@ -37,6 +37,7 @@ EndpointCheck.prototype.handleResponse = function( err, response, body ){
 
 		if( response.statusCode === 200 ){
 
+			console.log( `Success connecting to: ${ this.url }` );
 			this.cb( null, response, body );
 
 		} else {

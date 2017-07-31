@@ -176,6 +176,25 @@ describe( 'App', function(){
 				} );
 			} );
 		} );
+
+		describe( 'Win list', function(){
+
+			describe( 'When the API returns a status of 200', function(){
+
+				it( 'Should return a 200 with the correct heading', function( done ){
+
+					returnUser();
+					interceptBackend.getStub( '/mi/sector_teams/1/win_table/?year=2017', 200, '/sector_teams/win_table' );
+
+					supertest( app ).get( '/sector-teams/1/wins/' ).end( ( err, res ) => {
+
+						checkResponse( res, 200 );
+						expect( getTitle( res ) ).toEqual( 'MI - Sector Team - animi architecto nam' );
+						done();
+					} );
+				} );
+			} );
+		} );
 	} );
 
 	describe( 'HVC Groups', function(){
@@ -199,7 +218,7 @@ describe( 'App', function(){
 			} );
 		} );
 
-		describe( 'HVC Group detail', function(){
+		describe( 'Detail', function(){
 
 			describe( 'When the API returns a status of 200', function(){
 
@@ -214,6 +233,25 @@ describe( 'App', function(){
 
 						checkResponse( res, 200 );
 						expect( getTitle( res ) ).toEqual( 'MI - HVC Group - sunt laborum &amp; quos' );
+						done();
+					} );
+				} );
+			} );
+		} );
+
+		describe( 'Win list', function(){
+
+			describe( 'When the API returns a status of 200', function(){
+
+				it( 'Should return a 200 with the correct heading', function( done ){
+
+					returnUser();
+					interceptBackend.getStub( '/mi/hvc_groups/1/win_table/?year=2017', 200, '/hvc_groups/win_table' );
+
+					supertest( app ).get( '/hvc-groups/1/wins/' ).end( ( err, res ) => {
+
+						checkResponse( res, 200 );
+						expect( getTitle( res ) ).toEqual( 'MI - HVC Group - dolorem quos vero' );
 						done();
 					} );
 				} );
@@ -254,7 +292,7 @@ describe( 'App', function(){
 				supertest( app ).get( `/hvc/${ hvcId }/wins/` ).end( ( err, res ) => {
 
 					expect( res.statusCode ).toEqual( 200 );
-					expect( getTitle( res ) ).toEqual( 'MI - dolores molestias temporibus' );
+					expect( getTitle( res ) ).toEqual( 'MI - non mollitia qui' );
 					done();
 				} );
 			} );
@@ -338,7 +376,7 @@ if( config.backend.mock ){
 			} );
 		} );
 
-		describe( 'Sector Team detail', function(){
+		describe( 'Overseas Region detail', function(){
 
 			describe( 'When the API returns a status of 200', function(){
 
@@ -354,6 +392,25 @@ if( config.backend.mock ){
 
 						checkResponse( res, 200 );
 						expect( getTitle( res ) ).toEqual( 'MI - Overseas Region - minima explicabo &amp; architecto' );
+						done();
+					} );
+				} );
+			} );
+		} );
+
+		describe( 'Overseas Region wins', function(){
+
+			describe( 'When the API returns a status of 200', function(){
+
+				it( 'Should return a 200 with the correct heading', function( done ){
+
+					returnUser();
+					interceptBackend.getStub( '/mi/os_regions/1/win_table/?year=2017', 200, '/os_regions/win_table' );
+
+					supertest( app ).get( '/overseas-regions/1/wins/' ).end( ( err, res ) => {
+
+						checkResponse( res, 200 );
+						expect( getTitle( res ) ).toEqual( 'MI - Overseas Region - sed blanditiis dolorum' );
 						done();
 					} );
 				} );

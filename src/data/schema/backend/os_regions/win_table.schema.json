@@ -1,0 +1,37 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "List of wins for hvc group win table",
+
+	"type": "object",
+	"required": [ "os_region", "wins" ],
+	"properties": {
+
+		"os_region": {
+			"type": "object",
+			"required": [ "name", "id" ],
+			"properties": {
+				"name": {
+					"type": "string",
+					"faker": "lorem.words"
+				},
+				"id": {
+					"type": "string",
+					"faker": "random.number"
+				}
+			}
+		},
+
+		"wins": {
+			"type": "object",
+			"required": [ "hvc", "non_hvc" ],
+			"properties": {
+				"hvc": {
+					"$ref": "$refs/win-table.json#/hvc-wins"
+				},
+				"non_hvc": {
+					"$ref": "$refs/win-table.json#/non-hvc-wins"
+				}
+			}
+		}
+	}
+}

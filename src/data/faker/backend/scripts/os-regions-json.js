@@ -3,31 +3,39 @@ const calculateOverviewValues = require( './lib/calculate-overview-values' );
 
 module.exports = {
 
-	createOverview: function(){
+	createOverview: function( year ){
 
-		let regionId = 1;
-		
-		let overview = generateSchema( '/os_regions/overview.schema' );
+		return generateSchema( '/os_regions/overview.schema', year ).then( ( overview ) => {
 
-		for( let region of overview.results ){
+			let regionId = 1;
 
-			region.id = regionId++;//Regions need to be from 1 to 17 to make the grouping work
-			calculateOverviewValues( region.values );
-		}
+			for( let region of overview.results ){
 
-		return overview;
+				region.id = regionId++;//Regions need to be from 1 to 17 to make the grouping work
+				calculateOverviewValues( region.values );
+			}
+
+			return overview;
+		} );
 	},
 
-	createList: function(){
+	createList: function( year ){
 
-		let list = generateSchema( '/os_regions/index.schema' );
-		let id = 1;
+		return generateSchema( '/os_regions/index.schema', year ).then( ( list ) => {
 
-		for( let region of list.results ){
+			let id = 1;
 
-			region.id = id++;//Regions need to be from 1 to 17 to make the grouping work
-		}
+			for( let region of list.results ){
 
-		return list;
+				region.id = id++;//Regions need to be from 1 to 17 to make the grouping work
+			}
+
+			return list;
+		} );
+	},
+
+	createWinTable: function( year ){
+
+		return generateSchema( '/os_regions/win_table.schema', year );
 	}
 };

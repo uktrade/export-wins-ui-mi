@@ -3,3 +3,16 @@
 	@include core-24;
 	padding: pem( 45, 24 );
 }
+
+.win-table-heading {
+	@include bold-19;
+	margin-bottom: pem( 20, 19 );
+}
+
+.win-table-heading--non-hvc {
+	margin-top: pem( 40, 19 );
+}
+
+.win-table-no-wins-message {
+	margin-bottom: pem( 40, 16 );
+}

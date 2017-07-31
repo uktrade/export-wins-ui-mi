@@ -35,7 +35,7 @@
 							"faker": "lorem.words"
 						},
 						"hvc_performance": {
-							"$ref": "#/definitions/hvc-performance2"
+							"$ref": "#/definitions/hvc-performance"
 						},
 						"values": {
 							"$ref": "#/definitions/hvc-values"
@@ -53,37 +53,6 @@
 	"definitions": {
 
 		"hvc-performance": {
-			"type": "object",
-			"required": [ "red", "amber", "green", "zero" ],
-			"properties": {
-				"red": {
-					"type": "number",
-					"faker": {
-						"random.number": [ 25 ]
-					}
-				},
-				"amber": {
-					"type": "number",
-					"faker": {
-						"random.number": [ 25 ]
-					}
-				},
-				"green": {
-					"type": "number",
-					"faker": {
-						"random.number": [ 25 ]
-					}
-				},
-				"zero": {
-					"type": "number",
-					"faker": {
-						"random.number": [ 25 ]
-					}
-				}
-			}
-		},
-
-		"hvc-performance2": {
 			"type": "object",
 			"required": [ "red", "amber", "green", "zero" ],
 			"properties": {

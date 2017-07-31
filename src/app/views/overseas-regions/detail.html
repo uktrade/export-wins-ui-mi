@@ -2,3 +2,14 @@
 
 {% set pageName %}Overseas Region - {{ regionName | safe  }}{% endset %}
 {% set sectorName %}{{ regionName | safe }}{% endset %}
+
+{% block page_tabs %}
+	<ul class="page-tabs">
+		<li class="page-tabs_tab page-tabs_tab--active">
+			<span class="page-tabs_tab_text">Performance</span>
+		</li>
+		<li class="page-tabs_tab">
+			<a class="page-tabs_tab_text" href="{{ urls.osRegionWins( regionId ) }}">Individual wins</a>
+		</li>
+	</ul>
+{% endblock %}

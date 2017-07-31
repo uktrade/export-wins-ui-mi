@@ -47,10 +47,10 @@
 					"required": [ "hvc", "non_hvc", "totals" ],
 					"properties": {
 						"hvc": {
-							"$ref": "#/definitions/win-info2"
+							"$ref": "#/definitions/win-info"
 						},
 						"non_hvc": {
-							"$ref": "#/definitions/win-info3"
+							"$ref": "#/definitions/win-info"
 						},
 						"totals": {
 							"$ref": "#/definitions/grand-totals"
@@ -74,117 +74,19 @@
 						"unconfirmed": {
 							"type": "number",
 							"faker": {
-								"random.number": [ 1000 ]
+								"random.number": { "max": 1000 }
 							}
 						},
 						"total": {
 							"type": "number",
 							"faker": {
-								"random.number": [ 1000 ]
+								"random.number": { "max": 1000 }
 							}
 						},
 						"confirmed": {
 							"type": "number",
 							"faker": {
-								"random.number": [ 1000 ]
-							}
-						}
-					}
-				},
-				"value": {
-					"type": "object",
-					"required": [ "unconfirmed", "total", "confirmed" ],
-					"properties": {
-						"unconfirmed": {
-							"type": "number",
-							"faker": "random.number"
-						},
-						"total": {
-							"type": "number",
-							"faker": "random.number"
-						},
-						"confirmed": {
-							"type": "number",
-							"faker": "random.number"
-						}
-					}
-				}
-			}
-		},
-
-		"win-info2": {
-			"type": "object",
-			"required": [ "number", "value" ],
-			"properties": {
-				"number": {
-					"type": "object",
-					"required": [ "unconfirmed", "total", "confirmed" ],
-					"properties": {
-						"unconfirmed": {
-							"type": "number",
-							"faker": {
-								"random.number": [ 1000 ]
-							}
-						},
-						"total": {
-							"type": "number",
-							"faker": {
-								"random.number": [ 1000 ]
-							}
-						},
-						"confirmed": {
-							"type": "number",
-							"faker": {
-								"random.number": [ 1000 ]
-							}
-						}
-					}
-				},
-				"value": {
-					"type": "object",
-					"required": [ "unconfirmed", "total", "confirmed" ],
-					"properties": {
-						"unconfirmed": {
-							"type": "number",
-							"faker": "random.number"
-						},
-						"total": {
-							"type": "number",
-							"faker": "random.number"
-						},
-						"confirmed": {
-							"type": "number",
-							"faker": "random.number"
-						}
-					}
-				}
-			}
-		},
-
-		"win-info3": {
-			"type": "object",
-			"required": [ "number", "value" ],
-			"properties": {
-				"number": {
-					"type": "object",
-					"required": [ "unconfirmed", "total", "confirmed" ],
-					"properties": {
-						"unconfirmed": {
-							"type": "number",
-							"faker": {
-								"random.number": [ 1000 ]
-							}
-						},
-						"total": {
-							"type": "number",
-							"faker": {
-								"random.number": [ 1000 ]
-							}
-						},
-						"confirmed": {
-							"type": "number",
-							"faker": {
-								"random.number": [ 1000 ]
+								"random.number": { "max": 1000 }
 							}
 						}
 					}
@@ -220,16 +122,21 @@
 					"properties": {
 						"confirmed": {
 							"type": "number",
-							"faker": "random.number"
+							"faker": {
+								"random.number": { "max": 1000 }
+							}
 						},
 						"unconfirmed": {
 							"type": "number",
-							"maximum": 1000,
-							"faker": "random.number"
+							"faker": {
+								"random.number": { "max": 1000 }
+							}
 						},
 						"grand_total": {
 							"type": "number",
-							"faker": "random.number"
+							"faker": {
+								"random.number": { "max": 1000 }
+							}
 						}
 					}
 				},

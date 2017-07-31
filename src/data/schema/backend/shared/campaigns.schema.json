@@ -87,13 +87,13 @@
 											"unconfirmed": {
 												"type": "number",
 												"faker": {
-													"random.number": [ 1000 ]
+													"random.number": { "max": 1000 }
 												}
 											},
 											"confirmed": {
 												"type": "number",
 												"faker": {
-													"random.number": [ 1000 ]
+													"random.number": { "max": 1000 }
 												}
 											},
 											"total": {
@@ -134,7 +134,7 @@
 							"target": {
 								"type": "number",
 								"minimum": 0,
-								"random.number": [ 5000000000 ]
+								"random.number": { "max": 5000000000 }
 							}
 						}
 					}

@@ -1,16 +1,31 @@
 const writeFiles = require( './write-files' );
 
-module.exports = function( path, files ){
+module.exports = function( path, filePromises ){
 
-	let jsonFiles = [];
+	const fileNames = [];
+	const promises = [];
 
-	for( let file in files ){
+	for( let file in filePromises ){
 
-		const json = JSON.stringify( files[ file ], null, 3 );
+		const promise = filePromises[ file ];
 		const fileName = ( path + '/' + file + '.json' );
 
-		jsonFiles.push( [ fileName, json ] );
+		promises.push( promise );
+		fileNames.push( fileName );
 	}
 
-	writeFiles( jsonFiles );
+	Promise.all( promises ).then( ( jsonFiles ) => {
+
+		const files = [];
+
+		jsonFiles.forEach( ( file, i ) => {
+
+			const json = JSON.stringify( file, null, 3 );
+
+			files.push( [ fileNames[ i ], json ] );
+		} );
+
+		writeFiles( files );
+
+	} ).catch( ( e ) => { console.log( e ); } );
 };

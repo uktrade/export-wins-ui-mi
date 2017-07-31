@@ -44,7 +44,7 @@
 								"required": [ "hvc", "totals" ],
 								"properties": {
 									"hvc": {
-										"$ref": "#/definitions/item2"
+										"$ref": "#/definitions/item"
 									},
 									"totals": {
 										"$ref": "#/definitions/grand-totals"
@@ -70,15 +70,21 @@
 					"properties": {
 						"unconfirmed": {
 							"type": "number",
-							"faker": "random.number"
+							"faker": {
+								"random.number": [ 1000 ]
+							}
 						},
 						"total": {
 							"type": "number",
-							"faker": "random.number"
+							"faker": {
+								"random.number": [ 1000 ]
+							}
 						},
 						"confirmed": {
 							"type": "number",
-							"faker": "random.number"
+							"faker": {
+								"random.number": [ 1000 ]
+							}
 						}
 					}
 				},
@@ -92,51 +98,6 @@
 						},
 						"total": {
 							"type": "number",
-							"faker": "random.number"
-						},
-						"confirmed": {
-							"type": "number",
-							"faker": "random.number"
-						}
-					}
-				}
-			}
-		},
-
-		"item2": {
-			"type": "object",
-			"required": [ "number", "value" ],
-			"properties": {
-				"number": {
-					"type": "object",
-					"required": [ "unconfirmed", "confirmed", "total" ],
-					"properties": {
-						"unconfirmed": {
-							"type": "number",
-							"faker": "random.number"
-						},
-						"total": {
-							"type": "number",
-							"maximum": 1000,
-							"faker": "random.number"
-						},
-						"confirmed": {
-							"type": "number",
-							"faker": "random.number"
-						}
-					}
-				},
-				"value": {
-					"type": "object",
-					"required": [ "unconfirmed", "confirmed", "total" ],
-					"properties": {
-						"unconfirmed": {
-							"type": "number",
-							"faker": "random.number"
-						},
-						"total": {
-							"type": "number",
-							"maximum": 1000,
 							"faker": "random.number"
 						},
 						"confirmed": {
@@ -158,16 +119,21 @@
 					"properties": {
 						"confirmed": {
 							"type": "number",
-							"faker": "random.number"
+							"faker": {
+								"random.number": [ 1000 ]
+							}
 						},
 						"unconfirmed": {
 							"type": "number",
-							"maximum": 1000,
-							"faker": "random.number"
+							"faker": {
+								"random.number": [ 1000 ]
+							}
 						},
 						"grand_total": {
 							"type": "number",
-							"faker": "random.number"
+							"faker": {
+								"random.number": [ 1000 ]
+							}
 						}
 					}
 				},

@@ -10,6 +10,8 @@
 	{% include 'partials/year-selector.html' %}
 	<h2 class="page-date">{{ financialYear( summary.dateRange ) }}</h2>
 
+	{% block page_tabs %}{% endblock page_tabs %}
+
 	<section class="sector-detail grid-row">
 		<div class="column-export-value">
 

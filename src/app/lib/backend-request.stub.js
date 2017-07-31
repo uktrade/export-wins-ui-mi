@@ -20,12 +20,14 @@ const stubs = [
 	[ /^\/mi\/sector_teams\/[0-9]+\/top_non_hvcs\/(\?year=[0-9]+)?$/, 'sector_teams/top_non_hvcs'  ],
 	[ /^\/mi\/sector_teams\/[0-9]+\/campaigns\/(\?year=[0-9]+)?$/, 'sector_teams/campaigns'  ],
 	[ /^\/mi\/sector_teams\/[0-9]+\/months\/(\?year=[0-9]+)?$/, 'sector_teams/months'  ],
+	[ /^\/mi\/sector_teams\/[0-9]+\/win_table\/(\?year=[0-9]+)?$/, 'sector_teams/win_table'  ],
 	[ /^\/mi\/sector_teams\/[0-9]+\/(\?year=[0-9]+)?$/, 'sector_teams/sector_team'  ],
 	[ /^\/mi\/sector_teams\/(\?year=[0-9]+)?$/, 'sector_teams/index'  ],
 
 	[ /^\/mi\/os_regions\/[0-9]+\/top_non_hvcs\/(\?year=[0-9]+)?$/, 'os_regions/top_non_hvcs'  ],
 	[ /^\/mi\/os_regions\/[0-9]+\/campaigns\/(\?year=[0-9]+)?$/, 'os_regions/campaigns'  ],
 	[ /^\/mi\/os_regions\/[0-9]+\/months\/(\?year=[0-9]+)?$/, 'os_regions/months'  ],
+	[ /^\/mi\/os_regions\/[0-9]+\/win_table\/(\?year=[0-9]+)?$/, 'os_regions/win_table'  ],
 	[ /^\/mi\/os_regions\/[0-9]+\/(\?year=[0-9]+)?$/, 'os_regions/region'  ],
 	[ /^\/mi\/os_regions\/(\?year=[0-9]+)?$/, 'os_regions/index'  ],
 	[ /^\/mi\/os_regions\/overview\/(\?year=[0-9]+)$/, 'os_regions/overview'  ],
@@ -36,8 +38,14 @@ const stubs = [
 	[ /^\/mi\/hvc_groups\/[0-9]+\/(\?year=[0-9]+)?$/, 'hvc_groups/group'  ],
 	[ /^\/mi\/hvc_groups\/[0-9]+\/campaigns\/(\?year=[0-9]+)?$/, 'hvc_groups/campaigns'  ],
 	[ /^\/mi\/hvc_groups\/[0-9]+\/months\/(\?year=[0-9]+)?$/, 'hvc_groups/months' ],
+	[ /^\/mi\/hvc_groups\/[0-9]+\/win_table\/(\?year=[0-9]+)?$/, 'hvc_groups/win_table' ],
 
 	[ /^\/mi\/hvc\/[^/]+?\/(\?year=[0-9]+)?$/, 'hvc/hvc' ],
+	[ /^\/mi\/hvc\/[^/]+?\/top_wins\/(\?year=[0-9]+)?$/, 'hvc/top_wins' ],
+	[ /^\/mi\/hvc\/[^/]+?\/win_table\/(\?year=[0-9]+)?$/, 'hvc/win_table' ],
+
+	[ /^\/mi\/global_hvcs\/(\?year=[0-9]+)?$/, 'global_hvcs/index' ],
+	[ /^\/mi\/global_wins\/(\?year=[0-9]+)?$/, 'global_wins/index' ],
 
 	[ /^\/user\/me\/$/, 'user/me' ]
 ];
@@ -68,6 +76,7 @@ function get( url, cb ){
 	let path;
 	let stub;
 	let year;
+	let pathMatched;
 
 	response.request = {
 		uri: {
@@ -78,7 +87,9 @@ function get( url, cb ){
 
 	for( [ path, stub ] of stubs ){
 
-		if( path.test( url ) ){
+		pathMatched = path.test( url );
+
+		if( pathMatched ){
 
 			year = getYear( url );
 
@@ -88,6 +99,7 @@ function get( url, cb ){
 			}
 
 			data = getStub( stubPath + stub  );
+
 			break;
 		}
 	}
@@ -100,7 +112,15 @@ function get( url, cb ){
 
 	} else {
 
-		cb( new Error( 'Stub not matched' ) );
+		if( pathMatched ){
+
+			cb( new Error( `Stub not matched for ${ url }` ) );
+
+		} else {
+
+			cb( new Error( `Path not matched for ${ url }` ) );
+		}
+
 	}
 }
 

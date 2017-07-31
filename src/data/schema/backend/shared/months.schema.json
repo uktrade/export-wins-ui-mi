@@ -44,10 +44,10 @@
 								"required": [ "hvc", "non_hvc", "totals" ],
 								"properties": {
 									"hvc": {
-										"$ref": "#/definitions/item2"
+										"$ref": "#/definitions/item"
 									},
 									"non_hvc": {
-										"$ref": "#/definitions/item3"
+										"$ref": "#/definitions/item"
 									},
 									"totals": {
 										"$ref": "#/definitions/grand-totals"
@@ -73,15 +73,21 @@
 					"properties": {
 						"unconfirmed": {
 							"type": "number",
-							"faker": "random.number"
+							"faker": {
+								"random.number": { "min": 0, "max": 2000 }
+							}
 						},
 						"total": {
 							"type": "number",
-							"faker": "random.number"
+							"faker": {
+								"random.number": { "min": 0, "max": 2000 }
+							}
 						},
 						"confirmed": {
 							"type": "number",
-							"faker": "random.number"
+							"faker": {
+								"random.number": { "min": 0, "max": 2000 }
+							}
 						}
 					}
 				},
@@ -91,104 +97,21 @@
 					"properties": {
 						"unconfirmed": {
 							"type": "number",
-							"faker": "random.number"
+							"faker": {
+								"random.number": { "min": 1000, "max": 5000000000 }
+							}
 						},
 						"total": {
 							"type": "number",
-							"faker": "random.number"
+							"faker": {
+								"random.number": { "min": 1000, "max": 5000000000 }
+							}
 						},
 						"confirmed": {
 							"type": "number",
-							"faker": "random.number"
-						}
-					}
-				}
-			}
-		},
-
-		"item2": {
-			"type": "object",
-			"required": [ "number", "value" ],
-			"properties": {
-				"number": {
-					"type": "object",
-					"required": [ "unconfirmed", "confirmed", "total" ],
-					"properties": {
-						"unconfirmed": {
-							"type": "number",
-							"faker": "random.number"
-						},
-						"total": {
-							"type": "number",
-							"maximum": 1000,
-							"faker": "random.number"
-						},
-						"confirmed": {
-							"type": "number",
-							"faker": "random.number"
-						}
-					}
-				},
-				"value": {
-					"type": "object",
-					"required": [ "unconfirmed", "confirmed", "total" ],
-					"properties": {
-						"unconfirmed": {
-							"type": "number",
-							"faker": "random.number"
-						},
-						"total": {
-							"type": "number",
-							"maximum": 1000,
-							"faker": "random.number"
-						},
-						"confirmed": {
-							"type": "number",
-							"faker": "random.number"
-						}
-					}
-				}
-			}
-		},
-
-		"item3": {
-			"type": "object",
-			"required": [ "number", "value" ],
-			"properties": {
-				"number": {
-					"type": "object",
-					"required": [ "unconfirmed", "confirmed", "total" ],
-					"properties": {
-						"unconfirmed": {
-							"type": "number",
-							"maximum": 1000,
-							"faker": "random.number"
-						},
-						"total": {
-							"type": "number",
-							"faker": "random.number"
-						},
-						"confirmed": {
-							"type": "number",
-							"faker": "random.number"
-						}
-					}
-				},
-				"value": {
-					"type": "object",
-					"required": [ "unconfirmed", "confirmed", "total" ],
-					"properties": {
-						"unconfirmed": {
-							"type": "number",
-							"faker": "random.number"
-						},
-						"total": {
-							"type": "number",
-							"faker": "random.number"
-						},
-						"confirmed": {
-							"type": "number",
-							"faker": "random.number"
+							"faker": {
+								"random.number": { "min": 1000, "max": 5000000000 }
+							}
 						}
 					}
 				}
@@ -205,16 +128,21 @@
 					"properties": {
 						"confirmed": {
 							"type": "number",
-							"faker": "random.number"
+							"faker": {
+								"random.number": { "min": 0, "max": 2000 }
+							}
 						},
 						"unconfirmed": {
 							"type": "number",
-							"maximum": 1000,
-							"faker": "random.number"
+							"faker": {
+								"random.number": { "min": 0, "max": 2000 }
+							}
 						},
 						"grand_total": {
 							"type": "number",
-							"faker": "random.number"
+							"faker": {
+								"random.number": { "min": 0, "max": 2000 }
+							}
 						}
 					}
 				},
@@ -224,15 +152,21 @@
 					"properties": {
 						"confirmed": {
 							"type": "number",
-							"faker": "random.number"
+							"faker": {
+								"random.number": { "min": 1000, "max": 5000000000 }
+							}
 						},
 						"unconfirmed": {
 							"type": "number",
-							"faker": "random.number"
+							"faker": {
+								"random.number": { "min": 1000, "max": 5000000000 }
+							}
 						},
 						"grand_total": {
 							"type": "number",
-							"faker": "random.number"
+							"faker": {
+								"random.number": { "min": 1000, "max": 5000000000 }
+							}
 						}
 					}
 				}
