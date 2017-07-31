@@ -9,35 +9,62 @@ function createStatus( win, name, modifyer ){
 	win.status = { name, modifyer };
 }
 
-module.exports = function( input ){
+function checkHvcName( win ){
 
-	input.wins.forEach( ( win ) => {
+	const hvc = win.hvc;
+	const hvcName = hvc.name;
+	const codeMarker = ( ': ' + hvc.code );
+	const markerPosition = ( hvcName.length - codeMarker.length );
 
-		if( win.credit ){
+	if( hvcName.substr( markerPosition ) === codeMarker ){
 
-			createCredit( win, 'Yes', 'yes' );
+		hvc.name = hvcName.substring( 0, markerPosition );
+	}
+}
 
-		} else {
+function transformWin( win ){
 
-			createCredit( win, 'No', 'no' );
-		}
+	if( win.credit ){
 
-		switch( win.status ){
+		createCredit( win, 'Yes', 'yes' );
 
-			case 'email_not_sent':
-				createStatus( win, 'Not yet sent', 'not-sent' );
-			break;
-			case 'response_not_received':
-				createStatus( win, 'Sent but not confirmed', 'sent' );
-			break;
-			case 'customer_confirmed':
-				createStatus( win, 'Confirmed', 'confirmed' );
-			break;
-			case 'customer_rejected':
-				createStatus( win, 'Rejected', 'rejected' );
-			break;
-		}
-	} );
+	} else {
 
-	return input;
+		createCredit( win, 'No', 'no' );
+	}
+
+	switch( win.status ){
+
+		case 'email_not_sent':
+			createStatus( win, 'Not yet sent', 'not-sent' );
+		break;
+		case 'response_not_received':
+			createStatus( win, 'Sent but not confirmed', 'sent' );
+		break;
+		case 'customer_confirmed':
+			createStatus( win, 'Confirmed', 'confirmed' );
+		break;
+		case 'customer_rejected':
+			createStatus( win, 'Rejected', 'rejected' );
+		break;
+	}
+
+	if( win.hvc ){
+
+		checkHvcName( win );
+	}
+}
+
+module.exports = function( results ){
+
+	const nonHvcWins = results.wins.non_hvc;
+
+	results.wins.hvc.forEach( transformWin );
+
+	if( nonHvcWins ){
+
+		nonHvcWins.forEach( transformWin );
+	}
+
+	return results;
 };

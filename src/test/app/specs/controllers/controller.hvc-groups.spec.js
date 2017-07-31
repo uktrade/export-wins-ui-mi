@@ -51,9 +51,8 @@ describe( 'HVC Groups controller', function(){
 				resolve( hvcGroups );
 			} );
 
+			backendService.getHvcGroups = spy( 'getHvcGroups', promise );
 			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
-			backendService.getHvcGroups = jasmine.createSpy( 'getHvcGroups' );
-			backendService.getHvcGroups.and.callFake( () => promise );
 
 			controller.list( req, res );
 
@@ -121,13 +120,63 @@ describe( 'HVC Groups controller', function(){
 				expect( monthlyPerformance.create ).toHaveBeenCalledWith( months );
 
 				expect( res.render ).toHaveBeenCalledWith( 'hvc-groups/detail.html', {
-
+					groupId,
 					sectorName: wins.results.name,
 					summary: sectorSummaryResponse,
 					hvcSummary: hvcSummaryResponse,
 					monthlyPerformance: monthlyPerformanceResponse,
 					hvcTargetPerformance: hvcTargetPerformanceResponse
 				} );
+				done();
+			} );
+		} );
+	} );
+
+	describe( 'Wins', function(){
+
+		it( 'Should get the list of wins and render the correct view', function( done ){
+
+			const groupId = 123;
+
+			const req = {
+				cookies: { sessionid: '123' },
+				params: {
+					id: groupId
+				},
+				year
+			};
+
+			const res = {
+				render: jasmine.createSpy( 'res.render' )
+			};
+
+			const hvcGroupWins = {
+				date_range: { start: 1, end: 2 },
+				results: {
+					hvc_group: { group: true },
+					wins: { hvc: { hvcGroupWins: true }, non_hvc: { nonHvcGroupWins: true } }
+				}
+			};
+
+			const promise = new Promise( ( resolve ) => {
+
+				resolve( hvcGroupWins );
+			} );
+
+			backendService.getHvcGroupWinTable = spy( 'getHvcGroupWinTable', promise );
+			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
+
+			controller.wins( req, res );
+
+			promise.then( () => {
+
+				expect( backendService.getHvcGroupWinTable ).toHaveBeenCalledWith( req, groupId );
+				expect( res.render ).toHaveBeenCalledWith( 'hvc-groups/wins.html', {
+					dateRange: hvcGroupWins.date_range,
+					hvcGroup: hvcGroupWins.results.hvc_group,
+					wins: hvcGroupWins.results.wins
+				} );
+				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				done();
 			} );
 		} );

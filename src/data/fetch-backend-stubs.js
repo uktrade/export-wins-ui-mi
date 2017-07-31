@@ -20,9 +20,13 @@ const stubs = [
 	[ 'os_region_groups/index', '/mi/os_region_groups/' ],
 	[ 'hvc_groups/index', '/mi/hvc_groups/' ],
 	[ 'hvc_groups/group', '/mi/hvc_groups/1/' ],
-	[ 'hvc_groups/campaigns', '/mi/hvc_groups/1/campaigns/' ],
 	[ 'hvc_groups/months', '/mi/hvc_groups/1/months/' ],
-	[ 'hvc/hvc', '/mi/hvc/E100/' ]
+	[ 'hvc_groups/campaigns', '/mi/hvc_groups/1/campaigns/' ],
+	[ 'hvc/hvc', '/mi/hvc/E100/' ],
+	[ 'hvc/top_wins', '/mi/hvc/E100/top_wins/' ],
+	[ 'hvc/win_table', '/mi/hvc/E100/win_table/' ],
+	[ 'global_hvcs/index', '/mi/global_hvcs/' ],
+	[ 'global_wins/index', '/mi/global_wins/' ]
 ];
 
 const years = [ 2016, 2017 ];
@@ -52,7 +56,7 @@ function fetch( urlPath, file, year = 2016 ){
 
 	request( `${ appConfig.backend.href }${ urlPath }?year=${ year }` )
 		.on( 'error ', function( err ){ console.error( err ); } )
-		.on( 'end', function(){ console.log( 'Written: %s', fileWithPath ); } )
+		.on( 'end', function(){ console.log( 'Written: %s', file ); } )
 		.pipe( writeStream );
 
 	writeStream.on( 'error', function( err ){ console.log( err ); } );

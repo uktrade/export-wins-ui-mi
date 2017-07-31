@@ -1,23 +1,49 @@
 const generateSchema = require( './lib/generate-schema' );
 
+const MAX_REGIONS = 17;
+
+function checkRegionCount( list ){
+
+	let regionCount = 0;
+
+	list.results = list.results.filter( ( group ) => {
+
+		let inRange;
+
+		group.regions = group.regions.filter( () => {
+
+			regionCount++;
+			inRange = ( regionCount <= MAX_REGIONS );
+
+			return inRange;
+		} );
+
+		return inRange;
+	} );
+}
+
 module.exports = {
 
-	createList: function(){
+	createList: function( year ){
 
-		let list = generateSchema( '/os_region_groups/index.schema' );
-		let id = 1;
-		let regionId = 1;
+		return generateSchema( '/os_region_groups/index.schema', year ).then( ( list ) => {
 
-		for( let group of list.results ){
+			let id = 1;
+			let regionId = 1;
 
-			group.id = id++;//Regions need to be sequential for the grouping work
+			checkRegionCount( list );
 
-			for( let region of group.regions ){
+			for( let group of list.results ){
 
-				region.id = regionId++;
+				group.id = id++;//Regions need to be sequential for the grouping work
+
+				for( let region of group.regions ){
+
+					region.id = regionId++;
+				}
 			}
-		}
 
-		return list;
+			return list;
+		} );
 	}
 };

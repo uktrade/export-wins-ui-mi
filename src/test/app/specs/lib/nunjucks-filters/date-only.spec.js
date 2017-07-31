@@ -12,6 +12,14 @@ describe( 'Date only filter', function(){
 			} );
 		} );
 
+		describe( 'With a GMT date string', function(){
+
+			it( 'Should return just the date', function(){
+
+				expect( dateOnly( 'Fri, 31 Mar 2017 00:00:00 GMT' ) ).toEqual( '31 March 2017' );
+			} );
+		} );
+
 		describe( 'With a UTC timestamp', function(){
 
 			it( 'Should return the correct date', function(){

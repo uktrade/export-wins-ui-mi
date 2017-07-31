@@ -38,13 +38,28 @@ module.exports = {
 		backendService.getSectorTeamInfo( req, teamId ).then( ( data ) => {
 
 			res.render( 'sector-teams/detail.html', {
-
+				teamId,
 				sectorName: ( data.wins.results.name + ' Sector Team' ),
 				summary: sectorSummary.create( data.wins ),
 				hvcSummary: hvcSummary.create( data.wins ),
 				hvcTargetPerformance: hvcTargetPerformance.create( data.campaigns ),
 				monthlyPerformance: monthlyPerformance.create( data.months ),
 				topMarkets: topMarkets.create( data.topNonHvc )
+			} );
+
+		} ).catch( renderError.createHandler( res ) );
+	},
+
+	wins: function( req, res ){
+
+		const teamId = req.params.id;
+
+		backendService.getSectorTeamWinTable( req, teamId ).then( ( data ) => {
+
+			res.render( 'sector-teams/wins.html', {
+				dateRange: data.date_range,
+				sectorTeam: data.results.sector_team,
+				wins: data.results.wins
 			} );
 
 		} ).catch( renderError.createHandler( res ) );

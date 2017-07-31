@@ -3,27 +3,34 @@ const calculateOverviewValues = require( './lib/calculate-overview-values' );
 
 module.exports = {
 
-	createIndex: function(){
+	createIndex: function( year ){
 
-		return generateSchema( '/sector_teams/index.schema' );
+		return generateSchema( '/sector_teams/index.schema', year );
 	},
 
-	createOverview: function(){
+	createOverview: function( year ){
 
-		let sectorId = 1;
-		let overview = generateSchema( '/sector_teams/overview.schema' );
+		return generateSchema( '/sector_teams/overview.schema', year ).then( ( overview ) => {
 
-		for( let sector of overview.results ){
+			let sectorId = 1;
 
-			sector.id = sectorId++; // id's need to match icon ids
-			calculateOverviewValues( sector.values );
+			for( let sector of overview.results ){
 
-			for( let hvcGroup of sector.hvc_groups ){
+				sector.id = sectorId++; // id's need to match icon ids
+				calculateOverviewValues( sector.values );
 
-				calculateOverviewValues( hvcGroup.values );
+				for( let hvcGroup of sector.hvc_groups ){
+
+					calculateOverviewValues( hvcGroup.values );
+				}
 			}
-		}
 
-		return overview;
+			return overview;
+		} );
+	},
+
+	createWinTable: function( year ){
+
+		return generateSchema( '/sector_teams/win_table.schema', year );
 	}
 };

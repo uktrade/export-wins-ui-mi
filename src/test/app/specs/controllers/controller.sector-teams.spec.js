@@ -161,6 +161,7 @@ describe( 'Sector Teams controller', function(){
 
 
 				expect( res.render ).toHaveBeenCalledWith( 'sector-teams/detail.html', {
+					teamId,
 					sectorName: ( teamInfo.wins.results.name + ' Sector Team' ),
 					summary: sectorSummaryResponse,
 					hvcSummary: hvcSummaryResponse,
@@ -169,6 +170,48 @@ describe( 'Sector Teams controller', function(){
 					topMarkets: topMarketsResponse
 				} );
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
+				done();
+			} );
+		} );
+	} );
+
+	describe( 'Wins', function(){
+
+		it( 'Should get the list of wins and render the correct view', function( done ){
+
+			const teamId = 456;
+
+			const req = {
+				cookies: { sessionid: '456' },
+				params: {
+					id: teamId
+				},
+				year
+			};
+
+			const sectorTeamWins = {
+				date_range: { start: 2, end: 3 },
+				results: {
+					sector_team: { test: 1 },
+					wins: { wins: true }
+				}
+			};
+
+			const promise = new Promise( ( resolve ) => { resolve( sectorTeamWins ); } );
+
+			backendService.getSectorTeamWinTable = spy( 'getSectorTeamWinTable', promise );
+			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
+
+			controller.wins( req, res );
+
+			promise.then( () => {
+				expect( backendService.getSectorTeamWinTable ).toHaveBeenCalledWith( req, teamId );
+				expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
+				expect( res.render ).toHaveBeenCalledWith( 'sector-teams/wins.html', {
+					dateRange: sectorTeamWins.date_range,
+					sectorTeam: sectorTeamWins.results.sector_team,
+					wins: sectorTeamWins.results.wins
+				} );
 				done();
 			} );
 		} );

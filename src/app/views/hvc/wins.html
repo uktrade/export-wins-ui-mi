@@ -3,8 +3,10 @@
 {% set pageName %}{{ hvc.name | safe }}{% endset %}
 
 {% from 'macros/dates.html' import financialYear %}
+{% from 'macros/win-tables.html' import singleWinTable %}
 
 {% block page_content %}
+
 	<h1 class="page-heading">
 		{{ hvc.name }} <span class="page-heading-secondary">HVC</span>
 	</h1>
@@ -19,16 +21,6 @@
 		</li>
 	</ul>
 
-	{%- if wins.length -%}
+	{{ singleWinTable( 'HVC', nonHvcWins = wins.hvc ) }}
 
-		<p>
-			All individual export wins recorded.
-		</p>
-		{% include 'partials/win-table.html' -%}
-
-	{%- else -%}
-
-		<p class="no-wins-message">No wins have been recored yet for this HVC.</p>
-
-	{%- endif %}
 {% endblock %}

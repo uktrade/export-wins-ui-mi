@@ -19,15 +19,6 @@ const transformHvcGroup = require( '../transformers/hvc-group' );
 const transformWinList = require( '../transformers/win-list' );
 
 
-function convertDateRange( data ){
-
-	if( data.date_range ){
-
-		data.date_range.start = ( data.date_range.start * 1000 );
-		data.date_range.end = ( data.date_range.end * 1000 );
-	}
-}
-
 function getJson( path, req, transform ){
 
 	path = `${ path }?year=${ req.year }`;
@@ -36,8 +27,6 @@ function getJson( path, req, transform ){
 
 		const response = info.response;
 		const data = info.data;
-
-		convertDateRange( data );
 
 		if( transform ){
 
@@ -155,6 +144,11 @@ function getSectorTeamTopNonHvc( req, teamId ){
 	return getJson( `/mi/sector_teams/${ teamId }/top_non_hvcs/`, req );
 }
 
+function getSectorTeamWinTable( req, teamId ){
+
+	return getJson( `/mi/sector_teams/${ teamId }/win_table/`, req, transformWinList );
+}
+
 function getSectorTeamsOverview( req ){
 
 	return getJson( '/mi/sector_teams/overview/', req, transformSectorTeamsOverview );
@@ -190,6 +184,11 @@ function getOverseasRegionCampaigns( req, regionId ){
 function getOverseasRegionTopNonHvc( req, regionId ){
 
 	return getJson( `/mi/os_regions/${ regionId }/top_non_hvcs/`, req );
+}
+
+function getOverseasRegionWinTable( req, regionId ){
+
+	return getJson( `/mi/os_regions/${ regionId }/win_table/`, req, transformWinList );
 }
 
 function getOverseasRegionsOverview( req ){
@@ -245,6 +244,11 @@ function getHvcGroupMonths( req, groupId ){
 	return getJson( `/mi/hvc_groups/${ groupId }/months/`, req, transformMonths );
 }
 
+function getHvcGroupWinTable( req, groupId ){
+
+	return getJson( `/mi/hvc_groups/${ groupId }/win_table/`, req, transformWinList );
+}
+
 
 function getWin(){
 
@@ -286,6 +290,7 @@ module.exports = {
 	getSectorTeamMonths,
 	getSectorTeamCampaigns,
 	getSectorTeamTopNonHvc,
+	getSectorTeamWinTable,
 
 	getSectorTeamInfo: function( req, teamId ){
 
@@ -313,8 +318,9 @@ module.exports = {
 	getOverseasRegionGroups,
 	getOverseasRegion,
 	getOverseasRegionMonths,
-	getOverseasRegionTopNonHvc,
 	getOverseasRegionCampaigns,
+	getOverseasRegionTopNonHvc,
+	getOverseasRegionWinTable,
 
 	getOverseasRegionInfo: function( req, regionId ){
 
@@ -403,6 +409,7 @@ module.exports = {
 	getHvcGroup,
 	getHvcGroupMonths,
 	getHvcGroupCampaigns,
+	getHvcGroupWinTable,
 
 	getHvcGroupInfo: function( req, parentId ){
 

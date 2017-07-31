@@ -159,13 +159,56 @@ describe( 'Overseas Regions controller', function(){
 				expect( topMarkets.create ).toHaveBeenCalledWith( data.topNonHvc );
 
 				expect( res.render ).toHaveBeenCalledWith( 'overseas-regions/detail.html', {
-
+					regionId,
 					regionName: data.wins.results.name,
 					summary: sectorSummaryResponse,
 					hvcSummary: hvcSummaryResponse,
 					hvcTargetPerformance: hvcTargetPerformanceResponse,
 					monthlyPerformance: monthlyPerformanceResponse,
 					topMarkets: topMarketsResponse
+				} );
+				done();
+			} );
+		} );
+	} );
+
+	describe( 'Win List', function(){
+
+		it( 'Should get the list of wins and render the correct view', function( done ){
+
+			const regionId = 890;
+
+			const req = {
+				cookies: { sessionid: '456' },
+				params: {
+					id: regionId
+				},
+				year
+			};
+
+			const regionWins = {
+				date_range: { start: 6, end: 9 },
+				results: {
+					os_region: { test: 1 },
+					wins: [ 'some wins' ]
+				}
+			};
+
+			const promise = new Promise( ( resolve ) => { resolve( regionWins ); } );
+
+			backendService.getOverseasRegionWinTable = spy( 'getOverseasRegionWinTable', promise );
+			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
+
+			controller.wins( req, res );
+
+			promise.then( () => {
+
+				expect( backendService.getOverseasRegionWinTable ).toHaveBeenCalledWith( req, regionId );
+				expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
+				expect( res.render ).toHaveBeenCalledWith( 'overseas-regions/wins.html', {
+					dateRange: regionWins.date_range,
+					region: regionWins.results.os_region,
+					wins: regionWins.results.wins
 				} );
 				done();
 			} );

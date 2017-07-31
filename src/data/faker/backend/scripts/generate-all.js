@@ -1,25 +1,29 @@
-const path = require( 'path' );
-const writeJsonFiles = require( '../../helpers/write-json-files' );
+const childProcess = require( 'child_process' );
 
-const osRegionsJson = require( './os-regions-json' );
-const osRegionGroupsJson = require( './os-regions-groups-json' );
-const sectorTeamsJson = require( './sector-teams-json' );
-const sharedJson = require( './shared-json' );
+const scripts = [
+	'generate-global-hvcs',
+	'generate-global-wins',
+	'generate-hvc-groups',
+	'generate-hvc',
+	'generate-os-region-groups',
+	'generate-os-regions',
+	'generate-sector-teams',
+	'generate-shared',
+	'generate-user'
+];
 
-const outputPath = path.resolve( __dirname, '../output/' );
+for( let script of scripts ){
 
-const jsonFiles = {
-	'os_regions/overview': osRegionsJson.createOverview(),
-	'os_regions/index': osRegionsJson.createList(),
-	'sector_teams/index': sectorTeamsJson.createIndex(),
-	'sector_teams/overview': sectorTeamsJson.createOverview(),
-	'shared/index': sharedJson.createIndex(),
-	'shared/sector': sharedJson.createSector(),
-	'shared/campaigns': sharedJson.createCampaigns(),
-	'shared/months': sharedJson.createMonths(),
-	'shared/top_non_hvcs': sharedJson.createTopNonHvcs(),
-	'os_region_groups/index.2017': osRegionGroupsJson.createList(),
-	'os_region_groups/index.2016': osRegionGroupsJson.createList()
-};
+	childProcess.exec( 'node ./' + script, { cwd: __dirname }, ( e, stdout, stderr ) => {
 
-writeJsonFiles( outputPath, jsonFiles );
+		if( e ){
+			console.log( e );
+		}
+
+		console.log( script + ': ' + stdout );
+
+		if( stderr ){
+			console.error( stderr );
+		}
+	} );
+}

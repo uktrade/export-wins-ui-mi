@@ -24,7 +24,7 @@
 			"markets": {
 				"type": "number",
 				"faker": {
-					"random.number": [ 25 ]
+					"random.number": { "max": 25 }
 				}
 			},
 			"values": {
@@ -42,25 +42,25 @@
 				"red": {
 					"type": "number",
 					"faker": {
-						"random.number": [ 25 ]
+						"random.number": { "max": 25 }
 					}
 				},
 				"amber": {
 					"type": "number",
 					"faker": {
-						"random.number": [ 25 ]
+						"random.number": { "max": 25 }
 					}
 				},
 				"green": {
 					"type": "number",
 					"faker": {
-						"random.number": [ 25 ]
+						"random.number": { "max": 25 }
 					}
 				},
 				"zero": {
 					"type": "number",
 					"faker": {
-						"random.number": [ 25 ]
+						"random.number": { "max": 25 }
 					}
 				}
 			}
@@ -81,13 +81,13 @@
 								"confirmed": {
 									"type": "number",
 									"faker": {
-										"random.number": [ 100 ]
+										"random.number": { "max" : 100 }
 									}
 								},
 								"unconfirmed": {
 									"type": "number",
 									"faker": {
-										"random.number": [ 100 ]
+										"random.number": { "max" : 100 }
 									}
 								}
 							}
@@ -117,13 +117,13 @@
 								"confirmed": {
 									"type": "number",
 									"faker": {
-										"random.number": [ 125 ]
+										"random.number": { "max" : 125 }
 									}
 								},
 								"unconfirmed": {
 									"type": "number",
 									"faker": {
-										"random.number": [ 125 ]
+										"random.number": { "max" : 125 }
 									}
 								}
 							}
@@ -141,13 +141,13 @@
 								"confirmed": {
 									"type": "number",
 									"faker": {
-										"random.number": [ 100 ]
+										"random.number": { "max" : 100 }
 									}
 								},
 								"unconfirmed": {
 									"type": "number",
 									"faker": {
-										"random.number": [ 100 ]
+										"random.number": { "max" : 100 }
 									}
 								}
 							}

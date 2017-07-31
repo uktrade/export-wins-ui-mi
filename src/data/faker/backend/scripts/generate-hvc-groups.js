@@ -6,7 +6,8 @@ const writeJsonFiles = require( '../../helpers/write-json-files' );
 let outputPath = path.resolve( __dirname, '../output/hvc_groups/' );
 
 let jsonFiles = {
-	months: hvcGroupsJson.createMonths()
+	months: hvcGroupsJson.createMonths(),
+	win_table: hvcGroupsJson.createWinTable()
 };
 
 writeJsonFiles( outputPath, jsonFiles );

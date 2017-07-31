@@ -1,0 +1,70 @@
+{% macro hvcWinTable( wins ) %}
+<div class="grid-row">
+	<div class="column-single">
+
+		<table class="win-table win-table--hvc">
+			<thead>
+				<tr class="win-table_head_row">
+					<th class="win-table_head_cell">
+						Company Name<span class="visually-hidden"> and </span>
+						<span class="win-table_head_cell_sub-heading">CDMS ref</span>
+					</th>
+					<th class="win-table_head_cell">HVC</th>
+					<th class="win-table_head_cell">Lead officer</th>
+					<th class="win-table_head_cell win-table_head_cell--credited">Credited to sector team</th>
+					<th class="win-table_head_cell win-table_head_cell--date">Win date</th>
+					<th class="win-table_head_cell">Export value</th>
+					<th class="win-table_head_cell">Status</th>
+				</tr>
+			</thead>
+			<tbody>
+			{% for win in wins %}
+
+				<tr class="win-table_body_row">
+					<td class="win-table_cell win-table_cell--company">
+						<span class="win-table_cell_company-name">{{ win.company.name }}</span>
+						<span class="win-table_cell_cdms-ref">{{ win.company.cdms_id }}</span>
+					</td>
+					<td class="win-table_cell win-table_cell--hvc">
+						<span class="win-table_cell_hvc">HVC: </span>{{ win.hvc.code }}
+						<span class="win-table_cell_hvc-name">{{ win.hvc.name }}</span>
+					</td>
+					<td class="win-table_cell win-table_cell--officer">
+						<dl class="win-table_cell_officer-details">
+							<dt class="visually-hidden">Name</dt>
+							<dd class="win-table_cell_officer-details_value">
+								{{- win.lead_officer.name -}}
+							</dd>
+
+							<dt class="visually-hidden">Role</dt>
+							<dd class="win-table_cell_officer-details_value win-table_cell_officer-details_value--sub">
+								{{- win.lead_officer.role -}}
+							</dd>
+
+							<dt class="visually-hidden">Location</dt>
+							<dd class="win-table_cell_officer-details_value win-table_cell_officer-details_value--sub">
+								{{- win.lead_officer.location -}}
+							</dd>
+						</dl>
+					</td>
+					<td class="win-table_cell win-table_cell--credited">
+						<span class="win-table_cell_credit-name win-table_cell_credit-name--{{ win.credit.modifyer }}">
+							{{- win.credit.name -}}
+						</span>
+					</td>
+					<td class="win-table_cell win-table_cell--date">{{ win.win_date | dateOnly }}</td>
+					<td class="win-table_cell win-table_cell--export">
+						&pound;{{ win.export_amount | largeNumber }}
+					</td>
+					<td class="win-table_cell win-table_cell--status win-table_cell--status-{{ win.status.modifyer }}">
+						{{- win.status.name -}}
+					</td>
+				</tr>
+
+			{% endfor %}
+			</tbody>
+		</table>
+
+	</div>
+</div>
+{% endmacro %}

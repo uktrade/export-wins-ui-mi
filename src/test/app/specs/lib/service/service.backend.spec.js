@@ -17,6 +17,7 @@ let osRegionsOverviewSpy;
 let osRegionsOverviewGroupsSpy;
 let hvcGroupSpy;
 let osRegionsSpy;
+let winListSpy;
 let backend;
 let req = {};
 
@@ -69,6 +70,7 @@ describe( 'Backend service', function(){
 			osRegionsOverviewSpy = jasmine.createSpy( 'os-regions-overview' );
 			hvcGroupSpy = jasmine.createSpy( 'hvc-group' );
 			osRegionsSpy = jasmine.createSpy( 'os-regions' );
+			winListSpy = jasmine.createSpy( 'win-list' );
 
 			backend = {
 				get: function(){},
@@ -85,6 +87,7 @@ describe( 'Backend service', function(){
 				'../transformers/os-regions-overview': osRegionsOverviewSpy,
 				'../transformers/hvc-group': hvcGroupSpy,
 				'../transformers/os-regions': osRegionsSpy,
+				'../transformers/win-list': winListSpy,
 				'../backend-request': backend
 			};
 
@@ -95,7 +98,7 @@ describe( 'Backend service', function(){
 
 			describe( 'An enpoint that has a date_range', function(){
 
-				it( 'Should convert it from seconds to milliseconds', function( done ){
+				it( 'Should pass the date_range through', function( done ){
 
 					const teamId = '3';
 
@@ -104,8 +107,8 @@ describe( 'Backend service', function(){
 					backendService.getSectorTeam( req, teamId ).then( ( data ) => {
 
 						expect( data.date_range ).toBeDefined();
-						expect( data.date_range.start ).toEqual( 1459468800 * 1000 );
-						expect( data.date_range.end ).toEqual( 1483228800 * 1000 );
+						expect( data.date_range.start ).toEqual( 'Fri, 01 Apr 2016 00:00:00 GMT' );
+						expect( data.date_range.end ).toEqual( 'Fri, 31 Mar 2017 00:00:00 GMT' );
 
 						done();
 
@@ -128,6 +131,24 @@ describe( 'Backend service', function(){
 
 					done();
 				} );
+			} );
+		} );
+
+		describe( 'Getting the sector team overview', function(){
+
+			it( 'Should use the sector teams overview transformer', function( done ){
+
+				returnStub( '/sector_teams/overview' );
+
+				backendService.getSectorTeamsOverview( req ).then( () => {
+
+					checkBackendArgs( `/mi/sector_teams/overview/?year=${ year }`, req );
+
+					expect( sectorTeamsOverviewSpy ).toHaveBeenCalled();
+					expect( sectorTeamsOverviewSpy.calls.count() ).toEqual( 1 );
+					done();
+
+				} ).catch( done.fail );
 			} );
 		} );
 
@@ -251,18 +272,57 @@ describe( 'Backend service', function(){
 			} );
 		} );
 
-		describe( 'Getting the sector team overview', function(){
+		describe( 'Getting the sector team win table', function(){
 
-			it( 'Should use the sector teams overview transformer', function( done ){
+			it( 'Should use the win list transformer', function( done ){
 
-				returnStub( '/sector_teams/overview' );
+				const teamId = '5';
+				const stubFile = '/sector_teams/win_table';
+				const transformResponse = { winListTransformer: true };
 
-				backendService.getSectorTeamsOverview( req ).then( () => {
+				returnStub( stubFile );
+				winListSpy.and.callFake( () => transformResponse );
 
-					checkBackendArgs( `/mi/sector_teams/overview/?year=${ year }`, req );
+				backendService.getSectorTeamWinTable( req, teamId ).then( ( winList ) => {
 
-					expect( sectorTeamsOverviewSpy ).toHaveBeenCalled();
-					expect( sectorTeamsOverviewSpy.calls.count() ).toEqual( 1 );
+					checkBackendArgs( `/mi/sector_teams/${ teamId }/win_table/?year=${ year }`, req );
+
+					expect( winList.results ).toEqual( transformResponse );
+					expect( winListSpy ).toHaveBeenCalledWith( getBackendStub( stubFile ).results );
+					done();
+
+				} ).catch( done.fail );
+			} );
+		} );
+
+		describe( 'Getting the Grouped overseas regions list', function(){
+
+			it( 'Should call the correct API', function( done ){
+
+				returnStub( '/os_region_groups/index.2017' );
+
+				backendService.getOverseasRegionGroups( req ).then( () => {
+
+					checkBackendArgs( `/mi/os_region_groups/?year=${ year }`, req );
+
+					done();
+
+				} ).catch( done.fail );
+			} );
+		} );
+
+		describe( 'Getting the overseas regions overview', function(){
+
+			it( 'Should use the overseas regions overview transformer', function( done ){
+
+				returnStub( '/os_regions/overview.2016' );
+
+				backendService.getOverseasRegionsOverview( req ).then( () => {
+
+					checkBackendArgs( `/mi/os_regions/overview/?year=${ year }`, req );
+
+					expect( osRegionsOverviewSpy ).toHaveBeenCalled();
+					expect( osRegionsOverviewSpy.calls.count() ).toEqual( 1 );
 					done();
 
 				} ).catch( done.fail );
@@ -280,22 +340,6 @@ describe( 'Backend service', function(){
 					checkBackendArgs( `/mi/os_regions/?year=${ year }`, req );
 
 					expect( osRegionsSpy ).not.toHaveBeenCalled();
-					done();
-
-				} ).catch( done.fail );
-			} );
-		} );
-
-		describe( 'Getting the Grouped overseas regions list', function(){
-
-			it( 'Should call the correct API', function( done ){
-
-				returnStub( '/os_region_groups/index.2017' );
-
-				backendService.getOverseasRegionGroups( req ).then( () => {
-
-					checkBackendArgs( `/mi/os_region_groups/?year=${ year }`, req );
-
 					done();
 
 				} ).catch( done.fail );
@@ -376,18 +420,23 @@ describe( 'Backend service', function(){
 			} );
 		} );
 
-		describe( 'Getting the overseas regions overview', function(){
+		describe( 'Getting the overseas region win table', function(){
 
-			it( 'Should use the overseas regions overview transformer', function( done ){
+			it( 'Should use the win list transformer', function( done ){
 
-				returnStub( '/os_regions/overview.2016' );
+				const regionId = '5';
+				const stubFile = '/os_regions/win_table';
+				const transformResponse = { winListTransformer: true };
 
-				backendService.getOverseasRegionsOverview( req ).then( () => {
+				returnStub( stubFile );
+				winListSpy.and.callFake( () => transformResponse );
 
-					checkBackendArgs( `/mi/os_regions/overview/?year=${ year }`, req );
+				backendService.getOverseasRegionWinTable( req, regionId ).then( ( winList ) => {
 
-					expect( osRegionsOverviewSpy ).toHaveBeenCalled();
-					expect( osRegionsOverviewSpy.calls.count() ).toEqual( 1 );
+					checkBackendArgs( `/mi/os_regions/${ regionId }/win_table/?year=${ year }`, req );
+
+					expect( winList.results ).toEqual( transformResponse );
+					expect( winListSpy ).toHaveBeenCalledWith( getBackendStub( stubFile ).results );
 					done();
 
 				} ).catch( done.fail );
@@ -432,19 +481,24 @@ describe( 'Backend service', function(){
 			} );
 		} );
 
-		describe( 'Getting the HVC win list', function(){
+		describe( 'Getting the HVC win table', function(){
 
 			it( 'Should return the hvc win list', function( done ){
 
 				const hvcId = 'E100';
+				const stubFile = '/hvc/win_table';
+				const transformResponse = { winListTransformer: true };
 
-				returnStub( '/hvc/win_table' );
+				returnStub( stubFile );
+				winListSpy.and.callFake( () => transformResponse );
 
 				backendService.getHvcWinList( req, hvcId ).then( ( winList ) => {
 
 					checkBackendArgs( `/mi/hvc/${ hvcId }/win_table/?year=${ year }`, req );
 
 					expect( winList ).toBeDefined();
+					expect( winList.results ).toEqual( transformResponse );
+					expect( winListSpy ).toHaveBeenCalledWith( getBackendStub( stubFile ).results );
 					done();
 
 				} ).catch( done.fail );
@@ -462,9 +516,6 @@ describe( 'Backend service', function(){
 					checkBackendArgs( `/mi/global_hvcs/?year=${ year }`, req );
 
 					const globalHvcData = getBackendStub( '/global_hvcs/' );
-
-					globalHvcData.date_range.start = ( globalHvcData.date_range.start * 1000 );
-					globalHvcData.date_range.end = ( globalHvcData.date_range.end * 1000 );
 
 					expect( hvcs ).toEqual( globalHvcData );
 					done();
@@ -484,9 +535,6 @@ describe( 'Backend service', function(){
 					checkBackendArgs( `/mi/global_wins/?year=${ year }`, req );
 
 					const globalWinsData = getBackendStub( '/global_wins/' );
-
-					globalWinsData.date_range.start = ( globalWinsData.date_range.start * 1000 );
-					globalWinsData.date_range.end = ( globalWinsData.date_range.end * 1000 );
 
 					expect( globalWins ).toEqual( globalWinsData );
 					done();
@@ -566,6 +614,29 @@ describe( 'Backend service', function(){
 
 					expect( monthsSpy ).toHaveBeenCalled();
 					expect( monthsSpy.calls.count() ).toEqual( 1 );
+					done();
+
+				} ).catch( done.fail );
+			} );
+		} );
+
+		describe( 'Getting the hvc group win table', function(){
+
+			it( 'Should use the win list transformer', function( done ){
+
+				const groupId = '5';
+				const stubFile = '/hvc_groups/win_table';
+				const transformResponse = { winListTransformer: true };
+
+				returnStub( stubFile );
+				winListSpy.and.callFake( () => transformResponse );
+
+				backendService.getHvcGroupWinTable( req, groupId ).then( ( winList ) => {
+
+					checkBackendArgs( `/mi/hvc_groups/${ groupId }/win_table/?year=${ year }`, req );
+
+					expect( winList.results ).toEqual( transformResponse );
+					expect( winListSpy ).toHaveBeenCalledWith( getBackendStub( stubFile ).results );
 					done();
 
 				} ).catch( done.fail );

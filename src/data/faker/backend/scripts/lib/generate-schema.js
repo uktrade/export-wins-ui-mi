@@ -1,37 +1,65 @@
+const path = require( 'path' );
 const jsf = require( 'json-schema-faker' );
+const faker = require( 'faker/locale/en' );
 
-const schemaPath = '../../../../schema/backend';
+const SCHEMA_PATH = '../../../../schema/backend';
+const REF_PATH = path.resolve( __dirname, SCHEMA_PATH );
+
+jsf.extend( 'faker', () => faker );
 
 function getTime( dateStr ){
 
 	const date = new Date( dateStr );
 
-	return ( date.getTime() / 1000 );
+	return date.toGMTString();
 }
 
-function createWrapper( results, hasDateRange ){
+function getEndDate( endDate ){
+
+	const [ endYear, endMonth, endDay ] = endDate.split( '-' );
+	const now = new Date();
+	const year = now.getFullYear();
+	const month = ( now.getMonth() + 1 );
+	const day = now.getDate();
+
+	if( endYear > year || ( endYear >= year && month < endMonth || ( Number( month ) === endMonth && day < endDay ) ) ){
+
+		return [ year, month, day ].join( '-' );
+
+	} else {
+
+		return endDate;
+	}
+}
+
+function createWrapper( results, year, hasDateRange ){
+
+	const nextYear = ( year + 1 );
 
 	const wrapper = {
 		timestamp: Date.now(),
 		financial_year: {
-			id: 2016,
-			description: '2016-17'
+			id: year,
+			description: `${ year }-${ nextYear }`
 		},
 		results
 	};
 
 	if( hasDateRange ){
 
+		const startDate = `${ year }-04-01`;
+		const endDate = getEndDate( `${ nextYear }-03-31` );
+
 		wrapper.date_range = {
-			start: getTime( '2016-04-01' ),
-			end: getTime( '2017-01-01' )
+			start: getTime( startDate ),
+			end: getTime( endDate )
 		};
 	}
 
 	return wrapper;
 }
 
-module.exports = function( path ){
+module.exports = function( path, year = 2016 ){
 
 	let hasDateRange = true;
 	let hasWrapper = true;
@@ -42,8 +70,8 @@ module.exports = function( path ){
 		break;
 	}
 
-	const result = require( schemaPath + path );
-	const json = jsf( result );
+	const result = require( SCHEMA_PATH + path );
+	const promise = jsf.resolve( result, REF_PATH );
 
 	if( hasWrapper ){
 
@@ -56,10 +84,10 @@ module.exports = function( path ){
 			break;
 		}
 
-		return createWrapper( json, hasDateRange );
+		return promise.then( ( json ) => createWrapper( json, year, hasDateRange ) );
 
 	} else {
 
-		return json;
+		return promise;
 	}
 };

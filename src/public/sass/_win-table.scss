@@ -27,6 +27,7 @@ $win-table-cell-padding: 5;
 	font-size: 95%;
 }
 
+.win-table_head_cell--credited,
 .win-table_head_cell--date {
 	text-align: center;
 }
@@ -42,36 +43,78 @@ $win-table-cell-padding: 5;
 	padding: pem( 8 ) pem( $win-table-cell-padding );
 }
 
-.win-table_cell--company {
-	width: 30%;
+.win-table--hvc {
+
+	.win-table_cell--company {
+		width: 18%;
+	}
+
+	.win-table_cell--hvc {
+		width: 22%;
+	}
+
+	.win-table_cell--officer {
+		width: 15%;
+	}
+
+	.win-table_cell--credited {
+		width: 10%;
+	}
+
+	.win-table_cell--date {
+		width: 14%;
+	}
+
+	.win-table_cell--export {
+		width: 10%;
+	}
+
+	.win-table_cell--status {
+		width: 11%;
+	}
 }
 
-/* .win-table_cell--hvc {
-	width: 23%;
-} */
+.win-table--non-hvc {
 
-.win-table_cell--officer {
-	width: 18%;
+	.win-table_cell--company {
+		width: 28%;
+	}
+
+	.win-table_cell--officer {
+		width: 23%;
+	}
+
+	.win-table_cell--credited {
+		width: 12%;
+	}
+
+	.win-table_cell--date {
+		width: 16%;
+	}
+
+	.win-table_cell--export {
+		width: 10%;
+	}
+
+	.win-table_cell--status {
+		width: 11%;
+	}
 }
+
+
 
 .win-table_cell--credited {
 	text-align: center;
-	width: 10%;
 }
 
 .win-table_cell--date {
-	width: 14%;
 	font-size: 90%;
+	text-align: center;
 }
 
 .win-table_cell--export {
-	width: 10%;
 	font-size: 95%;
 	font-weight: bold;
-}
-
-.win-table_cell--status {
-	width: 18%;
 }
 
 .win-table_cell_company-name {
@@ -85,15 +128,15 @@ $win-table-cell-padding: 5;
 	@include core-14;
 }
 
-/* .win-table_cell_hvc {
+.win-table_cell_hvc {
 	color: $grey-1;
 	@include bold-16;
-} */
+}
 
-/* .win-table_cell_hvc-name {
+.win-table_cell_hvc-name {
 	display: block;
 	padding-top: pem( 5 );
-} */
+}
 
 .win-table_cell_officer-details {
 	margin: 0;

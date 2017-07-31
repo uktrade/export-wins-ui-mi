@@ -2,8 +2,13 @@ const generateSchema = require( './lib/generate-schema' );
 
 module.exports = {
 
-	createHvcs: function(){
+	createHvcs: function( year ){
 
-		return generateSchema( '/global_hvcs/index.schema' );
+		return generateSchema( '/global_hvcs/index.schema', year ).then( ( hvcs ) => {
+
+			hvcs.results.forEach( ( hvc ) => hvc.code = ( 'E' + hvc.code ) );
+
+			return hvcs;
+		} );
 	}
 };

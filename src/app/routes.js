@@ -19,16 +19,19 @@ module.exports = function( express, app, isDev ){
 	app.get( '/sector-teams/', user, sectorTeamController.list );
 	app.get( '/sector-teams/overview/', user, sectorTeamController.overview );
 	app.get( '/sector-teams/:id', user, linkHvc, sectorTeamController.team );
+	app.get( '/sector-teams/:id/wins/', user, sectorTeamController.wins );
 
 	app.get( '/overseas-regions/', user, regionController.list );
 	app.get( '/overseas-regions/overview/', user, regionController.overview );
 	app.get( '/overseas-regions/:id', user, linkHvc, regionController.region );
+	app.get( '/overseas-regions/:id/wins/', user, regionController.wins );
 
 	app.get( '/hvc/:id', user, hvcController.hvc );
 	app.get( '/hvc/:id/wins', user, hvcController.winList );
 
 	app.get( '/hvc-groups/', user, hvcGroupController.list );
 	app.get( '/hvc-groups/:id', user, linkHvc, hvcGroupController.group );
+	app.get( '/hvc-groups/:id/wins', user, hvcGroupController.wins );
 
 	if( config.backend.mock ){
 
