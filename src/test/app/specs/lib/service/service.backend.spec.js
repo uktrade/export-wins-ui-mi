@@ -96,7 +96,7 @@ describe( 'Backend service', function(){
 
 		describe( 'The date_range', function(){
 
-			describe( 'An enpoint that has a date_range', function(){
+			describe( 'An endpoint that has a date_range', function(){
 
 				it( 'Should pass the date_range through', function( done ){
 
@@ -116,7 +116,7 @@ describe( 'Backend service', function(){
 				} );
 			} );
 
-			describe( 'An enpoint the does not have a date_range', function(){
+			describe( 'An endpoint the does not have a date_range', function(){
 
 				it( 'Should do nothing', function( done ){
 
@@ -130,6 +130,47 @@ describe( 'Backend service', function(){
 					} ).catch( done.fail );
 
 					done();
+				} );
+			} );
+		} );
+
+		describe( 'Passing a date to the backend', function(){
+
+			describe( 'When there is a date[start] in the req', function(){
+
+				it( 'Should pass send the start_date param', function( done ){
+
+					const startDate = '2017-06-16';
+
+					req.dateRange = { start: startDate };
+
+					returnStub( '/os_regions/' );
+
+					backendService.getOverseasRegions( req ).then( () => {
+
+						checkBackendArgs( `/mi/os_regions/?year=${ year }&date_start=${ startDate }`, req );
+						done();
+
+					} ).catch( done.fail );
+				} );
+			} );
+
+			describe( 'When there is a date[end] in the req', function(){
+
+				it( 'Should pass send the end_date param', function( done ){
+
+					const endDate = '2017-06-16';
+
+					req.dateRange = { end: endDate };
+
+					returnStub( '/os_regions/' );
+
+					backendService.getOverseasRegions( req ).then( () => {
+
+						checkBackendArgs( `/mi/os_regions/?year=${ year }&date_end=${ endDate }`, req );
+						done();
+
+					} ).catch( done.fail );
 				} );
 			} );
 		} );

@@ -8,10 +8,13 @@ const winController =  require( './controllers/controller.win' );
 const hvcController = require( './controllers/controller.hvc' );
 
 const createUserMiddleware = require( './lib/middleware/user' );
+const dateRange = require( './lib/middleware/date-range' );
 
 module.exports = function( express, app, isDev ){
 
 	const user = createUserMiddleware( isDev );
+
+	app.use( dateRange );
 
 	app.get( '/', user, indexController );
 

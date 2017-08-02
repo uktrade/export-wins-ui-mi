@@ -19,6 +19,9 @@ describe( 'Globals middleware', function(){
 		env = {
 			addGlobal: jasmine.createSpy( 'env.addGlobal' )
 		};
+		req = {
+			url: '/'
+		};
 		res = {};
 
 		globalMiddleware = middleware( env );
@@ -31,10 +34,8 @@ describe( 'Globals middleware', function(){
 
 			beforeEach( function(){
 
-				req = {
-					year: '2017',
-					isDefaultYear: true
-				};
+				req.year ='2017';
+				req.isDefaultYear = true;
 
 				globalMiddleware( req, res, next );
 			} );
@@ -60,10 +61,9 @@ describe( 'Globals middleware', function(){
 
 			beforeEach( function(){
 
-				req = {
-					year: '2016',
-					isDefaultYear: false
-				};
+				req.year = '2016';
+				req.isDefaultYear = false;
+
 				globalMiddleware( req, res, next );
 			} );
 
@@ -94,18 +94,90 @@ describe( 'Globals middleware', function(){
 
 	describe( 'currentUrl', function(){
 
-		it( 'Should add the current url to the page', function(){
+		describe( 'When the URL has no query params', function(){
 
-			req = {
-				url: '/my/test/url'
-			};
+			it( 'Should add the current url to the page', function(){
 
-			globalMiddleware( req, res, next );
+				req.url = '/my/test/url';
 
-			const args = env.addGlobal.calls.argsFor( 2 );
+				globalMiddleware( req, res, next );
+
+				const args = env.addGlobal.calls.argsFor( 2 );
 
 				expect( args[ 0 ] ).toEqual( 'currentUrl' );
 				expect( args[ 1 ] ).toEqual( req.url );
+			} );
+		} );
+
+		describe( 'When the URL has query params', function(){
+
+			it( 'Should remove the query params', function(){
+
+				req.url = '/my/url/?test=1&a=2';
+
+				globalMiddleware( req, res, next );
+
+				const args = env.addGlobal.calls.argsFor( 2 );
+
+				expect( args[ 1 ] ).toEqual( '/my/url/' );
+			} );
+		} );
+	} );
+
+	describe( 'addParams', function(){
+
+		function getAddParams(){
+
+			globalMiddleware( req, res, next );
+
+			return env.addGlobal.calls.argsFor( 3 )[ 1 ];
+		}
+
+		it( 'Should add the function to the global', function(){
+
+			globalMiddleware( req, res, next );
+
+			const args = env.addGlobal.calls.argsFor( 3 );
+
+			expect( args[ 0 ] ).toEqual( 'addParams' );
+			expect( typeof args[ 1 ] ).toEqual( 'function' );
+		} );
+
+		describe( 'When there are filter params', function(){
+
+			it( 'Should add the params to the path', function(){
+
+				req.filters = { test: 1 };
+
+				const addParams =getAddParams();
+
+				expect( addParams( '/' ) ).toEqual( '/?test=1' );
+			} );
+		} );
+
+		describe( 'When there are additonal params', function(){
+
+			describe( 'When it is only additonal params', function(){
+
+				it( 'Should add just the addional params to the path', function(){
+
+					const addParams = getAddParams();
+
+					expect( addParams( '/', { a: 1 }, { b: 2 } ) ).toEqual( '/?a=1&b=2' );
+				} );
+			} );
+
+			describe( 'When ther are additonal params and filter params', function(){
+
+				it( 'Should add all the params to the path', function(){
+
+					req.filters = { test: 1 };
+
+					const addParams = getAddParams();
+
+					expect( addParams( '/a/b/', { c: 2, d: 3 } ) ).toEqual( '/a/b/?test=1&c=2&d=3' );
+				} );
+			} );
 		} );
 	} );
 } );

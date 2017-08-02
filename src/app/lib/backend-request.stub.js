@@ -16,41 +16,41 @@ const response = { statusCode: 200, isSuccess: true, elapsedTime: 0 };
 
 const stubs = [
 
-	[ /^\/mi\/sector_teams\/overview\/(\?year=[0-9]+)?$/, 'sector_teams/overview'  ],
-	[ /^\/mi\/sector_teams\/[0-9]+\/top_non_hvcs\/(\?year=[0-9]+)?$/, 'sector_teams/top_non_hvcs'  ],
-	[ /^\/mi\/sector_teams\/[0-9]+\/campaigns\/(\?year=[0-9]+)?$/, 'sector_teams/campaigns'  ],
-	[ /^\/mi\/sector_teams\/[0-9]+\/months\/(\?year=[0-9]+)?$/, 'sector_teams/months'  ],
-	[ /^\/mi\/sector_teams\/[0-9]+\/win_table\/(\?year=[0-9]+)?$/, 'sector_teams/win_table'  ],
-	[ /^\/mi\/sector_teams\/[0-9]+\/(\?year=[0-9]+)?$/, 'sector_teams/sector_team'  ],
-	[ /^\/mi\/sector_teams\/(\?year=[0-9]+)?$/, 'sector_teams/index'  ],
+	[ /^\/mi\/sector_teams\/overview\/(\?year=[0-9]+(&date_(start|end)=.+)?)?$/, 'sector_teams/overview'  ],
+	[ /^\/mi\/sector_teams\/[0-9]+\/top_non_hvcs\/(\?year=[0-9]+(&date_(start|end)=.+)?)?$/, 'sector_teams/top_non_hvcs'  ],
+	[ /^\/mi\/sector_teams\/[0-9]+\/campaigns\/(\?year=[0-9]+(&date_(start|end)=.+)?)?$/, 'sector_teams/campaigns'  ],
+	[ /^\/mi\/sector_teams\/[0-9]+\/months\/(\?year=[0-9]+(&date_(start|end)=.+)?)?$/, 'sector_teams/months'  ],
+	[ /^\/mi\/sector_teams\/[0-9]+\/win_table\/(\?year=[0-9]+(&date_(start|end)=.+)?)?$/, 'sector_teams/win_table'  ],
+	[ /^\/mi\/sector_teams\/[0-9]+\/(\?year=[0-9]+(&date_(start|end)=.+)?)?$/, 'sector_teams/sector_team'  ],
+	[ /^\/mi\/sector_teams\/(\?year=[0-9]+(&date_(start|end)=.+)?)?$/, 'sector_teams/index'  ],
 
-	[ /^\/mi\/os_regions\/[0-9]+\/top_non_hvcs\/(\?year=[0-9]+)?$/, 'os_regions/top_non_hvcs'  ],
-	[ /^\/mi\/os_regions\/[0-9]+\/campaigns\/(\?year=[0-9]+)?$/, 'os_regions/campaigns'  ],
-	[ /^\/mi\/os_regions\/[0-9]+\/months\/(\?year=[0-9]+)?$/, 'os_regions/months'  ],
-	[ /^\/mi\/os_regions\/[0-9]+\/win_table\/(\?year=[0-9]+)?$/, 'os_regions/win_table'  ],
-	[ /^\/mi\/os_regions\/[0-9]+\/(\?year=[0-9]+)?$/, 'os_regions/region'  ],
-	[ /^\/mi\/os_regions\/(\?year=[0-9]+)?$/, 'os_regions/index'  ],
-	[ /^\/mi\/os_regions\/overview\/(\?year=[0-9]+)$/, 'os_regions/overview'  ],
+	[ /^\/mi\/os_regions\/[0-9]+\/top_non_hvcs\/(\?year=[0-9]+(&date_(start|end)=.+)?)?$/, 'os_regions/top_non_hvcs'  ],
+	[ /^\/mi\/os_regions\/[0-9]+\/campaigns\/(\?year=[0-9]+(&date_(start|end)=.+)?)?$/, 'os_regions/campaigns'  ],
+	[ /^\/mi\/os_regions\/[0-9]+\/months\/(\?year=[0-9]+(&date_(start|end)=.+)?)?$/, 'os_regions/months'  ],
+	[ /^\/mi\/os_regions\/[0-9]+\/win_table\/(\?year=[0-9]+(&date_(start|end)=.+)?)?$/, 'os_regions/win_table'  ],
+	[ /^\/mi\/os_regions\/[0-9]+\/(\?year=[0-9]+(&date_(start|end)=.+)?)?$/, 'os_regions/region'  ],
+	[ /^\/mi\/os_regions\/(\?year=[0-9]+(&date_(start|end)=.+)?)?$/, 'os_regions/index'  ],
+	[ /^\/mi\/os_regions\/overview\/(\?year=[0-9]+(&date_(start|end)=.+)?)?$/, 'os_regions/overview'  ],
 
-	[ /^\/mi\/os_region_groups\/(\?year=[0-9]+)$/, 'os_region_groups/index'  ],
+	[ /^\/mi\/os_region_groups\/(\?year=[0-9]+(&date_(start|end)=.+)?)?$/, 'os_region_groups/index'  ],
 
-	[ /^\/mi\/hvc_groups\/(\?year=[0-9]+)?$/, 'hvc_groups/index'  ],
-	[ /^\/mi\/hvc_groups\/[0-9]+\/(\?year=[0-9]+)?$/, 'hvc_groups/group'  ],
-	[ /^\/mi\/hvc_groups\/[0-9]+\/campaigns\/(\?year=[0-9]+)?$/, 'hvc_groups/campaigns'  ],
-	[ /^\/mi\/hvc_groups\/[0-9]+\/months\/(\?year=[0-9]+)?$/, 'hvc_groups/months' ],
-	[ /^\/mi\/hvc_groups\/[0-9]+\/win_table\/(\?year=[0-9]+)?$/, 'hvc_groups/win_table' ],
+	[ /^\/mi\/hvc_groups\/(\?year=[0-9]+(&date_(start|end)=.+)?)?$/, 'hvc_groups/index'  ],
+	[ /^\/mi\/hvc_groups\/[0-9]+\/(\?year=[0-9]+(&date_(start|end)=.+)?)?$/, 'hvc_groups/group'  ],
+	[ /^\/mi\/hvc_groups\/[0-9]+\/campaigns\/(\?year=[0-9]+(&date_(start|end)=.+)?)?$/, 'hvc_groups/campaigns'  ],
+	[ /^\/mi\/hvc_groups\/[0-9]+\/months\/(\?year=[0-9]+(&date_(start|end)=.+)?)?$/, 'hvc_groups/months' ],
+	[ /^\/mi\/hvc_groups\/[0-9]+\/win_table\/(\?year=[0-9]+(&date_(start|end)=.+)?)?$/, 'hvc_groups/win_table' ],
 
-	[ /^\/mi\/hvc\/[^/]+?\/(\?year=[0-9]+)?$/, 'hvc/hvc' ],
-	[ /^\/mi\/hvc\/[^/]+?\/top_wins\/(\?year=[0-9]+)?$/, 'hvc/top_wins' ],
-	[ /^\/mi\/hvc\/[^/]+?\/win_table\/(\?year=[0-9]+)?$/, 'hvc/win_table' ],
+	[ /^\/mi\/hvc\/[^/]+?\/(\?year=[0-9]+(&date_(start|end)=.+)?)?$/, 'hvc/hvc' ],
+	[ /^\/mi\/hvc\/[^/]+?\/top_wins\/(\?year=[0-9]+(&date_(start|end)=.+)?)?$/, 'hvc/top_wins' ],
+	[ /^\/mi\/hvc\/[^/]+?\/win_table\/(\?year=[0-9]+(&date_(start|end)=.+)?)?$/, 'hvc/win_table' ],
 
-	[ /^\/mi\/global_hvcs\/(\?year=[0-9]+)?$/, 'global_hvcs/index' ],
-	[ /^\/mi\/global_wins\/(\?year=[0-9]+)?$/, 'global_wins/index' ],
+	[ /^\/mi\/global_hvcs\/(\?year=[0-9]+(&date_(start|end)=.+)?)?$/, 'global_hvcs/index' ],
+	[ /^\/mi\/global_wins\/(\?year=[0-9]+(&date_(start|end)=.+)?)?$/, 'global_wins/index' ],
 
 	[ /^\/user\/me\/$/, 'user/me' ]
 ];
 
-const urlYear = /\?year=([0-9]+)$/;
+const urlYear = /\?year=([0-9]+)/;
 
 //ensure that we don't return a modified response
 function getStub( path ){

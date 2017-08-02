@@ -1,9 +1,9 @@
 {% extends 'layout.html' %}
 
 {% set pageName %}Sector Team - {{ sectorTeam.name | safe }}{% endset %}
-{% from 'macros/win-tables.html' import winTables %}
- 
+
 {% from 'macros/dates.html' import financialYear %}
+{% from 'macros/win-tables.html' import winTables %}
 
 {% block page_content %}
 
@@ -23,5 +23,5 @@
 	</ul>
 
 	{{ winTables( 'Sector Team', wins ) }}
-	
+
 {% endblock %}
