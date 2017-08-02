@@ -34,12 +34,28 @@ describe( 'Backend stub', function(){
 
 	function checkMultipleYears( urlPath, stubPath, done ){
 
+		const totalRequests = ( years.length + 3 );
+		let reqests = 0;
+
+		function complete(){
+
+			reqests++;
+
+			if( reqests === totalRequests ){
+
+				done();
+			}
+		}
+
 		for( let year of years ){
 
 			// console.log( `${ urlPath }?year=${ year }`, `${ stubPath }.${ year }` );
-
-			checkStub( `${ urlPath }?year=${ year }`, `${ stubPath }.${ year }`, done );
+			checkStub( `${ urlPath }?year=${ year }`, `${ stubPath }.${ year }`, complete );
 		}
+
+		checkStub( `${ urlPath }?year=2016&date_start=2016-05-01`, `${ stubPath }.2016`, complete );
+		checkStub( `${ urlPath }?year=2016&date_end=2016-06-01`, `${ stubPath }.2016`, complete );
+		checkStub( `${ urlPath }?year=2016&date_start=2016-07-01&date_end=2016-09-01`, `${ stubPath }.2016`, complete );
 	}
 
 	describe( 'User', function(){
@@ -216,7 +232,7 @@ describe( 'Backend stub', function(){
 
 			it( 'Should return the overview', function( done ){
 
-					checkMultipleYears( '/mi/os_regions/overview/', '/os_regions/overview', done );
+				checkMultipleYears( '/mi/os_regions/overview/', '/os_regions/overview', done );
 			} );
 		} );
 	} );
@@ -227,7 +243,7 @@ describe( 'Backend stub', function(){
 
 			it( 'Should return the groups', function( done ){
 
-					checkMultipleYears( '/mi/os_region_groups/', '/os_region_groups/index', done );
+				checkMultipleYears( '/mi/os_region_groups/', '/os_region_groups/index', done );
 			} );
 		} );
 	} );

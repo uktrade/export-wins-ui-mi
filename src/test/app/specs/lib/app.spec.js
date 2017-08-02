@@ -76,6 +76,44 @@ describe( 'App', function(){
 					done();
 				} );
 			} );
+
+			describe( 'With a start date', function(){
+
+				it( 'Should return the correct data', function( done ){
+
+					returnUser();
+					interceptBackend.getStub( '/mi/sector_teams/?year=2017&date_start=1234', 200, '/sector_teams/' );
+					interceptBackend.getStub( '/mi/os_region_groups/?year=2017&date_start=1234', 200, '/os_region_groups/index.2017' );
+					interceptBackend.getStub( '/mi/global_hvcs/?year=2017&date_start=1234', 200, '/global_hvcs/' );
+					interceptBackend.getStub( '/mi/global_wins/?year=2017&date_start=1234', 200, '/global_wins/' );
+
+					supertest( app ).get( '/?date[start]=1234' ).end( ( err, res ) => {
+
+						checkResponse( res, 200 );
+						expect( getTitle( res ) ).toEqual( 'MI - Homepage' );
+						done();
+					} );
+				} );
+			} );
+
+			describe( 'With an end date', function(){
+
+				it( 'Should return the correct data', function( done ){
+
+					returnUser();
+					interceptBackend.getStub( '/mi/sector_teams/?year=2017&date_end=6789', 200, '/sector_teams/' );
+					interceptBackend.getStub( '/mi/os_region_groups/?year=2017&date_end=6789', 200, '/os_region_groups/index.2017' );
+					interceptBackend.getStub( '/mi/global_hvcs/?year=2017&date_end=6789', 200, '/global_hvcs/' );
+					interceptBackend.getStub( '/mi/global_wins/?year=2017&date_end=6789', 200, '/global_wins/' );
+
+					supertest( app ).get( '/?date[end]=6789' ).end( ( err, res ) => {
+
+						checkResponse( res, 200 );
+						expect( getTitle( res ) ).toEqual( 'MI - Homepage' );
+						done();
+					} );
+				} );
+			} );
 		} );
 
 		describe( 'When one of the APIs returns a status of 500', function(){

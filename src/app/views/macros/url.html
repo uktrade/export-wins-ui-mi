@@ -2,56 +2,60 @@
 	{{- urlPrefix }}{{ path }}
 {%- endmacro %}
 
+{% macro filteredUrl( path ) %}
+	{{- urlPrefix }}{{ addParams( path ) }}
+{%- endmacro %}
+
 {% macro index() %}
-	{{- url( '/' ) }}
+	{{- filteredUrl( '/' ) }}
 {%- endmacro %}
 
 {% macro year( fy, yr ) %}
 	{%- if fy == yr %}
-		{{- url( '/' ) }}
+		{{- filteredUrl( '/' ) }}
 	{%- else %}
-		{{- url( '/' + yr + '/' ) }}
+		{{- filteredUrl( '/' + yr + '/' ) }}
 	{%- endif %}
 {%- endmacro %}
 
 {% macro sectorTeamsOverview() %}
-	{{- url( '/sector-teams/overview/' ) }}
+	{{- filteredUrl( '/sector-teams/overview/' ) }}
 {%- endmacro %}
 
 {% macro sectorTeam( teamId ) %}
-	{{- urlPrefix }}/sector-teams/{{ teamId }}/
+	{{- filteredUrl( '/sector-teams/' + teamId + '/' ) }}
 {%- endmacro %}
 
 {% macro sectorTeamWins( teamId ) %}
-	{{- urlPrefix }}/sector-teams/{{ teamId }}/wins/
+	{{- filteredUrl( '/sector-teams/' + teamId + '/wins/' ) }}
 {%- endmacro %}
 
 {% macro hvcGroup( groupId ) %}
-	{{- urlPrefix }}/hvc-groups/{{ groupId }}/
+	{{- filteredUrl( '/hvc-groups/' + groupId + '/' ) }}
 {%- endmacro %}
 
 {% macro hvcGroupWins( groupId ) %}
-	{{- urlPrefix }}/hvc-groups/{{ groupId }}/wins/
+	{{- filteredUrl( '/hvc-groups/' + groupId + '/wins/' ) }}
 {%- endmacro %}
 
 {% macro osRegionsOverview() %}
-	{{- url( '/overseas-regions/overview/' ) }}
+	{{- filteredUrl( '/overseas-regions/overview/' ) }}
 {%- endmacro %}
 
 {% macro osRegion( regionId ) %}
-	{{- urlPrefix }}/overseas-regions/{{ regionId }}/
+	{{- filteredUrl( '/overseas-regions/' + regionId + '/' ) }}
 {%- endmacro %}
 
 {% macro osRegionWins( regionId ) %}
-	{{- urlPrefix }}/overseas-regions/{{ regionId }}/wins/
+	{{- filteredUrl( '/overseas-regions/' + regionId + '/wins/' ) }}
 {%- endmacro %}
 
 {% macro hvc( hvcId ) %}
-	{{- urlPrefix }}/hvc/{{ hvcId }}/
+	{{- filteredUrl( '/hvc/' + hvcId + '/' ) }}
 {%- endmacro %}
 
 {% macro hvcWins( hvcId ) %}
-	{{- urlPrefix }}/hvc/{{ hvcId }}/wins/
+	{{- filteredUrl( '/hvc/' + hvcId + '/wins/' ) }}
 {%- endmacro %}
 
 {% macro email() -%}

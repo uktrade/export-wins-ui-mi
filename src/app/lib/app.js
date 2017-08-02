@@ -72,11 +72,11 @@ module.exports = {
 		app.use( cookieParser() );
 		app.use( headers( isDev ) );
 		app.use( ping );
+		app.use( year );
+		app.use( globals( nunjucksEnv ) );
 		app.get( '/saml2/metadata/', samlController.metadata );
 		app.post( '/saml2/acs/', data, samlController.acs );
 		app.get( '/login/', loginController );
-		app.use( year );
-		app.use( globals( nunjucksEnv ) );
 
 		routes( express, app, isDev );
 

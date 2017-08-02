@@ -19,9 +19,30 @@ const transformHvcGroup = require( '../transformers/hvc-group' );
 const transformWinList = require( '../transformers/win-list' );
 
 
+function addParamsFromReq( path, req ){
+
+	const params = [ `year=${ req.year }` ];
+	const dateRange = req.dateRange;
+
+	if( dateRange ){
+
+		if( dateRange.start ){
+
+			params.push( `date_start=${ dateRange.start }` );
+		}
+
+		if( dateRange.end ){
+
+			params.push( `date_end=${ dateRange.end }` );
+		}
+	}
+
+	return ( path + '?' + params.join( '&' ) );
+}
+
 function getJson( path, req, transform ){
 
-	path = `${ path }?year=${ req.year }`;
+	path = addParamsFromReq( path, req );
 
 	return sessionGet( path, req ).then( ( info ) => {
 
