@@ -1,3 +1,4 @@
+const MAX_CDMS_ID_LENGTH = 24;
 
 function createCredit( win, name, modifyer ){
 
@@ -7,6 +8,16 @@ function createCredit( win, name, modifyer ){
 function createStatus( win, name, modifyer ){
 
 	win.status = { name, modifyer };
+}
+
+function truncate( str, maxLength ){
+
+	if( str.length > maxLength ){
+
+		return ( str.substr( 0, maxLength ) + '...' );
+	}
+
+	return str;
 }
 
 function checkHvcName( win ){
@@ -48,6 +59,8 @@ function transformWin( win ){
 			createStatus( win, 'Rejected', 'rejected' );
 		break;
 	}
+
+	win.company.truncated_cdms_id = truncate( win.company.cdms_id, MAX_CDMS_ID_LENGTH );
 
 	if( win.hvc ){
 

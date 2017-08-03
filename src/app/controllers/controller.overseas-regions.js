@@ -8,6 +8,24 @@ const hvcSummary = require( '../lib/view-models/sector-hvc-summary' );
 const topMarkets = require( '../lib/view-models/top-markets' );
 const monthlyPerformance = require( '../lib/view-models/monthly-performance' );
 
+function getWins( view ){
+
+	return function( req, res ){
+
+		const regionId = req.params.id;
+
+		backendService.getOverseasRegionWinTable( req, regionId ).then( ( data ) => {
+
+			res.render( view, {
+				dateRange: data.date_range,
+				region: data.results.os_region,
+				wins: data.results.wins
+			} );
+
+		} ).catch( renderError.createHandler( res ) );
+	};
+}
+
 module.exports = {
 
 	overview: function( req, res ){
@@ -50,18 +68,6 @@ module.exports = {
 		} ).catch( renderError.createHandler( res ) );
 	},
 
-	wins: function( req, res ){
-
-		const regionId = req.params.id;
-
-		backendService.getOverseasRegionWinTable( req, regionId ).then( ( data ) => {
-
-			res.render( 'overseas-regions/wins.html', {
-				dateRange: data.date_range,
-				region: data.results.os_region,
-				wins: data.results.wins
-			} );
-
-		} ).catch( renderError.createHandler( res ) );
-	}
+	wins: getWins( 'overseas-regions/wins.html' ),
+	nonHvcWins: getWins( 'overseas-regions/non-hvc-wins.html' )
 };

@@ -1,9 +1,10 @@
 {% extends 'layout.html' %}
 
-{% set pageName %}Overseas Region - {{ region.name | safe }}{% endset %}
+{% set pageName %}Overseas region HVC wins - {{ region.name | safe }}{% endset %}
 
 {% from 'macros/dates.html' import financialYear %}
-{% from 'macros/win-tables.html' import winTables %}
+{% from 'macros/win-tables.html' import singleWinTable %}
+{% from 'macros/os-regions-tabs.html' import tabs %}
 
 {% block page_content %}
 
@@ -13,15 +14,8 @@
 	{% include 'partials/year-selector.html' %}
 	<h2 class="page-date page-date--hvc">{{ financialYear( dateRange ) }}</h2>
 
-	<ul class="page-tabs">
-		<li class="page-tabs_tab">
-			<a class="page-tabs_tab_text" href="{{ urls.osRegion( region.id ) }}">Performance</a>
-		</li>
-		<li class="page-tabs_tab page-tabs_tab--active">
-			<span class="page-tabs_tab_text">Individual wins</span>
-		</li>
-	</ul>
+	{{ tabs( region.id, hvcWins = true ) }}
 
-	{{ winTables( 'Overseas Region', wins ) }}
+	{{ singleWinTable( 'Overseas Region', hvcWins = wins.hvc ) }}
 
 {% endblock %}

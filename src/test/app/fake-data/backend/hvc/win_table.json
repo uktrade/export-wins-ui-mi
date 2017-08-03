@@ -31,7 +31,7 @@
                "status": "customer_rejected",
                "company": {
                   "name": "Hilpert LLC",
-                  "cdms_id": "84735"
+                  "cdms_id": "some massive long id that should be truncted because it's too long"
                },
                "export_amount": 700948735.96,
                "credit": true,

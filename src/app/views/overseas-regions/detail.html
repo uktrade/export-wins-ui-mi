@@ -1,15 +1,20 @@
 {% extends 'sector/detail.html' %}
 
-{% set pageName %}Overseas Region - {{ regionName | safe  }}{% endset %}
+{% from 'macros/os-regions-tabs.html' import tabs %}
+
+{% set pageName %}Overseas region performance - {{ regionName | safe  }}{% endset %}
 {% set sectorName %}{{ regionName | safe }}{% endset %}
 
+{% block page_content %}
+
+	<h1 class="page-heading">
+		{{ regionName }} <span class="page-heading-secondary">Overseas Region</span>
+	</h1>
+
+	{{- super() -}}
+
+{% endblock %}
+
 {% block page_tabs %}
-	<ul class="page-tabs">
-		<li class="page-tabs_tab page-tabs_tab--active">
-			<span class="page-tabs_tab_text">Performance</span>
-		</li>
-		<li class="page-tabs_tab">
-			<a class="page-tabs_tab_text" href="{{ urls.osRegionWins( regionId ) }}">Individual wins</a>
-		</li>
-	</ul>
+	{{ tabs( regionId, performance = true ) }}
 {% endblock %}

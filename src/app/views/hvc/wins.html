@@ -1,9 +1,10 @@
 {% extends 'layout.html' %}
 
-{% set pageName %}{{ hvc.name | safe }}{% endset %}
+{% set pageName %}HVC wins - {{ hvc.name | safe }}{% endset %}
 
 {% from 'macros/dates.html' import financialYear %}
 {% from 'macros/win-tables.html' import singleWinTable %}
+{% from 'macros/hvc-tabs.html' import tabs %}
 
 {% block page_content %}
 
@@ -12,14 +13,7 @@
 	</h1>
 	<h2 class="page-date page-date--hvc">{{ financialYear( dateRange ) }}</h2>
 
-	<ul class="page-tabs">
-		<li class="page-tabs_tab">
-			<a class="page-tabs_tab_text" href="{{ urls.hvc( hvc.code ) }}">Performance</a>
-		</li>
-		<li class="page-tabs_tab page-tabs_tab--active">
-			<span class="page-tabs_tab_text">Individual wins</span>
-		</li>
-	</ul>
+	{{ tabs( hvc.code, hvcWins = true ) }}
 
 	{{ singleWinTable( 'HVC', nonHvcWins = wins.hvc ) }}
 

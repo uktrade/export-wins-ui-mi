@@ -208,14 +208,14 @@ describe( 'App', function(){
 					supertest( app ).get( '/sector-teams/1/' ).end( ( err, res ) => {
 
 						checkResponse( res, 200 );
-						expect( getTitle( res ) ).toEqual( 'MI - distinctio quas &amp; numquam Sector Team' );
+						expect( getTitle( res ) ).toEqual( 'MI - Sector team performance - distinctio quas &amp; numquam' );
 						done();
 					} );
 				} );
 			} );
 		} );
 
-		describe( 'Win list', function(){
+		describe( 'HVC win list', function(){
 
 			describe( 'When the API returns a status of 200', function(){
 
@@ -227,7 +227,26 @@ describe( 'App', function(){
 					supertest( app ).get( '/sector-teams/1/wins/' ).end( ( err, res ) => {
 
 						checkResponse( res, 200 );
-						expect( getTitle( res ) ).toEqual( 'MI - Sector Team - animi architecto nam' );
+						expect( getTitle( res ) ).toEqual( 'MI - Sector team HVC wins - animi architecto nam' );
+						done();
+					} );
+				} );
+			} );
+		} );
+
+		describe( 'Non HVC win list', function(){
+
+			describe( 'When the API returns a status of 200', function(){
+
+				it( 'Should return a 200 with the correct heading', function( done ){
+
+					returnUser();
+					interceptBackend.getStub( '/mi/sector_teams/1/win_table/?year=2017', 200, '/sector_teams/win_table' );
+
+					supertest( app ).get( '/sector-teams/1/non-hvc-wins/' ).end( ( err, res ) => {
+
+						checkResponse( res, 200 );
+						expect( getTitle( res ) ).toEqual( 'MI - Sector team non HVC wins - animi architecto nam' );
 						done();
 					} );
 				} );
@@ -270,7 +289,7 @@ describe( 'App', function(){
 					supertest( app ).get( '/hvc-groups/1/' ).end( ( err, res ) => {
 
 						checkResponse( res, 200 );
-						expect( getTitle( res ) ).toEqual( 'MI - HVC Group - sunt laborum &amp; quos' );
+						expect( getTitle( res ) ).toEqual( 'MI - HVC group performance - sunt laborum &amp; quos' );
 						done();
 					} );
 				} );
@@ -289,7 +308,7 @@ describe( 'App', function(){
 					supertest( app ).get( '/hvc-groups/1/wins/' ).end( ( err, res ) => {
 
 						checkResponse( res, 200 );
-						expect( getTitle( res ) ).toEqual( 'MI - HVC Group - dolorem quos vero' );
+						expect( getTitle( res ) ).toEqual( 'MI - HVC group wins - dolorem quos vero' );
 						done();
 					} );
 				} );
@@ -312,7 +331,7 @@ describe( 'App', function(){
 				supertest( app ).get( `/hvc/${ hvcId }/` ).end( ( err, res ) => {
 
 					expect( res.statusCode ).toEqual( 200 );
-					expect( getTitle( res ) ).toEqual( 'MI - rerum blanditiis rerum' );
+					expect( getTitle( res ) ).toEqual( 'MI - HVC performance - rerum blanditiis rerum' );
 					done();
 				} );
 			} );
@@ -330,7 +349,7 @@ describe( 'App', function(){
 				supertest( app ).get( `/hvc/${ hvcId }/wins/` ).end( ( err, res ) => {
 
 					expect( res.statusCode ).toEqual( 200 );
-					expect( getTitle( res ) ).toEqual( 'MI - non mollitia qui' );
+					expect( getTitle( res ) ).toEqual( 'MI - HVC wins - non mollitia qui' );
 					done();
 				} );
 			} );
@@ -338,22 +357,6 @@ describe( 'App', function(){
 	} );
 
 if( config.backend.mock ){
-
-	describe( 'Wins', function(){
-
-		describe( 'List', function(){
-
-			it( 'Should return 200', function( done ){
-
-				supertest( app ).get( '/wins/' ).end( ( err, res ) => {
-
-					expect( res.statusCode ).toEqual( 200 );
-					expect( getTitle( res ) ).toEqual( 'MI - List of wins' );
-					done();
-				} );
-			} );
-		} );
-	} );
 
 	describe( 'Win', function(){
 
@@ -429,14 +432,14 @@ if( config.backend.mock ){
 					supertest( app ).get( '/overseas-regions/1/' ).end( ( err, res ) => {
 
 						checkResponse( res, 200 );
-						expect( getTitle( res ) ).toEqual( 'MI - Overseas Region - minima explicabo &amp; architecto' );
+						expect( getTitle( res ) ).toEqual( 'MI - Overseas region performance - minima explicabo &amp; architecto' );
 						done();
 					} );
 				} );
 			} );
 		} );
 
-		describe( 'Overseas Region wins', function(){
+		describe( 'Overseas Region HVC wins', function(){
 
 			describe( 'When the API returns a status of 200', function(){
 
@@ -448,7 +451,26 @@ if( config.backend.mock ){
 					supertest( app ).get( '/overseas-regions/1/wins/' ).end( ( err, res ) => {
 
 						checkResponse( res, 200 );
-						expect( getTitle( res ) ).toEqual( 'MI - Overseas Region - sed blanditiis dolorum' );
+						expect( getTitle( res ) ).toEqual( 'MI - Overseas region HVC wins - sed blanditiis dolorum' );
+						done();
+					} );
+				} );
+			} );
+		} );
+
+		describe( 'Overseas Region non HVC wins', function(){
+
+			describe( 'When the API returns a status of 200', function(){
+
+				it( 'Should return a 200 with the correct heading', function( done ){
+
+					returnUser();
+					interceptBackend.getStub( '/mi/os_regions/1/win_table/?year=2017', 200, '/os_regions/win_table' );
+
+					supertest( app ).get( '/overseas-regions/1/non-hvc-wins/' ).end( ( err, res ) => {
+
+						checkResponse( res, 200 );
+						expect( getTitle( res ) ).toEqual( 'MI - Overseas region non HVC wins - sed blanditiis dolorum' );
 						done();
 					} );
 				} );

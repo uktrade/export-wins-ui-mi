@@ -33,7 +33,7 @@ describe( 'The HVC Group page', function(){
 
 			heading.getText().then( ( text ) => {
 
-				expect( text ).toEqual( 'Advanced Manufacturing HVCs review' );
+				expect( text ).toEqual( 'Advanced Manufacturing HVC Group' );
 				done();
 			} );
 		} );

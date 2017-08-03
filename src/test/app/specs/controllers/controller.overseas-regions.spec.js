@@ -172,9 +172,11 @@ describe( 'Overseas Regions controller', function(){
 		} );
 	} );
 
-	describe( 'Win List', function(){
+	describe( 'Win Lists', function(){
 
-		it( 'Should get the list of wins and render the correct view', function( done ){
+		function checkWins( methodName, view ){
+
+			it( 'Should get the list of wins and render the correct view', function( done ){
 
 			const regionId = 890;
 
@@ -199,13 +201,13 @@ describe( 'Overseas Regions controller', function(){
 			backendService.getOverseasRegionWinTable = spy( 'getOverseasRegionWinTable', promise );
 			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
 
-			controller.wins( req, res );
+			controller[ methodName ]( req, res );
 
 			promise.then( () => {
 
 				expect( backendService.getOverseasRegionWinTable ).toHaveBeenCalledWith( req, regionId );
 				expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
-				expect( res.render ).toHaveBeenCalledWith( 'overseas-regions/wins.html', {
+				expect( res.render ).toHaveBeenCalledWith( view, {
 					dateRange: regionWins.date_range,
 					region: regionWins.results.os_region,
 					wins: regionWins.results.wins
@@ -213,5 +215,9 @@ describe( 'Overseas Regions controller', function(){
 				done();
 			} );
 		} );
+		}
+
+		checkWins( 'wins', 'overseas-regions/wins.html' );
+		checkWins( 'nonHvcWins', 'overseas-regions/non-hvc-wins.html' );
 	} );
 } );

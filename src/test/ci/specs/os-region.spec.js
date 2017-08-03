@@ -33,7 +33,7 @@ describe( 'The Overseas Region page', function(){
 
 			heading.getText().then( ( text ) => {
 
-				expect( text ).toEqual( 'North Africa review' );
+				expect( text ).toEqual( 'North Africa Overseas Region' );
 				done();
 			} );
 		} );

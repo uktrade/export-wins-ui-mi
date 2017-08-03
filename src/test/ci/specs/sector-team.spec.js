@@ -33,7 +33,7 @@ describe( 'The Sector Team page', function(){
 
 			heading.getText().then( ( text ) => {
 
-				expect( text ).toEqual( 'Financial & Professional Services Sector Team review' );
+				expect( text ).toEqual( 'Financial & Professional Services Sector Team' );
 				done();
 			} );
 		} );

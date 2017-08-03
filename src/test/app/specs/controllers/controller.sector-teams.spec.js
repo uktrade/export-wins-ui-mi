@@ -162,6 +162,7 @@ describe( 'Sector Teams controller', function(){
 
 				expect( res.render ).toHaveBeenCalledWith( 'sector-teams/detail.html', {
 					teamId,
+					teamName: teamInfo.wins.results.name,
 					sectorName: ( teamInfo.wins.results.name + ' Sector Team' ),
 					summary: sectorSummaryResponse,
 					hvcSummary: hvcSummaryResponse,
@@ -177,43 +178,49 @@ describe( 'Sector Teams controller', function(){
 
 	describe( 'Wins', function(){
 
-		it( 'Should get the list of wins and render the correct view', function( done ){
+		function checkWins( methodName, view ){
 
-			const teamId = 456;
+			it( 'Should get the list of wins and render the correct view', function( done ){
 
-			const req = {
-				cookies: { sessionid: '456' },
-				params: {
-					id: teamId
-				},
-				year
-			};
+				const teamId = 456;
 
-			const sectorTeamWins = {
-				date_range: { start: 2, end: 3 },
-				results: {
-					sector_team: { test: 1 },
-					wins: { wins: true }
-				}
-			};
+				const req = {
+					cookies: { sessionid: '456' },
+					params: {
+						id: teamId
+					},
+					year
+				};
 
-			const promise = new Promise( ( resolve ) => { resolve( sectorTeamWins ); } );
+				const sectorTeamWins = {
+					date_range: { start: 2, end: 3 },
+					results: {
+						sector_team: { test: 1 },
+						wins: { wins: true }
+					}
+				};
 
-			backendService.getSectorTeamWinTable = spy( 'getSectorTeamWinTable', promise );
-			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
+				const promise = new Promise( ( resolve ) => { resolve( sectorTeamWins ); } );
 
-			controller.wins( req, res );
+				backendService.getSectorTeamWinTable = spy( 'getSectorTeamWinTable', promise );
+				errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
 
-			promise.then( () => {
-				expect( backendService.getSectorTeamWinTable ).toHaveBeenCalledWith( req, teamId );
-				expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
-				expect( res.render ).toHaveBeenCalledWith( 'sector-teams/wins.html', {
-					dateRange: sectorTeamWins.date_range,
-					sectorTeam: sectorTeamWins.results.sector_team,
-					wins: sectorTeamWins.results.wins
+				controller[ methodName ]( req, res );
+
+				promise.then( () => {
+					expect( backendService.getSectorTeamWinTable ).toHaveBeenCalledWith( req, teamId );
+					expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
+					expect( res.render ).toHaveBeenCalledWith( view, {
+						dateRange: sectorTeamWins.date_range,
+						sectorTeam: sectorTeamWins.results.sector_team,
+						wins: sectorTeamWins.results.wins
+					} );
+					done();
 				} );
-				done();
 			} );
-		} );
+		}
+
+		checkWins( 'wins', 'sector-teams/wins.html' );
+		checkWins( 'nonHvcWins', 'sector-teams/non-hvc-wins.html' );
 	} );
 } );
