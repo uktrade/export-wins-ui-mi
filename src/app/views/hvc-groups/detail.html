@@ -2,23 +2,19 @@
 
 {% from 'macros/dates.html' import financialYear %}
 {% from 'macros/hvc-target-performance.html' import hvcTargetPerformanceTable %}
+{% from 'macros/hvc-group-tabs.html' import tabs %}
 
-{% set pageName %}HVC Group - {{ sectorName | safe }}{% endset %}
+{% set pageName %}HVC group performance - {{ sectorName | safe }}{% endset %}
 
 {% block page_content %}
 
-	<h1 class="page-heading">{{ sectorName }} HVCs review</h1>
+	<h1 class="page-heading">
+		{{ sectorName }} <span class="page-heading-secondary">HVC Group</span>
+	</h1>
 	{% include 'partials/year-selector.html' %}
 	<h2 class="page-date">{{ financialYear( summary.dateRange ) }}</h2>
 
-	<ul class="page-tabs">
-		<li class="page-tabs_tab page-tabs_tab--active">
-			<span class="page-tabs_tab_text">Performance</span>
-		</li>
-		<li class="page-tabs_tab">
-			<a class="page-tabs_tab_text" href="{{ urls.hvcGroupWins( groupId ) }}">Individual wins</a>
-		</li>
-	</ul>
+	{{ tabs( groupId, performance = true ) }}
 
 	<h2 class="visually-hidden">Summary</h2>
 	<section class="sector-detail grid-row">

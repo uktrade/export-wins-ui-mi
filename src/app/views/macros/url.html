@@ -30,6 +30,10 @@
 	{{- filteredUrl( '/sector-teams/' + teamId + '/wins/' ) }}
 {%- endmacro %}
 
+{% macro sectorTeamNonHvcWins( teamId ) %}
+	{{- filteredUrl( '/sector-teams/' + teamId + '/non-hvc-wins/' ) }}
+{%- endmacro %}
+
 {% macro hvcGroup( groupId ) %}
 	{{- filteredUrl( '/hvc-groups/' + groupId + '/' ) }}
 {%- endmacro %}
@@ -48,6 +52,10 @@
 
 {% macro osRegionWins( regionId ) %}
 	{{- filteredUrl( '/overseas-regions/' + regionId + '/wins/' ) }}
+{%- endmacro %}
+
+{% macro osRegionNonHvcWins( regionId ) %}
+	{{- filteredUrl( '/overseas-regions/' + regionId + '/non-hvc-wins/' ) }}
 {%- endmacro %}
 
 {% macro hvc( hvcId ) %}

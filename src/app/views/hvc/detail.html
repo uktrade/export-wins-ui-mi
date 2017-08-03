@@ -1,24 +1,18 @@
 {% extends 'layout.html' %}
 
-{% set pageName %}{{ name | safe }}{% endset %}
+{% set pageName %}HVC performance - {{ name | safe }}{% endset %}
 
 {% from 'macros/dates.html' import financialYear %}
 {% from 'macros/top-markets.html' import topMarketsTable %}
 {% from 'macros/hvc-target-performance.html' import hvcTargetPerformanceTable %}
+{% from 'macros/hvc-tabs.html' import tabs %}
 
 {% block page_content %}
 
 	<h1 class="page-heading">{{ name }} <span class="page-heading-secondary">HVC</span></h1>
 	<h2 class="page-date page-date--hvc">{{ financialYear( summary.dateRange ) }}</h2>
 
-	<ul class="page-tabs">
-		<li class="page-tabs_tab page-tabs_tab--active">
-			<span class="page-tabs_tab_text">Performance</span>
-		</li>
-		<li class="page-tabs_tab">
-			<a class="page-tabs_tab_text" href="{{ urls.hvcWins( id ) }}">Individual wins</a>
-		</li>
-	</ul>
+	{{ tabs( id, performance = true ) }}
 
 	<section class="grid-row">
 		<div class="column-half">

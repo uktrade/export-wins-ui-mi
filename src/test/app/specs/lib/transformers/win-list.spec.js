@@ -45,6 +45,36 @@ describe( 'Win List transformer', function(){
 				expect( wins[ 3 ].status.modifyer ).toEqual( 'sent' );
 			} );
 		} );
+
+		describe( 'CDMS ref', function(){
+
+			it( 'Should create a truncated ref property', function(){
+
+				for( let win of wins ){
+
+					expect( win.company.truncated_cdms_id ).toBeDefined();
+				}
+			} );
+
+			describe( 'When the reference is not too long', function(){
+
+				it( 'Should have the full reference', function(){
+
+					expect( wins[ 0 ].company.truncated_cdms_id ).toEqual( '40479' );
+				} );
+			} );
+
+			describe( 'When the reference is too long', function(){
+
+				it( 'Should truncate the reference', function(){
+
+					let truncated = wins[ 1 ].company.truncated_cdms_id.substr( 0, 24 );
+					truncated += '...';
+
+					expect( wins[ 1 ].company.truncated_cdms_id ).toEqual( truncated );
+				} );
+			} );
+		} );
 	} );
 
 	describe( 'Sector Team HVC and non HVC wins', function(){

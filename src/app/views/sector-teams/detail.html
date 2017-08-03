@@ -1,14 +1,19 @@
 {% extends 'sector/detail.html' %}
 
-{% set pageName %}{{ sectorName | safe }}{% endset %}
+{% from 'macros/sector-team-tabs.html' import tabs %}
+
+{% set pageName %}Sector team performance - {{ teamName | safe }}{% endset %}
+
+{% block page_content %}
+
+	<h1 class="page-heading">
+		{{ teamName }} <span class="page-heading-secondary">Sector Team</span>
+	</h1>
+
+	{{- super() -}}
+
+{% endblock %}
 
 {% block page_tabs %}
-	<ul class="page-tabs">
-		<li class="page-tabs_tab page-tabs_tab--active">
-			<span class="page-tabs_tab_text">Performance</span>
-		</li>
-		<li class="page-tabs_tab">
-			<a class="page-tabs_tab_text" href="{{ urls.sectorTeamWins( teamId ) }}">Individual wins</a>
-		</li>
-	</ul>
+	{{ tabs( teamId, performance = true ) }}
 {% endblock %}

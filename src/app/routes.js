@@ -22,11 +22,13 @@ module.exports = function( express, app, isDev ){
 	app.get( '/sector-teams/overview/', user, sectorTeamController.overview );
 	app.get( '/sector-teams/:id', user, sectorTeamController.team );
 	app.get( '/sector-teams/:id/wins/', user, sectorTeamController.wins );
+	app.get( '/sector-teams/:id/non-hvc-wins/', user, sectorTeamController.nonHvcWins );
 
 	app.get( '/overseas-regions/', user, regionController.list );
 	app.get( '/overseas-regions/overview/', user, regionController.overview );
 	app.get( '/overseas-regions/:id', user, regionController.region );
 	app.get( '/overseas-regions/:id/wins/', user, regionController.wins );
+	app.get( '/overseas-regions/:id/non-hvc-wins/', user, regionController.nonHvcWins );
 
 	app.get( '/hvc/:id', user, hvcController.hvc );
 	app.get( '/hvc/:id/wins', user, hvcController.winList );
