@@ -26,6 +26,7 @@ describe( 'headers middleware', function(){
 		expect( args[ 2 ] ).toEqual( [ 'X-Content-Type-Options', 'nosniff' ] );
 		expect( args[ 3 ] ).toEqual( [ 'X-Frame-Options', 'deny' ] );
 		expect( args[ 4 ][ 0 ] ).toEqual( 'Content-Security-Policy' );
+		expect( args[ 5 ] ).toEqual( [ 'Cache-Control', 'no-cache, no-store' ] );
 	}
 
 
@@ -42,7 +43,7 @@ describe( 'headers middleware', function(){
 
 				middleware( req, res, next );
 
-				expect( res.setHeader.calls.count() ).toEqual( 5 );
+				expect( res.setHeader.calls.count() ).toEqual( 6 );
 				checkHeadersForEveryRequest();
 			} );
 		} );
@@ -61,9 +62,9 @@ describe( 'headers middleware', function(){
 
 				middleware( req, res, next );
 
-				const lastArgs = res.setHeader.calls.argsFor( 5 );
+				const lastArgs = res.setHeader.calls.argsFor( 6 );
 
-				expect( res.setHeader.calls.count() ).toEqual( 6 );
+				expect( res.setHeader.calls.count() ).toEqual( 7 );
 				checkHeadersForEveryRequest();
 				expect( lastArgs ).toEqual( [ 'Strict-Transport-Security', 'max-age=31536000; includeSubDomains' ] );
 			} );
