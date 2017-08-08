@@ -21,6 +21,7 @@ module.exports = function( isDev ){
 		res.setHeader( 'X-Content-Type-Options', 'nosniff' );
 		res.setHeader( 'X-Frame-Options', 'deny' );
 		res.setHeader( 'Content-Security-Policy', cspValues );
+		res.setHeader( 'Cache-Control', 'no-cache, no-store' );
 
 		if( !isDev ){
 
