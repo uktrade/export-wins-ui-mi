@@ -15,6 +15,8 @@ let urls;
 let selectDate;
 let selectDateUrl;
 let financialYearStart;
+let csrfTokenValue;
+let csrfToken;
 
 function getDateParams( values ){
 
@@ -31,6 +33,8 @@ describe( 'Date controller', function(){
 		currentFy = 2016;
 		selectDateUrl = '/select-date-spy/';
 		selectDate = spy( 'urls.selectDate', selectDateUrl );
+		csrfTokenValue = ( Math.random() * 100000 );
+		csrfToken = spy( 'csrfToken', csrfTokenValue );
 		year = '2016';
 		months = [ { year: 1, number: 2, name: 'testing' }, { year: 2, number: 3, name: 'testing' } ];
 		monthOptions = months.map( ( m ) => ( { value: `${ m.year }-${ m.number }`, label: `${ m.name } ${ m.year }` } ) );
@@ -49,7 +53,8 @@ describe( 'Date controller', function(){
 		req = {
 			params: { year },
 			year: '2016',
-			isDefaultYear: false
+			isDefaultYear: false,
+			csrfToken
 		};
 		res = {
 			render: spy( 'res.render' )
@@ -87,7 +92,11 @@ describe( 'Date controller', function(){
 
 				controller.selectDates( req, res );
 
-				expect( res.render ).toHaveBeenCalledWith( 'select-dates.html', { year, months: monthOptions } );
+				expect( res.render ).toHaveBeenCalledWith( 'select-dates.html', {
+					year,
+					months: monthOptions,
+					csrfToken: csrfTokenValue
+				} );
 			} );
 		} );
 
@@ -133,7 +142,8 @@ describe( 'Date controller', function(){
 			'start-month': 'Start month',
 			'start-day': 'Start day',
 			'end-month': 'End month',
-			'end-day': 'End day'
+			'end-day': 'End day',
+			'end-date': 'End date'
 		};
 
 		describe( 'Without any data', function(){
@@ -158,7 +168,14 @@ describe( 'Date controller', function(){
 
 				controller.setDate( req, res );
 
-				expect( res.render ).toHaveBeenCalledWith( 'select-dates.html', { year, months: monthOptions, errors, labels, values } );
+				expect( res.render ).toHaveBeenCalledWith( 'select-dates.html', {
+					year,
+					months: monthOptions,
+					csrfToken: csrfTokenValue,
+					errors,
+					labels,
+					values
+				} );
 			} );
 		} );
 
@@ -188,7 +205,14 @@ describe( 'Date controller', function(){
 
 						controller.setDate( req, res );
 
-						expect( res.render ).toHaveBeenCalledWith( 'select-dates.html', { year, months: monthOptions, errors, labels, values } );
+						expect( res.render ).toHaveBeenCalledWith( 'select-dates.html', {
+							year,
+							months: monthOptions,
+							csrfToken: csrfTokenValue,
+							errors,
+							labels,
+							values
+						} );
 					} );
 				} );
 
@@ -214,7 +238,14 @@ describe( 'Date controller', function(){
 
 						controller.setDate( req, res );
 
-						expect( res.render ).toHaveBeenCalledWith( 'select-dates.html', { year, months: monthOptions, errors, labels, values } );
+						expect( res.render ).toHaveBeenCalledWith( 'select-dates.html', {
+							year,
+							months: monthOptions,
+							csrfToken: csrfTokenValue,
+							errors,
+							labels,
+							values
+						} );
 					} );
 				} );
 			} );
@@ -241,7 +272,14 @@ describe( 'Date controller', function(){
 
 					controller.setDate( req, res );
 
-					expect( res.render ).toHaveBeenCalledWith( 'select-dates.html', { year, months: monthOptions, errors, labels, values } );
+					expect( res.render ).toHaveBeenCalledWith( 'select-dates.html', {
+						year,
+						months: monthOptions,
+						csrfToken: csrfTokenValue,
+						errors,
+						labels,
+						values
+					} );
 				} );
 			} );
 		} );

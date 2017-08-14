@@ -287,6 +287,28 @@
       "from": "cryptiles@>=2.0.0 <3.0.0",
       "resolved": "https://registry.npmjs.org/cryptiles/-/cryptiles-2.0.5.tgz"
     },
+    "csrf": {
+      "version": "3.0.6",
+      "from": "csrf@>=3.0.3 <3.1.0",
+      "resolved": "https://registry.npmjs.org/csrf/-/csrf-3.0.6.tgz"
+    },
+    "csurf": {
+      "version": "1.9.0",
+      "from": "csurf@latest",
+      "resolved": "https://registry.npmjs.org/csurf/-/csurf-1.9.0.tgz",
+      "dependencies": {
+        "http-errors": {
+          "version": "1.5.1",
+          "from": "http-errors@>=1.5.0 <1.6.0",
+          "resolved": "https://registry.npmjs.org/http-errors/-/http-errors-1.5.1.tgz"
+        },
+        "setprototypeof": {
+          "version": "1.0.2",
+          "from": "setprototypeof@1.0.2",
+          "resolved": "https://registry.npmjs.org/setprototypeof/-/setprototypeof-1.0.2.tgz"
+        }
+      }
+    },
     "cycle": {
       "version": "1.0.3",
       "from": "cycle@>=1.0.0 <1.1.0",
@@ -1583,6 +1605,11 @@
       "from": "qs@6.4.0",
       "resolved": "https://registry.npmjs.org/qs/-/qs-6.4.0.tgz"
     },
+    "random-bytes": {
+      "version": "1.0.0",
+      "from": "random-bytes@>=1.0.0 <1.1.0",
+      "resolved": "https://registry.npmjs.org/random-bytes/-/random-bytes-1.0.0.tgz"
+    },
     "random-int": {
       "version": "1.0.0",
       "from": "random-int@>=1.0.0 <2.0.0",
@@ -1649,6 +1676,11 @@
       "version": "2.81.0",
       "from": "request@2.81.0",
       "resolved": "https://registry.npmjs.org/request/-/request-2.81.0.tgz"
+    },
+    "rndm": {
+      "version": "1.2.0",
+      "from": "rndm@1.2.0",
+      "resolved": "https://registry.npmjs.org/rndm/-/rndm-1.2.0.tgz"
     },
     "safe-buffer": {
       "version": "5.0.1",
@@ -1761,6 +1793,11 @@
       "from": "tough-cookie@>=2.3.0 <2.4.0",
       "resolved": "https://registry.npmjs.org/tough-cookie/-/tough-cookie-2.3.2.tgz"
     },
+    "tsscmp": {
+      "version": "1.0.5",
+      "from": "tsscmp@1.0.5",
+      "resolved": "https://registry.npmjs.org/tsscmp/-/tsscmp-1.0.5.tgz"
+    },
     "tunnel-agent": {
       "version": "0.6.0",
       "from": "tunnel-agent@>=0.6.0 <0.7.0",
@@ -1776,6 +1813,11 @@
       "version": "1.6.15",
       "from": "type-is@>=1.6.14 <1.7.0",
       "resolved": "https://registry.npmjs.org/type-is/-/type-is-1.6.15.tgz"
+    },
+    "uid-safe": {
+      "version": "2.1.4",
+      "from": "uid-safe@2.1.4",
+      "resolved": "https://registry.npmjs.org/uid-safe/-/uid-safe-2.1.4.tgz"
     },
     "unpipe": {
       "version": "1.0.0",

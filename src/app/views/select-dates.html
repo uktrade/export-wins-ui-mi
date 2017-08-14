@@ -43,6 +43,7 @@
 	{%- endif -%}
 
 	<form action="{{ urls.selectDateForYear( year, returnPath ) }}" method="post" class="select-dates_form">
+		<input type="hidden" name="_csrf" value="{{ csrfToken }}">
 
 		<fieldset class="select-dates_fieldset{% if errors[ 'start-date' ] %} error{% endif %}" id="start-date-wrapper">
 			<legend class="select-dates_legend">
