@@ -1,0 +1,24 @@
+{% macro textbox( name, label, value='', hint, id, class, error, autocomplete=true, autofocus=false, type='text', maxlength='', inputclass='' ) %}
+
+	{% if not id %}
+		{% set id = name.replace('.','-') %}
+	{% endif %}
+
+	<div class="form-group{% if error %} error{% endif %} {{ class }}" id="{{ id }}-wrapper">
+		<label class="form-label-bold" for="{{ id }}">
+			{{ label }}
+			{% if hint %}<span class="form-hint">{{ hint }}</span>{% endif %}
+			{% if error %}<span class="error-message">{{ error }}</span>{% endif %}
+		</label>
+		<input
+			id="{{ id }}"
+			class="form-control{% if inputclass %} {{ inputclass }}{% endif %}"
+			name="{{ name }}"
+			type="{{ type }}"
+			{% if value %}value="{{ value }}"{% endif %}
+			{% if autocomplete == false %}autocomplete="off"{% endif %}
+			{% if autofocus %} autofocus{% endif %}
+			{% if maxlength %}maxlength="{{ maxlength }}"{% endif %}
+		/>
+	</div>
+{% endmacro %}

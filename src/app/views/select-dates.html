@@ -1,0 +1,72 @@
+{% extends 'layout.html' %}
+
+{% set pageName %}Choose {{ year }} financial year start and end dates{% endset %}
+
+{% from 'macros/trade.html' import errorPanel %}
+{% from 'macros/textbox.html' import textbox %}
+
+{% macro monthList( name, id, months, selectedValue, error ) %}
+
+	<div class="form-group{% if error %} error{% endif %}" id="{{ id }}-wrapper">
+		<label class="form-label-bold" for="{{ id }}">
+			Month
+			{% if error %}<span class="error-message">{{ error }}</span>{% endif %}
+		</label>
+		<select name="{{ name }}" id="{{ id }}" class="form-control select-date_month">
+			<option value="">Choose...</option>
+			{%- for month in months -%}
+				<option value="{{ month.value }}"{% if month.value == selectedValue %} selected{% endif %}>{{ month.label }}</option>
+			{%- endfor -%}
+		</select>
+	</div>
+
+{% endmacro %}
+
+{% block page_content %}
+
+	<a href="{{ urls.selectDate( returnPath ) }}" class="link-back">Back</a>
+
+	{% if errors -%}
+
+		{{ errorPanel( errors, labels ) -}}
+
+		<h2 class="page-heading">
+			Select dates for {{ year }} financial year
+		</h2>
+
+	{%- else -%}
+
+		<h1 class="page-heading">
+			Select dates for {{ year }} financial year
+		</h1>
+
+	{%- endif -%}
+
+	<form action="{{ urls.selectDateForYear( year, returnPath ) }}" method="post" class="select-dates_form">
+
+		<fieldset class="select-dates_fieldset{% if errors[ 'start-date' ] %} error{% endif %}" id="start-date-wrapper">
+			<legend class="select-dates_legend">
+				Start date
+				{% if errors[ 'start-date' ] %}<span class="error-message">{{ errors[ 'start-date' ] }}</span>{% endif %}
+			</legend>
+
+			{{ monthList( 'start_month', 'start-month', months, values.start_month, errors[ 'start-month' ] ) }}
+			{{ textbox( 'start_day', label='Day', value=values.start_day, id='start-day', error=errors[ 'start-day' ], maxlength=2, inputclass="select-date_day" ) }}
+		</fieldset>
+
+
+		<fieldset class="select-dates_fieldset{% if errors[ 'end-date' ] %} error{% endif %}" id="end-date-wrapper">
+			<legend class="select-dates_legend">
+				End date
+				{% if errors[ 'end-date' ] %}<span class="error-message">{{ errors[ 'end-date' ] }}</span>{% endif %}
+			</legend>
+
+			{{ monthList( 'end_month', 'end-month', months, values.end_month, errors[ 'end-month' ] ) }}
+			{{ textbox( 'end_day', label='Day', value=values.end_day, id='end-day', error=errors[ 'end-day' ], maxlength=2, inputclass="select-date_day" ) }}
+		</fieldset>
+
+		<input type="submit" value="Apply" class="button">
+	</form>
+
+
+{% endblock %}

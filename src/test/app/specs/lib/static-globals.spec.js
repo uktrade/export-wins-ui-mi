@@ -33,25 +33,9 @@ describe( 'Static globals', function(){
 		calls = env.addGlobal.calls;
 	} );
 
-	it( 'Should add the feedbackEmail to the nunjucks env', function(){
-
-		const args = calls.argsFor( 0 );
-
-		expect( args[ 0 ] ).toEqual( 'feedbackEmail' );
-		expect( args[ 1 ] ).toEqual( feedbackEmail );
-	} );
-
-	it( 'Should add the feedbackSurvey to the nunjucks env', function(){
-
-		const args = calls.argsFor( 1 );
-
-		expect( args[ 0 ] ).toEqual( 'feedbackSurvey' );
-		expect( args[ 1 ] ).toEqual( feedbackSurvey );
-	} );
-
 	it( 'Should add the asset_path to the nunjucks env', function(){
 
-		const args = calls.argsFor( 2 );
+		const args = calls.argsFor( 0 );
 
 		expect( args[ 0 ] ).toEqual( 'asset_path' );
 		expect( args[ 1 ] ).toEqual( '/public/uktrade/' );
@@ -59,7 +43,7 @@ describe( 'Static globals', function(){
 
 	it( 'Should add the analyticsId to the nunjucks env', function(){
 
-		const args = calls.argsFor( 3 );
+		const args = calls.argsFor( 1 );
 
 		expect( args[ 0 ] ).toEqual( 'analyticsId' );
 		expect( args[ 1 ] ).toEqual( analyticsId );
@@ -67,7 +51,7 @@ describe( 'Static globals', function(){
 
 	it( 'Should add the faqLink to the nunjucks env', function(){
 
-		const args = calls.argsFor( 4 );
+		const args = calls.argsFor( 2 );
 
 		expect( args[ 0 ] ).toEqual( 'faqLink' );
 		expect( args[ 1 ] ).toEqual( faqLink );
@@ -92,7 +76,7 @@ describe( 'Static globals', function(){
 
 			it( 'Should add the list of years to the nunjucks env', function(){
 
-				const args = calls.argsFor( 5 );
+				const args = calls.argsFor( 3 );
 
 				expect( args[ 0 ] ).toEqual( 'yearList' );
 				expect( args[ 1 ] ).toEqual( yearList );
@@ -124,7 +108,7 @@ describe( 'Static globals', function(){
 				staticGlobals( env );
 
 
-				const args = env.addGlobal.calls.argsFor( 5 );
+				const args = env.addGlobal.calls.argsFor( 3 );
 
 				expect( args[ 0 ] ).toEqual( 'yearList' );
 				expect( args[ 1 ] ).toEqual( yearList );
@@ -134,13 +118,5 @@ describe( 'Static globals', function(){
 				}
 			} );
 		} );
-	} );
-
-	it( 'Should add the currentYear to the nunjucks env', function(){
-
-		const args = calls.argsFor( 6 );
-
-		expect( args[ 0 ] ).toEqual( 'currentYear' );
-		expect( args[ 1 ] ).toEqual( ( new Date() ).getFullYear() );
 	} );
 } );

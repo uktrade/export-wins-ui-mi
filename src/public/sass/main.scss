@@ -2,6 +2,14 @@
 
 @import 'layout';
 
+@import 'design-patterns/_buttons.scss';
+@import 'elements/buttons';
+@import 'elements/forms';
+@import 'elements/forms/form-validation';
+@import 'elements/elements-typography';
+
+@import 'trade/components/button';
+
 @import 'page/index';
 @import 'page/sector';
 @import 'page/sectors-overview';
@@ -9,6 +17,8 @@
 @import 'page/hvc';
 @import 'page/win';
 @import 'page/wins';
+@import 'page/select-year';
+@import 'page/select-dates';
 
 @import 'partials/global-performance';
 
@@ -28,6 +38,10 @@
 @import 'hvc-group';
 @import 'year-selector';
 @import 'page-tabs';
+
+main {
+	@include core-16;
+}
 
 .row-separator {
 	margin-top: pem( 60, 16 );
@@ -67,6 +81,11 @@
 .column-date {
 	@extend .page-date;
 	margin-top: 0;
+}
+
+.financial-year_change-link {
+	@include core-14;
+	margin-left: pem( 5, 14 );
 }
 
 .footer-feedback-link {

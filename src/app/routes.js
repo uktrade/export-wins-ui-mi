@@ -1,6 +1,9 @@
 const config = require( './config' );
 
+const bodyParser = require( 'body-parser' );
+
 const indexController = require( './controllers/controller.index' );
+const dateController = require( './controllers/controller.date' );
 const sectorTeamController = require( './controllers/controller.sector-teams' );
 const regionController = require( './controllers/controller.overseas-regions' );
 const hvcGroupController = require( './controllers/controller.hvc-groups' );
@@ -9,6 +12,7 @@ const hvcController = require( './controllers/controller.hvc' );
 
 const createUserMiddleware = require( './lib/middleware/user' );
 const dateRange = require( './lib/middleware/date-range' );
+const returnPath = require( './lib/middleware/return-path' );
 
 module.exports = function( express, app, isDev ){
 
@@ -17,6 +21,9 @@ module.exports = function( express, app, isDev ){
 	app.use( dateRange );
 
 	app.get( '/', user, indexController );
+	app.get( '/select-date/', user, returnPath, dateController.selectYear );
+	app.get( '/select-date/:year/', user, returnPath, dateController.selectDates );
+	app.post( '/select-date/:year/', user, returnPath, bodyParser.urlencoded( { extended: true } ), dateController.setDate );
 
 	app.get( '/sector-teams/', user, sectorTeamController.list );
 	app.get( '/sector-teams/overview/', user, sectorTeamController.overview );

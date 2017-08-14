@@ -4,7 +4,7 @@
 	<ol class="year-selector_year-list">
 		{% for yearInfo in yearList %}
 		<li class="year-selector_year-list_item">
-			<a class="year-selector_year-list_link{% if yearInfo.year == selectedYear %} year-selector_year-list_link--active{% endif %}" href="{{ urls.current( yearInfo.year ) }}">{{ yearInfo.label }}</a>
+			<a class="year-selector_year-list_link{% if yearInfo.year == selectedYear %} year-selector_year-list_link--active{% endif %}" href="{{ urls.currentForYear( yearInfo.year ) }}">{{ yearInfo.label }}</a>
 		</li>
 		{% endfor %}
 	</ol>

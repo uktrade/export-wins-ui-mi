@@ -13,11 +13,8 @@ module.exports = function( env ){
 		year++;
 	}
 
-	env.addGlobal( 'feedbackEmail', config.feedbackEmail );
-	env.addGlobal( 'feedbackSurvey', config.feedbackSurvey );
 	env.addGlobal( 'asset_path', '/public/uktrade/' );
 	env.addGlobal( 'analyticsId', config.analyticsId );
 	env.addGlobal( 'faqLink', config.faqLink );
 	env.addGlobal( 'yearList', years );
-	env.addGlobal( 'currentYear', currentYear );
 };
