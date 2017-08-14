@@ -1,0 +1,28 @@
+.select-dates_form {
+	margin-bottom: $gutter;
+	padding-top: pem( 1 );
+}
+
+.select-dates_fieldset {
+
+	margin-top: pem( 30 );
+	padding-top: pem( 20 );
+
+	&:last-of-type {
+		margin-bottom: pem( 30 );
+	}
+}
+
+.select-dates_legend {
+	@include bold-24;
+	margin: 0;
+	padding: 0;
+}
+
+.select-date_day {
+	width: 3em;
+}
+
+.select-date_month {
+	max-width: 11em;
+}

@@ -1,5 +1,3 @@
-{% from 'macros/url.html' import hvc as hvcUrl %}
-
 {% macro percentMarkers( modifyer='top' ) %}
 
 	<tr class="hvc-perf_row_percent-markers hvc-perf_row_percent-markers--{{ modifyer }}">
@@ -54,8 +52,8 @@
 			{% for item in items %}
 			<tr class="hvc-perf_table_row">
 				<td class="hvc-perf_table_cell hvc-perf_table_cell--campaign">
-					<a href="{{ hvcUrl( item.id ) }}" class="hvc-perf_table_cell_hvc-id">{{ item.id }}</a>
-					<a href="{{ hvcUrl( item.id ) }}" class="hvc-perf_table_cell_hvc-name">{{ item.name }}</a>
+					<a href="{{ urls.hvc( item.id ) }}" class="hvc-perf_table_cell_hvc-id">{{ item.id }}</a>
+					<a href="{{ urls.hvc( item.id ) }}" class="hvc-perf_table_cell_hvc-name">{{ item.name }}</a>
 				</td>
 				<td class="hvc-perf_table_cell hvc-perf_table_cell--percent-complete">
 					<span class="visually-hidden">{{ item.progress.target.confirmed }}% confirmed</span>

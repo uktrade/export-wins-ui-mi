@@ -1,8 +1,11 @@
-const mockdate = require( 'mockdate' );
-const middleware = require( '../../../../../app/lib/middleware/year' );
+const proxyquire = require( 'proxyquire' );
+const spy = require( '../../../helpers/spy' );
+
+const currentFinancialYear = 2017;
 
 describe( 'Year middleware', function(){
 
+	let middleware;
 	let req;
 	let res;
 	let next;
@@ -12,6 +15,10 @@ describe( 'Year middleware', function(){
 		req = {};
 		res = { locals: {} };
 		next = jasmine.createSpy( 'next' );
+
+		middleware = proxyquire( '../../../../../app/lib/middleware/year', {
+			'../financial-year': { getCurrent: spy( 'financialYear.getCurrent', currentFinancialYear ) }
+		} );
 	} );
 
 	describe( 'When there is a year in the URL', function(){
@@ -55,91 +62,29 @@ describe( 'Year middleware', function(){
 
 	describe( 'When a year is not present in the URL', function(){
 
-		describe( 'For all dates', function(){
+		beforeEach( function(){
 
-			beforeEach( function(){
-
-				middleware( req, res, next );
-			} );
-
-			it( 'Should call next', function(){
-
-				expect( next ).toHaveBeenCalled();
-			} );
-
-			it( 'Should set isDefaultYear to true', function(){
-
-				expect( req.isDefaultYear ).toEqual( true );
-			} );
-
-			it( 'Should add the year as a local', function(){
-
-				expect( res.locals.selectedYear ).toEqual( Number( req.year ) );
-			} );
+			middleware( req, res, next );
 		} );
 
-		describe( 'For date specific stuff', function(){
+		it( 'Should call next', function(){
 
-			afterEach( function(){
-
-				mockdate.reset();
-			} );
-
-			describe( 'When the month is january', function(){
-
-				it( 'Should default to the current year', function(){
-
-					mockdate.set( '2017-01-01' );
-					middleware( req, res, next );
-
-					expect( req.year ).toEqual( '2016' );
-				} );
-			} );
-
-			describe( 'When the month is february', function(){
-
-				it( 'Should default to the current year', function(){
-
-					mockdate.set( '2017-02-01' );
-					middleware( req, res, next );
-
-					expect( req.year ).toEqual( '2016' );
-				} );
-			} );
-
-			describe( 'When the month is march', function(){
-
-				it( 'Should default to the current year', function(){
-
-					mockdate.set( '2017-03-01' );
-					middleware( req, res, next );
-
-					expect( req.year ).toEqual( '2016' );
-				} );
-			} );
-
-			describe( 'When the month is february', function(){
-
-				it( 'Should default to the current year', function(){
-
-					mockdate.set( '2017-04-01' );
-					middleware( req, res, next );
-
-					expect( req.year ).toEqual( '2017' );
-				} );
-			} );
-
-			describe( 'When the month is after march', function(){
-
-				it( 'Should default to the current year', function(){
-
-					mockdate.set( '2017-06-01' );
-					middleware( req, res, next );
-
-					expect( req.year ).toEqual( '2017' );
-				} );
-			} );
+			expect( next ).toHaveBeenCalled();
 		} );
 
+		it( 'Should set isDefaultYear to true', function(){
+
+			expect( req.isDefaultYear ).toEqual( true );
+		} );
+
+		it( 'Should add the year as a local', function(){
+
+			expect( res.locals.selectedYear ).toEqual( Number( req.year ) );
+		} );
+
+		it( 'Should add the year to the req', function(){
+
+			expect( req.year ).toEqual( String( currentFinancialYear ) );
+		} );
 	} );
 } );

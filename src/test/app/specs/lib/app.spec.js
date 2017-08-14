@@ -154,6 +154,55 @@ describe( 'App', function(){
 		} );
 	} );
 
+	describe( 'Selecting a date range', function(){
+
+		describe( 'Selecting the year', function(){
+
+			it( 'Should return a 200 with the correct heading', function( done ){
+
+				returnUser();
+
+				supertest( app ).get( '/select-date/' ).end( ( err, res ) => {
+
+					checkResponse( res, 200 );
+					expect( getTitle( res ) ).toEqual( 'MI - Choose date range' );
+					done();
+				} );
+			} );
+		} );
+
+		describe( 'Selecting the month and day', function(){
+
+			describe( '2016', function(){
+
+				it( 'Should return a 200 with the correct heading', function( done ){
+
+					returnUser();
+
+					supertest( app ).get( '/select-date/2016/' ).end( ( err, res ) => {
+
+						expect( getTitle( res ) ).toEqual( 'MI - Choose 2016 financial year start and end dates');
+						done();
+					} );
+				} );
+			} );
+
+			describe( '2017', function(){
+
+				it( 'Should return a 200 with the correct heading', function( done ){
+
+					returnUser();
+
+					supertest( app ).get( '/select-date/2017/' ).end( ( err, res ) => {
+
+						expect( getTitle( res ) ).toEqual( 'MI - Choose 2017 financial year start and end dates');
+						done();
+					} );
+				} );
+			} );
+		} );
+	} );
+
 	describe( 'Sector Teams', function(){
 
 		describe( 'Overview', function(){

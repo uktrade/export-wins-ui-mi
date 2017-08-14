@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% set pageName='Choose date range' %}
+
+{% block page_content %}
+
+	<h1 class="page-heading">
+		Which financial year?
+	</h1>
+
+	<ol class="change-date-years">
+		{%- for yearInfo in yearList -%}
+			<li class="form-group">
+				<a href="{{ urls.selectDateForYear( yearInfo.year, returnPath ) }}" class="button">
+					{{- yearInfo.label -}}
+				</a>
+			</li>
+		{%- endfor -%}
+	</ol>
+
+	<a href="{{ returnPath }}" class="change-date-cancel">Cancel</a>
+
+{% endblock %}
