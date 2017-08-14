@@ -96,7 +96,8 @@ const SET_DATE_LABELS = {
 	'start-month': 'Start month',
 	'start-day': 'Start day',
 	'end-month': 'End month',
-	'end-day': 'End day'
+	'end-day': 'End day',
+	'end-date': 'End date'
 };
 
 module.exports = {
@@ -119,7 +120,8 @@ module.exports = {
 
 			res.render( 'select-dates.html', {
 				year,
-				months: getMonths( year )
+				months: getMonths( year ),
+				csrfToken: req.csrfToken()
 			} );
 		}
 	},
@@ -144,6 +146,7 @@ module.exports = {
 			res.render( 'select-dates.html', {
 				year: newFy,
 				months: getMonths( newFy ),
+				csrfToken: req.csrfToken(),
 				errors: formErrors,
 				labels: SET_DATE_LABELS,
 				values

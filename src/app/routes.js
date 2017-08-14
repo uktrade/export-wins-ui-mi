@@ -1,6 +1,7 @@
 const config = require( './config' );
 
 const bodyParser = require( 'body-parser' );
+const csurf = require('csurf');
 
 const indexController = require( './controllers/controller.index' );
 const dateController = require( './controllers/controller.date' );
@@ -17,13 +18,15 @@ const returnPath = require( './lib/middleware/return-path' );
 module.exports = function( express, app, isDev ){
 
 	const user = createUserMiddleware( isDev );
+	const urlBodyParser = bodyParser.urlencoded( { extended: true } );
+	const csrfProtection = csurf( { cookie: true } );
 
 	app.use( dateRange );
 
 	app.get( '/', user, indexController );
 	app.get( '/select-date/', user, returnPath, dateController.selectYear );
-	app.get( '/select-date/:year/', user, returnPath, dateController.selectDates );
-	app.post( '/select-date/:year/', user, returnPath, bodyParser.urlencoded( { extended: true } ), dateController.setDate );
+	app.get( '/select-date/:year/', user, returnPath, csrfProtection, dateController.selectDates );
+	app.post( '/select-date/:year/', user, returnPath, urlBodyParser, csrfProtection, dateController.setDate );
 
 	app.get( '/sector-teams/', user, sectorTeamController.list );
 	app.get( '/sector-teams/overview/', user, sectorTeamController.overview );
