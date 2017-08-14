@@ -52,7 +52,7 @@
 			</legend>
 
 			{{ monthList( 'start_month', 'start-month', months, values.start_month, errors[ 'start-month' ] ) }}
-			{{ textbox( 'start_day', label='Day', value=values.start_day, id='start-day', error=errors[ 'start-day' ], maxlength=2, inputclass="select-date_day" ) }}
+			{{ textbox( 'start_day', label='Day', value=values.start_day, id='start-day', error=errors[ 'start-day' ], maxlength=2, inputclass="select-date_day", autocomplete=false ) }}
 		</fieldset>
 
 
@@ -63,7 +63,7 @@
 			</legend>
 
 			{{ monthList( 'end_month', 'end-month', months, values.end_month, errors[ 'end-month' ] ) }}
-			{{ textbox( 'end_day', label='Day', value=values.end_day, id='end-day', error=errors[ 'end-day' ], maxlength=2, inputclass="select-date_day" ) }}
+			{{ textbox( 'end_day', label='Day', value=values.end_day, id='end-day', error=errors[ 'end-day' ], maxlength=2, inputclass="select-date_day", autocomplete=false ) }}
 		</fieldset>
 
 		<input type="submit" value="Apply" class="button">
