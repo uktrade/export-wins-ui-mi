@@ -17,6 +17,7 @@ const transformOverseasRegionsOverview = require( '../transformers/os-regions-ov
 const transformOverseasRegionsOverviewGroups = require( '../transformers/os-regions-overview-groups' );
 const transformHvcGroup = require( '../transformers/hvc-group' );
 const transformWinList = require( '../transformers/win-list' );
+const transformCountryList = require( '../transformers/country-list' );
 
 
 function addParamsFromReq( path, req ){
@@ -59,7 +60,10 @@ function getJson( path, req, transform ){
 
 				logger.error( 'Unable to transform API response for url: %s', response.request.uri.href );
 				logger.error( e );
-				throw( new Error( 'Unable to transform API response' ) );
+
+				const err = new Error( 'Unable to transform API response' );
+				err.stack = e.stack;
+				throw( err );
 			}
 		}
 
@@ -173,6 +177,36 @@ function getSectorTeamWinTable( req, teamId ){
 function getSectorTeamsOverview( req ){
 
 	return getJson( '/mi/sector_teams/overview/', req, transformSectorTeamsOverview );
+}
+
+function getCountries( req ){
+
+	return getJson( '/mi/countries/', req, transformCountryList );
+}
+
+function getCountry( req, countryCode ){
+
+	return getJson( `/mi/countries/${ countryCode }/`, req );
+}
+
+function getCountryCampaigns( req, countryCode ){
+
+	return getJson( `/mi/countries/${ countryCode }/campaigns/`, req, transformCampaigns );
+}
+
+function getCountryMonths( req, countryCode ){
+
+	return getJson( `/mi/countries/${ countryCode }/months/`, req, transformMonths );
+}
+
+function getCountryTopNonHvc( req, countryCode ){
+
+	return getJson( `/mi/countries/${ countryCode }/top_non_hvcs/`, req );
+}
+
+function getCountryWinTable( req, countryCode ){
+
+	return getJson( `/mi/countries/${ countryCode }/win_table/`, req, transformWinList );
 }
 
 
@@ -334,6 +368,33 @@ module.exports = {
 	},
 
 	getSectorTeamsOverview,
+
+	getCountries,
+	getCountry,
+	getCountryCampaigns,
+	getCountryMonths,
+	getCountryTopNonHvc,
+	getCountryWinTable,
+
+	getCountryInfo: function( req, countryId ){
+
+		return getAll( 'getCountryInfo', [
+
+			getCountry( req, countryId ),
+			getCountryMonths( req, countryId ),
+			getCountryTopNonHvc( req, countryId ),
+			getCountryCampaigns( req, countryId )
+
+		], function( data ){
+
+			return {
+				wins: data[ 0 ],
+				months: data[ 1 ],
+				topNonHvc: data[ 2 ],
+				campaigns: data[ 3 ]
+			};
+		} );
+	},
 
 	getOverseasRegions,
 	getOverseasRegionGroups,

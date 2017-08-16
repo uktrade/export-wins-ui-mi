@@ -279,7 +279,9 @@ describe( 'Monthly Performance view model', function(){
 
 		let output;
 
-		const hvcNonHvcAndNonExportData = {
+		describe( 'With values above zero', function(){
+
+			const hvcNonHvcAndNonExportData = {
 
 				target: 1000,
 				targetName: '£1m',
@@ -309,29 +311,98 @@ describe( 'Monthly Performance view model', function(){
 				output = createViewModel( hvcNonHvcAndNonExportData );
 			} );
 
-		it( 'Should create the bars in the correct order', function(){
+			it( 'Should create the bars in the correct order', function(){
 
-			const month = output.months[ 0 ];
+				const month = output.months[ 0 ];
 
-			expect( month.bars.length ).toEqual( 6 );
-			expect( month.bars[ 0 ].modifyer ).toEqual( 'hvc-confirmed' );
-			expect( month.bars[ 1 ].modifyer ).toEqual( 'hvc-unconfirmed' );
-			expect( month.bars[ 2 ].modifyer ).toEqual( 'non-hvc-confirmed' );
-			expect( month.bars[ 3 ].modifyer ).toEqual( 'non-hvc-unconfirmed' );
-			expect( month.bars[ 4 ].modifyer ).toEqual( 'non-export-confirmed' );
-			expect( month.bars[ 5 ].modifyer ).toEqual( 'non-export-unconfirmed' );
+				expect( month.bars.length ).toEqual( 6 );
+				expect( month.bars[ 0 ].modifyer ).toEqual( 'hvc-confirmed' );
+				expect( month.bars[ 1 ].modifyer ).toEqual( 'hvc-unconfirmed' );
+				expect( month.bars[ 2 ].modifyer ).toEqual( 'non-hvc-confirmed' );
+				expect( month.bars[ 3 ].modifyer ).toEqual( 'non-hvc-unconfirmed' );
+				expect( month.bars[ 4 ].modifyer ).toEqual( 'non-export-confirmed' );
+				expect( month.bars[ 5 ].modifyer ).toEqual( 'non-export-unconfirmed' );
+			} );
+
+			it( 'Should create the keys in the correct order', function(){
+
+				expect( output.keys.length ).toEqual( 7 );
+				expect( output.keys[ 0 ].modifyer ).toEqual( 'target' );
+				expect( output.keys[ 1 ].modifyer ).toEqual( 'hvc-confirmed' );
+				expect( output.keys[ 2 ].modifyer ).toEqual( 'hvc-unconfirmed' );
+				expect( output.keys[ 3 ].modifyer ).toEqual( 'non-hvc-confirmed' );
+				expect( output.keys[ 4 ].modifyer ).toEqual( 'non-hvc-unconfirmed' );
+				expect( output.keys[ 5 ].modifyer ).toEqual( 'non-export-confirmed' );
+				expect( output.keys[ 6 ].modifyer ).toEqual( 'non-export-unconfirmed' );
+			} );
 		} );
 
-		it( 'Should create the keys in the correct order', function(){
+		describe( 'With all zeros', function(){
 
-			expect( output.keys.length ).toEqual( 7 );
-			expect( output.keys[ 0 ].modifyer ).toEqual( 'target' );
-			expect( output.keys[ 1 ].modifyer ).toEqual( 'hvc-confirmed' );
-			expect( output.keys[ 2 ].modifyer ).toEqual( 'hvc-unconfirmed' );
-			expect( output.keys[ 3 ].modifyer ).toEqual( 'non-hvc-confirmed' );
-			expect( output.keys[ 4 ].modifyer ).toEqual( 'non-hvc-unconfirmed' );
-			expect( output.keys[ 5 ].modifyer ).toEqual( 'non-export-confirmed' );
-			expect( output.keys[ 6 ].modifyer ).toEqual( 'non-export-unconfirmed' );
+			const hvcNonHvcAndNonExportData = {
+
+				target: 0,
+				targetName: '£0m',
+				months: [
+					{
+						date: '2017-03',
+						totals: {
+							hvc: {
+								confirmed: 0,
+								unconfirmed: 0
+							},
+							nonExport: {
+								confirmed: 0,
+								unconfirmed: 0
+							},
+							nonHvc: {
+								confirmed: 0,
+								unconfirmed: 0
+							}
+						}
+					}
+				]
+			};
+
+			function checkBar( bar, modifyer ){
+
+				expect( bar.modifyer ).toEqual( modifyer );
+				expect( bar.value ).toEqual( 0 );
+				expect( bar.style.height ).toEqual( '0px' );
+				expect( bar.style.margin ).toEqual( '250px' );
+			}
+
+			beforeEach( function(){
+
+				output = createViewModel( hvcNonHvcAndNonExportData );
+				//console.log( JSON.stringify( output, null , 2 ) );
+			} );
+
+			it( 'Should create the bars in the correct order', function(){
+
+				const month = output.months[ 0 ];
+
+				expect( month.bars.length ).toEqual( 6 );
+
+				checkBar( month.bars[ 0 ], 'hvc-confirmed' );
+				checkBar( month.bars[ 1 ], 'hvc-unconfirmed' );
+				checkBar( month.bars[ 2 ], 'non-hvc-confirmed' );
+				checkBar( month.bars[ 3 ], 'non-hvc-unconfirmed' );
+				checkBar( month.bars[ 4 ], 'non-export-confirmed' );
+				checkBar( month.bars[ 5 ], 'non-export-unconfirmed' );
+			} );
+
+			it( 'Should create the keys in the correct order', function(){
+
+				expect( output.keys.length ).toEqual( 7 );
+				expect( output.keys[ 0 ].modifyer ).toEqual( 'target' );
+				expect( output.keys[ 1 ].modifyer ).toEqual( 'hvc-confirmed' );
+				expect( output.keys[ 2 ].modifyer ).toEqual( 'hvc-unconfirmed' );
+				expect( output.keys[ 3 ].modifyer ).toEqual( 'non-hvc-confirmed' );
+				expect( output.keys[ 4 ].modifyer ).toEqual( 'non-hvc-unconfirmed' );
+				expect( output.keys[ 5 ].modifyer ).toEqual( 'non-export-confirmed' );
+				expect( output.keys[ 6 ].modifyer ).toEqual( 'non-export-unconfirmed' );
+			} );
 		} );
 	} );
 
@@ -399,6 +470,37 @@ describe( 'Monthly Performance view model', function(){
 			} );
 		} );
 
+		describe( 'When the values are all 0', function(){
+
+			const highConfirmedData = {
+
+				target: 0,
+				months: [
+					{
+						date: '2017-03',
+						totals: {
+							hvc: {
+								confirmed: 0,
+								unconfirmed: 0
+							}
+						}
+					}
+				]
+			};
+
+			it( 'Should create the scale with the confirmed as the highest', function(){
+
+				const output = createViewModel( highConfirmedData );
+
+				expect( output.scale.p100 ).toEqual( 1 );
+				expect( output.scale.p80 ).toEqual( 0.8 );
+				expect( output.scale.p60 ).toEqual( 0.6000000000000001 );
+				expect( output.scale.p40 ).toEqual( 0.4 );
+				expect( output.scale.p20 ).toEqual( 0.2 );
+				expect( output.scale.p0 ).toEqual( 0 );
+			} );
+		} );
+
 		describe( 'The target styles', function(){
 
 			const targetData = {
@@ -455,4 +557,3 @@ describe( 'Monthly Performance view model', function(){
 		} );
 	} );
 } );
-

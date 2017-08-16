@@ -47,6 +47,13 @@ const stubs = [
 	[ /^\/mi\/global_hvcs\/(\?year=[0-9]+(&date_(start|end)=.+)?)?$/, 'global_hvcs/index' ],
 	[ /^\/mi\/global_wins\/(\?year=[0-9]+(&date_(start|end)=.+)?)?$/, 'global_wins/index' ],
 
+	[ /^\/mi\/countries\/(\?year=[0-9]+(&date_(start|end)=.+)?)?$/, 'countries/index'  ],
+	[ /^\/mi\/countries\/[A-Z]{2}\/(\?year=[0-9]+(&date_(start|end)=.+)?)?$/, 'countries/country'  ],
+	[ /^\/mi\/countries\/[A-Z]{2}\/campaigns\/(\?year=[0-9]+(&date_(start|end)=.+)?)?$/, 'countries/campaigns'  ],
+	[ /^\/mi\/countries\/[A-Z]{2}\/months\/(\?year=[0-9]+(&date_(start|end)=.+)?)?$/, 'countries/months'  ],
+	[ /^\/mi\/countries\/[A-Z]{2}\/top_non_hvcs\/(\?year=[0-9]+(&date_(start|end)=.+)?)?$/, 'countries/top_non_hvcs'  ],
+	[ /^\/mi\/countries\/[A-Z]{2}\/win_table\/(\?year=[0-9]+(&date_(start|end)=.+)?)?$/, 'countries/win_table'  ],
+
 	[ /^\/user\/me\/$/, 'user/me' ]
 ];
 

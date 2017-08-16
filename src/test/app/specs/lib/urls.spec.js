@@ -173,6 +173,17 @@ describe( 'urls middleware', function(){
 		} );
 	} );
 
+	describe( 'Countries', function(){
+
+		it( 'Should return the correct URLs', function(){
+
+			checkFilteredUrls( req, 'countries', [ 1 ], '/countries/' );
+			checkFilteredUrls( req, 'country', [ 'AU' ], '/countries/AU/' );
+			checkFilteredUrls( req, 'countryWins', [ 'AU' ], '/countries/AU/wins/' );
+			checkFilteredUrls( req, 'countryNonHvcWins', [ 'AU' ], '/countries/AU/non-hvc-wins/' );
+		} );
+	} );
+
 	describe( 'HVC Groups', function(){
 
 		it( 'Should return the correct URLs', function(){

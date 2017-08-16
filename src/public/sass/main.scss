@@ -14,6 +14,7 @@
 @import 'page/sector';
 @import 'page/sectors-overview';
 @import 'page/overseas-regions-overview';
+@import 'page/overseas-regions-countries';
 @import 'page/hvc';
 @import 'page/win';
 @import 'page/wins';
@@ -38,6 +39,7 @@
 @import 'hvc-group';
 @import 'year-selector';
 @import 'page-tabs';
+@import 'os-regions-tabs';
 
 main {
 	@include core-16;

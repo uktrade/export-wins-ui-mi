@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+
+{% set pageName='Countries' %}
+
+{% from 'macros/os-regions-types-tabs.html' import osRegionsTypesTabs %}
+
+{% block page_content %}
+
+	<h1 class="page-heading">All countries</h1>
+
+	{% include 'partials/year-selector.html' %}
+
+	{{ osRegionsTypesTabs( countries=true ) }}
+
+	<h2 class="os-regions-country-heading">Choose a country</h2>
+
+	<ul class="os-regions-country-letters">
+		{% for letter, countryList in countries %}
+
+			<li class="os-regions-country-letters_letter">
+				{% if countryList.length %}
+				<a href="#country-list-{{ letter }}">{{ letter }}</a>
+				{% else %}
+				<span>{{ letter }}</span>
+				{% endif %}
+			</li>
+
+		{% endfor %}
+	</ul>
+
+	{% for letter, countryList in countries %}
+
+		{% if countryList.length %}
+
+		<h3 id="country-list-{{ letter }}">{{ letter }}</h3>
+
+		<ul class="os-regions-countries-list">
+		{% for country in countryList -%}
+			<li>
+				<a href="{{ urls.country( country.id ) }}">{{ country.name }}</a>
+			</li>
+		{%- endfor %}
+		</ul>
+
+		{% endif %}
+	{% endfor %}
+{% endblock %}

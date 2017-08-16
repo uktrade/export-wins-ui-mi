@@ -1,0 +1,58 @@
+{
+	"timestamp": 1502864447183,
+	"financial_year": {
+		"id": 2016,
+		"description": "2016-2017"
+	},
+	"results": [
+		{
+			"averageWinValue": 28951,
+			"region": "consectetur repudiandae dignissimos",
+			"percentComplete": 77,
+			"averageWinPercent": 75,
+			"totalValue": 92823,
+			"sector": "modi minus cumque",
+			"totalWins": 151
+		},
+		{
+			"averageWinValue": 38517,
+			"region": "doloribus perspiciatis qui",
+			"percentComplete": 51,
+			"averageWinPercent": 83,
+			"totalValue": 66515,
+			"sector": "laudantium aperiam voluptas",
+			"totalWins": 314
+		},
+		{
+			"averageWinValue": 20128,
+			"region": "ipsum qui laborum",
+			"percentComplete": 3,
+			"averageWinPercent": 53,
+			"totalValue": 16502,
+			"sector": "architecto velit perferendis",
+			"totalWins": 807
+		},
+		{
+			"averageWinValue": 95001,
+			"region": "ipsa est aut",
+			"percentComplete": 6,
+			"averageWinPercent": 4,
+			"totalValue": 83173,
+			"sector": "voluptatem possimus sit",
+			"totalWins": 57
+		},
+		{
+			"averageWinValue": 15413,
+			"region": "quod quae soluta",
+			"percentComplete": 5,
+			"averageWinPercent": 91,
+			"totalValue": 40023,
+			"sector": "rerum omnis voluptatem",
+			"totalWins": 369
+		}
+	],
+	"date_range": {
+		"start": "Fri, 01 Apr 2016 00:00:00 GMT",
+		"end": "Fri, 31 Mar 2017 00:00:00 GMT"
+	}
+}

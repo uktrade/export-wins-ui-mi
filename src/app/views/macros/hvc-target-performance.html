@@ -31,6 +31,10 @@
 {% endmacro %}
 
 {% macro hvcTargetPerformanceTable( items ) %}
+
+{% if not items.length %}
+<p>No HVC wins have been recored yet.</p>
+{% else %}
 <div class="hvc-perf">
 	<table class="hvc-perf_table">
 		<caption class="visually-hidden">HVC Performance</caption>
@@ -93,4 +97,5 @@
 		</tbody>
 	</table>
 </div>
+{% endif %}
 {% endmacro %}

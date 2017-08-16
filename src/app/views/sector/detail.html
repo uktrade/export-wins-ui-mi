@@ -6,7 +6,10 @@
 
 {% block page_content %}
 
-	{% include 'partials/year-selector.html' %}
+	{%- block year_selector -%}
+		{% include 'partials/year-selector.html' %}
+	{%- endblock -%}
+
 	<h2 class="page-date">{{ financialYear( summary.dateRange ) }}</h2>
 
 	{% block page_tabs %}{% endblock page_tabs %}

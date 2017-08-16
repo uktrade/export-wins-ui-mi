@@ -18,6 +18,7 @@ let osRegionsOverviewGroupsSpy;
 let hvcGroupSpy;
 let osRegionsSpy;
 let winListSpy;
+let countryListSpy;
 let backend;
 let req = {};
 
@@ -71,6 +72,7 @@ describe( 'Backend service', function(){
 			hvcGroupSpy = jasmine.createSpy( 'hvc-group' );
 			osRegionsSpy = jasmine.createSpy( 'os-regions' );
 			winListSpy = jasmine.createSpy( 'win-list' );
+			countryListSpy = jasmine.createSpy( 'country-list' );
 
 			backend = {
 				get: function(){},
@@ -88,6 +90,7 @@ describe( 'Backend service', function(){
 				'../transformers/hvc-group': hvcGroupSpy,
 				'../transformers/os-regions': osRegionsSpy,
 				'../transformers/win-list': winListSpy,
+				'../transformers/country-list': countryListSpy,
 				'../backend-request': backend
 			};
 
@@ -330,6 +333,129 @@ describe( 'Backend service', function(){
 
 					expect( winList.results ).toEqual( transformResponse );
 					expect( winListSpy ).toHaveBeenCalledWith( getBackendStub( stubFile ).results );
+					done();
+
+				} ).catch( done.fail );
+			} );
+		} );
+
+		describe( 'Getting the list of countries', function(){
+
+			it( 'Should call the correct API and transform the response', function( done ){
+
+				const stubFile = '/countries/';
+				const transformResponse = { countryListTransformer: true };
+
+				returnStub( '/countries/' );
+				countryListSpy.and.callFake( () => transformResponse );
+
+				backendService.getCountries( req ).then( ( countryList ) => {
+
+					checkBackendArgs( `/mi/countries/?year=${ year }`, req );
+
+					expect( countryList.results ).toEqual( transformResponse );
+					expect( countryListSpy ).toHaveBeenCalledWith( getBackendStub( stubFile ).results );
+
+					done();
+
+				} ).catch( done.fail );
+			} );
+		} );
+
+		describe( 'Getting the details of a country', function(){
+
+			it( 'Should call the correct API', function( done ){
+
+				const countryCode = 'SI';
+
+				returnStub( '/countries/country' );
+
+				backendService.getCountry( req, countryCode ).then( () => {
+
+					checkBackendArgs( `/mi/countries/${ countryCode }/?year=${ year }`, req );
+					done();
+
+				} ).catch( done.fail );
+			} );
+		} );
+
+		describe( 'Getting the campaigns of a country', function(){
+
+			it( 'Should call the correct API', function( done ){
+
+				const countryCode = 'SI';
+
+				returnStub( '/countries/campaigns' );
+
+				backendService.getCountryCampaigns( req, countryCode ).then( () => {
+
+					checkBackendArgs( `/mi/countries/${ countryCode }/campaigns/?year=${ year }`, req );
+
+					expect( campaignsSpy ).toHaveBeenCalled();
+					expect( campaignsSpy.calls.count() ).toEqual( 1 );
+
+					done();
+
+				} ).catch( done.fail );
+			} );
+		} );
+
+		describe( 'Getting the months of a country', function(){
+
+			it( 'Should call the correct API', function( done ){
+
+				const countryCode = 'SI';
+
+				returnStub( '/countries/months' );
+
+				backendService.getCountryMonths( req, countryCode ).then( () => {
+
+					checkBackendArgs( `/mi/countries/${ countryCode }/months/?year=${ year }`, req );
+
+					expect( monthsSpy ).toHaveBeenCalled();
+					expect( monthsSpy.calls.count() ).toEqual( 1 );
+
+					done();
+
+				} ).catch( done.fail );
+			} );
+		} );
+
+		describe( 'Getting the top_non_hvcs of a country', function(){
+
+			it( 'Should call the correct API', function( done ){
+
+				const countryCode = 'SI';
+
+				returnStub( '/countries/top_non_hvcs' );
+
+				backendService.getCountryTopNonHvc( req, countryCode ).then( () => {
+
+					checkBackendArgs( `/mi/countries/${ countryCode }/top_non_hvcs/?year=${ year }`, req );
+					done();
+
+				} ).catch( done.fail );
+			} );
+		} );
+
+		describe( 'Getting the win_table of a country', function(){
+
+			it( 'Should call the correct API', function( done ){
+
+				const countryCode = 'SI';
+				const stubFile = '/countries/win_table';
+				const transformResponse = { winListTransformer: true };
+
+				returnStub( stubFile );
+				winListSpy.and.callFake( () => transformResponse );
+
+				backendService.getCountryWinTable( req, countryCode ).then( ( winList ) => {
+
+					checkBackendArgs( `/mi/countries/${ countryCode }/win_table/?year=${ year }`, req );
+
+					expect( winList.results ).toEqual( transformResponse );
+					expect( winListSpy ).toHaveBeenCalledWith( getBackendStub( stubFile ).results );
+
 					done();
 
 				} ).catch( done.fail );
@@ -1084,6 +1210,64 @@ describe( 'Backend service', function(){
 					backendService.getOverseasRegionInfo( req, regionId ).then( ( data ) => {
 
 						checkReporterMessage( 'getOverseasRegionInfo' );
+
+						expect( data.wins ).toBeDefined();
+						expect( data.months ).toBeDefined();
+						expect( data.campaigns ).toBeDefined();
+						expect( data.topNonHvc ).toBeDefined();
+
+						done();
+
+					} ).catch( done.fail );
+				} );
+			} );
+		} );
+
+		describe( 'Getting the Country Info', function(){
+
+			it( 'Should return several bits of data', function( done ){
+
+				const countryId = 3;
+
+				const files = [
+					[ `/mi/countries/${ countryId }/?year=${ year }`, '/countries/country' ],
+					[ `/mi/countries/${ countryId }/months/?year=${ year }`, '/countries/months' ],
+					[ `/mi/countries/${ countryId }/campaigns/?year=${ year }`, '/countries/campaigns' ],
+					[ `/mi/countries/${ countryId }/top_non_hvcs/?year=${ year }`, '/countries/top_non_hvcs' ]
+				];
+
+				intercept( files );
+
+				backendService.getCountryInfo( req, countryId ).then( ( data ) => {
+
+					expect( data.wins ).toBeDefined();
+					expect( data.months ).toBeDefined();
+					expect( data.campaigns ).toBeDefined();
+					expect( data.topNonHvc ).toBeDefined();
+
+					done();
+
+				} ).catch( done.fail );
+			} );
+
+			describe( 'When one of APIs returns after a long time', function(){
+
+				it( 'Should log a message with the reporter', function( done ){
+
+					const countryId = 4;
+
+					const files = [
+						[ `/mi/countries/${ countryId }/?year=${ year }`, '/countries/country' ],
+						[ `/mi/countries/${ countryId }/months/?year=${ year }`, '/countries/months' ],
+						[ `/mi/countries/${ countryId }/campaigns/?year=${ year }`, '/countries/campaigns' ],
+						[ `/mi/countries/${ countryId }/top_non_hvcs/?year=${ year }`, '/countries/top_non_hvcs' ]
+					];
+
+					interceptWithDelay( files );
+
+					backendService.getCountryInfo( req, countryId ).then( ( data ) => {
+
+						checkReporterMessage( 'getCountryInfo' );
 
 						expect( data.wins ).toBeDefined();
 						expect( data.months ).toBeDefined();

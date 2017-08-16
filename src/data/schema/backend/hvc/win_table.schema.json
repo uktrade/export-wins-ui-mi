@@ -1,6 +1,6 @@
 {
 	"$schema": "http://json-schema.org/draft-04/schema#",
-	"title": "List of wins for table",
+	"title": "List of wins for HVC win table",
 
 	"type": "object",
 	"required": [ "hvc", "wins" ],
