@@ -1,12 +1,12 @@
 {
 	"$schema": "http://json-schema.org/draft-04/schema#",
-	"title": "List of wins for overseas region win table",
+	"title": "List of wins for country win table",
 
 	"type": "object",
-	"required": [ "os_region", "wins" ],
+	"required": [ "country", "wins" ],
 	"properties": {
 
-		"os_region": {
+		"country": {
 			"type": "object",
 			"required": [ "name", "id" ],
 			"properties": {
@@ -16,7 +16,7 @@
 				},
 				"id": {
 					"type": "string",
-					"faker": "random.number"
+					"pattern": "[A-Z]{2}"
 				}
 			}
 		},

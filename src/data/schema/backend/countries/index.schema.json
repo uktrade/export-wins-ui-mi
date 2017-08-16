@@ -1,0 +1,24 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "List of countries",
+
+	"type": "array",
+	"minItems": 25,
+	"maxItems": 30,
+	"items": {
+		"type": "object",
+		"required": [ "id", "name" ],
+		"properties": {
+
+			"id": {
+				"type": "string",
+				"pattern": "[A-Z]{2}"
+			},
+
+			"name": {
+				"type": "string",
+				"faker": "lorem.words"
+			}
+		}
+	}
+}

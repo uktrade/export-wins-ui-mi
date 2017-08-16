@@ -1,0 +1,26 @@
+{% extends 'sector/detail.html' %}
+
+{% from 'macros/country-tabs.html' import tabs %}
+{% from 'macros/os-regions-types-tabs.html' import osRegionsTypesTabs %}
+
+{% set pageName %}Country performance - {{ countryName | safe  }}{% endset %}
+{% set sectorName %}{{ countryName | safe }}{% endset %}
+
+{% block year_selector %}
+	{{ super() }}
+	{{ osRegionsTypesTabs( countries=true, linkCountries=true ) }}
+{% endblock %}
+
+{% block page_content %}
+
+	<h1 class="page-heading">
+		{{ countryName }} <span class="page-heading-secondary">Country</span>
+	</h1>
+
+	{{- super() -}}
+
+{% endblock %}
+
+{% block page_tabs %}
+	{{ tabs( countryCode, performance = true ) }}
+{% endblock %}

@@ -5,6 +5,7 @@ const input = getBackendStub( '/sector_teams/months' );
 const hvcGroupInput = getBackendStub( '/hvc_groups/months' );
 const inputOverTarget = getBackendStub( '/sector_teams/months_over-target' );
 const input20161212 = getBackendStub( '/sector_teams/months' );
+const inputZeroValues = getBackendStub( '/countries/months.zero' );
 
 
 describe( 'Sector months transformer', function(){
@@ -76,4 +77,11 @@ describe( 'Sector months transformer', function(){
 		} );
 	} );
 
+	describe( 'With zero values', function(){
+
+		it( 'Should return all zeros', function(){
+
+			checkOutput( inputZeroValues );
+		} );
+	} );
 } );

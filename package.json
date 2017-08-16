@@ -74,6 +74,7 @@
     "express": "4.15.4",
     "jsonwebtoken": "7.4.2",
     "morgan": "1.8.2",
+    "normalize-strings": "1.1.0",
     "nunjucks": "3.0.1",
     "random-int": "^1.0.0",
     "raven": "2.1.1",

@@ -1523,6 +1523,11 @@
       "from": "normalize-path@>=2.0.1 <3.0.0",
       "resolved": "https://registry.npmjs.org/normalize-path/-/normalize-path-2.1.1.tgz"
     },
+    "normalize-strings": {
+      "version": "1.1.0",
+      "from": "normalize-strings@latest",
+      "resolved": "https://registry.npmjs.org/normalize-strings/-/normalize-strings-1.1.0.tgz"
+    },
     "number-is-nan": {
       "version": "1.0.1",
       "from": "number-is-nan@>=1.0.0 <2.0.0",

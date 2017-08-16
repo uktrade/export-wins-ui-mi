@@ -7,16 +7,17 @@ const year = 2017;
 
 let backendService;
 let errorHandler;
+
+let res;
+let controller;
+
 let sectorSummary;
 let hvcSummary;
 let hvcTargetPerformance;
 let topMarkets;
 let monthlyPerformance;
 
-let res;
-let controller;
-
-describe( 'Overseas Regions controller', function(){
+describe( 'Countries controller', function(){
 
 	beforeEach( function(){
 
@@ -33,7 +34,7 @@ describe( 'Overseas Regions controller', function(){
 			render: spy( 'res.render' )
 		};
 
-		controller = proxyquire( '../../../../app/controllers/controller.overseas-regions', {
+		controller = proxyquire( '../../../../app/controllers/controller.countries', {
 			'../lib/service/service.backend': backendService,
 			'../lib/render-error': errorHandler,
 			'../lib/view-models/sector-summary': sectorSummary,
@@ -41,43 +42,6 @@ describe( 'Overseas Regions controller', function(){
 			'../lib/view-models/hvc-target-performance': hvcTargetPerformance,
 			'../lib/view-models/top-markets': topMarkets,
 			'../lib/view-models/monthly-performance': monthlyPerformance
-		} );
-	} );
-
-	describe( 'Overview', function(){
-
-		it( 'Should get the overview groups data and render the correct view', function( done ){
-
-			const req = {
-				cookies: { sessionid: '123' },
-				year
-			};
-
-			const regionGroups = {
-				date_range: { test: '1' },
-				results: [ 'testing' ]
-			};
-
-			const promise = new Promise( ( resolve ) => {
-
-				resolve( regionGroups );
-			} );
-
-			backendService.getOverseasRegionsOverviewGroups = spy( 'getOverseasRegionsOverviewGroups', promise );
-			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
-
-			controller.overview( req, res );
-
-			promise.then( () => {
-
-				expect( backendService.getOverseasRegionsOverviewGroups ).toHaveBeenCalledWith( req );
-				expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
-				expect( res.render ).toHaveBeenCalledWith( 'overseas-regions/overview.html', {
-					dateRange: regionGroups.date_range,
-					regionGroups: regionGroups.results
-				} );
-				done();
-			} );
 		} );
 	} );
 
@@ -90,38 +54,39 @@ describe( 'Overseas Regions controller', function(){
 				year
 			};
 
-			const regions = { results: { 'regions': true } };
+			const countries = { results: { 'countries': true } };
 
-			const promise = new Promise( ( resolve ) => {	resolve( regions ); } );
+			const promise = new Promise( ( resolve ) => { resolve( countries ); } );
 
-			backendService.getOverseasRegions = spy( 'getOverseasRegions', promise );
+			backendService.getCountries = spy( 'getCountries', promise );
 			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
 
 			controller.list( req, res );
 
 			promise.then( () => {
 
-				expect( backendService.getOverseasRegions ).toHaveBeenCalledWith( req );
+				expect( backendService.getCountries ).toHaveBeenCalledWith( req );
 				expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
-				expect( res.render ).toHaveBeenCalledWith( 'overseas-regions/list.html', { regions: regions.results } );
+				expect( res.render ).toHaveBeenCalledWith( 'countries/list.html', { countries: countries.results } );
 				done();
 			} );
 		} );
 	} );
 
-	describe( 'Region', function(){
+	describe( 'Country', function(){
 
-		it( 'Should get the region data and render the correct view', function( done ){
+		it( 'Should get the data and render the correct view', function( done ){
+
+			const countryName = 'my test country';
+			const countryCode = 'SI';
 
 			const req = {
-				cookies: { sessionid: '789' },
-				year,
-				params: {
-					id: 1234
-				}
+				cookies: { sessionid: '456' },
+				params: { code: countryCode },
+				year
 			};
 
-			const regionId = req.params.id;
+			const country = { results: { country: true, name: countryName } };
 
 			const sectorSummaryResponse = { 'sectorSummaryResponse': true };
 			const hvcSummaryResponse = { 'hvcSummaryResponse': true };
@@ -130,7 +95,7 @@ describe( 'Overseas Regions controller', function(){
 			const monthlyPerformanceResponse = { 'monthlyPerformanceResponse': true };
 
 			const data = {
-				wins: { results: { name: 'test-regions' } },
+				wins: country,
 				campaigns: [ 'test-campaigns' ],
 				months: [ 'test-months' ],
 				topNonHvc: { top: { non: 'hvc' } }
@@ -138,8 +103,8 @@ describe( 'Overseas Regions controller', function(){
 
 			const promise = new Promise( ( resolve ) => { resolve( data ); } );
 
+			backendService.getCountryInfo = spy( 'getCountryInfo', promise );
 			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
-			backendService.getOverseasRegionInfo = spy( 'getOverseasRegionInfo', promise );
 
 			sectorSummary.create = spy( 'sectorSummary.create', sectorSummaryResponse );
 			hvcSummary.create = spy( 'hvcSummary.create', hvcSummaryResponse );
@@ -147,11 +112,11 @@ describe( 'Overseas Regions controller', function(){
 			topMarkets.create = spy( 'topMarkets.create', topMarketsResponse );
 			monthlyPerformance.create = spy( 'monthlyPerformance.create', monthlyPerformanceResponse );
 
-			controller.region( req, res );
+			controller.country( req, res );
 
 			promise.then( () => {
 
-				expect( backendService.getOverseasRegionInfo ).toHaveBeenCalledWith( req, regionId );
+				expect( backendService.getCountryInfo ).toHaveBeenCalledWith( req, countryCode );
 				expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
 
 				expect( sectorSummary.create ).toHaveBeenCalledWith( data.wins );
@@ -160,9 +125,9 @@ describe( 'Overseas Regions controller', function(){
 				expect( monthlyPerformance.create ).toHaveBeenCalledWith( data.months );
 				expect( topMarkets.create ).toHaveBeenCalledWith( data.topNonHvc );
 
-				expect( res.render ).toHaveBeenCalledWith( 'overseas-regions/detail.html', {
-					regionId,
-					regionName: data.wins.results.name,
+				expect( res.render ).toHaveBeenCalledWith( 'countries/detail.html', {
+					countryCode,
+					countryName,
 					summary: sectorSummaryResponse,
 					hvcSummary: hvcSummaryResponse,
 					hvcTargetPerformance: hvcTargetPerformanceResponse,
@@ -180,46 +145,46 @@ describe( 'Overseas Regions controller', function(){
 
 			it( 'Should get the list of wins and render the correct view', function( done ){
 
-			const regionId = 890;
+			const countryId = 890;
 
 			const req = {
 				cookies: { sessionid: '456' },
 				params: {
-					id: regionId
+					code: countryId
 				},
 				year
 			};
 
-			const regionWins = {
+			const countryWins = {
 				date_range: { start: 6, end: 9 },
 				results: {
-					os_region: { test: 1 },
+					country: { test: 1 },
 					wins: [ 'some wins' ]
 				}
 			};
 
-			const promise = new Promise( ( resolve ) => { resolve( regionWins ); } );
+			const promise = new Promise( ( resolve ) => { resolve( countryWins ); } );
 
-			backendService.getOverseasRegionWinTable = spy( 'getOverseasRegionWinTable', promise );
+			backendService.getCountryWinTable = spy( 'getCountryWinTable', promise );
 			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
 
 			controller[ methodName ]( req, res );
 
 			promise.then( () => {
 
-				expect( backendService.getOverseasRegionWinTable ).toHaveBeenCalledWith( req, regionId );
+				expect( backendService.getCountryWinTable ).toHaveBeenCalledWith( req, countryId );
 				expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
 				expect( res.render ).toHaveBeenCalledWith( view, {
-					dateRange: regionWins.date_range,
-					region: regionWins.results.os_region,
-					wins: regionWins.results.wins
+					dateRange: countryWins.date_range,
+					country: countryWins.results.country,
+					wins: countryWins.results.wins
 				} );
 				done();
 			} );
 		} );
 		}
 
-		checkWins( 'wins', 'overseas-regions/wins.html' );
-		checkWins( 'nonHvcWins', 'overseas-regions/non-hvc-wins.html' );
+		checkWins( 'wins', 'countries/wins.html' );
+		checkWins( 'nonHvcWins', 'countries/non-hvc-wins.html' );
 	} );
 } );

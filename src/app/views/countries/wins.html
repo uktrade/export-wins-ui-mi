@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% set pageName %}Country HVC wins - {{ country.name | safe }}{% endset %}
+
+{% from 'macros/dates.html' import financialYear %}
+{% from 'macros/win-tables.html' import singleWinTable %}
+{% from 'macros/country-tabs.html' import tabs %}
+{% from 'macros/os-regions-types-tabs.html' import osRegionsTypesTabs %}
+
+{% block page_content %}
+
+	<h1 class="page-heading">
+		{{ country.name }} <span class="page-heading-secondary">Country</span>
+	</h1>
+	{% include 'partials/year-selector.html' %}
+	{{ osRegionsTypesTabs( countries=true, linkCountries=true ) }}
+	<h2 class="page-date page-date--hvc">{{ financialYear( dateRange ) }}</h2>
+
+	{{ tabs( country.id, hvcWins = true ) }}
+
+	{{ singleWinTable( 'Country', hvcWins = wins.hvc ) }}
+
+{% endblock %}

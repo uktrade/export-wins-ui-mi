@@ -69,7 +69,7 @@ module.exports = {
 			nonExport: false
 		};
 
-		let max = data.target;
+		let max = ( data.target || 1 );
 
 		keys.push({
 			name: `${data.targetName} target`,

@@ -9,7 +9,8 @@ const scripts = [
 	'generate-os-regions',
 	'generate-sector-teams',
 	'generate-shared',
-	'generate-user'
+	'generate-user',
+	'generate-countries'
 ];
 
 for( let script of scripts ){

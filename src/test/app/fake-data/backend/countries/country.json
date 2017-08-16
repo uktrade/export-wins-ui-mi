@@ -1,0 +1,86 @@
+{
+	"timestamp": 1502782804576,
+	"financial_year": {
+		"id": 2016,
+		"description": "2016-2017"
+	},
+	"results": {
+		"hvcs": {
+			"target": 20123,
+			"campaigns": [
+				"Et aut sint molestias velit in id.",
+				"Unde aperiam explicabo dicta.",
+				"Molestias sit error cupiditate consequatur vero veniam.",
+				"Modi maiores sunt fugiat voluptate possimus corrupti quis et.",
+				"Rerum in quae minima dignissimos.",
+				"Quae earum est in voluptatem corrupti voluptates ut.",
+				"Ratione est placeat officiis ut eligendi voluptates ut hic quisquam.",
+				"Et nihil tempore.",
+				"Autem asperiores illum dolorem quam error voluptatum porro.",
+				"Laboriosam autem officiis ipsam illo non repudiandae officiis consequatur.",
+				"Odit eos repudiandae ipsam enim ea reiciendis eligendi ullam quaerat.",
+				"Quis dolorem voluptatem.",
+				"Labore enim sed consequatur rerum error alias odit aspernatur expedita.",
+				"Omnis qui cumque explicabo eum quia."
+			]
+		},
+		"name": "atque molestiae ducimus",
+		"avg_time_to_confirm": 44.13,
+		"wins": {
+			"non_export": {
+				"number": {
+					"unconfirmed": 351,
+					"total": 1245,
+					"confirmed": 894
+				},
+				"value": {
+					"unconfirmed": 80180,
+					"total": 153371,
+					"confirmed": 73191
+				}
+			},
+			"export": {
+				"hvc": {
+					"number": {
+						"unconfirmed": 134,
+						"total": 746,
+						"confirmed": 612
+					},
+					"value": {
+						"unconfirmed": 77290,
+						"total": 170263,
+						"confirmed": 92973
+					}
+				},
+				"non_hvc": {
+					"number": {
+						"unconfirmed": 99,
+						"total": 514,
+						"confirmed": 415
+					},
+					"value": {
+						"unconfirmed": 37791,
+						"total": 111781,
+						"confirmed": 73990
+					}
+				},
+				"totals": {
+					"number": {
+						"unconfirmed": 233,
+						"confirmed": 1027,
+						"grand_total": 1260
+					},
+					"value": {
+						"unconfirmed": 115081,
+						"confirmed": 166963,
+						"grand_total": 282044
+					}
+				}
+			}
+		}
+	},
+	"date_range": {
+		"start": "Fri, 01 Apr 2016 00:00:00 GMT",
+		"end": "Fri, 31 Mar 2017 00:00:00 GMT"
+	}
+}

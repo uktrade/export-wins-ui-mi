@@ -10,6 +10,7 @@ const userJson = require( './faker/backend/scripts/user-json' );
 const hvcJson = require( './faker/backend/scripts/hvc-json' );
 const globalHvcsJson = require( './faker/backend/scripts/global-hvcs-json' );
 const globalWinsJson = require( './faker/backend/scripts/global-wins-json' );
+const countriesJson = require( './faker/backend/scripts/countries-json' );
 
 const outputPath = path.resolve( __dirname, 'fake-stubs/backend' );
 
@@ -51,7 +52,14 @@ const yearlyFiles = {
 	'sector_teams/campaigns': sharedJson.createCampaigns,
 	'sector_teams/months': sharedJson.createMonths,
 	'sector_teams/top_non_hvcs': sharedJson.createTopNonHvcs,
-	'sector_teams/win_table': sectorTeamsJson.createWinTable
+	'sector_teams/win_table': sectorTeamsJson.createWinTable,
+
+	'countries/index': countriesJson.createList,
+	'countries/country': sharedJson.createSector,
+	'countries/campaigns': sharedJson.createCampaigns,
+	'countries/months': sharedJson.createMonths,
+	'countries/top_non_hvcs': sharedJson.createTopNonHvcs,
+	'countries/win_table': countriesJson.createWinTable
 };
 
 for( let file in yearlyFiles ){

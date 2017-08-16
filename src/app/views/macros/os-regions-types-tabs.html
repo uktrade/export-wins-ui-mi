@@ -1,0 +1,38 @@
+{% macro typeTab( name, href='', active=false ) %}
+
+	{%- if href -%}
+
+		<li class="overseas-regions-tabs_tab">
+			<a class="overseas-regions-tabs_tab_text{% if active %} overseas-regions-tabs_tab_text--active{% endif %}" href="{{ href }}">
+				{{- name -}}
+			</a>
+		</li>
+
+	{%- else -%}
+
+		<li class="overseas-regions-tabs_tab">
+			<span class="overseas-regions-tabs_tab_text overseas-regions-tabs_tab_text--active">
+				{{- name -}}
+			</span>
+		</li>
+
+	{%- endif %}
+{% endmacro -%}
+
+{% macro osRegionsTypesTabs( regions=false, countries=false, posts=false, linkCountries ) %}
+
+	{% set overviewHref = urls.osRegionsOverview() %}
+	{% set countriesHref = urls.countries() %}
+	{% set postsHref = '#' %}
+
+	{% if regions %}{% set overviewHref='' %}{% endif %}
+	{% if countries and not linkCountries %}{% set countriesHref='' %}{% endif %}
+	{% if posts %}{% set postsHref='' %}{% endif %}
+
+	<ul class="overseas-regions-tabs">
+		{{ typeTab( 'Regions', overviewHref ) }}
+		{{ typeTab( 'Countries', countriesHref, linkCountries ) }}
+		{# typeTab( 'Posts', postsHref ) #}
+	</ul>
+
+{%- endmacro %}

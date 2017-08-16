@@ -74,6 +74,11 @@ module.exports = function( req ){
 		sectorTeamWins: ( teamId ) => filteredUrl( '/sector-teams/' + teamId + '/wins/' ),
 		sectorTeamNonHvcWins: ( teamId ) => filteredUrl( '/sector-teams/' + teamId + '/non-hvc-wins/' ),
 
+		countries: () => filteredUrl( '/countries/' ),
+		country: ( countryId ) => filteredUrl( '/countries/' + countryId + '/' ),
+		countryWins: ( countryId ) => filteredUrl( '/countries/' + countryId + '/wins/' ),
+		countryNonHvcWins: ( countryId ) => filteredUrl( '/countries/' + countryId + '/non-hvc-wins/' ),
+
 		hvcGroup: ( groupId ) => filteredUrl( '/hvc-groups/' + groupId + '/' ),
 		hvcGroupWins: ( groupId ) => filteredUrl( '/hvc-groups/' + groupId + '/wins/' ),
 

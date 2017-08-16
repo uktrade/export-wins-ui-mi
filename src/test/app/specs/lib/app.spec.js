@@ -528,6 +528,90 @@ if( config.backend.mock ){
 		} );
 	} );
 
+	describe( 'Countries', function(){
+
+		describe( 'List', function(){
+
+			describe( 'When the API returns a status of 200', function(){
+
+				it( 'Should return a 200 with the correct heading', function( done ){
+
+					returnUser();
+					interceptBackend.getStub( '/mi/countries/?year=2017', 200, '/countries/' );
+
+					supertest( app ).get( '/countries/' ).end( ( err, res ) => {
+
+						checkResponse( res, 200 );
+						expect( getTitle( res ) ).toEqual( 'MI - Countries' );
+						done();
+					} );
+				} );
+			} );
+		} );
+
+		describe( 'Country', function(){
+
+			describe( 'When the API returns a status of 200', function(){
+
+				it( 'Should return a 200 with the correct heading', function( done ){
+
+					const countryCode = 'SI';
+
+					returnUser();
+					interceptBackend.getStub( `/mi/countries/${ countryCode }/?year=2017`, 200, '/countries/country' );
+					interceptBackend.getStub( `/mi/countries/${ countryCode }/campaigns/?year=2017`, 200, '/countries/campaigns' );
+					interceptBackend.getStub( `/mi/countries/${ countryCode }/months/?year=2017`, 200, '/countries/months' );
+					interceptBackend.getStub( `/mi/countries/${ countryCode }/top_non_hvcs/?year=2017`, 200, '/countries/top_non_hvcs' );
+
+					supertest( app ).get( `/countries/${ countryCode }/` ).end( ( err, res ) => {
+
+						checkResponse( res, 200 );
+						expect( getTitle( res ) ).toEqual( 'MI - Country performance - atque molestiae ducimus' );
+						done();
+					} );
+				} );
+			} );
+		} );
+
+		describe( 'Country HVC wins', function(){
+
+			describe( 'When the API returns a status of 200', function(){
+
+				it( 'Should return a 200 with the correct heading', function( done ){
+
+					returnUser();
+					interceptBackend.getStub( '/mi/countries/AU/win_table/?year=2017', 200, '/countries/win_table' );
+
+					supertest( app ).get( '/countries/AU/wins/' ).end( ( err, res ) => {
+
+						checkResponse( res, 200 );
+						expect( getTitle( res ) ).toEqual( 'MI - Country HVC wins - atque at atque' );
+						done();
+					} );
+				} );
+			} );
+		} );
+
+		describe( 'Country non HVC wins', function(){
+
+			describe( 'When the API returns a status of 200', function(){
+
+				it( 'Should return a 200 with the correct heading', function( done ){
+
+					returnUser();
+					interceptBackend.getStub( '/mi/countries/AU/win_table/?year=2017', 200, '/countries/win_table' );
+
+					supertest( app ).get( '/countries/AU/non-hvc-wins/' ).end( ( err, res ) => {
+
+						checkResponse( res, 200 );
+						expect( getTitle( res ) ).toEqual( 'MI - Country non HVC wins - atque at atque' );
+						done();
+					} );
+				} );
+			} );
+		} );
+	} );
+
 	describe( 'Saml metadata', function(){
 
 		it( 'Should return the metadata', function( done ){

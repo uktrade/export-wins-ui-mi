@@ -11,22 +11,30 @@ const stubs = [
 	[ 'sector_teams/campaigns', '/mi/sector_teams/1/campaigns/' ],
 	[ 'sector_teams/months', '/mi/sector_teams/1/months/' ],
 	[ 'sector_teams/top_non_hvcs', '/mi/sector_teams/1/top_non_hvcs/'],
+	[ 'sector_teams/win_table', '/mi/sector_teams/1/win_table/'],
 	[ 'os_regions/index', '/mi/os_regions/' ],
 	[ 'os_regions/overview', '/mi/os_regions/overview/' ],
 	[ 'os_regions/region', '/mi/os_regions/1/' ],
 	[ 'os_regions/campaigns', '/mi/os_regions/1/campaigns/' ],
 	[ 'os_regions/months', '/mi/os_regions/1/months/' ],
 	[ 'os_regions/top_non_hvcs', '/mi/os_regions/1/top_non_hvcs/' ],
+	[ 'os_regions/win_table', '/mi/os_regions/1/win_table/' ],
 	[ 'os_region_groups/index', '/mi/os_region_groups/' ],
 	[ 'hvc_groups/index', '/mi/hvc_groups/' ],
 	[ 'hvc_groups/group', '/mi/hvc_groups/1/' ],
 	[ 'hvc_groups/months', '/mi/hvc_groups/1/months/' ],
 	[ 'hvc_groups/campaigns', '/mi/hvc_groups/1/campaigns/' ],
+	[ 'hvc_groups/win_table', '/mi/hvc_groups/1/win_table/' ],
 	[ 'hvc/hvc', '/mi/hvc/E100/' ],
 	[ 'hvc/top_wins', '/mi/hvc/E100/top_wins/' ],
 	[ 'hvc/win_table', '/mi/hvc/E100/win_table/' ],
 	[ 'global_hvcs/index', '/mi/global_hvcs/' ],
-	[ 'global_wins/index', '/mi/global_wins/' ]
+	[ 'global_wins/index', '/mi/global_wins/' ],
+	[ 'countries/index', '/mi/countries/' ],
+	[ 'countries/campaigns', '/mi/countries/AU/campaigns/' ],
+	[ 'countries/months', '/mi/countries/AU/months/' ],
+	[ 'countries/top_non_hvcs', '/mi/countries/AU/top_non_hvcs/' ],
+	[ 'countries/win_table', '/mi/countries/AU/win_table/' ]
 ];
 
 const years = [ 2016, 2017 ];

@@ -10,6 +10,7 @@ const regionController = require( './controllers/controller.overseas-regions' );
 const hvcGroupController = require( './controllers/controller.hvc-groups' );
 const winController =  require( './controllers/controller.win' );
 const hvcController = require( './controllers/controller.hvc' );
+const countryController = require( './controllers/controller.countries' );
 
 const createUserMiddleware = require( './lib/middleware/user' );
 const dateRange = require( './lib/middleware/date-range' );
@@ -46,6 +47,11 @@ module.exports = function( express, app, isDev ){
 	app.get( '/hvc-groups/', user, hvcGroupController.list );
 	app.get( '/hvc-groups/:id', user, hvcGroupController.group );
 	app.get( '/hvc-groups/:id/wins', user, hvcGroupController.wins );
+
+	app.get( '/countries/', countryController.list );
+	app.get( '/countries/:code/', countryController.country );
+	app.get( '/countries/:code/wins/', countryController.wins );
+	app.get( '/countries/:code/non-hvc-wins/', countryController.nonHvcWins );
 
 	if( config.backend.mock ){
 

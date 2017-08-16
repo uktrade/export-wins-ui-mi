@@ -1,0 +1,297 @@
+{
+	"timestamp": "2017-08-16T10:59:24.274183Z",
+	"financial_year": {
+		"id": 2017,
+		"description": "2017-18"
+	},
+	"results": {
+		"name": "American Samoa",
+		"id": "AS",
+		"avg_time_to_confirm": 0.0,
+		"hvcs": {
+			"target": 0,
+			"campaigns": []
+		},
+		"months": [
+			{
+				"date": "2017-04",
+				"totals": {
+					"export": {
+						"hvc": {
+							"value": {
+								"confirmed": 0,
+								"unconfirmed": 0,
+								"total": 0
+							},
+							"number": {
+								"confirmed": 0,
+								"unconfirmed": 0,
+								"total": 0
+							}
+						},
+						"non_hvc": {
+							"value": {
+								"confirmed": 0,
+								"unconfirmed": 0,
+								"total": 0
+							},
+							"number": {
+								"confirmed": 0,
+								"unconfirmed": 0,
+								"total": 0
+							}
+						},
+						"totals": {
+							"value": {
+								"confirmed": 0,
+								"unconfirmed": 0,
+								"grand_total": 0
+							},
+							"number": {
+								"confirmed": 0,
+								"unconfirmed": 0,
+								"grand_total": 0
+							}
+						}
+					},
+					"non_export": {
+						"value": {
+							"confirmed": 0,
+							"unconfirmed": 0,
+							"total": 0
+						},
+						"number": {
+							"confirmed": 0,
+							"unconfirmed": 0,
+							"total": 0
+						}
+					}
+				}
+			},
+			{
+				"date": "2017-05",
+				"totals": {
+					"export": {
+						"hvc": {
+							"value": {
+								"confirmed": 0,
+								"unconfirmed": 0,
+								"total": 0
+							},
+							"number": {
+								"confirmed": 0,
+								"unconfirmed": 0,
+								"total": 0
+							}
+						},
+						"non_hvc": {
+							"value": {
+								"confirmed": 0,
+								"unconfirmed": 0,
+								"total": 0
+							},
+							"number": {
+								"confirmed": 0,
+								"unconfirmed": 0,
+								"total": 0
+							}
+						},
+						"totals": {
+							"value": {
+								"confirmed": 0,
+								"unconfirmed": 0,
+								"grand_total": 0
+							},
+							"number": {
+								"confirmed": 0,
+								"unconfirmed": 0,
+								"grand_total": 0
+							}
+						}
+					},
+					"non_export": {
+						"value": {
+							"confirmed": 0,
+							"unconfirmed": 0,
+							"total": 0
+						},
+						"number": {
+							"confirmed": 0,
+							"unconfirmed": 0,
+							"total": 0
+						}
+					}
+				}
+			},
+			{
+				"date": "2017-06",
+				"totals": {
+					"export": {
+						"hvc": {
+							"value": {
+								"confirmed": 0,
+								"unconfirmed": 0,
+								"total": 0
+							},
+							"number": {
+								"confirmed": 0,
+								"unconfirmed": 0,
+								"total": 0
+							}
+						},
+						"non_hvc": {
+							"value": {
+								"confirmed": 0,
+								"unconfirmed": 0,
+								"total": 0
+							},
+							"number": {
+								"confirmed": 0,
+								"unconfirmed": 0,
+								"total": 0
+							}
+						},
+						"totals": {
+							"value": {
+								"confirmed": 0,
+								"unconfirmed": 0,
+								"grand_total": 0
+							},
+							"number": {
+								"confirmed": 0,
+								"unconfirmed": 0,
+								"grand_total": 0
+							}
+						}
+					},
+					"non_export": {
+						"value": {
+							"confirmed": 0,
+							"unconfirmed": 0,
+							"total": 0
+						},
+						"number": {
+							"confirmed": 0,
+							"unconfirmed": 0,
+							"total": 0
+						}
+					}
+				}
+			},
+			{
+				"date": "2017-07",
+				"totals": {
+					"export": {
+						"hvc": {
+							"value": {
+								"confirmed": 0,
+								"unconfirmed": 0,
+								"total": 0
+							},
+							"number": {
+								"confirmed": 0,
+								"unconfirmed": 0,
+								"total": 0
+							}
+						},
+						"non_hvc": {
+							"value": {
+								"confirmed": 0,
+								"unconfirmed": 0,
+								"total": 0
+							},
+							"number": {
+								"confirmed": 0,
+								"unconfirmed": 0,
+								"total": 0
+							}
+						},
+						"totals": {
+							"value": {
+								"confirmed": 0,
+								"unconfirmed": 0,
+								"grand_total": 0
+							},
+							"number": {
+								"confirmed": 0,
+								"unconfirmed": 0,
+								"grand_total": 0
+							}
+						}
+					},
+					"non_export": {
+						"value": {
+							"confirmed": 0,
+							"unconfirmed": 0,
+							"total": 0
+						},
+						"number": {
+							"confirmed": 0,
+							"unconfirmed": 0,
+							"total": 0
+						}
+					}
+				}
+			},
+			{
+				"date": "2017-08",
+				"totals": {
+					"export": {
+						"hvc": {
+							"value": {
+								"confirmed": 0,
+								"unconfirmed": 0,
+								"total": 0
+							},
+							"number": {
+								"confirmed": 0,
+								"unconfirmed": 0,
+								"total": 0
+							}
+						},
+						"non_hvc": {
+							"value": {
+								"confirmed": 0,
+								"unconfirmed": 0,
+								"total": 0
+							},
+							"number": {
+								"confirmed": 0,
+								"unconfirmed": 0,
+								"total": 0
+							}
+						},
+						"totals": {
+							"value": {
+								"confirmed": 0,
+								"unconfirmed": 0,
+								"grand_total": 0
+							},
+							"number": {
+								"confirmed": 0,
+								"unconfirmed": 0,
+								"grand_total": 0
+							}
+						}
+					},
+					"non_export": {
+						"value": {
+							"confirmed": 0,
+							"unconfirmed": 0,
+							"total": 0
+						},
+						"number": {
+							"confirmed": 0,
+							"unconfirmed": 0,
+							"total": 0
+						}
+					}
+				}
+			}
+		]
+	},
+	"date_range": {
+		"start": "2017-04-01T00:00:00Z",
+		"end": "2017-08-16T10:59:24.189671Z"
+	}
+}
