@@ -25,6 +25,7 @@ $win-table-cell-padding: 5;
 .win-table_head_cell {
 	padding: pem( 5 ) pem( $win-table-cell-padding );
 	font-size: 95%;
+	text-align: left;
 }
 
 .win-table_head_cell--credited,
