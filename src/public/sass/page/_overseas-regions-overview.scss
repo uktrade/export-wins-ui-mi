@@ -46,10 +46,10 @@
 .overseas-region-overview-data_cell {
 	padding-top: pem( 8, 16 );
 	padding-bottom: pem( 8, 16 );
-
 }
 
 .overseas-region-overview-data_cell--region {
+	width: 20%;
 	vertical-align: top;
 	color: $grey-1;
 	@include bold-16;
@@ -62,19 +62,22 @@
 	@include core-14;
 	vertical-align: middle;
 	padding-left: pem( 5, 14 );
+	padding-right: pem( 5, 14 );
+	// border-left: 2px solid $grey-2;
 }
 
 .overseas-region-overview-data_cell--performance {
-	width: 35%;
+	width: 20%;
+	padding-right: pem( 10 );
 }
 
 .overseas-region-overview-data_cell--current {
-	width: 15%;
+	width: 13%;
 	position: relative;
 }
 
 .overseas-region-overview-data_cell--target {
-	width: 15%;
+	width: 13%;
 	text-align: right;
 	padding-bottom: 20px; //padding for the progress bar to line up text
 }
@@ -84,24 +87,8 @@
 }
 
 .overseas-region-overview-data_cell--hvc-non-hvc {
-	width: 15%;
+	width: 12%;
 	text-align: center;
-}
-
-.overseas-region-overview-data_cell--pink {
-	border-left: 2px solid #fb07fa;
-}
-
-.overseas-region-overview-data_cell--blue {
-	border-left: 2px solid #0dc3d8
-}
-
-.overseas-region-overview-data_cell--green {
-	border-left: 2px solid #c7fd09
-}
-
-.overseas-region-overview-data_cell--purple {
-	border-left: 2px solid #9744f5
 }
 
 .overseas-region-overview-data_cell_countries {
@@ -110,13 +97,11 @@
 }
 
 .overseas-region-overview-data_cell--first-region {
-
 	border-top: 3px solid #000;
-	padding-top: 2em;
+	// padding-top: 2em;
 }
 
 .overseas-region-overview-data_cell--first {
-
 	border-top: 3px solid $grey-2;
-	padding-top: 2em;
+	// padding-top: 2em;
 }

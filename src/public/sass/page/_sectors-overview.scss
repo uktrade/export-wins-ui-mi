@@ -64,7 +64,7 @@ $sector-teams-cell-hvc-non-hvc-width: 12%;
 $sector-teams-cell-non-hvc-value-width: 10%;
 $sector-teams-cell-total-value-width: 10%;
 
-$sector-teams-cell-name-padding-left: 55px;
+$sector-teams-cell-name-padding-left: 10px;
 
 .sector-teams-ov-table_cell--name {
 	width: $sector-teams-cell-name-width;
@@ -112,10 +112,4 @@ $sector-teams-cell-name-padding-left: 55px;
 
 .sector-teams-ov-table_cell--large {
 	@include bold-19;
-}
-
-.sector-teams-ov-table_image {
-	position: absolute;
-	left: 0;
-	top: 7;
 }
