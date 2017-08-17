@@ -70,11 +70,10 @@
 			{%- if loop.index == 1 %}
 				<td class="{{ firstRowClass }}overseas-region-overview-data_cell overseas-region-overview-data_cell--region" rowspan="{{ loop.length }}">
 					{{ group.name }}
-					<img src="{{ group.image.url }}" width="{{ group.image.width }}" height="{{ group.image.height }}" alt="group map" class="overseas-region-groups_group_image">
 				</td>
 			{% endif -%}
 
-				<td class="{{ firstRowClass }}overseas-region-overview-data_cell overseas-region-overview-data_cell--name overseas-region-overview-data_cell--{{ region.colour }}">
+				<td class="{{ firstRowClass }}overseas-region-overview-data_cell overseas-region-overview-data_cell--name">
 					<a href="{{ urls.osRegion( region.id ) }}">{{ region.name }}</a>
 					<span class="overseas-region-overview-data_cell_countries">
 						{{- region.markets | pluralise( 'country', 'countries' ) -}}

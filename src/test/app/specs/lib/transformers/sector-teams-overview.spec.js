@@ -1,5 +1,3 @@
-const proxyquire = require( 'proxyquire' );
-
 const transform = require( '../../../../../app/lib/transformers/sector-teams-overview' );
 const getBackendStub = require( '../../../helpers/get-backend-stub' );
 
@@ -16,13 +14,11 @@ describe( 'Sector teams overview transformer', function(){
 			output = transform( input.results );
 		} );
 
-		it( 'Should add the images', function(){
+		it( 'Should not add the images', function(){
 
 			for( let team of output ){
 
-				expect( team.image.url ).toBeDefined();
-				expect( team.image.width ).toBeDefined();
-				expect( team.image.height ).toBeDefined();
+				expect( team.image ).not.toBeDefined();
 			}
 		} );
 
@@ -116,96 +112,6 @@ describe( 'Sector teams overview transformer', function(){
 			expect( output[ 0 ].totalHvcs ).toEqual( 22 );
 			expect( output[ 3 ].totalHvcs ).toEqual( 54 );
 			expect( output[ 4 ].totalHvcs ).toEqual( 54 );
-		} );
-	} );
-
-	describe( 'When the icon is not found', function(){
-
-		it( 'Should log an error', function(){
-
-			const team = {
-				"hvc_performance": {
-					"red": 25,
-					"amber": 21,
-					"green": 1,
-					"zero": 7
-				},
-				"id": 100,
-				"name": "consequatur praesentium qui",
-				"hvc_groups": [
-					{
-						"name": "perspiciatis in porro",
-						"hvc_performance": {
-							"red": 8,
-							"amber": 25,
-							"green": 9,
-							"zero": 3
-						},
-						"values": {
-							"hvc": {
-								"total_win_percent": {
-									"confirmed": 90,
-									"unconfirmed": 52
-								},
-								"target": 60584,
-								"current": {
-									"confirmed": 38807,
-									"unconfirmed": 56425
-								},
-								"target_percent": {
-									"confirmed": 114,
-									"unconfirmed": 62
-								}
-							}
-						},
-						"id": 18799
-						}
-					],
-					"values": {
-						"totals": {
-							"confirmed": 106713,
-							"unconfirmed": 73619
-						},
-						"hvc": {
-						"total_win_percent": {
-							"confirmed": 92,
-							"unconfirmed": 20
-						},
-						"target": 34112,
-						"current": {
-							"confirmed": 55491,
-							"unconfirmed": 26503
-						},
-						"target_percent": {
-							"confirmed": 52,
-							"unconfirmed": 36
-						}
-						},
-						"non_hvc": {
-						"total_win_percent": {
-							"confirmed": 8,
-							"unconfirmed": 80
-						},
-						"current": {
-							"confirmed": 85627,
-							"unconfirmed": 29898
-						}
-					}
-				}
-			};
-
-			const warn = jasmine.createSpy( 'logger.warn' );
-
-			const stubs = {
-				'../logger': {
-					warn
-				}
-			};
-			const transform = proxyquire( '../../../../../app/lib/transformers/sector-teams-overview', stubs );
-
-			transform( [ team ] );
-
-			expect( warn ).toHaveBeenCalledWith( 'No icon found for %s', 100 );
 		} );
 	} );
 } );
