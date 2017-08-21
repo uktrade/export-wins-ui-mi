@@ -5,7 +5,11 @@
 {% from 'macros/dates.html' import financialYear %}
 {% from 'macros/top-markets.html' import topMarketsTable %}
 {% from 'macros/hvc-target-performance.html' import hvcTargetPerformanceTable %}
-{% from 'macros/hvc-tabs.html' import tabs %}
+{% from 'macros/hvc-performance-summary.html' import hvcPerformanceSummary %}
+{% from 'macros/tabs/hvc.html' import tabs %}
+{% from 'macros/confirmed-vs-unconfirmed-pie-chart.html' import confirmedUnconfirmedPieChart %}
+{% from 'macros/monthly-performance-key.html' import monthlyPerformanceKey %}
+{% from 'macros/monthly-performance-graph.html' import monthlyPerformanceGraph %}
 
 {% block page_content %}
 
@@ -17,11 +21,11 @@
 	<section class="grid-row">
 		<div class="column-half">
 			<h4 class="hvc-heading hvc-heading--target">Total confirmed against target</h4>
-			{% include 'partials/hvc-performance-summary.html' -%}
+			{{ hvcPerformanceSummary( hvcSummary ) }}
 		</div>
 		<div class="column-one-quarter">
 			<h3 class="sector-overview_confirmed-heading">Confirmed and unconfirmed wins value</h3>
-			{% include 'partials/confirmed-vs-unconfirmed-wins.html' -%}
+			{{ confirmedUnconfirmedPieChart( summary ) }}
 		</div>
 		<div class="column-one-quarter">
 			<h3 class="hvc-rag-heading">% of HVC target</h3>
@@ -49,13 +53,13 @@
 			<h3 class="sub-heading-date">{{ financialYear( monthlyPerformance.dateRange ) }}</h3>
 		</div>
 		<div class="column-one-third">
-			{% include 'partials/monthly-performance-key.html' %}
+			{{ monthlyPerformanceKey( monthlyPerformance.keys ) }}
 		</div>
 	</section>
 
 	<section class="grid-row">
 		<div class="column-single">
-			{% include 'partials/monthly-performance.html' %}
+			{{ monthlyPerformanceGraph( monthlyPerformance ) }}
 		</div>
 	</section>
 	{% endif -%}

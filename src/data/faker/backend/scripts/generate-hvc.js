@@ -1,6 +1,6 @@
 const path = require( 'path' );
 
-const hvcJson = require( './hvc-json' );
+const hvcJson = require( './lib/json-creators/hvc-json' );
 const writeJsonFiles = require( '../../helpers/write-json-files' );
 
 let outputPath = path.resolve( __dirname, '../output/hvc/' );

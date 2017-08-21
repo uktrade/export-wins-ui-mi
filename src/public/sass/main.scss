@@ -15,6 +15,7 @@
 @import 'page/sectors-overview';
 @import 'page/overseas-regions-overview';
 @import 'page/overseas-regions-countries';
+@import 'page/overseas-regions-posts';
 @import 'page/hvc';
 @import 'page/win';
 @import 'page/wins';
@@ -23,22 +24,24 @@
 
 @import 'partials/global-performance';
 
+@import 'components/alpha-list';
+@import 'components/hvc-target-performance';
+@import 'components/hvc-target-performance-key';
+@import 'components/monthly-performance-graph';
+@import 'components/monthly-performance-key';
+@import 'components/year-selector';
+@import 'components/zero-target-perf-table';
+
 @import 'error';
+@import 'page-tabs';
 @import 'target-progress-bar';
 @import 'pie';
-@import 'key';
 @import 'sector-wins-list';
 @import 'top-markets';
-@import 'hvc-target-performance';
-@import 'zero-target-perf-table';
 @import 'overview-blocks';
 @import 'overview-progress';
-@import 'monthly-performance';
-@import 'monthly-performance-key';
 @import 'win-table';
 @import 'hvc-group';
-@import 'year-selector';
-@import 'page-tabs';
 @import 'os-regions-tabs';
 
 main {

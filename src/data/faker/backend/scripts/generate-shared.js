@@ -1,6 +1,6 @@
 const path = require( 'path' );
 
-const sharedJson = require( './shared-json' );
+const sharedJson = require( './lib/json-creators/shared-json' );
 const writeJsonFiles = require( '../../helpers/write-json-files' );
 
 let outputPath = path.resolve( __dirname, '../output/shared/' );

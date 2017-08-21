@@ -1,0 +1,32 @@
+{% macro hvcPerformanceSummary( hvcSummary ) %}
+<ul class="sector-wins_list">
+	<li class="sector-wins_list_item">
+		<p class="visually-hidden">Confirmed: {{ hvcSummary.progress.confirmed }}%</p>
+		<p class="visually-hidden">Including unconfirmed: {{ hvcSummary.progress.unconfirmed }}%</p>
+		<span class="target-progress-bar">
+			<span class="target-progress-bar_progress target-progress-bar_progress--confirmed" id="confirmed-bar" style="width:{{ hvcSummary.progress.confirmed }}%"></span>
+			<span class="target-progress-bar_progress target-progress-bar_progress--unconfirmed" id="unconfirmed-bar" style="width:{{ hvcSummary.progress.unconfirmed }}%"></span>
+			{% if hvcSummary.progress.over -%}
+				<span class="target-progress-bar_over-marker target-progress-bar_over-marker--{{ hvcSummary.progress.overModifyer }}"></span>
+			{%- endif %}
+			<span class="target-progress-bar_target">Target</span>
+		</span>
+	</li>
+	<li class="sector-wins_list_item">
+		<ul class="sector-wins_list_item_values">
+			<li class="sector-wins_list_item_values_item">
+				<h3 class="sector-wins_list_item_heading">HVC<br>Target</h3>
+				<p class="sector-wins_list_item_value"><span class="sector-wins_list_item_value_currency">&pound;</span>{{ hvcSummary.target | largeNumber( true ) | safe }}</p>
+			</li>
+			<li class="sector-wins_list_item_values_item">
+				<h3 class="sector-wins_list_item_heading">Total HVC<br>confirmed</h3>
+				<p class="sector-wins_list_item_value sector-wins_list_item_value--hvc"><span class="sector-wins_list_item_value_currency">&pound;</span>{{ hvcSummary.confirmedValue | largeNumber( true ) | safe }}</p>
+			</li>
+			<li class="sector-wins_list_item_values_item">
+				<h3 class="sector-wins_list_item_heading">Total HVC <br>unconfirmed</h3>
+				<p class="sector-wins_list_item_value sector-wins_list_item_value--unconfirmed"><span class="sector-wins_list_item_value_currency">&pound;</span>{{ hvcSummary.unconfirmedValue | largeNumber( true ) | safe }}</p>
+			</li>
+		</ul>
+	</li>
+</ul>
+{% endmacro %}

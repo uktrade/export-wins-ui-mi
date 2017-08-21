@@ -34,15 +34,23 @@ function createConfirmedUnconfirmedData( data ){
 	return createConfirmedUnconfirmedPercentages( total, confirmed, unconfirmed );
 }
 
-function createHvcNonHvcData( hvc, nonHvc ){
+function createHvcNonHvcData( hvcWins, nonHvcWins ){
 
-	const total = ( hvc.value.confirmed + nonHvc.value.confirmed );
-	const parts = ( 100 / total );
+	let hvc = 0;
+	let nonHvc = 0;
 
-	return {
-		hvc: Math.round( parts * hvc.value.confirmed ),
-		nonHvc: Math.round( parts * nonHvc.value.confirmed )
-	};
+	const total = ( hvcWins.value.confirmed + nonHvcWins.value.confirmed );
+
+
+	if( total > 0 ){
+
+		const parts = ( 100 / total );
+
+		hvc = Math.round( parts * hvcWins.value.confirmed );
+		nonHvc = Math.round( parts * nonHvcWins.value.confirmed );
+	}
+
+	return { hvc, nonHvc	};
 }
 
 module.exports = {

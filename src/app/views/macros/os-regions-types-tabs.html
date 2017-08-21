@@ -19,20 +19,20 @@
 	{%- endif %}
 {% endmacro -%}
 
-{% macro osRegionsTypesTabs( regions=false, countries=false, posts=false, linkCountries ) %}
+{% macro osRegionsTypesTabs( regions=false, countries=false, posts=false, linkCountries=false, linkPosts=false ) %}
 
 	{% set overviewHref = urls.osRegionsOverview() %}
 	{% set countriesHref = urls.countries() %}
-	{% set postsHref = '#' %}
+	{% set postsHref = urls.posts() %}
 
 	{% if regions %}{% set overviewHref='' %}{% endif %}
 	{% if countries and not linkCountries %}{% set countriesHref='' %}{% endif %}
-	{% if posts %}{% set postsHref='' %}{% endif %}
+	{% if posts and not linkPosts %}{% set postsHref='' %}{% endif %}
 
 	<ul class="overseas-regions-tabs">
 		{{ typeTab( 'Regions', overviewHref ) }}
 		{{ typeTab( 'Countries', countriesHref, linkCountries ) }}
-		{# typeTab( 'Posts', postsHref ) #}
+		{{ typeTab( 'Posts', postsHref, linkPosts ) }}
 	</ul>
 
 {%- endmacro %}

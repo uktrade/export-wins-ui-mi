@@ -1,0 +1,27 @@
+{% from 'macros/tabs/tab.html' import tab %}
+
+{% macro tabs( postId, performance = false, hvcWins = false, nonHvcWins = false ) -%}
+
+	{% set perfHref = urls.post( postId ) %}
+	{% set hvcWinsHref = urls.postWins( postId ) %}
+	{% set nonHvcWinsHref = urls.postNonHvcWins( postId ) %}
+
+	{% if performance %}
+		{% set perfHref = '' %}
+	{% endif %}
+
+	{% if hvcWins %}
+		{% set hvcWinsHref = '' %}
+	{% endif %}
+
+	{% if nonHvcWins %}
+		{% set nonHvcWinsHref = '' %}
+	{% endif %}
+
+	<ul class="page-tabs">
+		{{ tab( 'Performance', href = perfHref ) }}
+		{{ tab( 'HVC wins', href = hvcWinsHref ) }}
+		{{ tab( 'Non HVC wins', href = nonHvcWinsHref ) }}
+	</ul>
+
+{%- endmacro %}

@@ -1,6 +1,6 @@
 const path = require( 'path' );
 
-const sectorTeamsJson = require( './sector-teams-json' );
+const sectorTeamsJson = require( './lib/json-creators/sector-teams-json' );
 const writeJsonFiles = require( '../../helpers/write-json-files' );
 
 let outputPath = path.resolve( __dirname, '../output/sector_teams/' );

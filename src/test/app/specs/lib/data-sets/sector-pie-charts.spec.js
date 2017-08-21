@@ -56,6 +56,39 @@ const inputHvcGroup = {
 	"name": "Technology"
 };
 
+const inputZeros = {
+	"hvcs": { "target": 0 },
+	"wins": {
+		"export": {
+			"hvc": {
+				"number": {
+					"unconfirmed": 0,
+					"confirmed": 0,
+					"total": 0
+				},
+				"value": {
+					"unconfirmed": 0,
+					"confirmed": 0,
+					"total": 0
+				}
+			},
+			"non_hvc": {
+				"number": {
+					"unconfirmed": 0,
+					"confirmed": 0,
+					"total": 0
+				},
+				"value": {
+					"unconfirmed": 0,
+					"confirmed": 0,
+					"total": 0
+				}
+			}
+		}
+	},
+	"name": "Technology"
+};
+
 
 describe( 'Sector wins data data set', function(){
 
@@ -112,5 +145,18 @@ describe( 'Sector wins data data set', function(){
 
 			expect( createDatSet ).not.toThrow();
 		} );
+	} );
+} );
+
+describe( 'All zeros data', function(){
+
+	it( 'Should return all zeros', function(){
+
+		const data = dataset.create( inputZeros );
+
+		expect( data.hvcNonHvcValue.hvc ).toEqual( 0 );
+		expect( data.hvcNonHvcValue.nonHvc ).toEqual( 0 );
+		expect( data.confirmedUnconfirmedValue.confirmed ).toEqual( 0 );
+		expect( data.confirmedUnconfirmedValue.unconfirmed ).toEqual( 0 );
 	} );
 } );

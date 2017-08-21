@@ -33,4 +33,17 @@ describe( 'Target progress data set', function(){
 			expect( output5 ).toEqual( { confirmed: 100, unconfirmed: 100, over: true, overModifyer: 'confirmed' } );
 		} );
 	} );
+
+	describe( 'When the target is zero', function(){
+
+		describe( 'When the number is over target', function(){
+
+			it( 'Should return all zeros', function(){
+
+				const output6 = dataset.create( 0, 100, 20 );
+
+				expect( output6 ).toEqual( { confirmed: 0, unconfirmed: 0, over: false, overModifyer: null } );
+			} );
+		} );
+	} );
 } );

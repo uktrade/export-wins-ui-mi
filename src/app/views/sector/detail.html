@@ -3,6 +3,11 @@
 {% from 'macros/dates.html' import financialYear %}
 {% from 'macros/top-markets.html' import topMarketsTable %}
 {% from 'macros/hvc-target-performance.html' import hvcTargetPerformanceTable %}
+{% from 'macros/hvc-zero-target-performance.html' import hvcZeroTargetPerformanceTable %}
+{% from 'macros/hvc-performance-summary.html' import hvcPerformanceSummary %}
+{% from 'macros/confirmed-vs-unconfirmed-pie-chart.html' import confirmedUnconfirmedPieChart %}
+{% from 'macros/monthly-performance-key.html' import monthlyPerformanceKey %}
+{% from 'macros/monthly-performance-graph.html' import monthlyPerformanceGraph %}
 
 {% block page_content %}
 
@@ -48,7 +53,7 @@
 				<li class="sector-overview_charts_chart">
 
 					<h3 class="sector-overview_confirmed-heading">Confirmed and unconfirmed wins value</h3>
-					{% include 'partials/confirmed-vs-unconfirmed-wins.html' -%}
+					{{ confirmedUnconfirmedPieChart( summary ) }}
 
 				</li>
 			</ul>
@@ -74,30 +79,34 @@
 		<div class="column-six-elevenths">
 
 			<h4 class="sector-heading sector-heading--target">Total confirmed against target</h4>
-			{% include 'partials/hvc-performance-summary.html' -%}
+			{{ hvcPerformanceSummary( hvcSummary ) }}
 
 		</div>
 		<div class="column-five-elevenths">
-			{% include 'partials/key.html' %}
+			{% include 'partials/hvc-target-performance-key.html' %}
 		</div>
 	</section>
 
+	{% block hvc_performance_table %}
 	<section class="grid-row">
 		<div class="column-single">
 			<h2 class="sector-heading">{{ sectorName }} HVCs</h2>
 			<h3 class="sub-heading-date">{{ financialYear( hvcTargetPerformance.dateRange ) }}</h3>
-			{{ hvcTargetPerformanceTable( hvcTargetPerformance.withTarget ) }}
+			{{ hvcTargetPerformanceTable( hvcTargetPerformance.withTarget, hvcTargetPerformance.zeroTarget.length ) }}
 		</div>
 	</section>
+	{% endblock %}
 
+	{% block zero_target_hvc_table %}
 	{% if hvcTargetPerformance.zeroTarget.length %}
 	<section class="grid-row">
 		<div class="column-single">
 			<h2 class="sector-heading sector-heading--zero-target">HVCs with no target in 2016-17</h2>
-			{% include 'partials/zero-target-performance.html' %}
+			{{ hvcZeroTargetPerformanceTable( hvcTargetPerformance.zeroTarget ) }}
 		</div>
 	</section>
 	{% endif %}
+	{% endblock %}
 
 	<section class="grid-row row-separator">
 		<div class="column-two-thirds">
@@ -105,13 +114,13 @@
 			<h3 class="sub-heading-date">{{ financialYear( monthlyPerformance.dateRange ) }}</h3>
 		</div>
 		<div class="column-one-third">
-			{% include 'partials/monthly-performance-key.html' %}
+			{{ monthlyPerformanceKey( monthlyPerformance.keys ) }}
 		</div>
 	</section>
 
 	<section class="grid-row">
 		<div class="column-single">
-			{% include 'partials/monthly-performance.html' %}
+			{{ monthlyPerformanceGraph( monthlyPerformance ) }}
 		</div>
 	</section>
 

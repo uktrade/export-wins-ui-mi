@@ -17,7 +17,7 @@ const transformOverseasRegionsOverview = require( '../transformers/os-regions-ov
 const transformOverseasRegionsOverviewGroups = require( '../transformers/os-regions-overview-groups' );
 const transformHvcGroup = require( '../transformers/hvc-group' );
 const transformWinList = require( '../transformers/win-list' );
-const transformCountryList = require( '../transformers/country-list' );
+const transformAlphabeticalList = require( '../transformers/alphabetical-list' );
 
 
 function addParamsFromReq( path, req ){
@@ -179,9 +179,10 @@ function getSectorTeamsOverview( req ){
 	return getJson( '/mi/sector_teams/overview/', req, transformSectorTeamsOverview );
 }
 
+
 function getCountries( req ){
 
-	return getJson( '/mi/countries/', req, transformCountryList );
+	return getJson( '/mi/countries/', req, transformAlphabeticalList );
 }
 
 function getCountry( req, countryCode ){
@@ -207,6 +208,37 @@ function getCountryTopNonHvc( req, countryCode ){
 function getCountryWinTable( req, countryCode ){
 
 	return getJson( `/mi/countries/${ countryCode }/win_table/`, req, transformWinList );
+}
+
+
+function getPosts( req ){
+
+	return getJson( '/mi/posts/', req, transformAlphabeticalList );
+}
+
+function getPost( req, postId ){
+
+	return getJson( `/mi/posts/${ postId }/`, req );
+}
+
+function getPostCampaigns( req, postId ){
+
+	return getJson( `/mi/posts/${ postId }/campaigns/`, req, transformCampaigns );
+}
+
+function getPostMonths( req, postId ){
+
+	return getJson( `/mi/posts/${ postId }/months/`, req, transformMonths );
+}
+
+function getPostTopNonHvc( req, postId ){
+
+	return getJson( `/mi/posts/${ postId }/top_non_hvcs/`, req );
+}
+
+function getPostWinTable( req, postId ){
+
+	return getJson( `/mi/posts/${ postId }/win_table/`, req, transformWinList );
 }
 
 
@@ -384,6 +416,33 @@ module.exports = {
 			getCountryMonths( req, countryId ),
 			getCountryTopNonHvc( req, countryId ),
 			getCountryCampaigns( req, countryId )
+
+		], function( data ){
+
+			return {
+				wins: data[ 0 ],
+				months: data[ 1 ],
+				topNonHvc: data[ 2 ],
+				campaigns: data[ 3 ]
+			};
+		} );
+	},
+
+	getPosts,
+	getPost,
+	getPostCampaigns,
+	getPostMonths,
+	getPostTopNonHvc,
+	getPostWinTable,
+
+	getPostInfo: function( req, postId ){
+
+		return getAll( 'getPostInfo', [
+
+			getPost( req, postId ),
+			getPostMonths( req, postId ),
+			getPostTopNonHvc( req, postId ),
+			getPostCampaigns( req, postId )
 
 		], function( data ){
 

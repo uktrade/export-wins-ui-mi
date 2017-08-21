@@ -11,6 +11,7 @@ const hvcGroupController = require( './controllers/controller.hvc-groups' );
 const winController =  require( './controllers/controller.win' );
 const hvcController = require( './controllers/controller.hvc' );
 const countryController = require( './controllers/controller.countries' );
+const postController = require( './controllers/controller.posts' );
 
 const createUserMiddleware = require( './lib/middleware/user' );
 const dateRange = require( './lib/middleware/date-range' );
@@ -48,10 +49,15 @@ module.exports = function( express, app, isDev ){
 	app.get( '/hvc-groups/:id', user, hvcGroupController.group );
 	app.get( '/hvc-groups/:id/wins', user, hvcGroupController.wins );
 
-	app.get( '/countries/', countryController.list );
-	app.get( '/countries/:code/', countryController.country );
-	app.get( '/countries/:code/wins/', countryController.wins );
-	app.get( '/countries/:code/non-hvc-wins/', countryController.nonHvcWins );
+	app.get( '/countries/', user, countryController.list );
+	app.get( '/countries/:code/',user, countryController.country );
+	app.get( '/countries/:code/wins/',user, countryController.wins );
+	app.get( '/countries/:code/non-hvc-wins/', user, countryController.nonHvcWins );
+
+	app.get( '/posts/', user, postController.list );
+	app.get( '/posts/:id/', user, postController.post );
+	app.get( '/posts/:id/wins/', user, postController.wins );
+	app.get( '/posts/:id/non-hvc-wins/', user, postController.nonHvcWins );
 
 	if( config.backend.mock ){
 

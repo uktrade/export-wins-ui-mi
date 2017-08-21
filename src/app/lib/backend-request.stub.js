@@ -54,6 +54,13 @@ const stubs = [
 	[ /^\/mi\/countries\/[A-Z]{2}\/top_non_hvcs\/(\?year=[0-9]+(&date_(start|end)=.+)?)?$/, 'countries/top_non_hvcs'  ],
 	[ /^\/mi\/countries\/[A-Z]{2}\/win_table\/(\?year=[0-9]+(&date_(start|end)=.+)?)?$/, 'countries/win_table'  ],
 
+	[ /^\/mi\/posts\/(\?year=[0-9]+(&date_(start|end)=.+)?)?$/, 'posts/index'  ],
+	[ /^\/mi\/posts\/[A-Za-z-]+\/(\?year=[0-9]+(&date_(start|end)=.+)?)?$/, 'posts/country'  ],
+	[ /^\/mi\/posts\/[A-Za-z-]+\/campaigns\/(\?year=[0-9]+(&date_(start|end)=.+)?)?$/, 'posts/campaigns'  ],
+	[ /^\/mi\/posts\/[A-Za-z-]+\/months\/(\?year=[0-9]+(&date_(start|end)=.+)?)?$/, 'posts/months'  ],
+	[ /^\/mi\/posts\/[A-Za-z-]+\/top_non_hvcs\/(\?year=[0-9]+(&date_(start|end)=.+)?)?$/, 'posts/top_non_hvcs'  ],
+	[ /^\/mi\/posts\/[A-Za-z-]+\/win_table\/(\?year=[0-9]+(&date_(start|end)=.+)?)?$/, 'posts/win_table'  ],
+
 	[ /^\/user\/me\/$/, 'user/me' ]
 ];
 
@@ -111,10 +118,9 @@ function get( url, cb ){
 		}
 	}
 
-	logger.debug( 'Stub response for: %s, with stub: %s', url, stub );
-
 	if( data ){
 
+		logger.debug( 'Stub response for: %s, with stub: %s', url, stub );
 		cb( null, response, data );
 
 	} else {

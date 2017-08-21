@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+{% set pageName='Posts' %}
+
+{% from 'macros/os-regions-types-tabs.html' import osRegionsTypesTabs %}
+{% from 'macros/alpha-list.html' import alphaList %}
+
+{% block page_content %}
+
+	<h1 class="page-heading">All posts</h1>
+
+	{% include 'partials/year-selector.html' %}
+
+	{{ osRegionsTypesTabs( posts=true ) }}
+
+	<h2 class="os-regions-post-heading">Choose a post</h2>
+
+	{{ alphaList( urls.post, posts ) }}
+{% endblock %}

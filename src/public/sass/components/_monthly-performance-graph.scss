@@ -1,0 +1,146 @@
+@import '../mi-colours';
+
+$monthly-performance-bar-height: 250px; // when updating this you must update app/lib/view-models/monthly-performance.js
+
+.monthly-performance {
+	position: relative;
+	z-index: 0;
+	margin-top: pem( 30 );
+	min-height: 275px;//when there are 0 months default to show an empty graph
+}
+
+.monthly-performance_scale {
+	height: $monthly-performance-bar-height;
+	width: 100%;
+	margin: 0 0 0 2em;
+	padding: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 10;
+}
+
+$monthly-performance-bar-height-percent: ( $monthly-performance-bar-height / 100 );
+
+.monthly-performance_scale_item {
+	position: absolute;
+	left: 10px;
+	border-top: 1px solid $grey-3;
+	width: 96%;
+	margin: 0 0 0 pem( 10 );
+	padding: 0;
+	line-height: 0;
+	height: 0;
+}
+
+.monthly-performance_scale_item--0 {
+	bottom: 0;
+}
+
+.monthly-performance_scale_item--20 {
+	bottom: ( $monthly-performance-bar-height-percent * 20 );
+}
+
+.monthly-performance_scale_item--40 {
+	bottom: ( $monthly-performance-bar-height-percent * 40 );
+}
+
+.monthly-performance_scale_item--60 {
+	bottom: ( $monthly-performance-bar-height-percent * 60 )
+}
+
+.monthly-performance_scale_item--80 {
+	bottom: ( $monthly-performance-bar-height-percent * 80 );
+}
+
+.monthly-performance_scale_item--100 {
+	bottom: ( $monthly-performance-bar-height - 1 );
+}
+
+.monthly-performance_scale_item--target {
+	border-top: 3px solid  #000;
+}
+
+.monthly-performance_scale_item_number {
+	position: relative;
+	left: -3.5em;
+	font-size: 80%;
+}
+
+.monthly-performance_list {
+	margin: 0 0 0 3.5em;
+	padding: 0 0 10px 0;
+	overflow: auto;
+	white-space: nowrap;
+	z-index: 100;
+	position: relative;
+}
+
+.monthly-performance_list_item {
+	display: inline-block;
+	margin-left: 20px;
+}
+
+.monthly-performance_list_item_date {
+	clear: left;
+	@include core-14;
+}
+
+.monthly-performance_bars {
+	height: $monthly-performance-bar-height;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+}
+
+.monthly-performance_bar {
+	text-indent: -9999px;
+	width: 12px;
+	height: $monthly-performance-bar-height - 50;
+	background-color: red;
+	float: left;
+	margin: 0;
+	margin-top: 50px;
+}
+
+.monthly-performance_bar--hvc-confirmed {
+	background-color: $hvc;
+}
+
+.monthly-performance_bar--non-hvc-confirmed {
+	background-color: $non-hvc;
+}
+
+.monthly-performance_bar--non-export-confirmed {
+	background-color: $non-export;
+}
+
+.monthly-performance_bar--hvc-confirmed,
+.monthly-performance_bar--non-hvc-confirmed,
+.monthly-performance_bar--non-export-confirmed {
+
+	margin-left: 8px;
+
+	&:first-of-type {
+		margin-left: 0;
+	}
+}
+
+.monthly-performance_bar--hvc-unconfirmed {
+	background-color: $hvc-unconfirmed;
+}
+
+.monthly-performance_bar--non-hvc-unconfirmed {
+	background-color: $non-hvc-unconfirmed;
+}
+
+.monthly-performance_bar--non-export-unconfirmed {
+	background-color: $non-export-unconfirmed;
+}
+
+.monthly-performance_bar--hvc-unconfirmed,
+.monthly-performance_bar--non-hvc-unconfirmed,
+.monthly-performance_bar--non-export-unconfirmed {
+	width: 5px;
+	margin-left: 2px;
+}

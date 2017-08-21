@@ -1,0 +1,51 @@
+{% macro monthlyPerformanceGraph( data ) %}
+<div class="monthly-performance">
+
+	<h4 class="visually-hidden">Monthly performance scale</h4>
+	<ol class="monthly-performance_scale">
+		<li class="monthly-performance_scale_item monthly-performance_scale_item--0">
+			<span class="monthly-performance_scale_item_number">{{ data.scale.p0 | largeNumber }}</span>
+		</li>
+		<li class="monthly-performance_scale_item monthly-performance_scale_item--20">
+			<span class="monthly-performance_scale_item_number">{{ data.scale.p20 | largeNumber }}</span>
+		</li>
+		<li class="monthly-performance_scale_item monthly-performance_scale_item--40">
+			<span class="monthly-performance_scale_item_number">{{ data.scale.p40 | largeNumber }}</span>
+		</li>
+		<li class="monthly-performance_scale_item monthly-performance_scale_item--60">
+			<span class="monthly-performance_scale_item_number">{{ data.scale.p60 | largeNumber }}</span>
+		</li>
+		<li class="monthly-performance_scale_item monthly-performance_scale_item--80">
+			<span class="monthly-performance_scale_item_number">{{ data.scale.p80 | largeNumber }}</span>
+		</li>
+		<li class="monthly-performance_scale_item monthly-performance_scale_item--100">
+			<span class="monthly-performance_scale_item_number">{{ data.scale.p100 | largeNumber }}</span>
+		</li>
+		<li class="monthly-performance_scale_item monthly-performance_scale_item--target" style="bottom: {{ data.scale.targetOffset }};">
+			<span class="visually-hidden">{{ data.target | largeNumber }} target</span>
+		</li>
+	</ol>
+
+	<h4 class="visually-hidden">Monthly performance data</h4>
+	<ul class="monthly-performance_list">
+	{%- for month in data.months -%}
+
+		<li class="monthly-performance_list_item" aria-labelledby="monthly-performance-{{ loop.index }}">
+
+			<dl class="monthly-performance_bars">
+			{%- for bar in month.bars %}
+
+				<dt class="visually-hidden">{{ month.date }} {{ bar.name }}</dt>
+				<dd class="monthly-performance_bar monthly-performance_bar--{{ bar.modifyer }}" style="height:{{ bar.style.height }}; margin-top:{{ bar.style.margin }};">&pound;{{ bar.value }}</dd>
+
+			{%- endfor %}
+			</dl>
+
+			<span id="monthly-performance-{{ loop.index }}" class="monthly-performance_list_item_date">{{ month.date }}</span>
+
+		</li>
+
+	{% endfor %}
+	</ul>
+</div>
+{% endmacro %}

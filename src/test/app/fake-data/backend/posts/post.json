@@ -1,0 +1,86 @@
+{
+	"timestamp": 1502980036113,
+	"financial_year": {
+		"id": 2016,
+		"description": "2016-2017"
+	},
+	"results": {
+		"hvcs": {
+			"target": 64468,
+			"campaigns": [
+				"Officiis aut quos ex praesentium repellat nesciunt non debitis.",
+				"Dicta ipsum illum omnis perspiciatis porro.",
+				"Qui non et voluptatem minima sit.",
+				"Dicta beatae laboriosam consequatur.",
+				"Molestiae non voluptatem ducimus laudantium harum corrupti ex eaque.",
+				"Assumenda cupiditate voluptate eum quos.",
+				"Non tenetur quae atque rerum neque non dicta quisquam.",
+				"Doloribus et ut ducimus dolor quis explicabo est sunt qui.",
+				"Dolor ut quisquam molestias.",
+				"Repudiandae et qui ratione porro at consectetur saepe beatae.",
+				"Doloribus aliquam iste modi dolor praesentium est et.",
+				"Omnis nesciunt est tenetur est eum sint numquam tempore voluptas.",
+				"Velit pariatur et vitae vel totam voluptas.",
+				"In voluptas qui vero molestiae voluptate quia aspernatur eaque blanditiis."
+			]
+		},
+		"name": "quisquam provident aut",
+		"avg_time_to_confirm": 4.58,
+		"wins": {
+			"non_export": {
+				"number": {
+					"unconfirmed": 547,
+					"total": 912,
+					"confirmed": 365
+				},
+				"value": {
+					"unconfirmed": 81489,
+					"total": 90678,
+					"confirmed": 9189
+				}
+			},
+			"export": {
+				"hvc": {
+					"number": {
+						"unconfirmed": 507,
+						"total": 996,
+						"confirmed": 489
+					},
+					"value": {
+						"unconfirmed": 44954,
+						"total": 127977,
+						"confirmed": 83023
+					}
+				},
+				"non_hvc": {
+					"number": {
+						"unconfirmed": 122,
+						"total": 1027,
+						"confirmed": 905
+					},
+					"value": {
+						"unconfirmed": 7548,
+						"total": 34926,
+						"confirmed": 27378
+					}
+				},
+				"totals": {
+					"number": {
+						"unconfirmed": 629,
+						"confirmed": 1394,
+						"grand_total": 2023
+					},
+					"value": {
+						"unconfirmed": 52502,
+						"confirmed": 110401,
+						"grand_total": 162903
+					}
+				}
+			}
+		}
+	},
+	"date_range": {
+		"start": "Fri, 01 Apr 2016 00:00:00 GMT",
+		"end": "Fri, 31 Mar 2017 00:00:00 GMT"
+	}
+}
