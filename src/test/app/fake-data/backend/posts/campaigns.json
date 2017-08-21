@@ -1,0 +1,231 @@
+{
+	"timestamp": 1502980036113,
+	"financial_year": {
+		"id": 2016,
+		"description": "2016-2017"
+	},
+	"results": {
+		"hvcs": {
+			"target": 26030,
+			"campaigns": [
+				"Repellendus cupiditate distinctio earum odit.",
+				"Sequi accusamus repellat neque voluptate eligendi dolorum fugiat veritatis possimus.",
+				"Et rem ut.",
+				"Amet autem magni aperiam repudiandae dolor est dolor et alias.",
+				"Ducimus eos sed qui illum consequatur officia occaecati reprehenderit.",
+				"Dolor pariatur nam sequi assumenda qui earum porro sit.",
+				"Aut laudantium qui provident architecto odit ad et doloremque.",
+				"Enim provident voluptatem et quos voluptatum aut.",
+				"Labore repellendus natus quo sint est.",
+				"Vel ipsam porro magni velit omnis beatae omnis adipisci."
+			]
+		},
+		"name": "vero possimus ut",
+		"campaigns": [
+			{
+				"campaign_id": 5642,
+				"campaign": "minima culpa natus",
+				"totals": {
+					"hvc": {
+						"value": {
+							"unconfirmed": 97309,
+							"confirmed": 38459,
+							"total": 135768
+						},
+						"number": {
+							"unconfirmed": 754,
+							"confirmed": 138,
+							"total": 892
+						}
+					},
+					"change": "down",
+					"progress": {
+						"confirmed_percent": 49.04,
+						"unconfirmed_percent": 50.96,
+						"status": "amber"
+					},
+					"target": 31355570.890469607
+				}
+			},
+			{
+				"campaign_id": 55692,
+				"campaign": "velit qui est",
+				"totals": {
+					"hvc": {
+						"value": {
+							"unconfirmed": 74397,
+							"confirmed": 94152,
+							"total": 168549
+						},
+						"number": {
+							"unconfirmed": 926,
+							"confirmed": 303,
+							"total": 1229
+						}
+					},
+					"change": "down",
+					"progress": {
+						"confirmed_percent": 38.9,
+						"unconfirmed_percent": 61.1,
+						"status": "green"
+					},
+					"target": 33162398.759569813
+				}
+			},
+			{
+				"campaign_id": 57577,
+				"campaign": "qui nostrum et",
+				"totals": {
+					"hvc": {
+						"value": {
+							"unconfirmed": 40061,
+							"confirmed": 26072,
+							"total": 66133
+						},
+						"number": {
+							"unconfirmed": 323,
+							"confirmed": 314,
+							"total": 637
+						}
+					},
+					"change": "down",
+					"progress": {
+						"confirmed_percent": 16.82,
+						"unconfirmed_percent": 83.18,
+						"status": "red"
+					},
+					"target": 2214910.4713032884
+				}
+			},
+			{
+				"campaign_id": 16147,
+				"campaign": "eos aut cupiditate",
+				"totals": {
+					"hvc": {
+						"value": {
+							"unconfirmed": 18637,
+							"confirmed": 60207,
+							"total": 78844
+						},
+						"number": {
+							"unconfirmed": 302,
+							"confirmed": 393,
+							"total": 695
+						}
+					},
+					"change": "up",
+					"progress": {
+						"confirmed_percent": 38.51,
+						"unconfirmed_percent": 61.49,
+						"status": "red"
+					},
+					"target": 54578833.22339803
+				}
+			},
+			{
+				"campaign_id": 52278,
+				"campaign": "distinctio ullam at",
+				"totals": {
+					"hvc": {
+						"value": {
+							"unconfirmed": 1549,
+							"confirmed": 51320,
+							"total": 52869
+						},
+						"number": {
+							"unconfirmed": 722,
+							"confirmed": 554,
+							"total": 1276
+						}
+					},
+					"change": "up",
+					"progress": {
+						"confirmed_percent": 23.56,
+						"unconfirmed_percent": 76.44,
+						"status": "green"
+					},
+					"target": 90285193.15780053
+				}
+			},
+			{
+				"campaign_id": 72724,
+				"campaign": "fuga facere rerum",
+				"totals": {
+					"hvc": {
+						"value": {
+							"unconfirmed": 12655,
+							"confirmed": 69857,
+							"total": 82512
+						},
+						"number": {
+							"unconfirmed": 263,
+							"confirmed": 736,
+							"total": 999
+						}
+					},
+					"change": "up",
+					"progress": {
+						"confirmed_percent": 6.53,
+						"unconfirmed_percent": 93.47,
+						"status": "red"
+					},
+					"target": 66454602.589315794
+				}
+			},
+			{
+				"campaign_id": 18161,
+				"campaign": "eaque natus doloribus",
+				"totals": {
+					"hvc": {
+						"value": {
+							"unconfirmed": 89480,
+							"confirmed": 43273,
+							"total": 132753
+						},
+						"number": {
+							"unconfirmed": 751,
+							"confirmed": 143,
+							"total": 894
+						}
+					},
+					"change": "down",
+					"progress": {
+						"confirmed_percent": 83.3,
+						"unconfirmed_percent": 16.700000000000003,
+						"status": "green"
+					},
+					"target": 1471380.745156803
+				}
+			},
+			{
+				"campaign_id": 81060,
+				"campaign": "architecto deleniti atque",
+				"totals": {
+					"hvc": {
+						"value": {
+							"unconfirmed": 51626,
+							"confirmed": 80770,
+							"total": 132396
+						},
+						"number": {
+							"unconfirmed": 304,
+							"confirmed": 967,
+							"total": 1271
+						}
+					},
+					"change": "up",
+					"progress": {
+						"confirmed_percent": 77.46,
+						"unconfirmed_percent": 22.540000000000006,
+						"status": "amber"
+					},
+					"target": 98238001.04969594
+				}
+			}
+		]
+	},
+	"date_range": {
+		"start": "Fri, 01 Apr 2016 00:00:00 GMT",
+		"end": "Fri, 31 Mar 2017 00:00:00 GMT"
+	}
+}

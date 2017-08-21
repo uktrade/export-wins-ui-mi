@@ -1,16 +1,17 @@
 const path = require( 'path' );
 const writeJsonFiles = require( './faker/helpers/write-json-files' );
 
-const hvcGroupsJson = require( './faker/backend/scripts/hvc-groups-json' );
-const osRegionsJson = require( './faker/backend/scripts/os-regions-json' );
-const osRegionGroupsJson = require( './faker/backend/scripts/os-region-groups-json' );
-const sectorTeamsJson = require( './faker/backend/scripts/sector-teams-json' );
-const sharedJson = require( './faker/backend/scripts/shared-json' );
-const userJson = require( './faker/backend/scripts/user-json' );
-const hvcJson = require( './faker/backend/scripts/hvc-json' );
-const globalHvcsJson = require( './faker/backend/scripts/global-hvcs-json' );
-const globalWinsJson = require( './faker/backend/scripts/global-wins-json' );
-const countriesJson = require( './faker/backend/scripts/countries-json' );
+const hvcGroupsJson = require( './faker/backend/scripts/lib/json-creators/hvc-groups-json' );
+const osRegionsJson = require( './faker/backend/scripts/lib/json-creators/os-regions-json' );
+const osRegionGroupsJson = require( './faker/backend/scripts/lib/json-creators/os-region-groups-json' );
+const sectorTeamsJson = require( './faker/backend/scripts/lib/json-creators/sector-teams-json' );
+const sharedJson = require( './faker/backend/scripts/lib/json-creators/shared-json' );
+const userJson = require( './faker/backend/scripts/lib/json-creators/user-json' );
+const hvcJson = require( './faker/backend/scripts/lib/json-creators/hvc-json' );
+const globalHvcsJson = require( './faker/backend/scripts/lib/json-creators/global-hvcs-json' );
+const globalWinsJson = require( './faker/backend/scripts/lib/json-creators/global-wins-json' );
+const countriesJson = require( './faker/backend/scripts/lib/json-creators/countries-json' );
+const postsJson = require( './faker/backend/scripts/lib/json-creators/posts-json' );
 
 const outputPath = path.resolve( __dirname, 'fake-stubs/backend' );
 
@@ -59,7 +60,14 @@ const yearlyFiles = {
 	'countries/campaigns': sharedJson.createCampaigns,
 	'countries/months': sharedJson.createMonths,
 	'countries/top_non_hvcs': sharedJson.createTopNonHvcs,
-	'countries/win_table': countriesJson.createWinTable
+	'countries/win_table': countriesJson.createWinTable,
+
+	'posts/index': postsJson.createList,
+	'posts/post': sharedJson.createSector,
+	'posts/campaigns': sharedJson.createCampaigns,
+	'posts/months': sharedJson.createMonths,
+	'posts/top_non_hvcs': sharedJson.createTopNonHvcs,
+	'posts/win_table': postsJson.createWinTable,
 };
 
 for( let file in yearlyFiles ){

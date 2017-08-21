@@ -79,6 +79,11 @@ module.exports = function( req ){
 		countryWins: ( countryId ) => filteredUrl( '/countries/' + countryId + '/wins/' ),
 		countryNonHvcWins: ( countryId ) => filteredUrl( '/countries/' + countryId + '/non-hvc-wins/' ),
 
+		posts: () => filteredUrl( '/posts/' ),
+		post: ( postId ) => filteredUrl( '/posts/' + postId + '/' ),
+		postWins: ( postId ) => filteredUrl( '/posts/' + postId + '/wins/' ),
+		postNonHvcWins: ( postId ) => filteredUrl( '/posts/' + postId + '/non-hvc-wins/' ),
+
 		hvcGroup: ( groupId ) => filteredUrl( '/hvc-groups/' + groupId + '/' ),
 		hvcGroupWins: ( groupId ) => filteredUrl( '/hvc-groups/' + groupId + '/wins/' ),
 

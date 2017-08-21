@@ -36,10 +36,6 @@ function checkResponse( res, statusCode ){
 	expect( headers[ 'cache-control' ] ).toEqual( 'no-cache, no-store' );
 }
 
-function returnUser(){
-	interceptBackend.getStub( '/user/me/', 200, '/user/me' );
-}
-
 describe( 'App', function(){
 
 	let app;
@@ -56,354 +52,6 @@ describe( 'App', function(){
 	afterEach( function(){
 		logger.add( winston.transports.Console );
 		jasmine.DEFAULT_TIMEOUT_INTERVAL = oldTimeout;
-	} );
-
-	describe( 'Index page', function(){
-
-		describe( 'When all APIs return a status of 200', function(){
-
-			it( 'Should return a 200 with the correct heading', function( done ){
-
-				returnUser();
-				interceptBackend.getStub( '/mi/sector_teams/?year=2017', 200, '/sector_teams/' );
-				interceptBackend.getStub( '/mi/os_region_groups/?year=2017', 200, '/os_region_groups/index.2017' );
-				interceptBackend.getStub( '/mi/global_hvcs/?year=2017', 200, '/global_hvcs/' );
-				interceptBackend.getStub( '/mi/global_wins/?year=2017', 200, '/global_wins/' );
-
-				supertest( app ).get( '/' ).end( ( err, res ) => {
-
-					checkResponse( res, 200 );
-					expect( getTitle( res ) ).toEqual( 'MI - Homepage' );
-					done();
-				} );
-			} );
-
-			describe( 'With a start date', function(){
-
-				it( 'Should return the correct data', function( done ){
-
-					returnUser();
-					interceptBackend.getStub( '/mi/sector_teams/?year=2017&date_start=1234', 200, '/sector_teams/' );
-					interceptBackend.getStub( '/mi/os_region_groups/?year=2017&date_start=1234', 200, '/os_region_groups/index.2017' );
-					interceptBackend.getStub( '/mi/global_hvcs/?year=2017&date_start=1234', 200, '/global_hvcs/' );
-					interceptBackend.getStub( '/mi/global_wins/?year=2017&date_start=1234', 200, '/global_wins/' );
-
-					supertest( app ).get( '/?date[start]=1234' ).end( ( err, res ) => {
-
-						checkResponse( res, 200 );
-						expect( getTitle( res ) ).toEqual( 'MI - Homepage' );
-						done();
-					} );
-				} );
-			} );
-
-			describe( 'With an end date', function(){
-
-				it( 'Should return the correct data', function( done ){
-
-					returnUser();
-					interceptBackend.getStub( '/mi/sector_teams/?year=2017&date_end=6789', 200, '/sector_teams/' );
-					interceptBackend.getStub( '/mi/os_region_groups/?year=2017&date_end=6789', 200, '/os_region_groups/index.2017' );
-					interceptBackend.getStub( '/mi/global_hvcs/?year=2017&date_end=6789', 200, '/global_hvcs/' );
-					interceptBackend.getStub( '/mi/global_wins/?year=2017&date_end=6789', 200, '/global_wins/' );
-
-					supertest( app ).get( '/?date[end]=6789' ).end( ( err, res ) => {
-
-						checkResponse( res, 200 );
-						expect( getTitle( res ) ).toEqual( 'MI - Homepage' );
-						done();
-					} );
-				} );
-			} );
-		} );
-
-		describe( 'When one of the APIs returns a status of 500', function(){
-
-			it( 'Should return a 500', function( done ){
-
-				returnUser();
-				interceptBackend.getStub( '/mi/sector_teams/?year=2017', 200, '/sector_teams/' );
-				interceptBackend.getStub( '/mi/os_region_groups/?year=2017', 500 );
-				interceptBackend.getStub( '/mi/global_hvcs/?year=2017', 200, '/global_hvcs/' );
-				interceptBackend.getStub( '/mi/global_wins/?year=2017', 200, '/global_wins/' );
-
-				supertest( app ).get( '/' ).end( ( err, res ) => {
-
-					checkResponse( res, 500 );
-					done();
-				} );
-			} );
-		} );
-
-		describe( 'When all the APIs return a status of 500', function(){
-
-			it( 'Should return a 500', function( done ){
-
-				returnUser();
-				interceptBackend.getStub( '/mi/sector_teams/?year=2017', 500 );
-				interceptBackend.getStub( '/mi/os_region_groups/?year=2017', 500 );
-				interceptBackend.getStub( '/mi/global_hvcs/?year=2017', 500 );
-				interceptBackend.getStub( '/mi/global_wins/?year=2017', 500 );
-
-				supertest( app ).get( '/' ).end( ( err, res ) => {
-
-					checkResponse( res, 500 );
-					done();
-				} );
-			} );
-		} );
-	} );
-
-	describe( 'Selecting a date range', function(){
-
-		describe( 'Selecting the year', function(){
-
-			it( 'Should return a 200 with the correct heading', function( done ){
-
-				returnUser();
-
-				supertest( app ).get( '/select-date/' ).end( ( err, res ) => {
-
-					checkResponse( res, 200 );
-					expect( getTitle( res ) ).toEqual( 'MI - Choose date range' );
-					done();
-				} );
-			} );
-		} );
-
-		describe( 'Selecting the month and day', function(){
-
-			describe( '2016', function(){
-
-				it( 'Should return a 200 with the correct heading', function( done ){
-
-					returnUser();
-
-					supertest( app ).get( '/select-date/2016/' ).end( ( err, res ) => {
-
-						expect( getTitle( res ) ).toEqual( 'MI - Choose 2016 financial year start and end dates');
-						done();
-					} );
-				} );
-			} );
-
-			describe( '2017', function(){
-
-				it( 'Should return a 200 with the correct heading', function( done ){
-
-					returnUser();
-
-					supertest( app ).get( '/select-date/2017/' ).end( ( err, res ) => {
-
-						expect( getTitle( res ) ).toEqual( 'MI - Choose 2017 financial year start and end dates');
-						done();
-					} );
-				} );
-			} );
-		} );
-	} );
-
-	describe( 'Sector Teams', function(){
-
-		describe( 'Overview', function(){
-
-			describe( 'When the API returns a status of 200', function(){
-
-				it( 'Should return a 200 with the correct heading', function( done ){
-
-					returnUser();
-					interceptBackend.getStub( '/mi/sector_teams/overview/?year=2017', 200, '/sector_teams/overview' );
-
-					supertest( app ).get( '/sector-teams/overview/' ).end( ( err, res ) => {
-
-						checkResponse( res, 200 );
-						expect( getTitle( res ) ).toEqual( 'MI - Sector Teams Overview' );
-						done();
-					} );
-				} );
-			} );
-		} );
-
-		describe( 'List', function(){
-
-			describe( 'When the API returns a status of 200', function(){
-
-				it( 'Should return a 200 with the correct heading', function( done ){
-
-					returnUser();
-					interceptBackend.getStub( '/mi/sector_teams/?year=2017', 200, '/sector_teams/' );
-
-					supertest( app ).get( '/sector-teams/' ).end( ( err, res ) => {
-
-						checkResponse( res, 200 );
-						expect( getTitle( res ) ).toEqual( 'MI - Sector Teams' );
-						done();
-					} );
-				} );
-			} );
-		} );
-
-		describe( 'Sector Team detail', function(){
-
-			describe( 'When the API returns a status of 200', function(){
-
-				it( 'Should return a 200 with the correct heading', function( done ){
-
-					returnUser();
-					interceptBackend.getStub( '/mi/sector_teams/1/?year=2017', 200, '/sector_teams/sector_team' );
-					interceptBackend.getStub( '/mi/sector_teams/1/months/?year=2017', 200, '/sector_teams/months' );
-					interceptBackend.getStub( '/mi/sector_teams/1/campaigns/?year=2017', 200, '/sector_teams/campaigns' );
-					interceptBackend.getStub( '/mi/sector_teams/1/top_non_hvcs/?year=2017', 200, '/sector_teams/top_non_hvcs' );
-
-					supertest( app ).get( '/sector-teams/1/' ).end( ( err, res ) => {
-
-						checkResponse( res, 200 );
-						expect( getTitle( res ) ).toEqual( 'MI - Sector team performance - distinctio quas &amp; numquam' );
-						done();
-					} );
-				} );
-			} );
-		} );
-
-		describe( 'HVC win list', function(){
-
-			describe( 'When the API returns a status of 200', function(){
-
-				it( 'Should return a 200 with the correct heading', function( done ){
-
-					returnUser();
-					interceptBackend.getStub( '/mi/sector_teams/1/win_table/?year=2017', 200, '/sector_teams/win_table' );
-
-					supertest( app ).get( '/sector-teams/1/wins/' ).end( ( err, res ) => {
-
-						checkResponse( res, 200 );
-						expect( getTitle( res ) ).toEqual( 'MI - Sector team HVC wins - animi architecto nam' );
-						done();
-					} );
-				} );
-			} );
-		} );
-
-		describe( 'Non HVC win list', function(){
-
-			describe( 'When the API returns a status of 200', function(){
-
-				it( 'Should return a 200 with the correct heading', function( done ){
-
-					returnUser();
-					interceptBackend.getStub( '/mi/sector_teams/1/win_table/?year=2017', 200, '/sector_teams/win_table' );
-
-					supertest( app ).get( '/sector-teams/1/non-hvc-wins/' ).end( ( err, res ) => {
-
-						checkResponse( res, 200 );
-						expect( getTitle( res ) ).toEqual( 'MI - Sector team non HVC wins - animi architecto nam' );
-						done();
-					} );
-				} );
-			} );
-		} );
-	} );
-
-	describe( 'HVC Groups', function(){
-
-		describe( 'List', function(){
-
-			describe( 'When the API returns a status of 200', function(){
-
-				it( 'Should return a 200 with the correct heading', function( done ){
-
-					returnUser();
-					interceptBackend.getStub( '/mi/hvc_groups/?year=2017', 200, '/hvc_groups/' );
-
-					supertest( app ).get( '/hvc-groups/' ).end( ( err, res ) => {
-
-						checkResponse( res, 200 );
-						expect( getTitle( res ) ).toEqual( 'MI - HVC Groups' );
-						done();
-					} );
-				} );
-			} );
-		} );
-
-		describe( 'Detail', function(){
-
-			describe( 'When the API returns a status of 200', function(){
-
-				it( 'Should return a 200 with the correct heading', function( done ){
-
-					returnUser();
-					interceptBackend.getStub( '/mi/hvc_groups/1/?year=2017', 200, '/hvc_groups/group' );
-					interceptBackend.getStub( '/mi/hvc_groups/1/months/?year=2017', 200, '/hvc_groups/months' );
-					interceptBackend.getStub( '/mi/hvc_groups/1/campaigns/?year=2017', 200, '/hvc_groups/campaigns' );
-
-					supertest( app ).get( '/hvc-groups/1/' ).end( ( err, res ) => {
-
-						checkResponse( res, 200 );
-						expect( getTitle( res ) ).toEqual( 'MI - HVC group performance - sunt laborum &amp; quos' );
-						done();
-					} );
-				} );
-			} );
-		} );
-
-		describe( 'Win list', function(){
-
-			describe( 'When the API returns a status of 200', function(){
-
-				it( 'Should return a 200 with the correct heading', function( done ){
-
-					returnUser();
-					interceptBackend.getStub( '/mi/hvc_groups/1/win_table/?year=2017', 200, '/hvc_groups/win_table' );
-
-					supertest( app ).get( '/hvc-groups/1/wins/' ).end( ( err, res ) => {
-
-						checkResponse( res, 200 );
-						expect( getTitle( res ) ).toEqual( 'MI - HVC group wins - dolorem quos vero' );
-						done();
-					} );
-				} );
-			} );
-		} );
-	} );
-
-	describe( 'HVC', function(){
-
-		describe( 'Detail', function(){
-
-			it( 'Should return 200', function( done ){
-
-				const hvcId = 'E100';
-
-				returnUser();
-				interceptBackend.getStub( `/mi/hvc/${ hvcId }/?year=2017`, 200, '/hvc/hvc' );
-				interceptBackend.getStub( `/mi/hvc/${ hvcId }/top_wins/?year=2017`, 200, '/hvc/markets' );
-
-				supertest( app ).get( `/hvc/${ hvcId }/` ).end( ( err, res ) => {
-
-					expect( res.statusCode ).toEqual( 200 );
-					expect( getTitle( res ) ).toEqual( 'MI - HVC performance - rerum blanditiis rerum' );
-					done();
-				} );
-			} );
-		} );
-
-		describe( 'Win list', function(){
-
-			it( 'Should return 200', function( done ){
-
-				const hvcId = 'E100';
-
-				returnUser();
-				interceptBackend.getStub( `/mi/hvc/${ hvcId }/win_table/?year=2017`, 200, '/hvc/win_table' );
-
-				supertest( app ).get( `/hvc/${ hvcId }/wins/` ).end( ( err, res ) => {
-
-					expect( res.statusCode ).toEqual( 200 );
-					expect( getTitle( res ) ).toEqual( 'MI - HVC wins - non mollitia qui' );
-					done();
-				} );
-			} );
-		} );
 	} );
 
 if( config.backend.mock ){
@@ -425,192 +73,606 @@ if( config.backend.mock ){
 	} );
 }
 
+	describe( 'User pages', function(){
 
-	describe( 'Overseas Regions', function(){
+		let userIntercept;
 
-		describe( 'Overview', function(){
+		beforeEach( function(){
 
-			describe( 'When the API returns a status of 200', function(){
+			userIntercept = interceptBackend.getStub( '/user/me/', 200, '/user/me' );
+		} );
+
+		afterEach( function(){
+
+			expect( userIntercept.isDone() ).toEqual( true );
+		} );
+
+		describe( 'Index page', function(){
+
+			describe( 'When all APIs return a status of 200', function(){
 
 				it( 'Should return a 200 with the correct heading', function( done ){
 
-					returnUser();
-					interceptBackend.getStub( '/mi/os_regions/overview/?year=2017', 200, '/os_regions/overview.2017' );
+					interceptBackend.getStub( '/mi/sector_teams/?year=2017', 200, '/sector_teams/' );
 					interceptBackend.getStub( '/mi/os_region_groups/?year=2017', 200, '/os_region_groups/index.2017' );
+					interceptBackend.getStub( '/mi/global_hvcs/?year=2017', 200, '/global_hvcs/' );
+					interceptBackend.getStub( '/mi/global_wins/?year=2017', 200, '/global_wins/' );
 
-					supertest( app ).get( '/overseas-regions/overview/' ).end( ( err, res ) => {
+					supertest( app ).get( '/' ).end( ( err, res ) => {
 
 						checkResponse( res, 200 );
-						expect( getTitle( res ) ).toEqual( 'MI - Overseas Regions Overview' );
+						expect( getTitle( res ) ).toEqual( 'MI - Homepage' );
+						done();
+					} );
+				} );
+
+				describe( 'With a start date', function(){
+
+					it( 'Should return the correct data', function( done ){
+
+						interceptBackend.getStub( '/mi/sector_teams/?year=2017&date_start=1234', 200, '/sector_teams/' );
+						interceptBackend.getStub( '/mi/os_region_groups/?year=2017&date_start=1234', 200, '/os_region_groups/index.2017' );
+						interceptBackend.getStub( '/mi/global_hvcs/?year=2017&date_start=1234', 200, '/global_hvcs/' );
+						interceptBackend.getStub( '/mi/global_wins/?year=2017&date_start=1234', 200, '/global_wins/' );
+
+						supertest( app ).get( '/?date[start]=1234' ).end( ( err, res ) => {
+
+							checkResponse( res, 200 );
+							expect( getTitle( res ) ).toEqual( 'MI - Homepage' );
+							done();
+						} );
+					} );
+				} );
+
+				describe( 'With an end date', function(){
+
+					it( 'Should return the correct data', function( done ){
+
+						interceptBackend.getStub( '/mi/sector_teams/?year=2017&date_end=6789', 200, '/sector_teams/' );
+						interceptBackend.getStub( '/mi/os_region_groups/?year=2017&date_end=6789', 200, '/os_region_groups/index.2017' );
+						interceptBackend.getStub( '/mi/global_hvcs/?year=2017&date_end=6789', 200, '/global_hvcs/' );
+						interceptBackend.getStub( '/mi/global_wins/?year=2017&date_end=6789', 200, '/global_wins/' );
+
+						supertest( app ).get( '/?date[end]=6789' ).end( ( err, res ) => {
+
+							checkResponse( res, 200 );
+							expect( getTitle( res ) ).toEqual( 'MI - Homepage' );
+							done();
+						} );
+					} );
+				} );
+			} );
+
+			describe( 'When one of the APIs returns a status of 500', function(){
+
+				it( 'Should return a 500', function( done ){
+
+					interceptBackend.getStub( '/mi/sector_teams/?year=2017', 200, '/sector_teams/' );
+					interceptBackend.getStub( '/mi/os_region_groups/?year=2017', 500 );
+					interceptBackend.getStub( '/mi/global_hvcs/?year=2017', 200, '/global_hvcs/' );
+					interceptBackend.getStub( '/mi/global_wins/?year=2017', 200, '/global_wins/' );
+
+					supertest( app ).get( '/' ).end( ( err, res ) => {
+
+						checkResponse( res, 500 );
+						done();
+					} );
+				} );
+			} );
+
+			describe( 'When all the APIs return a status of 500', function(){
+
+				it( 'Should return a 500', function( done ){
+
+					interceptBackend.getStub( '/mi/sector_teams/?year=2017', 500 );
+					interceptBackend.getStub( '/mi/os_region_groups/?year=2017', 500 );
+					interceptBackend.getStub( '/mi/global_hvcs/?year=2017', 500 );
+					interceptBackend.getStub( '/mi/global_wins/?year=2017', 500 );
+
+					supertest( app ).get( '/' ).end( ( err, res ) => {
+
+						checkResponse( res, 500 );
 						done();
 					} );
 				} );
 			} );
 		} );
 
-		describe( 'List', function(){
+		describe( 'Selecting a date range', function(){
 
-			describe( 'When the API returns a status of 200', function(){
+			describe( 'Selecting the year', function(){
 
 				it( 'Should return a 200 with the correct heading', function( done ){
 
-					returnUser();
-					interceptBackend.getStub( '/mi/os_regions/?year=2017', 200, '/os_regions/' );
-
-					supertest( app ).get( '/overseas-regions/' ).end( ( err, res ) => {
+					supertest( app ).get( '/select-date/' ).end( ( err, res ) => {
 
 						checkResponse( res, 200 );
-						expect( getTitle( res ) ).toEqual( 'MI - Overseas Regions' );
+						expect( getTitle( res ) ).toEqual( 'MI - Choose date range' );
+						done();
+					} );
+				} );
+			} );
+
+			describe( 'Selecting the month and day', function(){
+
+				describe( '2016', function(){
+
+					it( 'Should return a 200 with the correct heading', function( done ){
+
+						supertest( app ).get( '/select-date/2016/' ).end( ( err, res ) => {
+
+							expect( getTitle( res ) ).toEqual( 'MI - Choose 2016 financial year start and end dates');
+							done();
+						} );
+					} );
+				} );
+
+				describe( '2017', function(){
+
+					it( 'Should return a 200 with the correct heading', function( done ){
+
+						supertest( app ).get( '/select-date/2017/' ).end( ( err, res ) => {
+
+							expect( getTitle( res ) ).toEqual( 'MI - Choose 2017 financial year start and end dates');
+							done();
+						} );
+					} );
+				} );
+			} );
+		} );
+
+		describe( 'Sector Teams', function(){
+
+			describe( 'Overview', function(){
+
+				describe( 'When the API returns a status of 200', function(){
+
+					it( 'Should return a 200 with the correct heading', function( done ){
+
+						interceptBackend.getStub( '/mi/sector_teams/overview/?year=2017', 200, '/sector_teams/overview' );
+
+						supertest( app ).get( '/sector-teams/overview/' ).end( ( err, res ) => {
+
+							checkResponse( res, 200 );
+							expect( getTitle( res ) ).toEqual( 'MI - Sector Teams Overview' );
+							done();
+						} );
+					} );
+				} );
+			} );
+
+			describe( 'List', function(){
+
+				describe( 'When the API returns a status of 200', function(){
+
+					it( 'Should return a 200 with the correct heading', function( done ){
+
+						interceptBackend.getStub( '/mi/sector_teams/?year=2017', 200, '/sector_teams/' );
+
+						supertest( app ).get( '/sector-teams/' ).end( ( err, res ) => {
+
+							checkResponse( res, 200 );
+							expect( getTitle( res ) ).toEqual( 'MI - Sector Teams' );
+							done();
+						} );
+					} );
+				} );
+			} );
+
+			describe( 'Sector Team detail', function(){
+
+				describe( 'When the API returns a status of 200', function(){
+
+					it( 'Should return a 200 with the correct heading', function( done ){
+
+						interceptBackend.getStub( '/mi/sector_teams/1/?year=2017', 200, '/sector_teams/sector_team' );
+						interceptBackend.getStub( '/mi/sector_teams/1/months/?year=2017', 200, '/sector_teams/months' );
+						interceptBackend.getStub( '/mi/sector_teams/1/campaigns/?year=2017', 200, '/sector_teams/campaigns' );
+						interceptBackend.getStub( '/mi/sector_teams/1/top_non_hvcs/?year=2017', 200, '/sector_teams/top_non_hvcs' );
+
+						supertest( app ).get( '/sector-teams/1/' ).end( ( err, res ) => {
+
+							checkResponse( res, 200 );
+							expect( getTitle( res ) ).toEqual( 'MI - Sector team performance - distinctio quas &amp; numquam' );
+							done();
+						} );
+					} );
+				} );
+			} );
+
+			describe( 'HVC win list', function(){
+
+				describe( 'When the API returns a status of 200', function(){
+
+					it( 'Should return a 200 with the correct heading', function( done ){
+
+						interceptBackend.getStub( '/mi/sector_teams/1/win_table/?year=2017', 200, '/sector_teams/win_table' );
+
+						supertest( app ).get( '/sector-teams/1/wins/' ).end( ( err, res ) => {
+
+							checkResponse( res, 200 );
+							expect( getTitle( res ) ).toEqual( 'MI - Sector team HVC wins - animi architecto nam' );
+							done();
+						} );
+					} );
+				} );
+			} );
+
+			describe( 'Non HVC win list', function(){
+
+				describe( 'When the API returns a status of 200', function(){
+
+					it( 'Should return a 200 with the correct heading', function( done ){
+
+						interceptBackend.getStub( '/mi/sector_teams/1/win_table/?year=2017', 200, '/sector_teams/win_table' );
+
+						supertest( app ).get( '/sector-teams/1/non-hvc-wins/' ).end( ( err, res ) => {
+
+							checkResponse( res, 200 );
+							expect( getTitle( res ) ).toEqual( 'MI - Sector team non HVC wins - animi architecto nam' );
+							done();
+						} );
+					} );
+				} );
+			} );
+		} );
+
+		describe( 'HVC Groups', function(){
+
+			describe( 'List', function(){
+
+				describe( 'When the API returns a status of 200', function(){
+
+					it( 'Should return a 200 with the correct heading', function( done ){
+
+						interceptBackend.getStub( '/mi/hvc_groups/?year=2017', 200, '/hvc_groups/' );
+
+						supertest( app ).get( '/hvc-groups/' ).end( ( err, res ) => {
+
+							checkResponse( res, 200 );
+							expect( getTitle( res ) ).toEqual( 'MI - HVC Groups' );
+							done();
+						} );
+					} );
+				} );
+			} );
+
+			describe( 'Detail', function(){
+
+				describe( 'When the API returns a status of 200', function(){
+
+					it( 'Should return a 200 with the correct heading', function( done ){
+
+						interceptBackend.getStub( '/mi/hvc_groups/1/?year=2017', 200, '/hvc_groups/group' );
+						interceptBackend.getStub( '/mi/hvc_groups/1/months/?year=2017', 200, '/hvc_groups/months' );
+						interceptBackend.getStub( '/mi/hvc_groups/1/campaigns/?year=2017', 200, '/hvc_groups/campaigns' );
+
+						supertest( app ).get( '/hvc-groups/1/' ).end( ( err, res ) => {
+
+							checkResponse( res, 200 );
+							expect( getTitle( res ) ).toEqual( 'MI - HVC group performance - sunt laborum &amp; quos' );
+							done();
+						} );
+					} );
+				} );
+			} );
+
+			describe( 'Win list', function(){
+
+				describe( 'When the API returns a status of 200', function(){
+
+					it( 'Should return a 200 with the correct heading', function( done ){
+
+						interceptBackend.getStub( '/mi/hvc_groups/1/win_table/?year=2017', 200, '/hvc_groups/win_table' );
+
+						supertest( app ).get( '/hvc-groups/1/wins/' ).end( ( err, res ) => {
+
+							checkResponse( res, 200 );
+							expect( getTitle( res ) ).toEqual( 'MI - HVC group wins - dolorem quos vero' );
+							done();
+						} );
+					} );
+				} );
+			} );
+		} );
+
+		describe( 'HVC', function(){
+
+			describe( 'Detail', function(){
+
+				it( 'Should return 200', function( done ){
+
+					const hvcId = 'E100';
+
+					interceptBackend.getStub( `/mi/hvc/${ hvcId }/?year=2017`, 200, '/hvc/hvc' );
+					interceptBackend.getStub( `/mi/hvc/${ hvcId }/top_wins/?year=2017`, 200, '/hvc/markets' );
+
+					supertest( app ).get( `/hvc/${ hvcId }/` ).end( ( err, res ) => {
+
+						expect( res.statusCode ).toEqual( 200 );
+						expect( getTitle( res ) ).toEqual( 'MI - HVC performance - rerum blanditiis rerum' );
+						done();
+					} );
+				} );
+			} );
+
+			describe( 'Win list', function(){
+
+				it( 'Should return 200', function( done ){
+
+					const hvcId = 'E100';
+
+					interceptBackend.getStub( `/mi/hvc/${ hvcId }/win_table/?year=2017`, 200, '/hvc/win_table' );
+
+					supertest( app ).get( `/hvc/${ hvcId }/wins/` ).end( ( err, res ) => {
+
+						expect( res.statusCode ).toEqual( 200 );
+						expect( getTitle( res ) ).toEqual( 'MI - HVC wins - non mollitia qui' );
 						done();
 					} );
 				} );
 			} );
 		} );
 
-		describe( 'Overseas Region detail', function(){
+		describe( 'Overseas Regions', function(){
 
-			describe( 'When the API returns a status of 200', function(){
+			describe( 'Overview', function(){
 
-				it( 'Should return a 200 with the correct heading', function( done ){
+				describe( 'When the API returns a status of 200', function(){
 
-					returnUser();
-					interceptBackend.getStub( '/mi/os_regions/1/?year=2017', 200, '/os_regions/region' );
-					interceptBackend.getStub( '/mi/os_regions/1/months/?year=2017', 200, '/os_regions/months' );
-					interceptBackend.getStub( '/mi/os_regions/1/campaigns/?year=2017', 200, '/os_regions/campaigns' );
-					interceptBackend.getStub( '/mi/os_regions/1/top_non_hvcs/?year=2017', 200, '/os_regions/top_non_hvcs' );
+					it( 'Should return a 200 with the correct heading', function( done ){
 
-					supertest( app ).get( '/overseas-regions/1/' ).end( ( err, res ) => {
+						interceptBackend.getStub( '/mi/os_regions/overview/?year=2017', 200, '/os_regions/overview.2017' );
+						interceptBackend.getStub( '/mi/os_region_groups/?year=2017', 200, '/os_region_groups/index.2017' );
 
-						checkResponse( res, 200 );
-						expect( getTitle( res ) ).toEqual( 'MI - Overseas region performance - minima explicabo &amp; architecto' );
-						done();
+						supertest( app ).get( '/overseas-regions/overview/' ).end( ( err, res ) => {
+
+							checkResponse( res, 200 );
+							expect( getTitle( res ) ).toEqual( 'MI - Overseas Regions Overview' );
+							done();
+						} );
+					} );
+				} );
+			} );
+
+			describe( 'List', function(){
+
+				describe( 'When the API returns a status of 200', function(){
+
+					it( 'Should return a 200 with the correct heading', function( done ){
+
+						interceptBackend.getStub( '/mi/os_regions/?year=2017', 200, '/os_regions/' );
+
+						supertest( app ).get( '/overseas-regions/' ).end( ( err, res ) => {
+
+							checkResponse( res, 200 );
+							expect( getTitle( res ) ).toEqual( 'MI - Overseas Regions' );
+							done();
+						} );
+					} );
+				} );
+			} );
+
+			describe( 'Overseas Region detail', function(){
+
+				describe( 'When the API returns a status of 200', function(){
+
+					it( 'Should return a 200 with the correct heading', function( done ){
+
+						interceptBackend.getStub( '/mi/os_regions/1/?year=2017', 200, '/os_regions/region' );
+						interceptBackend.getStub( '/mi/os_regions/1/months/?year=2017', 200, '/os_regions/months' );
+						interceptBackend.getStub( '/mi/os_regions/1/campaigns/?year=2017', 200, '/os_regions/campaigns' );
+						interceptBackend.getStub( '/mi/os_regions/1/top_non_hvcs/?year=2017', 200, '/os_regions/top_non_hvcs' );
+
+						supertest( app ).get( '/overseas-regions/1/' ).end( ( err, res ) => {
+
+							checkResponse( res, 200 );
+							expect( getTitle( res ) ).toEqual( 'MI - Overseas region performance - minima explicabo &amp; architecto' );
+							done();
+						} );
+					} );
+				} );
+			} );
+
+			describe( 'Overseas Region HVC wins', function(){
+
+				describe( 'When the API returns a status of 200', function(){
+
+					it( 'Should return a 200 with the correct heading', function( done ){
+
+						interceptBackend.getStub( '/mi/os_regions/1/win_table/?year=2017', 200, '/os_regions/win_table' );
+
+						supertest( app ).get( '/overseas-regions/1/wins/' ).end( ( err, res ) => {
+
+							checkResponse( res, 200 );
+							expect( getTitle( res ) ).toEqual( 'MI - Overseas region HVC wins - sed blanditiis dolorum' );
+							done();
+						} );
+					} );
+				} );
+			} );
+
+			describe( 'Overseas Region non HVC wins', function(){
+
+				describe( 'When the API returns a status of 200', function(){
+
+					it( 'Should return a 200 with the correct heading', function( done ){
+
+						interceptBackend.getStub( '/mi/os_regions/1/win_table/?year=2017', 200, '/os_regions/win_table' );
+
+						supertest( app ).get( '/overseas-regions/1/non-hvc-wins/' ).end( ( err, res ) => {
+
+							checkResponse( res, 200 );
+							expect( getTitle( res ) ).toEqual( 'MI - Overseas region non HVC wins - sed blanditiis dolorum' );
+							done();
+						} );
 					} );
 				} );
 			} );
 		} );
 
-		describe( 'Overseas Region HVC wins', function(){
+		describe( 'Countries', function(){
 
-			describe( 'When the API returns a status of 200', function(){
+			describe( 'List', function(){
 
-				it( 'Should return a 200 with the correct heading', function( done ){
+				describe( 'When the API returns a status of 200', function(){
 
-					returnUser();
-					interceptBackend.getStub( '/mi/os_regions/1/win_table/?year=2017', 200, '/os_regions/win_table' );
+					it( 'Should return a 200 with the correct heading', function( done ){
 
-					supertest( app ).get( '/overseas-regions/1/wins/' ).end( ( err, res ) => {
+						interceptBackend.getStub( '/mi/countries/?year=2017', 200, '/countries/' );
 
-						checkResponse( res, 200 );
-						expect( getTitle( res ) ).toEqual( 'MI - Overseas region HVC wins - sed blanditiis dolorum' );
-						done();
+						supertest( app ).get( '/countries/' ).end( ( err, res ) => {
+
+							checkResponse( res, 200 );
+							expect( getTitle( res ) ).toEqual( 'MI - Countries' );
+							done();
+						} );
+					} );
+				} );
+			} );
+
+			describe( 'Country', function(){
+
+				describe( 'When the API returns a status of 200', function(){
+
+					it( 'Should return a 200 with the correct heading', function( done ){
+
+						const countryCode = 'SI';
+
+						interceptBackend.getStub( `/mi/countries/${ countryCode }/?year=2017`, 200, '/countries/country' );
+						interceptBackend.getStub( `/mi/countries/${ countryCode }/campaigns/?year=2017`, 200, '/countries/campaigns' );
+						interceptBackend.getStub( `/mi/countries/${ countryCode }/months/?year=2017`, 200, '/countries/months' );
+						interceptBackend.getStub( `/mi/countries/${ countryCode }/top_non_hvcs/?year=2017`, 200, '/countries/top_non_hvcs' );
+
+						supertest( app ).get( `/countries/${ countryCode }/` ).end( ( err, res ) => {
+
+							checkResponse( res, 200 );
+							expect( getTitle( res ) ).toEqual( 'MI - Country performance - atque molestiae ducimus' );
+							done();
+						} );
+					} );
+				} );
+			} );
+
+			describe( 'Country HVC wins', function(){
+
+				describe( 'When the API returns a status of 200', function(){
+
+					it( 'Should return a 200 with the correct heading', function( done ){
+
+						interceptBackend.getStub( '/mi/countries/AU/win_table/?year=2017', 200, '/countries/win_table' );
+
+						supertest( app ).get( '/countries/AU/wins/' ).end( ( err, res ) => {
+
+							checkResponse( res, 200 );
+							expect( getTitle( res ) ).toEqual( 'MI - Country HVC wins - atque at atque' );
+							done();
+						} );
+					} );
+				} );
+			} );
+
+			describe( 'Country non HVC wins', function(){
+
+				describe( 'When the API returns a status of 200', function(){
+
+					it( 'Should return a 200 with the correct heading', function( done ){
+
+						interceptBackend.getStub( '/mi/countries/AU/win_table/?year=2017', 200, '/countries/win_table' );
+
+						supertest( app ).get( '/countries/AU/non-hvc-wins/' ).end( ( err, res ) => {
+
+							checkResponse( res, 200 );
+							expect( getTitle( res ) ).toEqual( 'MI - Country non HVC wins - atque at atque' );
+							done();
+						} );
 					} );
 				} );
 			} );
 		} );
 
-		describe( 'Overseas Region non HVC wins', function(){
+		describe( 'Posts', function(){
 
-			describe( 'When the API returns a status of 200', function(){
+			const postId = 'australia-perth';
 
-				it( 'Should return a 200 with the correct heading', function( done ){
+			describe( 'List', function(){
 
-					returnUser();
-					interceptBackend.getStub( '/mi/os_regions/1/win_table/?year=2017', 200, '/os_regions/win_table' );
+				describe( 'When the API returns a status of 200', function(){
 
-					supertest( app ).get( '/overseas-regions/1/non-hvc-wins/' ).end( ( err, res ) => {
+					it( 'Should return a 200 with the correct heading', function( done ){
 
-						checkResponse( res, 200 );
-						expect( getTitle( res ) ).toEqual( 'MI - Overseas region non HVC wins - sed blanditiis dolorum' );
-						done();
+						interceptBackend.getStub( '/mi/posts/?year=2017', 200, '/posts/' );
+
+						supertest( app ).get( '/posts/' ).end( ( err, res ) => {
+
+							checkResponse( res, 200 );
+							expect( getTitle( res ) ).toEqual( 'MI - Posts' );
+							done();
+						} );
+					} );
+				} );
+			} );
+
+			describe( 'Post', function(){
+
+				describe( 'When the API returns a status of 200', function(){
+
+					it( 'Should return a 200 with the correct heading', function( done ){
+
+						interceptBackend.getStub( `/mi/posts/${ postId }/?year=2017`, 200, '/posts/post' );
+						interceptBackend.getStub( `/mi/posts/${ postId }/campaigns/?year=2017`, 200, '/posts/campaigns' );
+						interceptBackend.getStub( `/mi/posts/${ postId }/months/?year=2017`, 200, '/posts/months' );
+						interceptBackend.getStub( `/mi/posts/${ postId }/top_non_hvcs/?year=2017`, 200, '/posts/top_non_hvcs' );
+
+						supertest( app ).get( `/posts/${ postId }/` ).end( ( err, res ) => {
+
+							checkResponse( res, 200 );
+							expect( getTitle( res ) ).toEqual( 'MI - Post performance - quisquam provident aut' );
+							done();
+						} );
+					} );
+				} );
+			} );
+
+			describe( 'Post HVC wins', function(){
+
+				describe( 'When the API returns a status of 200', function(){
+
+					it( 'Should return a 200 with the correct heading', function( done ){
+
+						interceptBackend.getStub( `/mi/posts/${ postId }/win_table/?year=2017`, 200, '/posts/win_table' );
+
+						supertest( app ).get( `/posts/${ postId }/wins/` ).end( ( err, res ) => {
+
+							checkResponse( res, 200 );
+							expect( getTitle( res ) ).toEqual( 'MI - Post HVC wins - fuga libero id' );
+							done();
+						} );
+					} );
+				} );
+			} );
+
+			describe( 'Post non HVC wins', function(){
+
+				describe( 'When the API returns a status of 200', function(){
+
+					it( 'Should return a 200 with the correct heading', function( done ){
+
+						interceptBackend.getStub( `/mi/posts/${ postId }/win_table/?year=2017`, 200, '/posts/win_table' );
+
+						supertest( app ).get( `/posts/${ postId }/non-hvc-wins/` ).end( ( err, res ) => {
+
+							checkResponse( res, 200 );
+							expect( getTitle( res ) ).toEqual( 'MI - Post non HVC wins - fuga libero id' );
+							done();
+						} );
 					} );
 				} );
 			} );
 		} );
+
 	} );
 
-	describe( 'Countries', function(){
-
-		describe( 'List', function(){
-
-			describe( 'When the API returns a status of 200', function(){
-
-				it( 'Should return a 200 with the correct heading', function( done ){
-
-					returnUser();
-					interceptBackend.getStub( '/mi/countries/?year=2017', 200, '/countries/' );
-
-					supertest( app ).get( '/countries/' ).end( ( err, res ) => {
-
-						checkResponse( res, 200 );
-						expect( getTitle( res ) ).toEqual( 'MI - Countries' );
-						done();
-					} );
-				} );
-			} );
-		} );
-
-		describe( 'Country', function(){
-
-			describe( 'When the API returns a status of 200', function(){
-
-				it( 'Should return a 200 with the correct heading', function( done ){
-
-					const countryCode = 'SI';
-
-					returnUser();
-					interceptBackend.getStub( `/mi/countries/${ countryCode }/?year=2017`, 200, '/countries/country' );
-					interceptBackend.getStub( `/mi/countries/${ countryCode }/campaigns/?year=2017`, 200, '/countries/campaigns' );
-					interceptBackend.getStub( `/mi/countries/${ countryCode }/months/?year=2017`, 200, '/countries/months' );
-					interceptBackend.getStub( `/mi/countries/${ countryCode }/top_non_hvcs/?year=2017`, 200, '/countries/top_non_hvcs' );
-
-					supertest( app ).get( `/countries/${ countryCode }/` ).end( ( err, res ) => {
-
-						checkResponse( res, 200 );
-						expect( getTitle( res ) ).toEqual( 'MI - Country performance - atque molestiae ducimus' );
-						done();
-					} );
-				} );
-			} );
-		} );
-
-		describe( 'Country HVC wins', function(){
-
-			describe( 'When the API returns a status of 200', function(){
-
-				it( 'Should return a 200 with the correct heading', function( done ){
-
-					returnUser();
-					interceptBackend.getStub( '/mi/countries/AU/win_table/?year=2017', 200, '/countries/win_table' );
-
-					supertest( app ).get( '/countries/AU/wins/' ).end( ( err, res ) => {
-
-						checkResponse( res, 200 );
-						expect( getTitle( res ) ).toEqual( 'MI - Country HVC wins - atque at atque' );
-						done();
-					} );
-				} );
-			} );
-		} );
-
-		describe( 'Country non HVC wins', function(){
-
-			describe( 'When the API returns a status of 200', function(){
-
-				it( 'Should return a 200 with the correct heading', function( done ){
-
-					returnUser();
-					interceptBackend.getStub( '/mi/countries/AU/win_table/?year=2017', 200, '/countries/win_table' );
-
-					supertest( app ).get( '/countries/AU/non-hvc-wins/' ).end( ( err, res ) => {
-
-						checkResponse( res, 200 );
-						expect( getTitle( res ) ).toEqual( 'MI - Country non HVC wins - atque at atque' );
-						done();
-					} );
-				} );
-			} );
-		} );
-	} );
 
 	describe( 'Saml metadata', function(){
 

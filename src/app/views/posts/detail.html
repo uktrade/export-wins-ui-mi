@@ -1,0 +1,47 @@
+{% extends 'sector/detail.html' %}
+
+{% from 'macros/tabs/post.html' import tabs %}
+{% from 'macros/os-regions-types-tabs.html' import osRegionsTypesTabs %}
+
+{% set pageName %}Post performance - {{ postName | safe  }}{% endset %}
+{% set sectorName %}{{ postName | safe }}{% endset %}
+
+{% block year_selector %}
+	{{ super() }}
+	{{ osRegionsTypesTabs( posts=true, linkPosts=true ) }}
+{% endblock %}
+
+{% block hvc_performance_table %}{% endblock %}
+
+{% block zero_target_hvc_table %}
+	<section class="grid-row">
+		<div class="column-single">
+			<h2 class="sector-heading">{{ sectorName }} HVCs</h2>
+			<h3 class="sub-heading-date">{{ financialYear( hvcTargetPerformance.dateRange ) }}</h3>
+
+			{%- if hvcTargetPerformance.zeroTarget.length -%}
+
+				{{ hvcZeroTargetPerformanceTable( hvcTargetPerformance.zeroTarget, withHeadings=true ) }}
+
+			{%- else -%}
+
+				<p>No HVC wins have been recored yet.</p>
+
+			{%- endif %}
+		</div>
+	</section>
+{% endblock %}
+
+{% block page_content %}
+
+	<h1 class="page-heading">
+		{{ postName }} <span class="page-heading-secondary">Post</span>
+	</h1>
+
+	{{- super() -}}
+
+{% endblock %}
+
+{% block page_tabs %}
+	{{ tabs( postId, performance = true ) }}
+{% endblock %}

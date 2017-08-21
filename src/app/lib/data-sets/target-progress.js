@@ -1,13 +1,11 @@
 
-module.exports = {
+function createGetPercent( target ){
 
-	create: function( target, confirmedValue, unconfirmedValue ){
+	if( target > 0 ){
 
 		const parts = ( 100 / target );
 
-		unconfirmedValue = ( confirmedValue + unconfirmedValue );
-
-		function getPercent( num ){
+		return function getPercent( num ){
 
 			let percent;
 			let over = false;
@@ -23,7 +21,21 @@ module.exports = {
 			}
 
 			return {	percent, over };
-		}
+		};
+
+	} else {
+
+		return () => ( { percent: 0, over: false } );
+	}
+}
+
+module.exports = {
+
+	create: function( target, confirmedValue, unconfirmedValue ){
+
+		unconfirmedValue = ( confirmedValue + unconfirmedValue );
+
+		const getPercent = createGetPercent( target );
 
 		const confirmed = getPercent( confirmedValue );
 		const unconfirmed = getPercent( unconfirmedValue );

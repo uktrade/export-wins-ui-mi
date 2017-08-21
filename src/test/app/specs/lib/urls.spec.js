@@ -184,6 +184,17 @@ describe( 'urls middleware', function(){
 		} );
 	} );
 
+	describe( 'Posts', function(){
+
+		it( 'Should return the correct URLs', function(){
+
+			checkFilteredUrls( req, 'posts', [ 1 ], '/posts/' );
+			checkFilteredUrls( req, 'post', [ 'a-post-name' ], '/posts/a-post-name/' );
+			checkFilteredUrls( req, 'postWins', [ 'a-post-name' ], '/posts/a-post-name/wins/' );
+			checkFilteredUrls( req, 'postNonHvcWins', [ 'a-post-name' ], '/posts/a-post-name/non-hvc-wins/' );
+		} );
+	} );
+
 	describe( 'HVC Groups', function(){
 
 		it( 'Should return the correct URLs', function(){

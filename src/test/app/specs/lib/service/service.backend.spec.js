@@ -18,7 +18,7 @@ let osRegionsOverviewGroupsSpy;
 let hvcGroupSpy;
 let osRegionsSpy;
 let winListSpy;
-let countryListSpy;
+let alphabeticalListSpy;
 let backend;
 let req = {};
 
@@ -72,7 +72,7 @@ describe( 'Backend service', function(){
 			hvcGroupSpy = jasmine.createSpy( 'hvc-group' );
 			osRegionsSpy = jasmine.createSpy( 'os-regions' );
 			winListSpy = jasmine.createSpy( 'win-list' );
-			countryListSpy = jasmine.createSpy( 'country-list' );
+			alphabeticalListSpy = jasmine.createSpy( 'alphabetical-list' );
 
 			backend = {
 				get: function(){},
@@ -90,7 +90,7 @@ describe( 'Backend service', function(){
 				'../transformers/hvc-group': hvcGroupSpy,
 				'../transformers/os-regions': osRegionsSpy,
 				'../transformers/win-list': winListSpy,
-				'../transformers/country-list': countryListSpy,
+				'../transformers/alphabetical-list': alphabeticalListSpy,
 				'../backend-request': backend
 			};
 
@@ -347,14 +347,14 @@ describe( 'Backend service', function(){
 				const transformResponse = { countryListTransformer: true };
 
 				returnStub( '/countries/' );
-				countryListSpy.and.callFake( () => transformResponse );
+				alphabeticalListSpy.and.callFake( () => transformResponse );
 
 				backendService.getCountries( req ).then( ( countryList ) => {
 
 					checkBackendArgs( `/mi/countries/?year=${ year }`, req );
 
 					expect( countryList.results ).toEqual( transformResponse );
-					expect( countryListSpy ).toHaveBeenCalledWith( getBackendStub( stubFile ).results );
+					expect( alphabeticalListSpy ).toHaveBeenCalledWith( getBackendStub( stubFile ).results );
 
 					done();
 
@@ -452,6 +452,129 @@ describe( 'Backend service', function(){
 				backendService.getCountryWinTable( req, countryCode ).then( ( winList ) => {
 
 					checkBackendArgs( `/mi/countries/${ countryCode }/win_table/?year=${ year }`, req );
+
+					expect( winList.results ).toEqual( transformResponse );
+					expect( winListSpy ).toHaveBeenCalledWith( getBackendStub( stubFile ).results );
+
+					done();
+
+				} ).catch( done.fail );
+			} );
+		} );
+
+		describe( 'Getting the list of posts', function(){
+
+			it( 'Should call the correct API and transform the response', function( done ){
+
+				const stubFile = '/posts/';
+				const transformResponse = { postListTransformer: true };
+
+				returnStub( stubFile );
+				alphabeticalListSpy.and.callFake( () => transformResponse );
+
+				backendService.getPosts( req ).then( ( postList ) => {
+
+					checkBackendArgs( `/mi/posts/?year=${ year }`, req );
+
+					expect( postList.results ).toEqual( transformResponse );
+					expect( alphabeticalListSpy ).toHaveBeenCalledWith( getBackendStub( stubFile ).results );
+
+					done();
+
+				} ).catch( done.fail );
+			} );
+		} );
+
+		describe( 'Getting the details of a post', function(){
+
+			it( 'Should call the correct API', function( done ){
+
+				const postId = 'australia-sydney';
+
+				returnStub( '/posts/post' );
+
+				backendService.getPost( req, postId ).then( () => {
+
+					checkBackendArgs( `/mi/posts/${ postId }/?year=${ year }`, req );
+					done();
+
+				} ).catch( done.fail );
+			} );
+		} );
+
+		describe( 'Getting the campaigns of a post', function(){
+
+			it( 'Should call the correct API', function( done ){
+
+				const postId = 'australia-sydney';
+
+				returnStub( '/posts/campaigns' );
+
+				backendService.getPostCampaigns( req, postId ).then( () => {
+
+					checkBackendArgs( `/mi/posts/${ postId }/campaigns/?year=${ year }`, req );
+
+					expect( campaignsSpy ).toHaveBeenCalled();
+					expect( campaignsSpy.calls.count() ).toEqual( 1 );
+
+					done();
+
+				} ).catch( done.fail );
+			} );
+		} );
+
+		describe( 'Getting the months of a post', function(){
+
+			it( 'Should call the correct API', function( done ){
+
+				const postId = 'australia-sydney';
+
+				returnStub( '/posts/months' );
+
+				backendService.getPostMonths( req, postId ).then( () => {
+
+					checkBackendArgs( `/mi/posts/${ postId }/months/?year=${ year }`, req );
+
+					expect( monthsSpy ).toHaveBeenCalled();
+					expect( monthsSpy.calls.count() ).toEqual( 1 );
+
+					done();
+
+				} ).catch( done.fail );
+			} );
+		} );
+
+		describe( 'Getting the top_non_hvcs of a post', function(){
+
+			it( 'Should call the correct API', function( done ){
+
+				const postId = 'australia-sydney';
+
+				returnStub( '/posts/top_non_hvcs' );
+
+				backendService.getPostTopNonHvc( req, postId ).then( () => {
+
+					checkBackendArgs( `/mi/posts/${ postId }/top_non_hvcs/?year=${ year }`, req );
+					done();
+
+				} ).catch( done.fail );
+			} );
+		} );
+
+		describe( 'Getting the win_table of a post', function(){
+
+			it( 'Should call the correct API', function( done ){
+
+				const postId = 'australia-sydney';
+				const stubFile = '/posts/win_table';
+				const transformResponse = { winListTransformer: true };
+
+				returnStub( stubFile );
+				winListSpy.and.callFake( () => transformResponse );
+
+				backendService.getPostWinTable( req, postId ).then( ( winList ) => {
+
+					checkBackendArgs( `/mi/posts/${ postId }/win_table/?year=${ year }`, req );
 
 					expect( winList.results ).toEqual( transformResponse );
 					expect( winListSpy ).toHaveBeenCalledWith( getBackendStub( stubFile ).results );
@@ -1268,6 +1391,64 @@ describe( 'Backend service', function(){
 					backendService.getCountryInfo( req, countryId ).then( ( data ) => {
 
 						checkReporterMessage( 'getCountryInfo' );
+
+						expect( data.wins ).toBeDefined();
+						expect( data.months ).toBeDefined();
+						expect( data.campaigns ).toBeDefined();
+						expect( data.topNonHvc ).toBeDefined();
+
+						done();
+
+					} ).catch( done.fail );
+				} );
+			} );
+		} );
+
+		describe( 'Getting the Post Info', function(){
+
+			it( 'Should return several bits of data', function( done ){
+
+				const postId = 'australia-sydney';
+
+				const files = [
+					[ `/mi/posts/${ postId }/?year=${ year }`, '/posts/post' ],
+					[ `/mi/posts/${ postId }/months/?year=${ year }`, '/posts/months' ],
+					[ `/mi/posts/${ postId }/campaigns/?year=${ year }`, '/posts/campaigns' ],
+					[ `/mi/posts/${ postId }/top_non_hvcs/?year=${ year }`, '/posts/top_non_hvcs' ]
+				];
+
+				intercept( files );
+
+				backendService.getPostInfo( req, postId ).then( ( data ) => {
+
+					expect( data.wins ).toBeDefined();
+					expect( data.months ).toBeDefined();
+					expect( data.campaigns ).toBeDefined();
+					expect( data.topNonHvc ).toBeDefined();
+
+					done();
+
+				} ).catch( done.fail );
+			} );
+
+			describe( 'When one of APIs returns after a long time', function(){
+
+				it( 'Should log a message with the reporter', function( done ){
+
+					const postId = 'australia-melbourne';
+
+					const files = [
+						[ `/mi/posts/${ postId }/?year=${ year }`, '/posts/post' ],
+						[ `/mi/posts/${ postId }/months/?year=${ year }`, '/posts/months' ],
+						[ `/mi/posts/${ postId }/campaigns/?year=${ year }`, '/posts/campaigns' ],
+						[ `/mi/posts/${ postId }/top_non_hvcs/?year=${ year }`, '/posts/top_non_hvcs' ]
+					];
+
+					interceptWithDelay( files );
+
+					backendService.getPostInfo( req, postId ).then( ( data ) => {
+
+						checkReporterMessage( 'getPostInfo' );
 
 						expect( data.wins ).toBeDefined();
 						expect( data.months ).toBeDefined();

@@ -20,15 +20,24 @@
 	"scenarios": [
 		{
 			"label": "Homepage",
-			"url": "http://localhost:9001/",
+			"url": "http://localhost:9001/2016/",
 			"selectors": [
 				"document"
 			],
 			"misMatchThreshold": 0,
 			"requireSameDimensions": true
 		},{
+			"label": "Sector Teams list",
+			"url": "http://localhost:9001/2016/sector-teams/",
+			"selectors": [
+				"document"
+			],
+			"hideSelectors": [],
+			"misMatchThreshold": 0,
+			"requireSameDimensions": true
+		},{
 			"label": "Sector Teams Review",
-			"url": "http://localhost:9001/sector-teams/overview/",
+			"url": "http://localhost:9001/2016/sector-teams/overview/",
 			"selectors": [
 				"document"
 			],
@@ -39,7 +48,7 @@
 			"requireSameDimensions": true
 		},{
 			"label": "Sector team detail",
-			"url": "http://localhost:9001/sector-teams/1/",
+			"url": "http://localhost:9001/2016/sector-teams/1/",
 			"selectors": [
 				"document"
 			],
@@ -49,8 +58,160 @@
 			"misMatchThreshold": 0,
 			"requireSameDimensions": true
 		},{
+			"label": "Sector team HVC wins",
+			"url": "http://localhost:9001/2016/sector-teams/1/wins/",
+			"selectors": [
+				"document"
+			],
+			"hideSelectors": [
+				".page-date"
+			],
+			"misMatchThreshold": 0,
+			"requireSameDimensions": true
+		},{
+			"label": "Sector team non HVC wins",
+			"url": "http://localhost:9001/2016/sector-teams/1/non-hvc-wins/",
+			"selectors": [
+				"document"
+			],
+			"hideSelectors": [
+				".page-date"
+			],
+			"misMatchThreshold": 0,
+			"requireSameDimensions": true
+		},{
+			"label": "HVC Group list",
+			"url": "http://localhost:9001/2016/hvc-groups/",
+			"selectors": [
+				"document"
+			],
+			"hideSelectors": [],
+			"misMatchThreshold": 0,
+			"requireSameDimensions": true
+		},{
 			"label": "HVC Group detail",
-			"url": "http://localhost:9001/hvc-groups/1/",
+			"url": "http://localhost:9001/2016/hvc-groups/1/",
+			"selectors": [
+				"document"
+			],
+			"hideSelectors": [
+				".page-date"
+			],
+			"misMatchThreshold": 0,
+			"requireSameDimensions": true
+		},{
+			"label": "HVC Group HVC wins",
+			"url": "http://localhost:9001/2016/hvc-groups/1/wins/",
+			"selectors": [
+				"document"
+			],
+			"hideSelectors": [
+				".page-date"
+			],
+			"misMatchThreshold": 0,
+			"requireSameDimensions": true
+		},{
+			"label": "Overseas regions list",
+			"url": "http://localhost:9001/2016/overseas-regions/",
+			"selectors": [
+				"document"
+			],
+			"hideSelectors": [
+				".page-date"
+			],
+			"misMatchThreshold": 0,
+			"requireSameDimensions": true
+		},{
+			"label": "Overseas regions review",
+			"url": "http://localhost:9001/2016/overseas-regions/overview/",
+			"selectors": [
+				"document"
+			],
+			"hideSelectors": [
+				".page-date"
+			],
+			"misMatchThreshold": 0,
+			"requireSameDimensions": true
+		},{
+			"label": "Overseas region detail",
+			"url": "http://localhost:9001/2016/overseas-regions/1/",
+			"selectors": [
+				"document"
+			],
+			"hideSelectors": [
+				".page-date"
+			],
+			"misMatchThreshold": 0,
+			"requireSameDimensions": true
+		},{
+			"label": "Overseas region HVC wins",
+			"url": "http://localhost:9001/2016/overseas-regions/1/wins/",
+			"selectors": [
+				"document"
+			],
+			"hideSelectors": [
+				".page-date"
+			],
+			"misMatchThreshold": 0,
+			"requireSameDimensions": true
+		},{
+			"label": "Overseas region non-hvc-wins",
+			"url": "http://localhost:9001/2016/overseas-regions/1/non-hvc-wins/",
+			"selectors": [
+				"document"
+			],
+			"hideSelectors": [
+				".page-date"
+			],
+			"misMatchThreshold": 0,
+			"requireSameDimensions": true
+		},{
+			"label": "HVC detail",
+			"url": "http://localhost:9001/2016/hvc/E100/",
+			"selectors": [
+				"document"
+			],
+			"hideSelectors": [
+				".page-date"
+			],
+			"misMatchThreshold": 0,
+			"requireSameDimensions": true
+		},{
+			"label": "Countries list",
+			"url": "http://localhost:9001/2016/countries/",
+			"selectors": [
+				"document"
+			],
+			"hideSelectors": [
+				".page-date"
+			],
+			"misMatchThreshold": 0,
+			"requireSameDimensions": true
+		},{
+			"label": "Country detail",
+			"url": "http://localhost:9001/2016/countries/AU/",
+			"selectors": [
+				"document"
+			],
+			"hideSelectors": [
+				".page-date"
+			],
+			"misMatchThreshold": 0,
+			"requireSameDimensions": true
+		},{
+			"label": "Country HVC wins",
+			"url": "http://localhost:9001/2016/countries/AU/wins/",
+			"selectors": [
+				"document"
+			],
+			"hideSelectors": [
+				".page-date"
+			],
+			"misMatchThreshold": 0,
+			"requireSameDimensions": true
+		},{
+			"label": "Country non HVC wins",
+			"url": "http://localhost:9001/2016/countries/AU/non-hvc-wins/",
 			"selectors": [
 				"document"
 			],
