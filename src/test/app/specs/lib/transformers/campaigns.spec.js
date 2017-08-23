@@ -28,6 +28,7 @@ describe( 'Sector campaigns transformer', function(){
 			expect( item.value.total ).toBeDefined();
 			expect( item.target ).toBeDefined();
 			expect( item.status ).toBeDefined();
+			expect( item.number.total ).toBeDefined();
 		} );
 	}
 

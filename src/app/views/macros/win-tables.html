@@ -1,21 +1,24 @@
 {% from 'macros/win-table-hvc.html' import hvcWinTable %}
 {% from 'macros/win-table-non-hvc.html' import nonHvcWinTable %}
 
-{% macro singleWinTable( type, hvcWins = false, nonHvcWins = false ) %}
-
+{% macro winMessage( winCount ) %}
 	<p>
-		All individual export wins recorded.
+		Total number of wins: <strong>{{ winCount }}</strong>.
 	</p>
+{% endmacro %}
+
+{% macro singleWinTable( type, hvcWins = false, nonHvcWins = false, noNonHvcWinsMessage ) %}
 
 	{%- if hvcWins -%}
 
 		{% if hvcWins.length %}
 
+			{{ winMessage( hvcWins.length ) }}
 			{{ hvcWinTable( hvcWins ) }}
 
 		{%- else -%}
 
-			<p class="no-wins-message">No wins have been recored yet for this {{ type }}.</p>
+			<p class="no-wins-message">There aren&#39;t any HVC wins recorded for this {{ type }}.</p>
 
 		{%- endif %}
 
@@ -23,11 +26,18 @@
 
 		{% if nonHvcWins.length %}
 
+			{{ winMessage( nonHvcWins.length ) }}
 			{{ nonHvcWinTable( nonHvcWins ) }}
 
 		{%- else -%}
 
-			<p class="no-wins-message">No wins have been recored yet for this {{ type }}.</p>
+			<p class="no-wins-message">
+				{%- if noNonHvcWinsMessage %}
+					{{ noNonHvcWinsMessage }}
+				{% else -%}
+					There aren&#39;t any non HVC wins recorded for this {{ type }}.
+				{% endif -%}
+			</p>
 
 		{%- endif %}
 
