@@ -20,6 +20,9 @@ module.exports = function( input ){
 				confirmed: totals.hvc.value.confirmed,
 				unconfirmed: totals.hvc.value.unconfirmed,
 				total: totals.hvc.value.total
+			},
+			number: {
+				total: totals.hvc.number.total
 			}
 		});
 	} );

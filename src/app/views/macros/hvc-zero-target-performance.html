@@ -8,6 +8,7 @@
 			<th{% if withHeadings %} class="zero-target-perf-table_heading zero-target-perf-table_heading--confirmed-value"{% endif %}>Confirmed<br>wins value &pound;</th>
 			<th{% if withHeadings %} class="zero-target-perf-table_heading zero-target-perf-table_heading--unconfirmed-value"{% endif %}>Unconfirmed<br>wins value &pound;</th>
 			<th{% if withHeadings %} class="zero-target-perf-table_heading zero-target-perf-table_heading--target"{% endif %}>Target &pound;</th>
+			<th{% if withHeadings %} class="zero-target-perf-table_heading zero-target-perf-table_heading--wins"{% endif %}>Wins</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -31,6 +32,9 @@
 			</td>
 			<td class="zero-target-perf-table_cell zero-target-perf-table_cell--target">
 				{{- item.target | largeNumber -}}
+			</td>
+			<td class="zero-target-perf-table_cell zero-target-perf-table_cell--wins">
+				{{- item.number.total -}}
 			</td>
 		</tr>
 		{% endfor %}

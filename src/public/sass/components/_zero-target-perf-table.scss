@@ -26,6 +26,10 @@
 	@extend .hvc-perf_table_cell_heading--target-percentage
 }
 
+.zero-target-perf-table_heading--target {
+	@extend .hvc-perf_table_cell_heading--target
+}
+
 .zero-target-perf-table_cell {
 	@extend .hvc-perf_table_cell;
 }
@@ -35,24 +39,24 @@
 	width: ( $campaign-width + $percent-complete-width + $over-target-width );
 }
 
+.zero-target-perf-table_cell--hvc-percent {
+	@extend .hvc-perf_table_cell--hvc-percent;
+}
+
 .zero-target-perf-table_cell--confirmed {
 	@extend .hvc-perf_table_cell--confirmed;
-	width: $confirmed-width;
 }
 
 .zero-target-perf-table_cell--unconfirmed {
 	@extend .hvc-perf_table_cell--unconfirmed;
-	width: $combined-width;
 }
 
 .zero-target-perf-table_cell--target {
 	@extend .hvc-perf_table_cell--target;
-	width: $target-width;
 }
 
-.zero-target-perf-table_cell--hvc-percent {
-	@extend .hvc-perf_table_cell--hvc-percent;
-	width: $hvc-percent;
+.zero-target-perf-table_cell--wins {
+	@extend .hvc-perf_table_cell--wins;
 }
 
 .zero-target-perf-table_cell_hvc-id {

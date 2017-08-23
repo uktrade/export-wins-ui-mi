@@ -37,6 +37,15 @@ $keyBoxSize: 12px;
 	padding-left: 0.5em;
 }
 
+.hvc-perf_table_cell_heading--target {
+	text-align: right;
+	padding-right: 1.5em;
+}
+
+.hvc-perf_table_cell_heading--wins {
+	text-align: right;
+}
+
 .hvc-perf_table_cell {
 	padding: 0.25em 0.5em 0.25em 0.5em;
 	position: relative;
@@ -45,12 +54,13 @@ $keyBoxSize: 12px;
 }
 
 $campaign-width: 24%;
-$percent-complete-width: 31%;
+$percent-complete-width: 26%;
 $over-target-width: 4%;
+$hvc-percent-width: 10%;
 $confirmed-width: 12%;
-$combined-width: 11%;
-$target-width: 8%;
-$hvc-percent: 10%;
+$combined-width: 10%;
+$target-width: 10%;
+$wins-width: 4%;
 //above should equal 100%
 //used in _zero-target-perf-table as well to match values
 
@@ -92,8 +102,13 @@ $hvc-percent: 10%;
 }
 
 .hvc-perf_table_cell--hvc-percent {
-	width: $hvc-percent;
+	width: $hvc-percent-width;
 	text-align: center;
+}
+
+.hvc-perf_table_cell--wins {
+	width: $wins-width;
+	text-align: right;
 }
 
 .hvc-perf_table_cell_hvc-id {

@@ -25,7 +25,7 @@
 				</span>
 			</div>
 		</td>
-		<td colspan="5"></td>
+		<td colspan="6"></td>
 	</tr>
 
 {% endmacro %}
@@ -35,7 +35,7 @@
 {% if not items.length %}
 
 	{% if not zeroTargetItems %}
-		<p>No HVC wins have been recored yet.</p>
+		<p>No HVC wins have been recorded.</p>
 	{% endif %}
 
 {% else %}
@@ -51,6 +51,7 @@
 				<th class="hvc-perf_table_cell_heading hvc-perf_table_cell_heading-confirmed-value">Confirmed<br>wins value &pound;</th>
 				<th class="hvc-perf_table_cell_heading hvc-perf_table_cell_heading-unconfirmed-value">Unconfirmed wins value &pound;</th>
 				<th class="hvc-perf_table_cell_heading hvc-perf_table_cell_heading--target">Target &pound;</th>
+				<th class="hvc-perf_table_cell_heading hvc-perf_table_cell_heading--wins">Wins</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -93,6 +94,7 @@
 				<td class="hvc-perf_table_cell hvc-perf_table_cell--confirmed">{{ item.value.confirmed | largeNumber }}</td>
 				<td class="hvc-perf_table_cell hvc-perf_table_cell--unconfirmed">{{ item.value.unconfirmed | largeNumber }}</td>
 				<td class="hvc-perf_table_cell hvc-perf_table_cell--target">{{ item.target | largeNumber }}</td>
+				<td class="hvc-perf_table_cell hvc-perf_table_cell--wins">{{ item.number.total }}</td>
 			</tr>
 			{% endfor %}
 

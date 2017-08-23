@@ -23,7 +23,7 @@ let config = {
 		host: env( 'SERVER_HOST', 'localhost' ),
 		port: env( 'SERVER_PORT', env( 'PORT', 8080 ) ),
 		cpus,
-		workers: env( 'SERVER_WORKERS', defaultWorkers )
+		workers: env( 'SERVER_WORKERS', env( 'WEB_CONCURRENCY', defaultWorkers ) )
 	},
 	views: {
 		cache: bool( 'CACHE_VIEWS', true )

@@ -20,7 +20,7 @@ const returnPath = require( './lib/middleware/return-path' );
 module.exports = function( express, app, isDev ){
 
 	const user = createUserMiddleware( isDev );
-	const urlBodyParser = bodyParser.urlencoded( { extended: true } );
+	const urlBodyParser = bodyParser.urlencoded( { extended: true, limit: '1mb' } );
 	const csrfProtection = csurf( { cookie: true } );
 
 	app.use( dateRange );
