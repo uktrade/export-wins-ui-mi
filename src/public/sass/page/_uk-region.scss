@@ -1,0 +1,48 @@
+@import '../mi-colours';
+
+.uk-region-detail_summary {
+	margin: ( $gutter * 2 ) 0;
+}
+
+.uk-region-detail_target-progress {
+	padding-top: pem( 20 );
+}
+
+.uk-region-detail_target-heading {
+	@include bold-16;
+}
+
+.uk-region-pie-heading {
+	@include bold-14;
+	max-width: 80%;
+	margin-bottom: pem( 10, 14 );
+}
+
+.sector-overview_charts_chart_average-time--uk-region {
+	float: left;
+}
+
+.uk-region-detail_target_list {
+	padding: 0;
+}
+
+.uk-region-detail_target_list_item {
+	display: inline-block;
+	max-width: 20%;
+	min-width: 19%;
+	text-align: center;
+}
+
+.uk-region-detail_target_list_heading {
+	@include bold-16;
+	margin-bottom: pem( 10, 16 );
+}
+
+.uk-region-detail_target_list_text {
+	@include bold-24;
+	margin: 0;
+}
+
+.uk-region-detail_target_list_text--unconfirmed {
+	color: $unconfirmed;
+}

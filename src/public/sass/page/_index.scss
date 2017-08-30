@@ -15,7 +15,8 @@
 }
 
 .sectors-overview-link,
-.regions-overview-link {
+.regions-overview-link,
+.uk-regions-overview-link {
 	display: inline-block;
 	margin-bottom: 1em;
 	margin-left: 0.625em;
@@ -32,20 +33,6 @@
 	@extend .sector-list;
 	color: $grey-1;
 }
-/*
-.sector-list_item {
-
-	margin-top: pem( 5, 16 );
-
-	&:first-of-type {
-		margin-top: 0;
-	}
-}
-
-.sector-list_parent-sectors {
-	padding-left: pem( 15, 16 );
-}
-*/
 
 .sector-group-list_item {
 	margin-bottom: pem( 10 );

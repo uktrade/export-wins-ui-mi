@@ -5,7 +5,7 @@
 {% from 'macros/hvc-zero-target-performance.html' import hvcZeroTargetPerformanceTable %}
 {% from 'macros/tabs/hvc-group.html' import tabs %}
 {% from 'macros/hvc-performance-summary.html' import hvcPerformanceSummary %}
-{% from 'macros/confirmed-vs-unconfirmed-pie-chart.html' import confirmedUnconfirmedPieChart %}
+{% from 'macros/pie-charts.html' import confirmedUnconfirmedPieChart %}
 {% from 'macros/monthly-performance-key.html' import monthlyPerformanceKey %}
 {% from 'macros/monthly-performance-graph.html' import monthlyPerformanceGraph %}
 
@@ -29,23 +29,19 @@
 			<p class="sector-export-confirmed-value"><span class="sector-export-value-currency">&pound;</span>{{ summary.confirmedExportValue | largeNumber( true ) | safe }}</p>
 
 		</div>
-
 		<div class="column-one-fifth">
 
 			<h3 class="sector-export-heading">Total unconfirmed export value</h3>
 			<p class="sector-export-unconfirmed-value"><span class="sector-export-value-currency">&pound;</span>{{ summary.unconfirmedExportValue | largeNumber( true ) | safe }}</p>
 
 		</div>
-
 		<div class="column-two-fifths">
-
 			<div class="hvc-group_chart">
 
-					<h3 class="hvc-group_confirmed-heading">Confirmed and unconfirmed wins value</h3>
-					{{ confirmedUnconfirmedPieChart( summary ) }}
+				<h3 class="hvc-group_confirmed-heading">Confirmed and unconfirmed wins value</h3>
+				{{ confirmedUnconfirmedPieChart( summary ) -}}
 
 			</div>
-
 		</div>
 		<div class="column-one-fifth">
 

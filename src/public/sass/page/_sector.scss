@@ -109,7 +109,8 @@
 }
 
 .sector-overview_total-value-heading,
-.sector-overview_confirmed-heading {
+.sector-overview_confirmed-heading,
+.sector-overview_pie_heading {
 	@include bold-14;
 	min-height: 3em;
 	max-width: 80%;

@@ -195,6 +195,17 @@ describe( 'urls middleware', function(){
 		} );
 	} );
 
+	describe( 'UK Regions', function(){
+
+		it( 'Should return the correct URLs', function(){
+
+			checkFilteredUrls( req, 'ukRegions', [ 1 ], '/uk-regions/' );
+			checkFilteredUrls( req, 'ukRegion', [ 'a-region-name' ], '/uk-regions/a-region-name/' );
+			checkFilteredUrls( req, 'ukRegionWins', [ 'a-region-name' ], '/uk-regions/a-region-name/wins/' );
+			checkFilteredUrls( req, 'ukRegionNonHvcWins', [ 'a-region-name' ], '/uk-regions/a-region-name/non-hvc-wins/' );
+		} );
+	} );
+
 	describe( 'HVC Groups', function(){
 
 		it( 'Should return the correct URLs', function(){

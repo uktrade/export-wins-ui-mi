@@ -1,0 +1,14 @@
+
+{% macro targetProgress( progress ) %}
+	<p class="visually-hidden">Confirmed: {{ progress.confirmed }}%</p>
+	<p class="visually-hidden">Including unconfirmed: {{ progress.unconfirmed }}%</p>
+	<span class="target-progress-bar">
+		<span class="target-progress-bar_target">Target</span>
+		<span class="target-progress-bar_progress target-progress-bar_progress--confirmed" id="confirmed-bar" style="width:{{ progress.confirmed }}%"></span>
+		<span class="target-progress-bar_progress target-progress-bar_progress--unconfirmed" id="unconfirmed-bar" style="width:{{ progress.unconfirmed }}%"></span>
+		{% if progress.over -%}
+			<span class="target-progress-bar_over-marker target-progress-bar_over-marker--{{ progress.overModifyer }}"></span>
+		{%- endif %}
+		<span class="target-progress-bar_value" style="left:{{ progress.confirmed }}%">{{ progress.confirmed }}%</span>
+	</span>
+{% endmacro %}

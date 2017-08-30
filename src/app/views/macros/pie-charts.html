@@ -1,0 +1,33 @@
+{% macro confirmedUnconfirmedPieChart( summary ) %}
+
+	{% set confirmedAmount = summary.pieData.confirmedUnconfirmedValue.confirmed %}
+	{% set unconfirmedAmount = summary.pieData.confirmedUnconfirmedValue.unconfirmed %}
+
+	<div class="pie pie--sector pie--confirmed-vs-un pie--inline" style="animation-delay: -{{ unconfirmedAmount | piePercentage }}s">{{ unconfirmedAmount }}%</div>
+
+	<ul class="pie-key pie-key--confirmed-vs-un pie-key--inline">
+		<li class="pie-key_item">
+			<span class="pie-key_block pie-key_block--slice"></span>Unconfirmed - <span class="pie-key_item_percentage">{{ unconfirmedAmount }}%</span>
+		</li>
+		<li class="pie-key_item">
+			<span class="pie-key_block"></span>Confirmed - <span class="pie-key_item_percentage">{{ confirmedAmount }}%</span>
+		</li>
+	</ul>
+{% endmacro %}
+
+{% macro hvcNonHvcPieChart( summary ) %}
+
+	{% set hvcAmount = summary.pieData.hvcNonHvcValue.hvc %}
+	{% set nonHvcAmount = summary.pieData.hvcNonHvcValue.nonHvc %}
+
+	<div class="pie pie--sector-team" style="animation-delay: -{{ nonHvcAmount | piePercentage }}s">{{ nonHvcAmount }}%</div>
+
+	<ul class="pie-key pie-key--hvc-vs-non pie-key--inline">
+		<li class="pie-key_item">
+			<span class="pie-key_block pie-key_block--slice"></span>Non-HVC - <span class="pie-key_item_percentage">{{ nonHvcAmount }}%</span>
+		</li>
+		<li class="pie-key_item">
+			<span class="pie-key_block"></span>HVC - <span class="pie-key_item_percentage">{{ hvcAmount }}%</span>
+		</li>
+	</ul>
+{% endmacro %}

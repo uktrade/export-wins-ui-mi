@@ -29,6 +29,18 @@ const input = {
 					"confirmed": 4100000,
 					"total": 10000000
 				}
+			},
+			"totals": {
+				"value": {
+					"unconfirmed": 10800000,
+					"confirmed": 6200000,
+					"grand_total": 17000000
+				},
+				"number": {
+					"unconfirmed": 108,
+					"confirmed": 62,
+					"grand_total": 170
+				}
 			}
 		}
 	},
@@ -83,6 +95,18 @@ const inputZeros = {
 					"confirmed": 0,
 					"total": 0
 				}
+			},
+			"totals": {
+				"value": {
+					"unconfirmed": 0,
+					"confirmed": 0,
+					"grand_total": 0
+				},
+				"number": {
+					"unconfirmed": 0,
+					"confirmed": 0,
+					"grand_total": 0
+				}
 			}
 		}
 	},
@@ -90,73 +114,144 @@ const inputZeros = {
 };
 
 
-describe( 'Sector wins data data set', function(){
+describe( 'Sector Pie Charts data data set', function(){
 
-	describe( 'Sector team input', function(){
+	describe( 'Create (for value)', function(){
 
-		it( 'Should return the correct structure', function(){
+		describe( 'Sector team input', function(){
 
-			const output = dataset.create( input );
+			it( 'Should return the correct structure', function(){
 
-			expect( output.hvcNonHvcValue.hvc ).toEqual( 34 );
-			expect( output.hvcNonHvcValue.nonHvc ).toEqual( 66 );
+				const output = dataset.create( input );
 
-			expect( output.confirmedUnconfirmedValue.confirmed ).toEqual( 36 );
-			expect( output.confirmedUnconfirmedValue.unconfirmed ).toEqual( 64 );
+				expect( output.hvcNonHvcValue.hvc ).toEqual( 34 );
+				expect( output.hvcNonHvcValue.nonHvc ).toEqual( 66 );
 
+				expect( output.confirmedUnconfirmedValue.confirmed ).toEqual( 36 );
+				expect( output.confirmedUnconfirmedValue.unconfirmed ).toEqual( 64 );
+			} );
+		} );
+
+		describe( 'Hvc Group input', function(){
+
+			it( 'Should return the correct structure', function(){
+
+				const output = dataset.create( inputHvcGroup );
+
+				expect( output.hvcNonHvcValue ).not.toBeDefined();
+
+				expect( output.confirmedUnconfirmedValue.confirmed ).toEqual( 30 );
+				expect( output.confirmedUnconfirmedValue.unconfirmed ).toEqual( 70 );
+			} );
+		} );
+
+		describe( 'Zero values', function(){
+
+			it( 'Should return values', function(){
+
+				const zeroHvcGroup = getBackendStub( '/hvc_groups/group_zero-values' );
+				const output = dataset.create( zeroHvcGroup.results );
+
+				expect( output.confirmedUnconfirmedValue.confirmed ).toEqual( 0 );
+				expect( output.confirmedUnconfirmedValue.unconfirmed ).toEqual( 0 );
+			} );
+		} );
+
+		describe( 'Using a stub', function(){
+
+			it( 'Shoud not throw an error', function(){
+
+				function createDatSet(){
+
+					const stub = getBackendStub( '/sector_teams/sector_team' );
+					dataset.create( stub.results );
+				}
+
+				expect( createDatSet ).not.toThrow();
+			} );
+		} );
+
+		describe( 'All zeros data', function(){
+
+			it( 'Should return all zeros', function(){
+
+				const data = dataset.create( inputZeros );
+
+				expect( data.hvcNonHvcValue.hvc ).toEqual( 0 );
+				expect( data.hvcNonHvcValue.nonHvc ).toEqual( 0 );
+				expect( data.confirmedUnconfirmedValue.confirmed ).toEqual( 0 );
+				expect( data.confirmedUnconfirmedValue.unconfirmed ).toEqual( 0 );
+			} );
 		} );
 	} );
 
-	describe( 'Hvc Group input', function(){
+	describe( 'createForNumber (volume)', function(){
 
-		it( 'Should return the correct structure', function(){
+		describe( 'Sector team input', function(){
 
-			const output = dataset.create( inputHvcGroup );
+			it( 'Should return the correct structure', function(){
 
-			expect( output.hvcNonHvcValue ).not.toBeDefined();
+				const output = dataset.create( input );
 
-			expect( output.confirmedUnconfirmedValue.confirmed ).toEqual( 30 );
-			expect( output.confirmedUnconfirmedValue.unconfirmed ).toEqual( 70 );
+				expect( output.hvcNonHvcValue.hvc ).toEqual( 34 );
+				expect( output.hvcNonHvcValue.nonHvc ).toEqual( 66 );
 
+				expect( output.confirmedUnconfirmedValue.confirmed ).toEqual( 36 );
+				expect( output.confirmedUnconfirmedValue.unconfirmed ).toEqual( 64 );
+			} );
 		} );
-	} );
 
-	describe( 'Zero values', function(){
+		describe( 'Hvc Group input', function(){
 
-		it( 'Should return values', function(){
+			it( 'Should return the correct structure', function(){
 
-			const zeroHvcGroup = getBackendStub( '/hvc_groups/group_zero-values' );
-			const output = dataset.create( zeroHvcGroup.results );
+				const output = dataset.create( inputHvcGroup );
 
-			expect( output.confirmedUnconfirmedValue.confirmed ).toEqual( 0 );
-			expect( output.confirmedUnconfirmedValue.unconfirmed ).toEqual( 0 );
+				expect( output.hvcNonHvcValue ).not.toBeDefined();
+
+				expect( output.confirmedUnconfirmedValue.confirmed ).toEqual( 30 );
+				expect( output.confirmedUnconfirmedValue.unconfirmed ).toEqual( 70 );
+			} );
 		} );
-	} );
 
-	describe( 'Using a stub', function(){
+		describe( 'Zero values', function(){
 
-		it( 'Shoud not throw an error', function(){
+			it( 'Should return values', function(){
 
-			function createDatSet(){
+				const zeroHvcGroup = getBackendStub( '/hvc_groups/group_zero-values' );
+				const output = dataset.create( zeroHvcGroup.results );
 
-				const stub = getBackendStub( '/sector_teams/sector_team' );
-				dataset.create( stub.results );
-			}
+				expect( output.confirmedUnconfirmedValue.confirmed ).toEqual( 0 );
+				expect( output.confirmedUnconfirmedValue.unconfirmed ).toEqual( 0 );
+			} );
+		} );
 
-			expect( createDatSet ).not.toThrow();
+		describe( 'Using a stub', function(){
+
+			it( 'Shoud not throw an error', function(){
+
+				function createDatSet(){
+
+					const stub = getBackendStub( '/sector_teams/sector_team' );
+					dataset.create( stub.results );
+				}
+
+				expect( createDatSet ).not.toThrow();
+			} );
+		} );
+
+		describe( 'All zeros data', function(){
+
+			it( 'Should return all zeros', function(){
+
+				const data = dataset.create( inputZeros );
+
+				expect( data.hvcNonHvcValue.hvc ).toEqual( 0 );
+				expect( data.hvcNonHvcValue.nonHvc ).toEqual( 0 );
+				expect( data.confirmedUnconfirmedValue.confirmed ).toEqual( 0 );
+				expect( data.confirmedUnconfirmedValue.unconfirmed ).toEqual( 0 );
+			} );
 		} );
 	} );
 } );
 
-describe( 'All zeros data', function(){
-
-	it( 'Should return all zeros', function(){
-
-		const data = dataset.create( inputZeros );
-
-		expect( data.hvcNonHvcValue.hvc ).toEqual( 0 );
-		expect( data.hvcNonHvcValue.nonHvc ).toEqual( 0 );
-		expect( data.confirmedUnconfirmedValue.confirmed ).toEqual( 0 );
-		expect( data.confirmedUnconfirmedValue.unconfirmed ).toEqual( 0 );
-	} );
-} );

@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+
+{% set pageName='UK Regions' %}
+
+{% block page_content %}
+
+	<h1>
+		Management Information - Export Wins
+	</h1>
+
+	{% include 'partials/year-selector.html' %}
+
+	<div class="grid-row">
+
+		<div class="column-one-third">
+
+			{% if regions.length %}
+
+			<h2 class="sector-list-heading">UK Regions</h2>
+
+			<ul class="sector-list">
+			{% for region in regions %}
+				<li><a href="{{ urls.ukRegion( region.id ) }}">{{ region.name }}</a></li>
+			{% endfor %}
+			</ul>
+
+			{% endif %}
+		</div>
+	</div>
+
+{% endblock %}

@@ -84,6 +84,11 @@ module.exports = function( req ){
 		postWins: ( postId ) => filteredUrl( '/posts/' + postId + '/wins/' ),
 		postNonHvcWins: ( postId ) => filteredUrl( '/posts/' + postId + '/non-hvc-wins/' ),
 
+		ukRegions: () => filteredUrl( '/uk-regions/' ),
+		ukRegion: ( regionId ) => filteredUrl( '/uk-regions/' + regionId + '/' ),
+		ukRegionWins: ( regionId ) => filteredUrl( '/uk-regions/' + regionId + '/wins/' ),
+		ukRegionNonHvcWins: ( regionId ) => filteredUrl( '/uk-regions/' + regionId + '/non-hvc-wins/' ),
+
 		hvcGroup: ( groupId ) => filteredUrl( '/hvc-groups/' + groupId + '/' ),
 		hvcGroupWins: ( groupId ) => filteredUrl( '/hvc-groups/' + groupId + '/wins/' ),
 

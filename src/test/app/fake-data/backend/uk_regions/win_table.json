@@ -1,0 +1,497 @@
+{
+   "timestamp": 1503575589405,
+   "financial_year": {
+      "id": 2016,
+      "description": "2016-2017"
+   },
+   "results": {
+      "itt": {
+         "name": "nisi et minima",
+         "id": "fssnuyj-zkjxvbv"
+      },
+      "wins": {
+         "hvc": [
+            {
+               "hvc": {
+                  "code": "78",
+                  "name": "a eius harum"
+               },
+               "id": "69dbd055-5533-442a-8270-24955763d4cc",
+               "win_date": "Wed Aug 23 2017 17:49:42 GMT+0100 (BST)",
+               "status": "response_not_received",
+               "company": {
+                  "name": "Heidenreich, Hackett and Padberg",
+                  "cdms_id": "6679"
+               },
+               "export_amount": 360205473.19,
+               "credit": false,
+               "lead_officer": {
+                  "name": "Bette Kassulke"
+               }
+            },
+            {
+               "hvc": {
+                  "code": "76",
+                  "name": "porro ab sit"
+               },
+               "id": "41530041-e4a9-47d4-a7e2-a4675d3e0630",
+               "win_date": "Thu Aug 24 2017 07:23:39 GMT+0100 (BST)",
+               "status": "response_not_received",
+               "company": {
+                  "name": "Hoeger - Monahan",
+                  "cdms_id": "56619"
+               },
+               "export_amount": 782928711.35,
+               "credit": false,
+               "lead_officer": {
+                  "name": "Chadd Wiza"
+               }
+            },
+            {
+               "hvc": {
+                  "code": "71",
+                  "name": "ipsa nisi commodi"
+               },
+               "id": "d8ebd1fd-5fc8-4d02-9036-5ea7f84badb7",
+               "win_date": "Wed Aug 23 2017 13:58:18 GMT+0100 (BST)",
+               "status": "customer_rejected",
+               "company": {
+                  "name": "Cruickshank, Conn and Blanda",
+                  "cdms_id": "89097"
+               },
+               "export_amount": 427382055.25,
+               "credit": true,
+               "lead_officer": {
+                  "name": "Moses Bednar"
+               }
+            },
+            {
+               "hvc": {
+                  "code": "130",
+                  "name": "ut est sint"
+               },
+               "id": "775238ab-9089-4849-b926-306e180aa010",
+               "win_date": "Wed Aug 23 2017 14:11:24 GMT+0100 (BST)",
+               "status": "customer_rejected",
+               "company": {
+                  "name": "Haley LLC",
+                  "cdms_id": "49391"
+               },
+               "export_amount": 900968507.12,
+               "credit": true,
+               "lead_officer": {
+                  "name": "Keshawn Mann"
+               }
+            },
+            {
+               "hvc": {
+                  "code": "185",
+                  "name": "hic iure consequatur"
+               },
+               "id": "ca2027be-b752-4e85-bb7b-2bc88efbabb1",
+               "win_date": "Wed Aug 23 2017 14:55:39 GMT+0100 (BST)",
+               "status": "email_not_sent",
+               "company": {
+                  "name": "Stiedemann and Sons",
+                  "cdms_id": "14982"
+               },
+               "export_amount": 323659689.46,
+               "credit": false,
+               "lead_officer": {
+                  "name": "Adonis Wisozk"
+               }
+            },
+            {
+               "hvc": {
+                  "code": "182",
+                  "name": "quia ea autem"
+               },
+               "id": "24ff687a-8a8f-4c1f-af1d-20a6ccb3836d",
+               "win_date": "Thu Aug 24 2017 08:08:40 GMT+0100 (BST)",
+               "status": "email_not_sent",
+               "company": {
+                  "name": "Ward and Sons",
+                  "cdms_id": "29531"
+               },
+               "export_amount": 374742119.87,
+               "credit": false,
+               "lead_officer": {
+                  "name": "Vada Jacobs"
+               }
+            },
+            {
+               "hvc": {
+                  "code": "183",
+                  "name": "illo sequi et"
+               },
+               "id": "d0559b0b-5e06-4a8c-8d3c-a701470103f3",
+               "win_date": "Wed Aug 23 2017 23:14:54 GMT+0100 (BST)",
+               "status": "response_not_received",
+               "company": {
+                  "name": "Bashirian - Walter",
+                  "cdms_id": "42337"
+               },
+               "export_amount": 483514223.25,
+               "credit": true,
+               "lead_officer": {
+                  "name": "Mrs. Jailyn Schuppe"
+               }
+            },
+            {
+               "hvc": {
+                  "code": "113",
+                  "name": "sequi voluptas eum"
+               },
+               "id": "d0b651c3-5228-4505-8e5e-6ba0a5d6cfae",
+               "win_date": "Thu Aug 24 2017 07:00:05 GMT+0100 (BST)",
+               "status": "customer_rejected",
+               "company": {
+                  "name": "Rice - Okuneva",
+                  "cdms_id": "42995"
+               },
+               "export_amount": 410392350.62,
+               "credit": false,
+               "lead_officer": {
+                  "name": "Bernie Reinger"
+               }
+            },
+            {
+               "hvc": {
+                  "code": "63",
+                  "name": "eum reprehenderit consectetur"
+               },
+               "id": "48dc6376-dd0a-470a-93e6-5ec2ef25a7b4",
+               "win_date": "Thu Aug 24 2017 06:02:11 GMT+0100 (BST)",
+               "status": "customer_confirmed",
+               "company": {
+                  "name": "Thiel, Bashirian and Douglas",
+                  "cdms_id": "90477"
+               },
+               "export_amount": 438820998.44,
+               "credit": true,
+               "lead_officer": {
+                  "name": "Bernadette Kling"
+               }
+            },
+            {
+               "hvc": {
+                  "code": "190",
+                  "name": "voluptatibus exercitationem neque"
+               },
+               "id": "9fdc3283-9041-4e85-b76d-2b56a421dc9f",
+               "win_date": "Wed Aug 23 2017 20:10:59 GMT+0100 (BST)",
+               "status": "response_not_received",
+               "company": {
+                  "name": "Becker and Sons",
+                  "cdms_id": "70541"
+               },
+               "export_amount": 161935267.43,
+               "credit": true,
+               "lead_officer": {
+                  "name": "Benedict Becker"
+               }
+            },
+            {
+               "hvc": {
+                  "code": "183",
+                  "name": "dolores aut exercitationem"
+               },
+               "id": "963752d2-9470-42cf-aaf9-e4b2aebc74dc",
+               "win_date": "Thu Aug 24 2017 05:54:13 GMT+0100 (BST)",
+               "status": "email_not_sent",
+               "company": {
+                  "name": "Kerluke, Breitenberg and Walter",
+                  "cdms_id": "46756"
+               },
+               "export_amount": 240996751.77,
+               "credit": true,
+               "lead_officer": {
+                  "name": "Granville Leannon"
+               }
+            },
+            {
+               "hvc": {
+                  "code": "5",
+                  "name": "quod necessitatibus fugiat"
+               },
+               "id": "9beb1f1f-8251-48f6-9bd0-e0ce7a17dc63",
+               "win_date": "Thu Aug 24 2017 10:08:32 GMT+0100 (BST)",
+               "status": "email_not_sent",
+               "company": {
+                  "name": "Rosenbaum and Sons",
+                  "cdms_id": "78810"
+               },
+               "export_amount": 171893413.63,
+               "credit": true,
+               "lead_officer": {
+                  "name": "Amina O'Hara IV"
+               }
+            },
+            {
+               "hvc": {
+                  "code": "85",
+                  "name": "qui aut omnis"
+               },
+               "id": "6894bbb3-17a8-46f4-a54b-1475726b7322",
+               "win_date": "Wed Aug 23 2017 13:09:40 GMT+0100 (BST)",
+               "status": "customer_rejected",
+               "company": {
+                  "name": "Sauer - Wunsch",
+                  "cdms_id": "40724"
+               },
+               "export_amount": 130774809.46,
+               "credit": false,
+               "lead_officer": {
+                  "name": "Chloe Klocko PhD"
+               }
+            },
+            {
+               "hvc": {
+                  "code": "79",
+                  "name": "nihil nobis nesciunt"
+               },
+               "id": "6287f927-51c6-4e6d-a952-b5fda4c49c76",
+               "win_date": "Wed Aug 23 2017 17:25:33 GMT+0100 (BST)",
+               "status": "customer_rejected",
+               "company": {
+                  "name": "Gerhold Group",
+                  "cdms_id": "15924"
+               },
+               "export_amount": 971476031.04,
+               "credit": true,
+               "lead_officer": {
+                  "name": "Harrison Hyatt V"
+               }
+            },
+            {
+               "hvc": {
+                  "code": "171",
+                  "name": "quo sapiente sapiente"
+               },
+               "id": "b223de3e-5dfd-4095-97f7-c3d5e7fe14df",
+               "win_date": "Thu Aug 24 2017 10:02:50 GMT+0100 (BST)",
+               "status": "response_not_received",
+               "company": {
+                  "name": "Swaniawski - Beahan",
+                  "cdms_id": "25321"
+               },
+               "export_amount": 388738926.1,
+               "credit": false,
+               "lead_officer": {
+                  "name": "Ruthe Kohler II"
+               }
+            },
+            {
+               "hvc": {
+                  "code": "187",
+                  "name": "vel incidunt rerum"
+               },
+               "id": "16d27725-06ff-4b96-a443-b6448fbcc33c",
+               "win_date": "Wed Aug 23 2017 12:59:03 GMT+0100 (BST)",
+               "status": "email_not_sent",
+               "company": {
+                  "name": "Harber, Reichel and Lehner",
+                  "cdms_id": "40183"
+               },
+               "export_amount": 555970471.19,
+               "credit": true,
+               "lead_officer": {
+                  "name": "Donny Kohler"
+               }
+            },
+            {
+               "hvc": {
+                  "code": "124",
+                  "name": "harum dolorem iure"
+               },
+               "id": "0e9ff152-6cd0-4fa7-924f-c3b4a436148e",
+               "win_date": "Wed Aug 23 2017 18:28:08 GMT+0100 (BST)",
+               "status": "response_not_received",
+               "company": {
+                  "name": "Watsica, Gorczany and Ratke",
+                  "cdms_id": "83778"
+               },
+               "export_amount": 179175546.65,
+               "credit": false,
+               "lead_officer": {
+                  "name": "Jaylin Durgan"
+               }
+            }
+         ],
+         "non_hvc": [
+            {
+               "id": "3f1ee9ee-eca9-429a-9686-6eac50b72a4f",
+               "win_date": "Thu Aug 24 2017 11:59:56 GMT+0100 (BST)",
+               "status": "customer_confirmed",
+               "company": {
+                  "name": "Schimmel - D'Amore",
+                  "cdms_id": "4796"
+               },
+               "export_amount": 248982991.86,
+               "credit": false,
+               "lead_officer": {
+                  "name": "Keagan Kilback"
+               }
+            },
+            {
+               "id": "fee5f6cf-7d17-45f3-a7fe-ecb0583e32d7",
+               "win_date": "Thu Aug 24 2017 06:24:32 GMT+0100 (BST)",
+               "status": "customer_rejected",
+               "company": {
+                  "name": "Upton, Ledner and Torp",
+                  "cdms_id": "18938"
+               },
+               "export_amount": 167419774.06,
+               "credit": false,
+               "lead_officer": {
+                  "name": "Blake Schamberger DDS"
+               }
+            },
+            {
+               "id": "ffe62046-1025-4a97-86ab-bfd50a39ca2d",
+               "win_date": "Thu Aug 24 2017 07:09:11 GMT+0100 (BST)",
+               "status": "response_not_received",
+               "company": {
+                  "name": "Russel, Wisozk and Dickinson",
+                  "cdms_id": "73227"
+               },
+               "export_amount": 975253780.75,
+               "credit": true,
+               "lead_officer": {
+                  "name": "Iliana Denesik"
+               }
+            },
+            {
+               "id": "065f42c2-cba0-4893-91f1-4976f26baf41",
+               "win_date": "Thu Aug 24 2017 09:09:29 GMT+0100 (BST)",
+               "status": "response_not_received",
+               "company": {
+                  "name": "Price, Will and Cartwright",
+                  "cdms_id": "11692"
+               },
+               "export_amount": 528212527.77,
+               "credit": false,
+               "lead_officer": {
+                  "name": "Miss Sid Hegmann"
+               }
+            },
+            {
+               "id": "e155710d-909a-4e31-9133-56f2ab4cfe06",
+               "win_date": "Thu Aug 24 2017 03:34:31 GMT+0100 (BST)",
+               "status": "email_not_sent",
+               "company": {
+                  "name": "Mueller, Boyle and Jacobson",
+                  "cdms_id": "69666"
+               },
+               "export_amount": 962404479.08,
+               "credit": false,
+               "lead_officer": {
+                  "name": "Javon Kshlerin"
+               }
+            },
+            {
+               "id": "502d0f3c-41c1-4161-93b8-21a4bf9f50cd",
+               "win_date": "Wed Aug 23 2017 22:44:21 GMT+0100 (BST)",
+               "status": "email_not_sent",
+               "company": {
+                  "name": "Williamson - Powlowski",
+                  "cdms_id": "73833"
+               },
+               "export_amount": 727274538.59,
+               "credit": true,
+               "lead_officer": {
+                  "name": "Terence Schmidt"
+               }
+            },
+            {
+               "id": "3c4ebeab-7370-456c-83a6-5953c3f17b68",
+               "win_date": "Thu Aug 24 2017 03:32:51 GMT+0100 (BST)",
+               "status": "customer_confirmed",
+               "company": {
+                  "name": "Rodriguez, Kuhlman and Boyer",
+                  "cdms_id": "82756"
+               },
+               "export_amount": 472614313.63,
+               "credit": false,
+               "lead_officer": {
+                  "name": "Bettye Glover"
+               }
+            },
+            {
+               "id": "c35b6cd7-f5f8-452a-a9c5-13bded0b2b3c",
+               "win_date": "Thu Aug 24 2017 04:59:10 GMT+0100 (BST)",
+               "status": "response_not_received",
+               "company": {
+                  "name": "Hansen, Dare and Yost",
+                  "cdms_id": "84922"
+               },
+               "export_amount": 975166852.2,
+               "credit": false,
+               "lead_officer": {
+                  "name": "Makayla Sporer"
+               }
+            },
+            {
+               "id": "ec2219fc-3777-4ceb-81cd-14b6b73bc6bb",
+               "win_date": "Wed Aug 23 2017 19:29:05 GMT+0100 (BST)",
+               "status": "customer_rejected",
+               "company": {
+                  "name": "Lang - Denesik",
+                  "cdms_id": "17204"
+               },
+               "export_amount": 284590109.91,
+               "credit": true,
+               "lead_officer": {
+                  "name": "Nora Pouros"
+               }
+            },
+            {
+               "id": "e8e73dd8-0a8d-46b9-bca1-d2bb19d67b37",
+               "win_date": "Thu Aug 24 2017 04:21:59 GMT+0100 (BST)",
+               "status": "response_not_received",
+               "company": {
+                  "name": "Lueilwitz, Zulauf and Dietrich",
+                  "cdms_id": "54693"
+               },
+               "export_amount": 599040616.37,
+               "credit": true,
+               "lead_officer": {
+                  "name": "Uriel Halvorson Sr."
+               }
+            },
+            {
+               "id": "cce1a8b3-ba4e-4ca9-bac6-a6275b87178e",
+               "win_date": "Thu Aug 24 2017 02:12:29 GMT+0100 (BST)",
+               "status": "response_not_received",
+               "company": {
+                  "name": "Hand - Witting",
+                  "cdms_id": "12251"
+               },
+               "export_amount": 953545020.51,
+               "credit": false,
+               "lead_officer": {
+                  "name": "Gunner McGlynn"
+               }
+            },
+            {
+               "id": "5de93913-8f51-432a-bd50-a921866a49fb",
+               "win_date": "Wed Aug 23 2017 19:18:00 GMT+0100 (BST)",
+               "status": "customer_rejected",
+               "company": {
+                  "name": "Murphy - Huel",
+                  "cdms_id": "39169"
+               },
+               "export_amount": 512651063.27,
+               "credit": true,
+               "lead_officer": {
+                  "name": "Dudley MacGyver III"
+               }
+            }
+         ]
+      }
+   },
+   "date_range": {
+      "start": "Fri, 01 Apr 2016 00:00:00 GMT",
+      "end": "Fri, 31 Mar 2017 00:00:00 GMT"
+   }
+}

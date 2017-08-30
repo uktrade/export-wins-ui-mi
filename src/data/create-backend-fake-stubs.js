@@ -12,6 +12,7 @@ const globalHvcsJson = require( './faker/backend/scripts/lib/json-creators/globa
 const globalWinsJson = require( './faker/backend/scripts/lib/json-creators/global-wins-json' );
 const countriesJson = require( './faker/backend/scripts/lib/json-creators/countries-json' );
 const postsJson = require( './faker/backend/scripts/lib/json-creators/posts-json' );
+const ukRegionJson = require( './faker/backend/scripts/lib/json-creators/uk-regions-json' );
 
 const outputPath = path.resolve( __dirname, 'fake-stubs/backend' );
 
@@ -68,6 +69,12 @@ const yearlyFiles = {
 	'posts/months': sharedJson.createMonths,
 	'posts/top_non_hvcs': sharedJson.createTopNonHvcs,
 	'posts/win_table': postsJson.createWinTable,
+
+	'uk_regions/index': ukRegionJson.createList,
+	'uk_regions/region': ukRegionJson.createRegion,
+	//'uk_regions/months': sharedJson.createMonths,
+	'uk_regions/top_non_hvcs': sharedJson.createTopNonHvcs,
+	'uk_regions/win_table': ukRegionJson.createWinTable,
 };
 
 for( let file in yearlyFiles ){

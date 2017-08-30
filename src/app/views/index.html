@@ -149,6 +149,23 @@
 			{% endif %}
 			{% endif %}
 		</div>
+
+		<div class="column-one-third">
+
+			{% if ukRegions.length %}
+
+			<h2 class="sector-list-heading">UK Regions</h2>
+
+			<a href="#" class="uk-regions-overview-link">All UK regions review</a>
+
+			<ul class="sector-group-list" id="uk-regions-list">
+			{% for region in ukRegions %}
+					<li><a href="{{ urls.ukRegion( region.id ) }}">{{ region.name }}</a></li>
+			{% endfor %}
+			</ul>
+
+			{% endif %}
+		</div>
 	</div>
 
 {% endblock %}

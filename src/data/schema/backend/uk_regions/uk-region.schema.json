@@ -1,0 +1,22 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "UK Region information",
+
+	"type": "object",
+	"required": [ "id", "name", "avg_time_to_confirm", "wins" ],
+	"properties": {
+		"id": {
+			"$ref": "$refs/uk-region.json#/id"
+		},
+		"name":{
+			"type": "string",
+			"faker": "lorem.words"
+		},
+		"avg_time_to_confirm": {
+			"$ref": "$refs/wins.json#/avg_time_to_confirm"
+		},
+		"wins": {
+			"$ref": "$refs/wins.json#/wins"
+		}
+	}
+}

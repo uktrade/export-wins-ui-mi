@@ -1,16 +1,9 @@
+{% from 'macros/target-progress-bar.html' import targetProgress %}
+
 {% macro hvcPerformanceSummary( hvcSummary ) %}
 <ul class="sector-wins_list">
 	<li class="sector-wins_list_item">
-		<p class="visually-hidden">Confirmed: {{ hvcSummary.progress.confirmed }}%</p>
-		<p class="visually-hidden">Including unconfirmed: {{ hvcSummary.progress.unconfirmed }}%</p>
-		<span class="target-progress-bar">
-			<span class="target-progress-bar_progress target-progress-bar_progress--confirmed" id="confirmed-bar" style="width:{{ hvcSummary.progress.confirmed }}%"></span>
-			<span class="target-progress-bar_progress target-progress-bar_progress--unconfirmed" id="unconfirmed-bar" style="width:{{ hvcSummary.progress.unconfirmed }}%"></span>
-			{% if hvcSummary.progress.over -%}
-				<span class="target-progress-bar_over-marker target-progress-bar_over-marker--{{ hvcSummary.progress.overModifyer }}"></span>
-			{%- endif %}
-			<span class="target-progress-bar_target">Target</span>
-		</span>
+		{{ targetProgress( hvcSummary.progress ) }}
 	</li>
 	<li class="sector-wins_list_item">
 		<ul class="sector-wins_list_item_values">

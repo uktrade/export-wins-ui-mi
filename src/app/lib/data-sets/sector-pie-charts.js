@@ -1,77 +1,79 @@
+function createPercentage( total, inputA, inputB ){
 
-function combineData( data1, data2 ){
-
-	return {
-		number: {
-			confirmed: ( data1.number.confirmed + data2.number.confirmed ),
-			unconfirmed: ( data1.number.unconfirmed + data2.number.unconfirmed ),
-			total: ( data1.number.total + data2.number.total )
-		},
-		value: {
-			confirmed: ( data1.value.confirmed + data2.value.confirmed ),
-			unconfirmed: ( data1.value.unconfirmed + data2.value.unconfirmed ),
-			total: ( data1.value.total + data2.value.total )
-		}
-	};
-}
-
-function createConfirmedUnconfirmedPercentages( total, confirmed, unconfirmed ){
-
-	const parts = ( 100 / total );
-
-	return {
-		confirmed: ( confirmed ? Math.round( parts * confirmed ) : 0 ),
-		unconfirmed: ( unconfirmed ? Math.round( parts * unconfirmed ) : 0 )
-	};
-}
-
-function createConfirmedUnconfirmedData( data ){
-
-	const total = data.value.total;
-	const confirmed = data.value.confirmed;
-	const unconfirmed = data.value.unconfirmed;
-
-	return createConfirmedUnconfirmedPercentages( total, confirmed, unconfirmed );
-}
-
-function createHvcNonHvcData( hvcWins, nonHvcWins ){
-
-	let hvc = 0;
-	let nonHvc = 0;
-
-	const total = ( hvcWins.value.confirmed + nonHvcWins.value.confirmed );
-
+	let a = 0;
+	let b = 0;
 
 	if( total > 0 ){
 
 		const parts = ( 100 / total );
 
-		hvc = Math.round( parts * hvcWins.value.confirmed );
-		nonHvc = Math.round( parts * nonHvcWins.value.confirmed );
+		a = Math.round( parts * inputA );
+		b = Math.round( parts * inputB );
 	}
 
-	return { hvc, nonHvc	};
+	return [ a, b ];
+}
+
+function confirmedUnconfirmedPercentages( total, confirmed, unconfirmed ){
+
+	const output = createPercentage( total, confirmed, unconfirmed );
+
+	return {
+		confirmed: output[ 0 ],
+		unconfirmed: output[ 1 ]
+	};
+}
+
+function hvcNonHvcPercentages( confirmedHvcWins, confirmedNonHvcWins ){
+
+	const output = createPercentage( ( confirmedHvcWins + confirmedNonHvcWins ),  confirmedHvcWins, confirmedNonHvcWins );
+
+	return {
+		hvc: output[ 0 ],
+		nonHvc: output[ 1 ]
+	};
 }
 
 module.exports = {
 
-	createConfirmedUnconfirmedPercentages,
+	createConfirmedUnconfirmedPercentages: confirmedUnconfirmedPercentages,
 
+	//Value
 	create: function( data ){
 
-		if( data.wins.export.non_hvc ){
+		const exportData = data.wins.export;
 
-			const combinedData = combineData( data.wins.export.hvc, data.wins.export.non_hvc );
+		if( exportData.non_hvc ){
 
 			return {
-				hvcNonHvcValue: createHvcNonHvcData( data.wins.export.hvc, data.wins.export.non_hvc ),
-				confirmedUnconfirmedValue: createConfirmedUnconfirmedData( combinedData )
+				hvcNonHvcValue: hvcNonHvcPercentages( exportData.hvc.value.confirmed, exportData.non_hvc.value.confirmed ),
+				confirmedUnconfirmedValue: confirmedUnconfirmedPercentages( exportData.totals.value.grand_total, exportData.totals.value.confirmed, exportData.totals.value.unconfirmed )
 			};
 
 		} else {
 
 			return {
-				confirmedUnconfirmedValue: createConfirmedUnconfirmedData( data.wins.export.hvc )
+				confirmedUnconfirmedValue: confirmedUnconfirmedPercentages( exportData.hvc.value.total, exportData.hvc.value.confirmed, exportData.hvc.value.unconfirmed )
+			};
+		}
+	},
+
+	//Volume
+	createForNumber: function( data ){
+
+		const exportData = data.wins.export;
+
+		if( exportData.non_hvc ){
+
+			return {
+				hvcNonHvcValue: hvcNonHvcPercentages( exportData.hvc.number.confirmed, exportData.non_hvc.number.confirmed ),
+				confirmedUnconfirmedValue: confirmedUnconfirmedPercentages( exportData.totals.number.grand_total, exportData.totals.number.confirmed, exportData.totals.number.unconfirmed )
+			};
+
+		} else {
+
+			return {
+				confirmedUnconfirmedValue: confirmedUnconfirmedPercentages( exportData.hvc.number.total, exportData.hvc.number.confirmed, exportData.hvc.number.unconfirmed )
 			};
 		}
 	}

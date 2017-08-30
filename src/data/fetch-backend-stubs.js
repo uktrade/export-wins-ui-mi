@@ -38,16 +38,23 @@ const stubs = [
 	[ 'global_wins/index', '/mi/global_wins/' ],
 
 	[ 'countries/index', '/mi/countries/' ],
+	[ 'countries/country', '/mi/countries/AU/' ],
 	[ 'countries/campaigns', '/mi/countries/AU/campaigns/' ],
 	[ 'countries/months', '/mi/countries/AU/months/' ],
 	[ 'countries/top_non_hvcs', '/mi/countries/AU/top_non_hvcs/' ],
 	[ 'countries/win_table', '/mi/countries/AU/win_table/' ],
 
 	[ 'posts/index', '/mi/posts/' ],
+	[ 'posts/post', '/mi/posts/australia-melbourne/' ],
 	[ 'posts/campaigns', '/mi/posts/australia-melbourne/campaigns/' ],
 	[ 'posts/months', '/mi/posts/australia-melbourne/months/' ],
 	[ 'posts/top_non_hvcs', '/mi/posts/australia-melbourne/top_non_hvcs/' ],
-	[ 'posts/win_table', '/mi/posts/australia-melbourne/win_table/' ]
+	[ 'posts/win_table', '/mi/posts/australia-melbourne/win_table/' ],
+
+	[ 'uk_regions/index', '/mi/uk_regions/' ],
+	[ 'uk_regions/region', '/mi/uk_regions/dit-yorkshire/' ],
+	[ 'uk_regions/win_table', '/mi/uk_regions/dit-yorkshire/win_table/' ],
+	[ 'uk_regions/top_non_hvcs', '/mi/uk_regions/dit-yorkshire/top_non_hvcs/' ]
 ];
 
 const years = [ 2016, 2017 ];

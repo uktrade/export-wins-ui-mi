@@ -290,4 +290,133 @@ describe( 'Backend stub', function(){
 			} );
 		} );
 	} );
+
+	describe( 'Countries', function(){
+
+		describe( 'Getting the list', function(){
+
+			it( 'Should return the list', function( done ){
+
+				checkMultipleYears( '/mi/countries/', '/countries/index', done );
+			} );
+		} );
+
+		describe( 'Getting a country', function(){
+
+			it( 'Should return the country', function( done ){
+
+				checkMultipleYears( '/mi/countries/AU/', '/countries/country', done );
+			} );
+		} );
+
+		describe( 'Getting a country campaigns', function(){
+
+			it( 'Should return the country campaigns', function( done ){
+
+				checkMultipleYears( '/mi/countries/AU/campaigns/', '/countries/campaigns', done );
+			} );
+		} );
+
+		describe( 'Getting a country months', function(){
+
+			it( 'Should return the country months', function( done ){
+
+				checkMultipleYears( '/mi/countries/AU/months/', '/countries/months', done );
+			} );
+		} );
+
+		describe( 'Getting a country top_non_hvcs', function(){
+
+			it( 'Should return the country top_non_hvcs', function( done ){
+
+				checkMultipleYears( '/mi/countries/AU/top_non_hvcs/', '/countries/top_non_hvcs', done );
+			} );
+		} );
+
+		describe( 'Getting a country win_table', function(){
+
+			it( 'Should return the country win_table', function( done ){
+
+				checkMultipleYears( '/mi/countries/AU/win_table/', '/countries/win_table', done );
+			} );
+		} );
+	} );
+
+	describe( 'Posts', function(){
+
+		describe( 'Getting the list', function(){
+
+			it( 'Should return the list', function( done ){
+
+				checkMultipleYears( '/mi/posts/', '/posts/index', done );
+			} );
+		} );
+
+		describe( 'Getting a post', function(){
+
+			it( 'Should return the post', function( done ){
+
+				checkMultipleYears( '/mi/posts/a-post-name/', '/posts/post', done );
+			} );
+		} );
+
+		describe( 'Getting a post months', function(){
+
+			it( 'Should return the post months', function( done ){
+
+				checkMultipleYears( '/mi/posts/a-post-name/months/', '/posts/months', done );
+			} );
+		} );
+
+		describe( 'Getting a post top_non_hvcs', function(){
+
+			it( 'Should return the post top_non_hvcs', function( done ){
+
+				checkMultipleYears( '/mi/posts/a-post-name/top_non_hvcs/', '/posts/top_non_hvcs', done );
+			} );
+		} );
+
+		describe( 'Getting a post win_table', function(){
+
+			it( 'Should return the post win_table', function( done ){
+
+				checkMultipleYears( '/mi/posts/a-post-name/win_table/', '/posts/win_table', done );
+			} );
+		} );
+	} );
+
+	describe( 'UK Regions', function(){
+
+		describe( 'Getting the list', function(){
+
+			it( 'Should return the list', function( done ){
+
+				checkMultipleYears( '/mi/uk_regions/', '/uk_regions/index', done );
+			} );
+		} );
+
+		describe( 'Getting a UK region', function(){
+
+			it( 'Should return the UK region', function( done ){
+
+				checkMultipleYears( '/mi/uk_regions/a-region-name/', '/uk_regions/region', done );
+			} );
+		} );
+
+		describe( 'Getting a UK region top_non_hvcs', function(){
+
+			it( 'Should return the top_non_hvcs', function( done ){
+
+				checkMultipleYears( '/mi/uk_regions/a-region-name/top_non_hvcs/', '/uk_regions/top_non_hvcs', done );
+			} );
+		} );
+
+		describe( 'Getting a UK region win_table', function(){
+
+			it( 'Should return the win_table', function( done ){
+
+				checkMultipleYears( '/mi/uk_regions/a-region-name/win_table/', '/uk_regions/win_table', done );
+			} );
+		} );
+	} );
 } );
