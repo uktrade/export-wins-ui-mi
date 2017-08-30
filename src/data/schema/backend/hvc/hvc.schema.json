@@ -34,52 +34,8 @@
 					}
 				},
 
-				"totals": {
-
-					"type": "object",
-					"required": [ "value", "number" ],
-					"properties": {
-						"value": {
-							"type": "object",
-							"required": [ "unconfirmed", "confirmed", "grand_total" ],
-							"properties": {
-								"unconfirmed": {
-									"type": "number",
-									"faker": "random.number"
-								},
-								"confirmed": {
-									"type": "number",
-									"faker": "random.number"
-								},
-								"grand_total": {
-									"type": "number",
-									"faker": "random.number"
-								}
-							}
-						},
-						"number": {
-							"type": "object",
-							"required": [ "unconfirmed", "confirmed", "grand_total" ],
-							"properties": {
-								"unconfirmed": {
-									"type": "number",
-									"faker": {
-										"random.number": { "max": 1000 }
-									}
-								},
-								"confirmed": {
-									"type": "number",
-									"faker": {
-										"random.number": { "max": 1000 }
-									}
-								},
-								"grand_total": {
-									"type": "number",
-									"faker": "random.number"
-								}
-							}
-						}
-					}
+				"totals":{
+					"$ref": "$refs/wins.json#/grand-totals"
 				}
 			}
 		},
@@ -95,10 +51,7 @@
 		},
 
 		"avg_time_to_confirm": {
-			"type": "number",
-			"faker": {
-				"finance.amount": [ 0, 50 ]
-			}
+			"$ref": "$refs/wins.json#/avg_time_to_confirm"
 		},
 
 		"hvcs": {

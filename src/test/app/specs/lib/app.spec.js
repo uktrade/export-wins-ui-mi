@@ -97,6 +97,7 @@ if( config.backend.mock ){
 					interceptBackend.getStub( '/mi/os_region_groups/?year=2017', 200, '/os_region_groups/index.2017' );
 					interceptBackend.getStub( '/mi/global_hvcs/?year=2017', 200, '/global_hvcs/' );
 					interceptBackend.getStub( '/mi/global_wins/?year=2017', 200, '/global_wins/' );
+					interceptBackend.getStub( '/mi/uk_regions/?year=2017', 200, '/uk_regions/' );
 
 					supertest( app ).get( '/' ).end( ( err, res ) => {
 
@@ -114,6 +115,7 @@ if( config.backend.mock ){
 						interceptBackend.getStub( '/mi/os_region_groups/?year=2017&date_start=1234', 200, '/os_region_groups/index.2017' );
 						interceptBackend.getStub( '/mi/global_hvcs/?year=2017&date_start=1234', 200, '/global_hvcs/' );
 						interceptBackend.getStub( '/mi/global_wins/?year=2017&date_start=1234', 200, '/global_wins/' );
+						interceptBackend.getStub( '/mi/uk_regions/?year=2017&date_start=1234', 200, '/uk_regions/' );
 
 						supertest( app ).get( '/?date[start]=1234' ).end( ( err, res ) => {
 
@@ -132,6 +134,7 @@ if( config.backend.mock ){
 						interceptBackend.getStub( '/mi/os_region_groups/?year=2017&date_end=6789', 200, '/os_region_groups/index.2017' );
 						interceptBackend.getStub( '/mi/global_hvcs/?year=2017&date_end=6789', 200, '/global_hvcs/' );
 						interceptBackend.getStub( '/mi/global_wins/?year=2017&date_end=6789', 200, '/global_wins/' );
+						interceptBackend.getStub( '/mi/uk_regions/?year=2017&date_end=6789', 200, '/uk_regions/' );
 
 						supertest( app ).get( '/?date[end]=6789' ).end( ( err, res ) => {
 
@@ -151,6 +154,7 @@ if( config.backend.mock ){
 					interceptBackend.getStub( '/mi/os_region_groups/?year=2017', 500 );
 					interceptBackend.getStub( '/mi/global_hvcs/?year=2017', 200, '/global_hvcs/' );
 					interceptBackend.getStub( '/mi/global_wins/?year=2017', 200, '/global_wins/' );
+					interceptBackend.getStub( '/mi/uk_regions/?year=2017', 200, '/uk_regions/' );
 
 					supertest( app ).get( '/' ).end( ( err, res ) => {
 
@@ -168,6 +172,7 @@ if( config.backend.mock ){
 					interceptBackend.getStub( '/mi/os_region_groups/?year=2017', 500 );
 					interceptBackend.getStub( '/mi/global_hvcs/?year=2017', 500 );
 					interceptBackend.getStub( '/mi/global_wins/?year=2017', 500 );
+					interceptBackend.getStub( '/mi/uk_regions/?year=2017', 500 );
 
 					supertest( app ).get( '/' ).end( ( err, res ) => {
 
@@ -671,6 +676,84 @@ if( config.backend.mock ){
 			} );
 		} );
 
+		describe( 'UK Regions', function(){
+
+			const regionId = 'some-uk-region';
+
+			describe( 'List', function(){
+
+				describe( 'When the API returns a status of 200', function(){
+
+					it( 'Should return a 200 with the correct heading', function( done ){
+
+						interceptBackend.getStub( '/mi/uk_regions/?year=2017', 200, '/uk_regions/' );
+
+						supertest( app ).get( '/uk-regions/' ).end( ( err, res ) => {
+
+							checkResponse( res, 200 );
+							expect( getTitle( res ) ).toEqual( 'MI - UK Regions' );
+							done();
+						} );
+					} );
+				} );
+			} );
+
+			describe( 'Region', function(){
+
+				describe( 'When the API returns a status of 200', function(){
+
+					it( 'Should return a 200 with the correct heading', function( done ){
+
+						interceptBackend.getStub( `/mi/uk_regions/${ regionId }/?year=2017`, 200, '/uk_regions/region' );
+						interceptBackend.getStub( `/mi/uk_regions/${ regionId }/months/?year=2017`, 200, '/uk_regions/months' );
+						interceptBackend.getStub( `/mi/uk_regions/${ regionId }/top_non_hvcs/?year=2017`, 200, '/uk_regions/top_non_hvcs' );
+
+						supertest( app ).get( `/uk-regions/${ regionId }/` ).end( ( err, res ) => {
+
+							checkResponse( res, 200 );
+							expect( getTitle( res ) ).toEqual( 'MI - UK Region performance - illum itaque culpa' );
+							done();
+						} );
+					} );
+				} );
+			} );
+
+			describe( 'Region HVC wins', function(){
+
+				describe( 'When the API returns a status of 200', function(){
+
+					it( 'Should return a 200 with the correct heading', function( done ){
+
+						interceptBackend.getStub( `/mi/uk_regions/${ regionId }/win_table/?year=2017`, 200, '/uk_regions/win_table' );
+
+						supertest( app ).get( `/uk-regions/${ regionId }/wins/` ).end( ( err, res ) => {
+
+							checkResponse( res, 200 );
+							expect( getTitle( res ) ).toEqual( 'MI - UK Region HVC wins - nisi et minima' );
+							done();
+						} );
+					} );
+				} );
+			} );
+
+			describe( 'Region non HVC wins', function(){
+
+				describe( 'When the API returns a status of 200', function(){
+
+					it( 'Should return a 200 with the correct heading', function( done ){
+
+						interceptBackend.getStub( `/mi/uk_regions/${ regionId }/win_table/?year=2017`, 200, '/uk_regions/win_table' );
+
+						supertest( app ).get( `/uk-regions/${ regionId }/non-hvc-wins/` ).end( ( err, res ) => {
+
+							checkResponse( res, 200 );
+							expect( getTitle( res ) ).toEqual( 'MI - UK Region non HVC wins - nisi et minima' );
+							done();
+						} );
+					} );
+				} );
+			} );
+		} );
 	} );
 
 

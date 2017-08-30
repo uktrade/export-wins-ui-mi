@@ -1,0 +1,131 @@
+{
+	 "wins": {
+		"type": "object",
+		"required": [ "non_export", "export" ],
+		"properties": {
+			"non_export": {
+				"$ref": "#/win-info"
+			},
+			"export": {
+				"type": "object",
+				"required": [ "hvc", "non_hvc", "totals" ],
+				"properties": {
+					"hvc": {
+						"$ref": "#/win-info"
+					},
+					"non_hvc": {
+						"$ref": "#/win-info"
+					},
+					"totals": {
+						"$ref": "#/grand-totals"
+					}
+				}
+			}
+		}
+	},
+
+	"avg_time_to_confirm": {
+		"type": "number",
+		"faker": {
+			"finance.amount": [ 0, 100, 2 ]
+		}
+	},
+
+	"win-info": {
+		"type": "object",
+		"required": [ "number", "value" ],
+		"properties": {
+			"number": {
+				"type": "object",
+				"required": [ "unconfirmed", "total", "confirmed" ],
+				"properties": {
+					"unconfirmed": {
+						"type": "number",
+						"faker": {
+							"random.number": { "max": 1000 }
+						}
+					},
+					"total": {
+						"type": "number",
+						"faker": {
+							"random.number": { "max": 1000 }
+						}
+					},
+					"confirmed": {
+						"type": "number",
+						"faker": {
+							"random.number": { "max": 1000 }
+						}
+					}
+				}
+			},
+			"value": {
+				"type": "object",
+				"required": [ "unconfirmed", "total", "confirmed" ],
+				"properties": {
+					"unconfirmed": {
+						"type": "number",
+						"faker": "random.number"
+					},
+					"total": {
+						"type": "number",
+						"faker": "random.number"
+					},
+					"confirmed": {
+						"type": "number",
+						"faker": "random.number"
+					}
+				}
+			}
+		}
+	},
+
+	"grand-totals": {
+		"type": "object",
+		"required": [ "number", "value" ],
+		"properties": {
+			"number": {
+				"type": "object",
+				"required": [ "unconfirmed", "confirmed", "grand_total" ],
+				"properties": {
+					"confirmed": {
+						"type": "number",
+						"faker": {
+							"random.number": { "max": 1000 }
+						}
+					},
+					"unconfirmed": {
+						"type": "number",
+						"faker": {
+							"random.number": { "max": 1000 }
+						}
+					},
+					"grand_total": {
+						"type": "number",
+						"faker": {
+							"random.number": { "max": 1000 }
+						}
+					}
+				}
+			},
+			"value": {
+				"type": "object",
+				"required": [ "unconfirmed", "confirmed", "grand_total" ],
+				"properties": {
+					"confirmed": {
+						"type": "number",
+						"faker": "random.number"
+					},
+					"unconfirmed": {
+						"type": "number",
+						"faker": "random.number"
+					},
+					"grand_total": {
+						"type": "number",
+						"faker": "random.number"
+					}
+				}
+			}
+		}
+	}
+}

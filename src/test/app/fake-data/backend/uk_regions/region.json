@@ -1,0 +1,68 @@
+{
+   "timestamp": 1503667949778,
+   "financial_year": {
+      "id": 2016,
+      "description": "2016-2017"
+   },
+   "results": {
+      "id": "pqr-uecnkhbc-crrwso-dwe-radnud",
+      "name": "illum itaque culpa",
+      "avg_time_to_confirm": 53.18,
+      "wins": {
+         "non_export": {
+            "number": {
+               "unconfirmed": 734,
+               "total": 201,
+               "confirmed": 78
+            },
+            "value": {
+               "unconfirmed": 70186,
+               "total": 77532,
+               "confirmed": 38112
+            }
+         },
+         "export": {
+            "hvc": {
+               "number": {
+                  "unconfirmed": 866,
+                  "total": 366,
+                  "confirmed": 869
+               },
+               "value": {
+                  "unconfirmed": 20758,
+                  "total": 7830,
+                  "confirmed": 83644
+               }
+            },
+            "non_hvc": {
+               "number": {
+                  "unconfirmed": 908,
+                  "total": 917,
+                  "confirmed": 584
+               },
+               "value": {
+                  "unconfirmed": 88951,
+                  "total": 29280,
+                  "confirmed": 68069
+               }
+            },
+            "totals": {
+               "number": {
+                  "unconfirmed": 641,
+                  "confirmed": 645,
+                  "grand_total": 679
+               },
+               "value": {
+                  "unconfirmed": 41054,
+                  "confirmed": 71118,
+                  "grand_total": 76380
+               }
+            }
+         }
+      }
+   },
+   "date_range": {
+      "start": "Fri, 01 Apr 2016 00:00:00 GMT",
+      "end": "Fri, 31 Mar 2017 00:00:00 GMT"
+   }
+}

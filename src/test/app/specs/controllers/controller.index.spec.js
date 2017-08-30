@@ -26,50 +26,111 @@ describe( 'Index controller', function(){
 
 	describe( 'Handler', function(){
 
-		it( 'Should render the view with the corect data', function( done ){
+		describe( 'With ukRegions feature/query param', function(){
 
-			const req = {
-				cookies: { sessionid: '456' },
-				year: 2017
-			};
+			it( 'Should render the view with the corect data', function( done ){
 
-			const res = {
-				render: jasmine.createSpy( 'res.render' )
-			};
+				const req = {
+					cookies: { sessionid: '456' },
+					query: { ukRegions: '1' },
+					year: 2017
+				};
 
-			const sectorTeams = { results: { sectorTeams: true } };
-			const overseasRegionGroups = { results: { overseasRegionGroups: true } };
-			const globalHvcs = { results: { globalHvcs: true } };
-			const globalWins = { date_range: { test: 1 }, results: { globalWins: true } };
+				const res = {
+					render: jasmine.createSpy( 'res.render' )
+				};
 
-			const promise = new Promise( ( resolve ) => {
+				const sectorTeams = { results: { sectorTeams: true } };
+				const overseasRegionGroups = { results: { overseasRegionGroups: true } };
+				const ukRegions = { results: { ukRegions: true } };
+				const globalHvcs = { results: { globalHvcs: true } };
+				const globalWins = { date_range: { test: 1 }, results: { globalWins: true } };
 
-				resolve( {
-					sectorTeams,
-					overseasRegionGroups,
-					globalHvcs,
-					globalWins
+				const promise = new Promise( ( resolve ) => {
+
+					resolve( {
+						sectorTeams,
+						overseasRegionGroups,
+						ukRegions,
+						globalHvcs,
+						globalWins
+					} );
+				} );
+
+				backendService.getHomepageData = spy( 'getHomepageData', promise );
+
+				errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
+
+				controller( req, res );
+
+				promise.then( () => {
+
+					expect( backendService.getHomepageData ).toHaveBeenCalledWith( req );
+					expect( globalSummary.create ).toHaveBeenCalledWith( globalWins );
+					expect( res.render ).toHaveBeenCalledWith( 'index.html', {
+						sectorTeams: sectorTeams.results,
+						overseasRegionGroups: overseasRegionGroups.results,
+						ukRegions: ukRegions.results,
+						globalHvcs: globalHvcs.results,
+						summary: globalSummaryData
+					} );
+					expect( errorHandler.createHandler ).toHaveBeenCalled();
+					done();
 				} );
 			} );
+		} );
 
-			backendService.getHomepageData = spy( 'getHomepageData', promise );
+		describe( 'With no feature/query params', function(){
 
-			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
+			it( 'Should render the view with the corect data', function( done ){
 
-			controller( req, res );
+				const req = {
+					cookies: { sessionid: '456' },
+					query: {},
+					year: 2017
+				};
 
-			promise.then( () => {
+				const res = {
+					render: jasmine.createSpy( 'res.render' )
+				};
 
-				expect( backendService.getHomepageData ).toHaveBeenCalledWith( req );
-				expect( globalSummary.create ).toHaveBeenCalledWith( globalWins );
-				expect( res.render ).toHaveBeenCalledWith( 'index.html', {
-					sectorTeams: sectorTeams.results,
-					overseasRegionGroups: overseasRegionGroups.results,
-					globalHvcs: globalHvcs.results,
-					summary: globalSummaryData
+				const sectorTeams = { results: { sectorTeams: true } };
+				const overseasRegionGroups = { results: { overseasRegionGroups: true } };
+				const ukRegions = { results: { ukRegions: true } };
+				const globalHvcs = { results: { globalHvcs: true } };
+				const globalWins = { date_range: { test: 1 }, results: { globalWins: true } };
+
+				const promise = new Promise( ( resolve ) => {
+
+					resolve( {
+						sectorTeams,
+						overseasRegionGroups,
+						ukRegions,
+						globalHvcs,
+						globalWins
+					} );
 				} );
-				expect( errorHandler.createHandler ).toHaveBeenCalled();
-				done();
+
+				backendService.getHomepageData = spy( 'getHomepageData', promise );
+
+				errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
+
+				controller( req, res );
+
+				promise.then( () => {
+
+					expect( backendService.getHomepageData ).toHaveBeenCalledWith( req );
+					expect( globalSummary.create ).toHaveBeenCalledWith( globalWins );
+					expect( res.render ).toHaveBeenCalledWith( 'index.html', {
+						sectorTeams: sectorTeams.results,
+						overseasRegionGroups: overseasRegionGroups.results,
+						ukRegions: [],
+						globalHvcs: globalHvcs.results,
+						summary: globalSummaryData
+					} );
+					expect( errorHandler.createHandler ).toHaveBeenCalled();
+					done();
+				} );
 			} );
 		} );
 	} );

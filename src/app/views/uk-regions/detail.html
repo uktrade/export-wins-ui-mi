@@ -1,0 +1,97 @@
+{% extends 'layout.html' %}
+
+{% set pageName %}UK Region performance - {{ regionName | safe }}{% endset %}
+
+{% from 'macros/dates.html' import financialYear %}
+{% from 'macros/tabs/uk-regions.html' import tabs %}
+{% from 'macros/pie-charts.html' import confirmedUnconfirmedPieChart, hvcNonHvcPieChart %}
+{% from 'macros/target-progress-bar.html' import targetProgress %}
+
+{% block page_content %}
+
+	<h1 class="page-heading">
+		{{ regionName }} <span class="page-heading-secondary">UK Region</span>
+	</h1>
+	{% include 'partials/year-selector.html' %}
+	<h2 class="page-date page-date--hvc">{{ financialYear( dateRange ) }}</h2>
+
+	{{ tabs( regionId, performance = true ) }}
+
+	<section class="uk-region-detail_summary grid-row">
+
+		<div class="column-one-fifth">
+
+			<h3 class="sector-export-heading">Target number of wins</h3>
+			<p class="sector-export-confirmed-value">{{ summary.target }}</p>
+
+		</div>
+		<div class="column-three-fifths">
+
+			<ul class="sector-overview_charts">
+				<li class="sector-overview_charts_chart">
+					<h3 class="uk-region-pie-heading">HVC and non-HVC confirmed wins volume</h3>
+					{{ hvcNonHvcPieChart( summary ) -}}
+				</li>
+				<li class="sector-overview_charts_chart">
+					<h3 class="uk-region-pie-heading">Confirmed and unconfirmed wins volume</h3>
+					{{ confirmedUnconfirmedPieChart( summary ) -}}
+				</li>
+			</ul>
+
+		</div>
+		<div class="column-one-fifth">
+
+			<p class="sector-overview_charts_chart_average-time sector-overview_charts_chart_average-time--uk-region">
+				Average time to confirm <span class="sector-overview_charts_chart_average-time_days">{{ summary.averageTimeToConfirm | pluralise( 'day' ) }}</span>
+			</p>
+
+		</div>
+	</section>
+
+	<h2 class="uk-region-detail_target-heading">Total confirmed against target</h2>
+
+	<section class="uk-region-detail_target grid-row">
+		<div class="column-one-fifth uk-region-detail_target-progress">
+
+			{{ targetProgress( summary.progress ) }}
+
+		</div>
+		<div class="column-four-fifths">
+
+			<ul class="uk-region-detail_target_list">
+				<li class="uk-region-detail_target_list_item">
+					<h3 class="uk-region-detail_target_list_heading">Total<br>confirmed</h3>
+					<p class="uk-region-detail_target_list_text">
+						{{ summary.number.confirmed }}
+					</p>
+				</li>
+				<li class="uk-region-detail_target_list_item">
+					<h3 class="uk-region-detail_target_list_heading">Total<br>unconfirmed</h3>
+					<p class="uk-region-detail_target_list_text uk-region-detail_target_list_text--unconfirmed">
+						{{ summary.number.unconfirmed }}
+					</p>
+				</li>
+				<li class="uk-region-detail_target_list_item">
+					<h3 class="uk-region-detail_target_list_heading">Total value of<br>confirmed</h3>
+					<p class="uk-region-detail_target_list_text">
+						<span class="sector-export-value-currency">&pound;</span>{{ summary.value.confirmed | largeNumber( true ) | safe }}
+					</p>
+				</li>
+				<li class="uk-region-detail_target_list_item">
+					<h3 class="uk-region-detail_target_list_heading">Total value of<br>unconfirmed</h3>
+					<p class="uk-region-detail_target_list_text uk-region-detail_target_list_text--unconfirmed">
+						<span class="sector-export-value-currency">&pound;</span>{{ summary.value.unconfirmed | largeNumber( true ) | safe }}
+					</p>
+				</li>
+				<li class="uk-region-detail_target_list_item">
+					<h3 class="uk-region-detail_target_list_heading">Total<br>value of wins</h3>
+					<p class="uk-region-detail_target_list_text">
+						<span class="sector-export-value-currency">&pound;</span>{{ summary.totalValue | largeNumber( true ) | safe }}
+					</p>
+				</li>
+			</ul>
+
+		</div>
+	</section>
+
+{% endblock %}

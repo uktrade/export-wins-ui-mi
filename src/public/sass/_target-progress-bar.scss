@@ -16,6 +16,8 @@ $target-progress-arrow-border-width: ( $target-progress-arrow-width + 1px );
 	border: 1px solid #000;
 	z-index: 5;
 	margin-right: 30px;
+	margin-top: 1em;
+	margin-bottom: 1em;
 
 	@include media( tablet ){
 		height: 48px;
@@ -95,8 +97,15 @@ $target-progress-arrow-border-width: ( $target-progress-arrow-width + 1px );
 .target-progress-bar_target {
 	position: absolute;
 	left: 0;
-	bottom: -1.5em;
+	top: -1.4em;
 	text-align: right;
 	width: $target-progress-width;
 	@include bold-14;
+}
+
+.target-progress-bar_value {
+	position: absolute;
+	bottom: -1.6em;
+	@include core-14;
+	text-indent: -1em;
 }

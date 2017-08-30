@@ -38,6 +38,14 @@
 	@include grid-column( 2/5 );
 }
 
+.column-three-fifths {
+	@include grid-column( 3/5 );
+}
+
+.column-four-fifths {
+	@include grid-column( 4/5 );
+}
+
 .column-one-seventh {
 	@include grid-column( 1/7 );
 }

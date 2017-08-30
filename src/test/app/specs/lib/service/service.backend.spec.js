@@ -585,6 +585,107 @@ describe( 'Backend service', function(){
 			} );
 		} );
 
+		describe( 'Getting the list of UK Regions', function(){
+
+			it( 'Should call the correct API', function( done ){
+
+				const stubFile = '/uk_regions/';
+
+				returnStub( stubFile );
+
+				backendService.getUkRegions( req ).then( () => {
+
+					checkBackendArgs( `/mi/uk_regions/?year=${ year }`, req );
+					done();
+
+				} ).catch( done.fail );
+			} );
+		} );
+
+		describe( 'Getting the details of a UK Region', function(){
+
+			it( 'Should call the correct API', function( done ){
+
+				const regionId = 'a-uk-region';
+
+				returnStub( '/uk_regions/region' );
+
+				backendService.getUkRegion( req, regionId ).then( () => {
+
+					checkBackendArgs( `/mi/uk_regions/${ regionId }/?year=${ year }`, req );
+					done();
+
+				} ).catch( done.fail );
+			} );
+		} );
+
+		describe( 'Getting the months of a UK Region', function(){
+
+			it( 'Should call the correct API', function( done ){
+
+				const regionId = 'a-uk-region';
+
+				returnStub( '/uk_regions/months' );
+
+				backendService.getUkRegionMonths( req, regionId ).then( () => {
+
+					checkBackendArgs( `/mi/uk_regions/${ regionId }/months/?year=${ year }`, req );
+
+					expect( monthsSpy ).toHaveBeenCalled();
+					expect( monthsSpy.calls.count() ).toEqual( 1 );
+
+					done();
+
+				} ).catch( done.fail );
+			} );
+		} );
+
+		describe( 'Getting the top_non_hvcs of a UK Region', function(){
+
+			it( 'Should call the correct API', function( done ){
+
+				const regionId = 'a-uk-region';
+
+				returnStub( '/uk_regions/top_non_hvcs' );
+
+				backendService.getUkRegionTopNonHvc( req, regionId ).then( () => {
+
+					checkBackendArgs( `/mi/uk_regions/${ regionId }/top_non_hvcs/?year=${ year }`, req );
+					done();
+
+				} ).catch( done.fail );
+			} );
+		} );
+
+		describe( 'Getting the win_table of a UK Region', function(){
+
+			it( 'Should call the correct API', function( done ){
+
+				const stubFile = '/uk_regions/win_table';
+				const regionStub = getBackendStub( stubFile );
+
+				const regionId = 'a-uk-region';
+				const transformResponse = { winListTransformer: true, results: { itt: regionStub.itt } };
+
+				returnStub( stubFile );
+				winListSpy.and.callFake( () => transformResponse );
+
+				backendService.getUkRegionWinTable( req, regionId ).then( ( winList ) => {
+
+					checkBackendArgs( `/mi/uk_regions/${ regionId }/win_table/?year=${ year }`, req );
+
+					const transformedResults = Object.assign( {}, transformResponse );
+					transformedResults.results.uk_region = transformedResults.results.itt;
+
+					expect( winList.results ).toEqual( transformResponse );
+					expect( winListSpy ).toHaveBeenCalledWith( getBackendStub( stubFile ).results );
+
+					done();
+
+				} ).catch( done.fail );
+			} );
+		} );
+
 		describe( 'Getting the Grouped overseas regions list', function(){
 
 			it( 'Should call the correct API', function( done ){
@@ -1462,6 +1563,56 @@ describe( 'Backend service', function(){
 			} );
 		} );
 
+		describe( 'Getting the UK Region Info', function(){
+
+			it( 'Should return several bits of data', function( done ){
+
+				const regionId = 'some-uk-region';
+
+				const files = [
+					[ `/mi/uk_regions/${ regionId }/?year=${ year }`, '/uk_regions/region' ],
+					[ `/mi/uk_regions/${ regionId }/top_non_hvcs/?year=${ year }`, '/uk_regions/top_non_hvcs' ]
+				];
+
+				intercept( files );
+
+				backendService.getUkRegionInfo( req, regionId ).then( ( data ) => {
+
+					expect( data.wins ).toBeDefined();
+					expect( data.topNonHvc ).toBeDefined();
+
+					done();
+
+				} ).catch( done.fail );
+			} );
+
+			describe( 'When one of APIs returns after a long time', function(){
+
+				it( 'Should log a message with the reporter', function( done ){
+
+					const regionId = 'another-uk-region';
+
+					const files = [
+						[ `/mi/uk_regions/${ regionId }/?year=${ year }`, '/uk_regions/region' ],
+						[ `/mi/uk_regions/${ regionId }/top_non_hvcs/?year=${ year }`, '/uk_regions/top_non_hvcs' ]
+					];
+
+					interceptWithDelay( files );
+
+					backendService.getUkRegionInfo( req, regionId ).then( ( data ) => {
+
+						checkReporterMessage( 'getUkRegionInfo' );
+
+						expect( data.wins ).toBeDefined();
+						expect( data.topNonHvc ).toBeDefined();
+
+						done();
+
+					} ).catch( done.fail );
+				} );
+			} );
+		} );
+
 		describe( 'Getting the overseas regions overview groups', function(){
 
 			it( 'Should get the OS groups and OS overview and merge them', function( done ){
@@ -1549,7 +1700,8 @@ describe( 'Backend service', function(){
 						[ `/mi/sector_teams/?year=${ year }`, '/sector_teams/' ],
 						[ `/mi/os_region_groups/?year=${ year }`, '/os_region_groups/index.2017' ],
 						[ `/mi/global_hvcs/?year=${ year }`, '/global_hvcs/' ],
-						[ `/mi/global_wins/?year=${ year }`, '/global_wins/' ]
+						[ `/mi/global_wins/?year=${ year }`, '/global_wins/' ],
+						[ `/mi/uk_regions/?year=${ year }`, '/uk_regions/' ]
 					];
 
 					intercept( files );
@@ -1575,7 +1727,8 @@ describe( 'Backend service', function(){
 						[ `/mi/sector_teams/?year=${ year }`, null, 500 ],
 						[ `/mi/os_region_groups/?year=${ year }`, '/os_region_groups/index.2017' ],
 						[ `/mi/global_hvcs/?year=${ year }`, '/global_hvcs/' ],
-						[ `/mi/global_wins/?year=${ year }`, '/global_wins/' ]
+						[ `/mi/global_wins/?year=${ year }`, '/global_wins/' ],
+						[ `/mi/uk_regions/?year=${ year }`, '/uk_regions/' ]
 					];
 
 					intercept( files );
@@ -1597,7 +1750,8 @@ describe( 'Backend service', function(){
 						[ `/mi/sector_teams/?year=${ year }`, '/sector_teams/' ],
 						[ `/mi/os_region_groups/?year=${ year }`, '/os_region_groups/index.2017' ],
 						[ `/mi/global_hvcs/?year=${ year }`, '/global_hvcs/' ],
-						[ `/mi/global_wins/?year=${ year }`, '/global_wins/' ]
+						[ `/mi/global_wins/?year=${ year }`, '/global_wins/' ],
+						[ `/mi/uk_regions/?year=${ year }`, '/uk_regions/' ]
 					];
 
 					interceptWithDelay( files );

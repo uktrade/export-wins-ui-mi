@@ -10,119 +10,177 @@ const By = webdriver.By;
 
 describe( 'The homepage', function(){
 
-	beforeAll( function( done ){
-
-		fetch( '/' ).then( takeScreenshot( 'index' ) ).then( done );
-	} );
-
-	describe( 'Page heading', function(){
-
-		let heading;
+	describe( 'With no feature/query params', function(){
 
 		beforeAll( function( done ){
 
-			driver.findElement( By.className( 'page-heading' ) ).then( ( headingElem ) => {
+			fetch( '/' ).then( takeScreenshot( 'index' ) ).then( done );
+		} );
 
-				heading = headingElem;
-				done();
+		describe( 'Page heading', function(){
+
+			let heading;
+
+			beforeAll( function( done ){
+
+				driver.findElement( By.className( 'page-heading' ) ).then( ( headingElem ) => {
+
+					heading = headingElem;
+					done();
+				} );
+			} );
+
+			it( 'Should have the correct title', function( done ){
+
+				heading.getText().then( ( text ) => {
+
+					expect( text ).toEqual( 'Export Wins performance' );
+					done();
+				} );
+			} );
+
+			it( 'Should have the correct tag', function( done ){
+
+				heading.getTagName().then( ( tagName ) => {
+
+					expect( tagName ).toEqual( 'h1' );
+					done();
+				} );
 			} );
 		} );
 
-		it( 'Should have the correct title', function( done ){
+		describe( 'Headings', function(){
 
-			heading.getText().then( ( text ) => {
+			let headings;
 
-				expect( text ).toEqual( 'Export Wins performance' );
+			beforeAll( function( done ){
+
+				driver.findElements( By.className( 'sector-list-heading' ) ).then( ( headingElems ) => {
+
+					headings = headingElems;
+					done();
+				} );
+			} );
+
+			it( 'Should have a heading for each list', function( done ){
+
+				expect( headings.length ).toEqual( 2 );
 				done();
+			} );
+
+			it( 'Should have the correct text for the first heading', function( done ){
+
+				headings[ 0 ].getText().then( ( text ) => {
+
+					expect( text ).toEqual( 'Sector Teams' );
+					done();
+				} );
+			} );
+
+			it( 'Should have the correct text for the second heading', function( done ){
+
+				headings[ 1 ].getText().then( ( text ) => {
+
+					expect( text ).toEqual( 'Overseas Regions' );
+					done();
+				} );
 			} );
 		} );
 
-		it( 'Should have the correct tag', function( done ){
+		describe( 'Sector team list', function(){
 
-			heading.getTagName().then( ( tagName ) => {
+			it( 'Should find the list', function( done ){
 
-				expect( tagName ).toEqual( 'h1' );
-				done();
+				driver.findElements( By.id( 'sector-teams-list' ) ).then( ( list ) => {
+
+					expect( list.length ).toEqual( 1 );
+					done();
+				} );
+			} );
+		} );
+
+		describe( 'OS regions list', function(){
+
+			it( 'Should find the list', function( done ){
+
+				driver.findElements( By.id( 'os-regions-list' ) ).then( ( list ) => {
+
+					expect( list.length ).toEqual( 1 );
+					done();
+				} );
+			} );
+		} );
+
+		describe( 'Accessibility checks', function(){
+
+			it( 'Should not have any violations', function( done ){
+
+				AxeBuilder( driver ).analyze( ( results ) => {
+
+					const violations = results.violations;
+					const violationCount = violations.length;
+
+					expect( violationCount ).toEqual( 2 );
+					expect( violations[ 0 ].id ).toEqual( 'definition-list' );
+					expect( violations[ 1 ].id ).toEqual( 'dlitem' );
+
+					writeReport( 'index', results ).then( done );
+				} );
 			} );
 		} );
 	} );
 
-	describe( 'Headings', function(){
-
-		let headings;
+	describe( 'With the ukRegions feature/query param', function(){
 
 		beforeAll( function( done ){
 
-			driver.findElements( By.className( 'sector-list-heading' ) ).then( ( headingElems ) => {
+			fetch( '/?ukRegions=1' ).then( takeScreenshot( 'index_uk-regions' ) ).then( done );
+		} );
 
-				headings = headingElems;
+		describe( 'Headings', function(){
+
+			let headings;
+
+			beforeAll( function( done ){
+
+				driver.findElements( By.className( 'sector-list-heading' ) ).then( ( headingElems ) => {
+
+					headings = headingElems;
+					done();
+				} );
+			} );
+
+			it( 'Should have a heading for each list', function( done ){
+
+				expect( headings.length ).toEqual( 3 );
 				done();
 			} );
-		} );
 
-		it( 'Should have a heading for each list', function( done ){
+			it( 'Should have the correct text for the first heading', function( done ){
 
-			expect( headings.length ).toEqual( 2 );
-			done();
-		} );
+				headings[ 0 ].getText().then( ( text ) => {
 
-		it( 'Should have the correct text for the first heading', function( done ){
-
-			headings[ 0 ].getText().then( ( text ) => {
-
-				expect( text ).toEqual( 'Sector Teams' );
-				done();
+					expect( text ).toEqual( 'Sector Teams' );
+					done();
+				} );
 			} );
-		} );
 
-		it( 'Should have the correct text for the second heading', function( done ){
+			it( 'Should have the correct text for the second heading', function( done ){
 
-			headings[ 1 ].getText().then( ( text ) => {
+				headings[ 1 ].getText().then( ( text ) => {
 
-				expect( text ).toEqual( 'Overseas Regions' );
-				done();
+					expect( text ).toEqual( 'Overseas Regions' );
+					done();
+				} );
 			} );
-		} );
-	} );
 
-	describe( 'Sector team list', function(){
+			it( 'Should have the correct text for the third heading', function( done ){
 
-		it( 'Should find the list', function( done ){
+				headings[ 2 ].getText().then( ( text ) => {
 
-			driver.findElements( By.id( 'sector-teams-list' ) ).then( ( list ) => {
-
-				expect( list.length ).toEqual( 1 );
-				done();
-			} );
-		} );
-	} );
-
-	describe( 'OS regions list', function(){
-
-		it( 'Should find the list', function( done ){
-
-			driver.findElements( By.id( 'os-regions-list' ) ).then( ( list ) => {
-
-				expect( list.length ).toEqual( 1 );
-				done();
-			} );
-		} );
-	} );
-
-	describe( 'Accessibility checks', function(){
-
-		it( 'Should not have any violations', function( done ){
-
-			AxeBuilder( driver ).analyze( ( results ) => {
-
-				const violations = results.violations;
-				const violationCount = violations.length;
-
-				expect( violationCount ).toEqual( 2 );
-				expect( violations[ 0 ].id ).toEqual( 'definition-list' );
-				expect( violations[ 1 ].id ).toEqual( 'dlitem' );
-
-				writeReport( 'index', results ).then( done );
+					expect( text ).toEqual( 'UK Regions' );
+					done();
+				} );
 			} );
 		} );
 	} );

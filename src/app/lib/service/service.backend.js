@@ -242,6 +242,36 @@ function getPostWinTable( req, postId ){
 }
 
 
+function getUkRegions( req ){
+
+	return getJson( '/mi/uk_regions/', req );
+}
+
+function getUkRegion( req, postId ){
+
+	return getJson( `/mi/uk_regions/${ postId }/`, req );
+}
+
+function getUkRegionMonths( req, postId ){
+
+	return getJson( `/mi/uk_regions/${ postId }/months/`, req, transformMonths );
+}
+
+function getUkRegionTopNonHvc( req, postId ){
+
+	return getJson( `/mi/uk_regions/${ postId }/top_non_hvcs/`, req );
+}
+
+function getUkRegionWinTable( req, postId ){
+
+	return getJson( `/mi/uk_regions/${ postId }/win_table/`, req, transformWinList ).then( ( data ) => {
+
+		data.results.uk_region = data.results.itt;
+		return data;
+	} );
+}
+
+
 function getOverseasRegions( req ){
 
 	return getJson( '/mi/os_regions/', req );
@@ -455,6 +485,28 @@ module.exports = {
 		} );
 	},
 
+	getUkRegions,
+	getUkRegion,
+	getUkRegionMonths,
+	getUkRegionTopNonHvc,
+	getUkRegionWinTable,
+
+	getUkRegionInfo: function( req, regionId ){
+
+		return getAll( 'getUkRegionInfo', [
+
+			getUkRegion( req, regionId ),
+			getUkRegionTopNonHvc( req, regionId ),
+
+		], function( data ){
+
+			return {
+				wins: data[ 0 ],
+				topNonHvc: data[ 1 ]
+			};
+		} );
+	},
+
 	getOverseasRegions,
 	getOverseasRegionGroups,
 	getOverseasRegion,
@@ -490,7 +542,8 @@ module.exports = {
 			getSectorTeams( req ),
 			getOverseasRegionGroups( req ),
 			getGlobalHvcs( req ),
-			getGlobalWins( req )
+			getGlobalWins( req ),
+			getUkRegions( req )
 
 		], function( data ){
 
@@ -498,7 +551,8 @@ module.exports = {
 				sectorTeams: data[ 0 ],
 				overseasRegionGroups: data[ 1 ],
 				globalHvcs: data[ 2 ],
-				globalWins: data[ 3 ]
+				globalWins: data[ 3 ],
+				ukRegions: data[ 4 ]
 			};
 		} );
 	},
