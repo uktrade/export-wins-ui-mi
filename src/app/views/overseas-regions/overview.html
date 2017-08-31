@@ -27,10 +27,10 @@
 		<caption class="visually-hidden">Overview of all regions performance</caption>
 		<thead>
 			<tr class="overseas-region-overview-data_headings">
-				<th class="overseas-region-overview-data_headings_heading" colspan="2">Regions<span class="visually-hidden"> (and countries)</span></th>
+				<th class="overseas-region-overview-data_headings_heading" colspan="2">Regions</th>
 				<th class="overseas-region-overview-data_headings_heading">HVC performance<span class="overseas-region-overview-data_headings_heading_sub">(each square equals 1 HVC)</span></th>
-				<th class="overseas-region-overview-data_headings_heading">Confirmed wins &pound;</th>
-				<th class="overseas-region-overview-data_headings_heading overseas-region-overview-data_headings_heading--target">HVC target &pound;</th>
+				<th class="overseas-region-overview-data_headings_heading">Confirmed wins</th>
+				<th class="overseas-region-overview-data_headings_heading overseas-region-overview-data_headings_heading--target">HVC target</th>
 				<th class="overseas-region-overview-data_headings_heading"><span class="visually-hidden">Value against target</span></th>
 				<th class="overseas-region-overview-data_headings_heading overseas-region-overview-data_headings_heading--hvc-non-hvc">
 					Confirmed<br>
@@ -75,15 +75,12 @@
 
 				<td class="{{ firstRowClass }}overseas-region-overview-data_cell overseas-region-overview-data_cell--name">
 					<a href="{{ urls.osRegion( region.id ) }}">{{ region.name }}</a>
-					<span class="overseas-region-overview-data_cell_countries">
-						{{- region.markets | pluralise( 'country', 'countries' ) -}}
-					</span>
 				</td>
 				<td class="{{ firstRowClass }}overseas-region-overview-data_cell overseas-region-overview-data_cell--performance">
 					{{- overviewBlocks( region.hvcPerformance ) -}}
 				</td>
 				<td class="{{ firstRowClass }}overseas-region-overview-data_cell overseas-region-overview-data_cell--current">
-					{{- currentValueOver( region.values.hvc ) -}}
+					&pound;{{- currentValueOver( region.values.hvc ) -}}
 				</td>
 				<td class="{{ firstRowClass }}overseas-region-overview-data_cell overseas-region-overview-data_cell--target">
 					&pound;{{ region.values.hvc.target | largeNumber -}}
