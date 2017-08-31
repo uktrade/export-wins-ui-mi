@@ -279,7 +279,6 @@ function getOverseasRegions( req ){
 
 function getOverseasRegionGroups( req ){
 
-	//return getOverseasRegions( req ).then( transformOsRegions );
 	return getJson( '/mi/os_region_groups/', req );
 }
 

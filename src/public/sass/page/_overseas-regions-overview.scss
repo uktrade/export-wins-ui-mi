@@ -60,10 +60,10 @@
 .overseas-region-overview-data_cell--name {
 	width: 20%;
 	@include core-14;
-	vertical-align: middle;
+	vertical-align: top;
+	padding-top: pem( 10, 14 );
 	padding-left: pem( 5, 14 );
 	padding-right: pem( 5, 14 );
-	// border-left: 2px solid $grey-2;
 }
 
 .overseas-region-overview-data_cell--performance {
@@ -79,7 +79,7 @@
 .overseas-region-overview-data_cell--target {
 	width: 13%;
 	text-align: right;
-	padding-bottom: 20px; //padding for the progress bar to line up text
+	padding-bottom: 22px; //padding for the progress bar to line up text
 }
 
 .overseas-region-overview-data_cell--progress {
@@ -89,11 +89,6 @@
 .overseas-region-overview-data_cell--hvc-non-hvc {
 	width: 12%;
 	text-align: center;
-}
-
-.overseas-region-overview-data_cell_countries {
-	display: block;
-	color: $grey-1;
 }
 
 .overseas-region-overview-data_cell--first-region {
