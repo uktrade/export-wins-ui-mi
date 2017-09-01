@@ -665,7 +665,7 @@ describe( 'Backend service', function(){
 				const regionStub = getBackendStub( stubFile );
 
 				const regionId = 'a-uk-region';
-				const transformResponse = { winListTransformer: true, results: { itt: regionStub.itt } };
+				const transformResponse = { winListTransformer: true, uk_region: regionStub.results.uk_region };
 
 				returnStub( stubFile );
 				winListSpy.and.callFake( () => transformResponse );
@@ -673,9 +673,6 @@ describe( 'Backend service', function(){
 				backendService.getUkRegionWinTable( req, regionId ).then( ( winList ) => {
 
 					checkBackendArgs( `/mi/uk_regions/${ regionId }/win_table/?year=${ year }`, req );
-
-					const transformedResults = Object.assign( {}, transformResponse );
-					transformedResults.results.uk_region = transformedResults.results.itt;
 
 					expect( winList.results ).toEqual( transformResponse );
 					expect( winListSpy ).toHaveBeenCalledWith( getBackendStub( stubFile ).results );
