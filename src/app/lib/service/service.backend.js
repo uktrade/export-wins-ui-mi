@@ -264,11 +264,7 @@ function getUkRegionTopNonHvc( req, postId ){
 
 function getUkRegionWinTable( req, postId ){
 
-	return getJson( `/mi/uk_regions/${ postId }/win_table/`, req, transformWinList ).then( ( data ) => {
-
-		data.results.uk_region = data.results.itt;
-		return data;
-	} );
+	return getJson( `/mi/uk_regions/${ postId }/win_table/`, req, transformWinList );
 }
 
 

@@ -729,7 +729,7 @@ if( config.backend.mock ){
 						supertest( app ).get( `/uk-regions/${ regionId }/wins/` ).end( ( err, res ) => {
 
 							checkResponse( res, 200 );
-							expect( getTitle( res ) ).toEqual( 'MI - UK Region HVC wins - nisi et minima' );
+							expect( getTitle( res ) ).toEqual( 'MI - UK Region HVC wins - ut ducimus dolorem' );
 							done();
 						} );
 					} );
@@ -747,7 +747,7 @@ if( config.backend.mock ){
 						supertest( app ).get( `/uk-regions/${ regionId }/non-hvc-wins/` ).end( ( err, res ) => {
 
 							checkResponse( res, 200 );
-							expect( getTitle( res ) ).toEqual( 'MI - UK Region non HVC wins - nisi et minima' );
+							expect( getTitle( res ) ).toEqual( 'MI - UK Region non HVC wins - ut ducimus dolorem' );
 							done();
 						} );
 					} );

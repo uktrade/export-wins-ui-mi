@@ -3,10 +3,10 @@
 	"title": "List of wins for uk region win table",
 
 	"type": "object",
-	"required": [ "itt", "wins" ],
+	"required": [ "uk_region", "wins" ],
 	"properties": {
 
-		"itt": {
+		"uk_region": {
 			"type": "object",
 			"required": [ "name", "id" ],
 			"properties": {

@@ -52,9 +52,9 @@ const stubs = [
 	[ 'posts/win_table', '/mi/posts/australia-melbourne/win_table/' ],
 
 	[ 'uk_regions/index', '/mi/uk_regions/' ],
-	[ 'uk_regions/region', '/mi/uk_regions/dit-yorkshire/' ],
-	[ 'uk_regions/win_table', '/mi/uk_regions/dit-yorkshire/win_table/' ],
-	[ 'uk_regions/top_non_hvcs', '/mi/uk_regions/dit-yorkshire/top_non_hvcs/' ]
+	[ 'uk_regions/region', '/mi/uk_regions/yorkshire-and-the-humber/' ],
+	[ 'uk_regions/win_table', '/mi/uk_regions/yorkshire-and-the-humber/win_table/' ],
+	[ 'uk_regions/top_non_hvcs', '/mi/uk_regions/yorkshire-and-the-humber/top_non_hvcs/' ]
 ];
 
 const years = [ 2016, 2017 ];
