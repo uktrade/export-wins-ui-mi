@@ -14,6 +14,7 @@ describe( 'isValidDate', function(){
 			fail( '2017-02-29' );
 			fail( '2017-02-31' );
 			fail( '2016-13-01' );
+			fail( 'some text' );
 		} );
 	} );
 
@@ -24,13 +25,25 @@ describe( 'isValidDate', function(){
 			expect( isValidDate( str ) ).toEqual( true );
 		}
 
-		it( 'Should return true', function(){
+		describe( 'With a full year', function(){
 
-			pass( '2017-01-01' );
-			pass( '2017-01-1' );
-			pass( '2016-06-06' );
-			pass( '2016-02-29' );//leap year
-			pass( '2017-02-28' );
+			it( 'Should return true', function(){
+
+				pass( '2017-01-01' );
+				pass( '2017-01-1' );
+				pass( '2016-06-06' );
+				pass( '2016-02-29' );//leap year
+				pass( '2017-02-28' );
+			} );
+		} );
+
+		describe( 'Without a full year', function(){
+
+			it( 'Should return true', function(){
+
+				pass( '16-06-06' );
+				pass( '75-06-06' );
+			} );
 		} );
 	} );
 } );

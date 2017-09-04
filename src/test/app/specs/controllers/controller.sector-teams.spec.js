@@ -7,6 +7,8 @@ const year = 2017;
 
 let backendService;
 let errorHandler;
+let sortWins;
+let sortWinsResponse;
 let sectorSummary;
 let hvcSummary;
 let hvcTargetPerformance;
@@ -20,8 +22,12 @@ describe( 'Sector Teams controller', function(){
 
 	beforeEach( function(){
 
+		sortWinsResponse = { some: 'wins' };
+
 		backendService = {};
 		errorHandler = { createHandler: spy( 'errorHandler.createHandler' ) };
+		sortWins = spy( 'sortWins', sortWinsResponse );
+
 		sectorSummary = {};
 		hvcSummary = {};
 		hvcTargetPerformance = {};
@@ -35,6 +41,7 @@ describe( 'Sector Teams controller', function(){
 		controller = proxyquire( '../../../../app/controllers/controller.sector-teams', {
 			'../lib/service/service.backend': backendService,
 			'../lib/render-error': errorHandler,
+			'../lib/sort-wins': sortWins,
 			'../lib/view-models/sector-summary': sectorSummary,
 			'../lib/view-models/sector-hvc-summary': hvcSummary,
 			'../lib/view-models/hvc-target-performance': hvcTargetPerformance,
@@ -178,25 +185,30 @@ describe( 'Sector Teams controller', function(){
 
 	describe( 'Wins', function(){
 
-		function checkWins( methodName, view ){
+		function checkWins( methodName, type, view ){
 
 			it( 'Should get the list of wins and render the correct view', function( done ){
 
 				const teamId = 456;
+				const sort = { some: 'sort', params: true };
 
 				const req = {
 					cookies: { sessionid: '456' },
 					params: {
 						id: teamId
 					},
-					year
+					year,
+					query: { sort }
 				};
 
 				const sectorTeamWins = {
 					date_range: { start: 2, end: 3 },
 					results: {
 						sector_team: { test: 1 },
-						wins: { wins: true }
+						wins: {
+							hvc: [ 'some HVC wins' ],
+							non_hvc: [ 'some non HVC wins' ]
+						}
 					}
 				};
 
@@ -210,17 +222,18 @@ describe( 'Sector Teams controller', function(){
 				promise.then( () => {
 					expect( backendService.getSectorTeamWinTable ).toHaveBeenCalledWith( req, teamId );
 					expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
+					expect( sortWins ).toHaveBeenCalledWith( sectorTeamWins.results.wins[ type ], sort );
 					expect( res.render ).toHaveBeenCalledWith( view, {
 						dateRange: sectorTeamWins.date_range,
 						sectorTeam: sectorTeamWins.results.sector_team,
-						wins: sectorTeamWins.results.wins
+						wins: sortWinsResponse
 					} );
 					done();
 				} );
 			} );
 		}
 
-		checkWins( 'wins', 'sector-teams/wins.html' );
-		checkWins( 'nonHvcWins', 'sector-teams/non-hvc-wins.html' );
+		checkWins( 'wins', 'hvc', 'sector-teams/wins.html' );
+		checkWins( 'nonHvcWins', 'non_hvc', 'sector-teams/non-hvc-wins.html' );
 	} );
 } );

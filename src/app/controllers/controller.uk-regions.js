@@ -1,10 +1,11 @@
 const backendService = require( '../lib/service/service.backend' );
 const errorHandler = require( '../lib/render-error' );
+const sortWins = require( '../lib/sort-wins' );
 
 const regionSummary = require( '../lib/view-models/uk-region-summary' );
 const topMarkets = require( '../lib/view-models/top-markets' );
 
-function getWins( view ){
+function getWins( view, type ){
 
 	return function( req, res ){
 
@@ -15,7 +16,7 @@ function getWins( view ){
 			res.render( view, {
 				dateRange: data.date_range,
 				region: data.results.uk_region,
-				wins: data.results.wins
+				wins: sortWins( data.results.wins[ type ], req.query.sort )
 			} );
 
 		} ).catch( errorHandler.createHandler( res ) );
@@ -50,6 +51,6 @@ module.exports = {
 		} ).catch( errorHandler.createHandler( res ) );
 	},
 
-	wins: getWins( 'uk-regions/wins.html' ),
-	nonHvcWins: getWins( 'uk-regions/non-hvc-wins.html' )
+	wins: getWins( 'uk-regions/wins.html', 'hvc' ),
+	nonHvcWins: getWins( 'uk-regions/non-hvc-wins.html', 'non_hvc' )
 };

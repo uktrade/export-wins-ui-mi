@@ -7,6 +7,8 @@ const year = 2017;
 
 let backendService;
 let errorHandler;
+let sortWins;
+let sortWinsResponse;
 
 let res;
 let controller;
@@ -21,8 +23,11 @@ describe( 'Countries controller', function(){
 
 	beforeEach( function(){
 
+		sortWinsResponse = { some: 'wins' };
+
 		backendService = {};
 		errorHandler = { createHandler: spy( 'errorHandler.createHandler' ) };
+		sortWins = spy( 'sortWins', sortWinsResponse );
 
 		sectorSummary = {};
 		hvcSummary = {};
@@ -37,6 +42,7 @@ describe( 'Countries controller', function(){
 		controller = proxyquire( '../../../../app/controllers/controller.countries', {
 			'../lib/service/service.backend': backendService,
 			'../lib/render-error': errorHandler,
+			'../lib/sort-wins': sortWins,
 			'../lib/view-models/sector-summary': sectorSummary,
 			'../lib/view-models/sector-hvc-summary': hvcSummary,
 			'../lib/view-models/hvc-target-performance': hvcTargetPerformance,
@@ -141,50 +147,56 @@ describe( 'Countries controller', function(){
 
 	describe( 'Win Lists', function(){
 
-		function checkWins( methodName, view ){
+		function checkWins( methodName, type, view ){
 
 			it( 'Should get the list of wins and render the correct view', function( done ){
 
-			const countryId = 890;
+				const countryId = 890;
+				const sort = { some: 'sort', params: true };
 
-			const req = {
-				cookies: { sessionid: '456' },
-				params: {
-					code: countryId
-				},
-				year
-			};
+				const req = {
+					cookies: { sessionid: '456' },
+					params: {
+						code: countryId
+					},
+					year,
+					query: { sort }
+				};
 
-			const countryWins = {
-				date_range: { start: 6, end: 9 },
-				results: {
-					country: { test: 1 },
-					wins: [ 'some wins' ]
-				}
-			};
+				const countryWins = {
+					date_range: { start: 6, end: 9 },
+					results: {
+						country: { test: 1 },
+						wins: {
+							hvc: [ 'some HVC wins' ],
+							non_hvc: [ 'some non HVC wins' ]
+						}
+					}
+				};
 
-			const promise = new Promise( ( resolve ) => { resolve( countryWins ); } );
+				const promise = new Promise( ( resolve ) => { resolve( countryWins ); } );
 
-			backendService.getCountryWinTable = spy( 'getCountryWinTable', promise );
-			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
+				backendService.getCountryWinTable = spy( 'getCountryWinTable', promise );
+				errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
 
-			controller[ methodName ]( req, res );
+				controller[ methodName ]( req, res );
 
-			promise.then( () => {
+				promise.then( () => {
 
-				expect( backendService.getCountryWinTable ).toHaveBeenCalledWith( req, countryId );
-				expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
-				expect( res.render ).toHaveBeenCalledWith( view, {
-					dateRange: countryWins.date_range,
-					country: countryWins.results.country,
-					wins: countryWins.results.wins
+					expect( backendService.getCountryWinTable ).toHaveBeenCalledWith( req, countryId );
+					expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
+					expect( sortWins ).toHaveBeenCalledWith( countryWins.results.wins[ type ], sort );
+					expect( res.render ).toHaveBeenCalledWith( view, {
+						dateRange: countryWins.date_range,
+						country: countryWins.results.country,
+						wins: sortWinsResponse
+					} );
+					done();
 				} );
-				done();
 			} );
-		} );
 		}
 
-		checkWins( 'wins', 'countries/wins.html' );
-		checkWins( 'nonHvcWins', 'countries/non-hvc-wins.html' );
+		checkWins( 'wins', 'hvc', 'countries/wins.html' );
+		checkWins( 'nonHvcWins', 'non_hvc', 'countries/non-hvc-wins.html' );
 	} );
 } );

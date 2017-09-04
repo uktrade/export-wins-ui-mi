@@ -1,0 +1,90 @@
+{% macro tableHeadingClass( key, sortKey, sortDir ) -%}
+	win-table_head_cell{% if key === sortKey %} win-table_head_cell--sorted-{{ sortDir }}{% endif %}
+{%- endmacro %}
+
+{% macro winTable( wins, hvc=false, nonHvc=false ) %}
+{% set currentUrl = urls.current() %}
+<div class="grid-row">
+	<div class="column-single">
+		<table class="win-table win-table--{% if hvc %}hvc{% else %}non-hvc{% endif %}">
+			<caption class="visually-hidden">
+				{% if nonHvc %}Non {% endif %} HVC wins, sorted by {{ wins.sortName }} {{ wins.sortDirName }}
+			</caption>
+			<thead>
+				<tr class="win-table_head_row">
+					<th class="{{ tableHeadingClass( 'company', wins.sortKey, wins.sortDir ) }}">
+						<a href="{{ urls.addSort( currentUrl, 'company', wins.sortKey, wins.sortDir ) }}" class="win-table_head_cell_link win-table_head_cell_double-heading" title="Sort by Company name">
+							Company Name<span class="visually-hidden"> and </span>
+							<span class="win-table_head_cell_sub-heading">CDMS ref</span>
+						</a>
+					</th>
+					{%- if hvc %}
+					<th class="{{ tableHeadingClass( 'hvc', wins.sortKey, wins.sortDir ) }}">
+						<a href="{{ urls.addSort( currentUrl, 'hvc', wins.sortKey, wins.sortDir ) }}" class="win-table_head_cell_link" title="Sort by HVC Code">
+							HVC
+						</a>
+					</th>
+					{%- endif %}
+					<th class="{{ tableHeadingClass( 'officer', wins.sortKey, wins.sortDir ) }}">
+						<a href="{{ urls.addSort( currentUrl, 'officer', wins.sortKey, wins.sortDir ) }}" class="win-table_head_cell_link" title="Sort by Lead officer">
+							Lead officer
+						</a>
+					</th>
+					<th class="win-table_head_cell win-table_head_cell--credited">
+						Credited to sector team
+					</th>
+					<th class="{{ tableHeadingClass( 'date', wins.sortKey, wins.sortDir ) }} win-table_head_cell--date">
+						<a href="{{ urls.addSort( currentUrl, 'date', wins.sortKey, wins.sortDir ) }}" class="win-table_head_cell_link" title="Sort by Win date">
+							Win date
+						</a>
+					</th>
+					<th class="{{ tableHeadingClass( 'value', wins.sortKey, wins.sortDir ) }}">
+						<a href="{{ urls.addSort( currentUrl, 'value', wins.sortKey, wins.sortDir ) }}" class="win-table_head_cell_link" title="Sort by Export value">
+							Export value
+						</a>
+					</th>
+					<th class="{{ tableHeadingClass( 'status', wins.sortKey, wins.sortDir ) }}">
+						<a href="{{ urls.addSort( currentUrl, 'status', wins.sortKey, wins.sortDir ) }}" class="win-table_head_cell_link" title="Sort by Status">
+							Status
+						</a>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+			{%- for win in wins %}
+
+				<tr class="win-table_body_row">
+					<td class="win-table_cell win-table_cell--company">
+						<span class="win-table_cell_company-name">{{ win.company.name }}</span>
+						<span class="win-table_cell_cdms-ref" title="{{ win.company.cdms_id }}">{{ win.company.truncated_cdms_id }}</span>
+					</td>
+					{%- if hvc %}
+					<td class="win-table_cell win-table_cell--hvc">
+						<span class="win-table_cell_hvc">HVC: </span>{{ win.hvc.code }}
+						<span class="win-table_cell_hvc-name">{{ win.hvc.name }}</span>
+					</td>
+					{% endif -%}
+					<td class="win-table_cell win-table_cell--officer">
+						{{- win.lead_officer.name -}}
+					</td>
+					<td class="win-table_cell win-table_cell--credited">
+						<span class="win-table_cell_credit-name win-table_cell_credit-name--{{ win.credit.modifyer }}">
+							{{- win.credit.name -}}
+						</span>
+					</td>
+					<td class="win-table_cell win-table_cell--date">{{ win.win_date | dateOnly }}</td>
+					<td class="win-table_cell win-table_cell--export">
+						&pound;{{ win.export_amount | largeNumber }}
+					</td>
+					<td class="win-table_cell win-table_cell--status win-table_cell--status-{{ win.status.modifyer }}">
+						{{- win.status.name -}}
+					</td>
+				</tr>
+
+			{%- endfor %}
+			</tbody>
+		</table>
+
+	</div>
+</div>
+{% endmacro %}

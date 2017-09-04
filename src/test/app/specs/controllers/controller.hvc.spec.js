@@ -4,27 +4,29 @@ const createErrorHandler = require( '../../helpers/create-error-handler' );
 const getBackendStub = require( '../../helpers/get-backend-stub' );
 const spy = require( '../../helpers/spy' );
 
-let res;
 let viewModel;
-let errorHandler;
-
 let backendService;
+let errorHandler;
+let sortWins;
+let sortWinsResponse;
 
 let hvcDetail;
 let topMarkets;
-let hvcWins;
 
 let topMaketsModel;
-let hvcWinsViewModel;
 
+let res;
 let controller;
 
 describe( 'HVC controller', function(){
 
 	beforeEach( function(){
 
+		sortWinsResponse = { some: 'wins' };
+
 		backendService = {};
 		viewModel = {};
+		sortWins = spy( 'sortWins', sortWinsResponse );
 		topMaketsModel = { test: 1 };
 
 		hvcDetail = {
@@ -32,9 +34,6 @@ describe( 'HVC controller', function(){
 		};
 		topMarkets = {
 			create: spy( 'view-models.top-markets.create', topMaketsModel )
-		};
-		hvcWins = {
-			create: spy( 'view-models.hvc-wins.create', hvcWinsViewModel )
 		};
 		res = {
 			render: spy( 'res.render' )
@@ -46,9 +45,9 @@ describe( 'HVC controller', function(){
 		controller = proxyquire( '../../../../app/controllers/controller.hvc', {
 			'../lib/service/service.backend': backendService,
 			'../lib/render-error': errorHandler,
+			'../lib/sort-wins': sortWins,
 			'../lib/view-models/hvc-detail': hvcDetail,
-			'../lib/view-models/top-markets': topMarkets,
-			'../lib/view-models/hvc-wins': hvcWins
+			'../lib/view-models/top-markets': topMarkets
 		} );
 	} );
 
@@ -94,17 +93,28 @@ describe( 'HVC controller', function(){
 
 		it( 'Should get the list of HVC wins and render the correct view', function( done ){
 
-			const winList = { winList: true };
 			const hvcId = 1234;
+			const sort = { some: 'sort', params: true };
 			const req = {
 				params: {
 					id: hvcId
+				},
+				query: { sort }
+			};
+
+			const hvcWins = {
+				date_range: { start: 6, end: 9 },
+				results: {
+					hvc: { test: 1 },
+					wins: {
+						hvc: [ 'some HVC wins' ]
+					}
 				}
 			};
 
 			let promise = new Promise( ( resolve ) => {
 
-				resolve( winList );
+				resolve( hvcWins );
 			} );
 
 			backendService.getHvcWinList = spy( 'getHvcWinList', promise );
@@ -115,10 +125,13 @@ describe( 'HVC controller', function(){
 			promise.then( function(){
 
 				expect( backendService.getHvcWinList ).toHaveBeenCalledWith( req, hvcId );
-				expect( hvcWins.create ).toHaveBeenCalledWith( winList );
-
-				expect( res.render ).toHaveBeenCalledWith( 'hvc/wins.html', hvcWinsViewModel );
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
+				expect( sortWins ).toHaveBeenCalledWith( hvcWins.results.wins.hvc, sort );
+				expect( res.render ).toHaveBeenCalledWith( 'hvc/wins.html', {
+					dateRange: hvcWins.date_range,
+					hvc: hvcWins.results.hvc,
+					wins: sortWinsResponse
+				} );
 				done();
 			} );
 		} );

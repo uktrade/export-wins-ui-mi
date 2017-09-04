@@ -1,6 +1,7 @@
 
 const backendService = require( '../lib/service/service.backend' );
 const renderError = require( '../lib/render-error' );
+const sortWins = require( '../lib/sort-wins' );
 
 const hvcTargetPerformance = require( '../lib/view-models/hvc-target-performance' );
 const sectorSummary = require( '../lib/view-models/sector-summary' );
@@ -8,7 +9,7 @@ const hvcSummary = require( '../lib/view-models/sector-hvc-summary' );
 const topMarkets = require( '../lib/view-models/top-markets' );
 const monthlyPerformance = require( '../lib/view-models/monthly-performance' );
 
-function getWins( view ){
+function getWins( view, type ){
 
 	return function( req, res ){
 
@@ -19,7 +20,7 @@ function getWins( view ){
 			res.render( view, {
 				dateRange: data.date_range,
 				region: data.results.os_region,
-				wins: data.results.wins
+				wins: sortWins( data.results.wins[ type ], req.query.sort )
 			} );
 
 		} ).catch( renderError.createHandler( res ) );
@@ -68,6 +69,6 @@ module.exports = {
 		} ).catch( renderError.createHandler( res ) );
 	},
 
-	wins: getWins( 'overseas-regions/wins.html' ),
-	nonHvcWins: getWins( 'overseas-regions/non-hvc-wins.html' )
+	wins: getWins( 'overseas-regions/wins.html', 'hvc' ),
+	nonHvcWins: getWins( 'overseas-regions/non-hvc-wins.html', 'non_hvc' )
 };

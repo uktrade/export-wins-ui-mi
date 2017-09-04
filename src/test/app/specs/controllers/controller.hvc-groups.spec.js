@@ -2,6 +2,10 @@ const proxyquire = require( 'proxyquire' );
 
 const backendService = {};
 const errorHandler = {};
+
+let sortWins;
+let sortWinsResponse;
+
 const sectorSummary = {};
 const hvcSummary = {};
 const hvcTargetPerformance = {};
@@ -17,11 +21,15 @@ describe( 'HVC Groups controller', function(){
 
 	beforeEach( function(){
 
+		sortWinsResponse = { some: 'wins' };
+
 		errorHandler.createHandler = jasmine.createSpy( 'createHandler' );
+		sortWins = spy( 'sortWins', sortWinsResponse );
 
 		controller = proxyquire( '../../../../app/controllers/controller.hvc-groups', {
 			'../lib/service/service.backend': backendService,
 			'../lib/render-error': errorHandler,
+			'../lib/sort-wins': sortWins,
 			'../lib/view-models/sector-summary': sectorSummary,
 			'../lib/view-models/sector-hvc-summary': hvcSummary,
 			'../lib/view-models/hvc-target-performance': hvcTargetPerformance,
@@ -137,13 +145,15 @@ describe( 'HVC Groups controller', function(){
 		it( 'Should get the list of wins and render the correct view', function( done ){
 
 			const groupId = 123;
+			const sort = { some: 'sort', params: true };
 
 			const req = {
 				cookies: { sessionid: '123' },
 				params: {
 					id: groupId
 				},
-				year
+				year,
+				query: { sort }
 			};
 
 			const res = {
@@ -171,12 +181,13 @@ describe( 'HVC Groups controller', function(){
 			promise.then( () => {
 
 				expect( backendService.getHvcGroupWinTable ).toHaveBeenCalledWith( req, groupId );
+				expect( errorHandler.createHandler ).toHaveBeenCalled();
+				expect( sortWins ).toHaveBeenCalledWith( hvcGroupWins.results.wins.hvc, sort );
 				expect( res.render ).toHaveBeenCalledWith( 'hvc-groups/wins.html', {
 					dateRange: hvcGroupWins.date_range,
 					hvcGroup: hvcGroupWins.results.hvc_group,
-					wins: hvcGroupWins.results.wins
+					wins: sortWinsResponse
 				} );
-				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				done();
 			} );
 		} );

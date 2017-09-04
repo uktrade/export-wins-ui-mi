@@ -191,7 +191,7 @@ describe( 'Sector Pie Charts data data set', function(){
 
 			it( 'Should return the correct structure', function(){
 
-				const output = dataset.create( input );
+				const output = dataset.createForNumber( input );
 
 				expect( output.hvcNonHvcValue.hvc ).toEqual( 34 );
 				expect( output.hvcNonHvcValue.nonHvc ).toEqual( 66 );
@@ -205,7 +205,7 @@ describe( 'Sector Pie Charts data data set', function(){
 
 			it( 'Should return the correct structure', function(){
 
-				const output = dataset.create( inputHvcGroup );
+				const output = dataset.createForNumber( inputHvcGroup );
 
 				expect( output.hvcNonHvcValue ).not.toBeDefined();
 
@@ -219,7 +219,7 @@ describe( 'Sector Pie Charts data data set', function(){
 			it( 'Should return values', function(){
 
 				const zeroHvcGroup = getBackendStub( '/hvc_groups/group_zero-values' );
-				const output = dataset.create( zeroHvcGroup.results );
+				const output = dataset.createForNumber( zeroHvcGroup.results );
 
 				expect( output.confirmedUnconfirmedValue.confirmed ).toEqual( 0 );
 				expect( output.confirmedUnconfirmedValue.unconfirmed ).toEqual( 0 );
@@ -233,7 +233,7 @@ describe( 'Sector Pie Charts data data set', function(){
 				function createDatSet(){
 
 					const stub = getBackendStub( '/sector_teams/sector_team' );
-					dataset.create( stub.results );
+					dataset.createForNumber( stub.results );
 				}
 
 				expect( createDatSet ).not.toThrow();
@@ -244,7 +244,7 @@ describe( 'Sector Pie Charts data data set', function(){
 
 			it( 'Should return all zeros', function(){
 
-				const data = dataset.create( inputZeros );
+				const data = dataset.createForNumber( inputZeros );
 
 				expect( data.hvcNonHvcValue.hvc ).toEqual( 0 );
 				expect( data.hvcNonHvcValue.nonHvc ).toEqual( 0 );
