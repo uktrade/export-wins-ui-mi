@@ -2,6 +2,8 @@ const backendService = require( '../lib/service/service.backend' );
 const renderError = require( '../lib/render-error' );
 const reporter = require( '../lib/reporter' );
 
+const SESSION_COOKIE = 'sessionid=';
+
 module.exports = {
 
 	acs: function( req, res ){
@@ -9,8 +11,19 @@ module.exports = {
 		backendService.sendSamlXml( req ).then( ( info ) => {
 
 			const response = info.response;
+			const cookies = response.headers[ 'set-cookie' ];
+			const sessionCookie = cookies.reduce( ( str, cookie ) => {
 
-			res.set( 'Set-Cookie', response.headers[ 'set-cookie' ] );
+				if( cookie.startsWith( SESSION_COOKIE ) ){
+
+					return cookie;
+				}
+
+				return str;
+
+			}, '' );
+
+			res.set( 'Set-Cookie', [ sessionCookie ] );
 			res.redirect( '/' );
 
 		} ).catch( ( e ) => {
