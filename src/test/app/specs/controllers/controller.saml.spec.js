@@ -65,7 +65,7 @@ describe( 'SAML controller', function(){
 						resolve( {
 							response: {
 								headers: {
-									'set-cookie': [ setCookieResponse ]
+									'set-cookie': [ setCookieResponse, 'other-cookie=test' ]
 								}
 							}
 						} );

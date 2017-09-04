@@ -785,7 +785,7 @@ if( config.backend.mock ){
 				const response = 'test';
 
 				interceptBackend.post( '/saml2/acs/', xml ).reply( 200, response, {
-					'Set-Cookie': 'sessionid=test'
+					'Set-Cookie': [ 'sessionid=test' ]
 				} );
 
 				supertest( app ).post( '/saml2/acs/' ).end( ( err, res ) => {
