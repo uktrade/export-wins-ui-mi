@@ -1,5 +1,4 @@
-{% from 'macros/win-table-hvc.html' import hvcWinTable %}
-{% from 'macros/win-table-non-hvc.html' import nonHvcWinTable %}
+{% from 'macros/win-table.html' import winTable %}
 
 {% macro winMessage( winCount ) %}
 	<p>
@@ -14,7 +13,7 @@
 		{% if hvcWins.length %}
 
 			{{ winMessage( hvcWins.length ) }}
-			{{ hvcWinTable( hvcWins ) }}
+			{{ winTable( hvcWins, hvc=true ) }}
 
 		{%- else -%}
 
@@ -27,7 +26,7 @@
 		{% if nonHvcWins.length %}
 
 			{{ winMessage( nonHvcWins.length ) }}
-			{{ nonHvcWinTable( nonHvcWins ) }}
+			{{ winTable( nonHvcWins, nonHvc=true ) }}
 
 		{%- else -%}
 

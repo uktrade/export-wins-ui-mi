@@ -162,6 +162,57 @@ describe( 'urls middleware', function(){
 		} );
 	} );
 
+	describe( 'addSort', function(){
+
+		function checkWithAndWithoutParams( key, inputKey, inputDir, outputDir ){
+
+			const url = '/my/test/params/';
+			const paramUrl = ( url + '?a=1&b=2' );
+			const sortParams = `sort[key]=${ key }&sort[dir]=${ outputDir }`;
+
+			expect( middleware( req ).addSort( url, key, inputKey, inputDir ) ).toEqual( url + '?' + sortParams );
+			expect( middleware( req ).addSort( paramUrl, key, inputKey, inputDir ) ).toEqual( paramUrl + '&' + sortParams );
+		}
+
+		describe( 'When the key is the same as the sort key', function(){
+
+			const key = 'company';
+			const inputKey = key;
+
+			describe( 'When the sort dir is ascending', function(){
+
+				it( 'Should set the sort dir to descending', function(){
+
+					checkWithAndWithoutParams( key, inputKey, 'asc', 'desc' );
+				} );
+			} );
+
+			describe( 'When the sort key is descending', function(){
+
+				it( 'Should set the sort key to ascending', function(){
+
+					checkWithAndWithoutParams( key, inputKey, 'desc', 'asc' );
+				} );
+			} );
+		} );
+
+		describe( 'When the key is not the same as the sort key', function(){
+
+			it( 'Should set the sort dir as ascending', function(){
+
+				checkWithAndWithoutParams( 'date', 'company', 'asc', 'asc' );
+			} );
+		} );
+	} );
+
+	describe( 'Current', function(){
+
+		it( 'Should return the current URL', function(){
+
+			checkFilteredUrls( req, 'current', [], req.url );
+		} );
+	} );
+
 	describe( 'Sector Teams', function(){
 
 		it( 'Should return the correct URLs', function(){
@@ -223,6 +274,14 @@ describe( 'urls middleware', function(){
 			checkFilteredUrls( req, 'osRegion', [ 1 ], '/overseas-regions/1/' );
 			checkFilteredUrls( req, 'osRegionWins', [ 2 ], '/overseas-regions/2/wins/' );
 			checkFilteredUrls( req, 'osRegionNonHvcWins', [ 3 ], '/overseas-regions/3/non-hvc-wins/' );
+		} );
+
+		describe( 'Sorted win tables', function(){
+
+			it( 'Should return the correct URLs', function(){
+
+
+			} );
 		} );
 	} );
 

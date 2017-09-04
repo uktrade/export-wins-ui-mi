@@ -1,6 +1,7 @@
 
 const backendService = require( '../lib/service/service.backend' );
 const renderError = require( '../lib/render-error' );
+const sortWins = require( '../lib/sort-wins' );
 
 const hvcTargetPerformance = require( '../lib/view-models/hvc-target-performance' );
 const sectorSummary = require( '../lib/view-models/sector-summary' );
@@ -45,7 +46,7 @@ module.exports = {
 			res.render( 'hvc-groups/wins.html', {
 				dateRange: data.date_range,
 				hvcGroup: data.results.hvc_group,
-				wins: data.results.wins
+				wins: sortWins( data.results.wins.hvc, req.query.sort )
 			} );
 
 		} ).catch( renderError.createHandler( res ) );

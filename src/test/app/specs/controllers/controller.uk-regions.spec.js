@@ -7,6 +7,8 @@ const year = 2017;
 
 let backendService;
 let errorHandler;
+let sortWins;
+let sortWinsResponse;
 
 let res;
 let controller;
@@ -18,8 +20,11 @@ describe( 'UK Regions controller', function(){
 
 	beforeEach( function(){
 
+		sortWinsResponse = { some: 'wins' };
+
 		backendService = {};
 		errorHandler = { createHandler: spy( 'errorHandler.createHandler' ) };
+		sortWins = spy( 'sortWins', sortWinsResponse );
 
 		regionSummary = {};
 		topMarkets = {};
@@ -31,6 +36,7 @@ describe( 'UK Regions controller', function(){
 		controller = proxyquire( '../../../../app/controllers/controller.uk-regions', {
 			'../lib/service/service.backend': backendService,
 			'../lib/render-error': errorHandler,
+			'../lib/sort-wins': sortWins,
 			'../lib/view-models/uk-region-summary': regionSummary,
 			'../lib/view-models/top-markets': topMarkets
 		} );
@@ -122,50 +128,53 @@ describe( 'UK Regions controller', function(){
 
 	describe( 'Win Lists', function(){
 
-		function checkWins( methodName, view ){
+		function checkWins( methodName, type, view ){
 
 			it( 'Should get the list of wins and render the correct view', function( done ){
 
-			const regionId = 890;
+				const regionId = 890;
+				const sort = { some: 'sort', params: true };
 
-			const req = {
-				cookies: { sessionid: '456' },
-				params: {
-					id: regionId
-				},
-				year
-			};
+				const req = {
+					cookies: { sessionid: '456' },
+					params: {
+						id: regionId
+					},
+					year,
+					query: { sort }
+				};
 
-			const ukRegionWins = {
-				date_range: { start: 6, end: 9 },
-				results: {
-					uk_region: { test: 1 },
-					wins: [ 'some wins' ]
-				}
-			};
+				const ukRegionWins = {
+					date_range: { start: 6, end: 9 },
+					results: {
+						uk_region: { test: 1 },
+						wins: [ 'some wins' ]
+					}
+				};
 
-			const promise = new Promise( ( resolve ) => { resolve( ukRegionWins ); } );
+				const promise = new Promise( ( resolve ) => { resolve( ukRegionWins ); } );
 
-			backendService.getUkRegionWinTable = spy( 'getUkRegionWinTable', promise );
-			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
+				backendService.getUkRegionWinTable = spy( 'getUkRegionWinTable', promise );
+				errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
 
-			controller[ methodName ]( req, res );
+				controller[ methodName ]( req, res );
 
-			promise.then( () => {
+				promise.then( () => {
 
-				expect( backendService.getUkRegionWinTable ).toHaveBeenCalledWith( req, regionId );
-				expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
-				expect( res.render ).toHaveBeenCalledWith( view, {
-					dateRange: ukRegionWins.date_range,
-					region: ukRegionWins.results.uk_region,
-					wins: ukRegionWins.results.wins
+					expect( backendService.getUkRegionWinTable ).toHaveBeenCalledWith( req, regionId );
+					expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
+					expect( sortWins ).toHaveBeenCalledWith( ukRegionWins.results.wins[ type ], sort );
+					expect( res.render ).toHaveBeenCalledWith( view, {
+						dateRange: ukRegionWins.date_range,
+						region: ukRegionWins.results.uk_region,
+						wins: sortWinsResponse
+					} );
+					done();
 				} );
-				done();
 			} );
-		} );
 		}
 
-		checkWins( 'wins', 'uk-regions/wins.html' );
-		checkWins( 'nonHvcWins', 'uk-regions/non-hvc-wins.html' );
+		checkWins( 'wins', 'hvc', 'uk-regions/wins.html' );
+		checkWins( 'nonHvcWins', 'non_hvc', 'uk-regions/non-hvc-wins.html' );
 	} );
 } );

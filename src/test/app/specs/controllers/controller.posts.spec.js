@@ -7,6 +7,8 @@ const year = 2017;
 
 let backendService;
 let errorHandler;
+let sortWins;
+let sortWinsResponse;
 
 let res;
 let controller;
@@ -21,8 +23,11 @@ describe( 'Posts controller', function(){
 
 	beforeEach( function(){
 
+		sortWinsResponse = { some: 'wins' };
+
 		backendService = {};
 		errorHandler = { createHandler: spy( 'errorHandler.createHandler' ) };
+		sortWins = spy( 'sortWins', sortWinsResponse );
 
 		sectorSummary = {};
 		hvcSummary = {};
@@ -37,6 +42,7 @@ describe( 'Posts controller', function(){
 		controller = proxyquire( '../../../../app/controllers/controller.posts', {
 			'../lib/service/service.backend': backendService,
 			'../lib/render-error': errorHandler,
+			'../lib/sort-wins': sortWins,
 			'../lib/view-models/sector-summary': sectorSummary,
 			'../lib/view-models/sector-hvc-summary': hvcSummary,
 			'../lib/view-models/hvc-target-performance': hvcTargetPerformance,
@@ -141,50 +147,53 @@ describe( 'Posts controller', function(){
 
 	describe( 'Win Lists', function(){
 
-		function checkWins( methodName, view ){
+		function checkWins( methodName, type, view ){
 
 			it( 'Should get the list of wins and render the correct view', function( done ){
 
-			const postId = 890;
+				const postId = 890;
+				const sort = { some: 'sort', params: true };
 
-			const req = {
-				cookies: { sessionid: '456' },
-				params: {
-					id: postId
-				},
-				year
-			};
+				const req = {
+					cookies: { sessionid: '456' },
+					params: {
+						id: postId
+					},
+					year,
+					query: { sort }
+				};
 
-			const postWins = {
-				date_range: { start: 6, end: 9 },
-				results: {
-					post: { test: 1 },
-					wins: [ 'some wins' ]
-				}
-			};
+				const postWins = {
+					date_range: { start: 6, end: 9 },
+					results: {
+						post: { test: 1 },
+						wins: [ 'some wins' ]
+					}
+				};
 
-			const promise = new Promise( ( resolve ) => { resolve( postWins ); } );
+				const promise = new Promise( ( resolve ) => { resolve( postWins ); } );
 
-			backendService.getPostWinTable = spy( 'getPostWinTable', promise );
-			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
+				backendService.getPostWinTable = spy( 'getPostWinTable', promise );
+				errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
 
-			controller[ methodName ]( req, res );
+				controller[ methodName ]( req, res );
 
-			promise.then( () => {
+				promise.then( () => {
 
-				expect( backendService.getPostWinTable ).toHaveBeenCalledWith( req, postId );
-				expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
-				expect( res.render ).toHaveBeenCalledWith( view, {
-					dateRange: postWins.date_range,
-					post: postWins.results.post,
-					wins: postWins.results.wins
+					expect( backendService.getPostWinTable ).toHaveBeenCalledWith( req, postId );
+					expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
+					expect( sortWins ).toHaveBeenCalledWith( postWins.results.wins[ type ], sort );
+					expect( res.render ).toHaveBeenCalledWith( view, {
+						dateRange: postWins.date_range,
+						post: postWins.results.post,
+						wins: sortWinsResponse
+					} );
+					done();
 				} );
-				done();
 			} );
-		} );
 		}
 
-		checkWins( 'wins', 'posts/wins.html' );
-		checkWins( 'nonHvcWins', 'posts/non-hvc-wins.html' );
+		checkWins( 'wins', 'hvc', 'posts/wins.html' );
+		checkWins( 'nonHvcWins', 'non_hvc', 'posts/non-hvc-wins.html' );
 	} );
 } );

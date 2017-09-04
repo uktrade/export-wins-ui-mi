@@ -23,9 +23,22 @@
 $win-table-cell-padding: 5;
 
 .win-table_head_cell {
-	padding: pem( 5 ) pem( $win-table-cell-padding );
+
+	padding: pem( 8 ) pem( $win-table-cell-padding );
 	font-size: 95%;
 	text-align: left;
+}
+
+.win-table_head_cell--sorted-asc {
+	&:after {
+		content: "\00a0\00a0\25B2";
+	}
+}
+
+.win-table_head_cell--sorted-desc {
+	&:after {
+		content: "\00a0\00a0\25BC";
+	}
 }
 
 .win-table_head_cell--credited,
@@ -33,11 +46,23 @@ $win-table-cell-padding: 5;
 	text-align: center;
 }
 
+.win-table_head_cell_double-heading {
+	float: left;
+}
+
 .win-table_head_cell_sub-heading {
 	color: $grey-1;
 	font-size: 90%;
 	display: block;
 	padding-top: pem( 3, 14 );
+}
+
+.win-table_head_cell_link,
+.win-table_head_cell_link:visited,
+.win-table_head_cell_link:hover,
+.win-table_head_cell_link:link {
+	text-decoration: none;
+	color: #000;
 }
 
 .win-table_cell {
@@ -137,19 +162,6 @@ $win-table-cell-padding: 5;
 .win-table_cell_hvc-name {
 	display: block;
 	padding-top: pem( 5 );
-}
-
-.win-table_cell_officer-details {
-	margin: 0;
-}
-
-.win-table_cell_officer-details_value {
-	margin: 0;
-}
-
-.win-table_cell_officer-details_value--sub {
-	color: $grey-1;
-	font-size: 90%;
 }
 
 .win-table_cell_credit-name {

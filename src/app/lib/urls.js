@@ -16,6 +16,15 @@ function getParams( obj ){
 	return r;
 }
 
+function addSort( url, key, sortedKey, sortedDir ){
+
+	const separator = ( ~url.indexOf( '?' ) ? '&' : '?' );
+	const isSortedKey = ( sortedKey === key );
+	const sortDir = ( isSortedKey ? ( sortedDir === 'asc' ? 'desc' : 'asc' ) : 'asc' );
+
+	return ( url + separator + `sort[key]=${ key }&sort[dir]=${ sortDir }` );
+}
+
 module.exports = function( req ){
 
 	const currentUrl = url.parse( req.url ).pathname;
@@ -39,6 +48,8 @@ module.exports = function( req ){
 	}
 
 	return {
+		addSort,
+
 		email: () => `mailto:${ config.feedbackEmail }`,
 		survey: () => config.feedbackSurvey,
 
@@ -56,6 +67,8 @@ module.exports = function( req ){
 
 			return path;
 		},
+
+		current: () => filteredUrl( currentUrl ),
 
 		currentForYear: ( year ) => {
 

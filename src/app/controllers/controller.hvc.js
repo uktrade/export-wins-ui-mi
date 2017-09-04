@@ -1,10 +1,10 @@
 
 const backendService = require( '../lib/service/service.backend' );
 const renderError = require( '../lib/render-error' );
+const sortWins = require( '../lib/sort-wins' );
 
 const hvcDetail = require( '../lib/view-models/hvc-detail' );
 const topMarkets = require( '../lib/view-models/top-markets' );
-const hvcWins = require( '../lib/view-models/hvc-wins' );
 
 module.exports = {
 
@@ -27,9 +27,13 @@ module.exports = {
 
 		const hvcId = req.params.id;
 
-		backendService.getHvcWinList( req, hvcId ).then( ( winList ) => {
+		backendService.getHvcWinList( req, hvcId ).then( ( data ) => {
 
-			res.render( 'hvc/wins.html', hvcWins.create( winList ) );
+			res.render( 'hvc/wins.html', {
+				dateRange: data.date_range,
+				hvc: data.results.hvc,
+				wins: sortWins( data.results.wins.hvc, req.query.sort )
+			} );
 
 		} ).catch( renderError.createHandler( res ) );
 	}
