@@ -1,6 +1,6 @@
 {
   "name": "export-wins-ui-mi",
-  "version": "5.10.2",
+  "version": "5.10.3",
   "dependencies": {
     "@uktrade/trade_elements": {
       "version": "3.1.3",

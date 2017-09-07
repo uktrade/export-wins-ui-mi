@@ -129,9 +129,7 @@
 {%- block pageScript %}
 <script>
 	mi.pages.sector({
-		isOver: '{{ hvcSummary.progress.over }}',
-		confirmedPercent: '{{ hvcSummary.progress.confirmed }}',
-		unconfirmedPercent: '{{ hvcSummary.progress.unconfirmed }}'
+		progress: {{ hvcSummary.progress | dump | safe }}
 	});
 </script>
 {% endblock pageScript -%}

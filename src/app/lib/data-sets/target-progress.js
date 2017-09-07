@@ -7,25 +7,16 @@ function createGetPercent( target ){
 
 		return function getPercent( num ){
 
-			let percent;
-			let over = false;
+			const percent = Math.round( ( parts * num ).toFixed( 2 ) );
+			const over = ( num > target );
+			const capped = ( over ? 100 : percent );
 
-			if( num > target ){
-
-				percent = 100;
-				over = true;
-
-			} else {
-
-				percent = Number( ( parts * num ).toFixed( 2 ) );
-			}
-
-			return {	percent, over };
+			return { capped, percent, over };
 		};
 
 	} else {
 
-		return () => ( { percent: 0, over: false } );
+		return () => ( { capped: 0, percent: 0, over: false } );
 	}
 }
 
@@ -43,8 +34,8 @@ module.exports = {
 		const overModifyer = ( over ? ( confirmed.over ? 'confirmed' :  'unconfirmed' ) : null );
 
 		return {
-			confirmed: confirmed.percent,
-			unconfirmed: unconfirmed.percent,
+			confirmed,
+			unconfirmed,
 			over,
 			overModifyer
 		};
