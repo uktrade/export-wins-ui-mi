@@ -1,0 +1,37 @@
+{% macro regionPerformanceTable( items ) %}
+	{% if not items.length %}
+		<p>
+			No wins have been recorded yet.
+		</p>
+	{% else %}
+	<table class="region-performance-table">
+		<caption></caption>
+		<thead>
+			<tr>
+				<th class="region-performance-table_heading">Type</th>
+				<th class="region-performance-table_heading region-performance-table_heading--total-wins">Total wins</th>
+				<th class="region-performance-table_heading">Confirmed wins</th>
+				<th class="region-performance-table_heading region-performance-table_heading--target">Target</th>
+				<th class="region-performance-table_heading region-performance-table_heading--value">Value &pound;</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for item in items %}
+				<tr>
+					<td class="region-performance-table_cell region-performance-table_cell--type">{{ item.name }}</td>
+					<td class="region-performance-table_cell region-performance-table_cell--total-wins">{{ item.wins.total }}</td>
+					<td class="region-performance-table_cell region-performance-table_cell--confirmed-wins">
+						{{ item.wins.confirmed }}
+						<span class="overview-progress overview-progress--percent">
+							<span class="overview-progress_amount" style="width: {{ item.progress.confirmed.capped }}%"></span>
+							<span class="overview-progress_percent" style="left: {{ item.progress.confirmed.capped }}%">{{ item.progress.confirmed.percent }}%</span>
+						</span>
+					</td>
+					<td class="region-performance-table_cell region-performance-table_cell--target">{{ item.target }}</td>
+					<td class="region-performance-table_cell region-performance-table_cell--value">&pound;{{ item.value | largeNumber }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	{% endif %}
+{% endmacro %}

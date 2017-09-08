@@ -46,3 +46,16 @@
 .uk-region-detail_target_list_text--unconfirmed {
 	color: $unconfirmed;
 }
+
+.uk-region-detail_target_list--top {
+	margin: 0;
+
+	.uk-region-detail_target_list_heading {
+		@include bold-16;
+		margin-bottom: pem( 20, 16 );
+	}
+}
+
+.page-date--region-performance {
+	margin-bottom: pem( 30 );
+}

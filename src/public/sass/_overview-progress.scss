@@ -11,6 +11,10 @@ $overview-progress-height-large: 16px;
 	height: $overview-progress-height;
 }
 
+.overview-progress--percent {
+	margin-bottom: pem( 22 );
+}
+
 .overview-progress_amount {
 	position: absolute;
 	top: 0;
@@ -67,6 +71,13 @@ $overview-progress-arrow-size-large: ( ( $overview-progress-height-large + 2 ) /
 .overview-progress_over-marker-unconfirmed {
 	@extend .overview-progress_over-marker;
 	border-left-color: $unconfirmed;
+}
+
+.overview-progress_percent {
+	position: absolute;
+	@include core-14;
+	top: $overview-progress-height;
+	margin-left: -0.75em;
 }
 
 .overview-progress--large {

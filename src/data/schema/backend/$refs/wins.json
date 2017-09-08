@@ -37,7 +37,7 @@
 		"properties": {
 			"number": {
 				"type": "object",
-				"required": [ "unconfirmed", "total", "confirmed" ],
+				"required": [ "confirmed", "unconfirmed", "total" ],
 				"properties": {
 					"unconfirmed": {
 						"type": "number",
@@ -61,7 +61,7 @@
 			},
 			"value": {
 				"type": "object",
-				"required": [ "unconfirmed", "total", "confirmed" ],
+				"required": [ "confirmed", "unconfirmed", "total" ],
 				"properties": {
 					"unconfirmed": {
 						"type": "number",
@@ -86,7 +86,7 @@
 		"properties": {
 			"number": {
 				"type": "object",
-				"required": [ "unconfirmed", "confirmed", "grand_total" ],
+				"required": [ "confirmed", "unconfirmed", "grand_total" ],
 				"properties": {
 					"confirmed": {
 						"type": "number",
@@ -110,7 +110,7 @@
 			},
 			"value": {
 				"type": "object",
-				"required": [ "unconfirmed", "confirmed", "grand_total" ],
+				"required": [ "confirmed", "unconfirmed", "grand_total" ],
 				"properties": {
 					"confirmed": {
 						"type": "number",

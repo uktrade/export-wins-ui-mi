@@ -1,0 +1,74 @@
+@import '../mi-colours';
+
+.region-performance-table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.region-performance-table_heading {
+
+	border-bottom: 1px solid $grey-2;
+	font-weight: bold;
+	text-align: left;
+	padding-bottom: pem( 6 );
+
+	&:first-of-type {
+		padding-left: 15px;
+	}
+
+	&:last-of-type {
+		padding-right: 15px;
+	}
+}
+
+.region-performance-table_heading--value,
+.region-performance-table_heading--target,
+.region-performance-table_heading--total-wins {
+	text-align: right;
+}
+
+.region-performance-table_heading--total-wins {
+	padding-right: 10%;
+}
+
+.region-performance-table_cell {
+
+	border-top: 8px solid #fff;
+	background-color: $grey-4;
+
+	&:first-of-type {
+		padding-left: 15px;
+	}
+
+	&:last-of-type {
+		padding-right: 15px;
+	}
+}
+
+.region-performance-table_cell--type {
+	width: 20%;
+}
+
+.region-performance-table_cell--total-wins {
+	width: 20%;
+	text-align: right;
+	padding-right: 10%;
+}
+
+.region-performance-table_cell--confirmed-wins {
+	width: 20%;
+	@include core-14;
+}
+
+.region-performance-table_cell--target {
+	@include core-14;
+	width: 20%;
+	text-align: right;
+	padding-bottom: pem( 38 );
+}
+
+.region-performance-table_cell--value {
+	width: 20%;
+	text-align: right;
+	padding-left: 10%;
+}

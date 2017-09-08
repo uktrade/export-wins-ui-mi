@@ -711,7 +711,7 @@ if( config.backend.mock ){
 						supertest( app ).get( `/uk-regions/${ regionId }/` ).end( ( err, res ) => {
 
 							checkResponse( res, 200 );
-							expect( getTitle( res ) ).toEqual( 'MI - UK Region performance - illum itaque culpa' );
+							expect( getTitle( res ) ).toEqual( 'MI - UK Region performance - tenetur et et' );
 							done();
 						} );
 					} );

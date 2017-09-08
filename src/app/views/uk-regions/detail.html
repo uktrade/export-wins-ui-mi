@@ -4,8 +4,11 @@
 
 {% from 'macros/dates.html' import financialYear %}
 {% from 'macros/tabs/uk-regions.html' import tabs %}
-{% from 'macros/pie-charts.html' import confirmedUnconfirmedPieChart, hvcNonHvcPieChart %}
 {% from 'macros/target-progress-bar.html' import targetProgress %}
+{% from 'macros/region-performance-table.html' import regionPerformanceTable %}
+{% from 'macros/monthly-performance-key.html' import monthlyPerformanceKey %}
+{% from 'macros/monthly-performance-graph.html' import monthlyPerformanceGraph %}
+{% from 'macros/top-markets.html' import topMarketsTable %}
 
 {% block page_content %}
 
@@ -25,25 +28,41 @@
 			<p class="sector-export-confirmed-value">{{ summary.target }}</p>
 
 		</div>
-		<div class="column-three-fifths">
+		<div class="column-four-fifths">
 
-			<ul class="sector-overview_charts">
-				<li class="sector-overview_charts_chart">
-					<h3 class="uk-region-pie-heading">HVC and non-HVC confirmed wins volume</h3>
-					{{ hvcNonHvcPieChart( summary ) -}}
+			<ul class="uk-region-detail_target_list uk-region-detail_target_list--top">
+				<li class="uk-region-detail_target_list_item">
+					<h3 class="uk-region-detail_target_list_heading">Total HVC<br>confirmed</h3>
+					<p class="uk-region-detail_target_list_text">
+						{{ summary.number.hvc }}
+					</p>
 				</li>
-				<li class="sector-overview_charts_chart">
-					<h3 class="uk-region-pie-heading">Confirmed and unconfirmed wins volume</h3>
-					{{ confirmedUnconfirmedPieChart( summary ) -}}
+				<li class="uk-region-detail_target_list_item">
+					<h3 class="uk-region-detail_target_list_heading">Total non HVC<br>confirmed</h3>
+					<p class="uk-region-detail_target_list_text">
+						{{ summary.number.nonHvc }}
+					</p>
+				</li>
+				<li class="uk-region-detail_target_list_item">
+					<h3 class="uk-region-detail_target_list_heading">Total confirmed</h3>
+					<p class="uk-region-detail_target_list_text">
+						{{ summary.number.confirmed }}
+					</p>
+				</li>
+				<li class="uk-region-detail_target_list_item">
+					<h3 class="uk-region-detail_target_list_heading">Total unconfirmed</h3>
+					<p class="uk-region-detail_target_list_text uk-region-detail_target_list_text--unconfirmed">
+						{{ summary.number.unconfirmed }}
+					</p>
+				</li>
+
+				<li class="uk-region-detail_target_list_item">
+					<h3 class="uk-region-detail_target_list_heading">Average time to confirm</h3>
+					<p class="uk-region-detail_target_list_text">
+						{{ summary.averageTimeToConfirm | pluralise( 'day' ) }}
+					</p>
 				</li>
 			</ul>
-
-		</div>
-		<div class="column-one-fifth">
-
-			<p class="sector-overview_charts_chart_average-time sector-overview_charts_chart_average-time--uk-region">
-				Average time to confirm <span class="sector-overview_charts_chart_average-time_days">{{ summary.averageTimeToConfirm | pluralise( 'day' ) }}</span>
-			</p>
 
 		</div>
 	</section>
@@ -93,5 +112,39 @@
 
 		</div>
 	</section>
+
+	<section class="grid-row">
+		<div class="column-single row-separator">
+			<h2 class="section-title">{{ regionName }} performance</h2>
+			<h3 class="page-date page-date--region-performance">{{ financialYear( performance.dateRange ) }}</h3>
+			{{ regionPerformanceTable( performance.items ) }}
+		</div>
+	</section>
+
+	<section class="grid-row row-separator">
+		<div class="column-two-thirds">
+			<h2 class="sector-heading">{{ regionName }} monthly performance</h2>
+			<h3 class="sub-heading-date">{{ financialYear( monthlyPerformance.dateRange ) }}</h3>
+		</div>
+		<div class="column-one-third">
+			{{ monthlyPerformanceKey( monthlyPerformance.keys ) }}
+		</div>
+	</section>
+
+	<section class="grid-row">
+		<div class="column-single">
+			{{ monthlyPerformanceGraph( monthlyPerformance ) }}
+		</div>
+	</section>
+
+	{% if topMarkets.items.length %}
+	<section class="grid-row row-separator">
+		<div class="column-single">
+			<h2 class="sector-heading">Top performing markets (wins with no HVC tagged)</h2>
+			<h3 class="sub-heading-date">{{ financialYear( topMarkets.dateRange ) }}</h3>
+			{{ topMarketsTable( topMarkets ) }}
+		</div>
+	</section>
+	{% endif %}
 
 {% endblock %}

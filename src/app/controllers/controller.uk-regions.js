@@ -3,7 +3,9 @@ const errorHandler = require( '../lib/render-error' );
 const sortWins = require( '../lib/sort-wins' );
 
 const regionSummary = require( '../lib/view-models/uk-region-summary' );
+const regionPerformance = require( '../lib/view-models/uk-region-performance' );
 const topMarkets = require( '../lib/view-models/top-markets' );
+const monthlyPerformance = require( '../lib/view-models/monthly-performance' );
 
 function getWins( view, type ){
 
@@ -45,7 +47,9 @@ module.exports = {
 				regionName: data.wins.results.name,
 				dateRange: data.wins.date_range,
 				summary: regionSummary.create( data.wins ),
-				topMarkets: topMarkets.create( data.topNonHvc )
+				performance: regionPerformance.create( data.wins ),
+				topMarkets: topMarkets.create( data.topNonHvc ),
+				monthlyPerformance: monthlyPerformance.create( data.months )
 			} );
 
 		} ).catch( errorHandler.createHandler( res ) );

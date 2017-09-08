@@ -11,6 +11,7 @@ const backend = ( USE_STUBS ? require( '../backend-request.stub' ) : require( '.
 const mocks = ( USE_MOCKS ? require( '../../../data/mocks' ) : null );
 
 const transformMonths = require( '../transformers/months' );
+const transformMonthsForVolume = require( '../transformers/months-volume' );
 const transformCampaigns = require( '../transformers/campaigns' );
 const transformSectorTeamsOverview = require( '../transformers/sector-teams-overview' );
 const transformOverseasRegionsOverview = require( '../transformers/os-regions-overview' );
@@ -254,7 +255,7 @@ function getUkRegion( req, postId ){
 
 function getUkRegionMonths( req, postId ){
 
-	return getJson( `/mi/uk_regions/${ postId }/months/`, req, transformMonths );
+	return getJson( `/mi/uk_regions/${ postId }/months/`, req, transformMonthsForVolume );
 }
 
 function getUkRegionTopNonHvc( req, postId ){
@@ -492,12 +493,14 @@ module.exports = {
 
 			getUkRegion( req, regionId ),
 			getUkRegionTopNonHvc( req, regionId ),
+			getUkRegionMonths( req, regionId )
 
 		], function( data ){
 
 			return {
 				wins: data[ 0 ],
-				topNonHvc: data[ 1 ]
+				topNonHvc: data[ 1 ],
+				months: data[ 2 ]
 			};
 		} );
 	},

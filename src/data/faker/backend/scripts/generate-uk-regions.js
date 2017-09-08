@@ -8,7 +8,8 @@ let outputPath = path.resolve( __dirname, '../output/uk_regions/' );
 let jsonFiles = {
 	list: ukRegionsJson.createList(),
 	region: ukRegionsJson.createRegion(),
-	win_table: ukRegionsJson.createWinTable()
+	win_table: ukRegionsJson.createWinTable(),
+	months: ukRegionsJson.createMonths()
 };
 
 writeJsonFiles( outputPath, jsonFiles );

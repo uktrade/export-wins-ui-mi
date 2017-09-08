@@ -3,7 +3,7 @@
 	"title": "UK Region information",
 
 	"type": "object",
-	"required": [ "id", "name", "avg_time_to_confirm", "wins" ],
+	"required": [ "id", "name", "avg_time_to_confirm", "wins", "export_experience", "target" ],
 	"properties": {
 		"id": {
 			"$ref": "$refs/uk-region.json#/id"
@@ -17,6 +17,30 @@
 		},
 		"wins": {
 			"$ref": "$refs/wins.json#/wins"
+		},
+		"export_experience": {
+			"type": "object",
+			"required": [ "new_exporters", "sustainable", "growth", "unknown", "total" ],
+			"properties": {
+				"new_exporters": {
+					"$ref": "$refs/wins.json#/win-info"
+				},
+				"sustainable": {
+					"$ref": "$refs/wins.json#/win-info"
+				},
+				"growth": {
+					"$ref": "$refs/wins.json#/win-info"
+				},
+				"unknown": {
+					"$ref": "$refs/wins.json#/win-info"
+				},
+				"total": {
+					"$ref": "$refs/wins.json#/win-info"
+				}
+			}
+		},
+		"target": {
+			"$ref": "$refs/uk-region.json#/target"
 		}
 	}
 }
