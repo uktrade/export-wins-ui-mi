@@ -15,7 +15,8 @@ describe( 'errors middleware', function(){
 		req = {};
 		res = {
 			status: jasmine.createSpy( 'res.status' ),
-			render: jasmine.createSpy( 'res.render' )
+			render: jasmine.createSpy( 'res.render' ),
+			sendStatus: jasmine.createSpy( 'res.sendStatus' )
 		};
 		next = jasmine.createSpy( 'next' );
 
@@ -58,17 +59,33 @@ describe( 'errors middleware', function(){
 
 			describe( 'When the headers have not been sent', function(){
 
-				it( 'Should log the error and send a response with the right status code', function(){
+				describe( 'A generic error', function(){
 
-					middleware.catchAll( err, req, res, next );
+					it( 'Should log the error and send a response with the right status code', function(){
 
-					expect( res.status ).toHaveBeenCalledWith( 500 );
-					expect( res.render ).toHaveBeenCalledWith( 'error/default.html', { showErrors: config.showErrors, error: err } );
-					expect( logger.error ).toHaveBeenCalled();
-					expect( next ).not.toHaveBeenCalled();
+						middleware.catchAll( err, req, res, next );
+
+						expect( res.status ).toHaveBeenCalledWith( 500 );
+						expect( res.render ).toHaveBeenCalledWith( 'error/default.html', { showErrors: config.showErrors, error: err } );
+						expect( logger.error ).toHaveBeenCalled();
+						expect( next ).not.toHaveBeenCalled();
+					} );
+				} );
+
+				describe( 'A TOO_MANY_BYTES error', function(){
+
+					it( 'Should return a 413 status', function(){
+
+						const tooManyBytesError = new Error( 'Too many bytes' );
+						tooManyBytesError.code = 'TOO_MANY_BYTES';
+
+						middleware.catchAll( tooManyBytesError, req, res, next );
+
+						expect( res.sendStatus ).toHaveBeenCalledWith( 413 );
+						expect( logger.error ).toHaveBeenCalled();
+					} );
 				} );
 			} );
-
 		} );
 
 		describe( '404', function(){
