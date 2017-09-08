@@ -6,21 +6,21 @@
 	margin-top: pem( 40 );
 }
 
-.sector-list-heading {
-	border-top: 10px solid #000;
-	@include bold-24;
-	margin-top: pem( 60, 24 );
-	padding: 0.5em 0 0 pem( 10, 19 );
-	margin-bottom: 0.75em;
+.homepage-date-column {
+	text-align: right;
+	padding-top: pem( 9 );
 }
 
-.sectors-overview-link,
-.regions-overview-link,
-.uk-regions-overview-link {
-	display: inline-block;
-	margin-bottom: 1em;
-	margin-left: 0.625em;
-	@include bold-19;
+.homepage-links-row {
+	border-top: 1px solid $grey-2;
+	margin-top: pem( 50 );
+}
+
+.sector-list-heading {
+	@include bold-24;
+	margin-top: pem( 40, 24 );
+	padding: 0 0 0 pem( 8, 19 );
+	margin-bottom: 0.75em;
 }
 
 .sector-list {
@@ -29,13 +29,22 @@
 	margin-top: 0;
 }
 
+.sector-list_item {
+	margin-bottom: pem( 10 );
+}
+
 .sector-group-list {
 	@extend .sector-list;
 	color: $grey-1;
 }
 
 .sector-group-list_item {
-	margin-bottom: pem( 10 );
+	@extend .sector-list_item;
+}
+
+$sector-sub-list-padding: pem( 30 );
+.sector-list_sub-list {
+	padding-left: $sector-sub-list-padding;
 }
 
 .global-hvc-heading {
@@ -44,6 +53,6 @@
 }
 
 .global-hvc-list {
-	margin-left: pem( 20 );
+	margin-left: $sector-sub-list-padding + pem( 10 );
 	padding: 0;
 }

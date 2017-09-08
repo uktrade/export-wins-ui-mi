@@ -21,7 +21,7 @@
 		</div>
 
 		<nav class="top-nav">
-			<a href="{{ urls.index() }}">Management information{% if selectedYear %} ({{ selectedYear }}){% endif %}</a>
+			<a href="{{ urls.index() }}">MI Export wins</a>
 			{% if user.email -%}
 			<span class="username">User{% if user.internal %} (internal){% endif %}: {{ user.email }}</span>
 			{%- endif %}
@@ -43,15 +43,6 @@
 						<li><a href="{{ faqLink }}">View our FAQs</a></li>
 					</ul>
 					{%- endif -%}
-					<div class="open-government-licence">
-						<p class="logo"><a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a></p>
-						<p>All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
-					</div>
-				</div>
-
-				<div class="copyright">
-					<a href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/" rel="Copyright">© Crown copyright</a>
-				</div>
 			</div>
 		</div>
   </footer>

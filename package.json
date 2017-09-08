@@ -24,6 +24,7 @@
     "heroku-postbuild": "npm run build:dist",
     "check:backend": "node src/test/ci/wait-for-backend",
     "test:integration": "cd src/test/ci/; ./setup.sh; node wait.js && JASMINE_CONFIG_PATH=jasmine.json jasmine",
+    "test:integration:local": "export TEST_BROWSER='chrome'; export TEST_HOST='10.200.10.1'; export TEST_PORT=${SERVER_PORT}; cd src/test/ci/; ./setup.sh; node wait.js && JASMINE_CONFIG_PATH=jasmine.json jasmine",
     "start": "NODE_ENV=production node --use-strict dist/server.js",
     "start:server": "node --use-strict server.js",
     "start:docker": "docker run -d -p 8080:8080 export-wins-ui-mi:${npm_package_version}",
