@@ -32,6 +32,7 @@
 @import 'components/monthly-performance-key';
 @import 'components/year-selector';
 @import 'components/zero-target-perf-table';
+@import 'components/region-performance-table';
 
 @import 'error';
 @import 'page-tabs';
@@ -92,6 +93,12 @@ main {
 .financial-year_change-link {
 	@include core-14;
 	margin-left: pem( 5, 14 );
+}
+
+.section-title {
+	@include bold-24;
+	border-bottom: 2px solid #000;
+	margin-bottom: pem( 10, 24 );
 }
 
 .footer-feedback-link {

@@ -11,6 +11,7 @@ let configStub;
 let stubs;
 let backendService;
 let monthsSpy;
+let monthsVolumeSpy;
 let campaignsSpy;
 let sectorTeamsOverviewSpy;
 let osRegionsOverviewSpy;
@@ -66,6 +67,7 @@ describe( 'Backend service', function(){
 			configStub = { backend: { stub: false, fake: false, mock: false } };
 
 			monthsSpy = jasmine.createSpy( 'months' );
+			monthsVolumeSpy = jasmine.createSpy( 'months-volume' );
 			campaignsSpy = jasmine.createSpy( 'campaigns' );
 			sectorTeamsOverviewSpy = jasmine.createSpy( 'sector-teams-overview' );
 			osRegionsOverviewSpy = jasmine.createSpy( 'os-regions-overview' );
@@ -84,6 +86,7 @@ describe( 'Backend service', function(){
 				'../../config': configStub,
 				'../logger': require( '../../../helpers/mock-logger' ),
 				'../transformers/months': monthsSpy,
+				'../transformers/months-volume': monthsVolumeSpy,
 				'../transformers/campaigns': campaignsSpy,
 				'../transformers/sector-teams-overview': sectorTeamsOverviewSpy,
 				'../transformers/os-regions-overview': osRegionsOverviewSpy,
@@ -631,8 +634,8 @@ describe( 'Backend service', function(){
 
 					checkBackendArgs( `/mi/uk_regions/${ regionId }/months/?year=${ year }`, req );
 
-					expect( monthsSpy ).toHaveBeenCalled();
-					expect( monthsSpy.calls.count() ).toEqual( 1 );
+					expect( monthsVolumeSpy ).toHaveBeenCalled();
+					expect( monthsVolumeSpy.calls.count() ).toEqual( 1 );
 
 					done();
 
@@ -1568,7 +1571,8 @@ describe( 'Backend service', function(){
 
 				const files = [
 					[ `/mi/uk_regions/${ regionId }/?year=${ year }`, '/uk_regions/region' ],
-					[ `/mi/uk_regions/${ regionId }/top_non_hvcs/?year=${ year }`, '/uk_regions/top_non_hvcs' ]
+					[ `/mi/uk_regions/${ regionId }/top_non_hvcs/?year=${ year }`, '/uk_regions/top_non_hvcs' ],
+					[ `/mi/uk_regions/${ regionId }/months/?year=${ year }`, '/uk_regions/months' ]
 				];
 
 				intercept( files );
@@ -1577,6 +1581,7 @@ describe( 'Backend service', function(){
 
 					expect( data.wins ).toBeDefined();
 					expect( data.topNonHvc ).toBeDefined();
+					expect( data.months ).toBeDefined();
 
 					done();
 
@@ -1591,7 +1596,8 @@ describe( 'Backend service', function(){
 
 					const files = [
 						[ `/mi/uk_regions/${ regionId }/?year=${ year }`, '/uk_regions/region' ],
-						[ `/mi/uk_regions/${ regionId }/top_non_hvcs/?year=${ year }`, '/uk_regions/top_non_hvcs' ]
+						[ `/mi/uk_regions/${ regionId }/top_non_hvcs/?year=${ year }`, '/uk_regions/top_non_hvcs' ],
+						[ `/mi/uk_regions/${ regionId }/months/?year=${ year }`, '/uk_regions/months' ]
 					];
 
 					interceptWithDelay( files );
@@ -1602,6 +1608,7 @@ describe( 'Backend service', function(){
 
 						expect( data.wins ).toBeDefined();
 						expect( data.topNonHvc ).toBeDefined();
+						expect( data.months ).toBeDefined();
 
 						done();
 

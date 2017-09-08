@@ -14,7 +14,9 @@ let res;
 let controller;
 
 let regionSummary;
+let regionPerformance;
 let topMarkets;
+let monthlyPerformance;
 
 describe( 'UK Regions controller', function(){
 
@@ -27,7 +29,9 @@ describe( 'UK Regions controller', function(){
 		sortWins = spy( 'sortWins', sortWinsResponse );
 
 		regionSummary = {};
+		regionPerformance = {};
 		topMarkets = {};
+		monthlyPerformance = {};
 
 		res = {
 			render: spy( 'res.render' )
@@ -38,7 +42,9 @@ describe( 'UK Regions controller', function(){
 			'../lib/render-error': errorHandler,
 			'../lib/sort-wins': sortWins,
 			'../lib/view-models/uk-region-summary': regionSummary,
-			'../lib/view-models/top-markets': topMarkets
+			'../lib/view-models/uk-region-performance': regionPerformance,
+			'../lib/view-models/top-markets': topMarkets,
+			'../lib/view-models/monthly-performance': monthlyPerformance
 		} );
 	} );
 
@@ -87,7 +93,9 @@ describe( 'UK Regions controller', function(){
 			const ukRegion = { results: { ukRegion: true, name: regionName } };
 
 			const regionSummaryResponse = { 'regionSummaryResponse': true };
+			const regionPerformanceResponse = { 'regionPerformanceResponse': true };
 			const topMarketsResponse = { 'topMarketsResponse': true };
+			const monthlyPerformanceResponse = { 'monthlyPerformanceResponse': true };
 
 			const data = {
 				wins: ukRegion,
@@ -102,7 +110,9 @@ describe( 'UK Regions controller', function(){
 			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
 
 			regionSummary.create = spy( 'regionSummary.create', regionSummaryResponse );
+			regionPerformance.create = spy( 'regionPerformance.create', regionPerformanceResponse );
 			topMarkets.create = spy( 'topMarkets.create', topMarketsResponse );
+			monthlyPerformance.create = spy( 'monthlyPerformance.create', monthlyPerformanceResponse );
 
 			controller.region( req, res );
 
@@ -112,14 +122,18 @@ describe( 'UK Regions controller', function(){
 				expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
 
 				expect( regionSummary.create ).toHaveBeenCalledWith( data.wins );
+				expect( regionPerformance.create ).toHaveBeenCalledWith( data.wins );
 				expect( topMarkets.create ).toHaveBeenCalledWith( data.topNonHvc );
+				expect( monthlyPerformance.create ).toHaveBeenCalledWith( data.months );
 
 				expect( res.render ).toHaveBeenCalledWith( 'uk-regions/detail.html', {
 					regionId,
 					regionName,
 					dateRange: ukRegion.date_range,
 					summary: regionSummaryResponse,
-					topMarkets: topMarketsResponse
+					performance: regionPerformanceResponse,
+					topMarkets: topMarketsResponse,
+					monthlyPerformance: monthlyPerformanceResponse,
 				} );
 				done();
 			} );

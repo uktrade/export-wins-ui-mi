@@ -38,7 +38,7 @@ describe( 'Large number', function(){
 			testAll( 3000, '3k' );
 			testAll( 2000, '2k' );
 			testAll( 1000, '1k' );
-			testAll( 200, '0.2k' );
+			testAll( 200, '200' );
 
 			testAll( 21863525, '21.86m' );
 			testAll( 3084510000, '3.08b' );
@@ -47,7 +47,7 @@ describe( 'Large number', function(){
 
 	describe( 'Wrapping the unit marker', function(){
 
-		it( 'Should return the number and the unit marker wrapped in a span', function(){
+		it( 'Should return the number and the unit marker wrapped in a span when needed', function(){
 
 			function test( input, output ){
 
@@ -56,7 +56,7 @@ describe( 'Large number', function(){
 
 			function testAll( num, text, unit ){
 
-				const output = ( text + '<span class="unit-marker">' + unit + '</span>' );
+				const output = ( unit ? ( text + '<span class="unit-marker">' + unit + '</span>' ) : text );
 				const negNum = -num;
 				const negOutput = ( '-' + output );
 
@@ -78,7 +78,7 @@ describe( 'Large number', function(){
 			testAll( 3000, '3', 'k' );
 			testAll( 2000, '2', 'k' );
 			testAll( 1000, '1', 'k' );
-			testAll( 200, '0.2', 'k' );
+			testAll( 200, '200', '' );
 
 			testAll( 21863525, '21.86', 'm' );
 			testAll( 3084510000, '3.08', 'b' );

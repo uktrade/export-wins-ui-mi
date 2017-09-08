@@ -1,0 +1,131 @@
+{
+	"timestamp": 1504709090567,
+	"financial_year": {
+		"id": 2016,
+		"description": "2016-2017"
+	},
+	"results": {
+		"id": "qnfyalu-vyb-svlnerap-kycrf-eypwmfz",
+		"name": "tenetur et et",
+		"avg_time_to_confirm": 68.89,
+		"wins": {
+			"non_export": {
+				"number": {
+					"confirmed": 226,
+					"unconfirmed": 166,
+					"total": 392
+				},
+				"value": {
+					"confirmed": 5355,
+					"unconfirmed": 57591,
+					"total": 62946
+				}
+			},
+			"export": {
+				"hvc": {
+					"number": {
+						"confirmed": 473,
+						"unconfirmed": 752,
+						"total": 1225
+					},
+					"value": {
+						"confirmed": 93808,
+						"unconfirmed": 32562,
+						"total": 126370
+					}
+				},
+				"non_hvc": {
+					"number": {
+						"confirmed": 273,
+						"unconfirmed": 956,
+						"total": 1229
+					},
+					"value": {
+						"confirmed": 87779,
+						"unconfirmed": 37152,
+						"total": 124931
+					}
+				},
+				"totals": {
+					"number": {
+						"confirmed": 746,
+						"unconfirmed": 1708,
+						"grand_total": 2454
+					},
+					"value": {
+						"confirmed": 181587,
+						"unconfirmed": 69714,
+						"grand_total": 251301
+					}
+				}
+			}
+		},
+		"export_experience": {
+			"new_exporters": {
+				"number": {
+					"confirmed": 92,
+					"unconfirmed": 682,
+					"total": 774
+				},
+				"value": {
+					"confirmed": 99396,
+					"unconfirmed": 22841,
+					"total": 122237
+				}
+			},
+			"sustainable": {
+				"number": {
+					"confirmed": 380,
+					"unconfirmed": 858,
+					"total": 1238
+				},
+				"value": {
+					"confirmed": 15455,
+					"unconfirmed": 99790,
+					"total": 115245
+				}
+			},
+			"growth": {
+				"number": {
+					"confirmed": 872,
+					"unconfirmed": 563,
+					"total": 1435
+				},
+				"value": {
+					"confirmed": 65264,
+					"unconfirmed": 87228,
+					"total": 152492
+				}
+			},
+			"unknown": {
+				"number": {
+					"confirmed": 795,
+					"unconfirmed": 767,
+					"total": 1562
+				},
+				"value": {
+					"confirmed": 59221,
+					"unconfirmed": 26667,
+					"total": 85888
+				}
+			},
+			"total": {
+				"number": {
+					"confirmed": 2139,
+					"unconfirmed": 2870,
+					"total": 5009
+				},
+				"value": {
+					"confirmed": 239336,
+					"unconfirmed": 236526,
+					"total": 475862
+				}
+			}
+		},
+		"target": null
+	},
+	"date_range": {
+		"start": "Fri, 01 Apr 2016 00:00:00 GMT",
+		"end": "Fri, 31 Mar 2017 00:00:00 GMT"
+	}
+}

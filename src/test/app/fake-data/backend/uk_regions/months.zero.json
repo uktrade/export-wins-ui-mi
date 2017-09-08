@@ -1,0 +1,130 @@
+{
+	"timestamp": 1504794634883,
+	"financial_year": {
+		"id": 2016,
+		"description": "2016-2017"
+	},
+	"results": {
+		"id": "bsz-trkv",
+		"name": "explicabo necessitatibus dolore",
+		"export_experience": {
+			"target": null
+		},
+		"months": [
+			{
+				"date": "2016-9",
+				"totals": {
+					"non_export": {
+						"number": {
+							"confirmed": 0,
+							"unconfirmed": 0,
+							"total": 0
+						},
+						"value": {
+							"confirmed": 0,
+							"unconfirmed": 0,
+							"total": 0
+						}
+					},
+					"export": {
+						"hvc": {
+							"number": {
+								"confirmed": 0,
+								"unconfirmed": 0,
+								"total": 0
+							},
+							"value": {
+								"confirmed": 0,
+								"unconfirmed": 0,
+								"total": 0
+							}
+						},
+						"non_hvc": {
+							"number": {
+								"confirmed": 0,
+								"unconfirmed": 0,
+								"total": 0
+							},
+							"value": {
+								"confirmed": 0,
+								"unconfirmed": 0,
+								"total": 0
+							}
+						},
+						"totals": {
+							"number": {
+								"confirmed": 0,
+								"unconfirmed": 0,
+								"grand_total": 0
+							},
+							"value": {
+								"confirmed": 0,
+								"unconfirmed": 0,
+								"grand_total": 0
+							}
+						}
+					}
+				}
+			},
+			{
+				"date": "2017-1",
+				"totals": {
+					"non_export": {
+						"number": {
+							"confirmed": 0,
+							"unconfirmed": 0,
+							"total": 0
+						},
+						"value": {
+							"confirmed": 0,
+							"unconfirmed": 0,
+							"total": 0
+						}
+					},
+					"export": {
+						"hvc": {
+							"number": {
+								"confirmed": 0,
+								"unconfirmed": 0,
+								"total": 0
+							},
+							"value": {
+								"confirmed": 0,
+								"unconfirmed": 0,
+								"total": 0
+							}
+						},
+						"non_hvc": {
+							"number": {
+								"confirmed": 0,
+								"unconfirmed": 0,
+								"total": 0
+							},
+							"value": {
+								"confirmed": 0,
+								"unconfirmed": 0,
+								"total": 0
+							}
+						},
+						"totals": {
+							"number": {
+								"confirmed": 0,
+								"unconfirmed": 0,
+								"grand_total": 0
+							},
+							"value": {
+								"confirmed": 0,
+								"unconfirmed": 0,
+								"grand_total": 0
+							}
+						}
+					}
+				}
+			}
+		]
+	},
+	"date_range": {
+		"start": "Fri, 01 Apr 2016 00:00:00 GMT",
+		"end": "Fri, 31 Mar 2017 00:00:00 GMT"
+	}
+}

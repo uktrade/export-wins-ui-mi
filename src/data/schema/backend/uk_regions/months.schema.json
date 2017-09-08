@@ -1,0 +1,65 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "months",
+
+	"type": "object",
+	"required": [ "id", "name", "export_experience", "months" ],
+	"properties": {
+		"id": {
+			"$ref": "$refs/uk-region.json#/id"
+		},
+		"name": {
+			"type": "string",
+			"faker": "lorem.words"
+		},
+		"export_experience": {
+			"type": "object",
+			"required": [ "target" ],
+			"properties": {
+				"target": {
+					"$ref": "$refs/uk-region.json#/target"
+				}
+			}
+		},
+		"months": {
+			"type": "array",
+			"minItems": 1,
+			"maxItems": 12,
+			"items": {
+
+				"type": "object",
+				"required": [ "date", "totals" ],
+				"properties": {
+					"date": {
+						"type": "string",
+						"faker": "date.past"
+					},
+					"totals": {
+						"type": "object",
+						"required": [ "non_export", "export" ],
+						"properties": {
+							"non_export": {
+								"$ref": "$refs/wins.json#/win-info"
+							},
+							"export": {
+								"type": "object",
+								"required": [ "hvc", "non_hvc", "totals" ],
+								"properties": {
+									"hvc": {
+										"$ref": "$refs/wins.json#/win-info"
+									},
+									"non_hvc": {
+										"$ref": "$refs/wins.json#/win-info"
+									},
+									"totals": {
+										"$ref": "$refs/wins.json#/grand-totals"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

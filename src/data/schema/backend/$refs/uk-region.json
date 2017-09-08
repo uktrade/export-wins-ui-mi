@@ -2,5 +2,35 @@
 	"id": {
 		"type": "string",
 		"pattern": "[a-z]{3,8}(-[a-z]{3,8}){1,5}"
+	},
+	"target": {
+		"type": "object",
+		"required": [ "new_exporters", "sustainable", "growth", "total", "type" ],
+		"properties": {
+			"new_exporters": {
+				"type": "number",
+				"faker": "random.number"
+			},
+			"new_exporters": {
+				"type": "number",
+				"faker": "random.number"
+			},
+			"sustainable": {
+				"type": "number",
+				"faker": "random.number"
+			},
+			"growth": {
+				"type": "number",
+				"faker": "random.number"
+			},
+			"total": {
+				"type": "number",
+				"faker": "random.number"
+			},
+			"type": {
+				"type": "string",
+				"pattern": "volume"
+			}
+		}
 	}
 }

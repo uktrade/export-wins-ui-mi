@@ -1,13 +1,14 @@
-module.exports = function calculateValues( data, keys ){
+module.exports = function calculateTotals( data, objKeys, valueKeys = [ 'number', 'value' ] ){
 
-	for( let key of keys ){
+	for( let objKey of objKeys ){
 
-		let totals = data[ key ];
+		const obj = data[ objKey ];
 
-		let num = totals.number;
-		let val = totals.value;
+		for( let valueKey of valueKeys ){
 
-		num.total = ( num.unconfirmed + num.confirmed );
-		val.total = ( val.unconfirmed + val.confirmed );
+			const item = obj[ valueKey ];
+
+			item.total = ( item.confirmed + item.unconfirmed );
+		}
 	}
 };
