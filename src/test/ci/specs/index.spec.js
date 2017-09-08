@@ -120,9 +120,7 @@ describe( 'The homepage', function(){
 					const violations = results.violations;
 					const violationCount = violations.length;
 
-					expect( violationCount ).toEqual( 2 );
-					expect( violations[ 0 ].id ).toEqual( 'definition-list' );
-					expect( violations[ 1 ].id ).toEqual( 'dlitem' );
+					expect( violationCount ).toEqual( 0 );
 
 					writeReport( 'index', results ).then( done );
 				} );
@@ -178,7 +176,7 @@ describe( 'The homepage', function(){
 
 				headings[ 2 ].getText().then( ( text ) => {
 
-					expect( text ).toEqual( 'UK Regions' );
+					expect( text ).toEqual( 'UK Nations & Regions' );
 					done();
 				} );
 			} );

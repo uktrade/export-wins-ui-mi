@@ -18,7 +18,7 @@
 		<div class="column-half">
 			<h2 class="global-performance-heading">Global performance</h2>
 		</div>
-		<div class="column-half column-text-right">
+		<div class="column-half homepage-date-column">
 			{{ financialYear( summary.dateRange ) }}
 		</div>
 	</div>
@@ -26,8 +26,27 @@
 	<section class="global-performance-content">
 
 		<div class="grid-row">
-			<div class="column-half">
-				<h3>Total value of confirmed export wins</h3>
+			<div class="column-one-third global-performance_hvc-progress">
+
+				<h3 class="global-performance_hvc-progress_heading">Total value of HVC target</h3>
+				<p class="global-performance_hvc-progress_figure">
+					&pound;{{ summary.target | largeNumber }}
+				</p>
+
+			</div>
+			<div class="column-one-third global-performance_hvc-progress">
+
+				<h3 class="global-performance_hvc-progress_heading">HVC target achieved</h3>
+				<p class="global-performance_hvc-progress_figure">
+					{{ summary.progress.confirmed.percent }}%
+				</p>
+
+			</div>
+		</div>
+		<div class="grid-row">
+			<div class="column-one-third">
+
+				<h3 class="global-performance-figures_heading">Total value of confirmed<br>export wins</h3>
 				<dl class="global-performance-figures">
 					<dt class="visually-hidden">Total</dt>
 					<dd class="global-performance-figures_headline-figure">
@@ -44,9 +63,11 @@
 						{{ summary.wins.non_hvc.value.confirmed | largeNumber }}
 					</dd>
 				</dl>
+
 			</div>
-			<div class="column-half">
-				<h3>Total number of confirmed wins</h3>
+			<div class="column-one-third">
+
+				<h3 class="global-performance-figures_heading">Total number of confirmed<br>export wins</h3>
 				<dl class="global-performance-figures">
 					<dt class="visually-hidden">Total</dt>
 					<dd class="global-performance-figures_headline-figure">
@@ -63,46 +84,22 @@
 						{{ summary.wins.non_hvc.number.confirmed }}
 					</dd>
 				</dl>
-			</div>
-		</div>
 
-		<div class="grid-row">
-			<div class="column-single">
-				<h3 class="visually-hidden">HVC target progress</h3>
-
-				<dl class="global-performance_hvc-progress">
-					<div class="global-performance_hvc-progress_item">
-						<dt class="global-performance_hvc-progress_heading">Total value of HVC target</dt>
-						<dd class="global-performance_hvc-progress_figure">
-							&pound;{{ summary.target | largeNumber }}
-						</dd>
-					</div>
-
-					<div class="global-performance_hvc-progress_item">
-						<dt class="global-performance_hvc-progress_heading global-performance_hvc-progress_heading--right">HVC target achieved</dt>
-						<dd class="global-performance_hvc-progress_figure global-performance_hvc-progress_figure--right">
-							{{ summary.progress.confirmed.percent }}%
-						</dd>
-					</div>
-				</dl>
 			</div>
 		</div>
 	</section>
 
+	<div class="grid-row homepage-links-row">
+		<div class="column-one-third">
 
-	<div class="grid-row">
-		<div class="column-one-third ">
-
-			<h2 class="sector-list-heading">Sector Teams</h2>
-
-			<a href="{{ urls.sectorTeamsOverview() }}" class="sectors-overview-link">All sector teams review</a>
+			<h2 class="sector-list-heading"><a href="{{ urls.sectorTeamsOverview() }}">Sector Teams</a></h2>
 
 			<ul class="sector-list" id="sector-teams-list">
 			{% for team in sectorTeams %}
 				<li class="sector-list_item"><a href="{{ urls.sectorTeam( team.id ) }}">{{ team.name }}</a>
 
 				{%- if team.hvc_groups.length %}
-					<ul class="sector-list_parent-sectors">
+					<ul class="sector-list_sub-list">
 						{% for hvcGroup in team.hvc_groups %}
 						<li>
 							<a href="{{ urls.hvcGroup( hvcGroup.id ) }}">{{ hvcGroup.name }} HVCs</a>
@@ -120,15 +117,13 @@
 
 			{% if overseasRegionGroups.length %}
 
-			<h2 class="sector-list-heading">Overseas Regions</h2>
-
-			<a href="{{ urls.osRegionsOverview() }}" class="regions-overview-link">All overseas regions review</a>
+			<h2 class="sector-list-heading"><a href="{{ urls.osRegionsOverview() }}">Overseas Regions</a></h2>
 
 			<ul class="sector-group-list" id="os-regions-list">
 			{% for group in overseasRegionGroups %}
 				<li class="sector-group-list_item">
 					{{ group.name }}
-					<ul class="sector-list">
+					<ul class="sector-list_sub-list">
 					{% for region in group.regions %}
 						<li><a href="{{ urls.osRegion( region.id ) }}">{{ region.name }}</a></li>
 					{% endfor %}
@@ -154,13 +149,13 @@
 
 			{% if ukRegions.length %}
 
-			<h2 class="sector-list-heading">UK Regions</h2>
+			<h2 class="sector-list-heading">UK Nations &amp; Regions</h2>
 
-			<a href="#" class="uk-regions-overview-link">All UK regions review</a>
-
-			<ul class="sector-group-list" id="uk-regions-list">
+			<ul class="sector-list" id="uk-regions-list">
 			{% for region in ukRegions %}
-					<li><a href="{{ urls.ukRegion( region.id ) }}">{{ region.name }}</a></li>
+					<li class="sector-list_item">
+						<a href="{{ urls.ukRegion( region.id ) }}">{{ region.name }}</a>
+					</li>
 			{% endfor %}
 			</ul>
 
