@@ -27,17 +27,23 @@ describe( 'UK Region summary view model', function(){
 
 			const input = getBackendStub( '/uk_regions/region' );
 			const output = viewModel.create( input );
+			const results = input.results;
+			const exportWins = results.wins.export;
 
 			expect( output.dateRange ).toEqual( input.date_range );
 			expect( output.target ).toEqual( 47030 );
-			expect( output.number.confirmed ).toEqual( 746 );
-			expect( output.number.unconfirmed ).toEqual( 1708 );
-			expect( output.number.hvc ).toEqual( 473 );
-			expect( output.number.nonHvc ).toEqual( 273 );
+			expect( output.number.hvc.confirmed ).toEqual( exportWins.hvc.number.confirmed );
+			expect( output.number.hvc.unconfirmed ).toEqual( exportWins.hvc.number.unconfirmed );
+			expect( output.number.nonHvc.confirmed ).toEqual( exportWins.non_hvc.number.confirmed );
+			expect( output.number.nonHvc.unconfirmed ).toEqual( exportWins.non_hvc.number.unconfirmed );
+			expect( output.number.totals.confirmed ).toEqual( exportWins.totals.number.confirmed );
+			expect( output.number.totals.unconfirmed ).toEqual( exportWins.totals.number.unconfirmed );
 			expect( output.value.confirmed ).toEqual( 181587 );
 			expect( output.value.unconfirmed ).toEqual( 69714 );
 			expect( output.progress ).toEqual( targetProgressSpyResponse );
 			expect( output.averageTimeToConfirm ).toEqual( 68.89 );
+
+			expect( targetProgressSpy.create ).toHaveBeenCalledWith( results.target.total, exportWins.totals.number.confirmed, exportWins.totals.number.unconfirmed );
 		} );
 	} );
 
@@ -47,17 +53,22 @@ describe( 'UK Region summary view model', function(){
 
 			const input = getBackendStub( '/uk_regions/region.null-target' );
 			const output = viewModel.create( input );
+			const exportWins = input.results.wins.export;
 
 			expect( output.dateRange ).toEqual( input.date_range );
 			expect( output.target ).toEqual( 0 );
-			expect( output.number.confirmed ).toEqual( 746 );
-			expect( output.number.unconfirmed ).toEqual( 1708 );
-			expect( output.number.hvc ).toEqual( 473 );
-			expect( output.number.nonHvc ).toEqual( 273 );
+			expect( output.number.hvc.confirmed ).toEqual( exportWins.hvc.number.confirmed );
+			expect( output.number.hvc.unconfirmed ).toEqual( exportWins.hvc.number.unconfirmed );
+			expect( output.number.nonHvc.confirmed ).toEqual( exportWins.non_hvc.number.confirmed );
+			expect( output.number.nonHvc.unconfirmed ).toEqual( exportWins.non_hvc.number.unconfirmed );
+			expect( output.number.totals.confirmed ).toEqual( exportWins.totals.number.confirmed );
+			expect( output.number.totals.unconfirmed ).toEqual( exportWins.totals.number.unconfirmed );
 			expect( output.value.confirmed ).toEqual( 181587 );
 			expect( output.value.unconfirmed ).toEqual( 69714 );
 			expect( output.progress ).toEqual( targetProgressSpyResponse );
 			expect( output.averageTimeToConfirm ).toEqual( 68.89 );
+
+			expect( targetProgressSpy.create ).toHaveBeenCalledWith( 0, exportWins.totals.number.confirmed, exportWins.totals.number.unconfirmed );
 		} );
 	} );
 } );
