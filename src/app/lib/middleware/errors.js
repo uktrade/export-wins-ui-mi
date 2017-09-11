@@ -17,10 +17,17 @@ module.exports = {
 
 		} else {
 
-			res.status( 500 );
-			res.render( 'error/default.html', { error: err, showErrors: config.showErrors } );
+			if( err.code === 'TOO_MANY_BYTES' ){
+
+				res.sendStatus( 413 );
+
+			} else {
+
+				res.status( 500 );
+				res.render( 'error/default.html', { error: err, showErrors: config.showErrors } );
+			}
 		}
 
-		logger.error( 'Somthing went wrong: ', err );
+		logger.error( 'Something went wrong: ', err );
 	}
 };

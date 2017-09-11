@@ -176,7 +176,6 @@ describe( 'SAML controller', function(){
 					} );
 				} );
 			} );
-
 		} );
 	} );
 
