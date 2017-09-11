@@ -81,7 +81,7 @@ describe( 'Sector months transformer', function(){
 
 		it( 'Should return all zeros', function(){
 
-			checkOutput( inputZeroValues );
+			checkOutput( inputZeroValues, '0' );
 		} );
 	} );
 } );

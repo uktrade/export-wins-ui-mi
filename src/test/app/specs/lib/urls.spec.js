@@ -27,7 +27,11 @@ describe( 'urls middleware', function(){
 
 	function checkUrl( req, method, args, output ){
 
-		expect( middleware( req )[ method ]( ...args ) ).toEqual( output );
+		const urls = middleware( req );
+
+		let methodFn = method.split( '.' ).reduce( ( urls, property ) => urls[ property ], urls );
+
+		expect( methodFn( ...args ) ).toEqual( output );
 	}
 
 	function checkYearlyUrls( req, method, args, output ){
@@ -291,6 +295,17 @@ describe( 'urls middleware', function(){
 
 			checkFilteredUrls( req, 'hvc', [ 1 ], '/hvc/1/' );
 			checkFilteredUrls( req, 'hvcWins', [ 2 ], '/hvc/2/wins/' );
+		} );
+	} );
+
+	describe( 'Investment', function(){
+
+		describe( 'Index', function(){
+
+			it( 'Should return the correct url', function(){
+
+				checkFilteredUrls( req, 'investment.index', [], '/investment/' );
+			} );
 		} );
 	} );
 } );

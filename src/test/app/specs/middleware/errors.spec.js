@@ -27,9 +27,9 @@ describe( 'errors middleware', function(){
 			error: jasmine.createSpy( 'logger.error' )
 		};
 
-		middleware = proxyquire( '../../../../../app/lib/middleware/errors', {
-			'../../config': config,
-			'../logger': logger
+		middleware = proxyquire( '../../../../app/middleware/errors', {
+			'../config': config,
+			'../lib/logger': logger
 		} );
 	} );
 

@@ -1,7 +1,7 @@
-const routes = require( '../../../app/routes.js' );
+const routes = require( '../../../app/routes' );
 
 describe( 'Routes', function(){
-	
+
 	it( 'Should be a function', function(){
 
 		expect( routes ).toBeDefined();

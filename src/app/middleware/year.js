@@ -1,4 +1,4 @@
-const financialYear = require( '../financial-year' );
+const financialYear = require( '../lib/financial-year' );
 const urlYear = /^\/([0-9]{4})\//;
 
 module.exports = function( req, res, next ){

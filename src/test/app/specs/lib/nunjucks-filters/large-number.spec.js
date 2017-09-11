@@ -14,7 +14,7 @@ describe( 'Large number', function(){
 			function testAll( num, output ){
 
 				const negNum = -num;
-				const negOutput = ( '-' + output );
+				const negOutput = ( ( num === 0 ? '' : '-' ) + output );
 
 				test( num, output );
 				test( negNum, negOutput );
@@ -39,6 +39,7 @@ describe( 'Large number', function(){
 			testAll( 2000, '2k' );
 			testAll( 1000, '1k' );
 			testAll( 200, '200' );
+			testAll( 0, '0' );
 
 			testAll( 21863525, '21.86m' );
 			testAll( 3084510000, '3.08b' );
@@ -58,7 +59,7 @@ describe( 'Large number', function(){
 
 				const output = ( unit ? ( text + '<span class="unit-marker">' + unit + '</span>' ) : text );
 				const negNum = -num;
-				const negOutput = ( '-' + output );
+				const negOutput = ( ( num === 0 ? '' : '-' ) + output );
 
 				test( num, output );
 				test( negNum, negOutput );
@@ -79,6 +80,7 @@ describe( 'Large number', function(){
 			testAll( 2000, '2', 'k' );
 			testAll( 1000, '1', 'k' );
 			testAll( 200, '200', '' );
+			testAll( 0, '0', '' );
 
 			testAll( 21863525, '21.86', 'm' );
 			testAll( 3084510000, '3.08', 'b' );

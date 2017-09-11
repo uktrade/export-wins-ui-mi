@@ -1,5 +1,5 @@
 
-const middleware = require( '../../../../../app/lib/middleware/date-range' );
+const middleware = require( '../../../../app/middleware/date-range' );
 
 describe( 'dateRange middleware', function(){
 

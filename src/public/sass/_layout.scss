@@ -1,6 +1,7 @@
 @import 'grid_layout';
 @import 'design-patterns/alpha-beta';
 @import 'colours';
+@import 'helpers';
 
 .grid-row {
 	@extend %grid-row;
@@ -81,7 +82,33 @@
  	overflow: hidden;
 }
 
-.username {
+.top-nav_list {
+	margin: 0;
+	padding: 0;
+	display: inline-block;
+}
+
+.top-nav_list_item {
+
+	margin-bottom: pem( 5 );
+
+	@include media( tablet ){
+
+		border-left: 1px solid $grey-2;
+		padding-left: pem( 10 );
+		margin-left: pem( 10 );
+		margin-bottom: 0;
+		display: inline-block;
+
+		&:first-of-type {
+			border-left: 0;
+			padding-left: 0;
+			margin-left: 0;
+		}
+	}
+}
+
+.top-nav_username {
 
 	display: block;
 

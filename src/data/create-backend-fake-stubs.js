@@ -72,7 +72,7 @@ const yearlyFiles = {
 
 	'uk_regions/index': ukRegionJson.createList,
 	'uk_regions/region': ukRegionJson.createRegion,
-	//'uk_regions/months': sharedJson.createMonths,
+	'uk_regions/months': ukRegionJson.createMonths,
 	'uk_regions/top_non_hvcs': sharedJson.createTopNonHvcs,
 	'uk_regions/win_table': ukRegionJson.createWinTable,
 };

@@ -1,22 +1,23 @@
 /* eslint no-console: 0 */
 
-var CHILD_EXIT_LIMIT = 5,
-	CHILD_EXIT_THRESHOLD = 60000, //1 minute
+const CHILD_EXIT_LIMIT = 5;
+const CHILD_EXIT_THRESHOLD = 60000; //1 minute
 
-	childProcess = require( 'child_process' ),
-	pkg = require( './package.json' ),
+const childProcess = require( 'child_process' );
+const pkg = require( './package.json' );
 
-	appFile = '/app/app.js',
-	child,
-	childExits = [];
+let clusterFile = '/app/cluster.js';
+
+const childExits = [];
+let child;
 
 if( !process.env.NODE_ENV || process.env.NODE_ENV === 'development' ){
-	appFile = ( '/src/' + appFile );
+	clusterFile = ( '/src/' + clusterFile );
 }
 
 function createChildProcess(){
 
-	child = childProcess.fork( __dirname + appFile );
+	child = childProcess.fork( __dirname + clusterFile );
 
 	console.info( 'Child process created, pid: ' + child.pid );
 
@@ -25,8 +26,8 @@ function createChildProcess(){
 
 function handleChildExit( e ){
 
-	var now = Date.now(),
-		exitsInLastMinute = 0;
+	const now = Date.now();
+	let exitsInLastMinute = 0;
 
 	console.log( 'Child exits so far: %d', childExits.length );
 
