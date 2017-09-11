@@ -22,9 +22,10 @@ module.exports = function( num, wrappedUnit ){
 
 		num = formatNumber( num, 1.0e+9, 'b', wrappedUnit );
 
-	// if greater than 0 and less than 10,000 show in k
-	} else if( absValue > 0 && absValue < 1.0e+4 ) {
+	// if less than 10,000 show in k
+	} else if( absValue < 1.0e+4 ) {
 
+		//if less than 1000 show with no unit
 		if( absValue < 1.0e+3 ) {
 
 			num = formatNumber( num, 1, '', wrappedUnit );

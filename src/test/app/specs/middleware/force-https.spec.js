@@ -1,5 +1,5 @@
 
-const forceHttps = require( '../../../../../app/lib/middleware/force-https' );
+const forceHttps = require( '../../../../app/middleware/force-https' );
 
 const forwardHeader = 'x-forwarded-proto';
 

@@ -1,5 +1,5 @@
 
-const createMiddleware = require( '../../../../../app/lib/middleware/headers' );
+const createMiddleware = require( '../../../../app/middleware/headers' );
 
 describe( 'headers middleware', function(){
 

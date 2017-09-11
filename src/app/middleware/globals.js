@@ -1,4 +1,4 @@
-const urls = require( '../urls' );
+const urls = require( '../lib/urls' );
 
 module.exports = function( env ){
 

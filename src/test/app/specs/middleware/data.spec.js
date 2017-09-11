@@ -1,5 +1,5 @@
 const EventEmitter = require( 'events' );
-const middleware = require( '../../../../../app/lib/middleware/data' );
+const middleware = require( '../../../../app/middleware/data' );
 
 class Req extends EventEmitter {}
 

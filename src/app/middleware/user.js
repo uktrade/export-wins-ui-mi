@@ -1,8 +1,8 @@
 const jwt = require( 'jsonwebtoken' );
 
-const config = require( '../../config' );
-const backend = require( '../service/service.backend' );
-const renderError = require( '../render-error' );
+const config = require( '../config' );
+const backend = require( '../lib/service/service.backend' );
+const renderError = require( '../lib/render-error' );
 
 const secret = config.jwt.secret;
 

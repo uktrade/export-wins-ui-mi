@@ -1,5 +1,5 @@
 const proxyquire = require( 'proxyquire' );
-const spy = require( '../../../helpers/spy' );
+const spy = require( '../../helpers/spy' );
 
 const currentFinancialYear = 2017;
 
@@ -16,8 +16,8 @@ describe( 'Year middleware', function(){
 		res = { locals: {} };
 		next = jasmine.createSpy( 'next' );
 
-		middleware = proxyquire( '../../../../../app/lib/middleware/year', {
-			'../financial-year': { getCurrent: spy( 'financialYear.getCurrent', currentFinancialYear ) }
+		middleware = proxyquire( '../../../../app/middleware/year', {
+			'../lib/financial-year': { getCurrent: spy( 'financialYear.getCurrent', currentFinancialYear ) }
 		} );
 	} );
 

@@ -26,13 +26,13 @@ describe( 'user middleware', function(){
 		errorHandler = jasmine.createSpy( 'renderError.createHandler.errorHandler' );
 
 		const stubs = {
-			'../../config': { jwt: { secret: jwtSecret } },
-			'../service/service.backend': backend,
+			'../config': { jwt: { secret: jwtSecret } },
+			'../lib/service/service.backend': backend,
 			'jsonwebtoken': jwt,
-			'../render-error': { createHandler: () => errorHandler }
+			'../lib/render-error': { createHandler: () => errorHandler }
 		};
 
-		createMiddleware = proxyquire( '../../../../../app/lib/middleware/user', stubs );
+		createMiddleware = proxyquire( '../../../../app/middleware/user', stubs );
 		middleware = createMiddleware( false );
 	} );
 

@@ -1,81 +1,85 @@
+const express = require( 'express' );
+const nunjucks = require( 'nunjucks' );
+const serveStatic = require( 'serve-static' );
+const cookieParser = require( 'cookie-parser' );
+const path = require( 'path' );
+const morganLogger = require( 'morgan' );
+const compression = require( 'compression' );
 
-const cluster = require( 'cluster' );
+const routes = require( './routes' );
 const config = require( './config' );
-const logger = require( './lib/logger' );
-const createApp = require( './lib/app' ).create;
 
-const serverConfig = config.server;
-const numberOfWorkers = serverConfig.workers;
-const isClustered = ( numberOfWorkers > 1 );
+const reporter = require( './lib/reporter' );
+const nunjucksFilters = require( './lib/nunjucks-filters' );
+const staticGlobals = require( './lib/static-globals' );
 
-function listenForWorkerMessages( worker ){
+const ping = require( './middleware/ping' );
+const year = require( './middleware/year' );
+const globals = require( './middleware/globals' );
+const forceHttps = require( './middleware/force-https' );
+const headers = require( './middleware/headers' );
+const errors = require( './middleware/errors' );
 
-	worker.on( 'message', function( msg ){
+module.exports = {
 
-		logger.debug( 'Master sending message to workers' );
+	create: function(){
 
-		Object.keys( cluster.workers ).forEach( function( workerId ){
-			cluster.workers[ workerId ].send( msg );
-		} );
-	} );
-}
+		const app = express();
+		const env = app.get( 'env' );
+		const isDev = ( 'development' === env );
 
-function startApp(){
+		const pathToPublic = path.resolve( __dirname, '../public' );
+		const pathToUkTradeElements = path.resolve( __dirname, ( isDev ? '../../' : '../' ), 'node_modules/@uktrade/trade_elements' );
+		const pathToUkTradePublic = path.resolve( __dirname, pathToUkTradeElements, 'dist' );
 
-	const app = createApp();
-	const env = app.get( 'env' );
-	const isDev = ( 'development' === env );
+		let nunjucksEnv;
+		let staticMaxAge = 0;
 
-	app.listen( serverConfig.port, function(){
+		app.set( 'view engine', 'html' );
+		app.set( 'view cache', config.views.cache );
 
-		let messages = [];
+		app.disable( 'x-powered-by' );
 
-		if( isClustered ){
-
-			messages.push( `Worker ${cluster.worker.id} created` );
-		}
-
-		messages.push( `App running in ${env} mode, workers: ${ config.server.workers }, available: ${ config.server.cpus }` );
-		messages.push( `Listening at http://${serverConfig.host}:${serverConfig.port}` );
-		messages.push( `Connecting to backend at ${config.backend.href}` );
-
-		logger.info( messages.join( '   ' ) );
-	});
-
-	if( isClustered ){
-
-		cluster.worker.on( 'message', function( msg ){
-
-			logger.debug( 'Worker ' + cluster.worker.id + ' received message' + msg );
+		nunjucksEnv = nunjucks.configure( [
+				`${__dirname}/views`,
+				`${__dirname}/sub-apps`,
+				`${pathToUkTradeElements}/dist/nunjucks`,
+			], {
+			autoescape: true,
+			watch: config.isDev,
+			noCache: !config.views.cache,
+			express: app
 		} );
 
-		if( isDev ){
-			app.use( function( req, res, next ){
+		staticGlobals( nunjucksEnv );
+		nunjucksFilters( nunjucksEnv );
 
-				logger.debug( 'Worker: %s, handling request: %s', cluster.worker.id, req.url );
-				next();
-			} );
-		}
-	}
-}
+		reporter.setup( app );
 
-if( isClustered ){
+		if( !isDev ){
 
-	//if this is the master then create the workers
-	if( cluster.isMaster ){
-
-		for( let i = 0; i < numberOfWorkers; i++ ) {
-
-			listenForWorkerMessages( cluster.fork() );
+			app.use( compression() );
+			staticMaxAge = '2y';
 		}
 
-	//if we are a worker then create an HTTP server
-	} else {
+		app.use( forceHttps( isDev ) );
+		app.use( '/public', serveStatic( pathToPublic, { maxAge: staticMaxAge } ) );
+		app.use( '/public/uktrade', serveStatic( pathToUkTradePublic, { maxAge: staticMaxAge } ) );
+		app.use( morganLogger( ( isDev ? 'dev' : 'combined' ) ) );
+		app.use( cookieParser() );
+		app.use( headers( isDev ) );
+		app.use( ping );
+		app.use( year );
+		app.use( globals( nunjucksEnv ) );
 
-		startApp();
+		routes( express, app, isDev );
+
+		app.use( errors.handle404 );
+
+		reporter.handleErrors( app );
+
+		app.use( errors.catchAll );
+
+		return app;
 	}
-
-} else {
-
-	startApp();
-}
+};

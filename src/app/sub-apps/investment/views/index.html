@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% set pageName='Investment Homepage' %}
+
+{% from 'macros/dates.html' import financialYear %}
+
+{% block page_content %}
+
+	<h1 class="page-heading">
+		Investment performance
+	</h1>
+
+	{% include 'partials/year-selector.html' %}
+
+	<h2 class="page-sub-heading">{{ selectedYear }} to {{ selectedYear + 1 }} financial year</h2>
+
+{% endblock %}

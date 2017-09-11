@@ -15,8 +15,8 @@ describe( 'Globals middleware', function(){
 
 		urlsSpy = jasmine.createSpy( 'urls' );
 
-		middleware = proxyquire( '../../../../../app/lib/middleware/globals', {
-			'../urls': () => urlsSpy
+		middleware = proxyquire( '../../../../app/middleware/globals', {
+			'../lib/urls': () => urlsSpy
 		} );
 
 		env = {

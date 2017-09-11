@@ -1,5 +1,5 @@
 
-const middleware = require( '../../../../../app/lib/middleware/return-path' );
+const middleware = require( '../../../../app/middleware/return-path' );
 
 describe( 'returnPath middleware', function(){
 

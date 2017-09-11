@@ -111,6 +111,10 @@ module.exports = function( req ){
 		osRegionNonHvcWins: ( regionId ) => filteredUrl( '/overseas-regions/' + regionId + '/non-hvc-wins/' ),
 
 		hvc: ( hvcId ) => filteredUrl( '/hvc/' + hvcId + '/' ),
-		hvcWins: ( hvcId ) => filteredUrl( '/hvc/' + hvcId + '/wins/' )
+		hvcWins: ( hvcId ) => filteredUrl( '/hvc/' + hvcId + '/wins/' ),
+
+		investment: {
+			index: () => filteredUrl( '/investment/' )
+		}
 	};
 };
