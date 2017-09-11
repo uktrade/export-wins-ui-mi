@@ -32,30 +32,29 @@
 
 			<ul class="uk-region-detail_target_list uk-region-detail_target_list--top">
 				<li class="uk-region-detail_target_list_item">
-					<h3 class="uk-region-detail_target_list_heading">Total HVC<br>confirmed</h3>
+					<h3 class="uk-region-detail_target_list_heading">Non HVC<br>confirmed</h3>
 					<p class="uk-region-detail_target_list_text">
-						{{ summary.number.hvc }}
+						{{ summary.number.nonHvc.confirmed }}
 					</p>
 				</li>
 				<li class="uk-region-detail_target_list_item">
-					<h3 class="uk-region-detail_target_list_heading">Total non HVC<br>confirmed</h3>
-					<p class="uk-region-detail_target_list_text">
-						{{ summary.number.nonHvc }}
-					</p>
-				</li>
-				<li class="uk-region-detail_target_list_item">
-					<h3 class="uk-region-detail_target_list_heading">Total confirmed</h3>
-					<p class="uk-region-detail_target_list_text">
-						{{ summary.number.confirmed }}
-					</p>
-				</li>
-				<li class="uk-region-detail_target_list_item">
-					<h3 class="uk-region-detail_target_list_heading">Total unconfirmed</h3>
+					<h3 class="uk-region-detail_target_list_heading">Non HVC<br>unconfirmed</h3>
 					<p class="uk-region-detail_target_list_text uk-region-detail_target_list_text--unconfirmed">
-						{{ summary.number.unconfirmed }}
+						{{ summary.number.nonHvc.unconfirmed }}
 					</p>
 				</li>
-
+				<li class="uk-region-detail_target_list_item">
+					<h3 class="uk-region-detail_target_list_heading">HVC<br>confirmed</h3>
+					<p class="uk-region-detail_target_list_text">
+						{{ summary.number.hvc.confirmed }}
+					</p>
+				</li>
+				<li class="uk-region-detail_target_list_item">
+					<h3 class="uk-region-detail_target_list_heading">HVC<br>unconfirmed</h3>
+					<p class="uk-region-detail_target_list_text uk-region-detail_target_list_text--unconfirmed">
+						{{ summary.number.hvc.unconfirmed }}
+					</p>
+				</li>
 				<li class="uk-region-detail_target_list_item">
 					<h3 class="uk-region-detail_target_list_heading">Average time to confirm</h3>
 					<p class="uk-region-detail_target_list_text">
@@ -70,6 +69,7 @@
 	<h2 class="uk-region-detail_target-heading">Total confirmed against target</h2>
 
 	<section class="uk-region-detail_target grid-row">
+
 		<div class="column-one-fifth uk-region-detail_target-progress">
 
 			{{ targetProgress( summary.progress ) }}
@@ -81,13 +81,13 @@
 				<li class="uk-region-detail_target_list_item">
 					<h3 class="uk-region-detail_target_list_heading">Total<br>confirmed</h3>
 					<p class="uk-region-detail_target_list_text">
-						{{ summary.number.confirmed }}
+						{{ summary.number.totals.confirmed }}
 					</p>
 				</li>
 				<li class="uk-region-detail_target_list_item">
 					<h3 class="uk-region-detail_target_list_heading">Total<br>unconfirmed</h3>
 					<p class="uk-region-detail_target_list_text uk-region-detail_target_list_text--unconfirmed">
-						{{ summary.number.unconfirmed }}
+						{{ summary.number.totals.unconfirmed }}
 					</p>
 				</li>
 				<li class="uk-region-detail_target_list_item">
