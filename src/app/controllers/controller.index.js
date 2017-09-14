@@ -7,11 +7,9 @@ module.exports = function( req, res ){
 
 	backendService.getHomepageData( req ).then( ( data ) => {
 
-		const showUkRegions = !!req.query.ukRegions;
-
 		const sectorTeams = data.sectorTeams.results;
 		const overseasRegionGroups = data.overseasRegionGroups.results;
-		const ukRegions = ( showUkRegions ? data.ukRegions.results : [] );
+		const ukRegions = data.ukRegions.results;
 		const globalHvcs = data.globalHvcs.results;
 		const summary = globalSummary.create( data.globalWins );
 
