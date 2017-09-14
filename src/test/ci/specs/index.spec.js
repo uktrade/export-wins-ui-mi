@@ -64,7 +64,7 @@ describe( 'The homepage', function(){
 
 			it( 'Should have a heading for each list', function( done ){
 
-				expect( headings.length ).toEqual( 2 );
+				expect( headings.length ).toEqual( 3 );
 				done();
 			} );
 
@@ -82,6 +82,15 @@ describe( 'The homepage', function(){
 				headings[ 1 ].getText().then( ( text ) => {
 
 					expect( text ).toEqual( 'Overseas Regions' );
+					done();
+				} );
+			} );
+
+			it( 'Should have the correct text for the third heading', function( done ){
+
+				headings[ 2 ].getText().then( ( text ) => {
+
+					expect( text ).toEqual( 'UK Nations & Regions' );
 					done();
 				} );
 			} );
@@ -123,61 +132,6 @@ describe( 'The homepage', function(){
 					expect( violationCount ).toEqual( 0 );
 
 					writeReport( 'index', results ).then( done );
-				} );
-			} );
-		} );
-	} );
-
-	describe( 'With the ukRegions feature/query param', function(){
-
-		beforeAll( function( done ){
-
-			fetch( '/?ukRegions=1' ).then( takeScreenshot( 'index_uk-regions' ) ).then( done );
-		} );
-
-		describe( 'Headings', function(){
-
-			let headings;
-
-			beforeAll( function( done ){
-
-				driver.findElements( By.className( 'sector-list-heading' ) ).then( ( headingElems ) => {
-
-					headings = headingElems;
-					done();
-				} );
-			} );
-
-			it( 'Should have a heading for each list', function( done ){
-
-				expect( headings.length ).toEqual( 3 );
-				done();
-			} );
-
-			it( 'Should have the correct text for the first heading', function( done ){
-
-				headings[ 0 ].getText().then( ( text ) => {
-
-					expect( text ).toEqual( 'Sector Teams' );
-					done();
-				} );
-			} );
-
-			it( 'Should have the correct text for the second heading', function( done ){
-
-				headings[ 1 ].getText().then( ( text ) => {
-
-					expect( text ).toEqual( 'Overseas Regions' );
-					done();
-				} );
-			} );
-
-			it( 'Should have the correct text for the third heading', function( done ){
-
-				headings[ 2 ].getText().then( ( text ) => {
-
-					expect( text ).toEqual( 'UK Nations & Regions' );
-					done();
 				} );
 			} );
 		} );
