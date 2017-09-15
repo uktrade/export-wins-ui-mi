@@ -765,6 +765,7 @@ if( config.backend.mock ){
 				it( 'Should return a 200 with the correct heading', function( done ){
 
 					interceptBackend.getStub( `/mi/sector_teams/?year=2017`, 200, '/investment/sector_teams/' );
+					interceptBackend.getStub( `/mi/os_regions/?year=2017`, 200, '/investment/os_regions/' );
 
 					supertest( app ).get( '/investment/' ).end( ( err, res ) => {
 
@@ -800,6 +801,157 @@ if( config.backend.mock ){
 
 						checkResponse( res, 200 );
 						expect( getTitle( res ) ).toEqual( 'MI - Investment - Sector team performance - sed aut alias' );
+						done();
+					} );
+				} );
+			} );
+
+			describe( 'Sector Team HVC performance', function(){
+
+				it( 'Should return a 200 with the correct heading', function( done ){
+
+					interceptBackend.getStub( `/mi/sector_teams/?year=2017`, 200, '/investment/sector_teams/' );
+
+					supertest( app ).get( '/investment/sector-teams/28395/hvc-performance/' ).end( ( err, res ) => {
+
+						checkResponse( res, 200 );
+						expect( getTitle( res ) ).toEqual( 'MI - Investment - Sector team HVC performance - sed aut alias' );
+						done();
+					} );
+				} );
+			} );
+
+			describe( 'Sector Team non HVC performance', function(){
+
+				it( 'Should return a 200 with the correct heading', function( done ){
+
+					interceptBackend.getStub( `/mi/sector_teams/?year=2017`, 200, '/investment/sector_teams/' );
+
+					supertest( app ).get( '/investment/sector-teams/28395/non-hvc-performance/' ).end( ( err, res ) => {
+
+						checkResponse( res, 200 );
+						expect( getTitle( res ) ).toEqual( 'MI - Investment - Sector team non HVC performance - sed aut alias' );
+						done();
+					} );
+				} );
+			} );
+
+			describe( 'Sector Team wins', function(){
+
+				it( 'Should return a 200 with the correct heading', function( done ){
+
+					interceptBackend.getStub( `/mi/sector_teams/?year=2017`, 200, '/investment/sector_teams/' );
+
+					supertest( app ).get( '/investment/sector-teams/28395/wins/' ).end( ( err, res ) => {
+
+						checkResponse( res, 200 );
+						expect( getTitle( res ) ).toEqual( 'MI - Investment - Sector team HVC wins - sed aut alias' );
+						done();
+					} );
+				} );
+			} );
+
+			describe( 'Sector Team non HVC wins', function(){
+
+				it( 'Should return a 200 with the correct heading', function( done ){
+
+					interceptBackend.getStub( `/mi/sector_teams/?year=2017`, 200, '/investment/sector_teams/' );
+
+					supertest( app ).get( '/investment/sector-teams/28395/non-hvc-wins/' ).end( ( err, res ) => {
+
+						checkResponse( res, 200 );
+						expect( getTitle( res ) ).toEqual( 'MI - Investment - Sector team non HVC wins - sed aut alias' );
+						done();
+					} );
+				} );
+			} );
+
+
+			describe( 'Overseas Regions', function(){
+
+				it( 'Should return a 200 with the correct heading', function( done ){
+
+					interceptBackend.getStub( `/mi/os_regions/?year=2017`, 200, '/investment/os_regions/' );
+
+					supertest( app ).get( '/investment/overseas-regions/' ).end( ( err, res ) => {
+
+						checkResponse( res, 200 );
+						expect( getTitle( res ) ).toEqual( 'MI - Investment - Overseas Regions' );
+						done();
+					} );
+				} );
+			} );
+
+			describe( 'Overseas Region', function(){
+
+				it( 'Should return a 200 with the correct heading', function( done ){
+
+					interceptBackend.getStub( `/mi/os_regions/?year=2017`, 200, '/investment/os_regions/' );
+
+					supertest( app ).get( '/investment/overseas-regions/40105/' ).end( ( err, res ) => {
+
+						checkResponse( res, 200 );
+						expect( getTitle( res ) ).toEqual( 'MI - Investment - Overseas Region performance - perspiciatis modi non' );
+						done();
+					} );
+				} );
+			} );
+
+			describe( 'Overseas Region HVC performance', function(){
+
+				it( 'Should return a 200 with the correct heading', function( done ){
+
+					interceptBackend.getStub( `/mi/os_regions/?year=2017`, 200, '/investment/os_regions/' );
+
+					supertest( app ).get( '/investment/overseas-regions/40105/hvc-performance/' ).end( ( err, res ) => {
+
+						checkResponse( res, 200 );
+						expect( getTitle( res ) ).toEqual( 'MI - Investment - Overseas Region HVC performance - perspiciatis modi non' );
+						done();
+					} );
+				} );
+			} );
+
+			describe( 'Overseas Region non HVC performance', function(){
+
+				it( 'Should return a 200 with the correct heading', function( done ){
+
+					interceptBackend.getStub( `/mi/os_regions/?year=2017`, 200, '/investment/os_regions/' );
+
+					supertest( app ).get( '/investment/overseas-regions/40105/non-hvc-performance/' ).end( ( err, res ) => {
+
+						checkResponse( res, 200 );
+						expect( getTitle( res ) ).toEqual( 'MI - Investment - Overseas Region non HVC performance - perspiciatis modi non' );
+						done();
+					} );
+				} );
+			} );
+
+			describe( 'Overseas Region wins', function(){
+
+				it( 'Should return a 200 with the correct heading', function( done ){
+
+					interceptBackend.getStub( `/mi/os_regions/?year=2017`, 200, '/investment/os_regions/' );
+
+					supertest( app ).get( '/investment/overseas-regions/40105/wins/' ).end( ( err, res ) => {
+
+						checkResponse( res, 200 );
+						expect( getTitle( res ) ).toEqual( 'MI - Investment - Overseas Region HVC wins - perspiciatis modi non' );
+						done();
+					} );
+				} );
+			} );
+
+			describe( 'Overseas Region non HVC wins', function(){
+
+				it( 'Should return a 200 with the correct heading', function( done ){
+
+					interceptBackend.getStub( `/mi/os_regions/?year=2017`, 200, '/investment/os_regions/' );
+
+					supertest( app ).get( '/investment/overseas-regions/40105/non-hvc-wins/' ).end( ( err, res ) => {
+
+						checkResponse( res, 200 );
+						expect( getTitle( res ) ).toEqual( 'MI - Investment - Overseas Region non HVC wins - perspiciatis modi non' );
 						done();
 					} );
 				} );

@@ -1,5 +1,21 @@
 const { getAll, getJson } = require( './_helpers' );
 
+function createIdMatcher( id ){
+
+	return function( items ){
+
+		for( let item of items.results ){
+
+			if( item.id == id ){
+				items.results = item;
+				return items;
+			}
+		}
+
+		throw new Error( 'Team not matched' );
+	};
+}
+
 function getSectorTeams( req ){
 
 	//use export sector teams for now
@@ -9,18 +25,19 @@ function getSectorTeams( req ){
 function getSectorTeam( req, teamId ){
 
 	//use team list for now to return the name
-	return getSectorTeams( req ).then( ( teams ) => {
+	return getSectorTeams( req ).then( createIdMatcher( teamId ) );
+}
 
-		for( let team of teams.results ){
+function getOverseasRegions( req ){
 
-			if( team.id == teamId ){
-				teams.results = team;
-				return teams;
-			}
-		}
+	//use export overseas regions for now
+	return getJson( '/mi/os_regions/', req );
+}
 
-		throw new Error( 'Team not matched' );
-	} );
+function getOverseasRegion( req, teamId ){
+
+	//use overseas regions list for now to return the name
+	return getOverseasRegions( req ).then( createIdMatcher( teamId ) );
 }
 
 module.exports = {
@@ -28,16 +45,21 @@ module.exports = {
 	getSectorTeams,
 	getSectorTeam,
 
+	getOverseasRegions,
+	getOverseasRegion,
+
 	getHomepageData: function( req ){
 
 		return getAll( 'getHomepageData', [
 
-			getSectorTeams( req )
+			getSectorTeams( req ),
+			getOverseasRegions( req )
 
 		], function( data ){
 
 			return {
-				sectorTeams: data[ 0 ]
+				sectorTeams: data[ 0 ],
+				overseasRegions: data[ 1 ]
 			};
 		} );
 	}

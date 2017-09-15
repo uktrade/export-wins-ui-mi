@@ -114,9 +114,22 @@ module.exports = function( req ){
 		hvcWins: ( hvcId ) => filteredUrl( '/hvc/' + hvcId + '/wins/' ),
 
 		investment: {
+
 			index: () => filteredUrl( '/investment/' ),
+
 			sectorTeams: () => filteredUrl( `/investment/sector-teams/` ),
-			sectorTeam: ( teamId ) => filteredUrl( `/investment/sector-teams/${ teamId }/` )
+			sectorTeam: ( teamId ) => filteredUrl( `/investment/sector-teams/${ teamId }/` ),
+			sectorTeamHvcPerformance: ( teamId ) => filteredUrl( `/investment/sector-teams/${ teamId }/hvc-performance/` ),
+			sectorTeamNonHvcPerformance: ( teamId ) => filteredUrl( `/investment/sector-teams/${ teamId }/non-hvc-performance/` ),
+			sectorTeamWins: ( teamId ) => filteredUrl( `/investment/sector-teams/${ teamId }/wins/` ),
+			sectorTeamNonHvcWins: ( teamId ) => filteredUrl( `/investment/sector-teams/${ teamId }/non-hvc-wins/` ),
+
+			osRegions: () => filteredUrl( `/investment/overseas-regions/` ),
+			osRegion: ( teamId ) => filteredUrl( `/investment/overseas-regions/${ teamId }/` ),
+			osRegionHvcPerformance: ( teamId ) => filteredUrl( `/investment/overseas-regions/${ teamId }/hvc-performance/` ),
+			osRegionNonHvcPerformance: ( teamId ) => filteredUrl( `/investment/overseas-regions/${ teamId }/non-hvc-performance/` ),
+			osRegionWins: ( teamId ) => filteredUrl( `/investment/overseas-regions/${ teamId }/wins/` ),
+			osRegionNonHvcWins: ( teamId ) => filteredUrl( `/investment/overseas-regions/${ teamId }/non-hvc-wins/` )
 		}
 	};
 };

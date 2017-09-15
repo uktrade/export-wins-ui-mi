@@ -14,7 +14,8 @@ const scripts = [
 	'export/generate-shared',
 	'export/generate-countries',
 
-	'investment/generate-sector-teams'
+	'investment/generate-sector-teams',
+	'investment/generate-os-regions'
 ];
 
 for( let script of scripts ){
