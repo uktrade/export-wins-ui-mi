@@ -76,6 +76,38 @@ describe( 'Investment backend service', function(){
 				} );
 			} );
 		} );
+
+		describe( 'Overseas Teams list', function(){
+
+			it( 'Should call the correct API', function( done ){
+
+				investmentService.getOverseasRegions( req ).then( () => {
+
+					// Use export list for now
+					checkBackendArgs( '/mi/os_regions/', req );
+					done();
+				} );
+			} );
+		} );
+
+		describe( 'Overseas Region details', function(){
+
+			it( 'Should call the correct API', function( done ){
+
+				const regionId = '1';
+
+				//This should not be needed
+				//Provide data while using export APIs
+				getJson.and.callFake( () => new Promise( ( resolve ) => resolve( { results: [ { id: 1, name: 2 } ] } ) ) );
+
+				investmentService.getOverseasRegion( req, regionId ).then( () => {
+
+					// Use export list for now
+					checkBackendArgs( `/mi/os_regions/`, req );
+					done();
+				} );
+			} );
+		} );
 	} );
 
 	describe( 'Aggregate methods', function(){
@@ -108,13 +140,17 @@ describe( 'Investment backend service', function(){
 			it( 'Should return the correct data', function( done ){
 
 				const spies = createSpies( [
-					'getSectorTeams'
+					'getSectorTeams',
+					'getOverseasRegions'
 				] );
 
 				investmentService.getHomepageData( req ).then( ( data ) => {
 
 					expect( spies.getSectorTeams.spy ).toHaveBeenCalledWith( req );
+					expect( spies.getOverseasRegions.spy ).toHaveBeenCalledWith( req );
+
 					expect( data.sectorTeams ).toEqual( spies.getSectorTeams.response );
+					expect( data.overseasRegions ).toEqual( spies.getOverseasRegions.response );
 
 					done();
 

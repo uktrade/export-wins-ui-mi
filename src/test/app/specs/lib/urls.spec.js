@@ -323,5 +323,85 @@ describe( 'urls middleware', function(){
 				checkFilteredUrls( req, 'investment.sectorTeam', [ 1 ], '/investment/sector-teams/1/' );
 			} );
 		} );
+
+		describe( 'Sector Team HVC performance', function(){
+
+			it( 'Should return the correct URL', function(){
+
+				checkFilteredUrls( req, 'investment.sectorTeamHvcPerformance', [ 1 ], '/investment/sector-teams/1/hvc-performance/' );
+			} );
+		} );
+
+		describe( 'Sector Team non HVC performance', function(){
+
+			it( 'Should return the correct URL', function(){
+
+				checkFilteredUrls( req, 'investment.sectorTeamNonHvcPerformance', [ 1 ], '/investment/sector-teams/1/non-hvc-performance/' );
+			} );
+		} );
+
+		describe( 'Sector Team HVC wins', function(){
+
+			it( 'Should return the correct URL', function(){
+
+				checkFilteredUrls( req, 'investment.sectorTeamWins', [ 1 ], '/investment/sector-teams/1/wins/' );
+			} );
+		} );
+
+		describe( 'Sector Team non HVC wins', function(){
+
+			it( 'Should return the correct URL', function(){
+
+				checkFilteredUrls( req, 'investment.sectorTeamNonHvcWins', [ 1 ], '/investment/sector-teams/1/non-hvc-wins/' );
+			} );
+		} );
+
+		describe( 'Overseas Regions', function(){
+
+			it( 'Should return the correct URL', function(){
+
+				checkFilteredUrls( req, 'investment.osRegions', [], '/investment/overseas-regions/' );
+			} );
+		} );
+
+		describe( 'Overseas Region', function(){
+
+			it( 'Should return the correct URL', function(){
+
+				checkFilteredUrls( req, 'investment.osRegion', [ 1 ], '/investment/overseas-regions/1/' );
+			} );
+		} );
+
+		describe( 'Overseas Region HVC performance', function(){
+
+			it( 'Should return the correct URL', function(){
+
+				checkFilteredUrls( req, 'investment.osRegionHvcPerformance', [ 1 ], '/investment/overseas-regions/1/hvc-performance/' );
+			} );
+		} );
+
+		describe( 'Overseas Region non HVC performance', function(){
+
+			it( 'Should return the correct URL', function(){
+
+				checkFilteredUrls( req, 'investment.osRegionNonHvcPerformance', [ 1 ], '/investment/overseas-regions/1/non-hvc-performance/' );
+			} );
+		} );
+
+		describe( 'Overseas Region HVC wins', function(){
+
+			it( 'Should return the correct URL', function(){
+
+				checkFilteredUrls( req, 'investment.osRegionWins', [ 1 ], '/investment/overseas-regions/1/wins/' );
+			} );
+		} );
+
+		describe( 'Overseas Region non HVC wins', function(){
+
+			it( 'Should return the correct URL', function(){
+
+				checkFilteredUrls( req, 'investment.osRegionNonHvcWins', [ 1 ], '/investment/overseas-regions/1/non-hvc-wins/' );
+			} );
+		} );
 	} );
 } );

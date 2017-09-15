@@ -28,7 +28,19 @@
 			</ul>
 
 		</div>
-		<div class="column-one-third"></div>
+		<div class="column-one-third">
+
+			<h3><a href="{{ urls.investment.osRegions() }}">Overseas Regions</a></h3>
+
+			<ul>
+			{% for region in overseasRegions.results %}
+				<li>
+					<a href="{{ urls.investment.osRegion( region.id ) }}">{{ region.name }}</a>
+				</li>
+			{% endfor %}
+			</ul>
+
+		</div>
 		<div class="column-one-third"></div>
 	</section>
 

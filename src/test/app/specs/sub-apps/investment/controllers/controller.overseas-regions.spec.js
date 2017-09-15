@@ -1,6 +1,6 @@
 const proxyquire = require( 'proxyquire' );
 
-const moduleFile = '../../../../../../app/sub-apps/investment/controllers/controller.sector-teams';
+const moduleFile = '../../../../../../app/sub-apps/investment/controllers/controller.overseas-regions';
 
 let controller;
 let investmentService;
@@ -9,7 +9,7 @@ let renderErrorHandler;
 let req;
 let res;
 
-describe( 'Investment Sector Teams controller', function(){
+describe( 'Investment Overseas Regions controller', function(){
 
 	beforeEach( function(){
 
@@ -17,8 +17,8 @@ describe( 'Investment Sector Teams controller', function(){
 		createHandler = jasmine.createSpy( 'createHandler' ).and.callFake( () => renderErrorHandler );
 
 		investmentService = {
-			getSectorTeams: jasmine.createSpy( 'getSectorTeams' ),
-			getSectorTeam: jasmine.createSpy( 'getSectorTeam' )
+			getOverseasRegions: jasmine.createSpy( 'getOverseasRegions' ),
+			getOverseasRegion: jasmine.createSpy( 'getOverseasRegion' )
 		};
 
 		controller = proxyquire( moduleFile, {
@@ -38,27 +38,27 @@ describe( 'Investment Sector Teams controller', function(){
 		};
 	} );
 
-	describe( 'Sector Teams', function(){
+	describe( 'Overseas Regions', function(){
 
 		describe( 'With success', function(){
 
 			it( 'Should render the view with the correct data', function( done ){
 
-				const sectorTeams = { sectorTeams: true };
+				const osRegions = { osRegions: true };
 				const promise = new Promise( ( resolve ) => {
-					resolve( { sectorTeams } );
+					resolve( { osRegions } );
 				} );
 
-				investmentService.getSectorTeams.and.callFake( () => promise );
+				investmentService.getOverseasRegions.and.callFake( () => promise );
 
-				controller.sectorTeams( req, res );
+				controller.regions( req, res );
 
 				expect( createHandler ).toHaveBeenCalledWith( res );
 
 				promise.then( ( data ) => {
 
-					expect( investmentService.getSectorTeams ).toHaveBeenCalledWith( req );
-					expect( res.render ).toHaveBeenCalledWith( 'investment/views/sector-teams/overview', { sectorTeams: data } );
+					expect( investmentService.getOverseasRegions ).toHaveBeenCalledWith( req );
+					expect( res.render ).toHaveBeenCalledWith( 'investment/views/overseas-regions/overview', { regions: data } );
 					done();
 				} );
 			} );
@@ -75,9 +75,9 @@ describe( 'Investment Sector Teams controller', function(){
 					rejectPromise = reject;
 				} );
 
-				investmentService.getSectorTeams.and.callFake( () => promise );
+				investmentService.getOverseasRegions.and.callFake( () => promise );
 
-				controller.sectorTeams( req, res );
+				controller.regions( req, res );
 
 				expect( createHandler ).toHaveBeenCalledWith( res );
 
@@ -85,7 +85,7 @@ describe( 'Investment Sector Teams controller', function(){
 
 				setTimeout( () => {
 
-					expect( investmentService.getSectorTeams ).toHaveBeenCalledWith( req );
+					expect( investmentService.getOverseasRegions ).toHaveBeenCalledWith( req );
 					expect( res.render ).not.toHaveBeenCalled();
 					expect( renderErrorHandler ).toHaveBeenCalledWith( err );
 					done();
@@ -94,28 +94,28 @@ describe( 'Investment Sector Teams controller', function(){
 		} );
 	} );
 
-	describe( 'Sector Team', function(){
+	describe( 'Overseas Region', function(){
 
 		describe( 'With success', function(){
 
 			it( 'Should render the view with the correct data', function( done ){
 
 				const teamId = '1';
-				const sectorTeamResponse = { date_range: { start: 1, end: 2 }, results: { id: 1, name: 'abc' } };
+				const osRegionResponse = { date_range: { start: 1, end: 2 }, results: { id: 1, name: 'abc' } };
 				const promise =  new Promise( ( resolve ) => {
-					resolve( sectorTeamResponse );
+					resolve( osRegionResponse );
 				} );
 
 				req.params = { id: teamId };
 
-				investmentService.getSectorTeam.and.callFake( () => promise );
+				investmentService.getOverseasRegion.and.callFake( () => promise );
 
-				controller.sectorTeam( req, res );
+				controller.region( req, res );
 
 				promise.then( () => {
 
-					expect( investmentService.getSectorTeam ).toHaveBeenCalledWith( req, teamId );
-					expect( res.render ).toHaveBeenCalledWith( 'investment/views/sector-teams/detail', { dateRange: sectorTeamResponse.date_range, team: sectorTeamResponse.results } );
+					expect( investmentService.getOverseasRegion ).toHaveBeenCalledWith( req, teamId );
+					expect( res.render ).toHaveBeenCalledWith( 'investment/views/overseas-regions/detail', { dateRange: osRegionResponse.date_range, region: osRegionResponse.results } );
 					done();
 				} );
 			} );
@@ -135,9 +135,9 @@ describe( 'Investment Sector Teams controller', function(){
 
 				req.params = { id: teamId };
 
-				investmentService.getSectorTeam.and.callFake( () => promise );
+				investmentService.getOverseasRegion.and.callFake( () => promise );
 
-				controller.sectorTeam( req, res );
+				controller.region( req, res );
 
 				expect( createHandler ).toHaveBeenCalledWith( res );
 
@@ -145,7 +145,7 @@ describe( 'Investment Sector Teams controller', function(){
 
 				setTimeout( () => {
 
-					expect( investmentService.getSectorTeam ).toHaveBeenCalledWith( req, teamId );
+					expect( investmentService.getOverseasRegion ).toHaveBeenCalledWith( req, teamId );
 					expect( res.render ).not.toHaveBeenCalled();
 					expect( renderErrorHandler ).toHaveBeenCalledWith( err );
 					done();
@@ -161,21 +161,21 @@ describe( 'Investment Sector Teams controller', function(){
 			it( 'Should render the view with the correct data', function( done ){
 
 				const teamId = '1';
-				const sectorTeamResponse = { date_range: { start: 1, end: 2 }, results: { id: 1, name: 'abc' } };
+				const osRegionResponse = { date_range: { start: 1, end: 2 }, results: { id: 1, name: 'abc' } };
 				const promise =  new Promise( ( resolve ) => {
-					resolve( sectorTeamResponse );
+					resolve( osRegionResponse );
 				} );
 
 				req.params = { id: teamId };
 
-				investmentService.getSectorTeam.and.callFake( () => promise );
+				investmentService.getOverseasRegion.and.callFake( () => promise );
 
 				controller.hvcPerformance( req, res );
 
 				promise.then( () => {
 
-					expect( investmentService.getSectorTeam ).toHaveBeenCalledWith( req, teamId );
-					expect( res.render ).toHaveBeenCalledWith( 'investment/views/sector-teams/hvc-performance', { dateRange: sectorTeamResponse.date_range, team: sectorTeamResponse.results } );
+					expect( investmentService.getOverseasRegion ).toHaveBeenCalledWith( req, teamId );
+					expect( res.render ).toHaveBeenCalledWith( 'investment/views/overseas-regions/hvc-performance', { dateRange: osRegionResponse.date_range, region: osRegionResponse.results } );
 					done();
 				} );
 			} );
@@ -195,7 +195,7 @@ describe( 'Investment Sector Teams controller', function(){
 
 				req.params = { id: teamId };
 
-				investmentService.getSectorTeam.and.callFake( () => promise );
+				investmentService.getOverseasRegion.and.callFake( () => promise );
 
 				controller.hvcPerformance( req, res );
 
@@ -205,7 +205,7 @@ describe( 'Investment Sector Teams controller', function(){
 
 				setTimeout( () => {
 
-					expect( investmentService.getSectorTeam ).toHaveBeenCalledWith( req, teamId );
+					expect( investmentService.getOverseasRegion ).toHaveBeenCalledWith( req, teamId );
 					expect( res.render ).not.toHaveBeenCalled();
 					expect( renderErrorHandler ).toHaveBeenCalledWith( err );
 					done();
@@ -221,21 +221,21 @@ describe( 'Investment Sector Teams controller', function(){
 			it( 'Should render the view with the correct data', function( done ){
 
 				const teamId = '1';
-				const sectorTeamResponse = { date_range: { start: 1, end: 2 }, results: { id: 1, name: 'abc' } };
+				const osRegionResponse = { date_range: { start: 1, end: 2 }, results: { id: 1, name: 'abc' } };
 				const promise =  new Promise( ( resolve ) => {
-					resolve( sectorTeamResponse );
+					resolve( osRegionResponse );
 				} );
 
 				req.params = { id: teamId };
 
-				investmentService.getSectorTeam.and.callFake( () => promise );
+				investmentService.getOverseasRegion.and.callFake( () => promise );
 
 				controller.nonHvcPerformance( req, res );
 
 				promise.then( () => {
 
-					expect( investmentService.getSectorTeam ).toHaveBeenCalledWith( req, teamId );
-					expect( res.render ).toHaveBeenCalledWith( 'investment/views/sector-teams/non-hvc-performance', { dateRange: sectorTeamResponse.date_range, team: sectorTeamResponse.results } );
+					expect( investmentService.getOverseasRegion ).toHaveBeenCalledWith( req, teamId );
+					expect( res.render ).toHaveBeenCalledWith( 'investment/views/overseas-regions/non-hvc-performance', { dateRange: osRegionResponse.date_range, region: osRegionResponse.results } );
 					done();
 				} );
 			} );
@@ -255,7 +255,7 @@ describe( 'Investment Sector Teams controller', function(){
 
 				req.params = { id: teamId };
 
-				investmentService.getSectorTeam.and.callFake( () => promise );
+				investmentService.getOverseasRegion.and.callFake( () => promise );
 
 				controller.nonHvcPerformance( req, res );
 
@@ -265,7 +265,7 @@ describe( 'Investment Sector Teams controller', function(){
 
 				setTimeout( () => {
 
-					expect( investmentService.getSectorTeam ).toHaveBeenCalledWith( req, teamId );
+					expect( investmentService.getOverseasRegion ).toHaveBeenCalledWith( req, teamId );
 					expect( res.render ).not.toHaveBeenCalled();
 					expect( renderErrorHandler ).toHaveBeenCalledWith( err );
 					done();
@@ -281,21 +281,21 @@ describe( 'Investment Sector Teams controller', function(){
 			it( 'Should render the view with the correct data', function( done ){
 
 				const teamId = '1';
-				const sectorTeamResponse = { date_range: { start: 1, end: 2 }, results: { id: 1, name: 'abc' } };
+				const osRegionResponse = { date_range: { start: 1, end: 2 }, results: { id: 1, name: 'abc' } };
 				const promise =  new Promise( ( resolve ) => {
-					resolve( sectorTeamResponse );
+					resolve( osRegionResponse );
 				} );
 
 				req.params = { id: teamId };
 
-				investmentService.getSectorTeam.and.callFake( () => promise );
+				investmentService.getOverseasRegion.and.callFake( () => promise );
 
 				controller.wins( req, res );
 
 				promise.then( () => {
 
-					expect( investmentService.getSectorTeam ).toHaveBeenCalledWith( req, teamId );
-					expect( res.render ).toHaveBeenCalledWith( 'investment/views/sector-teams/wins', { dateRange: sectorTeamResponse.date_range, team: sectorTeamResponse.results } );
+					expect( investmentService.getOverseasRegion ).toHaveBeenCalledWith( req, teamId );
+					expect( res.render ).toHaveBeenCalledWith( 'investment/views/overseas-regions/wins', { dateRange: osRegionResponse.date_range, region: osRegionResponse.results } );
 					done();
 				} );
 			} );
@@ -315,7 +315,7 @@ describe( 'Investment Sector Teams controller', function(){
 
 				req.params = { id: teamId };
 
-				investmentService.getSectorTeam.and.callFake( () => promise );
+				investmentService.getOverseasRegion.and.callFake( () => promise );
 
 				controller.wins( req, res );
 
@@ -325,7 +325,7 @@ describe( 'Investment Sector Teams controller', function(){
 
 				setTimeout( () => {
 
-					expect( investmentService.getSectorTeam ).toHaveBeenCalledWith( req, teamId );
+					expect( investmentService.getOverseasRegion ).toHaveBeenCalledWith( req, teamId );
 					expect( res.render ).not.toHaveBeenCalled();
 					expect( renderErrorHandler ).toHaveBeenCalledWith( err );
 					done();
@@ -341,21 +341,21 @@ describe( 'Investment Sector Teams controller', function(){
 			it( 'Should render the view with the correct data', function( done ){
 
 				const teamId = '1';
-				const sectorTeamResponse = { date_range: { start: 1, end: 2 }, results: { id: 1, name: 'abc' } };
+				const osRegionResponse = { date_range: { start: 1, end: 2 }, results: { id: 1, name: 'abc' } };
 				const promise =  new Promise( ( resolve ) => {
-					resolve( sectorTeamResponse );
+					resolve( osRegionResponse );
 				} );
 
 				req.params = { id: teamId };
 
-				investmentService.getSectorTeam.and.callFake( () => promise );
+				investmentService.getOverseasRegion.and.callFake( () => promise );
 
 				controller.nonHvcWins( req, res );
 
 				promise.then( () => {
 
-					expect( investmentService.getSectorTeam ).toHaveBeenCalledWith( req, teamId );
-					expect( res.render ).toHaveBeenCalledWith( 'investment/views/sector-teams/non-hvc-wins', { dateRange: sectorTeamResponse.date_range, team: sectorTeamResponse.results } );
+					expect( investmentService.getOverseasRegion ).toHaveBeenCalledWith( req, teamId );
+					expect( res.render ).toHaveBeenCalledWith( 'investment/views/overseas-regions/non-hvc-wins', { dateRange: osRegionResponse.date_range, region: osRegionResponse.results } );
 					done();
 				} );
 			} );
@@ -375,7 +375,7 @@ describe( 'Investment Sector Teams controller', function(){
 
 				req.params = { id: teamId };
 
-				investmentService.getSectorTeam.and.callFake( () => promise );
+				investmentService.getOverseasRegion.and.callFake( () => promise );
 
 				controller.nonHvcWins( req, res );
 
@@ -385,7 +385,7 @@ describe( 'Investment Sector Teams controller', function(){
 
 				setTimeout( () => {
 
-					expect( investmentService.getSectorTeam ).toHaveBeenCalledWith( req, teamId );
+					expect( investmentService.getOverseasRegion ).toHaveBeenCalledWith( req, teamId );
 					expect( res.render ).not.toHaveBeenCalled();
 					expect( renderErrorHandler ).toHaveBeenCalledWith( err );
 					done();

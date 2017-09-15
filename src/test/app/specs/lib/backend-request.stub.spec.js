@@ -429,5 +429,13 @@ describe( 'Backend stub', function(){
 				checkMultipleYears( '/mi/investment/sector_teams/', '/investment/sector_teams/index', done );
 			} );
 		} );
+
+		describe( 'Getting the Overseas Regions', function(){
+
+			it( 'Should return the list', function( done ){
+
+				checkMultipleYears( '/mi/investment/os_regions/', '/investment/os_regions/index', done );
+			} );
+		} );
 	} );
 } );
