@@ -5,7 +5,7 @@ const spy = require( '../../helpers/spy' );
 
 const year = 2017;
 
-let backendService;
+let exportBackendService;
 let errorHandler;
 let sortWins;
 let sortWinsResponse;
@@ -24,7 +24,7 @@ describe( 'UK Regions controller', function(){
 
 		sortWinsResponse = { some: 'wins' };
 
-		backendService = {};
+		exportBackendService = {};
 		errorHandler = { createHandler: spy( 'errorHandler.createHandler' ) };
 		sortWins = spy( 'sortWins', sortWinsResponse );
 
@@ -38,7 +38,7 @@ describe( 'UK Regions controller', function(){
 		};
 
 		controller = proxyquire( '../../../../app/controllers/controller.uk-regions', {
-			'../lib/service/service.backend': backendService,
+			'../lib/service/service.backend': { export: exportBackendService },
 			'../lib/render-error': errorHandler,
 			'../lib/sort-wins': sortWins,
 			'../lib/view-models/uk-region-summary': regionSummary,
@@ -61,14 +61,14 @@ describe( 'UK Regions controller', function(){
 
 			const promise = new Promise( ( resolve ) => { resolve( ukRegions ); } );
 
-			backendService.getUkRegions = spy( 'getUkRegions', promise );
+			exportBackendService.getUkRegions = spy( 'getUkRegions', promise );
 			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
 
 			controller.list( req, res );
 
 			promise.then( () => {
 
-				expect( backendService.getUkRegions ).toHaveBeenCalledWith( req );
+				expect( exportBackendService.getUkRegions ).toHaveBeenCalledWith( req );
 				expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
 				expect( res.render ).toHaveBeenCalledWith( 'uk-regions/list.html', { regions: ukRegions.results } );
 				done();
@@ -106,7 +106,7 @@ describe( 'UK Regions controller', function(){
 
 			const promise = new Promise( ( resolve ) => { resolve( data ); } );
 
-			backendService.getUkRegionInfo = spy( 'getUkRegionInfo', promise );
+			exportBackendService.getUkRegionInfo = spy( 'getUkRegionInfo', promise );
 			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
 
 			regionSummary.create = spy( 'regionSummary.create', regionSummaryResponse );
@@ -118,7 +118,7 @@ describe( 'UK Regions controller', function(){
 
 			promise.then( () => {
 
-				expect( backendService.getUkRegionInfo ).toHaveBeenCalledWith( req, regionId );
+				expect( exportBackendService.getUkRegionInfo ).toHaveBeenCalledWith( req, regionId );
 				expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
 
 				expect( regionSummary.create ).toHaveBeenCalledWith( data.wins );
@@ -168,14 +168,14 @@ describe( 'UK Regions controller', function(){
 
 				const promise = new Promise( ( resolve ) => { resolve( ukRegionWins ); } );
 
-				backendService.getUkRegionWinTable = spy( 'getUkRegionWinTable', promise );
+				exportBackendService.getUkRegionWinTable = spy( 'getUkRegionWinTable', promise );
 				errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
 
 				controller[ methodName ]( req, res );
 
 				promise.then( () => {
 
-					expect( backendService.getUkRegionWinTable ).toHaveBeenCalledWith( req, regionId );
+					expect( exportBackendService.getUkRegionWinTable ).toHaveBeenCalledWith( req, regionId );
 					expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
 					expect( sortWins ).toHaveBeenCalledWith( ukRegionWins.results.wins[ type ], sort );
 					expect( res.render ).toHaveBeenCalledWith( view, {

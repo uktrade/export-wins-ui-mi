@@ -1,11 +1,11 @@
 
-const backendService = require( '../lib/service/service.backend' );
+const exportBackendService = require( '../lib/service/service.backend' ).export;
 const renderError = require( '../lib/render-error' );
 const globalSummary = require( '../lib/view-models/global-summary' );
 
 module.exports = function( req, res ){
 
-	backendService.getHomepageData( req ).then( ( data ) => {
+	exportBackendService.getHomepageData( req ).then( ( data ) => {
 
 		const sectorTeams = data.sectorTeams.results;
 		const overseasRegionGroups = data.overseasRegionGroups.results;

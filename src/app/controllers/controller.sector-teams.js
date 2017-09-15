@@ -1,5 +1,5 @@
 
-const backendService = require( '../lib/service/service.backend' );
+const exportBackendService = require( '../lib/service/service.backend' ).export;
 const renderError = require( '../lib/render-error' );
 const sortWins = require( '../lib/sort-wins' );
 
@@ -15,7 +15,7 @@ function getWins( view, type ){
 
 		const teamId = req.params.id;
 
-		backendService.getSectorTeamWinTable( req, teamId ).then( ( data ) => {
+		exportBackendService.getSectorTeamWinTable( req, teamId ).then( ( data ) => {
 
 			res.render( view, {
 				dateRange: data.date_range,
@@ -31,7 +31,7 @@ module.exports = {
 
 	overview: function( req, res ){
 
-		backendService.getSectorTeamsOverview( req ).then( ( sectorTeams ) => {
+		exportBackendService.getSectorTeamsOverview( req ).then( ( sectorTeams ) => {
 
 			res.render( 'sector-teams/overview', {
 				dateRange: sectorTeams.date_range,
@@ -43,7 +43,7 @@ module.exports = {
 
 	list: function( req, res ){
 
-		backendService.getSectorTeams( req ).then( ( sectorTeams ) => {
+		exportBackendService.getSectorTeams( req ).then( ( sectorTeams ) => {
 
 			res.render( 'sector-teams/list.html', { sectorTeams: sectorTeams.results } );
 
@@ -54,7 +54,7 @@ module.exports = {
 
 		const teamId = req.params.id;
 
-		backendService.getSectorTeamInfo( req, teamId ).then( ( data ) => {
+		exportBackendService.getSectorTeamInfo( req, teamId ).then( ( data ) => {
 
 			res.render( 'sector-teams/detail.html', {
 				teamId,

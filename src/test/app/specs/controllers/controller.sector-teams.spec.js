@@ -5,7 +5,7 @@ const spy = require( '../../helpers/spy' );
 
 const year = 2017;
 
-let backendService;
+let exportBackendService;
 let errorHandler;
 let sortWins;
 let sortWinsResponse;
@@ -24,7 +24,7 @@ describe( 'Sector Teams controller', function(){
 
 		sortWinsResponse = { some: 'wins' };
 
-		backendService = {};
+		exportBackendService = {};
 		errorHandler = { createHandler: spy( 'errorHandler.createHandler' ) };
 		sortWins = spy( 'sortWins', sortWinsResponse );
 
@@ -39,7 +39,7 @@ describe( 'Sector Teams controller', function(){
 		};
 
 		controller = proxyquire( '../../../../app/controllers/controller.sector-teams', {
-			'../lib/service/service.backend': backendService,
+			'../lib/service/service.backend': { export: exportBackendService },
 			'../lib/render-error': errorHandler,
 			'../lib/sort-wins': sortWins,
 			'../lib/view-models/sector-summary': sectorSummary,
@@ -66,13 +66,13 @@ describe( 'Sector Teams controller', function(){
 
 			const promise = new Promise( ( resolve ) => { resolve( sectorTeams ); } );
 
-			backendService.getSectorTeamsOverview = spy( 'getSectorTeamsOverview', promise );
+			exportBackendService.getSectorTeamsOverview = spy( 'getSectorTeamsOverview', promise );
 			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
 
 			controller.overview( req, res );
 
 			promise.then( () => {
-				expect( backendService.getSectorTeamsOverview ).toHaveBeenCalledWith( req );
+				expect( exportBackendService.getSectorTeamsOverview ).toHaveBeenCalledWith( req );
 				expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
 				expect( res.render ).toHaveBeenCalledWith( 'sector-teams/overview', {
 					dateRange: sectorTeams.date_range,
@@ -98,13 +98,13 @@ describe( 'Sector Teams controller', function(){
 
 			const promise = new Promise( ( resolve ) => { resolve( sectorTeams ); } );
 
-			backendService.getSectorTeams = spy( 'getSectorTeams', promise );
+			exportBackendService.getSectorTeams = spy( 'getSectorTeams', promise );
 			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
 
 			controller.list( req, res );
 
 			promise.then( () => {
-				expect( backendService.getSectorTeams ).toHaveBeenCalledWith( req );
+				expect( exportBackendService.getSectorTeams ).toHaveBeenCalledWith( req );
 				expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
 				expect( res.render ).toHaveBeenCalledWith( 'sector-teams/list.html', {
 					sectorTeams: sectorTeams.results
@@ -143,7 +143,7 @@ describe( 'Sector Teams controller', function(){
 
 			const promise = new Promise( ( resolve ) => { resolve( teamInfo ); } );
 
-			backendService.getSectorTeamInfo = spy( 'getSectorTeamInfo', promise );
+			exportBackendService.getSectorTeamInfo = spy( 'getSectorTeamInfo', promise );
 			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
 
 
@@ -157,7 +157,7 @@ describe( 'Sector Teams controller', function(){
 
 			promise.then( () => {
 
-				expect( backendService.getSectorTeamInfo ).toHaveBeenCalledWith( req, teamId );
+				expect( exportBackendService.getSectorTeamInfo ).toHaveBeenCalledWith( req, teamId );
 				expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
 
 				expect( sectorSummary.create ).toHaveBeenCalledWith( teamInfo.wins );
@@ -214,13 +214,13 @@ describe( 'Sector Teams controller', function(){
 
 				const promise = new Promise( ( resolve ) => { resolve( sectorTeamWins ); } );
 
-				backendService.getSectorTeamWinTable = spy( 'getSectorTeamWinTable', promise );
+				exportBackendService.getSectorTeamWinTable = spy( 'getSectorTeamWinTable', promise );
 				errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
 
 				controller[ methodName ]( req, res );
 
 				promise.then( () => {
-					expect( backendService.getSectorTeamWinTable ).toHaveBeenCalledWith( req, teamId );
+					expect( exportBackendService.getSectorTeamWinTable ).toHaveBeenCalledWith( req, teamId );
 					expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
 					expect( sortWins ).toHaveBeenCalledWith( sectorTeamWins.results.wins[ type ], sort );
 					expect( res.render ).toHaveBeenCalledWith( view, {

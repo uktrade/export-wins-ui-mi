@@ -419,4 +419,15 @@ describe( 'Backend stub', function(){
 			} );
 		} );
 	} );
+
+	describe( 'Investment', function(){
+
+		describe( 'Getting the Sector Teams', function(){
+
+			it( 'Should return the list', function( done ){
+
+				checkMultipleYears( '/mi/investment/sector_teams/', '/investment/sector_teams/index', done );
+			} );
+		} );
+	} );
 } );

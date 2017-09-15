@@ -764,10 +764,42 @@ if( config.backend.mock ){
 
 				it( 'Should return a 200 with the correct heading', function( done ){
 
+					interceptBackend.getStub( `/mi/sector_teams/?year=2017`, 200, '/investment/sector_teams/' );
+
 					supertest( app ).get( '/investment/' ).end( ( err, res ) => {
 
 						checkResponse( res, 200 );
 						expect( getTitle( res ) ).toEqual( 'MI - Investment Homepage' );
+						done();
+					} );
+				} );
+			} );
+
+			describe( 'Sector Teams', function(){
+
+				it( 'Should return a 200 with the correct heading', function( done ){
+
+					interceptBackend.getStub( `/mi/sector_teams/?year=2017`, 200, '/investment/sector_teams/' );
+
+					supertest( app ).get( '/investment/sector-teams/' ).end( ( err, res ) => {
+
+						checkResponse( res, 200 );
+						expect( getTitle( res ) ).toEqual( 'MI - Investment - Sector Teams' );
+						done();
+					} );
+				} );
+			} );
+
+			describe( 'Sector Team', function(){
+
+				it( 'Should return a 200 with the correct heading', function( done ){
+
+					interceptBackend.getStub( `/mi/sector_teams/?year=2017`, 200, '/investment/sector_teams/' );
+
+					supertest( app ).get( '/investment/sector-teams/28395/' ).end( ( err, res ) => {
+
+						checkResponse( res, 200 );
+						expect( getTitle( res ) ).toEqual( 'MI - Investment - Sector team performance - sed aut alias' );
 						done();
 					} );
 				} );

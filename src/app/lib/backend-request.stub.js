@@ -69,7 +69,9 @@ const filteredStubs = [
 	[ '/mi/uk_regions/[A-Za-z-]+/', 'uk_regions/region'  ],
 	[ '/mi/uk_regions/[A-Za-z-]+/months/', 'uk_regions/months'  ],
 	[ '/mi/uk_regions/[A-Za-z-]+/top_non_hvcs/', 'uk_regions/top_non_hvcs'  ],
-	[ '/mi/uk_regions/[A-Za-z-]+/win_table/', 'uk_regions/win_table'  ]
+	[ '/mi/uk_regions/[A-Za-z-]+/win_table/', 'uk_regions/win_table'  ],
+
+	[ '/mi/investment/sector_teams/', 'investment/sector_teams/index'  ]
 ];
 
 for( let [ path, stubFile ] of filteredStubs ){

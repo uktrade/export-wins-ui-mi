@@ -1,0 +1,23 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "Investment Sector Teams list",
+
+	"type": "array",
+	"minItems": 5,
+	"maxItems": 15,
+	"items": {
+		"type": "object",
+		"required": [ "id", "name" ],
+		"properties": {
+
+			"id": {
+				"type": "number",
+				"faker": "random.number"
+			},
+			"name": {
+				"type": "string",
+				"faker": "lorem.words"
+			}
+		}
+	}
+}

@@ -1,6 +1,6 @@
 {
   "name": "export-wins-ui-mi",
-  "version": "5.15.0",
+  "version": "5.16.0",
   "description": "An MI dashboard for Export Wins",
   "main": "server.js",
   "engines": {
@@ -41,9 +41,13 @@
     "dist": "npm run build:dist && npm run start",
     "dist-install": "cd dist && npm install --production",
     "lint": "eslint .",
-    "watch:sass": "npm run sass:dev && node-sass src/public/sass/main.scss src/public/css/main.css --source-map src/public/css/main.css.map --source-map-contents --include-path ./node_modules/@uktrade/trade_elements/dist/sass/ -w -r",
-    "sass:dev": "node-sass src/public/sass/main.scss src/public/css/main.css --source-map src/public/css/main.css.map --source-map-contents --include-path ./node_modules/@uktrade/trade_elements/dist/sass/",
-    "sass:prod": "node-sass src/public/sass/main.scss src/public/css/main.css --include-path ./node_modules/@uktrade/trade_elements/dist/sass/ -x --output-style compressed",
+    "watch:sass-main": "npm run sass:dev-main && node-sass src/public/sass/main.scss src/public/css/main.css --source-map src/public/css/main.css.map --source-map-contents --include-path ./node_modules/@uktrade/trade_elements/dist/sass/ -w -r",
+    "watch:sass-investment": "npm run sass:dev-investment && node-sass src/public/sass/investment.scss src/public/css/investment.css --source-map src/public/css/investment.css.map --source-map-contents --include-path ./node_modules/@uktrade/trade_elements/dist/sass/ -w -r",
+    "sass:dev-main": "node-sass src/public/sass/main.scss src/public/css/main.css --source-map src/public/css/main.css.map --source-map-contents --include-path ./node_modules/@uktrade/trade_elements/dist/sass/",
+    "sass:dev-investment": "node-sass src/public/sass/investment.scss src/public/css/investment.css --source-map src/public/css/investment.css.map --source-map-contents --include-path ./node_modules/@uktrade/trade_elements/dist/sass/",
+    "sass:prod-main": "node-sass src/public/sass/main.scss src/public/css/main.css --include-path ./node_modules/@uktrade/trade_elements/dist/sass/ -x --output-style compressed",
+    "sass:prod-investment": "node-sass src/public/sass/investment.scss src/public/css/investment.css --include-path ./node_modules/@uktrade/trade_elements/dist/sass/ -x --output-style compressed",
+    "sass:prod": "npm run sass:prod-main && npm run sass:prod-investment",
     "backstop:generate": "backstop genConfig",
     "backstop:reference": "backstop reference --config=src/test/backstop/backstop.json",
     "backstop:test": "backstop test --config=src/test/backstop/backstop.json",
@@ -114,6 +118,7 @@
     "npm-run-all": "4.0.2",
     "nyc": "11.0.3",
     "proxyquire": "1.8.0",
+    "rewire": "2.5.2",
     "selenium-webdriver": "3.4.0",
     "supertest": "3.0.0"
   },

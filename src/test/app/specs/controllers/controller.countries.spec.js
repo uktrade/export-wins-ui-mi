@@ -5,7 +5,7 @@ const spy = require( '../../helpers/spy' );
 
 const year = 2017;
 
-let backendService;
+let exportBackendService;
 let errorHandler;
 let sortWins;
 let sortWinsResponse;
@@ -25,7 +25,7 @@ describe( 'Countries controller', function(){
 
 		sortWinsResponse = { some: 'wins' };
 
-		backendService = {};
+		exportBackendService = {};
 		errorHandler = { createHandler: spy( 'errorHandler.createHandler' ) };
 		sortWins = spy( 'sortWins', sortWinsResponse );
 
@@ -40,7 +40,7 @@ describe( 'Countries controller', function(){
 		};
 
 		controller = proxyquire( '../../../../app/controllers/controller.countries', {
-			'../lib/service/service.backend': backendService,
+			'../lib/service/service.backend': { export: exportBackendService },
 			'../lib/render-error': errorHandler,
 			'../lib/sort-wins': sortWins,
 			'../lib/view-models/sector-summary': sectorSummary,
@@ -64,14 +64,14 @@ describe( 'Countries controller', function(){
 
 			const promise = new Promise( ( resolve ) => { resolve( countries ); } );
 
-			backendService.getCountries = spy( 'getCountries', promise );
+			exportBackendService.getCountries = spy( 'getCountries', promise );
 			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
 
 			controller.list( req, res );
 
 			promise.then( () => {
 
-				expect( backendService.getCountries ).toHaveBeenCalledWith( req );
+				expect( exportBackendService.getCountries ).toHaveBeenCalledWith( req );
 				expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
 				expect( res.render ).toHaveBeenCalledWith( 'countries/list.html', { countries: countries.results } );
 				done();
@@ -109,7 +109,7 @@ describe( 'Countries controller', function(){
 
 			const promise = new Promise( ( resolve ) => { resolve( data ); } );
 
-			backendService.getCountryInfo = spy( 'getCountryInfo', promise );
+			exportBackendService.getCountryInfo = spy( 'getCountryInfo', promise );
 			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
 
 			sectorSummary.create = spy( 'sectorSummary.create', sectorSummaryResponse );
@@ -122,7 +122,7 @@ describe( 'Countries controller', function(){
 
 			promise.then( () => {
 
-				expect( backendService.getCountryInfo ).toHaveBeenCalledWith( req, countryCode );
+				expect( exportBackendService.getCountryInfo ).toHaveBeenCalledWith( req, countryCode );
 				expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
 
 				expect( sectorSummary.create ).toHaveBeenCalledWith( data.wins );
@@ -176,14 +176,14 @@ describe( 'Countries controller', function(){
 
 				const promise = new Promise( ( resolve ) => { resolve( countryWins ); } );
 
-				backendService.getCountryWinTable = spy( 'getCountryWinTable', promise );
+				exportBackendService.getCountryWinTable = spy( 'getCountryWinTable', promise );
 				errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
 
 				controller[ methodName ]( req, res );
 
 				promise.then( () => {
 
-					expect( backendService.getCountryWinTable ).toHaveBeenCalledWith( req, countryId );
+					expect( exportBackendService.getCountryWinTable ).toHaveBeenCalledWith( req, countryId );
 					expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
 					expect( sortWins ).toHaveBeenCalledWith( countryWins.results.wins[ type ], sort );
 					expect( res.render ).toHaveBeenCalledWith( view, {

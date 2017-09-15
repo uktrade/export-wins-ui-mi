@@ -1,16 +1,20 @@
 const childProcess = require( 'child_process' );
 
 const scripts = [
-	'generate-global-hvcs',
-	'generate-global-wins',
-	'generate-hvc-groups',
-	'generate-hvc',
-	'generate-os-region-groups',
-	'generate-os-regions',
-	'generate-sector-teams',
-	'generate-shared',
+
 	'generate-user',
-	'generate-countries'
+
+	'export/generate-global-hvcs',
+	'export/generate-global-wins',
+	'export/generate-hvc-groups',
+	'export/generate-hvc',
+	'export/generate-os-region-groups',
+	'export/generate-os-regions',
+	'export/generate-sector-teams',
+	'export/generate-shared',
+	'export/generate-countries',
+
+	'investment/generate-sector-teams'
 ];
 
 for( let script of scripts ){

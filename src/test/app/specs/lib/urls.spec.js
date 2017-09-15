@@ -307,5 +307,21 @@ describe( 'urls middleware', function(){
 				checkFilteredUrls( req, 'investment.index', [], '/investment/' );
 			} );
 		} );
+
+		describe( 'Sector Teams', function(){
+
+			it( 'Should return the correct URL', function(){
+
+				checkFilteredUrls( req, 'investment.sectorTeams', [], '/investment/sector-teams/' );
+			} );
+		} );
+
+		describe( 'Sector Team', function(){
+
+			it( 'Should return the correct URL', function(){
+
+				checkFilteredUrls( req, 'investment.sectorTeam', [ 1 ], '/investment/sector-teams/1/' );
+			} );
+		} );
 	} );
 } );

@@ -5,7 +5,7 @@ const getBackendStub = require( '../../helpers/get-backend-stub' );
 const spy = require( '../../helpers/spy' );
 
 let viewModel;
-let backendService;
+let exportBackendService;
 let errorHandler;
 let sortWins;
 let sortWinsResponse;
@@ -24,7 +24,7 @@ describe( 'HVC controller', function(){
 
 		sortWinsResponse = { some: 'wins' };
 
-		backendService = {};
+		exportBackendService = {};
 		viewModel = {};
 		sortWins = spy( 'sortWins', sortWinsResponse );
 		topMaketsModel = { test: 1 };
@@ -43,7 +43,7 @@ describe( 'HVC controller', function(){
 		};
 
 		controller = proxyquire( '../../../../app/controllers/controller.hvc', {
-			'../lib/service/service.backend': backendService,
+			'../lib/service/service.backend': { export: exportBackendService },
 			'../lib/render-error': errorHandler,
 			'../lib/sort-wins': sortWins,
 			'../lib/view-models/hvc-detail': hvcDetail,
@@ -69,14 +69,14 @@ describe( 'HVC controller', function(){
 				resolve( { hvc: hvcData, markets: hvcMarkets } );
 			} );
 
-			backendService.getHvcInfo = spy( 'getHvcInfo', promise );
+			exportBackendService.getHvcInfo = spy( 'getHvcInfo', promise );
 			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
 
 			controller.hvc( req, res );
 
 			promise.then( function(){
 
-				expect( backendService.getHvcInfo ).toHaveBeenCalledWith( req, hvcId );
+				expect( exportBackendService.getHvcInfo ).toHaveBeenCalledWith( req, hvcId );
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				expect( hvcDetail.create ).toHaveBeenCalledWith( hvcData );
 				expect( topMarkets.create ).toHaveBeenCalledWith( hvcMarkets );
@@ -117,14 +117,14 @@ describe( 'HVC controller', function(){
 				resolve( hvcWins );
 			} );
 
-			backendService.getHvcWinList = spy( 'getHvcWinList', promise );
+			exportBackendService.getHvcWinList = spy( 'getHvcWinList', promise );
 			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
 
 			controller.winList( req, res );
 
 			promise.then( function(){
 
-				expect( backendService.getHvcWinList ).toHaveBeenCalledWith( req, hvcId );
+				expect( exportBackendService.getHvcWinList ).toHaveBeenCalledWith( req, hvcId );
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				expect( sortWins ).toHaveBeenCalledWith( hvcWins.results.wins.hvc, sort );
 				expect( res.render ).toHaveBeenCalledWith( 'hvc/wins.html', {
