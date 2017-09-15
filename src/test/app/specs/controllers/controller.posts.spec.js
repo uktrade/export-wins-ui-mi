@@ -5,7 +5,7 @@ const spy = require( '../../helpers/spy' );
 
 const year = 2017;
 
-let backendService;
+let exportBackendService;
 let errorHandler;
 let sortWins;
 let sortWinsResponse;
@@ -25,7 +25,7 @@ describe( 'Posts controller', function(){
 
 		sortWinsResponse = { some: 'wins' };
 
-		backendService = {};
+		exportBackendService = {};
 		errorHandler = { createHandler: spy( 'errorHandler.createHandler' ) };
 		sortWins = spy( 'sortWins', sortWinsResponse );
 
@@ -40,7 +40,7 @@ describe( 'Posts controller', function(){
 		};
 
 		controller = proxyquire( '../../../../app/controllers/controller.posts', {
-			'../lib/service/service.backend': backendService,
+			'../lib/service/service.backend': { export: exportBackendService },
 			'../lib/render-error': errorHandler,
 			'../lib/sort-wins': sortWins,
 			'../lib/view-models/sector-summary': sectorSummary,
@@ -64,14 +64,14 @@ describe( 'Posts controller', function(){
 
 			const promise = new Promise( ( resolve ) => { resolve( posts ); } );
 
-			backendService.getPosts = spy( 'getPosts', promise );
+			exportBackendService.getPosts = spy( 'getPosts', promise );
 			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
 
 			controller.list( req, res );
 
 			promise.then( () => {
 
-				expect( backendService.getPosts ).toHaveBeenCalledWith( req );
+				expect( exportBackendService.getPosts ).toHaveBeenCalledWith( req );
 				expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
 				expect( res.render ).toHaveBeenCalledWith( 'posts/list.html', { posts: posts.results } );
 				done();
@@ -109,7 +109,7 @@ describe( 'Posts controller', function(){
 
 			const promise = new Promise( ( resolve ) => { resolve( data ); } );
 
-			backendService.getPostInfo = spy( 'getPostInfo', promise );
+			exportBackendService.getPostInfo = spy( 'getPostInfo', promise );
 			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
 
 			sectorSummary.create = spy( 'sectorSummary.create', sectorSummaryResponse );
@@ -122,7 +122,7 @@ describe( 'Posts controller', function(){
 
 			promise.then( () => {
 
-				expect( backendService.getPostInfo ).toHaveBeenCalledWith( req, postId );
+				expect( exportBackendService.getPostInfo ).toHaveBeenCalledWith( req, postId );
 				expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
 
 				expect( sectorSummary.create ).toHaveBeenCalledWith( data.wins );
@@ -173,14 +173,14 @@ describe( 'Posts controller', function(){
 
 				const promise = new Promise( ( resolve ) => { resolve( postWins ); } );
 
-				backendService.getPostWinTable = spy( 'getPostWinTable', promise );
+				exportBackendService.getPostWinTable = spy( 'getPostWinTable', promise );
 				errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
 
 				controller[ methodName ]( req, res );
 
 				promise.then( () => {
 
-					expect( backendService.getPostWinTable ).toHaveBeenCalledWith( req, postId );
+					expect( exportBackendService.getPostWinTable ).toHaveBeenCalledWith( req, postId );
 					expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
 					expect( sortWins ).toHaveBeenCalledWith( postWins.results.wins[ type ], sort );
 					expect( res.render ).toHaveBeenCalledWith( view, {

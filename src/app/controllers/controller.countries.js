@@ -1,4 +1,4 @@
-const backendService = require( '../lib/service/service.backend' );
+const exportBackendService = require( '../lib/service/service.backend' ).export;
 const errorHandler = require( '../lib/render-error' );
 const sortWins = require( '../lib/sort-wins' );
 
@@ -14,7 +14,7 @@ function getWins( view, type ){
 
 		const countryCode = req.params.code;
 
-		backendService.getCountryWinTable( req, countryCode ).then( ( data ) => {
+		exportBackendService.getCountryWinTable( req, countryCode ).then( ( data ) => {
 
 			res.render( view, {
 				dateRange: data.date_range,
@@ -30,7 +30,7 @@ module.exports = {
 
 	list: function( req, res ){
 
-		backendService.getCountries( req ).then( ( countries ) => {
+		exportBackendService.getCountries( req ).then( ( countries ) => {
 
 			res.render( 'countries/list.html', { countries: countries.results } );
 
@@ -41,7 +41,7 @@ module.exports = {
 
 		const countryCode = req.params.code;
 
-		backendService.getCountryInfo( req, countryCode ).then( ( data ) => {
+		exportBackendService.getCountryInfo( req, countryCode ).then( ( data ) => {
 
 			res.render( 'countries/detail.html', {
 				countryCode,

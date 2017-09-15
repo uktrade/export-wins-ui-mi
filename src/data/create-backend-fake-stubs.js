@@ -1,18 +1,21 @@
 const path = require( 'path' );
 const writeJsonFiles = require( './faker/helpers/write-json-files' );
 
-const hvcGroupsJson = require( './faker/backend/scripts/lib/json-creators/hvc-groups-json' );
-const osRegionsJson = require( './faker/backend/scripts/lib/json-creators/os-regions-json' );
-const osRegionGroupsJson = require( './faker/backend/scripts/lib/json-creators/os-region-groups-json' );
-const sectorTeamsJson = require( './faker/backend/scripts/lib/json-creators/sector-teams-json' );
-const sharedJson = require( './faker/backend/scripts/lib/json-creators/shared-json' );
 const userJson = require( './faker/backend/scripts/lib/json-creators/user-json' );
-const hvcJson = require( './faker/backend/scripts/lib/json-creators/hvc-json' );
-const globalHvcsJson = require( './faker/backend/scripts/lib/json-creators/global-hvcs-json' );
-const globalWinsJson = require( './faker/backend/scripts/lib/json-creators/global-wins-json' );
-const countriesJson = require( './faker/backend/scripts/lib/json-creators/countries-json' );
-const postsJson = require( './faker/backend/scripts/lib/json-creators/posts-json' );
-const ukRegionJson = require( './faker/backend/scripts/lib/json-creators/uk-regions-json' );
+
+const hvcGroupsJson = require( './faker/backend/scripts/lib/json-creators/export/hvc-groups-json' );
+const osRegionsJson = require( './faker/backend/scripts/lib/json-creators/export/os-regions-json' );
+const osRegionGroupsJson = require( './faker/backend/scripts/lib/json-creators/export/os-region-groups-json' );
+const sectorTeamsJson = require( './faker/backend/scripts/lib/json-creators/export/sector-teams-json' );
+const sharedJson = require( './faker/backend/scripts/lib/json-creators/export/shared-json' );
+const hvcJson = require( './faker/backend/scripts/lib/json-creators/export/hvc-json' );
+const globalHvcsJson = require( './faker/backend/scripts/lib/json-creators/export/global-hvcs-json' );
+const globalWinsJson = require( './faker/backend/scripts/lib/json-creators/export/global-wins-json' );
+const countriesJson = require( './faker/backend/scripts/lib/json-creators/export/countries-json' );
+const postsJson = require( './faker/backend/scripts/lib/json-creators/export/posts-json' );
+const ukRegionJson = require( './faker/backend/scripts/lib/json-creators/export/uk-regions-json' );
+
+const investmentSectorTeamsJson = require( './faker/backend/scripts/lib/json-creators/investment/sector-teams-json' );
 
 const outputPath = path.resolve( __dirname, 'fake-stubs/backend' );
 
@@ -75,6 +78,8 @@ const yearlyFiles = {
 	'uk_regions/months': ukRegionJson.createMonths,
 	'uk_regions/top_non_hvcs': sharedJson.createTopNonHvcs,
 	'uk_regions/win_table': ukRegionJson.createWinTable,
+
+	'investment/sector_teams/index': investmentSectorTeamsJson.createIndex
 };
 
 for( let file in yearlyFiles ){

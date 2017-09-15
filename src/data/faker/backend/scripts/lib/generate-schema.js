@@ -75,15 +75,6 @@ module.exports = function( path, year = 2016 ){
 
 	if( hasWrapper ){
 
-		switch( path ){
-			case '/os_regions/index.schema':
-			case '/shared/index.schema':
-			case '/sector_teams/index.schema':
-			case '/os_region_groups/index.schema':
-				hasDateRange = false;
-			break;
-		}
-
 		return promise.then( ( json ) => createWrapper( json, year, hasDateRange ) );
 
 	} else {

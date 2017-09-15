@@ -1,0 +1,16 @@
+{% extends 'layout-investment.html' %}
+
+{% set pageName %}Investment - Sector team performance - {{ team.name | safe }}{% endset %}
+
+{% block page_content %}
+
+	<h1 class="page-heading">
+		Investment
+	</h1>
+
+	<h2>{{ team.name }}<span class="page-heading-secondary"> FDI Sector Team</span></h2>
+
+	{% include 'partials/year-selector.html' %}
+
+
+{% endblock %}

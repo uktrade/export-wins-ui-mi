@@ -1,5 +1,5 @@
 
-const backendService = require( '../lib/service/service.backend' );
+const exportBackendService = require( '../lib/service/service.backend' ).export;
 const renderError = require( '../lib/render-error' );
 const sortWins = require( '../lib/sort-wins' );
 
@@ -12,7 +12,7 @@ module.exports = {
 
 	list: function( req, res ){
 
-		backendService.getHvcGroups( req ).then( ( hvcGroups ) => {
+		exportBackendService.getHvcGroups( req ).then( ( hvcGroups ) => {
 
 			res.render( 'hvc-groups/list.html', { hvcGroups: hvcGroups.results } );
 
@@ -23,7 +23,7 @@ module.exports = {
 
 		const groupId = req.params.id;
 
-		backendService.getHvcGroupInfo( req, groupId ).then( ( data ) => {
+		exportBackendService.getHvcGroupInfo( req, groupId ).then( ( data ) => {
 
 			res.render( 'hvc-groups/detail.html', {
 				groupId,
@@ -41,7 +41,7 @@ module.exports = {
 
 		const groupId = req.params.id;
 
-		backendService.getHvcGroupWinTable( req, groupId ).then( ( data ) => {
+		exportBackendService.getHvcGroupWinTable( req, groupId ).then( ( data ) => {
 
 			res.render( 'hvc-groups/wins.html', {
 				dateRange: data.date_range,

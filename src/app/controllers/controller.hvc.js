@@ -1,5 +1,5 @@
 
-const backendService = require( '../lib/service/service.backend' );
+const exportBackendService = require( '../lib/service/service.backend' ).export;
 const renderError = require( '../lib/render-error' );
 const sortWins = require( '../lib/sort-wins' );
 
@@ -12,7 +12,7 @@ module.exports = {
 
 		const hvcId = req.params.id;
 
-		backendService.getHvcInfo( req, hvcId ).then( ( info ) => {
+		exportBackendService.getHvcInfo( req, hvcId ).then( ( info ) => {
 
 			const viewModel = hvcDetail.create( info.hvc );
 
@@ -27,7 +27,7 @@ module.exports = {
 
 		const hvcId = req.params.id;
 
-		backendService.getHvcWinList( req, hvcId ).then( ( data ) => {
+		exportBackendService.getHvcWinList( req, hvcId ).then( ( data ) => {
 
 			res.render( 'hvc/wins.html', {
 				dateRange: data.date_range,

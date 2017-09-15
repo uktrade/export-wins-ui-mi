@@ -1,4 +1,4 @@
-const backendService = require( '../lib/service/service.backend' );
+const exportBackendService = require( '../lib/service/service.backend' ).export;
 const errorHandler = require( '../lib/render-error' );
 const sortWins = require( '../lib/sort-wins' );
 
@@ -14,7 +14,7 @@ function getWins( view, type ){
 
 		const postId = req.params.id;
 
-		backendService.getPostWinTable( req, postId ).then( ( data ) => {
+		exportBackendService.getPostWinTable( req, postId ).then( ( data ) => {
 
 			res.render( view, {
 				dateRange: data.date_range,
@@ -30,7 +30,7 @@ module.exports = {
 
 	list: function( req, res ){
 
-		backendService.getPosts( req ).then( ( posts ) => {
+		exportBackendService.getPosts( req ).then( ( posts ) => {
 
 			res.render( 'posts/list.html', { posts: posts.results } );
 
@@ -41,7 +41,7 @@ module.exports = {
 
 		const postId = req.params.id;
 
-		backendService.getPostInfo( req, postId ).then( ( data ) => {
+		exportBackendService.getPostInfo( req, postId ).then( ( data ) => {
 
 			res.render( 'posts/detail.html', {
 				postId,

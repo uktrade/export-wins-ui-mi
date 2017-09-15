@@ -1,5 +1,5 @@
 
-const backendService = require( '../lib/service/service.backend' );
+const exportBackendService = require( '../lib/service/service.backend' ).export;
 const renderError = require( '../lib/render-error' );
 const sortWins = require( '../lib/sort-wins' );
 
@@ -15,7 +15,7 @@ function getWins( view, type ){
 
 		const regionId = req.params.id;
 
-		backendService.getOverseasRegionWinTable( req, regionId ).then( ( data ) => {
+		exportBackendService.getOverseasRegionWinTable( req, regionId ).then( ( data ) => {
 
 			res.render( view, {
 				dateRange: data.date_range,
@@ -31,7 +31,7 @@ module.exports = {
 
 	overview: function( req, res ){
 
-		backendService.getOverseasRegionsOverviewGroups( req ).then( ( regionGroups ) => {
+		exportBackendService.getOverseasRegionsOverviewGroups( req ).then( ( regionGroups ) => {
 
 			res.render( 'overseas-regions/overview.html', {
 				dateRange: regionGroups.date_range,
@@ -43,7 +43,7 @@ module.exports = {
 
 	list: function( req, res ){
 
-		backendService.getOverseasRegions( req ).then( ( regions ) => {
+		exportBackendService.getOverseasRegions( req ).then( ( regions ) => {
 
 			res.render( 'overseas-regions/list.html', { regions: regions.results } );
 
@@ -54,7 +54,7 @@ module.exports = {
 
 		const regionId = req.params.id;
 
-		backendService.getOverseasRegionInfo( req, regionId ).then( ( data ) => {
+		exportBackendService.getOverseasRegionInfo( req, regionId ).then( ( data ) => {
 
 			res.render( 'overseas-regions/detail.html', {
 				regionId,

@@ -114,7 +114,9 @@ module.exports = function( req ){
 		hvcWins: ( hvcId ) => filteredUrl( '/hvc/' + hvcId + '/wins/' ),
 
 		investment: {
-			index: () => filteredUrl( '/investment/' )
+			index: () => filteredUrl( '/investment/' ),
+			sectorTeams: () => filteredUrl( `/investment/sector-teams/` ),
+			sectorTeam: ( teamId ) => filteredUrl( `/investment/sector-teams/${ teamId }/` )
 		}
 	};
 };

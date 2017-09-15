@@ -5,7 +5,7 @@ const spy = require( '../../helpers/spy' );
 
 const year = 2017;
 
-let backendService;
+let exportBackendService;
 let errorHandler;
 let sortWins;
 let sortWinsResponse;
@@ -26,7 +26,7 @@ describe( 'Overseas Regions controller', function(){
 
 		sortWinsResponse = { some: 'wins' };
 
-		backendService = {};
+		exportBackendService = {};
 		errorHandler = { createHandler: spy( 'errorHandler.createHandler' ) };
 		sortWins = spy( 'sortWins', sortWinsResponse );
 
@@ -41,7 +41,7 @@ describe( 'Overseas Regions controller', function(){
 		};
 
 		controller = proxyquire( '../../../../app/controllers/controller.overseas-regions', {
-			'../lib/service/service.backend': backendService,
+			'../lib/service/service.backend': { export: exportBackendService },
 			'../lib/render-error': errorHandler,
 			'../lib/sort-wins': sortWins,
 			'../lib/view-models/sector-summary': sectorSummary,
@@ -71,14 +71,14 @@ describe( 'Overseas Regions controller', function(){
 				resolve( regionGroups );
 			} );
 
-			backendService.getOverseasRegionsOverviewGroups = spy( 'getOverseasRegionsOverviewGroups', promise );
+			exportBackendService.getOverseasRegionsOverviewGroups = spy( 'getOverseasRegionsOverviewGroups', promise );
 			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
 
 			controller.overview( req, res );
 
 			promise.then( () => {
 
-				expect( backendService.getOverseasRegionsOverviewGroups ).toHaveBeenCalledWith( req );
+				expect( exportBackendService.getOverseasRegionsOverviewGroups ).toHaveBeenCalledWith( req );
 				expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
 				expect( res.render ).toHaveBeenCalledWith( 'overseas-regions/overview.html', {
 					dateRange: regionGroups.date_range,
@@ -102,14 +102,14 @@ describe( 'Overseas Regions controller', function(){
 
 			const promise = new Promise( ( resolve ) => {	resolve( regions ); } );
 
-			backendService.getOverseasRegions = spy( 'getOverseasRegions', promise );
+			exportBackendService.getOverseasRegions = spy( 'getOverseasRegions', promise );
 			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
 
 			controller.list( req, res );
 
 			promise.then( () => {
 
-				expect( backendService.getOverseasRegions ).toHaveBeenCalledWith( req );
+				expect( exportBackendService.getOverseasRegions ).toHaveBeenCalledWith( req );
 				expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
 				expect( res.render ).toHaveBeenCalledWith( 'overseas-regions/list.html', { regions: regions.results } );
 				done();
@@ -147,7 +147,7 @@ describe( 'Overseas Regions controller', function(){
 			const promise = new Promise( ( resolve ) => { resolve( data ); } );
 
 			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
-			backendService.getOverseasRegionInfo = spy( 'getOverseasRegionInfo', promise );
+			exportBackendService.getOverseasRegionInfo = spy( 'getOverseasRegionInfo', promise );
 
 			sectorSummary.create = spy( 'sectorSummary.create', sectorSummaryResponse );
 			hvcSummary.create = spy( 'hvcSummary.create', hvcSummaryResponse );
@@ -159,7 +159,7 @@ describe( 'Overseas Regions controller', function(){
 
 			promise.then( () => {
 
-				expect( backendService.getOverseasRegionInfo ).toHaveBeenCalledWith( req, regionId );
+				expect( exportBackendService.getOverseasRegionInfo ).toHaveBeenCalledWith( req, regionId );
 				expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
 
 				expect( sectorSummary.create ).toHaveBeenCalledWith( data.wins );
@@ -213,14 +213,14 @@ describe( 'Overseas Regions controller', function(){
 
 				const promise = new Promise( ( resolve ) => { resolve( regionWins ); } );
 
-				backendService.getOverseasRegionWinTable = spy( 'getOverseasRegionWinTable', promise );
+				exportBackendService.getOverseasRegionWinTable = spy( 'getOverseasRegionWinTable', promise );
 				errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
 
 				controller[ methodName ]( req, res );
 
 				promise.then( () => {
 
-					expect( backendService.getOverseasRegionWinTable ).toHaveBeenCalledWith( req, regionId );
+					expect( exportBackendService.getOverseasRegionWinTable ).toHaveBeenCalledWith( req, regionId );
 					expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
 					expect( sortWins ).toHaveBeenCalledWith( regionWins.results.wins[ type ], sort );
 					expect( res.render ).toHaveBeenCalledWith( view, {

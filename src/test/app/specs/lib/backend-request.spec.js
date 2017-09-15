@@ -154,7 +154,6 @@ describe( 'Backend lib', function(){
 			} );
 		} );
 
-
 		describe( 'A slow request', function(){
 
 			it( 'Should log an event with the reporter', function( done ){

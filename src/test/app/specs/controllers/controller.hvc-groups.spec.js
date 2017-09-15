@@ -1,6 +1,6 @@
 const proxyquire = require( 'proxyquire' );
 
-const backendService = {};
+const exportBackendService = {};
 const errorHandler = {};
 
 let sortWins;
@@ -27,7 +27,7 @@ describe( 'HVC Groups controller', function(){
 		sortWins = spy( 'sortWins', sortWinsResponse );
 
 		controller = proxyquire( '../../../../app/controllers/controller.hvc-groups', {
-			'../lib/service/service.backend': backendService,
+			'../lib/service/service.backend': { export: exportBackendService },
 			'../lib/render-error': errorHandler,
 			'../lib/sort-wins': sortWins,
 			'../lib/view-models/sector-summary': sectorSummary,
@@ -59,14 +59,14 @@ describe( 'HVC Groups controller', function(){
 				resolve( hvcGroups );
 			} );
 
-			backendService.getHvcGroups = spy( 'getHvcGroups', promise );
+			exportBackendService.getHvcGroups = spy( 'getHvcGroups', promise );
 			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
 
 			controller.list( req, res );
 
 			promise.then( () => {
 
-				expect( backendService.getHvcGroups ).toHaveBeenCalledWith( req );
+				expect( exportBackendService.getHvcGroups ).toHaveBeenCalledWith( req );
 				expect( res.render ).toHaveBeenCalledWith( 'hvc-groups/list.html', {
 					hvcGroups: hvcGroups.results
 				} );
@@ -110,7 +110,7 @@ describe( 'HVC Groups controller', function(){
 
 			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
 
-			backendService.getHvcGroupInfo = spy( 'getHvcGroupInfo', promise );
+			exportBackendService.getHvcGroupInfo = spy( 'getHvcGroupInfo', promise );
 			sectorSummary.create = spy( 'sectorSummary.create', sectorSummaryResponse );
 			hvcSummary.create = spy( 'hvcSummary.create', hvcSummaryResponse );
 			hvcTargetPerformance.create = spy( 'hvcTargetPerformance.create', hvcTargetPerformanceResponse );
@@ -120,7 +120,7 @@ describe( 'HVC Groups controller', function(){
 
 			promise.then( () => {
 
-				expect( backendService.getHvcGroupInfo ).toHaveBeenCalledWith( req, groupId );
+				expect( exportBackendService.getHvcGroupInfo ).toHaveBeenCalledWith( req, groupId );
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				expect( sectorSummary.create ).toHaveBeenCalledWith( wins );
 				expect( hvcSummary.create ).toHaveBeenCalledWith( wins );
@@ -173,14 +173,14 @@ describe( 'HVC Groups controller', function(){
 				resolve( hvcGroupWins );
 			} );
 
-			backendService.getHvcGroupWinTable = spy( 'getHvcGroupWinTable', promise );
+			exportBackendService.getHvcGroupWinTable = spy( 'getHvcGroupWinTable', promise );
 			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
 
 			controller.wins( req, res );
 
 			promise.then( () => {
 
-				expect( backendService.getHvcGroupWinTable ).toHaveBeenCalledWith( req, groupId );
+				expect( exportBackendService.getHvcGroupWinTable ).toHaveBeenCalledWith( req, groupId );
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				expect( sortWins ).toHaveBeenCalledWith( hvcGroupWins.results.wins.hvc, sort );
 				expect( res.render ).toHaveBeenCalledWith( 'hvc-groups/wins.html', {

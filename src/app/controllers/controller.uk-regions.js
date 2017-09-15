@@ -1,4 +1,4 @@
-const backendService = require( '../lib/service/service.backend' );
+const exportBackendService = require( '../lib/service/service.backend' ).export;
 const errorHandler = require( '../lib/render-error' );
 const sortWins = require( '../lib/sort-wins' );
 
@@ -13,7 +13,7 @@ function getWins( view, type ){
 
 		const regionId = req.params.id;
 
-		backendService.getUkRegionWinTable( req, regionId ).then( ( data ) => {
+		exportBackendService.getUkRegionWinTable( req, regionId ).then( ( data ) => {
 
 			res.render( view, {
 				dateRange: data.date_range,
@@ -29,7 +29,7 @@ module.exports = {
 
 	list: function( req, res ){
 
-		backendService.getUkRegions( req ).then( ( regions ) => {
+		exportBackendService.getUkRegions( req ).then( ( regions ) => {
 
 			res.render( 'uk-regions/list.html', { regions: regions.results } );
 
@@ -40,7 +40,7 @@ module.exports = {
 
 		const regionId = req.params.id;
 
-		backendService.getUkRegionInfo( req, regionId ).then( ( data ) => {
+		exportBackendService.getUkRegionInfo( req, regionId ).then( ( data ) => {
 
 			res.render( 'uk-regions/detail.html', {
 				regionId,

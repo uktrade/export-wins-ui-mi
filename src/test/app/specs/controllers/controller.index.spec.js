@@ -1,7 +1,7 @@
 const proxyquire = require( 'proxyquire' );
 
 const errorHandler = {};
-const backendService = {};
+const exportBackendService = {};
 const createErrorHandler = require( '../../helpers/create-error-handler' );
 const spy = require( '../../helpers/spy' );
 
@@ -18,7 +18,7 @@ describe( 'Index controller', function(){
 		globalSummary = { create: spy( 'globalSummary.create', globalSummaryData ) };
 
 		controller = proxyquire( '../../../../app/controllers/controller.index', {
-			'../lib/service/service.backend': backendService,
+			'../lib/service/service.backend': { export: exportBackendService },
 			'../lib/render-error': errorHandler,
 			'../lib/view-models/global-summary': globalSummary
 		} );
@@ -55,7 +55,7 @@ describe( 'Index controller', function(){
 				} );
 			} );
 
-			backendService.getHomepageData = spy( 'getHomepageData', promise );
+			exportBackendService.getHomepageData = spy( 'getHomepageData', promise );
 
 			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
 
@@ -63,7 +63,7 @@ describe( 'Index controller', function(){
 
 			promise.then( () => {
 
-				expect( backendService.getHomepageData ).toHaveBeenCalledWith( req );
+				expect( exportBackendService.getHomepageData ).toHaveBeenCalledWith( req );
 				expect( globalSummary.create ).toHaveBeenCalledWith( globalWins );
 				expect( res.render ).toHaveBeenCalledWith( 'index.html', {
 					sectorTeams: sectorTeams.results,
