@@ -83,7 +83,7 @@
     "nunjucks": "3.0.1",
     "random-int": "^1.0.0",
     "raven": "2.1.1",
-    "request": "2.81.0",
+    "request": "2.83.0",
     "serve-static": "1.12.4",
     "winston": "2.3.1"
   },
