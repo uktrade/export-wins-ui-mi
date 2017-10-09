@@ -1,4 +1,3 @@
-const bodyParser = require( 'body-parser' );
 const csurf = require('csurf');
 
 const exportRoutes = require( './export' );
@@ -13,11 +12,11 @@ const returnPath = require( '../middleware/return-path' );
 const dateRange = require( '../middleware/date-range' );
 const createUserMiddleware = require( '../middleware/user' );
 
-const urlBodyParser = bodyParser.urlencoded( { extended: true, limit: '1mb' } );
 const csrfProtection = csurf( { cookie: true } );
 
 module.exports = function( express, app, isDev ){
 
+	const urlBodyParser = express.urlencoded( { extended: true, limit: '1mb' } );
 	const user = createUserMiddleware( isDev );
 
 	app.get( '/saml2/metadata/', samlController.metadata );
