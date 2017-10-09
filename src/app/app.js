@@ -1,6 +1,5 @@
 const express = require( 'express' );
 const nunjucks = require( 'nunjucks' );
-const serveStatic = require( 'serve-static' );
 const cookieParser = require( 'cookie-parser' );
 const path = require( 'path' );
 const morganLogger = require( 'morgan' );
@@ -63,8 +62,8 @@ module.exports = {
 		}
 
 		app.use( forceHttps( isDev ) );
-		app.use( '/public', serveStatic( pathToPublic, { maxAge: staticMaxAge } ) );
-		app.use( '/public/uktrade', serveStatic( pathToUkTradePublic, { maxAge: staticMaxAge } ) );
+		app.use( '/public', express.static( pathToPublic, { maxAge: staticMaxAge } ) );
+		app.use( '/public/uktrade', express.static( pathToUkTradePublic, { maxAge: staticMaxAge } ) );
 		app.use( morganLogger( ( isDev ? 'dev' : 'combined' ) ) );
 		app.use( cookieParser() );
 		app.use( headers( isDev ) );
