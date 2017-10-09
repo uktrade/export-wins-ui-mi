@@ -28,14 +28,14 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: deps1-{{ checksum "npm-shrinkwrap.json" }}
+          key: node-modules-{{ arch }}-{{ checksum "npm-shrinkwrap.json" }}
       - run: npm install
       #- run: npm run check:backend
       - run: npm rebuild node-sass
       - run: npm test && npm run coverage
       - run: npm run build:dist
       - save_cache:
-          key: deps1-{{ checksum "npm-shrinkwrap.json" }}
+          key: node-modules-{{ arch }}-{{ checksum "npm-shrinkwrap.json" }}
           paths:
             - "node_modules"
             - "dist/node_modules"
