@@ -682,13 +682,13 @@ if( config.backend.mock ){
 
 				const regionId = 'some-uk-region';
 
-				describe( 'List', function(){
+				describe( 'Overview', function(){
 
 					describe( 'When the API returns a status of 200', function(){
 
 						it( 'Should return a 200 with the correct heading', function( done ){
 
-							interceptBackend.getStub( '/mi/uk_regions/?year=2017', 200, '/uk_regions/' );
+							interceptBackend.getStub( '/mi/uk_regions/overview/?year=2017', 200, '/uk_regions/overview' );
 
 							supertest( app ).get( '/uk-regions/' ).end( ( err, res ) => {
 

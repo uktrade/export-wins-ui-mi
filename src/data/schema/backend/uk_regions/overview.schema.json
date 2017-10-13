@@ -1,0 +1,108 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "UK Regions overview",
+
+	"type": "object",
+	"required": [ "summary", "region_groups" ],
+	"properties": {
+
+		"summary": {
+			"type": "object",
+			"required": [ "non_hvc" ],
+			"properties": {
+				"non_hvc": {
+					"$ref": "$refs/wins.json#/win-info-performance"
+				}
+			}
+		},
+
+		"region_groups": {
+			"type": "array",
+			"minItems": 4,
+			"maxItems": 5,
+			"items": {
+				"type": "object",
+				"required": [ "name", "regions" ],
+				"properties": {
+
+					"name": {
+						"type": "string",
+						"faker": "lorem.words"
+					},
+
+					"regions": {
+						"type": "array",
+						"minItems": 2,
+						"maxItems": 4,
+						"items": {
+							"type": "object",
+							"required": [ "id", "name", "target", "wins", "export_experience" ],
+							"properties": {
+
+								"id": {
+									"$ref": "$refs/uk-region.json#/id"
+								},
+
+								"name": {
+									"type": "string",
+									"faker": "lorem.words"
+								},
+
+								"target": {
+									"$ref": "$refs/uk-region.json#/target"
+								},
+
+								"wins": {
+									"type": "object",
+									"required": [ "export", "non_export" ],
+									"properties": {
+										"export": {
+											"type": "object",
+											"required": [ "hvc", "non_hvc", "totals" ],
+											"properties": {
+												"hvc": {
+													"$ref": "$refs/wins.json#/win-info"
+												},
+												"non_hvc": {
+													"$ref": "$refs/wins.json#/win-info-performance"
+												},
+												"totals": {
+													"$ref": "$refs/wins.json#/win-info"
+												}
+											}
+										},
+										"non_export": {
+											"$ref": "$refs/wins.json#/win-info"
+										}
+									}
+								},
+
+								"export_experience": {
+									"type": "object",
+									"required": [ "new_exporters", "sustainable", "growth", "unknown", "total" ],
+									"properties": {
+										"new_exporters": {
+											"$ref": "$refs/wins.json#/win-info-performance"
+										},
+										"sustainable": {
+											"$ref": "$refs/wins.json#/win-info-performance"
+										},
+										"growth": {
+											"$ref": "$refs/wins.json#/win-info-performance"
+										},
+										"unknown": {
+											"$ref": "$refs/wins.json#/win-info"
+										},
+										"total": {
+											"$ref": "$refs/wins.json#/win-info-performance"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

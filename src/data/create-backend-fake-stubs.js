@@ -75,6 +75,7 @@ const yearlyFiles = {
 	'posts/win_table': postsJson.createWinTable,
 
 	'uk_regions/index': ukRegionJson.createList,
+	'uk_regions/overview': ukRegionJson.createOverview,
 	'uk_regions/region': ukRegionJson.createRegion,
 	'uk_regions/months': ukRegionJson.createMonths,
 	'uk_regions/top_non_hvcs': sharedJson.createTopNonHvcs,

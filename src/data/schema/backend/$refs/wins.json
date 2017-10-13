@@ -80,6 +80,79 @@
 		}
 	},
 
+	"win-info-performance": {
+		"type": "object",
+		"required": [ "number", "value", "performance" ],
+		"properties": {
+			"number": {
+				"type": "object",
+				"required": [ "confirmed", "unconfirmed", "total" ],
+				"properties": {
+					"unconfirmed": {
+						"type": "number",
+						"faker": {
+							"random.number": { "max": 1000 }
+						}
+					},
+					"total": {
+						"type": "number",
+						"faker": {
+							"random.number": { "max": 1000 }
+						}
+					},
+					"confirmed": {
+						"type": "number",
+						"faker": {
+							"random.number": { "max": 1000 }
+						}
+					}
+				}
+			},
+			"value": {
+				"type": "object",
+				"required": [ "confirmed", "unconfirmed", "total" ],
+				"properties": {
+					"unconfirmed": {
+						"type": "number",
+						"faker": "random.number"
+					},
+					"total": {
+						"type": "number",
+						"faker": "random.number"
+					},
+					"confirmed": {
+						"type": "number",
+						"faker": "random.number"
+					}
+				}
+			},
+			"performance": {
+				"type": "object",
+				"required": [ "target", "percentage" ],
+				"properties": {
+					"target": {
+						"type": "number",
+						"faker": "random.number"
+					},
+					"percentage": {
+						"type": "object",
+						"required": [ "confirmed", "unconfirmed" ],
+						"properties": {
+							"confirmed": {
+								"type": "number",
+								"faker": "random.number"
+							},
+							"unconfirmed": {
+								"type": "number",
+								"faker": "random.number"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+
 	"grand-totals": {
 		"type": "object",
 		"required": [ "number", "value" ],

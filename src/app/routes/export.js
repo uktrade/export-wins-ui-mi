@@ -10,7 +10,7 @@ const countryController = require( '../controllers/controller.countries' );
 const postController = require( '../controllers/controller.posts' );
 const ukRegionController = require( '../controllers/controller.uk-regions' );
 
-module.exports = function( router, user, isDev ){
+module.exports = function( router, user/*, isDev */ ){
 
 	router.get( '/', user, indexController );
 
@@ -43,7 +43,7 @@ module.exports = function( router, user, isDev ){
 	router.get( '/posts/:id/wins/', user, postController.wins );
 	router.get( '/posts/:id/non-hvc-wins/', user, postController.nonHvcWins );
 
-	router.get( '/uk-regions/', user, ukRegionController.list );
+	router.get( '/uk-regions/', user, ukRegionController.overview );
 	router.get( '/uk-regions/:id/', user, ukRegionController.region );
 	router.get( '/uk-regions/:id/wins/', user, ukRegionController.wins );
 	router.get( '/uk-regions/:id/non-hvc-wins/', user, ukRegionController.nonHvcWins );

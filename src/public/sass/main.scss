@@ -22,6 +22,7 @@
 @import 'page/select-year';
 @import 'page/select-dates';
 @import 'page/uk-region';
+@import 'page/uk-regions-overview';
 
 @import 'partials/global-performance';
 
@@ -77,6 +78,10 @@ main {
 .page-date {
 	@include bold-16;
 	padding: pem( 5 );
+}
+
+.page-date--uk-regions-overview {
+	margin-bottom: pem( 40, 16 );
 }
 
 .sub-heading-date {

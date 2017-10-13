@@ -94,6 +94,18 @@ describe( 'The homepage', function(){
 					done();
 				} );
 			} );
+
+			describe( 'Links', function(){
+
+				it( 'Should have a link for each heading', function( done ){
+
+					driver.findElements( By.css( '.sector-list-heading a' ) ).then( ( linkElems ) => {
+
+						expect( linkElems.length ).toEqual( headings.length );
+						done();
+					} );
+				} );
+			} );
 		} );
 
 		describe( 'Sector team list', function(){

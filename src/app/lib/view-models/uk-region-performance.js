@@ -1,6 +1,6 @@
 const targetProgress = require( '../data-sets/target-progress' );
 
-const types = {
+const TYPES = {
 	new_exporters: 'New',
 	sustainable: 'Sustainable',
 	growth: 'Growth',
@@ -14,7 +14,7 @@ module.exports = {
 		const results = data.results;
 		const items = [];
 
-		for( let type in types ){
+		for( let type in TYPES ){
 
 			const target = ( results.target && results.target[ type ] || 0 );
 			const wins = results.export_experience[ type ];
@@ -22,7 +22,7 @@ module.exports = {
 			if( wins ){
 
 				items.push( {
-					name: types[ type ],
+					name: TYPES[ type ],
 					target,
 					value: wins.value.total,
 					wins: {

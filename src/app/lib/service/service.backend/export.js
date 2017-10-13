@@ -120,6 +120,11 @@ function getUkRegions( req ){
 	return getJson( '/mi/uk_regions/', req );
 }
 
+function getUkRegionsOverview( req ){
+
+	return getJson( '/mi/uk_regions/overview/', req );
+}
+
 function getUkRegion( req, postId ){
 
 	return getJson( `/mi/uk_regions/${ postId }/`, req );
@@ -326,6 +331,7 @@ module.exports = {
 	},
 
 	getUkRegions,
+	getUkRegionsOverview,
 	getUkRegion,
 	getUkRegionMonths,
 	getUkRegionTopNonHvc,

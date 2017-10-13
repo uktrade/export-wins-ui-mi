@@ -1,0 +1,5016 @@
+{
+   "timestamp": 1507821252193,
+   "financial_year": {
+      "id": 2016,
+      "description": "2016-2017"
+   },
+   "results": {
+      "summary": {
+         "non_hvc": {
+            "number": {
+               "confirmed": 475,
+               "unconfirmed": 640,
+               "total": 106
+            },
+            "value": {
+               "confirmed": 32705,
+               "unconfirmed": 84522,
+               "total": 66613
+            },
+            "performance": {
+               "target": 31553,
+               "percentage": {
+                  "confirmed": 8004,
+                  "unconfirmed": 61723
+               }
+            }
+         }
+      },
+      "region_groups": [
+         {
+            "name": "rerum debitis perspiciatis",
+            "regions": [
+               {
+                  "id": "ffyp-zdep-oprifta-nvaib-pzlh",
+                  "name": "aut debitis nemo",
+                  "target": {
+                     "new_exporters": 98900,
+                     "sustainable": 81238,
+                     "growth": 1345,
+                     "total": 5344,
+                     "type": "volume"
+                  },
+                  "wins": {
+                     "export": {
+                        "hvc": {
+                           "number": {
+                              "confirmed": 187,
+                              "unconfirmed": 435,
+                              "total": 612
+                           },
+                           "value": {
+                              "confirmed": 70779,
+                              "unconfirmed": 74682,
+                              "total": 65915
+                           }
+                        },
+                        "non_hvc": {
+                           "number": {
+                              "confirmed": 551,
+                              "unconfirmed": 658,
+                              "total": 139
+                           },
+                           "value": {
+                              "confirmed": 68815,
+                              "unconfirmed": 90351,
+                              "total": 41316
+                           },
+                           "performance": {
+                              "target": 68791,
+                              "percentage": {
+                                 "confirmed": 39507,
+                                 "unconfirmed": 61925
+                              }
+                           }
+                        },
+                        "totals": {
+                           "number": {
+                              "confirmed": 827,
+                              "unconfirmed": 456,
+                              "total": 532
+                           },
+                           "value": {
+                              "confirmed": 44405,
+                              "unconfirmed": 65346,
+                              "total": 77077
+                           }
+                        }
+                     },
+                     "non_export": {
+                        "number": {
+                           "confirmed": 605,
+                           "unconfirmed": 510,
+                           "total": 810
+                        },
+                        "value": {
+                           "confirmed": 61710,
+                           "unconfirmed": 16748,
+                           "total": 33657
+                        }
+                     }
+                  },
+                  "export_experience": {
+                     "new_exporters": {
+                        "number": {
+                           "confirmed": 480,
+                           "unconfirmed": 483,
+                           "total": 298
+                        },
+                        "value": {
+                           "confirmed": 10311,
+                           "unconfirmed": 18526,
+                           "total": 52831
+                        },
+                        "performance": {
+                           "target": 96127,
+                           "percentage": {
+                              "confirmed": 1618,
+                              "unconfirmed": 48053
+                           }
+                        }
+                     },
+                     "sustainable": {
+                        "number": {
+                           "confirmed": 741,
+                           "unconfirmed": 796,
+                           "total": 750
+                        },
+                        "value": {
+                           "confirmed": 25641,
+                           "unconfirmed": 45537,
+                           "total": 89838
+                        },
+                        "performance": {
+                           "target": 96433,
+                           "percentage": {
+                              "confirmed": 15245,
+                              "unconfirmed": 95504
+                           }
+                        }
+                     },
+                     "growth": {
+                        "number": {
+                           "confirmed": 424,
+                           "unconfirmed": 943,
+                           "total": 119
+                        },
+                        "value": {
+                           "confirmed": 93436,
+                           "unconfirmed": 59559,
+                           "total": 23457
+                        },
+                        "performance": {
+                           "target": 23809,
+                           "percentage": {
+                              "confirmed": 1594,
+                              "unconfirmed": 62063
+                           }
+                        }
+                     },
+                     "unknown": {
+                        "number": {
+                           "confirmed": 547,
+                           "unconfirmed": 302,
+                           "total": 725
+                        },
+                        "value": {
+                           "confirmed": 17556,
+                           "unconfirmed": 97971,
+                           "total": 25090
+                        }
+                     },
+                     "total": {
+                        "number": {
+                           "confirmed": 638,
+                           "unconfirmed": 436,
+                           "total": 517
+                        },
+                        "value": {
+                           "confirmed": 34779,
+                           "unconfirmed": 17317,
+                           "total": 98945
+                        },
+                        "performance": {
+                           "target": 98163,
+                           "percentage": {
+                              "confirmed": 63283,
+                              "unconfirmed": 87507
+                           }
+                        }
+                     }
+                  }
+               },
+               {
+                  "id": "ihbif-yyfzihzx-jiuia",
+                  "name": "quo nam ab",
+                  "target": {
+                     "new_exporters": 14420,
+                     "sustainable": 21829,
+                     "growth": 80000,
+                     "total": 70040,
+                     "type": "volume"
+                  },
+                  "wins": {
+                     "export": {
+                        "hvc": {
+                           "number": {
+                              "confirmed": 737,
+                              "unconfirmed": 167,
+                              "total": 390
+                           },
+                           "value": {
+                              "confirmed": 46296,
+                              "unconfirmed": 4866,
+                              "total": 20242
+                           }
+                        },
+                        "non_hvc": {
+                           "number": {
+                              "confirmed": 814,
+                              "unconfirmed": 750,
+                              "total": 695
+                           },
+                           "value": {
+                              "confirmed": 7639,
+                              "unconfirmed": 71841,
+                              "total": 50409
+                           },
+                           "performance": {
+                              "target": 57678,
+                              "percentage": {
+                                 "confirmed": 41602,
+                                 "unconfirmed": 96609
+                              }
+                           }
+                        },
+                        "totals": {
+                           "number": {
+                              "confirmed": 406,
+                              "unconfirmed": 391,
+                              "total": 604
+                           },
+                           "value": {
+                              "confirmed": 31993,
+                              "unconfirmed": 42551,
+                              "total": 42941
+                           }
+                        }
+                     },
+                     "non_export": {
+                        "number": {
+                           "confirmed": 415,
+                           "unconfirmed": 135,
+                           "total": 43
+                        },
+                        "value": {
+                           "confirmed": 95827,
+                           "unconfirmed": 55105,
+                           "total": 99733
+                        }
+                     }
+                  },
+                  "export_experience": {
+                     "new_exporters": {
+                        "number": {
+                           "confirmed": 350,
+                           "unconfirmed": 330,
+                           "total": 779
+                        },
+                        "value": {
+                           "confirmed": 41737,
+                           "unconfirmed": 29763,
+                           "total": 68783
+                        },
+                        "performance": {
+                           "target": 99357,
+                           "percentage": {
+                              "confirmed": 41318,
+                              "unconfirmed": 55835
+                           }
+                        }
+                     },
+                     "sustainable": {
+                        "number": {
+                           "confirmed": 383,
+                           "unconfirmed": 713,
+                           "total": 392
+                        },
+                        "value": {
+                           "confirmed": 80739,
+                           "unconfirmed": 53679,
+                           "total": 40559
+                        },
+                        "performance": {
+                           "target": 88200,
+                           "percentage": {
+                              "confirmed": 10614,
+                              "unconfirmed": 18457
+                           }
+                        }
+                     },
+                     "growth": {
+                        "number": {
+                           "confirmed": 833,
+                           "unconfirmed": 635,
+                           "total": 333
+                        },
+                        "value": {
+                           "confirmed": 56083,
+                           "unconfirmed": 39736,
+                           "total": 86621
+                        },
+                        "performance": {
+                           "target": 33028,
+                           "percentage": {
+                              "confirmed": 41439,
+                              "unconfirmed": 87266
+                           }
+                        }
+                     },
+                     "unknown": {
+                        "number": {
+                           "confirmed": 925,
+                           "unconfirmed": 278,
+                           "total": 37
+                        },
+                        "value": {
+                           "confirmed": 3462,
+                           "unconfirmed": 98626,
+                           "total": 52458
+                        }
+                     },
+                     "total": {
+                        "number": {
+                           "confirmed": 301,
+                           "unconfirmed": 89,
+                           "total": 464
+                        },
+                        "value": {
+                           "confirmed": 24352,
+                           "unconfirmed": 44643,
+                           "total": 62247
+                        },
+                        "performance": {
+                           "target": 16678,
+                           "percentage": {
+                              "confirmed": 3109,
+                              "unconfirmed": 1910
+                           }
+                        }
+                     }
+                  }
+               },
+               {
+                  "id": "nusq-sgpvkn",
+                  "name": "veritatis nam et",
+                  "target": {
+                     "new_exporters": 43784,
+                     "sustainable": 69611,
+                     "growth": 77610,
+                     "total": 49543,
+                     "type": "volume"
+                  },
+                  "wins": {
+                     "export": {
+                        "hvc": {
+                           "number": {
+                              "confirmed": 837,
+                              "unconfirmed": 562,
+                              "total": 882
+                           },
+                           "value": {
+                              "confirmed": 45968,
+                              "unconfirmed": 47434,
+                              "total": 41509
+                           }
+                        },
+                        "non_hvc": {
+                           "number": {
+                              "confirmed": 865,
+                              "unconfirmed": 789,
+                              "total": 740
+                           },
+                           "value": {
+                              "confirmed": 50999,
+                              "unconfirmed": 96618,
+                              "total": 15746
+                           },
+                           "performance": {
+                              "target": 8025,
+                              "percentage": {
+                                 "confirmed": 97618,
+                                 "unconfirmed": 28903
+                              }
+                           }
+                        },
+                        "totals": {
+                           "number": {
+                              "confirmed": 263,
+                              "unconfirmed": 722,
+                              "total": 125
+                           },
+                           "value": {
+                              "confirmed": 13025,
+                              "unconfirmed": 10185,
+                              "total": 43986
+                           }
+                        }
+                     },
+                     "non_export": {
+                        "number": {
+                           "confirmed": 874,
+                           "unconfirmed": 542,
+                           "total": 487
+                        },
+                        "value": {
+                           "confirmed": 20558,
+                           "unconfirmed": 43348,
+                           "total": 6565
+                        }
+                     }
+                  },
+                  "export_experience": {
+                     "new_exporters": {
+                        "number": {
+                           "confirmed": 996,
+                           "unconfirmed": 927,
+                           "total": 831
+                        },
+                        "value": {
+                           "confirmed": 9691,
+                           "unconfirmed": 22792,
+                           "total": 26368
+                        },
+                        "performance": {
+                           "target": 82361,
+                           "percentage": {
+                              "confirmed": 60520,
+                              "unconfirmed": 87497
+                           }
+                        }
+                     },
+                     "sustainable": {
+                        "number": {
+                           "confirmed": 195,
+                           "unconfirmed": 556,
+                           "total": 540
+                        },
+                        "value": {
+                           "confirmed": 68819,
+                           "unconfirmed": 90908,
+                           "total": 32767
+                        },
+                        "performance": {
+                           "target": 48360,
+                           "percentage": {
+                              "confirmed": 9840,
+                              "unconfirmed": 26749
+                           }
+                        }
+                     },
+                     "growth": {
+                        "number": {
+                           "confirmed": 454,
+                           "unconfirmed": 477,
+                           "total": 550
+                        },
+                        "value": {
+                           "confirmed": 42212,
+                           "unconfirmed": 5946,
+                           "total": 93242
+                        },
+                        "performance": {
+                           "target": 16921,
+                           "percentage": {
+                              "confirmed": 15751,
+                              "unconfirmed": 57489
+                           }
+                        }
+                     },
+                     "unknown": {
+                        "number": {
+                           "confirmed": 985,
+                           "unconfirmed": 297,
+                           "total": 527
+                        },
+                        "value": {
+                           "confirmed": 75857,
+                           "unconfirmed": 56686,
+                           "total": 59934
+                        }
+                     },
+                     "total": {
+                        "number": {
+                           "confirmed": 751,
+                           "unconfirmed": 331,
+                           "total": 514
+                        },
+                        "value": {
+                           "confirmed": 26626,
+                           "unconfirmed": 56438,
+                           "total": 33688
+                        },
+                        "performance": {
+                           "target": 94920,
+                           "percentage": {
+                              "confirmed": 55694,
+                              "unconfirmed": 19864
+                           }
+                        }
+                     }
+                  }
+               },
+               {
+                  "id": "hcw-rdojpoe-irntcen-cok-nvt",
+                  "name": "est nisi asperiores",
+                  "target": {
+                     "new_exporters": 48817,
+                     "sustainable": 28778,
+                     "growth": 73655,
+                     "total": 12611,
+                     "type": "volume"
+                  },
+                  "wins": {
+                     "export": {
+                        "hvc": {
+                           "number": {
+                              "confirmed": 859,
+                              "unconfirmed": 511,
+                              "total": 296
+                           },
+                           "value": {
+                              "confirmed": 89148,
+                              "unconfirmed": 90231,
+                              "total": 36785
+                           }
+                        },
+                        "non_hvc": {
+                           "number": {
+                              "confirmed": 727,
+                              "unconfirmed": 284,
+                              "total": 337
+                           },
+                           "value": {
+                              "confirmed": 54326,
+                              "unconfirmed": 388,
+                              "total": 45652
+                           },
+                           "performance": {
+                              "target": 73975,
+                              "percentage": {
+                                 "confirmed": 64852,
+                                 "unconfirmed": 49551
+                              }
+                           }
+                        },
+                        "totals": {
+                           "number": {
+                              "confirmed": 448,
+                              "unconfirmed": 107,
+                              "total": 418
+                           },
+                           "value": {
+                              "confirmed": 30028,
+                              "unconfirmed": 83748,
+                              "total": 65336
+                           }
+                        }
+                     },
+                     "non_export": {
+                        "number": {
+                           "confirmed": 477,
+                           "unconfirmed": 876,
+                           "total": 304
+                        },
+                        "value": {
+                           "confirmed": 21504,
+                           "unconfirmed": 79716,
+                           "total": 73953
+                        }
+                     }
+                  },
+                  "export_experience": {
+                     "new_exporters": {
+                        "number": {
+                           "confirmed": 993,
+                           "unconfirmed": 342,
+                           "total": 288
+                        },
+                        "value": {
+                           "confirmed": 81804,
+                           "unconfirmed": 28246,
+                           "total": 81838
+                        },
+                        "performance": {
+                           "target": 36143,
+                           "percentage": {
+                              "confirmed": 54814,
+                              "unconfirmed": 3444
+                           }
+                        }
+                     },
+                     "sustainable": {
+                        "number": {
+                           "confirmed": 787,
+                           "unconfirmed": 979,
+                           "total": 985
+                        },
+                        "value": {
+                           "confirmed": 7337,
+                           "unconfirmed": 64863,
+                           "total": 7017
+                        },
+                        "performance": {
+                           "target": 66575,
+                           "percentage": {
+                              "confirmed": 97365,
+                              "unconfirmed": 69556
+                           }
+                        }
+                     },
+                     "growth": {
+                        "number": {
+                           "confirmed": 37,
+                           "unconfirmed": 32,
+                           "total": 994
+                        },
+                        "value": {
+                           "confirmed": 76093,
+                           "unconfirmed": 94418,
+                           "total": 66123
+                        },
+                        "performance": {
+                           "target": 46309,
+                           "percentage": {
+                              "confirmed": 55448,
+                              "unconfirmed": 93114
+                           }
+                        }
+                     },
+                     "unknown": {
+                        "number": {
+                           "confirmed": 14,
+                           "unconfirmed": 680,
+                           "total": 262
+                        },
+                        "value": {
+                           "confirmed": 56872,
+                           "unconfirmed": 70549,
+                           "total": 10716
+                        }
+                     },
+                     "total": {
+                        "number": {
+                           "confirmed": 411,
+                           "unconfirmed": 964,
+                           "total": 848
+                        },
+                        "value": {
+                           "confirmed": 90388,
+                           "unconfirmed": 88031,
+                           "total": 69505
+                        },
+                        "performance": {
+                           "target": 37540,
+                           "percentage": {
+                              "confirmed": 33406,
+                              "unconfirmed": 8610
+                           }
+                        }
+                     }
+                  }
+               },
+               {
+                  "id": "ikiw-aoibbjde",
+                  "name": "quis dolor consequatur",
+                  "target": {
+                     "new_exporters": 17340,
+                     "sustainable": 75672,
+                     "growth": 18010,
+                     "total": 61357,
+                     "type": "volume"
+                  },
+                  "wins": {
+                     "export": {
+                        "hvc": {
+                           "number": {
+                              "confirmed": 999,
+                              "unconfirmed": 500,
+                              "total": 369
+                           },
+                           "value": {
+                              "confirmed": 80987,
+                              "unconfirmed": 42673,
+                              "total": 2945
+                           }
+                        },
+                        "non_hvc": {
+                           "number": {
+                              "confirmed": 632,
+                              "unconfirmed": 504,
+                              "total": 223
+                           },
+                           "value": {
+                              "confirmed": 75118,
+                              "unconfirmed": 85532,
+                              "total": 91301
+                           },
+                           "performance": {
+                              "target": 74856,
+                              "percentage": {
+                                 "confirmed": 50564,
+                                 "unconfirmed": 54534
+                              }
+                           }
+                        },
+                        "totals": {
+                           "number": {
+                              "confirmed": 440,
+                              "unconfirmed": 119,
+                              "total": 376
+                           },
+                           "value": {
+                              "confirmed": 2085,
+                              "unconfirmed": 40110,
+                              "total": 18146
+                           }
+                        }
+                     },
+                     "non_export": {
+                        "number": {
+                           "confirmed": 621,
+                           "unconfirmed": 312,
+                           "total": 250
+                        },
+                        "value": {
+                           "confirmed": 62966,
+                           "unconfirmed": 12071,
+                           "total": 38203
+                        }
+                     }
+                  },
+                  "export_experience": {
+                     "new_exporters": {
+                        "number": {
+                           "confirmed": 646,
+                           "unconfirmed": 869,
+                           "total": 891
+                        },
+                        "value": {
+                           "confirmed": 89507,
+                           "unconfirmed": 5893,
+                           "total": 60750
+                        },
+                        "performance": {
+                           "target": 19709,
+                           "percentage": {
+                              "confirmed": 47635,
+                              "unconfirmed": 30430
+                           }
+                        }
+                     },
+                     "sustainable": {
+                        "number": {
+                           "confirmed": 749,
+                           "unconfirmed": 690,
+                           "total": 702
+                        },
+                        "value": {
+                           "confirmed": 2273,
+                           "unconfirmed": 26223,
+                           "total": 55566
+                        },
+                        "performance": {
+                           "target": 55054,
+                           "percentage": {
+                              "confirmed": 4522,
+                              "unconfirmed": 12635
+                           }
+                        }
+                     },
+                     "growth": {
+                        "number": {
+                           "confirmed": 231,
+                           "unconfirmed": 112,
+                           "total": 241
+                        },
+                        "value": {
+                           "confirmed": 27047,
+                           "unconfirmed": 51622,
+                           "total": 67905
+                        },
+                        "performance": {
+                           "target": 96862,
+                           "percentage": {
+                              "confirmed": 82736,
+                              "unconfirmed": 93946
+                           }
+                        }
+                     },
+                     "unknown": {
+                        "number": {
+                           "confirmed": 521,
+                           "unconfirmed": 51,
+                           "total": 216
+                        },
+                        "value": {
+                           "confirmed": 26772,
+                           "unconfirmed": 1256,
+                           "total": 40339
+                        }
+                     },
+                     "total": {
+                        "number": {
+                           "confirmed": 879,
+                           "unconfirmed": 0,
+                           "total": 116
+                        },
+                        "value": {
+                           "confirmed": 34610,
+                           "unconfirmed": 82736,
+                           "total": 52315
+                        },
+                        "performance": {
+                           "target": 87652,
+                           "percentage": {
+                              "confirmed": 96613,
+                              "unconfirmed": 51700
+                           }
+                        }
+                     }
+                  }
+               },
+               {
+                  "id": "bsx-ycgnkx-grasx-tvqtbhca-fbjqnc",
+                  "name": "sit qui ut",
+                  "target": {
+                     "new_exporters": 2759,
+                     "sustainable": 51690,
+                     "growth": 12369,
+                     "total": 10854,
+                     "type": "volume"
+                  },
+                  "wins": {
+                     "export": {
+                        "hvc": {
+                           "number": {
+                              "confirmed": 633,
+                              "unconfirmed": 690,
+                              "total": 172
+                           },
+                           "value": {
+                              "confirmed": 38367,
+                              "unconfirmed": 79878,
+                              "total": 16739
+                           }
+                        },
+                        "non_hvc": {
+                           "number": {
+                              "confirmed": 969,
+                              "unconfirmed": 465,
+                              "total": 264
+                           },
+                           "value": {
+                              "confirmed": 51810,
+                              "unconfirmed": 9141,
+                              "total": 76271
+                           },
+                           "performance": {
+                              "target": 30290,
+                              "percentage": {
+                                 "confirmed": 2059,
+                                 "unconfirmed": 94965
+                              }
+                           }
+                        },
+                        "totals": {
+                           "number": {
+                              "confirmed": 854,
+                              "unconfirmed": 766,
+                              "total": 207
+                           },
+                           "value": {
+                              "confirmed": 35602,
+                              "unconfirmed": 70842,
+                              "total": 5793
+                           }
+                        }
+                     },
+                     "non_export": {
+                        "number": {
+                           "confirmed": 68,
+                           "unconfirmed": 354,
+                           "total": 780
+                        },
+                        "value": {
+                           "confirmed": 54885,
+                           "unconfirmed": 43187,
+                           "total": 13074
+                        }
+                     }
+                  },
+                  "export_experience": {
+                     "new_exporters": {
+                        "number": {
+                           "confirmed": 116,
+                           "unconfirmed": 623,
+                           "total": 601
+                        },
+                        "value": {
+                           "confirmed": 51173,
+                           "unconfirmed": 80165,
+                           "total": 59226
+                        },
+                        "performance": {
+                           "target": 55487,
+                           "percentage": {
+                              "confirmed": 20242,
+                              "unconfirmed": 53077
+                           }
+                        }
+                     },
+                     "sustainable": {
+                        "number": {
+                           "confirmed": 736,
+                           "unconfirmed": 537,
+                           "total": 994
+                        },
+                        "value": {
+                           "confirmed": 98335,
+                           "unconfirmed": 69021,
+                           "total": 18436
+                        },
+                        "performance": {
+                           "target": 74659,
+                           "percentage": {
+                              "confirmed": 48657,
+                              "unconfirmed": 81141
+                           }
+                        }
+                     },
+                     "growth": {
+                        "number": {
+                           "confirmed": 331,
+                           "unconfirmed": 43,
+                           "total": 705
+                        },
+                        "value": {
+                           "confirmed": 48028,
+                           "unconfirmed": 53672,
+                           "total": 22407
+                        },
+                        "performance": {
+                           "target": 56087,
+                           "percentage": {
+                              "confirmed": 26822,
+                              "unconfirmed": 31531
+                           }
+                        }
+                     },
+                     "unknown": {
+                        "number": {
+                           "confirmed": 327,
+                           "unconfirmed": 803,
+                           "total": 833
+                        },
+                        "value": {
+                           "confirmed": 93432,
+                           "unconfirmed": 3316,
+                           "total": 21480
+                        }
+                     },
+                     "total": {
+                        "number": {
+                           "confirmed": 316,
+                           "unconfirmed": 768,
+                           "total": 777
+                        },
+                        "value": {
+                           "confirmed": 96983,
+                           "unconfirmed": 30650,
+                           "total": 65109
+                        },
+                        "performance": {
+                           "target": 86186,
+                           "percentage": {
+                              "confirmed": 69155,
+                              "unconfirmed": 29132
+                           }
+                        }
+                     }
+                  }
+               },
+               {
+                  "id": "xlehq-vytyby",
+                  "name": "omnis quia fuga",
+                  "target": {
+                     "new_exporters": 13429,
+                     "sustainable": 95782,
+                     "growth": 75027,
+                     "total": 87468,
+                     "type": "volume"
+                  },
+                  "wins": {
+                     "export": {
+                        "hvc": {
+                           "number": {
+                              "confirmed": 885,
+                              "unconfirmed": 621,
+                              "total": 0
+                           },
+                           "value": {
+                              "confirmed": 43650,
+                              "unconfirmed": 99878,
+                              "total": 25459
+                           }
+                        },
+                        "non_hvc": {
+                           "number": {
+                              "confirmed": 459,
+                              "unconfirmed": 279,
+                              "total": 390
+                           },
+                           "value": {
+                              "confirmed": 4286,
+                              "unconfirmed": 2597,
+                              "total": 24278
+                           },
+                           "performance": {
+                              "target": 40545,
+                              "percentage": {
+                                 "confirmed": 77532,
+                                 "unconfirmed": 61407
+                              }
+                           }
+                        },
+                        "totals": {
+                           "number": {
+                              "confirmed": 487,
+                              "unconfirmed": 865,
+                              "total": 823
+                           },
+                           "value": {
+                              "confirmed": 75634,
+                              "unconfirmed": 41758,
+                              "total": 80548
+                           }
+                        }
+                     },
+                     "non_export": {
+                        "number": {
+                           "confirmed": 513,
+                           "unconfirmed": 533,
+                           "total": 13
+                        },
+                        "value": {
+                           "confirmed": 36700,
+                           "unconfirmed": 37647,
+                           "total": 16044
+                        }
+                     }
+                  },
+                  "export_experience": {
+                     "new_exporters": {
+                        "number": {
+                           "confirmed": 396,
+                           "unconfirmed": 447,
+                           "total": 735
+                        },
+                        "value": {
+                           "confirmed": 31393,
+                           "unconfirmed": 4385,
+                           "total": 17971
+                        },
+                        "performance": {
+                           "target": 64788,
+                           "percentage": {
+                              "confirmed": 49909,
+                              "unconfirmed": 53766
+                           }
+                        }
+                     },
+                     "sustainable": {
+                        "number": {
+                           "confirmed": 979,
+                           "unconfirmed": 688,
+                           "total": 331
+                        },
+                        "value": {
+                           "confirmed": 8915,
+                           "unconfirmed": 32785,
+                           "total": 62236
+                        },
+                        "performance": {
+                           "target": 10238,
+                           "percentage": {
+                              "confirmed": 91630,
+                              "unconfirmed": 89885
+                           }
+                        }
+                     },
+                     "growth": {
+                        "number": {
+                           "confirmed": 815,
+                           "unconfirmed": 428,
+                           "total": 457
+                        },
+                        "value": {
+                           "confirmed": 82470,
+                           "unconfirmed": 89869,
+                           "total": 37663
+                        },
+                        "performance": {
+                           "target": 97054,
+                           "percentage": {
+                              "confirmed": 91887,
+                              "unconfirmed": 18277
+                           }
+                        }
+                     },
+                     "unknown": {
+                        "number": {
+                           "confirmed": 979,
+                           "unconfirmed": 357,
+                           "total": 688
+                        },
+                        "value": {
+                           "confirmed": 53841,
+                           "unconfirmed": 39006,
+                           "total": 61941
+                        }
+                     },
+                     "total": {
+                        "number": {
+                           "confirmed": 854,
+                           "unconfirmed": 813,
+                           "total": 49
+                        },
+                        "value": {
+                           "confirmed": 51306,
+                           "unconfirmed": 77421,
+                           "total": 80625
+                        },
+                        "performance": {
+                           "target": 52252,
+                           "percentage": {
+                              "confirmed": 68741,
+                              "unconfirmed": 744
+                           }
+                        }
+                     }
+                  }
+               },
+               {
+                  "id": "zuuf-eqsdkndt-hkdbfyv",
+                  "name": "molestias ut dolorem",
+                  "target": {
+                     "new_exporters": 32518,
+                     "sustainable": 74769,
+                     "growth": 8872,
+                     "total": 940,
+                     "type": "volume"
+                  },
+                  "wins": {
+                     "export": {
+                        "hvc": {
+                           "number": {
+                              "confirmed": 780,
+                              "unconfirmed": 909,
+                              "total": 545
+                           },
+                           "value": {
+                              "confirmed": 62276,
+                              "unconfirmed": 23825,
+                              "total": 56350
+                           }
+                        },
+                        "non_hvc": {
+                           "number": {
+                              "confirmed": 876,
+                              "unconfirmed": 700,
+                              "total": 360
+                           },
+                           "value": {
+                              "confirmed": 34231,
+                              "unconfirmed": 3128,
+                              "total": 73476
+                           },
+                           "performance": {
+                              "target": 63667,
+                              "percentage": {
+                                 "confirmed": 12702,
+                                 "unconfirmed": 71818
+                              }
+                           }
+                        },
+                        "totals": {
+                           "number": {
+                              "confirmed": 504,
+                              "unconfirmed": 317,
+                              "total": 153
+                           },
+                           "value": {
+                              "confirmed": 9644,
+                              "unconfirmed": 38965,
+                              "total": 88294
+                           }
+                        }
+                     },
+                     "non_export": {
+                        "number": {
+                           "confirmed": 578,
+                           "unconfirmed": 788,
+                           "total": 160
+                        },
+                        "value": {
+                           "confirmed": 90600,
+                           "unconfirmed": 96103,
+                           "total": 83388
+                        }
+                     }
+                  },
+                  "export_experience": {
+                     "new_exporters": {
+                        "number": {
+                           "confirmed": 431,
+                           "unconfirmed": 952,
+                           "total": 318
+                        },
+                        "value": {
+                           "confirmed": 70623,
+                           "unconfirmed": 73293,
+                           "total": 33281
+                        },
+                        "performance": {
+                           "target": 81303,
+                           "percentage": {
+                              "confirmed": 19862,
+                              "unconfirmed": 45217
+                           }
+                        }
+                     },
+                     "sustainable": {
+                        "number": {
+                           "confirmed": 380,
+                           "unconfirmed": 62,
+                           "total": 710
+                        },
+                        "value": {
+                           "confirmed": 54875,
+                           "unconfirmed": 76164,
+                           "total": 45698
+                        },
+                        "performance": {
+                           "target": 71463,
+                           "percentage": {
+                              "confirmed": 87429,
+                              "unconfirmed": 12454
+                           }
+                        }
+                     },
+                     "growth": {
+                        "number": {
+                           "confirmed": 696,
+                           "unconfirmed": 923,
+                           "total": 429
+                        },
+                        "value": {
+                           "confirmed": 83206,
+                           "unconfirmed": 48391,
+                           "total": 40892
+                        },
+                        "performance": {
+                           "target": 55178,
+                           "percentage": {
+                              "confirmed": 63798,
+                              "unconfirmed": 59703
+                           }
+                        }
+                     },
+                     "unknown": {
+                        "number": {
+                           "confirmed": 503,
+                           "unconfirmed": 870,
+                           "total": 722
+                        },
+                        "value": {
+                           "confirmed": 5090,
+                           "unconfirmed": 2165,
+                           "total": 73958
+                        }
+                     },
+                     "total": {
+                        "number": {
+                           "confirmed": 914,
+                           "unconfirmed": 106,
+                           "total": 105
+                        },
+                        "value": {
+                           "confirmed": 10026,
+                           "unconfirmed": 44811,
+                           "total": 45004
+                        },
+                        "performance": {
+                           "target": 29219,
+                           "percentage": {
+                              "confirmed": 12133,
+                              "unconfirmed": 61907
+                           }
+                        }
+                     }
+                  }
+               }
+            ]
+         },
+         {
+            "name": "enim provident cumque",
+            "regions": [
+               {
+                  "id": "sui-fcgecyc-vwtr-wtilrov-eebg",
+                  "name": "nemo dolorem facilis",
+                  "target": {
+                     "new_exporters": 36961,
+                     "sustainable": 2355,
+                     "growth": 11309,
+                     "total": 81377,
+                     "type": "volume"
+                  },
+                  "wins": {
+                     "export": {
+                        "hvc": {
+                           "number": {
+                              "confirmed": 33,
+                              "unconfirmed": 854,
+                              "total": 987
+                           },
+                           "value": {
+                              "confirmed": 62682,
+                              "unconfirmed": 33003,
+                              "total": 40402
+                           }
+                        },
+                        "non_hvc": {
+                           "number": {
+                              "confirmed": 93,
+                              "unconfirmed": 524,
+                              "total": 192
+                           },
+                           "value": {
+                              "confirmed": 84202,
+                              "unconfirmed": 18339,
+                              "total": 37691
+                           },
+                           "performance": {
+                              "target": 27934,
+                              "percentage": {
+                                 "confirmed": 66357,
+                                 "unconfirmed": 23863
+                              }
+                           }
+                        },
+                        "totals": {
+                           "number": {
+                              "confirmed": 888,
+                              "unconfirmed": 856,
+                              "total": 392
+                           },
+                           "value": {
+                              "confirmed": 61513,
+                              "unconfirmed": 70404,
+                              "total": 32776
+                           }
+                        }
+                     },
+                     "non_export": {
+                        "number": {
+                           "confirmed": 191,
+                           "unconfirmed": 81,
+                           "total": 512
+                        },
+                        "value": {
+                           "confirmed": 88824,
+                           "unconfirmed": 83872,
+                           "total": 25666
+                        }
+                     }
+                  },
+                  "export_experience": {
+                     "new_exporters": {
+                        "number": {
+                           "confirmed": 946,
+                           "unconfirmed": 566,
+                           "total": 901
+                        },
+                        "value": {
+                           "confirmed": 42412,
+                           "unconfirmed": 31047,
+                           "total": 58058
+                        },
+                        "performance": {
+                           "target": 47230,
+                           "percentage": {
+                              "confirmed": 1418,
+                              "unconfirmed": 31373
+                           }
+                        }
+                     },
+                     "sustainable": {
+                        "number": {
+                           "confirmed": 201,
+                           "unconfirmed": 210,
+                           "total": 129
+                        },
+                        "value": {
+                           "confirmed": 67723,
+                           "unconfirmed": 69486,
+                           "total": 3678
+                        },
+                        "performance": {
+                           "target": 23006,
+                           "percentage": {
+                              "confirmed": 8200,
+                              "unconfirmed": 77715
+                           }
+                        }
+                     },
+                     "growth": {
+                        "number": {
+                           "confirmed": 755,
+                           "unconfirmed": 475,
+                           "total": 10
+                        },
+                        "value": {
+                           "confirmed": 51356,
+                           "unconfirmed": 55552,
+                           "total": 1896
+                        },
+                        "performance": {
+                           "target": 35272,
+                           "percentage": {
+                              "confirmed": 46407,
+                              "unconfirmed": 21419
+                           }
+                        }
+                     },
+                     "unknown": {
+                        "number": {
+                           "confirmed": 19,
+                           "unconfirmed": 334,
+                           "total": 794
+                        },
+                        "value": {
+                           "confirmed": 12317,
+                           "unconfirmed": 74010,
+                           "total": 61154
+                        }
+                     },
+                     "total": {
+                        "number": {
+                           "confirmed": 695,
+                           "unconfirmed": 7,
+                           "total": 896
+                        },
+                        "value": {
+                           "confirmed": 6681,
+                           "unconfirmed": 42130,
+                           "total": 83763
+                        },
+                        "performance": {
+                           "target": 92247,
+                           "percentage": {
+                              "confirmed": 17118,
+                              "unconfirmed": 40597
+                           }
+                        }
+                     }
+                  }
+               },
+               {
+                  "id": "gtmgkpv-byay-wmjxi",
+                  "name": "error magnam autem",
+                  "target": {
+                     "new_exporters": 2266,
+                     "sustainable": 87934,
+                     "growth": 3811,
+                     "total": 60153,
+                     "type": "volume"
+                  },
+                  "wins": {
+                     "export": {
+                        "hvc": {
+                           "number": {
+                              "confirmed": 463,
+                              "unconfirmed": 593,
+                              "total": 886
+                           },
+                           "value": {
+                              "confirmed": 51219,
+                              "unconfirmed": 84447,
+                              "total": 80978
+                           }
+                        },
+                        "non_hvc": {
+                           "number": {
+                              "confirmed": 406,
+                              "unconfirmed": 858,
+                              "total": 331
+                           },
+                           "value": {
+                              "confirmed": 88096,
+                              "unconfirmed": 96186,
+                              "total": 83767
+                           },
+                           "performance": {
+                              "target": 36607,
+                              "percentage": {
+                                 "confirmed": 29227,
+                                 "unconfirmed": 54793
+                              }
+                           }
+                        },
+                        "totals": {
+                           "number": {
+                              "confirmed": 645,
+                              "unconfirmed": 149,
+                              "total": 297
+                           },
+                           "value": {
+                              "confirmed": 11354,
+                              "unconfirmed": 53036,
+                              "total": 82547
+                           }
+                        }
+                     },
+                     "non_export": {
+                        "number": {
+                           "confirmed": 376,
+                           "unconfirmed": 447,
+                           "total": 583
+                        },
+                        "value": {
+                           "confirmed": 62364,
+                           "unconfirmed": 33969,
+                           "total": 76663
+                        }
+                     }
+                  },
+                  "export_experience": {
+                     "new_exporters": {
+                        "number": {
+                           "confirmed": 173,
+                           "unconfirmed": 895,
+                           "total": 171
+                        },
+                        "value": {
+                           "confirmed": 57483,
+                           "unconfirmed": 71510,
+                           "total": 88144
+                        },
+                        "performance": {
+                           "target": 37810,
+                           "percentage": {
+                              "confirmed": 93518,
+                              "unconfirmed": 64258
+                           }
+                        }
+                     },
+                     "sustainable": {
+                        "number": {
+                           "confirmed": 883,
+                           "unconfirmed": 808,
+                           "total": 283
+                        },
+                        "value": {
+                           "confirmed": 3584,
+                           "unconfirmed": 70397,
+                           "total": 82038
+                        },
+                        "performance": {
+                           "target": 67087,
+                           "percentage": {
+                              "confirmed": 68727,
+                              "unconfirmed": 34396
+                           }
+                        }
+                     },
+                     "growth": {
+                        "number": {
+                           "confirmed": 654,
+                           "unconfirmed": 537,
+                           "total": 274
+                        },
+                        "value": {
+                           "confirmed": 81078,
+                           "unconfirmed": 19553,
+                           "total": 16778
+                        },
+                        "performance": {
+                           "target": 44965,
+                           "percentage": {
+                              "confirmed": 87765,
+                              "unconfirmed": 46228
+                           }
+                        }
+                     },
+                     "unknown": {
+                        "number": {
+                           "confirmed": 863,
+                           "unconfirmed": 5,
+                           "total": 719
+                        },
+                        "value": {
+                           "confirmed": 12405,
+                           "unconfirmed": 70969,
+                           "total": 77169
+                        }
+                     },
+                     "total": {
+                        "number": {
+                           "confirmed": 856,
+                           "unconfirmed": 907,
+                           "total": 306
+                        },
+                        "value": {
+                           "confirmed": 85710,
+                           "unconfirmed": 63246,
+                           "total": 87980
+                        },
+                        "performance": {
+                           "target": 46970,
+                           "percentage": {
+                              "confirmed": 44444,
+                              "unconfirmed": 70861
+                           }
+                        }
+                     }
+                  }
+               },
+               {
+                  "id": "dwqmoreq-xamdc-zhdgv-wtvi-wvqzlzdt",
+                  "name": "deleniti facilis neque",
+                  "target": {
+                     "new_exporters": 26742,
+                     "sustainable": 15888,
+                     "growth": 51298,
+                     "total": 3642,
+                     "type": "volume"
+                  },
+                  "wins": {
+                     "export": {
+                        "hvc": {
+                           "number": {
+                              "confirmed": 919,
+                              "unconfirmed": 19,
+                              "total": 375
+                           },
+                           "value": {
+                              "confirmed": 68928,
+                              "unconfirmed": 13563,
+                              "total": 50138
+                           }
+                        },
+                        "non_hvc": {
+                           "number": {
+                              "confirmed": 435,
+                              "unconfirmed": 944,
+                              "total": 615
+                           },
+                           "value": {
+                              "confirmed": 51268,
+                              "unconfirmed": 72681,
+                              "total": 67422
+                           },
+                           "performance": {
+                              "target": 81965,
+                              "percentage": {
+                                 "confirmed": 23547,
+                                 "unconfirmed": 7977
+                              }
+                           }
+                        },
+                        "totals": {
+                           "number": {
+                              "confirmed": 604,
+                              "unconfirmed": 186,
+                              "total": 894
+                           },
+                           "value": {
+                              "confirmed": 46482,
+                              "unconfirmed": 86412,
+                              "total": 9459
+                           }
+                        }
+                     },
+                     "non_export": {
+                        "number": {
+                           "confirmed": 22,
+                           "unconfirmed": 300,
+                           "total": 924
+                        },
+                        "value": {
+                           "confirmed": 91391,
+                           "unconfirmed": 4996,
+                           "total": 13674
+                        }
+                     }
+                  },
+                  "export_experience": {
+                     "new_exporters": {
+                        "number": {
+                           "confirmed": 759,
+                           "unconfirmed": 640,
+                           "total": 365
+                        },
+                        "value": {
+                           "confirmed": 66242,
+                           "unconfirmed": 18318,
+                           "total": 67184
+                        },
+                        "performance": {
+                           "target": 90174,
+                           "percentage": {
+                              "confirmed": 51206,
+                              "unconfirmed": 38569
+                           }
+                        }
+                     },
+                     "sustainable": {
+                        "number": {
+                           "confirmed": 519,
+                           "unconfirmed": 467,
+                           "total": 499
+                        },
+                        "value": {
+                           "confirmed": 19831,
+                           "unconfirmed": 71124,
+                           "total": 19226
+                        },
+                        "performance": {
+                           "target": 57158,
+                           "percentage": {
+                              "confirmed": 73986,
+                              "unconfirmed": 69620
+                           }
+                        }
+                     },
+                     "growth": {
+                        "number": {
+                           "confirmed": 267,
+                           "unconfirmed": 685,
+                           "total": 924
+                        },
+                        "value": {
+                           "confirmed": 17463,
+                           "unconfirmed": 57620,
+                           "total": 67553
+                        },
+                        "performance": {
+                           "target": 33615,
+                           "percentage": {
+                              "confirmed": 85747,
+                              "unconfirmed": 43132
+                           }
+                        }
+                     },
+                     "unknown": {
+                        "number": {
+                           "confirmed": 384,
+                           "unconfirmed": 276,
+                           "total": 814
+                        },
+                        "value": {
+                           "confirmed": 69099,
+                           "unconfirmed": 30671,
+                           "total": 67037
+                        }
+                     },
+                     "total": {
+                        "number": {
+                           "confirmed": 764,
+                           "unconfirmed": 738,
+                           "total": 223
+                        },
+                        "value": {
+                           "confirmed": 35786,
+                           "unconfirmed": 95143,
+                           "total": 72006
+                        },
+                        "performance": {
+                           "target": 28586,
+                           "percentage": {
+                              "confirmed": 47501,
+                              "unconfirmed": 93000
+                           }
+                        }
+                     }
+                  }
+               },
+               {
+                  "id": "cxg-efsw-zdhy",
+                  "name": "perferendis omnis animi",
+                  "target": {
+                     "new_exporters": 81042,
+                     "sustainable": 3244,
+                     "growth": 63435,
+                     "total": 4494,
+                     "type": "volume"
+                  },
+                  "wins": {
+                     "export": {
+                        "hvc": {
+                           "number": {
+                              "confirmed": 4,
+                              "unconfirmed": 588,
+                              "total": 642
+                           },
+                           "value": {
+                              "confirmed": 93725,
+                              "unconfirmed": 26997,
+                              "total": 10874
+                           }
+                        },
+                        "non_hvc": {
+                           "number": {
+                              "confirmed": 288,
+                              "unconfirmed": 20,
+                              "total": 379
+                           },
+                           "value": {
+                              "confirmed": 54900,
+                              "unconfirmed": 61843,
+                              "total": 92751
+                           },
+                           "performance": {
+                              "target": 1628,
+                              "percentage": {
+                                 "confirmed": 57453,
+                                 "unconfirmed": 77003
+                              }
+                           }
+                        },
+                        "totals": {
+                           "number": {
+                              "confirmed": 505,
+                              "unconfirmed": 106,
+                              "total": 818
+                           },
+                           "value": {
+                              "confirmed": 65544,
+                              "unconfirmed": 8951,
+                              "total": 71711
+                           }
+                        }
+                     },
+                     "non_export": {
+                        "number": {
+                           "confirmed": 508,
+                           "unconfirmed": 740,
+                           "total": 273
+                        },
+                        "value": {
+                           "confirmed": 66302,
+                           "unconfirmed": 3301,
+                           "total": 90355
+                        }
+                     }
+                  },
+                  "export_experience": {
+                     "new_exporters": {
+                        "number": {
+                           "confirmed": 946,
+                           "unconfirmed": 578,
+                           "total": 429
+                        },
+                        "value": {
+                           "confirmed": 93661,
+                           "unconfirmed": 30922,
+                           "total": 48898
+                        },
+                        "performance": {
+                           "target": 93017,
+                           "percentage": {
+                              "confirmed": 79770,
+                              "unconfirmed": 13194
+                           }
+                        }
+                     },
+                     "sustainable": {
+                        "number": {
+                           "confirmed": 70,
+                           "unconfirmed": 432,
+                           "total": 936
+                        },
+                        "value": {
+                           "confirmed": 17225,
+                           "unconfirmed": 60829,
+                           "total": 63896
+                        },
+                        "performance": {
+                           "target": 23263,
+                           "percentage": {
+                              "confirmed": 25995,
+                              "unconfirmed": 39351
+                           }
+                        }
+                     },
+                     "growth": {
+                        "number": {
+                           "confirmed": 448,
+                           "unconfirmed": 571,
+                           "total": 916
+                        },
+                        "value": {
+                           "confirmed": 25089,
+                           "unconfirmed": 45288,
+                           "total": 40364
+                        },
+                        "performance": {
+                           "target": 3598,
+                           "percentage": {
+                              "confirmed": 63881,
+                              "unconfirmed": 74874
+                           }
+                        }
+                     },
+                     "unknown": {
+                        "number": {
+                           "confirmed": 491,
+                           "unconfirmed": 332,
+                           "total": 566
+                        },
+                        "value": {
+                           "confirmed": 19997,
+                           "unconfirmed": 61752,
+                           "total": 12797
+                        }
+                     },
+                     "total": {
+                        "number": {
+                           "confirmed": 800,
+                           "unconfirmed": 436,
+                           "total": 121
+                        },
+                        "value": {
+                           "confirmed": 5685,
+                           "unconfirmed": 43486,
+                           "total": 10607
+                        },
+                        "performance": {
+                           "target": 99514,
+                           "percentage": {
+                              "confirmed": 18590,
+                              "unconfirmed": 92497
+                           }
+                        }
+                     }
+                  }
+               },
+               {
+                  "id": "wsjcp-fueunhh",
+                  "name": "sed est debitis",
+                  "target": {
+                     "new_exporters": 35623,
+                     "sustainable": 57850,
+                     "growth": 3181,
+                     "total": 80244,
+                     "type": "volume"
+                  },
+                  "wins": {
+                     "export": {
+                        "hvc": {
+                           "number": {
+                              "confirmed": 112,
+                              "unconfirmed": 365,
+                              "total": 945
+                           },
+                           "value": {
+                              "confirmed": 90521,
+                              "unconfirmed": 14010,
+                              "total": 64202
+                           }
+                        },
+                        "non_hvc": {
+                           "number": {
+                              "confirmed": 833,
+                              "unconfirmed": 457,
+                              "total": 824
+                           },
+                           "value": {
+                              "confirmed": 25011,
+                              "unconfirmed": 39825,
+                              "total": 60733
+                           },
+                           "performance": {
+                              "target": 80522,
+                              "percentage": {
+                                 "confirmed": 91191,
+                                 "unconfirmed": 59939
+                              }
+                           }
+                        },
+                        "totals": {
+                           "number": {
+                              "confirmed": 969,
+                              "unconfirmed": 776,
+                              "total": 167
+                           },
+                           "value": {
+                              "confirmed": 20461,
+                              "unconfirmed": 2578,
+                              "total": 14894
+                           }
+                        }
+                     },
+                     "non_export": {
+                        "number": {
+                           "confirmed": 541,
+                           "unconfirmed": 743,
+                           "total": 381
+                        },
+                        "value": {
+                           "confirmed": 36938,
+                           "unconfirmed": 79355,
+                           "total": 98982
+                        }
+                     }
+                  },
+                  "export_experience": {
+                     "new_exporters": {
+                        "number": {
+                           "confirmed": 548,
+                           "unconfirmed": 95,
+                           "total": 251
+                        },
+                        "value": {
+                           "confirmed": 29040,
+                           "unconfirmed": 46464,
+                           "total": 85062
+                        },
+                        "performance": {
+                           "target": 58422,
+                           "percentage": {
+                              "confirmed": 52327,
+                              "unconfirmed": 51791
+                           }
+                        }
+                     },
+                     "sustainable": {
+                        "number": {
+                           "confirmed": 856,
+                           "unconfirmed": 189,
+                           "total": 444
+                        },
+                        "value": {
+                           "confirmed": 13147,
+                           "unconfirmed": 47629,
+                           "total": 93057
+                        },
+                        "performance": {
+                           "target": 90917,
+                           "percentage": {
+                              "confirmed": 81564,
+                              "unconfirmed": 87503
+                           }
+                        }
+                     },
+                     "growth": {
+                        "number": {
+                           "confirmed": 183,
+                           "unconfirmed": 228,
+                           "total": 929
+                        },
+                        "value": {
+                           "confirmed": 562,
+                           "unconfirmed": 20033,
+                           "total": 26238
+                        },
+                        "performance": {
+                           "target": 58342,
+                           "percentage": {
+                              "confirmed": 66571,
+                              "unconfirmed": 40509
+                           }
+                        }
+                     },
+                     "unknown": {
+                        "number": {
+                           "confirmed": 615,
+                           "unconfirmed": 700,
+                           "total": 478
+                        },
+                        "value": {
+                           "confirmed": 97909,
+                           "unconfirmed": 22664,
+                           "total": 35576
+                        }
+                     },
+                     "total": {
+                        "number": {
+                           "confirmed": 763,
+                           "unconfirmed": 487,
+                           "total": 916
+                        },
+                        "value": {
+                           "confirmed": 61000,
+                           "unconfirmed": 77,
+                           "total": 58869
+                        },
+                        "performance": {
+                           "target": 78365,
+                           "percentage": {
+                              "confirmed": 33706,
+                              "unconfirmed": 92318
+                           }
+                        }
+                     }
+                  }
+               },
+               {
+                  "id": "qgupgel-xbpy-nldmhbzm-mievnfzp-paqpzahn-evvv",
+                  "name": "tempora cumque et",
+                  "target": {
+                     "new_exporters": 63632,
+                     "sustainable": 27474,
+                     "growth": 73611,
+                     "total": 27781,
+                     "type": "volume"
+                  },
+                  "wins": {
+                     "export": {
+                        "hvc": {
+                           "number": {
+                              "confirmed": 252,
+                              "unconfirmed": 87,
+                              "total": 332
+                           },
+                           "value": {
+                              "confirmed": 34983,
+                              "unconfirmed": 47580,
+                              "total": 26331
+                           }
+                        },
+                        "non_hvc": {
+                           "number": {
+                              "confirmed": 96,
+                              "unconfirmed": 289,
+                              "total": 842
+                           },
+                           "value": {
+                              "confirmed": 80660,
+                              "unconfirmed": 13182,
+                              "total": 10442
+                           },
+                           "performance": {
+                              "target": 16811,
+                              "percentage": {
+                                 "confirmed": 95461,
+                                 "unconfirmed": 4925
+                              }
+                           }
+                        },
+                        "totals": {
+                           "number": {
+                              "confirmed": 473,
+                              "unconfirmed": 777,
+                              "total": 920
+                           },
+                           "value": {
+                              "confirmed": 9081,
+                              "unconfirmed": 39887,
+                              "total": 59647
+                           }
+                        }
+                     },
+                     "non_export": {
+                        "number": {
+                           "confirmed": 437,
+                           "unconfirmed": 569,
+                           "total": 625
+                        },
+                        "value": {
+                           "confirmed": 14670,
+                           "unconfirmed": 73799,
+                           "total": 20220
+                        }
+                     }
+                  },
+                  "export_experience": {
+                     "new_exporters": {
+                        "number": {
+                           "confirmed": 834,
+                           "unconfirmed": 27,
+                           "total": 598
+                        },
+                        "value": {
+                           "confirmed": 93052,
+                           "unconfirmed": 65650,
+                           "total": 74565
+                        },
+                        "performance": {
+                           "target": 36392,
+                           "percentage": {
+                              "confirmed": 26945,
+                              "unconfirmed": 14794
+                           }
+                        }
+                     },
+                     "sustainable": {
+                        "number": {
+                           "confirmed": 93,
+                           "unconfirmed": 34,
+                           "total": 573
+                        },
+                        "value": {
+                           "confirmed": 31456,
+                           "unconfirmed": 13965,
+                           "total": 24138
+                        },
+                        "performance": {
+                           "target": 24013,
+                           "percentage": {
+                              "confirmed": 22295,
+                              "unconfirmed": 36545
+                           }
+                        }
+                     },
+                     "growth": {
+                        "number": {
+                           "confirmed": 774,
+                           "unconfirmed": 61,
+                           "total": 558
+                        },
+                        "value": {
+                           "confirmed": 75071,
+                           "unconfirmed": 66364,
+                           "total": 49704
+                        },
+                        "performance": {
+                           "target": 56607,
+                           "percentage": {
+                              "confirmed": 60137,
+                              "unconfirmed": 33506
+                           }
+                        }
+                     },
+                     "unknown": {
+                        "number": {
+                           "confirmed": 914,
+                           "unconfirmed": 199,
+                           "total": 129
+                        },
+                        "value": {
+                           "confirmed": 69789,
+                           "unconfirmed": 33062,
+                           "total": 4892
+                        }
+                     },
+                     "total": {
+                        "number": {
+                           "confirmed": 60,
+                           "unconfirmed": 462,
+                           "total": 649
+                        },
+                        "value": {
+                           "confirmed": 30867,
+                           "unconfirmed": 18686,
+                           "total": 54962
+                        },
+                        "performance": {
+                           "target": 92990,
+                           "percentage": {
+                              "confirmed": 55106,
+                              "unconfirmed": 53721
+                           }
+                        }
+                     }
+                  }
+               },
+               {
+                  "id": "quu-qjxrs-lxdo",
+                  "name": "quod saepe consequatur",
+                  "target": {
+                     "new_exporters": 97324,
+                     "sustainable": 35502,
+                     "growth": 64424,
+                     "total": 3884,
+                     "type": "volume"
+                  },
+                  "wins": {
+                     "export": {
+                        "hvc": {
+                           "number": {
+                              "confirmed": 956,
+                              "unconfirmed": 949,
+                              "total": 454
+                           },
+                           "value": {
+                              "confirmed": 35469,
+                              "unconfirmed": 38790,
+                              "total": 88724
+                           }
+                        },
+                        "non_hvc": {
+                           "number": {
+                              "confirmed": 724,
+                              "unconfirmed": 589,
+                              "total": 50
+                           },
+                           "value": {
+                              "confirmed": 47952,
+                              "unconfirmed": 45289,
+                              "total": 36699
+                           },
+                           "performance": {
+                              "target": 38106,
+                              "percentage": {
+                                 "confirmed": 2455,
+                                 "unconfirmed": 68595
+                              }
+                           }
+                        },
+                        "totals": {
+                           "number": {
+                              "confirmed": 691,
+                              "unconfirmed": 551,
+                              "total": 865
+                           },
+                           "value": {
+                              "confirmed": 37374,
+                              "unconfirmed": 41090,
+                              "total": 30389
+                           }
+                        }
+                     },
+                     "non_export": {
+                        "number": {
+                           "confirmed": 33,
+                           "unconfirmed": 485,
+                           "total": 846
+                        },
+                        "value": {
+                           "confirmed": 41044,
+                           "unconfirmed": 7579,
+                           "total": 27882
+                        }
+                     }
+                  },
+                  "export_experience": {
+                     "new_exporters": {
+                        "number": {
+                           "confirmed": 781,
+                           "unconfirmed": 910,
+                           "total": 523
+                        },
+                        "value": {
+                           "confirmed": 15240,
+                           "unconfirmed": 86259,
+                           "total": 82662
+                        },
+                        "performance": {
+                           "target": 72870,
+                           "percentage": {
+                              "confirmed": 44543,
+                              "unconfirmed": 71374
+                           }
+                        }
+                     },
+                     "sustainable": {
+                        "number": {
+                           "confirmed": 355,
+                           "unconfirmed": 601,
+                           "total": 448
+                        },
+                        "value": {
+                           "confirmed": 52041,
+                           "unconfirmed": 46160,
+                           "total": 17360
+                        },
+                        "performance": {
+                           "target": 87331,
+                           "percentage": {
+                              "confirmed": 30695,
+                              "unconfirmed": 66727
+                           }
+                        }
+                     },
+                     "growth": {
+                        "number": {
+                           "confirmed": 702,
+                           "unconfirmed": 851,
+                           "total": 171
+                        },
+                        "value": {
+                           "confirmed": 72069,
+                           "unconfirmed": 22913,
+                           "total": 51361
+                        },
+                        "performance": {
+                           "target": 50793,
+                           "percentage": {
+                              "confirmed": 37265,
+                              "unconfirmed": 66874
+                           }
+                        }
+                     },
+                     "unknown": {
+                        "number": {
+                           "confirmed": 71,
+                           "unconfirmed": 888,
+                           "total": 497
+                        },
+                        "value": {
+                           "confirmed": 37127,
+                           "unconfirmed": 34714,
+                           "total": 67245
+                        }
+                     },
+                     "total": {
+                        "number": {
+                           "confirmed": 310,
+                           "unconfirmed": 551,
+                           "total": 763
+                        },
+                        "value": {
+                           "confirmed": 76425,
+                           "unconfirmed": 25912,
+                           "total": 81785
+                        },
+                        "performance": {
+                           "target": 17599,
+                           "percentage": {
+                              "confirmed": 72122,
+                              "unconfirmed": 69891
+                           }
+                        }
+                     }
+                  }
+               },
+               {
+                  "id": "qgcptng-lveoe-eblkho-szog",
+                  "name": "debitis quia vel",
+                  "target": {
+                     "new_exporters": 52696,
+                     "sustainable": 36374,
+                     "growth": 7932,
+                     "total": 20899,
+                     "type": "volume"
+                  },
+                  "wins": {
+                     "export": {
+                        "hvc": {
+                           "number": {
+                              "confirmed": 708,
+                              "unconfirmed": 997,
+                              "total": 849
+                           },
+                           "value": {
+                              "confirmed": 79235,
+                              "unconfirmed": 87841,
+                              "total": 25039
+                           }
+                        },
+                        "non_hvc": {
+                           "number": {
+                              "confirmed": 537,
+                              "unconfirmed": 123,
+                              "total": 589
+                           },
+                           "value": {
+                              "confirmed": 37633,
+                              "unconfirmed": 92839,
+                              "total": 21288
+                           },
+                           "performance": {
+                              "target": 70583,
+                              "percentage": {
+                                 "confirmed": 94579,
+                                 "unconfirmed": 57686
+                              }
+                           }
+                        },
+                        "totals": {
+                           "number": {
+                              "confirmed": 735,
+                              "unconfirmed": 466,
+                              "total": 972
+                           },
+                           "value": {
+                              "confirmed": 7459,
+                              "unconfirmed": 63009,
+                              "total": 31970
+                           }
+                        }
+                     },
+                     "non_export": {
+                        "number": {
+                           "confirmed": 500,
+                           "unconfirmed": 802,
+                           "total": 234
+                        },
+                        "value": {
+                           "confirmed": 16223,
+                           "unconfirmed": 93669,
+                           "total": 29262
+                        }
+                     }
+                  },
+                  "export_experience": {
+                     "new_exporters": {
+                        "number": {
+                           "confirmed": 895,
+                           "unconfirmed": 654,
+                           "total": 764
+                        },
+                        "value": {
+                           "confirmed": 31881,
+                           "unconfirmed": 41879,
+                           "total": 44445
+                        },
+                        "performance": {
+                           "target": 22929,
+                           "percentage": {
+                              "confirmed": 23052,
+                              "unconfirmed": 90202
+                           }
+                        }
+                     },
+                     "sustainable": {
+                        "number": {
+                           "confirmed": 937,
+                           "unconfirmed": 739,
+                           "total": 144
+                        },
+                        "value": {
+                           "confirmed": 28368,
+                           "unconfirmed": 92740,
+                           "total": 97360
+                        },
+                        "performance": {
+                           "target": 38930,
+                           "percentage": {
+                              "confirmed": 33363,
+                              "unconfirmed": 48356
+                           }
+                        }
+                     },
+                     "growth": {
+                        "number": {
+                           "confirmed": 884,
+                           "unconfirmed": 986,
+                           "total": 516
+                        },
+                        "value": {
+                           "confirmed": 61919,
+                           "unconfirmed": 18134,
+                           "total": 83905
+                        },
+                        "performance": {
+                           "target": 64571,
+                           "percentage": {
+                              "confirmed": 82303,
+                              "unconfirmed": 436
+                           }
+                        }
+                     },
+                     "unknown": {
+                        "number": {
+                           "confirmed": 957,
+                           "unconfirmed": 257,
+                           "total": 916
+                        },
+                        "value": {
+                           "confirmed": 88742,
+                           "unconfirmed": 21104,
+                           "total": 59878
+                        }
+                     },
+                     "total": {
+                        "number": {
+                           "confirmed": 161,
+                           "unconfirmed": 847,
+                           "total": 972
+                        },
+                        "value": {
+                           "confirmed": 21072,
+                           "unconfirmed": 26846,
+                           "total": 79849
+                        },
+                        "performance": {
+                           "target": 60060,
+                           "percentage": {
+                              "confirmed": 77148,
+                              "unconfirmed": 51143
+                           }
+                        }
+                     }
+                  }
+               }
+            ]
+         },
+         {
+            "name": "consequatur velit quo",
+            "regions": [
+               {
+                  "id": "ifxxgvow-kjifnwqy-yowitcmc-hqipxs-tegcgisk",
+                  "name": "porro voluptatem quo",
+                  "target": {
+                     "new_exporters": 39988,
+                     "sustainable": 53456,
+                     "growth": 51744,
+                     "total": 80654,
+                     "type": "volume"
+                  },
+                  "wins": {
+                     "export": {
+                        "hvc": {
+                           "number": {
+                              "confirmed": 974,
+                              "unconfirmed": 658,
+                              "total": 963
+                           },
+                           "value": {
+                              "confirmed": 22729,
+                              "unconfirmed": 12158,
+                              "total": 10163
+                           }
+                        },
+                        "non_hvc": {
+                           "number": {
+                              "confirmed": 158,
+                              "unconfirmed": 72,
+                              "total": 309
+                           },
+                           "value": {
+                              "confirmed": 90595,
+                              "unconfirmed": 192,
+                              "total": 80980
+                           },
+                           "performance": {
+                              "target": 77709,
+                              "percentage": {
+                                 "confirmed": 95497,
+                                 "unconfirmed": 20876
+                              }
+                           }
+                        },
+                        "totals": {
+                           "number": {
+                              "confirmed": 507,
+                              "unconfirmed": 556,
+                              "total": 453
+                           },
+                           "value": {
+                              "confirmed": 14664,
+                              "unconfirmed": 64865,
+                              "total": 15401
+                           }
+                        }
+                     },
+                     "non_export": {
+                        "number": {
+                           "confirmed": 76,
+                           "unconfirmed": 584,
+                           "total": 645
+                        },
+                        "value": {
+                           "confirmed": 73927,
+                           "unconfirmed": 62625,
+                           "total": 72122
+                        }
+                     }
+                  },
+                  "export_experience": {
+                     "new_exporters": {
+                        "number": {
+                           "confirmed": 353,
+                           "unconfirmed": 465,
+                           "total": 19
+                        },
+                        "value": {
+                           "confirmed": 43922,
+                           "unconfirmed": 60922,
+                           "total": 95003
+                        },
+                        "performance": {
+                           "target": 95166,
+                           "percentage": {
+                              "confirmed": 7645,
+                              "unconfirmed": 27012
+                           }
+                        }
+                     },
+                     "sustainable": {
+                        "number": {
+                           "confirmed": 263,
+                           "unconfirmed": 456,
+                           "total": 131
+                        },
+                        "value": {
+                           "confirmed": 96943,
+                           "unconfirmed": 26828,
+                           "total": 20648
+                        },
+                        "performance": {
+                           "target": 35716,
+                           "percentage": {
+                              "confirmed": 49427,
+                              "unconfirmed": 95561
+                           }
+                        }
+                     },
+                     "growth": {
+                        "number": {
+                           "confirmed": 321,
+                           "unconfirmed": 702,
+                           "total": 20
+                        },
+                        "value": {
+                           "confirmed": 42286,
+                           "unconfirmed": 95623,
+                           "total": 35915
+                        },
+                        "performance": {
+                           "target": 37496,
+                           "percentage": {
+                              "confirmed": 75827,
+                              "unconfirmed": 49627
+                           }
+                        }
+                     },
+                     "unknown": {
+                        "number": {
+                           "confirmed": 400,
+                           "unconfirmed": 604,
+                           "total": 213
+                        },
+                        "value": {
+                           "confirmed": 2948,
+                           "unconfirmed": 56643,
+                           "total": 27898
+                        }
+                     },
+                     "total": {
+                        "number": {
+                           "confirmed": 725,
+                           "unconfirmed": 204,
+                           "total": 558
+                        },
+                        "value": {
+                           "confirmed": 26771,
+                           "unconfirmed": 66145,
+                           "total": 16692
+                        },
+                        "performance": {
+                           "target": 14665,
+                           "percentage": {
+                              "confirmed": 85498,
+                              "unconfirmed": 56837
+                           }
+                        }
+                     }
+                  }
+               },
+               {
+                  "id": "fgsbqa-ssn-hxsqtd-gqkknc-xahliho-qyvqk",
+                  "name": "ab veniam sapiente",
+                  "target": {
+                     "new_exporters": 52968,
+                     "sustainable": 56069,
+                     "growth": 57670,
+                     "total": 76921,
+                     "type": "volume"
+                  },
+                  "wins": {
+                     "export": {
+                        "hvc": {
+                           "number": {
+                              "confirmed": 304,
+                              "unconfirmed": 544,
+                              "total": 615
+                           },
+                           "value": {
+                              "confirmed": 49020,
+                              "unconfirmed": 66103,
+                              "total": 42346
+                           }
+                        },
+                        "non_hvc": {
+                           "number": {
+                              "confirmed": 839,
+                              "unconfirmed": 771,
+                              "total": 828
+                           },
+                           "value": {
+                              "confirmed": 29058,
+                              "unconfirmed": 99768,
+                              "total": 37542
+                           },
+                           "performance": {
+                              "target": 40752,
+                              "percentage": {
+                                 "confirmed": 18604,
+                                 "unconfirmed": 18089
+                              }
+                           }
+                        },
+                        "totals": {
+                           "number": {
+                              "confirmed": 526,
+                              "unconfirmed": 26,
+                              "total": 235
+                           },
+                           "value": {
+                              "confirmed": 83477,
+                              "unconfirmed": 30016,
+                              "total": 92644
+                           }
+                        }
+                     },
+                     "non_export": {
+                        "number": {
+                           "confirmed": 5,
+                           "unconfirmed": 941,
+                           "total": 453
+                        },
+                        "value": {
+                           "confirmed": 69977,
+                           "unconfirmed": 63538,
+                           "total": 92702
+                        }
+                     }
+                  },
+                  "export_experience": {
+                     "new_exporters": {
+                        "number": {
+                           "confirmed": 608,
+                           "unconfirmed": 498,
+                           "total": 918
+                        },
+                        "value": {
+                           "confirmed": 66831,
+                           "unconfirmed": 83474,
+                           "total": 20082
+                        },
+                        "performance": {
+                           "target": 28739,
+                           "percentage": {
+                              "confirmed": 51736,
+                              "unconfirmed": 33698
+                           }
+                        }
+                     },
+                     "sustainable": {
+                        "number": {
+                           "confirmed": 483,
+                           "unconfirmed": 164,
+                           "total": 948
+                        },
+                        "value": {
+                           "confirmed": 36033,
+                           "unconfirmed": 91142,
+                           "total": 33659
+                        },
+                        "performance": {
+                           "target": 83995,
+                           "percentage": {
+                              "confirmed": 50704,
+                              "unconfirmed": 87569
+                           }
+                        }
+                     },
+                     "growth": {
+                        "number": {
+                           "confirmed": 51,
+                           "unconfirmed": 444,
+                           "total": 46
+                        },
+                        "value": {
+                           "confirmed": 14368,
+                           "unconfirmed": 55458,
+                           "total": 31928
+                        },
+                        "performance": {
+                           "target": 98763,
+                           "percentage": {
+                              "confirmed": 6276,
+                              "unconfirmed": 63735
+                           }
+                        }
+                     },
+                     "unknown": {
+                        "number": {
+                           "confirmed": 49,
+                           "unconfirmed": 296,
+                           "total": 63
+                        },
+                        "value": {
+                           "confirmed": 86560,
+                           "unconfirmed": 77102,
+                           "total": 41441
+                        }
+                     },
+                     "total": {
+                        "number": {
+                           "confirmed": 886,
+                           "unconfirmed": 470,
+                           "total": 227
+                        },
+                        "value": {
+                           "confirmed": 14198,
+                           "unconfirmed": 3670,
+                           "total": 58426
+                        },
+                        "performance": {
+                           "target": 68383,
+                           "percentage": {
+                              "confirmed": 72162,
+                              "unconfirmed": 72392
+                           }
+                        }
+                     }
+                  }
+               },
+               {
+                  "id": "iaj-hltlf-uegh",
+                  "name": "ad qui est",
+                  "target": {
+                     "new_exporters": 30547,
+                     "sustainable": 99279,
+                     "growth": 11966,
+                     "total": 56679,
+                     "type": "volume"
+                  },
+                  "wins": {
+                     "export": {
+                        "hvc": {
+                           "number": {
+                              "confirmed": 232,
+                              "unconfirmed": 764,
+                              "total": 3
+                           },
+                           "value": {
+                              "confirmed": 77128,
+                              "unconfirmed": 33123,
+                              "total": 51459
+                           }
+                        },
+                        "non_hvc": {
+                           "number": {
+                              "confirmed": 109,
+                              "unconfirmed": 227,
+                              "total": 93
+                           },
+                           "value": {
+                              "confirmed": 26240,
+                              "unconfirmed": 61546,
+                              "total": 95573
+                           },
+                           "performance": {
+                              "target": 53900,
+                              "percentage": {
+                                 "confirmed": 3997,
+                                 "unconfirmed": 22993
+                              }
+                           }
+                        },
+                        "totals": {
+                           "number": {
+                              "confirmed": 406,
+                              "unconfirmed": 495,
+                              "total": 273
+                           },
+                           "value": {
+                              "confirmed": 19569,
+                              "unconfirmed": 29454,
+                              "total": 74796
+                           }
+                        }
+                     },
+                     "non_export": {
+                        "number": {
+                           "confirmed": 246,
+                           "unconfirmed": 730,
+                           "total": 727
+                        },
+                        "value": {
+                           "confirmed": 69911,
+                           "unconfirmed": 1523,
+                           "total": 48576
+                        }
+                     }
+                  },
+                  "export_experience": {
+                     "new_exporters": {
+                        "number": {
+                           "confirmed": 541,
+                           "unconfirmed": 748,
+                           "total": 34
+                        },
+                        "value": {
+                           "confirmed": 22964,
+                           "unconfirmed": 70175,
+                           "total": 3498
+                        },
+                        "performance": {
+                           "target": 20863,
+                           "percentage": {
+                              "confirmed": 5828,
+                              "unconfirmed": 35183
+                           }
+                        }
+                     },
+                     "sustainable": {
+                        "number": {
+                           "confirmed": 845,
+                           "unconfirmed": 190,
+                           "total": 171
+                        },
+                        "value": {
+                           "confirmed": 66204,
+                           "unconfirmed": 27299,
+                           "total": 10456
+                        },
+                        "performance": {
+                           "target": 44443,
+                           "percentage": {
+                              "confirmed": 918,
+                              "unconfirmed": 77758
+                           }
+                        }
+                     },
+                     "growth": {
+                        "number": {
+                           "confirmed": 893,
+                           "unconfirmed": 731,
+                           "total": 628
+                        },
+                        "value": {
+                           "confirmed": 99506,
+                           "unconfirmed": 22368,
+                           "total": 36950
+                        },
+                        "performance": {
+                           "target": 81524,
+                           "percentage": {
+                              "confirmed": 35838,
+                              "unconfirmed": 69470
+                           }
+                        }
+                     },
+                     "unknown": {
+                        "number": {
+                           "confirmed": 104,
+                           "unconfirmed": 712,
+                           "total": 524
+                        },
+                        "value": {
+                           "confirmed": 90597,
+                           "unconfirmed": 66034,
+                           "total": 63227
+                        }
+                     },
+                     "total": {
+                        "number": {
+                           "confirmed": 161,
+                           "unconfirmed": 819,
+                           "total": 816
+                        },
+                        "value": {
+                           "confirmed": 36689,
+                           "unconfirmed": 81296,
+                           "total": 47043
+                        },
+                        "performance": {
+                           "target": 59801,
+                           "percentage": {
+                              "confirmed": 35732,
+                              "unconfirmed": 22969
+                           }
+                        }
+                     }
+                  }
+               },
+               {
+                  "id": "mdwyjxca-jusbb",
+                  "name": "magnam placeat error",
+                  "target": {
+                     "new_exporters": 87348,
+                     "sustainable": 96625,
+                     "growth": 83402,
+                     "total": 33275,
+                     "type": "volume"
+                  },
+                  "wins": {
+                     "export": {
+                        "hvc": {
+                           "number": {
+                              "confirmed": 342,
+                              "unconfirmed": 325,
+                              "total": 866
+                           },
+                           "value": {
+                              "confirmed": 90583,
+                              "unconfirmed": 37447,
+                              "total": 58571
+                           }
+                        },
+                        "non_hvc": {
+                           "number": {
+                              "confirmed": 340,
+                              "unconfirmed": 894,
+                              "total": 718
+                           },
+                           "value": {
+                              "confirmed": 77400,
+                              "unconfirmed": 25175,
+                              "total": 60581
+                           },
+                           "performance": {
+                              "target": 21549,
+                              "percentage": {
+                                 "confirmed": 62402,
+                                 "unconfirmed": 96354
+                              }
+                           }
+                        },
+                        "totals": {
+                           "number": {
+                              "confirmed": 591,
+                              "unconfirmed": 996,
+                              "total": 424
+                           },
+                           "value": {
+                              "confirmed": 94922,
+                              "unconfirmed": 1657,
+                              "total": 75252
+                           }
+                        }
+                     },
+                     "non_export": {
+                        "number": {
+                           "confirmed": 784,
+                           "unconfirmed": 509,
+                           "total": 7
+                        },
+                        "value": {
+                           "confirmed": 45587,
+                           "unconfirmed": 79627,
+                           "total": 79229
+                        }
+                     }
+                  },
+                  "export_experience": {
+                     "new_exporters": {
+                        "number": {
+                           "confirmed": 893,
+                           "unconfirmed": 331,
+                           "total": 956
+                        },
+                        "value": {
+                           "confirmed": 34425,
+                           "unconfirmed": 98986,
+                           "total": 10900
+                        },
+                        "performance": {
+                           "target": 33751,
+                           "percentage": {
+                              "confirmed": 61743,
+                              "unconfirmed": 56922
+                           }
+                        }
+                     },
+                     "sustainable": {
+                        "number": {
+                           "confirmed": 454,
+                           "unconfirmed": 404,
+                           "total": 279
+                        },
+                        "value": {
+                           "confirmed": 20417,
+                           "unconfirmed": 62941,
+                           "total": 45047
+                        },
+                        "performance": {
+                           "target": 74772,
+                           "percentage": {
+                              "confirmed": 16878,
+                              "unconfirmed": 92127
+                           }
+                        }
+                     },
+                     "growth": {
+                        "number": {
+                           "confirmed": 344,
+                           "unconfirmed": 85,
+                           "total": 30
+                        },
+                        "value": {
+                           "confirmed": 54219,
+                           "unconfirmed": 77421,
+                           "total": 46306
+                        },
+                        "performance": {
+                           "target": 77221,
+                           "percentage": {
+                              "confirmed": 2504,
+                              "unconfirmed": 58357
+                           }
+                        }
+                     },
+                     "unknown": {
+                        "number": {
+                           "confirmed": 303,
+                           "unconfirmed": 700,
+                           "total": 740
+                        },
+                        "value": {
+                           "confirmed": 84055,
+                           "unconfirmed": 66869,
+                           "total": 73027
+                        }
+                     },
+                     "total": {
+                        "number": {
+                           "confirmed": 482,
+                           "unconfirmed": 952,
+                           "total": 940
+                        },
+                        "value": {
+                           "confirmed": 57158,
+                           "unconfirmed": 66518,
+                           "total": 59934
+                        },
+                        "performance": {
+                           "target": 88788,
+                           "percentage": {
+                              "confirmed": 1828,
+                              "unconfirmed": 31052
+                           }
+                        }
+                     }
+                  }
+               },
+               {
+                  "id": "vflcacwh-wnzbj",
+                  "name": "repellendus quo expedita",
+                  "target": {
+                     "new_exporters": 18242,
+                     "sustainable": 87862,
+                     "growth": 8802,
+                     "total": 3241,
+                     "type": "volume"
+                  },
+                  "wins": {
+                     "export": {
+                        "hvc": {
+                           "number": {
+                              "confirmed": 37,
+                              "unconfirmed": 210,
+                              "total": 248
+                           },
+                           "value": {
+                              "confirmed": 29996,
+                              "unconfirmed": 58881,
+                              "total": 28526
+                           }
+                        },
+                        "non_hvc": {
+                           "number": {
+                              "confirmed": 542,
+                              "unconfirmed": 299,
+                              "total": 280
+                           },
+                           "value": {
+                              "confirmed": 5333,
+                              "unconfirmed": 67549,
+                              "total": 13874
+                           },
+                           "performance": {
+                              "target": 73961,
+                              "percentage": {
+                                 "confirmed": 28267,
+                                 "unconfirmed": 73878
+                              }
+                           }
+                        },
+                        "totals": {
+                           "number": {
+                              "confirmed": 50,
+                              "unconfirmed": 986,
+                              "total": 839
+                           },
+                           "value": {
+                              "confirmed": 36722,
+                              "unconfirmed": 51712,
+                              "total": 57460
+                           }
+                        }
+                     },
+                     "non_export": {
+                        "number": {
+                           "confirmed": 478,
+                           "unconfirmed": 6,
+                           "total": 722
+                        },
+                        "value": {
+                           "confirmed": 58217,
+                           "unconfirmed": 53632,
+                           "total": 39709
+                        }
+                     }
+                  },
+                  "export_experience": {
+                     "new_exporters": {
+                        "number": {
+                           "confirmed": 858,
+                           "unconfirmed": 29,
+                           "total": 410
+                        },
+                        "value": {
+                           "confirmed": 14748,
+                           "unconfirmed": 90145,
+                           "total": 99020
+                        },
+                        "performance": {
+                           "target": 36731,
+                           "percentage": {
+                              "confirmed": 70456,
+                              "unconfirmed": 20793
+                           }
+                        }
+                     },
+                     "sustainable": {
+                        "number": {
+                           "confirmed": 391,
+                           "unconfirmed": 652,
+                           "total": 832
+                        },
+                        "value": {
+                           "confirmed": 38749,
+                           "unconfirmed": 5879,
+                           "total": 70926
+                        },
+                        "performance": {
+                           "target": 62071,
+                           "percentage": {
+                              "confirmed": 32601,
+                              "unconfirmed": 74747
+                           }
+                        }
+                     },
+                     "growth": {
+                        "number": {
+                           "confirmed": 207,
+                           "unconfirmed": 575,
+                           "total": 674
+                        },
+                        "value": {
+                           "confirmed": 61252,
+                           "unconfirmed": 76397,
+                           "total": 25988
+                        },
+                        "performance": {
+                           "target": 5598,
+                           "percentage": {
+                              "confirmed": 4905,
+                              "unconfirmed": 5520
+                           }
+                        }
+                     },
+                     "unknown": {
+                        "number": {
+                           "confirmed": 261,
+                           "unconfirmed": 605,
+                           "total": 592
+                        },
+                        "value": {
+                           "confirmed": 41603,
+                           "unconfirmed": 74326,
+                           "total": 86007
+                        }
+                     },
+                     "total": {
+                        "number": {
+                           "confirmed": 182,
+                           "unconfirmed": 43,
+                           "total": 731
+                        },
+                        "value": {
+                           "confirmed": 12708,
+                           "unconfirmed": 80336,
+                           "total": 12383
+                        },
+                        "performance": {
+                           "target": 83262,
+                           "percentage": {
+                              "confirmed": 7279,
+                              "unconfirmed": 67044
+                           }
+                        }
+                     }
+                  }
+               },
+               {
+                  "id": "yxvtsq-ntnvikpy-sbybmeyk",
+                  "name": "nobis omnis cupiditate",
+                  "target": {
+                     "new_exporters": 32320,
+                     "sustainable": 87455,
+                     "growth": 4692,
+                     "total": 40235,
+                     "type": "volume"
+                  },
+                  "wins": {
+                     "export": {
+                        "hvc": {
+                           "number": {
+                              "confirmed": 148,
+                              "unconfirmed": 310,
+                              "total": 169
+                           },
+                           "value": {
+                              "confirmed": 81046,
+                              "unconfirmed": 162,
+                              "total": 44267
+                           }
+                        },
+                        "non_hvc": {
+                           "number": {
+                              "confirmed": 433,
+                              "unconfirmed": 249,
+                              "total": 117
+                           },
+                           "value": {
+                              "confirmed": 38400,
+                              "unconfirmed": 5315,
+                              "total": 78920
+                           },
+                           "performance": {
+                              "target": 60447,
+                              "percentage": {
+                                 "confirmed": 56860,
+                                 "unconfirmed": 40604
+                              }
+                           }
+                        },
+                        "totals": {
+                           "number": {
+                              "confirmed": 583,
+                              "unconfirmed": 959,
+                              "total": 11
+                           },
+                           "value": {
+                              "confirmed": 55942,
+                              "unconfirmed": 55244,
+                              "total": 24429
+                           }
+                        }
+                     },
+                     "non_export": {
+                        "number": {
+                           "confirmed": 737,
+                           "unconfirmed": 855,
+                           "total": 62
+                        },
+                        "value": {
+                           "confirmed": 25153,
+                           "unconfirmed": 35837,
+                           "total": 70533
+                        }
+                     }
+                  },
+                  "export_experience": {
+                     "new_exporters": {
+                        "number": {
+                           "confirmed": 209,
+                           "unconfirmed": 565,
+                           "total": 942
+                        },
+                        "value": {
+                           "confirmed": 1593,
+                           "unconfirmed": 74689,
+                           "total": 80719
+                        },
+                        "performance": {
+                           "target": 66309,
+                           "percentage": {
+                              "confirmed": 25019,
+                              "unconfirmed": 60649
+                           }
+                        }
+                     },
+                     "sustainable": {
+                        "number": {
+                           "confirmed": 752,
+                           "unconfirmed": 843,
+                           "total": 35
+                        },
+                        "value": {
+                           "confirmed": 13028,
+                           "unconfirmed": 35456,
+                           "total": 71374
+                        },
+                        "performance": {
+                           "target": 26997,
+                           "percentage": {
+                              "confirmed": 94194,
+                              "unconfirmed": 30127
+                           }
+                        }
+                     },
+                     "growth": {
+                        "number": {
+                           "confirmed": 428,
+                           "unconfirmed": 508,
+                           "total": 344
+                        },
+                        "value": {
+                           "confirmed": 9352,
+                           "unconfirmed": 24129,
+                           "total": 96471
+                        },
+                        "performance": {
+                           "target": 59532,
+                           "percentage": {
+                              "confirmed": 43206,
+                              "unconfirmed": 56991
+                           }
+                        }
+                     },
+                     "unknown": {
+                        "number": {
+                           "confirmed": 947,
+                           "unconfirmed": 434,
+                           "total": 317
+                        },
+                        "value": {
+                           "confirmed": 16682,
+                           "unconfirmed": 44388,
+                           "total": 8681
+                        }
+                     },
+                     "total": {
+                        "number": {
+                           "confirmed": 860,
+                           "unconfirmed": 46,
+                           "total": 13
+                        },
+                        "value": {
+                           "confirmed": 99141,
+                           "unconfirmed": 51696,
+                           "total": 94044
+                        },
+                        "performance": {
+                           "target": 17596,
+                           "percentage": {
+                              "confirmed": 68848,
+                              "unconfirmed": 85869
+                           }
+                        }
+                     }
+                  }
+               },
+               {
+                  "id": "ccr-kppkwpp-hcswnd-fhikxokq",
+                  "name": "odio qui laborum",
+                  "target": {
+                     "new_exporters": 55650,
+                     "sustainable": 70462,
+                     "growth": 85022,
+                     "total": 93226,
+                     "type": "volume"
+                  },
+                  "wins": {
+                     "export": {
+                        "hvc": {
+                           "number": {
+                              "confirmed": 720,
+                              "unconfirmed": 358,
+                              "total": 64
+                           },
+                           "value": {
+                              "confirmed": 78061,
+                              "unconfirmed": 97665,
+                              "total": 43693
+                           }
+                        },
+                        "non_hvc": {
+                           "number": {
+                              "confirmed": 230,
+                              "unconfirmed": 50,
+                              "total": 521
+                           },
+                           "value": {
+                              "confirmed": 3486,
+                              "unconfirmed": 71215,
+                              "total": 69066
+                           },
+                           "performance": {
+                              "target": 13712,
+                              "percentage": {
+                                 "confirmed": 98615,
+                                 "unconfirmed": 42605
+                              }
+                           }
+                        },
+                        "totals": {
+                           "number": {
+                              "confirmed": 509,
+                              "unconfirmed": 818,
+                              "total": 171
+                           },
+                           "value": {
+                              "confirmed": 25073,
+                              "unconfirmed": 70179,
+                              "total": 6588
+                           }
+                        }
+                     },
+                     "non_export": {
+                        "number": {
+                           "confirmed": 301,
+                           "unconfirmed": 199,
+                           "total": 719
+                        },
+                        "value": {
+                           "confirmed": 43492,
+                           "unconfirmed": 85791,
+                           "total": 62752
+                        }
+                     }
+                  },
+                  "export_experience": {
+                     "new_exporters": {
+                        "number": {
+                           "confirmed": 342,
+                           "unconfirmed": 40,
+                           "total": 845
+                        },
+                        "value": {
+                           "confirmed": 11417,
+                           "unconfirmed": 95654,
+                           "total": 65492
+                        },
+                        "performance": {
+                           "target": 90234,
+                           "percentage": {
+                              "confirmed": 34551,
+                              "unconfirmed": 70844
+                           }
+                        }
+                     },
+                     "sustainable": {
+                        "number": {
+                           "confirmed": 615,
+                           "unconfirmed": 48,
+                           "total": 121
+                        },
+                        "value": {
+                           "confirmed": 52708,
+                           "unconfirmed": 2670,
+                           "total": 6882
+                        },
+                        "performance": {
+                           "target": 1341,
+                           "percentage": {
+                              "confirmed": 53698,
+                              "unconfirmed": 90340
+                           }
+                        }
+                     },
+                     "growth": {
+                        "number": {
+                           "confirmed": 359,
+                           "unconfirmed": 386,
+                           "total": 167
+                        },
+                        "value": {
+                           "confirmed": 98861,
+                           "unconfirmed": 82126,
+                           "total": 56448
+                        },
+                        "performance": {
+                           "target": 97243,
+                           "percentage": {
+                              "confirmed": 99428,
+                              "unconfirmed": 26494
+                           }
+                        }
+                     },
+                     "unknown": {
+                        "number": {
+                           "confirmed": 392,
+                           "unconfirmed": 605,
+                           "total": 635
+                        },
+                        "value": {
+                           "confirmed": 5576,
+                           "unconfirmed": 40400,
+                           "total": 1701
+                        }
+                     },
+                     "total": {
+                        "number": {
+                           "confirmed": 669,
+                           "unconfirmed": 223,
+                           "total": 656
+                        },
+                        "value": {
+                           "confirmed": 31800,
+                           "unconfirmed": 68240,
+                           "total": 54505
+                        },
+                        "performance": {
+                           "target": 17363,
+                           "percentage": {
+                              "confirmed": 15188,
+                              "unconfirmed": 12792
+                           }
+                        }
+                     }
+                  }
+               }
+            ]
+         },
+         {
+            "name": "maiores ut explicabo",
+            "regions": [
+               {
+                  "id": "jespqoa-kzqzr-vvn-vmh-ogkoujt-fwan",
+                  "name": "et dolorem dolorem",
+                  "target": {
+                     "new_exporters": 91529,
+                     "sustainable": 98532,
+                     "growth": 21189,
+                     "total": 86107,
+                     "type": "volume"
+                  },
+                  "wins": {
+                     "export": {
+                        "hvc": {
+                           "number": {
+                              "confirmed": 948,
+                              "unconfirmed": 169,
+                              "total": 712
+                           },
+                           "value": {
+                              "confirmed": 55619,
+                              "unconfirmed": 44903,
+                              "total": 53818
+                           }
+                        },
+                        "non_hvc": {
+                           "number": {
+                              "confirmed": 948,
+                              "unconfirmed": 97,
+                              "total": 852
+                           },
+                           "value": {
+                              "confirmed": 28234,
+                              "unconfirmed": 83313,
+                              "total": 68751
+                           },
+                           "performance": {
+                              "target": 31427,
+                              "percentage": {
+                                 "confirmed": 8787,
+                                 "unconfirmed": 92998
+                              }
+                           }
+                        },
+                        "totals": {
+                           "number": {
+                              "confirmed": 62,
+                              "unconfirmed": 554,
+                              "total": 183
+                           },
+                           "value": {
+                              "confirmed": 21836,
+                              "unconfirmed": 31410,
+                              "total": 53250
+                           }
+                        }
+                     },
+                     "non_export": {
+                        "number": {
+                           "confirmed": 103,
+                           "unconfirmed": 989,
+                           "total": 669
+                        },
+                        "value": {
+                           "confirmed": 9965,
+                           "unconfirmed": 40695,
+                           "total": 29451
+                        }
+                     }
+                  },
+                  "export_experience": {
+                     "new_exporters": {
+                        "number": {
+                           "confirmed": 883,
+                           "unconfirmed": 199,
+                           "total": 39
+                        },
+                        "value": {
+                           "confirmed": 73383,
+                           "unconfirmed": 84125,
+                           "total": 10717
+                        },
+                        "performance": {
+                           "target": 24355,
+                           "percentage": {
+                              "confirmed": 38209,
+                              "unconfirmed": 17542
+                           }
+                        }
+                     },
+                     "sustainable": {
+                        "number": {
+                           "confirmed": 262,
+                           "unconfirmed": 320,
+                           "total": 482
+                        },
+                        "value": {
+                           "confirmed": 94303,
+                           "unconfirmed": 43270,
+                           "total": 55566
+                        },
+                        "performance": {
+                           "target": 97995,
+                           "percentage": {
+                              "confirmed": 7589,
+                              "unconfirmed": 7357
+                           }
+                        }
+                     },
+                     "growth": {
+                        "number": {
+                           "confirmed": 207,
+                           "unconfirmed": 27,
+                           "total": 773
+                        },
+                        "value": {
+                           "confirmed": 82793,
+                           "unconfirmed": 60638,
+                           "total": 89456
+                        },
+                        "performance": {
+                           "target": 40502,
+                           "percentage": {
+                              "confirmed": 46773,
+                              "unconfirmed": 40897
+                           }
+                        }
+                     },
+                     "unknown": {
+                        "number": {
+                           "confirmed": 396,
+                           "unconfirmed": 253,
+                           "total": 483
+                        },
+                        "value": {
+                           "confirmed": 34197,
+                           "unconfirmed": 91271,
+                           "total": 5858
+                        }
+                     },
+                     "total": {
+                        "number": {
+                           "confirmed": 458,
+                           "unconfirmed": 514,
+                           "total": 392
+                        },
+                        "value": {
+                           "confirmed": 23021,
+                           "unconfirmed": 87457,
+                           "total": 73905
+                        },
+                        "performance": {
+                           "target": 32654,
+                           "percentage": {
+                              "confirmed": 47951,
+                              "unconfirmed": 6084
+                           }
+                        }
+                     }
+                  }
+               },
+               {
+                  "id": "hcka-divkpwz-tdrbq",
+                  "name": "sit sequi omnis",
+                  "target": {
+                     "new_exporters": 72660,
+                     "sustainable": 29385,
+                     "growth": 1836,
+                     "total": 78556,
+                     "type": "volume"
+                  },
+                  "wins": {
+                     "export": {
+                        "hvc": {
+                           "number": {
+                              "confirmed": 273,
+                              "unconfirmed": 882,
+                              "total": 266
+                           },
+                           "value": {
+                              "confirmed": 37667,
+                              "unconfirmed": 74322,
+                              "total": 94795
+                           }
+                        },
+                        "non_hvc": {
+                           "number": {
+                              "confirmed": 598,
+                              "unconfirmed": 7,
+                              "total": 734
+                           },
+                           "value": {
+                              "confirmed": 11003,
+                              "unconfirmed": 92637,
+                              "total": 94014
+                           },
+                           "performance": {
+                              "target": 91519,
+                              "percentage": {
+                                 "confirmed": 59397,
+                                 "unconfirmed": 75334
+                              }
+                           }
+                        },
+                        "totals": {
+                           "number": {
+                              "confirmed": 19,
+                              "unconfirmed": 917,
+                              "total": 782
+                           },
+                           "value": {
+                              "confirmed": 90649,
+                              "unconfirmed": 40101,
+                              "total": 47926
+                           }
+                        }
+                     },
+                     "non_export": {
+                        "number": {
+                           "confirmed": 133,
+                           "unconfirmed": 96,
+                           "total": 73
+                        },
+                        "value": {
+                           "confirmed": 87105,
+                           "unconfirmed": 65185,
+                           "total": 20352
+                        }
+                     }
+                  },
+                  "export_experience": {
+                     "new_exporters": {
+                        "number": {
+                           "confirmed": 325,
+                           "unconfirmed": 171,
+                           "total": 567
+                        },
+                        "value": {
+                           "confirmed": 28265,
+                           "unconfirmed": 70224,
+                           "total": 32437
+                        },
+                        "performance": {
+                           "target": 50549,
+                           "percentage": {
+                              "confirmed": 33913,
+                              "unconfirmed": 52975
+                           }
+                        }
+                     },
+                     "sustainable": {
+                        "number": {
+                           "confirmed": 406,
+                           "unconfirmed": 862,
+                           "total": 269
+                        },
+                        "value": {
+                           "confirmed": 87756,
+                           "unconfirmed": 90992,
+                           "total": 80359
+                        },
+                        "performance": {
+                           "target": 57926,
+                           "percentage": {
+                              "confirmed": 37921,
+                              "unconfirmed": 67648
+                           }
+                        }
+                     },
+                     "growth": {
+                        "number": {
+                           "confirmed": 45,
+                           "unconfirmed": 918,
+                           "total": 399
+                        },
+                        "value": {
+                           "confirmed": 24455,
+                           "unconfirmed": 47753,
+                           "total": 34484
+                        },
+                        "performance": {
+                           "target": 41906,
+                           "percentage": {
+                              "confirmed": 50153,
+                              "unconfirmed": 58550
+                           }
+                        }
+                     },
+                     "unknown": {
+                        "number": {
+                           "confirmed": 430,
+                           "unconfirmed": 459,
+                           "total": 622
+                        },
+                        "value": {
+                           "confirmed": 62594,
+                           "unconfirmed": 88370,
+                           "total": 10520
+                        }
+                     },
+                     "total": {
+                        "number": {
+                           "confirmed": 735,
+                           "unconfirmed": 885,
+                           "total": 610
+                        },
+                        "value": {
+                           "confirmed": 26175,
+                           "unconfirmed": 30952,
+                           "total": 10585
+                        },
+                        "performance": {
+                           "target": 3887,
+                           "percentage": {
+                              "confirmed": 73131,
+                              "unconfirmed": 20340
+                           }
+                        }
+                     }
+                  }
+               },
+               {
+                  "id": "pcpze-ynvj-gwxdwy-xwfn",
+                  "name": "voluptatem adipisci est",
+                  "target": {
+                     "new_exporters": 23653,
+                     "sustainable": 52662,
+                     "growth": 51326,
+                     "total": 19701,
+                     "type": "volume"
+                  },
+                  "wins": {
+                     "export": {
+                        "hvc": {
+                           "number": {
+                              "confirmed": 834,
+                              "unconfirmed": 381,
+                              "total": 113
+                           },
+                           "value": {
+                              "confirmed": 70657,
+                              "unconfirmed": 1224,
+                              "total": 78222
+                           }
+                        },
+                        "non_hvc": {
+                           "number": {
+                              "confirmed": 154,
+                              "unconfirmed": 74,
+                              "total": 322
+                           },
+                           "value": {
+                              "confirmed": 36556,
+                              "unconfirmed": 21025,
+                              "total": 54720
+                           },
+                           "performance": {
+                              "target": 40635,
+                              "percentage": {
+                                 "confirmed": 32383,
+                                 "unconfirmed": 893
+                              }
+                           }
+                        },
+                        "totals": {
+                           "number": {
+                              "confirmed": 856,
+                              "unconfirmed": 937,
+                              "total": 472
+                           },
+                           "value": {
+                              "confirmed": 72097,
+                              "unconfirmed": 48011,
+                              "total": 58072
+                           }
+                        }
+                     },
+                     "non_export": {
+                        "number": {
+                           "confirmed": 890,
+                           "unconfirmed": 988,
+                           "total": 902
+                        },
+                        "value": {
+                           "confirmed": 12913,
+                           "unconfirmed": 53425,
+                           "total": 33510
+                        }
+                     }
+                  },
+                  "export_experience": {
+                     "new_exporters": {
+                        "number": {
+                           "confirmed": 721,
+                           "unconfirmed": 815,
+                           "total": 165
+                        },
+                        "value": {
+                           "confirmed": 77553,
+                           "unconfirmed": 87345,
+                           "total": 99420
+                        },
+                        "performance": {
+                           "target": 53089,
+                           "percentage": {
+                              "confirmed": 65377,
+                              "unconfirmed": 37851
+                           }
+                        }
+                     },
+                     "sustainable": {
+                        "number": {
+                           "confirmed": 304,
+                           "unconfirmed": 232,
+                           "total": 195
+                        },
+                        "value": {
+                           "confirmed": 71991,
+                           "unconfirmed": 15914,
+                           "total": 98847
+                        },
+                        "performance": {
+                           "target": 3495,
+                           "percentage": {
+                              "confirmed": 59826,
+                              "unconfirmed": 34446
+                           }
+                        }
+                     },
+                     "growth": {
+                        "number": {
+                           "confirmed": 824,
+                           "unconfirmed": 361,
+                           "total": 152
+                        },
+                        "value": {
+                           "confirmed": 2640,
+                           "unconfirmed": 22917,
+                           "total": 8385
+                        },
+                        "performance": {
+                           "target": 21050,
+                           "percentage": {
+                              "confirmed": 20057,
+                              "unconfirmed": 33013
+                           }
+                        }
+                     },
+                     "unknown": {
+                        "number": {
+                           "confirmed": 918,
+                           "unconfirmed": 318,
+                           "total": 560
+                        },
+                        "value": {
+                           "confirmed": 61227,
+                           "unconfirmed": 71400,
+                           "total": 45189
+                        }
+                     },
+                     "total": {
+                        "number": {
+                           "confirmed": 934,
+                           "unconfirmed": 329,
+                           "total": 446
+                        },
+                        "value": {
+                           "confirmed": 7230,
+                           "unconfirmed": 85742,
+                           "total": 53794
+                        },
+                        "performance": {
+                           "target": 12883,
+                           "percentage": {
+                              "confirmed": 7856,
+                              "unconfirmed": 15810
+                           }
+                        }
+                     }
+                  }
+               },
+               {
+                  "id": "lrmt-sbmumlw-srmusz-zlozca-qwjziyb",
+                  "name": "nostrum quidem aliquid",
+                  "target": {
+                     "new_exporters": 79869,
+                     "sustainable": 6330,
+                     "growth": 26284,
+                     "total": 70711,
+                     "type": "volume"
+                  },
+                  "wins": {
+                     "export": {
+                        "hvc": {
+                           "number": {
+                              "confirmed": 285,
+                              "unconfirmed": 941,
+                              "total": 237
+                           },
+                           "value": {
+                              "confirmed": 24331,
+                              "unconfirmed": 48959,
+                              "total": 65635
+                           }
+                        },
+                        "non_hvc": {
+                           "number": {
+                              "confirmed": 553,
+                              "unconfirmed": 422,
+                              "total": 298
+                           },
+                           "value": {
+                              "confirmed": 60394,
+                              "unconfirmed": 94022,
+                              "total": 91418
+                           },
+                           "performance": {
+                              "target": 2713,
+                              "percentage": {
+                                 "confirmed": 14327,
+                                 "unconfirmed": 83056
+                              }
+                           }
+                        },
+                        "totals": {
+                           "number": {
+                              "confirmed": 964,
+                              "unconfirmed": 28,
+                              "total": 495
+                           },
+                           "value": {
+                              "confirmed": 32493,
+                              "unconfirmed": 21188,
+                              "total": 13845
+                           }
+                        }
+                     },
+                     "non_export": {
+                        "number": {
+                           "confirmed": 752,
+                           "unconfirmed": 718,
+                           "total": 502
+                        },
+                        "value": {
+                           "confirmed": 97174,
+                           "unconfirmed": 31184,
+                           "total": 48273
+                        }
+                     }
+                  },
+                  "export_experience": {
+                     "new_exporters": {
+                        "number": {
+                           "confirmed": 808,
+                           "unconfirmed": 56,
+                           "total": 199
+                        },
+                        "value": {
+                           "confirmed": 51967,
+                           "unconfirmed": 79923,
+                           "total": 44799
+                        },
+                        "performance": {
+                           "target": 61402,
+                           "percentage": {
+                              "confirmed": 31850,
+                              "unconfirmed": 98533
+                           }
+                        }
+                     },
+                     "sustainable": {
+                        "number": {
+                           "confirmed": 147,
+                           "unconfirmed": 362,
+                           "total": 494
+                        },
+                        "value": {
+                           "confirmed": 28315,
+                           "unconfirmed": 26341,
+                           "total": 17727
+                        },
+                        "performance": {
+                           "target": 95655,
+                           "percentage": {
+                              "confirmed": 1594,
+                              "unconfirmed": 77290
+                           }
+                        }
+                     },
+                     "growth": {
+                        "number": {
+                           "confirmed": 558,
+                           "unconfirmed": 375,
+                           "total": 148
+                        },
+                        "value": {
+                           "confirmed": 73480,
+                           "unconfirmed": 72307,
+                           "total": 39328
+                        },
+                        "performance": {
+                           "target": 66465,
+                           "percentage": {
+                              "confirmed": 55412,
+                              "unconfirmed": 62304
+                           }
+                        }
+                     },
+                     "unknown": {
+                        "number": {
+                           "confirmed": 683,
+                           "unconfirmed": 674,
+                           "total": 680
+                        },
+                        "value": {
+                           "confirmed": 22086,
+                           "unconfirmed": 5167,
+                           "total": 48237
+                        }
+                     },
+                     "total": {
+                        "number": {
+                           "confirmed": 686,
+                           "unconfirmed": 608,
+                           "total": 629
+                        },
+                        "value": {
+                           "confirmed": 48855,
+                           "unconfirmed": 19834,
+                           "total": 44627
+                        },
+                        "performance": {
+                           "target": 50437,
+                           "percentage": {
+                              "confirmed": 80748,
+                              "unconfirmed": 44063
+                           }
+                        }
+                     }
+                  }
+               },
+               {
+                  "id": "kmz-sgrz-ujpsbv-sqgo-vphx-tucubxgd",
+                  "name": "laborum qui ipsum",
+                  "target": {
+                     "new_exporters": 9616,
+                     "sustainable": 16534,
+                     "growth": 34529,
+                     "total": 33358,
+                     "type": "volume"
+                  },
+                  "wins": {
+                     "export": {
+                        "hvc": {
+                           "number": {
+                              "confirmed": 381,
+                              "unconfirmed": 126,
+                              "total": 232
+                           },
+                           "value": {
+                              "confirmed": 78508,
+                              "unconfirmed": 91288,
+                              "total": 2439
+                           }
+                        },
+                        "non_hvc": {
+                           "number": {
+                              "confirmed": 631,
+                              "unconfirmed": 609,
+                              "total": 591
+                           },
+                           "value": {
+                              "confirmed": 89081,
+                              "unconfirmed": 86888,
+                              "total": 17804
+                           },
+                           "performance": {
+                              "target": 41727,
+                              "percentage": {
+                                 "confirmed": 40085,
+                                 "unconfirmed": 32707
+                              }
+                           }
+                        },
+                        "totals": {
+                           "number": {
+                              "confirmed": 386,
+                              "unconfirmed": 765,
+                              "total": 629
+                           },
+                           "value": {
+                              "confirmed": 25856,
+                              "unconfirmed": 19896,
+                              "total": 4046
+                           }
+                        }
+                     },
+                     "non_export": {
+                        "number": {
+                           "confirmed": 888,
+                           "unconfirmed": 938,
+                           "total": 425
+                        },
+                        "value": {
+                           "confirmed": 34891,
+                           "unconfirmed": 85472,
+                           "total": 97314
+                        }
+                     }
+                  },
+                  "export_experience": {
+                     "new_exporters": {
+                        "number": {
+                           "confirmed": 130,
+                           "unconfirmed": 66,
+                           "total": 542
+                        },
+                        "value": {
+                           "confirmed": 31296,
+                           "unconfirmed": 60286,
+                           "total": 4106
+                        },
+                        "performance": {
+                           "target": 59739,
+                           "percentage": {
+                              "confirmed": 99727,
+                              "unconfirmed": 24413
+                           }
+                        }
+                     },
+                     "sustainable": {
+                        "number": {
+                           "confirmed": 882,
+                           "unconfirmed": 179,
+                           "total": 743
+                        },
+                        "value": {
+                           "confirmed": 53384,
+                           "unconfirmed": 19632,
+                           "total": 19056
+                        },
+                        "performance": {
+                           "target": 45720,
+                           "percentage": {
+                              "confirmed": 67876,
+                              "unconfirmed": 23186
+                           }
+                        }
+                     },
+                     "growth": {
+                        "number": {
+                           "confirmed": 833,
+                           "unconfirmed": 679,
+                           "total": 382
+                        },
+                        "value": {
+                           "confirmed": 38228,
+                           "unconfirmed": 65827,
+                           "total": 57171
+                        },
+                        "performance": {
+                           "target": 918,
+                           "percentage": {
+                              "confirmed": 51905,
+                              "unconfirmed": 21313
+                           }
+                        }
+                     },
+                     "unknown": {
+                        "number": {
+                           "confirmed": 639,
+                           "unconfirmed": 863,
+                           "total": 429
+                        },
+                        "value": {
+                           "confirmed": 67077,
+                           "unconfirmed": 13648,
+                           "total": 64023
+                        }
+                     },
+                     "total": {
+                        "number": {
+                           "confirmed": 362,
+                           "unconfirmed": 800,
+                           "total": 326
+                        },
+                        "value": {
+                           "confirmed": 32470,
+                           "unconfirmed": 17603,
+                           "total": 85741
+                        },
+                        "performance": {
+                           "target": 60919,
+                           "percentage": {
+                              "confirmed": 6690,
+                              "unconfirmed": 15772
+                           }
+                        }
+                     }
+                  }
+               },
+               {
+                  "id": "fucyxs-xkymi-hmjhhk-mvip-tjjuuwwp-tjt",
+                  "name": "quia unde quae",
+                  "target": {
+                     "new_exporters": 9104,
+                     "sustainable": 70317,
+                     "growth": 46745,
+                     "total": 71085,
+                     "type": "volume"
+                  },
+                  "wins": {
+                     "export": {
+                        "hvc": {
+                           "number": {
+                              "confirmed": 2,
+                              "unconfirmed": 6,
+                              "total": 94
+                           },
+                           "value": {
+                              "confirmed": 89057,
+                              "unconfirmed": 9106,
+                              "total": 51836
+                           }
+                        },
+                        "non_hvc": {
+                           "number": {
+                              "confirmed": 77,
+                              "unconfirmed": 660,
+                              "total": 109
+                           },
+                           "value": {
+                              "confirmed": 87917,
+                              "unconfirmed": 24319,
+                              "total": 40040
+                           },
+                           "performance": {
+                              "target": 74139,
+                              "percentage": {
+                                 "confirmed": 61310,
+                                 "unconfirmed": 78321
+                              }
+                           }
+                        },
+                        "totals": {
+                           "number": {
+                              "confirmed": 763,
+                              "unconfirmed": 656,
+                              "total": 641
+                           },
+                           "value": {
+                              "confirmed": 45154,
+                              "unconfirmed": 9887,
+                              "total": 54317
+                           }
+                        }
+                     },
+                     "non_export": {
+                        "number": {
+                           "confirmed": 351,
+                           "unconfirmed": 707,
+                           "total": 812
+                        },
+                        "value": {
+                           "confirmed": 11224,
+                           "unconfirmed": 51871,
+                           "total": 2631
+                        }
+                     }
+                  },
+                  "export_experience": {
+                     "new_exporters": {
+                        "number": {
+                           "confirmed": 853,
+                           "unconfirmed": 973,
+                           "total": 854
+                        },
+                        "value": {
+                           "confirmed": 84671,
+                           "unconfirmed": 64447,
+                           "total": 98400
+                        },
+                        "performance": {
+                           "target": 44735,
+                           "percentage": {
+                              "confirmed": 96758,
+                              "unconfirmed": 87308
+                           }
+                        }
+                     },
+                     "sustainable": {
+                        "number": {
+                           "confirmed": 587,
+                           "unconfirmed": 128,
+                           "total": 682
+                        },
+                        "value": {
+                           "confirmed": 59069,
+                           "unconfirmed": 7662,
+                           "total": 97928
+                        },
+                        "performance": {
+                           "target": 24172,
+                           "percentage": {
+                              "confirmed": 88531,
+                              "unconfirmed": 83643
+                           }
+                        }
+                     },
+                     "growth": {
+                        "number": {
+                           "confirmed": 159,
+                           "unconfirmed": 930,
+                           "total": 943
+                        },
+                        "value": {
+                           "confirmed": 18883,
+                           "unconfirmed": 79977,
+                           "total": 73702
+                        },
+                        "performance": {
+                           "target": 29303,
+                           "percentage": {
+                              "confirmed": 95698,
+                              "unconfirmed": 48527
+                           }
+                        }
+                     },
+                     "unknown": {
+                        "number": {
+                           "confirmed": 928,
+                           "unconfirmed": 837,
+                           "total": 298
+                        },
+                        "value": {
+                           "confirmed": 67915,
+                           "unconfirmed": 77216,
+                           "total": 80890
+                        }
+                     },
+                     "total": {
+                        "number": {
+                           "confirmed": 467,
+                           "unconfirmed": 222,
+                           "total": 466
+                        },
+                        "value": {
+                           "confirmed": 17998,
+                           "unconfirmed": 79072,
+                           "total": 48798
+                        },
+                        "performance": {
+                           "target": 1833,
+                           "percentage": {
+                              "confirmed": 49897,
+                              "unconfirmed": 7051
+                           }
+                        }
+                     }
+                  }
+               },
+               {
+                  "id": "bqrlsd-askcgad-wzvx-lxexdtof",
+                  "name": "et velit alias",
+                  "target": {
+                     "new_exporters": 65692,
+                     "sustainable": 65109,
+                     "growth": 53967,
+                     "total": 87802,
+                     "type": "volume"
+                  },
+                  "wins": {
+                     "export": {
+                        "hvc": {
+                           "number": {
+                              "confirmed": 694,
+                              "unconfirmed": 31,
+                              "total": 448
+                           },
+                           "value": {
+                              "confirmed": 70133,
+                              "unconfirmed": 69740,
+                              "total": 40116
+                           }
+                        },
+                        "non_hvc": {
+                           "number": {
+                              "confirmed": 675,
+                              "unconfirmed": 610,
+                              "total": 328
+                           },
+                           "value": {
+                              "confirmed": 52382,
+                              "unconfirmed": 90203,
+                              "total": 85937
+                           },
+                           "performance": {
+                              "target": 14224,
+                              "percentage": {
+                                 "confirmed": 6412,
+                                 "unconfirmed": 27580
+                              }
+                           }
+                        },
+                        "totals": {
+                           "number": {
+                              "confirmed": 737,
+                              "unconfirmed": 427,
+                              "total": 402
+                           },
+                           "value": {
+                              "confirmed": 73696,
+                              "unconfirmed": 94967,
+                              "total": 63630
+                           }
+                        }
+                     },
+                     "non_export": {
+                        "number": {
+                           "confirmed": 415,
+                           "unconfirmed": 860,
+                           "total": 692
+                        },
+                        "value": {
+                           "confirmed": 87223,
+                           "unconfirmed": 62880,
+                           "total": 8180
+                        }
+                     }
+                  },
+                  "export_experience": {
+                     "new_exporters": {
+                        "number": {
+                           "confirmed": 107,
+                           "unconfirmed": 784,
+                           "total": 530
+                        },
+                        "value": {
+                           "confirmed": 59211,
+                           "unconfirmed": 46397,
+                           "total": 19231
+                        },
+                        "performance": {
+                           "target": 85995,
+                           "percentage": {
+                              "confirmed": 5626,
+                              "unconfirmed": 22929
+                           }
+                        }
+                     },
+                     "sustainable": {
+                        "number": {
+                           "confirmed": 416,
+                           "unconfirmed": 193,
+                           "total": 728
+                        },
+                        "value": {
+                           "confirmed": 78571,
+                           "unconfirmed": 64032,
+                           "total": 74905
+                        },
+                        "performance": {
+                           "target": 52378,
+                           "percentage": {
+                              "confirmed": 9816,
+                              "unconfirmed": 63748
+                           }
+                        }
+                     },
+                     "growth": {
+                        "number": {
+                           "confirmed": 105,
+                           "unconfirmed": 503,
+                           "total": 787
+                        },
+                        "value": {
+                           "confirmed": 28145,
+                           "unconfirmed": 83394,
+                           "total": 96923
+                        },
+                        "performance": {
+                           "target": 12649,
+                           "percentage": {
+                              "confirmed": 11110,
+                              "unconfirmed": 41947
+                           }
+                        }
+                     },
+                     "unknown": {
+                        "number": {
+                           "confirmed": 991,
+                           "unconfirmed": 498,
+                           "total": 547
+                        },
+                        "value": {
+                           "confirmed": 80605,
+                           "unconfirmed": 53731,
+                           "total": 48758
+                        }
+                     },
+                     "total": {
+                        "number": {
+                           "confirmed": 939,
+                           "unconfirmed": 435,
+                           "total": 643
+                        },
+                        "value": {
+                           "confirmed": 70023,
+                           "unconfirmed": 12400,
+                           "total": 63104
+                        },
+                        "performance": {
+                           "target": 97625,
+                           "percentage": {
+                              "confirmed": 42961,
+                              "unconfirmed": 9800
+                           }
+                        }
+                     }
+                  }
+               },
+               {
+                  "id": "abjrp-wtyrrbtd-xjpwuui",
+                  "name": "saepe quas aliquam",
+                  "target": {
+                     "new_exporters": 9632,
+                     "sustainable": 7221,
+                     "growth": 51772,
+                     "total": 37697,
+                     "type": "volume"
+                  },
+                  "wins": {
+                     "export": {
+                        "hvc": {
+                           "number": {
+                              "confirmed": 807,
+                              "unconfirmed": 682,
+                              "total": 800
+                           },
+                           "value": {
+                              "confirmed": 83038,
+                              "unconfirmed": 16706,
+                              "total": 4298
+                           }
+                        },
+                        "non_hvc": {
+                           "number": {
+                              "confirmed": 28,
+                              "unconfirmed": 571,
+                              "total": 635
+                           },
+                           "value": {
+                              "confirmed": 18021,
+                              "unconfirmed": 95173,
+                              "total": 21754
+                           },
+                           "performance": {
+                              "target": 92431,
+                              "percentage": {
+                                 "confirmed": 68542,
+                                 "unconfirmed": 42173
+                              }
+                           }
+                        },
+                        "totals": {
+                           "number": {
+                              "confirmed": 950,
+                              "unconfirmed": 215,
+                              "total": 182
+                           },
+                           "value": {
+                              "confirmed": 48411,
+                              "unconfirmed": 31739,
+                              "total": 7510
+                           }
+                        }
+                     },
+                     "non_export": {
+                        "number": {
+                           "confirmed": 771,
+                           "unconfirmed": 581,
+                           "total": 742
+                        },
+                        "value": {
+                           "confirmed": 52935,
+                           "unconfirmed": 62038,
+                           "total": 86790
+                        }
+                     }
+                  },
+                  "export_experience": {
+                     "new_exporters": {
+                        "number": {
+                           "confirmed": 848,
+                           "unconfirmed": 881,
+                           "total": 455
+                        },
+                        "value": {
+                           "confirmed": 46928,
+                           "unconfirmed": 78395,
+                           "total": 18468
+                        },
+                        "performance": {
+                           "target": 80566,
+                           "percentage": {
+                              "confirmed": 20950,
+                              "unconfirmed": 13668
+                           }
+                        }
+                     },
+                     "sustainable": {
+                        "number": {
+                           "confirmed": 543,
+                           "unconfirmed": 91,
+                           "total": 744
+                        },
+                        "value": {
+                           "confirmed": 57845,
+                           "unconfirmed": 10916,
+                           "total": 55239
+                        },
+                        "performance": {
+                           "target": 11186,
+                           "percentage": {
+                              "confirmed": 11993,
+                              "unconfirmed": 37132
+                           }
+                        }
+                     },
+                     "growth": {
+                        "number": {
+                           "confirmed": 774,
+                           "unconfirmed": 720,
+                           "total": 899
+                        },
+                        "value": {
+                           "confirmed": 40300,
+                           "unconfirmed": 67541,
+                           "total": 48374
+                        },
+                        "performance": {
+                           "target": 296,
+                           "percentage": {
+                              "confirmed": 14044,
+                              "unconfirmed": 36274
+                           }
+                        }
+                     },
+                     "unknown": {
+                        "number": {
+                           "confirmed": 392,
+                           "unconfirmed": 540,
+                           "total": 961
+                        },
+                        "value": {
+                           "confirmed": 52757,
+                           "unconfirmed": 43380,
+                           "total": 37943
+                        }
+                     },
+                     "total": {
+                        "number": {
+                           "confirmed": 97,
+                           "unconfirmed": 473,
+                           "total": 366
+                        },
+                        "value": {
+                           "confirmed": 93687,
+                           "unconfirmed": 51702,
+                           "total": 23260
+                        },
+                        "performance": {
+                           "target": 88164,
+                           "percentage": {
+                              "confirmed": 71969,
+                              "unconfirmed": 54526
+                           }
+                        }
+                     }
+                  }
+               }
+            ]
+         }
+      ]
+   },
+   "date_range": {
+      "start": "Fri, 01 Apr 2016 00:00:00 GMT",
+      "end": "Fri, 31 Mar 2017 00:00:00 GMT"
+   }
+}

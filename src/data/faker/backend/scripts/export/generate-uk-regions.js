@@ -9,7 +9,8 @@ let jsonFiles = {
 	list: ukRegionsJson.createList(),
 	region: ukRegionsJson.createRegion(),
 	win_table: ukRegionsJson.createWinTable(),
-	months: ukRegionsJson.createMonths()
+	months: ukRegionsJson.createMonths(),
+	overview: ukRegionsJson.createOverview()
 };
 
 writeJsonFiles( outputPath, jsonFiles );

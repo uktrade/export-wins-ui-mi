@@ -147,15 +147,19 @@
 
 		<div class="column-one-third">
 
-			{% if ukRegions.length %}
+			{% if ukRegions.region_groups.length %}
 
-			<h2 class="sector-list-heading">UK Nations &amp; Regions</h2>
+			<h2 class="sector-list-heading"><a href="{{ urls.ukRegions() }}">UK Nations &amp; Regions</a></h2>
 
-			<ul class="sector-list" id="uk-regions-list">
-			{% for region in ukRegions %}
-					<li class="sector-list_item">
-						<a href="{{ urls.ukRegion( region.id ) }}">{{ region.name }}</a>
-					</li>
+			<ul class="sector-group-list" id="uk-regions-list">
+			{% for group in ukRegions.region_groups %}
+				<li class="sector-group-list_item">
+					{{ group.name }}
+					<ul class="sector-list_sub-list">
+						{% for region in group.regions %}
+							<li><a href="{{ urls.ukRegion( region.id ) }}">{{ region.name }}</a></li>
+						{% endfor %}
+					</ul>
 			{% endfor %}
 			</ul>
 
