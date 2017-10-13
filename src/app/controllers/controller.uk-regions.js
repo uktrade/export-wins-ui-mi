@@ -4,6 +4,8 @@ const sortWins = require( '../lib/sort-wins' );
 
 const regionSummary = require( '../lib/view-models/uk-region-summary' );
 const regionPerformance = require( '../lib/view-models/uk-region-performance' );
+const overviewSummary = require( '../lib/view-models/uk-regions-overview-summary' );
+const overviewRegions = require( '../lib/view-models/uk-regions-overview-regions' );
 const topMarkets = require( '../lib/view-models/top-markets' );
 const monthlyPerformance = require( '../lib/view-models/monthly-performance' );
 
@@ -27,11 +29,14 @@ function getWins( view, type ){
 
 module.exports = {
 
-	list: function( req, res ){
+	overview: function( req, res ){
 
-		exportBackendService.getUkRegions( req ).then( ( regions ) => {
+		exportBackendService.getUkRegionsOverview( req ).then( ( overview ) => {
 
-			res.render( 'uk-regions/list.html', { regions: regions.results } );
+			res.render( 'uk-regions/overview.html', {
+				summary: overviewSummary.create( overview.date_range, overview.results.summary ),
+				regionGroups: overviewRegions.create( overview.date_range, overview.results.region_groups )
+			} );
 
 		} ).catch( errorHandler.createHandler( res ) );
 	},

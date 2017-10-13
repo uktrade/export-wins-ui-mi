@@ -395,6 +395,14 @@ describe( 'Backend stub', function(){
 			} );
 		} );
 
+		describe( 'Getting the overview', function(){
+
+			it( 'Should return the overview', function( done ){
+
+				checkMultipleYears( '/mi/uk_regions/overview/', '/uk_regions/overview', done );
+			} );
+		} );
+
 		describe( 'Getting a UK region', function(){
 
 			it( 'Should return the UK region', function( done ){

@@ -1,0 +1,80 @@
+{% extends 'layout.html' %}
+
+{% set pageName='UK Regions' %}
+
+{% from 'macros/dates.html' import financialYear %}
+{% from 'macros/region-performance-table.html' import regionPerformanceTable %}
+{% from 'macros/target-progress-bar.html' import targetProgress %}
+
+{% block page_content %}
+
+	<h1 class="page-heading">
+		UK Nations and Regions review
+	</h1>
+
+	{% include 'partials/year-selector.html' %}
+	<h2 class="page-date page-date--uk-regions-overview">{{ financialYear( summary.dateRange ) }}</h2>
+
+	<h3 class="uk-regions-overview-progress-heading">Performance</h3>
+	<section class="grid-row">
+		<div class="column-one-fifth uk-regions-overview-progress-bar">
+
+			{{ targetProgress( summary.progress ) }}
+
+		</div>
+		<div class="column-four-fifths">
+
+			<ul class="uk-regions-overview_target_list">
+				<li class="uk-regions-overview_target_list_item">
+					<h4 class="uk-regions-overview_target_list_heading">Target</h4>
+					<p class="uk-regions-overview_target_list_text">{{ summary.target }}</p>
+				</li>
+				<li class="uk-regions-overview_target_list_item">
+					<h4 class="uk-regions-overview_target_list_heading">Total<br>confirmed</h4>
+					<p class="uk-regions-overview_target_list_text">{{ summary.number.confirmed }}</p>
+				</li>
+				<li class="uk-regions-overview_target_list_item">
+					<h4 class="uk-regions-overview_target_list_heading">Total<br>unconfirmed</h4>
+					<p class="uk-regions-overview_target_list_text uk-regions-overview_target_list_text--unconfirmed">{{ summary.number.unconfirmed }} </p>
+				</li>
+				<li class="uk-regions-overview_target_list_item">
+					<h4 class="uk-regions-overview_target_list_heading">Total<br>value of wins</h4>
+					<p class="uk-regions-overview_target_list_text">
+						<span class="sector-export-value-currency">&pound;</span>{{ summary.value.confirmed | largeNumber( true ) | safe }}
+					</p>
+				</li>
+			</ul>
+
+		</div>
+	</section>
+
+	<div class="grid-row">
+		<div class="column-single">
+			<ul class="uk-regions-overview_region-group-list">
+
+				{% for group in regionGroups %}
+					<li class="uk-regions-overview_region-group-list_item">
+
+						<h4 class="uk-regions-overview_region-group-list_heading">
+							{{ group.name }} <span class="uk-regions-overview_region-group-list_heading_sub-text">UK Region</span>
+						</h4>
+						<ul class="uk-regions-overview_region-list">
+
+						{% for region in group.regions %}
+							<li class="uk-regions-overview_region-list_item">
+								<h5 class="uk-regions-overview_region-list_heading">
+									<a href="{{ urls.ukRegion( region.id ) }}">{{ region.name }}</a>
+								</h5>
+								{{ regionPerformanceTable( region.exports.items ) }}
+							</li>
+						{% endfor %}
+
+						</ul>
+					</li>
+				{% endfor %}
+
+			</ul>
+		</div>
+	</div>
+
+{% endblock %}

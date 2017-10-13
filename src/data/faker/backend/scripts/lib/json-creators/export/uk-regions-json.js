@@ -74,5 +74,10 @@ module.exports = {
 
 			return months;
 		} );
+	},
+
+	createOverview: function( year ){
+
+		return generateSchema( '/uk_regions/overview.schema', year );
 	}
 };

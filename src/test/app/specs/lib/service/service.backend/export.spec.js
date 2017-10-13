@@ -374,6 +374,19 @@ describe( 'Export backend service', function(){
 			} );
 		} );
 
+		describe( 'Getting the UK Regions overview', function(){
+
+			it( 'Should call the correct API', function( done ){
+
+				exportService.getUkRegionsOverview( req ).then( () => {
+
+					checkBackendArgs( `/mi/uk_regions/overview/`, req );
+					done();
+
+				} ).catch( done.fail );
+			} );
+		} );
+
 		describe( 'Getting the details of a UK Region', function(){
 
 			it( 'Should call the correct API', function( done ){

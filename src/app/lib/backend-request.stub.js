@@ -66,6 +66,7 @@ const filteredStubs = [
 	[ '/mi/posts/[A-Za-z-]+/win_table/', 'posts/win_table'  ],
 
 	[ '/mi/uk_regions/', 'uk_regions/index'  ],
+	[ '/mi/uk_regions/overview/', 'uk_regions/overview'  ],
 	[ '/mi/uk_regions/[A-Za-z-]+/', 'uk_regions/region'  ],
 	[ '/mi/uk_regions/[A-Za-z-]+/months/', 'uk_regions/months'  ],
 	[ '/mi/uk_regions/[A-Za-z-]+/top_non_hvcs/', 'uk_regions/top_non_hvcs'  ],

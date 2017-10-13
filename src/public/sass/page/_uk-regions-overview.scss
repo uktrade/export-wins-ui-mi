@@ -1,0 +1,74 @@
+@import '../mi-colours';
+
+.uk-regions-overview-progress-heading {
+	@include bold-19;
+	margin-bottom: pem( 15, 19 );
+}
+
+.uk-regions-overview-progress-bar {
+	padding-top: pem( 24 );
+}
+
+.uk-regions-overview_target_list {
+	padding: 0;
+}
+
+.uk-regions-overview_target_list_item {
+	display: inline-block;
+	text-align: center;
+	margin-right: pem( 30 );
+}
+
+.uk-regions-overview_target_list_heading {
+	@include bold-16;
+	margin-bottom: pem( 10, 16 );
+}
+
+.uk-regions-overview_target_list_text {
+	@include bold-24;
+	margin: 0;
+}
+
+.uk-regions-overview_target_list_text--unconfirmed {
+	color: $unconfirmed;
+}
+
+.uk-regions-overview_region-group-list {
+	padding: pem( 40 ) 0 0 0;
+}
+
+.uk-regions-overview_region-group-list_item {
+
+}
+
+.uk-regions-overview_region-group-list_heading {
+	@include bold-19;
+	border-bottom: 2px solid #000;
+	margin-bottom: pem( 10, 19 );
+}
+
+.uk-regions-overview_region-group-list_heading_sub-text {
+	@include bold-14;
+	color: $grey-1;
+}
+
+.uk-regions-overview_region-list {
+	padding: 0;
+}
+
+.uk-regions-overview_region-list_item {
+
+	padding-bottom: pem( 30 );
+	margin-bottom: pem( 5 );
+	border-bottom: 1px solid $grey-2;
+
+	&:last-of-type {
+		border-bottom: 0;
+	}
+}
+
+.uk-regions-overview_region-list_heading {
+	@include core-19;
+	padding-bottom: pem( 15, 19 );
+}
+

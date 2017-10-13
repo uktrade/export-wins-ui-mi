@@ -17,6 +17,8 @@ let regionSummary;
 let regionPerformance;
 let topMarkets;
 let monthlyPerformance;
+let overviewSummary;
+let overviewRegions;
 
 describe( 'UK Regions controller', function(){
 
@@ -32,6 +34,8 @@ describe( 'UK Regions controller', function(){
 		regionPerformance = {};
 		topMarkets = {};
 		monthlyPerformance = {};
+		overviewSummary = {};
+		overviewRegions = {};
 
 		res = {
 			render: spy( 'res.render' )
@@ -43,34 +47,61 @@ describe( 'UK Regions controller', function(){
 			'../lib/sort-wins': sortWins,
 			'../lib/view-models/uk-region-summary': regionSummary,
 			'../lib/view-models/uk-region-performance': regionPerformance,
+			'../lib/view-models/uk-regions-overview-summary': overviewSummary,
+			'../lib/view-models/uk-regions-overview-regions': overviewRegions,
 			'../lib/view-models/top-markets': topMarkets,
 			'../lib/view-models/monthly-performance': monthlyPerformance
 		} );
 	} );
 
-	describe( 'List', function(){
+	describe( 'Overview', function(){
 
-		it( 'Should get the list data and render the correct view', function( done ){
+		it( 'Should get the overview data and render the correct view', function( done ){
 
 			const req = {
 				cookies: { sessionid: '456' },
 				year
 			};
 
-			const ukRegions = { results: { 'ukRegions': true } };
+			const ukRegions = {
+				date_range: 'a date range',
+				results: {
+					summary: {
+						non_hvc: 'the summary'
+					},
+					region_groups: [ {
+						name: 'test',
+						regions: [ 'a region' ]
+					} ]
+				}
+			};
+
+			const overviewSummaryResponse = { overviewSummaryResponse: true };
+			const overviewRegionsResponse = { overviewRegionsResponse: true };
 
 			const promise = new Promise( ( resolve ) => { resolve( ukRegions ); } );
 
-			exportBackendService.getUkRegions = spy( 'getUkRegions', promise );
+			exportBackendService.getUkRegionsOverview = spy( 'getUkRegionsOverview', promise );
 			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
 
-			controller.list( req, res );
+			overviewSummary.create = spy( 'overviewSummary.create', overviewSummaryResponse );
+			overviewRegions.create = spy( 'overviewRegions.create', overviewRegionsResponse );
+
+			controller.overview( req, res );
 
 			promise.then( () => {
 
-				expect( exportBackendService.getUkRegions ).toHaveBeenCalledWith( req );
+				expect( exportBackendService.getUkRegionsOverview ).toHaveBeenCalledWith( req );
 				expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
-				expect( res.render ).toHaveBeenCalledWith( 'uk-regions/list.html', { regions: ukRegions.results } );
+
+				expect( overviewSummary.create ).toHaveBeenCalledWith( ukRegions.date_range, ukRegions.results.summary );
+				expect( overviewRegions.create ).toHaveBeenCalledWith( ukRegions.date_range, ukRegions.results.region_groups );
+
+				expect( res.render ).toHaveBeenCalledWith( 'uk-regions/overview.html', {
+					summary: overviewSummaryResponse,
+					regionGroups: overviewRegionsResponse
+				} );
+
 				done();
 			} );
 		} );
