@@ -15,7 +15,8 @@ const scripts = [
 	'export/generate-countries',
 
 	'investment/generate-sector-teams',
-	'investment/generate-os-regions'
+	'investment/generate-os-regions',
+	'investment/generate-fdi'
 ];
 
 for( let script of scripts ){

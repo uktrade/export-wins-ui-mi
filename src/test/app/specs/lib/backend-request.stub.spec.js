@@ -445,5 +445,21 @@ describe( 'Backend stub', function(){
 				checkMultipleYears( '/mi/investment/os_regions/', '/investment/os_regions/index', done );
 			} );
 		} );
+
+		describe( 'Getting the FDI Overview', function(){
+
+			it( 'Should return the overview', function( done ){
+
+				checkMultipleYears( '/mi/fdi/overview/', '/investment/fdi/overview', done );
+			} );
+		} );
+
+		describe( 'Getting the FDI Overview YoY', function(){
+
+			it( 'Should return the overview', function( done ){
+
+				checkMultipleYears( '/mi/fdi/overview/yoy/', '/investment/fdi/overview_yoy', done );
+			} );
+		} );
 	} );
 } );

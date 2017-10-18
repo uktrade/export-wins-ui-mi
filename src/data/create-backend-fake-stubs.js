@@ -17,6 +17,8 @@ const ukRegionJson = require( './faker/backend/scripts/lib/json-creators/export/
 
 const investmentSectorTeamsJson = require( './faker/backend/scripts/lib/json-creators/investment/sector-teams-json' );
 const investmentOsRegionsJson = require( './faker/backend/scripts/lib/json-creators/investment/os-regions-json' );
+const investmentFdiJson = require( './faker/backend/scripts/lib/json-creators/investment/fdi-json' );
+
 
 const outputPath = path.resolve( __dirname, 'fake-stubs/backend' );
 
@@ -82,7 +84,9 @@ const yearlyFiles = {
 	'uk_regions/win_table': ukRegionJson.createWinTable,
 
 	'investment/sector_teams/index': investmentSectorTeamsJson.createIndex,
-	'investment/os_regions/index': investmentOsRegionsJson.createIndex
+	'investment/os_regions/index': investmentOsRegionsJson.createIndex,
+	'investment/fdi/overview': investmentFdiJson.createOverview,
+	'investment/fdi/overview_yoy': investmentFdiJson.createOverviewYoy
 };
 
 for( let file in yearlyFiles ){

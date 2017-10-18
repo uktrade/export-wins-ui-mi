@@ -766,6 +766,8 @@ if( config.backend.mock ){
 
 					interceptBackend.getStub( `/mi/sector_teams/?year=2017`, 200, '/investment/sector_teams/' );
 					interceptBackend.getStub( `/mi/os_regions/?year=2017`, 200, '/investment/os_regions/' );
+					interceptBackend.getStub( `/mi/fdi/overview/?year=2017`, 200, '/investment/fdi/overview' );
+					interceptBackend.getStub( `/mi/fdi/overview/yoy/?year=2017`, 200, '/investment/fdi/overview-yoy' );
 
 					supertest( app ).get( '/investment/' ).end( ( err, res ) => {
 
