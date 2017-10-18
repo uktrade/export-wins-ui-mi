@@ -1,0 +1,102 @@
+@media print {
+
+	html {
+		-webkit-print-color-adjust: exact;
+	}
+
+	html,
+	body,
+	button,
+	input,
+	table,
+	td,
+	th {
+		font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	}
+
+	.column-two-thirds {
+		width: 66.6%;
+		float: left;
+	}
+
+	#skiplink-container,
+	#global-cookie-message,
+	#global-header,
+	.phase-banner,
+	.top-nav,
+	.year-selector,
+	ul.page-tabs,
+	.page-date a,
+	.visually-hidden,
+	.financial-year_change-link,
+	hr,
+	footer {
+		display: none;
+	}
+
+	div.column-export-value,
+	.column-charts,
+	.column-average-time {
+		float: left;
+	}
+
+	.column-average-time {
+		padding-top: 10px;
+	}
+
+	.sector-detail {
+		margin-top: 0em;
+	}
+
+	main#content
+	section:first-of-type,
+	.sector-detail,
+	.sector-wins,
+	.monthly-performance,
+	.hvc-perf {
+		padding: 1em;
+		border: 1px solid #ccc;
+	}
+
+	 .top-markets {
+		padding: 1em;
+		margin-top: 2em;
+		border: 1px solid #ccc;
+	}
+
+	.top-markets_table {
+		width: 99%;
+	}
+
+	li {
+		list-style: none;
+	}
+
+	.monthly-performance_scale {
+		width: 90% !important;
+		margin: 1em 1em 1em 3em !important;
+	}
+
+	.monthly-performance_list {
+		margin: 2em 0 0 3.5em !important;
+		padding: 2em 0 10px 0 !important;
+	}
+
+	div.column-one-quarter:first-of-type {
+		clear: left;
+		float: left;
+	}
+
+	div.column-one-quarter {
+		float: left;
+	}
+
+	.sector-wins,
+	.row-separator {
+		page-break-before: always;
+	}
+
+	.mp-key {
+		float: right;
+	}
+}
