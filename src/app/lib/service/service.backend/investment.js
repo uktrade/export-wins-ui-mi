@@ -1,5 +1,8 @@
 const { getAll, getJson } = require( './_helpers' );
 
+const transformFdiOverview = require( '../../transformers/fdi/overview' );
+const transformFdiOverviewYoy = require( '../../transformers/fdi/overview-yoy' );
+
 function createIdMatcher( id ){
 
 	return function( items ){
@@ -40,6 +43,16 @@ function getOverseasRegion( req, teamId ){
 	return getOverseasRegions( req ).then( createIdMatcher( teamId ) );
 }
 
+function getFdiOverview( req ){
+
+	return getJson( '/mi/fdi/overview/', req, transformFdiOverview );
+}
+
+function getFdiOverviewYoy( req ){
+
+	return getJson( '/mi/fdi/overview/yoy/', req, transformFdiOverviewYoy );
+}
+
 module.exports = {
 
 	getSectorTeams,
@@ -48,18 +61,25 @@ module.exports = {
 	getOverseasRegions,
 	getOverseasRegion,
 
+	getFdiOverview,
+	getFdiOverviewYoy,
+
 	getHomepageData: function( req ){
 
 		return getAll( 'getHomepageData', [
 
 			getSectorTeams( req ),
-			getOverseasRegions( req )
+			getOverseasRegions( req ),
+			getFdiOverview( req ),
+			getFdiOverviewYoy( req )
 
 		], function( data ){
 
 			return {
 				sectorTeams: data[ 0 ],
-				overseasRegions: data[ 1 ]
+				overseasRegions: data[ 1 ],
+				overview: data[ 2 ],
+				overviewYoy: data[ 3 ]
 			};
 		} );
 	}

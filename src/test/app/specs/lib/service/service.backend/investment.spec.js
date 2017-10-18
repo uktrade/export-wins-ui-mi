@@ -7,6 +7,8 @@ const moduleFile = '../../../../../../app/lib/service/service.backend/investment
 
 let getJson;
 let investmentService;
+let fdiOverviewTransformer;
+let fdiOverviewYoyTransformer;
 let req;
 
 function checkBackendArgs( path, req, transformer ){
@@ -26,12 +28,19 @@ function checkBackendArgs( path, req, transformer ){
 	}
 }
 
+function returnData( data ){
+
+	getJson.and.callFake( () => new Promise( ( resolve ) => resolve( data ) ) );
+}
+
 describe( 'Investment backend service', function(){
 
 	beforeEach( function(){
 
 		req = { cookies: { sessionid: 'test' } };
 		getJson = jasmine.createSpy( 'getJson' );
+		fdiOverviewTransformer = jasmine.createSpy( 'fdiOverviewTransformer' );
+		fdiOverviewYoyTransformer = jasmine.createSpy( 'fdiOverviewYoyTransformer' );
 	} );
 
 	describe( 'Single methods', function(){
@@ -41,7 +50,9 @@ describe( 'Investment backend service', function(){
 			getJson.and.callFake( () => new Promise( ( resolve ) => resolve() ) );
 
 			investmentService = proxyquire( moduleFile, {
-				'./_helpers': { getJson }
+				'./_helpers': { getJson },
+				'../../transformers/fdi/overview': fdiOverviewTransformer,
+				'../../transformers/fdi/overview-yoy': fdiOverviewYoyTransformer
 			} );
 		} );
 
@@ -66,7 +77,7 @@ describe( 'Investment backend service', function(){
 
 				//This should not be needed
 				//Provide data while using export APIs
-				getJson.and.callFake( () => new Promise( ( resolve ) => resolve( { results: [ { id: 1, name: 2 } ] } ) ) );
+				returnData( { results: [ { id: 1, name: 2 } ] } );
 
 				investmentService.getSectorTeam( req, teamId ).then( () => {
 
@@ -98,12 +109,36 @@ describe( 'Investment backend service', function(){
 
 				//This should not be needed
 				//Provide data while using export APIs
-				getJson.and.callFake( () => new Promise( ( resolve ) => resolve( { results: [ { id: 1, name: 2 } ] } ) ) );
+				returnData( { results: [ { id: 1, name: 2 } ] } );
 
 				investmentService.getOverseasRegion( req, regionId ).then( () => {
 
 					// Use export list for now
 					checkBackendArgs( `/mi/os_regions/`, req );
+					done();
+				} );
+			} );
+		} );
+
+		describe( 'FDI overview', function(){
+
+			it( 'Should call the correct API', function( done ){
+
+				investmentService.getFdiOverview( req ).then( () => {
+
+					checkBackendArgs( '/mi/fdi/overview/', req, fdiOverviewTransformer );
+					done();
+				} );
+			} );
+		} );
+
+		describe( 'getFdiOverviewYoy', function(){
+
+			it( 'Should call the correct API', function( done ){
+
+				investmentService.getFdiOverviewYoy( req ).then( () => {
+
+					checkBackendArgs( '/mi/fdi/overview/yoy/', req, fdiOverviewYoyTransformer );
 					done();
 				} );
 			} );
@@ -141,16 +176,22 @@ describe( 'Investment backend service', function(){
 
 				const spies = createSpies( [
 					'getSectorTeams',
-					'getOverseasRegions'
+					'getOverseasRegions',
+					'getFdiOverview',
+					'getFdiOverviewYoy'
 				] );
 
 				investmentService.getHomepageData( req ).then( ( data ) => {
 
 					expect( spies.getSectorTeams.spy ).toHaveBeenCalledWith( req );
 					expect( spies.getOverseasRegions.spy ).toHaveBeenCalledWith( req );
+					expect( spies.getFdiOverview.spy ).toHaveBeenCalledWith( req );
+					expect( spies.getFdiOverviewYoy.spy ).toHaveBeenCalledWith( req );
 
 					expect( data.sectorTeams ).toEqual( spies.getSectorTeams.response );
 					expect( data.overseasRegions ).toEqual( spies.getOverseasRegions.response );
+					expect( data.overview ).toEqual( spies.getFdiOverview.response );
+					expect( data.overviewYoy ).toEqual( spies.getFdiOverviewYoy.response );
 
 					done();
 

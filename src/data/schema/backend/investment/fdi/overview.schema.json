@@ -1,0 +1,156 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "Investment FDI overview",
+
+	"type": "object",
+	"required": [ "target", "performance", "total", "verified_met_percent" ],
+	"properties": {
+
+		"target": {
+			"type": "number",
+			"faker": "random.number"
+		},
+
+		"performance": {
+			"type": "object",
+			"required": [ "verified" ],
+			"properties": {
+
+				"verified": {
+					"type": "object",
+					"required": [ "good", "standard", "high" ],
+					"properties": {
+
+						"good": {
+							"$ref": "#/definitions/verified-item"
+						},
+
+						"standard": {
+							"$ref": "#/definitions/verified-item"
+						},
+
+						"high": {
+							"$ref": "#/definitions/verified-item"
+						}
+					}
+				}
+			}
+		},
+
+		"total": {
+			"type": "object",
+			"required": [ "verified", "pending" ],
+			"properties": {
+
+				"verified": {
+					"$ref": "#/definitions/total"
+				},
+
+				"pending": {
+					"$ref": "#/definitions/total"
+				}
+			}
+		},
+
+		"verified_met_percent": {
+			"$ref": "#/definitions/percent"
+		}
+	},
+
+	"definitions": {
+
+		"number": {
+			"type": "number",
+			"faker": {
+				"random.number": [ 5000 ]
+			}
+		},
+
+		"percent": {
+			"type": "number",
+			"faker": {
+				"finance.amount": [ 0, 100 ]
+			}
+		},
+
+		"value": {
+			"type": "number",
+			"faker": {
+				"random.number": [ 1000000000 ]
+			}
+		},
+
+		"total": {
+			"type": "object",
+			"required": [ "number_new_jobs__sum", "number_safeguarded_jobs__sum", "investment_value__sum", "count" ],
+			"properties": {
+
+				"number_new_jobs__sum": {
+					"type": "number",
+					"faker": {
+						"random.number": [ 5000 ]
+					}
+				},
+
+				"number_safeguarded_jobs__sum": {
+					"type": "number",
+					"faker": {
+						"random.number": [ 5000 ]
+					}
+				},
+
+				"investment_value__sum": {
+					"type": "number",
+					"faker": {
+						"random.number": [ 0, 5000 ]
+					}
+				},
+
+				"count": {
+					"type": "number",
+					"faker": {
+						"random.number": [ 5000 ]
+					}
+				}
+			}
+		},
+
+		"verified-item": {
+			"type": "object",
+			"required": [
+				"number_new_jobs__sum",
+				"number_safeguarded_jobs__sum",
+				"investment_value__sum",
+				"count",
+				"target",
+				"value__percent"
+			],
+			"properties": {
+
+				"number_new_jobs__sum": {
+					"$ref": "#/definitions/number"
+				},
+
+				"number_safeguarded_jobs__sum": {
+					"$ref": "#/definitions/number"
+				},
+
+				"investment_value__sum": {
+					"$ref": "#/definitions/value"
+				},
+
+				"count": {
+					"$ref": "#/definitions/number"
+				},
+
+				"target": {
+					"$ref": "#/definitions/number"
+				},
+
+				"value__percent": {
+					"$ref": "#/definitions/percent"
+				}
+			}
+		}
+	}
+}

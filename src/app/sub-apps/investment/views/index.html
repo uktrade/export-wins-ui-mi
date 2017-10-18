@@ -14,6 +14,149 @@
 
 	<h2 class="page-sub-heading">{{ selectedYear }} to {{ selectedYear + 1 }} financial year</h2>
 
+	<section class="fdi-overview-section">
+		<div class="grid-row">
+			<div class="column-single">
+
+				<h3 class="fdi-overview-heading">Overall performance</h3>
+				<h4 class="fdi-overview-date">{{ financialYear( overview.date_range ) }}</h4>
+
+				<ul class="fdi-overview-list fdi-overview-list--first">
+					<li class="fdi-overview-list_item fdi-overview-list_item--six">
+						<h4 class="fdi-overview-list_heading">FDI project<br>target</h4>
+						<p class="fdi-overview-list_text">{{ overview.results.target }}</p>
+					</li>
+
+					<li class="fdi-overview-list_item fdi-overview-list_item--six">
+						<h4 class="fdi-overview-list_heading">Total<br>verified</h4>
+						<p class="fdi-overview-list_text">{{ overview.results.totals.verified }}</p>
+					</li>
+
+					<li class="fdi-overview-list_item fdi-overview-list_item--six">
+						<h4 class="fdi-overview-list_heading">Total<br>verified met</h4>
+						<p class="fdi-overview-list_text">{{ overview.results.metPercent | default( 0 ) }}%</p>
+					</li>
+
+					<li class="fdi-overview-list_item fdi-overview-list_item--six">
+						<h4 class="fdi-overview-list_heading">New jobs<br>verified</h4>
+						<p class="fdi-overview-list_text">{{ overview.results.jobs.new.verified }}</p>
+					</li>
+
+					<li class="fdi-overview-list_item fdi-overview-list_item--six">
+						<h4 class="fdi-overview-list_heading">Safeguarded<br>jobs verified</h4>
+						<p class="fdi-overview-list_text">{{ overview.results.jobs.safe.verified }}</p>
+					</li>
+
+					<li class="fdi-overview-list_item fdi-overview-list_item--six">
+						<h4 class="fdi-overview-list_heading">CAPEX<br>verified</h4>
+						<p class="fdi-overview-list_text">{{ overview.results.value.verified | largeNumber( true ) | safe }}</p>
+					</li>
+				</dl>
+			</div>
+		</div>
+
+		<div class="grid-row">
+			<div class="column-half fdi-overview-unconfirmed">
+
+				<ul class="fdi-overview-list">
+					<li class="fdi-overview-list_item fdi-overview-list_item--three">
+						<h4 class="fdi-overview-list_heading">CAPEX<br>success confirmed</h4>
+						<p class="fdi-overview-list_text fdi-overview-list_text--unconfirmed">{{ overview.results.value.pending | largeNumber( true ) | safe }}</p>
+					</li>
+
+					<li class="fdi-overview-list_item fdi-overview-list_item--three">
+						<h4 class="fdi-overview-list_heading">Total success<br>confirmed</h4>
+						<p class="fdi-overview-list_text fdi-overview-list_text--unconfirmed">{{ overview.results.totals.pending }}</p>
+					</li>
+
+					<li class="fdi-overview-list_item fdi-overview-list_item--three">
+						<h4 class="fdi-overview-list_heading">New jobs<br>success confirmed</h4>
+						<p class="fdi-overview-list_text fdi-overview-list_text--unconfirmed">{{ overview.results.jobs.new.pending }}</p>
+					</li>
+				</dl>
+
+			</div>
+			<div class="column-half fdi-overview-verified">
+
+				<h4 class="fdi-overview-period-heading">Verified in period</h4>
+				<ul class="fdi-overview-period-list">
+					<li class="fdi-overview-period-list_item">
+						<h5 class="fdi-overview-period-list_heading fdi-overview-period-list_heading--high">High</h5>
+						<p class="fdi-overview-period-list_text">{{ overview.results.verified.high.number }}</p>
+						<p class="fdi-overview-period-list_text fdi-overview-period-list_text--percent">{{ overview.results.verified.high.percent }}%</p>
+					</li>
+					<li class="fdi-overview-period-list_item">
+						<h5 class="fdi-overview-period-list_heading">Good</h5>
+						<p class="fdi-overview-period-list_text">{{ overview.results.verified.good.number }}</p>
+						<p class="fdi-overview-period-list_text fdi-overview-period-list_text--percent">{{ overview.results.verified.good.percent }}%</p>
+					</li>
+					<li class="fdi-overview-period-list_item">
+						<h5 class="fdi-overview-period-list_heading">Standard</h5>
+						<p class="fdi-overview-period-list_text">{{ overview.results.verified.standard.number }}</p>
+						<p class="fdi-overview-period-list_text fdi-overview-period-list_text--percent">{{ overview.results.verified.standard.percent }}%</p>
+					</li>
+				</ul>
+
+			</div>
+		</div>
+
+	</section>
+
+	{% macro yoyTable( items, modifyer ) %}
+
+		<table class="fdi-overview-yoy-table{% if modifyer %} fdi-overview-yoy-table--{{ modifyer }}{% endif %}">
+			<thead>
+				<tr>
+					<th class="fdi-overview-yoy-table_heading">Year</th>
+					<th class="fdi-overview-yoy-table_heading fdi-overview-yoy-table_heading--projects">Number of<br>projects</th>
+					<th class="fdi-overview-yoy-table_heading">New jobs</th>
+					<th class="fdi-overview-yoy-table_heading">Safeguarded<br>new jobs</th>
+					<th class="fdi-overview-yoy-table_heading">CAPEX</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for item in items %}
+
+				{%- if loop.index == 1  %}
+					{% set additionalClass = ' fdi-overview-yoy-table_cell--current-year' %}
+				{% else %}
+					{% set additionalClass = '' %}
+				{% endif -%}
+
+				<tr class="fdi-overview-yoy-table_row">
+					<td class="fdi-overview-yoy-table_cell{{ additionalClass }}">{{ item.year }}</td>
+					<td class="fdi-overview-yoy-table_cell fdi-overview-yoy-table_cell--projects{{ additionalClass }}">{{ item.projects }}</td>
+					<td class="fdi-overview-yoy-table_cell{{ additionalClass }}">{{ item.jobs.new }}</td>
+					<td class="fdi-overview-yoy-table_cell{{ additionalClass }}">{{ item.jobs.safe }}</td>
+					<td class="fdi-overview-yoy-table_cell{{ additionalClass }}">{{ item.capex | largeNumber }}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	{% endmacro %}
+
+	<section class="grid-row">
+		<div class="column-single">
+			<h3 class="visually-hidden">Year on Year performance</h3>
+			<h4 class="fdi-overview-yoy-date">{{ financialYear( overviewYoy.date_range ) }}</h4>
+
+			<ul class="fdi-overview-yoy-list">
+				<li class="fdi-overview-yoy-list_item">
+					<h4 class="fdi-overview-yoy-list_heading fdi-overview-yoy-list_heading--high">High</h4>
+					{{ yoyTable( overviewYoy.results.high ) }}
+				</li>
+				<li class="fdi-overview-yoy-list_item">
+					<h4 class="fdi-overview-yoy-list_heading">Good</h4>
+					{{ yoyTable( overviewYoy.results.good, 'no-year' ) }}
+				</li>
+				<li class="fdi-overview-yoy-list_item">
+					<h4 class="fdi-overview-yoy-list_heading">Standard</h4>
+					{{ yoyTable( overviewYoy.results.standard, 'no-year' ) }}
+				</li>
+			</ul>
+		</div>
+	</section>
+
 	<section class="grid-row i-homepage-lists">
 		<div class="column-one-third">
 

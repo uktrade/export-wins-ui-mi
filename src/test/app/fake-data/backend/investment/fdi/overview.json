@@ -1,0 +1,57 @@
+{
+   "timestamp": 1508148268449,
+   "financial_year": {
+      "id": 2016,
+      "description": "2016-2017"
+   },
+   "results": {
+      "target": 23931,
+      "performance": {
+         "verified": {
+            "good": {
+               "number_new_jobs__sum": 2013,
+               "number_safeguarded_jobs__sum": 609,
+               "investment_value__sum": 520113260,
+               "count": 4723,
+               "target": 3070,
+               "value__percent": 97.13
+            },
+            "standard": {
+               "number_new_jobs__sum": 200,
+               "number_safeguarded_jobs__sum": 2969,
+               "investment_value__sum": 76910082,
+               "count": 3425,
+               "target": 715,
+               "value__percent": 23.66
+            },
+            "high": {
+               "number_new_jobs__sum": 1063,
+               "number_safeguarded_jobs__sum": 699,
+               "investment_value__sum": 315831105,
+               "count": 2832,
+               "target": 826,
+               "value__percent": 20.45
+            }
+         }
+      },
+      "total": {
+         "verified": {
+            "number_new_jobs__sum": 1409,
+            "number_safeguarded_jobs__sum": 3021,
+            "investment_value__sum": 0,
+            "count": 531
+         },
+         "pending": {
+            "number_new_jobs__sum": 165,
+            "number_safeguarded_jobs__sum": 2898,
+            "investment_value__sum": 0,
+            "count": 3157
+         }
+      },
+      "verified_met_percent": 44.25
+   },
+   "date_range": {
+      "start": "Fri, 01 Apr 2016 00:00:00 GMT",
+      "end": "Fri, 31 Mar 2017 00:00:00 GMT"
+   }
+}

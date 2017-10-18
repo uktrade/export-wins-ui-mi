@@ -24,17 +24,18 @@ function getEndDate( endDate ){
 
 	if( endYear > year || ( endYear >= year && month < endMonth || ( Number( month ) === endMonth && day < endDay ) ) ){
 
-		return [ year, month, day ].join( '-' );
+		endDate = [ year, month, day ].join( '-' );
 
-	} else {
-
-		return endDate;
 	}
+
+	return endDate + 'T23:59:59Z';
 }
 
-function createWrapper( results, year, hasDateRange ){
+function createWrapper( results, year, includeStartDate ){
 
 	const nextYear = ( year + 1 );
+	const startDate = `${ year }-04-01`;
+	const endDate = getEndDate( `${ nextYear }-03-31` );
 
 	const wrapper = {
 		timestamp: Date.now(),
@@ -42,31 +43,28 @@ function createWrapper( results, year, hasDateRange ){
 			id: year,
 			description: `${ year }-${ nextYear }`
 		},
-		results
-	};
-
-	if( hasDateRange ){
-
-		const startDate = `${ year }-04-01`;
-		const endDate = getEndDate( `${ nextYear }-03-31` );
-
-		wrapper.date_range = {
-			start: getTime( startDate ),
+		results,
+		date_range: {
+			start: ( includeStartDate ? getTime( startDate ) : null ),
 			end: getTime( endDate )
-		};
-	}
+		}
+	};
 
 	return wrapper;
 }
 
 module.exports = function( path, year = 2016 ){
 
-	let hasDateRange = true;
+	let includeStartDate = true;
 	let hasWrapper = true;
 
 	switch( path ){
 		case '/user/me.schema':
 			hasWrapper = false;
+		break;
+
+		case '/investment/fdi/overview-yoy.schema':
+			includeStartDate = false;
 		break;
 	}
 
@@ -75,7 +73,7 @@ module.exports = function( path, year = 2016 ){
 
 	if( hasWrapper ){
 
-		return promise.then( ( json ) => createWrapper( json, year, hasDateRange ) );
+		return promise.then( ( json ) => createWrapper( json, year, includeStartDate ) );
 
 	} else {
 
