@@ -17,6 +17,9 @@ module.exports = function( input ){
 	const good = [];
 	const standard = [];
 
+	//years come in the wrong order
+	input.reverse();
+
 	for( let item of input ){
 
 		addItem( high, item.year, item.high );
