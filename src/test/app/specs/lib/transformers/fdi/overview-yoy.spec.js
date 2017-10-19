@@ -1,7 +1,6 @@
 const transform = require( '../../../../../../app/lib/transformers/fdi/overview-yoy' );
 const getBackendStub = require( '../../../../helpers/get-backend-stub' );
 
-const input = getBackendStub( '/investment/fdi/overview-yoy' );
 
 describe( 'FDI Overview YOY Transformer', function(){
 
@@ -11,6 +10,8 @@ describe( 'FDI Overview YOY Transformer', function(){
 
 		beforeEach( function(){
 
+			//get stub each time as it's reversed in place
+			const input = getBackendStub( '/investment/fdi/overview-yoy' );
 			output = transform( input.results );
 		} );
 
@@ -33,6 +34,14 @@ describe( 'FDI Overview YOY Transformer', function(){
 			checkItems( output.high );
 			checkItems( output.good );
 			checkItems( output.standard );
+		} );
+
+		it( 'Should reverse the order', function(){
+
+			expect( output.high[ 0 ].year ).toEqual( '2016-17' );
+			expect( output.high[ 1 ].year ).toEqual( '2015-16' );
+			expect( output.high[ 2 ].year ).toEqual( '2014-15' );
+			expect( output.high[ 3 ].year ).toEqual( '2013-14' );
 		} );
 	} );
 } );

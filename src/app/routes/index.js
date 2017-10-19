@@ -25,25 +25,10 @@ module.exports = function( express, app, isDev ){
 
 	app.use( dateRange );
 
-	app.use( ( req, res, next ) => {
-
-		if( req.query.investment ){
-
-			res.locals.showInvestment = true;
-		}
-
-		next();
-	} );
-
 	app.get( '/select-date/', user, returnPath, dateController.selectYear );
 	app.get( '/select-date/:year/', user, returnPath, csrfProtection, dateController.selectDates );
 	app.post( '/select-date/:year/', user, returnPath, urlBodyParser, csrfProtection, dateController.setDate );
 
 	app.use( exportRoutes( express.Router(), user, isDev ) );
-	app.use( '/investment/', user, function( req, res, next ){
-
-		res.locals.showInvestment = true;
-		next();
-
-	}, investmentRoutes( express.Router(), isDev ) );
+	app.use( '/investment/', user, investmentRoutes( express.Router(), isDev ) );
 };
