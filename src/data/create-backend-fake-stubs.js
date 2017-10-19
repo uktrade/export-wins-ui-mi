@@ -15,9 +15,9 @@ const countriesJson = require( './faker/backend/scripts/lib/json-creators/export
 const postsJson = require( './faker/backend/scripts/lib/json-creators/export/posts-json' );
 const ukRegionJson = require( './faker/backend/scripts/lib/json-creators/export/uk-regions-json' );
 
-const investmentSectorTeamsJson = require( './faker/backend/scripts/lib/json-creators/investment/sector-teams-json' );
-const investmentOsRegionsJson = require( './faker/backend/scripts/lib/json-creators/investment/os-regions-json' );
-const investmentFdiJson = require( './faker/backend/scripts/lib/json-creators/investment/fdi-json' );
+const fdiSectorTeamsJson = require( './faker/backend/scripts/lib/json-creators/investment/fdi/sector-teams-json' );
+const fdiOsRegionsJson = require( './faker/backend/scripts/lib/json-creators/investment/fdi/os-regions-json' );
+const fdiOverviewJson = require( './faker/backend/scripts/lib/json-creators/investment/fdi/overview-json' );
 
 
 const outputPath = path.resolve( __dirname, 'fake-stubs/backend' );
@@ -83,10 +83,11 @@ const yearlyFiles = {
 	'uk_regions/top_non_hvcs': sharedJson.createTopNonHvcs,
 	'uk_regions/win_table': ukRegionJson.createWinTable,
 
-	'investment/sector_teams/index': investmentSectorTeamsJson.createIndex,
-	'investment/os_regions/index': investmentOsRegionsJson.createIndex,
-	'investment/fdi/overview': investmentFdiJson.createOverview,
-	'investment/fdi/overview_yoy': investmentFdiJson.createOverviewYoy
+	'investment/fdi/sector_teams/index': fdiSectorTeamsJson.createIndex,
+	'investment/fdi/sector_teams/sector_team': fdiSectorTeamsJson.createTeam,
+	'investment/fdi/os_regions/index': fdiOsRegionsJson.createIndex,
+	'investment/fdi/overview': fdiOverviewJson.createOverview,
+	'investment/fdi/overview_yoy': fdiOverviewJson.createOverviewYoy
 };
 
 for( let file in yearlyFiles ){

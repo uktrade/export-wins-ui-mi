@@ -1,4 +1,4 @@
-const generateSchema = require( '../../generate-schema' );
+const generateSchema = require( '../../../generate-schema' );
 
 module.exports = {
 

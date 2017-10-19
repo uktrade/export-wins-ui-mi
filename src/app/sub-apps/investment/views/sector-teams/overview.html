@@ -19,7 +19,7 @@
 	<ul>
 	{% for team in sectorTeams.results %}
 		<li>
-			<a href="{{ urls.investment.sectorTeam( team.id ) }}">{{ team.name }}</a>
+			<a href="{{ urls.investment.sectorTeam( team.id ) }}">{{ team.description }}</a>
 		</li>
 	{% endfor %}
 	</ul>

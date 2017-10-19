@@ -1,7 +1,7 @@
-const { getAll, getJson } = require( './_helpers' );
+const { getAll, getJson } = require( '../_helpers' );
 
-const transformFdiOverview = require( '../../transformers/fdi/overview' );
-const transformFdiOverviewYoy = require( '../../transformers/fdi/overview-yoy' );
+const transformFdiOverview = require( '../../../transformers/fdi/overview' );
+const transformFdiOverviewYoy = require( '../../../transformers/fdi/overview-yoy' );
 
 function createIdMatcher( id ){
 
@@ -21,14 +21,12 @@ function createIdMatcher( id ){
 
 function getSectorTeams( req ){
 
-	//use export sector teams for now
-	return getJson( '/mi/sector_teams/', req );
+	return getJson( '/mi/fdi/sector_teams/', req );
 }
 
 function getSectorTeam( req, teamId ){
 
-	//use team list for now to return the name
-	return getSectorTeams( req ).then( createIdMatcher( teamId ) );
+	return getJson( `/mi/fdi/sector_teams/${ teamId }/`, req );
 }
 
 function getOverseasRegions( req ){
@@ -43,12 +41,12 @@ function getOverseasRegion( req, teamId ){
 	return getOverseasRegions( req ).then( createIdMatcher( teamId ) );
 }
 
-function getFdiOverview( req ){
+function getOverview( req ){
 
 	return getJson( '/mi/fdi/overview/', req, transformFdiOverview );
 }
 
-function getFdiOverviewYoy( req ){
+function getOverviewYoy( req ){
 
 	return getJson( '/mi/fdi/overview/yoy/', req, transformFdiOverviewYoy );
 }
@@ -61,25 +59,25 @@ module.exports = {
 	getOverseasRegions,
 	getOverseasRegion,
 
-	getFdiOverview,
-	getFdiOverviewYoy,
+	getOverview,
+	getOverviewYoy,
 
 	getHomepageData: function( req ){
 
 		return getAll( 'getHomepageData', [
 
 			getSectorTeams( req ),
-			getOverseasRegions( req ),
-			getFdiOverview( req ),
-			getFdiOverviewYoy( req )
+			//getOverseasRegions( req ),
+			getOverview( req ),
+			getOverviewYoy( req )
 
 		], function( data ){
 
 			return {
 				sectorTeams: data[ 0 ],
-				overseasRegions: data[ 1 ],
-				overview: data[ 2 ],
-				overviewYoy: data[ 3 ]
+				//overseasRegions: data[ 1 ],
+				overview: data[ 1 ],
+				overviewYoy: data[ 2 ]
 			};
 		} );
 	}

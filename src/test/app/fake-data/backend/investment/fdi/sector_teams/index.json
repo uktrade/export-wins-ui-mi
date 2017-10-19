@@ -1,0 +1,97 @@
+{
+   "timestamp": 1508406915265,
+   "financial_year": {
+      "id": 2016,
+      "description": "2016-2017"
+   },
+   "results": [
+      {
+         "id": 12714,
+         "name": "rem quas est",
+         "description": "qui est aut",
+         "sectors": [
+            {
+               "id": 17881,
+               "name": "quibusdam eveniet dignissimos",
+               "disabled_on": true
+            }
+         ]
+      },
+      {
+         "id": 41393,
+         "name": "est placeat est",
+         "description": "perferendis impedit corrupti",
+         "sectors": [
+            {
+               "id": 49145,
+               "name": "fuga omnis perferendis",
+               "disabled_on": false
+            }
+         ]
+      },
+      {
+         "id": 49163,
+         "name": "nisi accusantium autem",
+         "description": "omnis aut officia",
+         "sectors": [
+            {
+               "id": 59128,
+               "name": "odio vel sed",
+               "disabled_on": false
+            }
+         ]
+      },
+      {
+         "id": 64280,
+         "name": "quasi similique ipsa",
+         "description": "repudiandae fugit ut",
+         "sectors": [
+            {
+               "id": 47421,
+               "name": "aliquid dolore incidunt",
+               "disabled_on": false
+            }
+         ]
+      },
+      {
+         "id": 89603,
+         "name": "et rerum alias",
+         "description": "et qui quo",
+         "sectors": [
+            {
+               "id": 10226,
+               "name": "doloremque quidem officiis",
+               "disabled_on": false
+            }
+         ]
+      },
+      {
+         "id": 35682,
+         "name": "repudiandae quasi aut",
+         "description": "distinctio ut eos",
+         "sectors": [
+            {
+               "id": 28228,
+               "name": "ut itaque atque",
+               "disabled_on": true
+            }
+         ]
+      },
+      {
+         "id": 1379,
+         "name": "excepturi minima est",
+         "description": "quidem quod corrupti",
+         "sectors": [
+            {
+               "id": 39705,
+               "name": "error enim libero",
+               "disabled_on": false
+            }
+         ]
+      }
+   ],
+   "date_range": {
+      "start": "Fri, 01 Apr 2016 00:00:00 GMT",
+      "end": "Fri, 31 Mar 2017 23:59:59 GMT"
+   }
+}

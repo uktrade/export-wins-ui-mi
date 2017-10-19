@@ -3,7 +3,7 @@
 {% from 'macros/dates.html' import financialYear %}
 {% from '../macros/tabs/fdi/sector-teams.html' import tabs %}
 
-{% set pageName %}Investment - Sector team HVC performance - {{ team.name | safe }}{% endset %}
+{% set pageName %}Investment - Sector team HVC performance - {{ team.description | safe }}{% endset %}
 
 {% block page_content %}
 
@@ -11,11 +11,11 @@
 		Investment
 	</h1>
 
-	<h2>{{ team.name }}<span class="page-heading-secondary"> FDI Sector Team</span></h2>
+	<h2>{{ team.description }}<span class="page-heading-secondary"> FDI Sector Team</span></h2>
 
 	{% include 'partials/year-selector.html' %}
 
-	{{ tabs( team.id, hvcPerformance = true ) }}
+	{{ tabs( teamId, hvcPerformance = true ) }}
 
 	<h3 class="page-date">{{ financialYear( dateRange ) }}</h3>
 {% endblock %}

@@ -3,7 +3,7 @@ const proxyquire = require( 'proxyquire' );
 const moduleFile = '../../../../../../app/sub-apps/investment/controllers/controller.overseas-regions';
 
 let controller;
-let investmentService;
+let fdiService;
 let createHandler;
 let renderErrorHandler;
 let req;
@@ -16,13 +16,13 @@ describe( 'Investment Overseas Regions controller', function(){
 		renderErrorHandler = jasmine.createSpy( 'renderErrorHandler' );
 		createHandler = jasmine.createSpy( 'createHandler' ).and.callFake( () => renderErrorHandler );
 
-		investmentService = {
+		fdiService = {
 			getOverseasRegions: jasmine.createSpy( 'getOverseasRegions' ),
 			getOverseasRegion: jasmine.createSpy( 'getOverseasRegion' )
 		};
 
 		controller = proxyquire( moduleFile, {
-			'../../../lib/service/service.backend/investment': investmentService,
+			'../../../lib/service/service.backend/investment/fdi': fdiService,
 			'../../../lib/render-error': { createHandler }
 		} );
 
@@ -49,7 +49,7 @@ describe( 'Investment Overseas Regions controller', function(){
 					resolve( { osRegions } );
 				} );
 
-				investmentService.getOverseasRegions.and.callFake( () => promise );
+				fdiService.getOverseasRegions.and.callFake( () => promise );
 
 				controller.regions( req, res );
 
@@ -57,7 +57,7 @@ describe( 'Investment Overseas Regions controller', function(){
 
 				promise.then( ( data ) => {
 
-					expect( investmentService.getOverseasRegions ).toHaveBeenCalledWith( req );
+					expect( fdiService.getOverseasRegions ).toHaveBeenCalledWith( req );
 					expect( res.render ).toHaveBeenCalledWith( 'investment/views/overseas-regions/overview', { regions: data } );
 					done();
 				} );
@@ -75,7 +75,7 @@ describe( 'Investment Overseas Regions controller', function(){
 					rejectPromise = reject;
 				} );
 
-				investmentService.getOverseasRegions.and.callFake( () => promise );
+				fdiService.getOverseasRegions.and.callFake( () => promise );
 
 				controller.regions( req, res );
 
@@ -85,7 +85,7 @@ describe( 'Investment Overseas Regions controller', function(){
 
 				setTimeout( () => {
 
-					expect( investmentService.getOverseasRegions ).toHaveBeenCalledWith( req );
+					expect( fdiService.getOverseasRegions ).toHaveBeenCalledWith( req );
 					expect( res.render ).not.toHaveBeenCalled();
 					expect( renderErrorHandler ).toHaveBeenCalledWith( err );
 					done();
@@ -108,13 +108,13 @@ describe( 'Investment Overseas Regions controller', function(){
 
 				req.params = { id: teamId };
 
-				investmentService.getOverseasRegion.and.callFake( () => promise );
+				fdiService.getOverseasRegion.and.callFake( () => promise );
 
 				controller.region( req, res );
 
 				promise.then( () => {
 
-					expect( investmentService.getOverseasRegion ).toHaveBeenCalledWith( req, teamId );
+					expect( fdiService.getOverseasRegion ).toHaveBeenCalledWith( req, teamId );
 					expect( res.render ).toHaveBeenCalledWith( 'investment/views/overseas-regions/detail', { dateRange: osRegionResponse.date_range, region: osRegionResponse.results } );
 					done();
 				} );
@@ -135,7 +135,7 @@ describe( 'Investment Overseas Regions controller', function(){
 
 				req.params = { id: teamId };
 
-				investmentService.getOverseasRegion.and.callFake( () => promise );
+				fdiService.getOverseasRegion.and.callFake( () => promise );
 
 				controller.region( req, res );
 
@@ -145,7 +145,7 @@ describe( 'Investment Overseas Regions controller', function(){
 
 				setTimeout( () => {
 
-					expect( investmentService.getOverseasRegion ).toHaveBeenCalledWith( req, teamId );
+					expect( fdiService.getOverseasRegion ).toHaveBeenCalledWith( req, teamId );
 					expect( res.render ).not.toHaveBeenCalled();
 					expect( renderErrorHandler ).toHaveBeenCalledWith( err );
 					done();
@@ -168,13 +168,13 @@ describe( 'Investment Overseas Regions controller', function(){
 
 				req.params = { id: teamId };
 
-				investmentService.getOverseasRegion.and.callFake( () => promise );
+				fdiService.getOverseasRegion.and.callFake( () => promise );
 
 				controller.hvcPerformance( req, res );
 
 				promise.then( () => {
 
-					expect( investmentService.getOverseasRegion ).toHaveBeenCalledWith( req, teamId );
+					expect( fdiService.getOverseasRegion ).toHaveBeenCalledWith( req, teamId );
 					expect( res.render ).toHaveBeenCalledWith( 'investment/views/overseas-regions/hvc-performance', { dateRange: osRegionResponse.date_range, region: osRegionResponse.results } );
 					done();
 				} );
@@ -195,7 +195,7 @@ describe( 'Investment Overseas Regions controller', function(){
 
 				req.params = { id: teamId };
 
-				investmentService.getOverseasRegion.and.callFake( () => promise );
+				fdiService.getOverseasRegion.and.callFake( () => promise );
 
 				controller.hvcPerformance( req, res );
 
@@ -205,7 +205,7 @@ describe( 'Investment Overseas Regions controller', function(){
 
 				setTimeout( () => {
 
-					expect( investmentService.getOverseasRegion ).toHaveBeenCalledWith( req, teamId );
+					expect( fdiService.getOverseasRegion ).toHaveBeenCalledWith( req, teamId );
 					expect( res.render ).not.toHaveBeenCalled();
 					expect( renderErrorHandler ).toHaveBeenCalledWith( err );
 					done();
@@ -228,13 +228,13 @@ describe( 'Investment Overseas Regions controller', function(){
 
 				req.params = { id: teamId };
 
-				investmentService.getOverseasRegion.and.callFake( () => promise );
+				fdiService.getOverseasRegion.and.callFake( () => promise );
 
 				controller.nonHvcPerformance( req, res );
 
 				promise.then( () => {
 
-					expect( investmentService.getOverseasRegion ).toHaveBeenCalledWith( req, teamId );
+					expect( fdiService.getOverseasRegion ).toHaveBeenCalledWith( req, teamId );
 					expect( res.render ).toHaveBeenCalledWith( 'investment/views/overseas-regions/non-hvc-performance', { dateRange: osRegionResponse.date_range, region: osRegionResponse.results } );
 					done();
 				} );
@@ -255,7 +255,7 @@ describe( 'Investment Overseas Regions controller', function(){
 
 				req.params = { id: teamId };
 
-				investmentService.getOverseasRegion.and.callFake( () => promise );
+				fdiService.getOverseasRegion.and.callFake( () => promise );
 
 				controller.nonHvcPerformance( req, res );
 
@@ -265,7 +265,7 @@ describe( 'Investment Overseas Regions controller', function(){
 
 				setTimeout( () => {
 
-					expect( investmentService.getOverseasRegion ).toHaveBeenCalledWith( req, teamId );
+					expect( fdiService.getOverseasRegion ).toHaveBeenCalledWith( req, teamId );
 					expect( res.render ).not.toHaveBeenCalled();
 					expect( renderErrorHandler ).toHaveBeenCalledWith( err );
 					done();
@@ -288,13 +288,13 @@ describe( 'Investment Overseas Regions controller', function(){
 
 				req.params = { id: teamId };
 
-				investmentService.getOverseasRegion.and.callFake( () => promise );
+				fdiService.getOverseasRegion.and.callFake( () => promise );
 
 				controller.wins( req, res );
 
 				promise.then( () => {
 
-					expect( investmentService.getOverseasRegion ).toHaveBeenCalledWith( req, teamId );
+					expect( fdiService.getOverseasRegion ).toHaveBeenCalledWith( req, teamId );
 					expect( res.render ).toHaveBeenCalledWith( 'investment/views/overseas-regions/wins', { dateRange: osRegionResponse.date_range, region: osRegionResponse.results } );
 					done();
 				} );
@@ -315,7 +315,7 @@ describe( 'Investment Overseas Regions controller', function(){
 
 				req.params = { id: teamId };
 
-				investmentService.getOverseasRegion.and.callFake( () => promise );
+				fdiService.getOverseasRegion.and.callFake( () => promise );
 
 				controller.wins( req, res );
 
@@ -325,7 +325,7 @@ describe( 'Investment Overseas Regions controller', function(){
 
 				setTimeout( () => {
 
-					expect( investmentService.getOverseasRegion ).toHaveBeenCalledWith( req, teamId );
+					expect( fdiService.getOverseasRegion ).toHaveBeenCalledWith( req, teamId );
 					expect( res.render ).not.toHaveBeenCalled();
 					expect( renderErrorHandler ).toHaveBeenCalledWith( err );
 					done();
@@ -348,13 +348,13 @@ describe( 'Investment Overseas Regions controller', function(){
 
 				req.params = { id: teamId };
 
-				investmentService.getOverseasRegion.and.callFake( () => promise );
+				fdiService.getOverseasRegion.and.callFake( () => promise );
 
 				controller.nonHvcWins( req, res );
 
 				promise.then( () => {
 
-					expect( investmentService.getOverseasRegion ).toHaveBeenCalledWith( req, teamId );
+					expect( fdiService.getOverseasRegion ).toHaveBeenCalledWith( req, teamId );
 					expect( res.render ).toHaveBeenCalledWith( 'investment/views/overseas-regions/non-hvc-wins', { dateRange: osRegionResponse.date_range, region: osRegionResponse.results } );
 					done();
 				} );
@@ -375,7 +375,7 @@ describe( 'Investment Overseas Regions controller', function(){
 
 				req.params = { id: teamId };
 
-				investmentService.getOverseasRegion.and.callFake( () => promise );
+				fdiService.getOverseasRegion.and.callFake( () => promise );
 
 				controller.nonHvcWins( req, res );
 
@@ -385,7 +385,7 @@ describe( 'Investment Overseas Regions controller', function(){
 
 				setTimeout( () => {
 
-					expect( investmentService.getOverseasRegion ).toHaveBeenCalledWith( req, teamId );
+					expect( fdiService.getOverseasRegion ).toHaveBeenCalledWith( req, teamId );
 					expect( res.render ).not.toHaveBeenCalled();
 					expect( renderErrorHandler ).toHaveBeenCalledWith( err );
 					done();
