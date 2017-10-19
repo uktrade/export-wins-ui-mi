@@ -428,37 +428,48 @@ describe( 'Backend stub', function(){
 		} );
 	} );
 
+
 	describe( 'Investment', function(){
 
-		describe( 'Getting the Sector Teams', function(){
+		describe( 'FDI', function(){
 
-			it( 'Should return the list', function( done ){
+			describe( 'Getting the Sector Teams', function(){
 
-				checkMultipleYears( '/mi/investment/sector_teams/', '/investment/sector_teams/index', done );
+				it( 'Should return the list', function( done ){
+
+					checkMultipleYears( '/mi/fdi/sector_teams/', '/investment/fdi/sector_teams/index', done );
+				} );
 			} );
-		} );
 
-		describe( 'Getting the Overseas Regions', function(){
+			describe( 'Getting a Sector Team', function(){
 
-			it( 'Should return the list', function( done ){
+				it( 'Should return the details', function( done ){
 
-				checkMultipleYears( '/mi/investment/os_regions/', '/investment/os_regions/index', done );
+					checkMultipleYears( '/mi/fdi/sector_teams/1234/', '/investment/fdi/sector_teams/sector_team', done );
+				} );
 			} );
-		} );
+			describe( 'Getting the Overseas Regions', function(){
 
-		describe( 'Getting the FDI Overview', function(){
+				it( 'Should return the list', function( done ){
 
-			it( 'Should return the overview', function( done ){
-
-				checkMultipleYears( '/mi/fdi/overview/', '/investment/fdi/overview', done );
+					checkMultipleYears( '/mi/fdi/os_regions/', '/investment/fdi/os_regions/index', done );
+				} );
 			} );
-		} );
 
-		describe( 'Getting the FDI Overview YoY', function(){
+			describe( 'Getting the FDI Overview', function(){
 
-			it( 'Should return the overview', function( done ){
+				it( 'Should return the overview', function( done ){
 
-				checkMultipleYears( '/mi/fdi/overview/yoy/', '/investment/fdi/overview_yoy', done );
+					checkMultipleYears( '/mi/fdi/overview/', '/investment/fdi/overview', done );
+				} );
+			} );
+
+			describe( 'Getting the FDI Overview YoY', function(){
+
+				it( 'Should return the overview', function( done ){
+
+					checkMultipleYears( '/mi/fdi/overview/yoy/', '/investment/fdi/overview_yoy', done );
+				} );
 			} );
 		} );
 	} );

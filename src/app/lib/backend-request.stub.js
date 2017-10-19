@@ -72,8 +72,9 @@ const filteredStubs = [
 	[ '/mi/uk_regions/[A-Za-z-]+/top_non_hvcs/', 'uk_regions/top_non_hvcs'  ],
 	[ '/mi/uk_regions/[A-Za-z-]+/win_table/', 'uk_regions/win_table'  ],
 
-	[ '/mi/investment/sector_teams/', 'investment/sector_teams/index'  ],
-	[ '/mi/investment/os_regions/', 'investment/os_regions/index'  ],
+	[ '/mi/fdi/sector_teams/', 'investment/fdi/sector_teams/index'  ],
+	[ '/mi/fdi/sector_teams/[0-9]+/', 'investment/fdi/sector_teams/sector_team'  ],
+	[ '/mi/fdi/os_regions/', 'investment/fdi/os_regions/index'  ],
 	[ '/mi/fdi/overview/', 'investment/fdi/overview'  ],
 	[ '/mi/fdi/overview/yoy/', 'investment/fdi/overview_yoy'  ]
 ];

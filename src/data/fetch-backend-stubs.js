@@ -59,8 +59,9 @@ const stubs = [
 
 	[ 'investment/fdi/overview', '/mi/fdi/overview/' ],
 	[ 'investment/fdi/overview_yoy', '/mi/fdi/overview/yoy/' ],
-	[ 'investment/sector_teams/index', '/mi/sector_teams/' ],
-	[ 'investment/os_regions/index', '/mi/os_regions/' ]
+	[ 'investment/fdi/sector_teams/index', '/mi/fdi/sector_teams/' ],
+	[ 'investment/fdi/sector_teams/sector_team', '/mi/fdi/sector_teams/1/' ],
+	[ 'investment/fdi/os_regions/index', '/mi/os_regions/' ]
 ];
 
 const years = [ 2016, 2017 ];

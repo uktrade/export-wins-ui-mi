@@ -1,11 +1,11 @@
-const investmentService = require( '../../../lib/service/service.backend/investment' );
+const fdiService = require( '../../../lib/service/service.backend/investment/fdi' );
 const renderError = require( '../../../lib/render-error' );
 
 module.exports = {
 
 	sectorTeams: function( req, res ){
 
-		investmentService.getSectorTeams( req ).then( ( data ) => {
+		fdiService.getSectorTeams( req ).then( ( data ) => {
 
 			res.render( 'investment/views/sector-teams/overview', { sectorTeams: data } );
 
@@ -16,9 +16,9 @@ module.exports = {
 
 		const teamId = req.params.id;
 
-		investmentService.getSectorTeam( req, teamId ).then( ( data ) => {
+		fdiService.getSectorTeam( req, teamId ).then( ( data ) => {
 
-			res.render( 'investment/views/sector-teams/detail', { dateRange: data.date_range, team: data.results } );
+			res.render( 'investment/views/sector-teams/detail', { dateRange: data.date_range, teamId, team: data.results } );
 
 		} ).catch( renderError.createHandler( res ) );
 	},
@@ -27,9 +27,9 @@ module.exports = {
 
 		const teamId = req.params.id;
 
-		investmentService.getSectorTeam( req, teamId ).then( ( data ) => {
+		fdiService.getSectorTeam( req, teamId ).then( ( data ) => {
 
-			res.render( 'investment/views/sector-teams/hvc-performance', { dateRange: data.date_range, team: data.results } );
+			res.render( 'investment/views/sector-teams/hvc-performance', { dateRange: data.date_range, teamId, team: data.results } );
 
 		} ).catch( renderError.createHandler( res ) );
 	},
@@ -38,9 +38,9 @@ module.exports = {
 
 		const teamId = req.params.id;
 
-		investmentService.getSectorTeam( req, teamId ).then( ( data ) => {
+		fdiService.getSectorTeam( req, teamId ).then( ( data ) => {
 
-			res.render( 'investment/views/sector-teams/non-hvc-performance', { dateRange: data.date_range, team: data.results } );
+			res.render( 'investment/views/sector-teams/non-hvc-performance', { dateRange: data.date_range, teamId, team: data.results } );
 
 		} ).catch( renderError.createHandler( res ) );
 	},
@@ -49,9 +49,9 @@ module.exports = {
 
 		const teamId = req.params.id;
 
-		investmentService.getSectorTeam( req, teamId ).then( ( data ) => {
+		fdiService.getSectorTeam( req, teamId ).then( ( data ) => {
 
-			res.render( 'investment/views/sector-teams/wins', { dateRange: data.date_range, team: data.results } );
+			res.render( 'investment/views/sector-teams/wins', { dateRange: data.date_range, teamId, team: data.results } );
 
 		} ).catch( renderError.createHandler( res ) );
 	},
@@ -60,9 +60,9 @@ module.exports = {
 
 		const teamId = req.params.id;
 
-		investmentService.getSectorTeam( req, teamId ).then( ( data ) => {
+		fdiService.getSectorTeam( req, teamId ).then( ( data ) => {
 
-			res.render( 'investment/views/sector-teams/non-hvc-wins', { dateRange: data.date_range, team: data.results } );
+			res.render( 'investment/views/sector-teams/non-hvc-wins', { dateRange: data.date_range, teamId, team: data.results } );
 
 		} ).catch( renderError.createHandler( res ) );
 	},

@@ -3,7 +3,7 @@ const proxyquire = require( 'proxyquire' );
 const moduleFile = '../../../../../../app/sub-apps/investment/controllers/controller.index';
 
 let controller;
-let investmentService;
+let fdiService;
 let getHomepageData;
 let createHandler;
 let renderErrorHandler;
@@ -19,10 +19,10 @@ describe( 'Index controller', function(){
 		renderErrorHandler = jasmine.createSpy( 'renderErrorHandler' );
 		createHandler = jasmine.createSpy( 'createHandler' ).and.callFake( () => renderErrorHandler );
 
-		investmentService = { getHomepageData };
+		fdiService = { getHomepageData };
 
 		controller = proxyquire( moduleFile, {
-			'../../../lib/service/service.backend/investment': investmentService,
+			'../../../lib/service/service.backend/investment/fdi': fdiService,
 			'../../../lib/render-error': { createHandler }
 		} );
 

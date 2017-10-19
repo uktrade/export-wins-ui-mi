@@ -1,12 +1,12 @@
 const proxyquire = require( 'proxyquire' );
 const rewire = require( 'rewire' );
 
-const spy = require( '../../../../helpers/spy' );
+const spy = require( '../../../../../helpers/spy' );
 
-const moduleFile = '../../../../../../app/lib/service/service.backend/investment';
+const moduleFile = '../../../../../../../app/lib/service/service.backend/investment/fdi';
 
 let getJson;
-let investmentService;
+let fdiService;
 let fdiOverviewTransformer;
 let fdiOverviewYoyTransformer;
 let req;
@@ -33,7 +33,7 @@ function returnData( data ){
 	getJson.and.callFake( () => new Promise( ( resolve ) => resolve( data ) ) );
 }
 
-describe( 'Investment backend service', function(){
+describe( 'Investment FDI backend service', function(){
 
 	beforeEach( function(){
 
@@ -49,10 +49,10 @@ describe( 'Investment backend service', function(){
 
 			getJson.and.callFake( () => new Promise( ( resolve ) => resolve() ) );
 
-			investmentService = proxyquire( moduleFile, {
-				'./_helpers': { getJson },
-				'../../transformers/fdi/overview': fdiOverviewTransformer,
-				'../../transformers/fdi/overview-yoy': fdiOverviewYoyTransformer
+			fdiService = proxyquire( moduleFile, {
+				'../_helpers': { getJson },
+				'../../../transformers/fdi/overview': fdiOverviewTransformer,
+				'../../../transformers/fdi/overview-yoy': fdiOverviewYoyTransformer
 			} );
 		} );
 
@@ -60,10 +60,9 @@ describe( 'Investment backend service', function(){
 
 			it( 'Should call the correct API', function( done ){
 
-				investmentService.getSectorTeams( req ).then( () => {
+				fdiService.getSectorTeams( req ).then( () => {
 
-					// Use export list for now
-					checkBackendArgs( '/mi/sector_teams/', req );
+					checkBackendArgs( '/mi/fdi/sector_teams/', req );
 					done();
 				} );
 			} );
@@ -79,10 +78,9 @@ describe( 'Investment backend service', function(){
 				//Provide data while using export APIs
 				returnData( { results: [ { id: 1, name: 2 } ] } );
 
-				investmentService.getSectorTeam( req, teamId ).then( () => {
+				fdiService.getSectorTeam( req, teamId ).then( () => {
 
-					// Use export list for now
-					checkBackendArgs( `/mi/sector_teams/`, req );
+					checkBackendArgs( `/mi/fdi/sector_teams/${ teamId }/`, req );
 					done();
 				} );
 			} );
@@ -92,7 +90,7 @@ describe( 'Investment backend service', function(){
 
 			it( 'Should call the correct API', function( done ){
 
-				investmentService.getOverseasRegions( req ).then( () => {
+				fdiService.getOverseasRegions( req ).then( () => {
 
 					// Use export list for now
 					checkBackendArgs( '/mi/os_regions/', req );
@@ -111,7 +109,7 @@ describe( 'Investment backend service', function(){
 				//Provide data while using export APIs
 				returnData( { results: [ { id: 1, name: 2 } ] } );
 
-				investmentService.getOverseasRegion( req, regionId ).then( () => {
+				fdiService.getOverseasRegion( req, regionId ).then( () => {
 
 					// Use export list for now
 					checkBackendArgs( `/mi/os_regions/`, req );
@@ -124,7 +122,7 @@ describe( 'Investment backend service', function(){
 
 			it( 'Should call the correct API', function( done ){
 
-				investmentService.getFdiOverview( req ).then( () => {
+				fdiService.getOverview( req ).then( () => {
 
 					checkBackendArgs( '/mi/fdi/overview/', req, fdiOverviewTransformer );
 					done();
@@ -132,11 +130,11 @@ describe( 'Investment backend service', function(){
 			} );
 		} );
 
-		describe( 'getFdiOverviewYoy', function(){
+		describe( 'getOverviewYoy', function(){
 
 			it( 'Should call the correct API', function( done ){
 
-				investmentService.getFdiOverviewYoy( req ).then( () => {
+				fdiService.getOverviewYoy( req ).then( () => {
 
 					checkBackendArgs( '/mi/fdi/overview/yoy/', req, fdiOverviewYoyTransformer );
 					done();
@@ -149,7 +147,7 @@ describe( 'Investment backend service', function(){
 
 		beforeEach( function(){
 
-			investmentService = rewire( moduleFile );
+			fdiService = rewire( moduleFile );
 		} );
 
 		function createSpies( names ){
@@ -163,7 +161,7 @@ describe( 'Investment backend service', function(){
 				obj.response[ name ] = true;
 				obj.spy = spy( name, obj.response );
 
-				investmentService.__set__( name, obj.spy );
+				fdiService.__set__( name, obj.spy );
 				spies[ name ] = obj;
 			} );
 
@@ -176,22 +174,22 @@ describe( 'Investment backend service', function(){
 
 				const spies = createSpies( [
 					'getSectorTeams',
-					'getOverseasRegions',
-					'getFdiOverview',
-					'getFdiOverviewYoy'
+					//'getOverseasRegions',
+					'getOverview',
+					'getOverviewYoy'
 				] );
 
-				investmentService.getHomepageData( req ).then( ( data ) => {
+				fdiService.getHomepageData( req ).then( ( data ) => {
 
 					expect( spies.getSectorTeams.spy ).toHaveBeenCalledWith( req );
-					expect( spies.getOverseasRegions.spy ).toHaveBeenCalledWith( req );
-					expect( spies.getFdiOverview.spy ).toHaveBeenCalledWith( req );
-					expect( spies.getFdiOverviewYoy.spy ).toHaveBeenCalledWith( req );
+					//expect( spies.getOverseasRegions.spy ).toHaveBeenCalledWith( req );
+					expect( spies.getOverview.spy ).toHaveBeenCalledWith( req );
+					expect( spies.getOverviewYoy.spy ).toHaveBeenCalledWith( req );
 
 					expect( data.sectorTeams ).toEqual( spies.getSectorTeams.response );
-					expect( data.overseasRegions ).toEqual( spies.getOverseasRegions.response );
-					expect( data.overview ).toEqual( spies.getFdiOverview.response );
-					expect( data.overviewYoy ).toEqual( spies.getFdiOverviewYoy.response );
+					//expect( data.overseasRegions ).toEqual( spies.getOverseasRegions.response );
+					expect( data.overview ).toEqual( spies.getOverview.response );
+					expect( data.overviewYoy ).toEqual( spies.getOverviewYoy.response );
 
 					done();
 

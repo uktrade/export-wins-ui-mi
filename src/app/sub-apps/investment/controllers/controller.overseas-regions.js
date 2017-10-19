@@ -1,11 +1,11 @@
-const investmentService = require( '../../../lib/service/service.backend/investment' );
+const fdiService = require( '../../../lib/service/service.backend/investment/fdi' );
 const renderError = require( '../../../lib/render-error' );
 
 module.exports = {
 
 	regions: function( req, res ){
 
-		investmentService.getOverseasRegions( req ).then( ( data ) => {
+		fdiService.getOverseasRegions( req ).then( ( data ) => {
 
 			res.render( 'investment/views/overseas-regions/overview', { regions: data } );
 
@@ -16,7 +16,7 @@ module.exports = {
 
 		const regionId = req.params.id;
 
-		investmentService.getOverseasRegion( req, regionId ).then( ( data ) => {
+		fdiService.getOverseasRegion( req, regionId ).then( ( data ) => {
 
 			res.render( 'investment/views/overseas-regions/detail', { dateRange: data.date_range, region: data.results } );
 
@@ -27,7 +27,7 @@ module.exports = {
 
 		const regionId = req.params.id;
 
-		investmentService.getOverseasRegion( req, regionId ).then( ( data ) => {
+		fdiService.getOverseasRegion( req, regionId ).then( ( data ) => {
 
 			res.render( 'investment/views/overseas-regions/hvc-performance', { dateRange: data.date_range, region: data.results } );
 
@@ -38,7 +38,7 @@ module.exports = {
 
 		const regionId = req.params.id;
 
-		investmentService.getOverseasRegion( req, regionId ).then( ( data ) => {
+		fdiService.getOverseasRegion( req, regionId ).then( ( data ) => {
 
 			res.render( 'investment/views/overseas-regions/non-hvc-performance', { dateRange: data.date_range, region: data.results } );
 
@@ -49,7 +49,7 @@ module.exports = {
 
 		const regionId = req.params.id;
 
-		investmentService.getOverseasRegion( req, regionId ).then( ( data ) => {
+		fdiService.getOverseasRegion( req, regionId ).then( ( data ) => {
 
 			res.render( 'investment/views/overseas-regions/wins', { dateRange: data.date_range, region: data.results } );
 
@@ -60,7 +60,7 @@ module.exports = {
 
 		const regionId = req.params.id;
 
-		investmentService.getOverseasRegion( req, regionId ).then( ( data ) => {
+		fdiService.getOverseasRegion( req, regionId ).then( ( data ) => {
 
 			res.render( 'investment/views/overseas-regions/non-hvc-wins', { dateRange: data.date_range, region: data.results } );
 

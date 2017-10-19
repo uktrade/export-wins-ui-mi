@@ -764,8 +764,8 @@ if( config.backend.mock ){
 
 				it( 'Should return a 200 with the correct heading', function( done ){
 
-					interceptBackend.getStub( `/mi/sector_teams/?year=2017`, 200, '/investment/sector_teams/' );
-					interceptBackend.getStub( `/mi/os_regions/?year=2017`, 200, '/investment/os_regions/' );
+					interceptBackend.getStub( `/mi/fdi/sector_teams/?year=2017`, 200, '/investment/fdi/sector_teams/' );
+					//interceptBackend.getStub( `/mi/os_regions/?year=2017`, 200, '/investment/fdi/os_regions/' );
 					interceptBackend.getStub( `/mi/fdi/overview/?year=2017`, 200, '/investment/fdi/overview' );
 					interceptBackend.getStub( `/mi/fdi/overview/yoy/?year=2017`, 200, '/investment/fdi/overview-yoy' );
 
@@ -782,7 +782,7 @@ if( config.backend.mock ){
 
 				it( 'Should return a 200 with the correct heading', function( done ){
 
-					interceptBackend.getStub( `/mi/sector_teams/?year=2017`, 200, '/investment/sector_teams/' );
+					interceptBackend.getStub( `/mi/fdi/sector_teams/?year=2017`, 200, '/investment/fdi/sector_teams/' );
 
 					supertest( app ).get( '/investment/sector-teams/' ).end( ( err, res ) => {
 
@@ -795,85 +795,91 @@ if( config.backend.mock ){
 
 			describe( 'Sector Team', function(){
 
-				it( 'Should return a 200 with the correct heading', function( done ){
+				const teamId = 1;
 
-					interceptBackend.getStub( `/mi/sector_teams/?year=2017`, 200, '/investment/sector_teams/' );
+				describe( 'Sector Team detail', function(){
 
-					supertest( app ).get( '/investment/sector-teams/28395/' ).end( ( err, res ) => {
+					it( 'Should return a 200 with the correct heading', function( done ){
 
-						checkResponse( res, 200 );
-						expect( getTitle( res ) ).toEqual( 'MI - Investment - Sector team performance - sed aut alias' );
-						done();
+						interceptBackend.getStub( `/mi/fdi/sector_teams/${ teamId }/?year=2017`, 200, '/investment/fdi/sector_teams/sector_team' );
+
+						supertest( app ).get( `/investment/sector-teams/${ teamId }/` ).end( ( err, res ) => {
+
+							checkResponse( res, 200 );
+							expect( getTitle( res ) ).toEqual( 'MI - Investment - Sector team performance - dolor sed explicabo' );
+							done();
+						} );
+					} );
+				} );
+
+				describe( 'Sector Team HVC performance', function(){
+
+					it( 'Should return a 200 with the correct heading', function( done ){
+
+						interceptBackend.getStub( `/mi/fdi/sector_teams/${ teamId }/?year=2017`, 200, '/investment/fdi/sector_teams/sector_team' );
+
+						supertest( app ).get( `/investment/sector-teams/${ teamId }/hvc-performance/` ).end( ( err, res ) => {
+
+							checkResponse( res, 200 );
+							expect( getTitle( res ) ).toEqual( 'MI - Investment - Sector team HVC performance - dolor sed explicabo' );
+							done();
+						} );
+					} );
+				} );
+
+				describe( 'Sector Team non HVC performance', function(){
+
+					it( 'Should return a 200 with the correct heading', function( done ){
+
+						interceptBackend.getStub( `/mi/fdi/sector_teams/${ teamId }/?year=2017`, 200, '/investment/fdi/sector_teams/sector_team' );
+
+						supertest( app ).get( `/investment/sector-teams/${ teamId }/non-hvc-performance/` ).end( ( err, res ) => {
+
+							checkResponse( res, 200 );
+							expect( getTitle( res ) ).toEqual( 'MI - Investment - Sector team non HVC performance - dolor sed explicabo' );
+							done();
+						} );
+					} );
+				} );
+
+				describe( 'Sector Team wins', function(){
+
+					it( 'Should return a 200 with the correct heading', function( done ){
+
+						interceptBackend.getStub( `/mi/fdi/sector_teams/${ teamId }/?year=2017`, 200, '/investment/fdi/sector_teams/sector_team' );
+
+						supertest( app ).get( `/investment/sector-teams/${ teamId }/wins/` ).end( ( err, res ) => {
+
+							checkResponse( res, 200 );
+							expect( getTitle( res ) ).toEqual( 'MI - Investment - Sector team HVC wins - dolor sed explicabo' );
+							done();
+						} );
+					} );
+				} );
+
+				describe( 'Sector Team non HVC wins', function(){
+
+					it( 'Should return a 200 with the correct heading', function( done ){
+
+						interceptBackend.getStub( `/mi/fdi/sector_teams/${ teamId }/?year=2017`, 200, '/investment/fdi/sector_teams/sector_team' );
+
+						supertest( app ).get( `/investment/sector-teams/${ teamId }/non-hvc-wins/` ).end( ( err, res ) => {
+
+							checkResponse( res, 200 );
+							expect( getTitle( res ) ).toEqual( 'MI - Investment - Sector team non HVC wins - dolor sed explicabo' );
+							done();
+						} );
 					} );
 				} );
 			} );
 
-			describe( 'Sector Team HVC performance', function(){
-
-				it( 'Should return a 200 with the correct heading', function( done ){
-
-					interceptBackend.getStub( `/mi/sector_teams/?year=2017`, 200, '/investment/sector_teams/' );
-
-					supertest( app ).get( '/investment/sector-teams/28395/hvc-performance/' ).end( ( err, res ) => {
-
-						checkResponse( res, 200 );
-						expect( getTitle( res ) ).toEqual( 'MI - Investment - Sector team HVC performance - sed aut alias' );
-						done();
-					} );
-				} );
-			} );
-
-			describe( 'Sector Team non HVC performance', function(){
-
-				it( 'Should return a 200 with the correct heading', function( done ){
-
-					interceptBackend.getStub( `/mi/sector_teams/?year=2017`, 200, '/investment/sector_teams/' );
-
-					supertest( app ).get( '/investment/sector-teams/28395/non-hvc-performance/' ).end( ( err, res ) => {
-
-						checkResponse( res, 200 );
-						expect( getTitle( res ) ).toEqual( 'MI - Investment - Sector team non HVC performance - sed aut alias' );
-						done();
-					} );
-				} );
-			} );
-
-			describe( 'Sector Team wins', function(){
-
-				it( 'Should return a 200 with the correct heading', function( done ){
-
-					interceptBackend.getStub( `/mi/sector_teams/?year=2017`, 200, '/investment/sector_teams/' );
-
-					supertest( app ).get( '/investment/sector-teams/28395/wins/' ).end( ( err, res ) => {
-
-						checkResponse( res, 200 );
-						expect( getTitle( res ) ).toEqual( 'MI - Investment - Sector team HVC wins - sed aut alias' );
-						done();
-					} );
-				} );
-			} );
-
-			describe( 'Sector Team non HVC wins', function(){
-
-				it( 'Should return a 200 with the correct heading', function( done ){
-
-					interceptBackend.getStub( `/mi/sector_teams/?year=2017`, 200, '/investment/sector_teams/' );
-
-					supertest( app ).get( '/investment/sector-teams/28395/non-hvc-wins/' ).end( ( err, res ) => {
-
-						checkResponse( res, 200 );
-						expect( getTitle( res ) ).toEqual( 'MI - Investment - Sector team non HVC wins - sed aut alias' );
-						done();
-					} );
-				} );
-			} );
 
 
 			describe( 'Overseas Regions', function(){
 
 				it( 'Should return a 200 with the correct heading', function( done ){
 
-					interceptBackend.getStub( `/mi/os_regions/?year=2017`, 200, '/investment/os_regions/' );
+					interceptBackend.getStub( `/mi/os_regions/?year=2017`, 200, '/investment/fdi/os_regions/' );
 
 					supertest( app ).get( '/investment/overseas-regions/' ).end( ( err, res ) => {
 
@@ -888,7 +894,7 @@ if( config.backend.mock ){
 
 				it( 'Should return a 200 with the correct heading', function( done ){
 
-					interceptBackend.getStub( `/mi/os_regions/?year=2017`, 200, '/investment/os_regions/' );
+					interceptBackend.getStub( `/mi/os_regions/?year=2017`, 200, '/investment/fdi/os_regions/' );
 
 					supertest( app ).get( '/investment/overseas-regions/40105/' ).end( ( err, res ) => {
 
@@ -903,7 +909,7 @@ if( config.backend.mock ){
 
 				it( 'Should return a 200 with the correct heading', function( done ){
 
-					interceptBackend.getStub( `/mi/os_regions/?year=2017`, 200, '/investment/os_regions/' );
+					interceptBackend.getStub( `/mi/os_regions/?year=2017`, 200, '/investment/fdi/os_regions/' );
 
 					supertest( app ).get( '/investment/overseas-regions/40105/hvc-performance/' ).end( ( err, res ) => {
 
@@ -918,7 +924,7 @@ if( config.backend.mock ){
 
 				it( 'Should return a 200 with the correct heading', function( done ){
 
-					interceptBackend.getStub( `/mi/os_regions/?year=2017`, 200, '/investment/os_regions/' );
+					interceptBackend.getStub( `/mi/os_regions/?year=2017`, 200, '/investment/fdi/os_regions/' );
 
 					supertest( app ).get( '/investment/overseas-regions/40105/non-hvc-performance/' ).end( ( err, res ) => {
 
@@ -933,7 +939,7 @@ if( config.backend.mock ){
 
 				it( 'Should return a 200 with the correct heading', function( done ){
 
-					interceptBackend.getStub( `/mi/os_regions/?year=2017`, 200, '/investment/os_regions/' );
+					interceptBackend.getStub( `/mi/os_regions/?year=2017`, 200, '/investment/fdi/os_regions/' );
 
 					supertest( app ).get( '/investment/overseas-regions/40105/wins/' ).end( ( err, res ) => {
 
@@ -948,7 +954,7 @@ if( config.backend.mock ){
 
 				it( 'Should return a 200 with the correct heading', function( done ){
 
-					interceptBackend.getStub( `/mi/os_regions/?year=2017`, 200, '/investment/os_regions/' );
+					interceptBackend.getStub( `/mi/os_regions/?year=2017`, 200, '/investment/fdi/os_regions/' );
 
 					supertest( app ).get( '/investment/overseas-regions/40105/non-hvc-wins/' ).end( ( err, res ) => {
 
