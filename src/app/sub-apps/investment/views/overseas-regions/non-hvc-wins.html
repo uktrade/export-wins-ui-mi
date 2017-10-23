@@ -11,13 +11,13 @@
 		Investment
 	</h1>
 
-	<h2>{{ region.name }}<span class="page-heading-secondary"> FDI Overseas Region</span></h2>
+	<h2 class="page-sub-heading">{{ region.name }}<span class="page-sub-heading_secondary"> FDI Overseas Region</span></h2>
 
 	{% include 'partials/year-selector.html' %}
+	<h3 class="page-date">{{ financialYear( dateRange ) }}</h3>
 
 	{{ tabs( region.id, nonHvcWins = true ) }}
 
-	<h3 class="page-date">{{ financialYear( dateRange ) }}</h3>
 {% endblock %}
 
 

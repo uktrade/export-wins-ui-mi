@@ -66,18 +66,26 @@ main {
 	margin-bottom: pem( 20, 36 );
 }
 
-.page-heading-secondary {
+.page-heading_secondary,
+.page-sub-heading_secondary {
 	@include bold-19;
 	color: $grey-1;
 }
 
 .page-sub-heading {
 	@include bold-24;
+	margin-bottom: pem( 30, 24 );
+	margin-top: pem( -10, 24 );
 }
+
+.page-financial-year {
+	@include bold-24;
+}
+
 
 .page-date {
 	@include bold-16;
-	padding: pem( 5 );
+	padding: pem( 5 ) pem( 5 ) pem( 5 ) 0;
 }
 
 .page-date--uk-regions-overview {

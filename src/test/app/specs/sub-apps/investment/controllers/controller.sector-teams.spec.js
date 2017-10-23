@@ -6,12 +6,17 @@ let controller;
 let fdiService;
 let createHandler;
 let renderErrorHandler;
+let fdiOverviewViewModelSpy;
+let fdiSectorTeamMarketsViewModelSpy;
 let req;
 let res;
 
 describe( 'Investment Sector Teams controller', function(){
 
 	beforeEach( function(){
+
+		fdiOverviewViewModelSpy = jasmine.createSpy( 'fdiOverviewViewModel' );
+		fdiSectorTeamMarketsViewModelSpy = jasmine.createSpy( 'fdiSectorTeamMarketsViewModel' );
 
 		renderErrorHandler = jasmine.createSpy( 'renderErrorHandler' );
 		createHandler = jasmine.createSpy( 'createHandler' ).and.callFake( () => renderErrorHandler );
@@ -23,7 +28,9 @@ describe( 'Investment Sector Teams controller', function(){
 
 		controller = proxyquire( moduleFile, {
 			'../../../lib/service/service.backend/investment/fdi': fdiService,
-			'../../../lib/render-error': { createHandler }
+			'../../../lib/render-error': { createHandler },
+			'../view-models/fdi-overview': { create: fdiOverviewViewModelSpy },
+			'../view-models/fdi-sector-team-markets': { create: fdiSectorTeamMarketsViewModelSpy }
 		} );
 
 		req = {
@@ -44,9 +51,9 @@ describe( 'Investment Sector Teams controller', function(){
 
 			it( 'Should render the view with the correct data', function( done ){
 
-				const sectorTeams = { sectorTeams: true };
+				const sectorTeams = { date_range: { start: 1, end: 2 }, results: true };
 				const promise = new Promise( ( resolve ) => {
-					resolve( { sectorTeams } );
+					resolve( sectorTeams );
 				} );
 
 				fdiService.getSectorTeams.and.callFake( () => promise );
@@ -55,10 +62,12 @@ describe( 'Investment Sector Teams controller', function(){
 
 				expect( createHandler ).toHaveBeenCalledWith( res );
 
-				promise.then( ( data ) => {
+				promise.then( () => {
 
 					expect( fdiService.getSectorTeams ).toHaveBeenCalledWith( req );
-					expect( res.render ).toHaveBeenCalledWith( 'investment/views/sector-teams/overview', { sectorTeams: data } );
+					expect( res.render ).toHaveBeenCalledWith( 'investment/views/sector-teams/overview', {
+						sectorTeams
+					} );
 					done();
 				} );
 			} );
@@ -94,14 +103,24 @@ describe( 'Investment Sector Teams controller', function(){
 		} );
 	} );
 
-	describe( 'Sector Team', function(){
+	describe( 'Single Sector Team', function(){
 
 		describe( 'With success', function(){
 
 			it( 'Should render the view with the correct data', function( done ){
 
 				const teamId = '1';
-				const sectorTeamResponse = { date_range: { start: 1, end: 2 }, results: { id: 1, name: 'abc' } };
+				const fdiOverviewViewModelResponse = { fdiOverviewViewModelResponse: true };
+				const fdiSectorTeamMarketsViewModelResponse = { fdiSectorTeamMarketsViewModelResponse: true };
+				const sectorTeamResponse = {
+					date_range: { start: 1, end: 2 },
+					results: {
+						id: 1,
+						name: 'abc',
+						overview: { someData: true },
+						market:{ marketData: true }
+					}
+				};
 				const promise =  new Promise( ( resolve ) => {
 					resolve( sectorTeamResponse );
 				} );
@@ -109,13 +128,23 @@ describe( 'Investment Sector Teams controller', function(){
 				req.params = { id: teamId };
 
 				fdiService.getSectorTeam.and.callFake( () => promise );
+				fdiOverviewViewModelSpy.and.callFake( () => fdiOverviewViewModelResponse );
+				fdiSectorTeamMarketsViewModelSpy.and.callFake( () => fdiSectorTeamMarketsViewModelResponse );
 
 				controller.sectorTeam( req, res );
 
 				promise.then( () => {
 
 					expect( fdiService.getSectorTeam ).toHaveBeenCalledWith( req, teamId );
-					expect( res.render ).toHaveBeenCalledWith( 'investment/views/sector-teams/detail', { dateRange: sectorTeamResponse.date_range, teamId, team: sectorTeamResponse.results } );
+					expect( fdiOverviewViewModelSpy ).toHaveBeenCalledWith( sectorTeamResponse.results.overview );
+					expect( fdiSectorTeamMarketsViewModelSpy ).toHaveBeenCalledWith( sectorTeamResponse.results.markets );
+					expect( res.render ).toHaveBeenCalledWith( 'investment/views/sector-teams/detail', {
+						dateRange: sectorTeamResponse.date_range,
+						teamId,
+						team: sectorTeamResponse.results,
+						overview: fdiOverviewViewModelResponse,
+						markets: fdiSectorTeamMarketsViewModelResponse
+					} );
 					done();
 				} );
 			} );
