@@ -3,6 +3,7 @@
 {% set pageName='Investment Homepage' %}
 
 {% from 'macros/dates.html' import financialYear %}
+{% from './macros/fdi-overview.html' import fdiOverview %}
 
 {% block page_content %}
 
@@ -12,95 +13,12 @@
 
 	{% include 'partials/year-selector.html' %}
 
-	<h2 class="page-sub-heading">{{ selectedYear }} to {{ selectedYear + 1 }} financial year</h2>
+	<h2 class="page-financial-year">{{ selectedYear }} to {{ selectedYear + 1 }} financial year</h2>
 
-	<section class="fdi-overview-section">
-		<div class="grid-row">
-			<div class="column-single">
+	<h3 class="fdi-overview-heading">Overall performance</h3>
+	<h4 class="fdi-overview-date">{{ financialYear( dateRange ) }}</h4>
 
-				<h3 class="fdi-overview-heading">Overall performance</h3>
-				<h4 class="fdi-overview-date">{{ financialYear( overview.date_range ) }}</h4>
-
-				<ul class="fdi-overview-list fdi-overview-list--first">
-					<li class="fdi-overview-list_item fdi-overview-list_item--six">
-						<h4 class="fdi-overview-list_heading">FDI project<br>target</h4>
-						<p class="fdi-overview-list_text">{{ overview.results.target }}</p>
-					</li>
-
-					<li class="fdi-overview-list_item fdi-overview-list_item--six">
-						<h4 class="fdi-overview-list_heading">Total<br>verified</h4>
-						<p class="fdi-overview-list_text">{{ overview.results.totals.verified }}</p>
-					</li>
-
-					<li class="fdi-overview-list_item fdi-overview-list_item--six">
-						<h4 class="fdi-overview-list_heading">Total<br>verified met</h4>
-						<p class="fdi-overview-list_text">{{ overview.results.metPercent | default( 0 ) }}%</p>
-					</li>
-
-					<li class="fdi-overview-list_item fdi-overview-list_item--six">
-						<h4 class="fdi-overview-list_heading">New jobs<br>verified</h4>
-						<p class="fdi-overview-list_text">{{ overview.results.jobs.new.verified }}</p>
-					</li>
-
-					<li class="fdi-overview-list_item fdi-overview-list_item--six">
-						<h4 class="fdi-overview-list_heading">Safeguarded<br>jobs verified</h4>
-						<p class="fdi-overview-list_text">{{ overview.results.jobs.safe.verified }}</p>
-					</li>
-
-					<li class="fdi-overview-list_item fdi-overview-list_item--six">
-						<h4 class="fdi-overview-list_heading">CAPEX<br>verified</h4>
-						<p class="fdi-overview-list_text">{{ overview.results.value.verified | largeNumber( true ) | safe }}</p>
-					</li>
-				</dl>
-			</div>
-		</div>
-
-		<div class="grid-row">
-			<div class="column-half fdi-overview-unconfirmed">
-
-				<ul class="fdi-overview-list">
-					<li class="fdi-overview-list_item fdi-overview-list_item--three">
-						<h4 class="fdi-overview-list_heading">CAPEX<br>success confirmed</h4>
-						<p class="fdi-overview-list_text fdi-overview-list_text--unconfirmed">{{ overview.results.value.pending | largeNumber( true ) | safe }}</p>
-					</li>
-
-					<li class="fdi-overview-list_item fdi-overview-list_item--three">
-						<h4 class="fdi-overview-list_heading">Total success<br>confirmed</h4>
-						<p class="fdi-overview-list_text fdi-overview-list_text--unconfirmed">{{ overview.results.totals.pending }}</p>
-					</li>
-
-					<li class="fdi-overview-list_item fdi-overview-list_item--three">
-						<h4 class="fdi-overview-list_heading">New jobs<br>success confirmed</h4>
-						<p class="fdi-overview-list_text fdi-overview-list_text--unconfirmed">{{ overview.results.jobs.new.pending }}</p>
-					</li>
-				</dl>
-
-			</div>
-			<div class="column-half fdi-overview-verified">
-
-				<h4 class="fdi-overview-period-heading">Verified in period</h4>
-				<ul class="fdi-overview-period-list">
-					<li class="fdi-overview-period-list_item">
-						<h5 class="fdi-overview-period-list_heading fdi-overview-period-list_heading--high">High</h5>
-						<p class="fdi-overview-period-list_text">{{ overview.results.verified.high.number }}</p>
-						<p class="fdi-overview-period-list_text fdi-overview-period-list_text--percent">{{ overview.results.verified.high.percent }}%</p>
-					</li>
-					<li class="fdi-overview-period-list_item">
-						<h5 class="fdi-overview-period-list_heading">Good</h5>
-						<p class="fdi-overview-period-list_text">{{ overview.results.verified.good.number }}</p>
-						<p class="fdi-overview-period-list_text fdi-overview-period-list_text--percent">{{ overview.results.verified.good.percent }}%</p>
-					</li>
-					<li class="fdi-overview-period-list_item">
-						<h5 class="fdi-overview-period-list_heading">Standard</h5>
-						<p class="fdi-overview-period-list_text">{{ overview.results.verified.standard.number }}</p>
-						<p class="fdi-overview-period-list_text fdi-overview-period-list_text--percent">{{ overview.results.verified.standard.percent }}%</p>
-					</li>
-				</ul>
-
-			</div>
-		</div>
-
-	</section>
+	{{ fdiOverview( overview ) }}
 
 	{% macro yoyTable( items, modifyer ) %}
 
@@ -159,8 +77,10 @@
 
 	<section class="grid-row i-homepage-lists">
 		<div class="column-one-third">
-			{#
-			<h3><a href="{{ urls.investment.sectorTeams() }}">Sector Teams</a></h3>
+
+			{% if showSectorTeams %}
+
+			<h3>{#<a href="{{ urls.investment.sectorTeams() }}">#}Sector Teams{#</a>#}</h3>
 
 			<ul>
 			{% for team in sectorTeams.results %}
@@ -169,7 +89,8 @@
 				</li>
 			{% endfor %}
 			</ul>
-			#}
+
+			{% endif %}
 		</div>
 		<div class="column-one-third">
 		{#

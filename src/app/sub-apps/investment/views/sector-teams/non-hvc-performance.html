@@ -11,12 +11,12 @@
 		Investment
 	</h1>
 
-	<h2>{{ team.description }}<span class="page-heading-secondary"> FDI Sector Team</span></h2>
+	<h2 class="page-sub-heading">{{ team.description }}<span class="page-sub-heading_secondary"> FDI Sector Team</span></h2>
 
 	{% include 'partials/year-selector.html' %}
+	<h3 class="page-date">{{ financialYear( dateRange ) }}</h3>
 
 	{{ tabs( teamId, nonHvcPerformance = true ) }}
 
-	<h3 class="page-date">{{ financialYear( dateRange ) }}</h3>
 {% endblock %}
 

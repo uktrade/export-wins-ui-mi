@@ -1,6 +1,5 @@
 const { getAll, getJson } = require( '../_helpers' );
 
-const transformFdiOverview = require( '../../../transformers/fdi/overview' );
 const transformFdiOverviewYoy = require( '../../../transformers/fdi/overview-yoy' );
 
 function createIdMatcher( id ){
@@ -43,7 +42,7 @@ function getOverseasRegion( req, teamId ){
 
 function getOverview( req ){
 
-	return getJson( '/mi/fdi/overview/', req, transformFdiOverview );
+	return getJson( '/mi/fdi/overview/', req );
 }
 
 function getOverviewYoy( req ){

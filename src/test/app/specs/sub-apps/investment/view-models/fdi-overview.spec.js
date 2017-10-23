@@ -1,10 +1,10 @@
-const transform = require( '../../../../../../app/lib/transformers/fdi/overview' );
+const overviewViewModel = require( '../../../../../../app/sub-apps/investment/view-models/fdi-overview' );
 const getBackendStub = require( '../../../../helpers/get-backend-stub' );
 
 const input = getBackendStub( '/investment/fdi/overview' );
 const inputNoPerformance = getBackendStub( '/investment/fdi/overview_no-performance' );
 
-describe( 'FDI Overview Transformer', function(){
+describe( 'FDI Overview View Model', function(){
 
 	let output;
 
@@ -13,10 +13,10 @@ describe( 'FDI Overview Transformer', function(){
 
 		beforeEach( function(){
 
-			output = transform( input.results );
+			output = overviewViewModel.create( input.results );
 		} );
 
-		it( 'Should transform the response to the correct format', function(){
+		it( 'Should create the response in the correct format', function(){
 
 			const results = input.results;
 
@@ -48,10 +48,10 @@ describe( 'FDI Overview Transformer', function(){
 
 		beforeEach( function(){
 
-			output = transform( inputNoPerformance.results );
+			output = overviewViewModel.create( inputNoPerformance.results );
 		} );
 
-		it( 'Should transform the response to the correct format with 0s', function(){
+		it( 'Should create the response in the correct format with 0s', function(){
 
 			const results = inputNoPerformance.results;
 

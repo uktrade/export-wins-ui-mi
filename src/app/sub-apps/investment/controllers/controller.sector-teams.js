@@ -1,5 +1,7 @@
 const fdiService = require( '../../../lib/service/service.backend/investment/fdi' );
 const renderError = require( '../../../lib/render-error' );
+const fdiOverviewViewModel = require( '../view-models/fdi-overview' );
+const fdiSectorTeamMarketsViewModel = require( '../view-models/fdi-sector-team-markets' );
 
 module.exports = {
 
@@ -18,7 +20,13 @@ module.exports = {
 
 		fdiService.getSectorTeam( req, teamId ).then( ( data ) => {
 
-			res.render( 'investment/views/sector-teams/detail', { dateRange: data.date_range, teamId, team: data.results } );
+			res.render( 'investment/views/sector-teams/detail', {
+				dateRange: data.date_range,
+				teamId,
+				team: data.results,
+				overview: fdiOverviewViewModel.create( data.results.overview ),
+				markets: fdiSectorTeamMarketsViewModel.create( data.results.markets )
+			} );
 
 		} ).catch( renderError.createHandler( res ) );
 	},

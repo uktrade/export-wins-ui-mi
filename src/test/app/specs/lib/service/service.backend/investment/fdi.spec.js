@@ -7,7 +7,6 @@ const moduleFile = '../../../../../../../app/lib/service/service.backend/investm
 
 let getJson;
 let fdiService;
-let fdiOverviewTransformer;
 let fdiOverviewYoyTransformer;
 let req;
 
@@ -39,7 +38,6 @@ describe( 'Investment FDI backend service', function(){
 
 		req = { cookies: { sessionid: 'test' } };
 		getJson = jasmine.createSpy( 'getJson' );
-		fdiOverviewTransformer = jasmine.createSpy( 'fdiOverviewTransformer' );
 		fdiOverviewYoyTransformer = jasmine.createSpy( 'fdiOverviewYoyTransformer' );
 	} );
 
@@ -51,7 +49,6 @@ describe( 'Investment FDI backend service', function(){
 
 			fdiService = proxyquire( moduleFile, {
 				'../_helpers': { getJson },
-				'../../../transformers/fdi/overview': fdiOverviewTransformer,
 				'../../../transformers/fdi/overview-yoy': fdiOverviewYoyTransformer
 			} );
 		} );
@@ -124,7 +121,7 @@ describe( 'Investment FDI backend service', function(){
 
 				fdiService.getOverview( req ).then( () => {
 
-					checkBackendArgs( '/mi/fdi/overview/', req, fdiOverviewTransformer );
+					checkBackendArgs( '/mi/fdi/overview/', req );
 					done();
 				} );
 			} );

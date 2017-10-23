@@ -21,10 +21,15 @@
 
 .fdi-overview-list {
 	padding: 0;
+	margin: 0;
 }
 
 .fdi-overview-list--first {
 	margin-bottom: pem( 30 );
+}
+
+.fdi-overview-list--confirmed {
+	margin-top: pem( 16 );
 }
 
 .fdi-overview-list_item {
@@ -37,6 +42,10 @@
 
 .fdi-overview-list_item--three {
 	min-width: 32.5%;
+}
+
+.fdi-overview-list_item--four {
+	min-width: 24%;
 }
 
 .fdi-overview-list_heading {
