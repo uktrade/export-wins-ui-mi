@@ -33,6 +33,7 @@ let config = {
 	feedbackSurvey: env( 'FEEDBACK_SURVEY' ),
 	faqLink: env( 'FAQ_LINK' ),
 	cookieSecret: env( 'COOKIE_SECRET' ),
+	userCookieName: env( 'USER_COOKIE_NAME', 'user' ),
 	logLevel: env( 'LOG_LEVEL', 'warn' ),
 	sentryDsn: env( 'SENTRY_DSN' ),
 	analyticsId: env( 'ANALYTICS_ID' ),
@@ -41,6 +42,7 @@ let config = {
 	jwt: {
 		secret: env( 'JWT_SECRET', 'thisshouldbeavalidsecret' )
 	},
+	oauthParamLength: env( 'OAUTH_PARAM_LENGTH', '75' ),
 	internalUsers: env( 'INTERNAL_USERS', '' ),
 	backend: {
 		secret: env( 'MI_SECRET' ),

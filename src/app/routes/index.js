@@ -21,7 +21,10 @@ module.exports = function( express, app, isDev ){
 
 	app.get( '/saml2/metadata/', samlController.metadata );
 	app.post( '/saml2/acs/', data, samlController.acs );
-	app.get( '/login/', loginController );
+
+	app.get( '/login/', loginController.oauth );
+	app.get( '/login/callback/', loginController.oauthCallback );
+	app.get( '/login-saml/', loginController.saml );
 
 	app.use( dateRange );
 

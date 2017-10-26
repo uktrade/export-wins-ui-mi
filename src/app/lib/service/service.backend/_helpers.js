@@ -90,6 +90,22 @@ module.exports = {
 
 	sessionGet,
 
+	get: function( path ){
+
+		return new Promise( ( resolve, reject ) => {
+
+			backend.get( path, createResponseHandler( resolve, reject ) );
+		} );
+	},
+
+	post: function( path, params ){
+
+		return new Promise( ( resolve, reject ) => {
+
+			backend.post( path, params, createResponseHandler( resolve, reject ) );
+		} );
+	},
+
 	sessionPost: function( path, req, data ){
 
 		return new Promise( ( resolve, reject ) => {
