@@ -46,7 +46,9 @@ describe( 'Backend service', function(){
 
 		helpers = {
 			sessionGet: jasmine.createSpy( 'helpers.sessionGet' ),
-			sessionPost: jasmine.createSpy( 'helpers.sessionPost' )
+			sessionPost: jasmine.createSpy( 'helpers.sessionPost' ),
+			get: jasmine.createSpy( 'helpers.get' ),
+			post: jasmine.createSpy( 'helpers.post' )
 		};
 
 		configStub = { backend: { stub: false, fake: false, mock: false } };
@@ -62,6 +64,75 @@ describe( 'Backend service', function(){
 	afterEach( function(){
 
 		jasmine.DEFAULT_TIMEOUT_INTERVAL = oldTimeout;
+	} );
+
+	describe( 'OAuth login', function(){
+
+		describe( 'When the response is a success', function(){
+
+			it( 'Should return the response from the backend', function( done ){
+
+				const responseBody = 'abc123';
+
+				helpers.get.and.callFake( function(){
+
+					return new Promise( ( resolve ) => resolve( { data: responseBody } ) );
+				} );
+
+				backendService.getOauthUrl().then( ( info ) => {
+
+					const args = helpers.get.calls.argsFor( 0 );
+
+					expect( args[ 0 ] ).toEqual( '/oauth2/auth_url/' );
+					expect( info.data ).toEqual( responseBody );
+					done();
+
+				} ).catch( done.fail );
+			} );
+		} );
+
+		describe( 'When the response is not a success', function(){
+
+			it( 'Should throw an error', function( done ){
+
+				const err = new Error( 'test' );
+
+				helpers.get.and.callFake( function(){
+
+					return new Promise( ( resolve, reject ) => reject( err ) );
+				} );
+
+				backendService.getOauthUrl( req ).then( done.fail ).catch( ( e ) => {
+
+					expect( e ).toEqual( err );
+					done();
+				} );
+			} );
+		} );
+	} );
+
+	describe( 'postOauthCallback', function(){
+
+		it( 'Should POST the params to the correct url', function( done ){
+
+			const params = { code: 1, status: 2 };
+			const responseBody = 'abc123';
+
+			helpers.post.and.callFake( function(){
+
+				return new Promise( ( resolve ) => resolve( { data: responseBody } ) );
+			} );
+
+			backendService.postOauthCallback( params ).then( ( /* info */ ) => {
+
+				const args = helpers.post.calls.argsFor( 0 );
+
+				expect( args[ 0 ] ).toEqual( '/oauth2/callback/' );
+				expect( args[ 1 ] ).toEqual( params );
+				done();
+
+			} ).catch( done.fail );
+		} );
 	} );
 
 	describe( 'SAML Login', function(){

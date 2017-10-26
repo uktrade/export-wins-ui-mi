@@ -45,14 +45,67 @@ describe( 'Render Error', function(){
 
 		describe( 'Calling the error handler with a 403', function(){
 
-			it( 'Should redirect to the login page', function(){
+			let err;
+			let response;
 
-				const err = new Error( 'test' );
+			beforeEach( function(){
+
+				response = {
+					headers: {}
+				};
+
+				err = new Error( 'test' );
 				err.code = 403;
+				err.response = response;
+			} );
 
-				handler( err );
+			describe( 'Without a PreferAuthWith header', function(){
 
-				expect( res.redirect ).toHaveBeenCalledWith( '/login/' );
+				it( 'Should redirect to the SAML login page', function(){
+
+					handler( err );
+
+					expect( res.redirect ).toHaveBeenCalledWith( '/login-saml/' );
+				} );
+			} );
+
+			describe( 'With a PreferAuthWith header', function(){
+
+				describe( 'When the header value is saml2', function(){
+
+					it( 'Should redirect to the SAML login page', function(){
+
+						response.headers.preferauthwith = 'saml2';
+
+						handler( err );
+
+						expect( res.redirect ).toHaveBeenCalledWith( '/login-saml/' );
+					} );
+				} );
+
+				describe( 'When the header value is oauth2', function(){
+
+					it( 'Should redirect to the login page', function(){
+
+						response.headers.preferauthwith = 'oauth2';
+
+						handler( err );
+
+						expect( res.redirect ).toHaveBeenCalledWith( '/login/' );
+					} );
+				} );
+
+				describe( 'When the header value is something else', function(){
+
+					it( 'Should redirect to the SAML login page', function(){
+
+						response.headers.preferauthwith = 'test';
+
+						handler( err );
+
+						expect( res.redirect ).toHaveBeenCalledWith( '/login-saml/' );
+					} );
+				} );
 			} );
 		} );
 

@@ -1,8 +1,7 @@
 const backendService = require( '../lib/service/service.backend' );
 const renderError = require( '../lib/render-error' );
 const reporter = require( '../lib/reporter' );
-
-const SESSION_COOKIE = 'sessionid=';
+const getSessionId = require( '../lib/get-session-id' );
 
 module.exports = {
 
@@ -12,16 +11,7 @@ module.exports = {
 
 			const response = info.response;
 			const cookies = response.headers[ 'set-cookie' ];
-			const sessionCookie = cookies.reduce( ( str, cookie ) => {
-
-				if( cookie.startsWith( SESSION_COOKIE ) ){
-
-					return cookie;
-				}
-
-				return str;
-
-			}, '' );
+			const sessionCookie = getSessionId( cookies );
 
 			res.set( 'Set-Cookie', [ sessionCookie ] );
 			res.redirect( '/' );

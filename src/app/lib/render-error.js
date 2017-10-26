@@ -19,7 +19,17 @@ module.exports = {
 
 			if( err.code === 403 ){
 
-				res.redirect( '/login/' );
+				const headers = err.response.headers;
+				const preferauthwith = headers.preferauthwith;
+
+				if( preferauthwith && preferauthwith === 'oauth2' ){
+
+					res.redirect( '/login/' );
+
+				} else {
+
+					res.redirect( '/login-saml/' );
+				}
 
 			} else {
 

@@ -1,7 +1,5 @@
 const proxyquire = require( 'proxyquire' );
 
-const getBackendStub = require( '../../../../helpers/get-backend-stub' );
-const interceptBackend = require( '../../../../helpers/intercept-backend' );
 const spyLogger = require( '../../../../helpers/spy-logger' );
 const spy = require( '../../../../helpers/spy' );
 
@@ -34,7 +32,7 @@ describe( 'Backend service helpers', function(){
 		let backendRequest;
 		let sessionGetData;
 
-		function checkBackendArgs( path, req ){
+		function checkSessionGetArgs( path, req ){
 
 			const args = backendRequest.sessionGet.calls.argsFor( 0 );
 
@@ -50,6 +48,8 @@ describe( 'Backend service helpers', function(){
 			sessionGetData = {};
 
 			backendRequest = {
+				get: jasmine.createSpy( 'backend-request.get' ).and.callFake( ( path, cb ) => cb( null, successResponse, {} ) ),
+				post: jasmine.createSpy( 'backend-request.post' ).and.callFake( ( path, params, cb ) => cb( null, successResponse, {} ) ),
 				sessionGet: jasmine.createSpy( 'backend-request.sessionGet' ).and.callFake( ( sessionId, path, cb ) => cb( null, successResponse, sessionGetData ) ),
 				sessionPost: jasmine.createSpy( 'backend-request.sessionPost' ).and.callFake( ( sessionId, path, data, cb ) => cb( null, successResponse, {} ) )
 			};
@@ -66,13 +66,53 @@ describe( 'Backend service helpers', function(){
 			} );
 		} );
 
+		describe( 'get', function(){
+
+			it( 'Should return a promise', function( done ){
+
+				helpers.get( path ).then( () => {
+
+					const args = backendRequest.get.calls.argsFor( 0 );
+
+					expect( backendRequest.get ).toHaveBeenCalled();
+					expect( args[ 0 ] ).toEqual( path );
+					expect( typeof args[ 1 ] ).toEqual( 'function' );
+					done();
+
+				} ).catch( done.fail );
+			} );
+		} );
+
+		describe( 'post', function(){
+
+			it( 'Should return a promise', function( done ){
+
+				const params = {
+					code: 1,
+					state: 2
+				};
+
+				helpers.post( path, params ).then( () => {
+
+					const args = backendRequest.post.calls.argsFor( 0 );
+
+					expect( backendRequest.post ).toHaveBeenCalled();
+					expect( args[ 0 ] ).toEqual( path );
+					expect( args[ 1 ] ).toEqual( params );
+					expect( typeof args[ 2 ] ).toEqual( 'function' );
+					done();
+
+				} ).catch( done.fail );
+			} );
+		} );
+
 		describe( 'sessionGet', function(){
 
 			it( 'Should return a promise and pass the params to the backend', function( done ){
 
 				helpers.sessionGet( path, req ).then( () => {
 
-					checkBackendArgs( path, req );
+					checkSessionGetArgs( path, req );
 					done();
 
 				} ).catch( done.fail );
@@ -114,7 +154,7 @@ describe( 'Backend service helpers', function(){
 
 						helpers.getJson( path, req ).then( () => {
 
-							checkBackendArgs( `${ path }?year=${ year }&date_start=${ startDate }`, req );
+							checkSessionGetArgs( `${ path }?year=${ year }&date_start=${ startDate }`, req );
 							done();
 
 						} ).catch( done.fail );
@@ -131,7 +171,7 @@ describe( 'Backend service helpers', function(){
 
 						helpers.getJson( path, req ).then( () => {
 
-							checkBackendArgs( `${ path }?year=${ year }&date_end=${ endDate }`, req );
+							checkSessionGetArgs( `${ path }?year=${ year }&date_end=${ endDate }`, req );
 							done();
 
 						} ).catch( done.fail );
@@ -269,6 +309,7 @@ describe( 'Backend service helpers', function(){
 		beforeEach( function(){
 
 			stubbedBackendRequest = {
+				get: jasmine.createSpy( 'backend-request.stub.get' ).and.callFake( ( path, cb ) => cb( null, successResponse, {} ) ),
 				sessionGet: jasmine.createSpy( 'backend-request.stub.sessionGet' ).and.callFake( ( sessionId, path, cb ) => cb( null, successResponse, {} ) ),
 				sessionPost: jasmine.createSpy( 'backend-request.stub.sessionPost' ).and.callFake( ( sessionId, path, data, cb ) => cb( null, successResponse, {} ) )
 			};
@@ -276,6 +317,23 @@ describe( 'Backend service helpers', function(){
 			helpers = proxyquire( '../../../../../../app/lib/service/service.backend/_helpers', {
 				'../../../config': { backend: { stub: true, fake: false, mock: false } },
 				'../../backend-request.stub': stubbedBackendRequest
+			} );
+		} );
+
+		describe( 'get', function(){
+
+			it( 'Should call the stubbed backend-request', function( done ){
+
+				helpers.get( path ).then ( () => {
+
+					const args = stubbedBackendRequest.get.calls.argsFor( 0 );
+
+					expect( stubbedBackendRequest.get ).toHaveBeenCalled();
+					expect( args[ 0 ] ).toEqual( path );
+					expect( typeof args[ 1 ] ).toEqual( 'function' );
+					done();
+
+				} ).catch( done.fail );
 			} );
 		} );
 

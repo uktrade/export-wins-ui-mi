@@ -1054,15 +1054,52 @@ if( config.backend.mock ){
 
 	describe( 'Login', function(){
 
-		it( 'Should return a 200 with the correct heading', function( done ){
+		describe( 'Default login', function(){
 
-			interceptBackend.get( '/saml2/login/' ).reply( 200, 'test' );
+			it( 'Should return a 302 with the correct url', function( done ){
 
-			supertest( app ).get( '/login/' ).end( ( err, res ) => {
+				const json = {
+					target_url: 'https://localhost:2000/o/authorize/?response_type=code&client_id=some-id&redirect_uri=http%3A%2F%2Flocalhost%3A9001%2F&state=abcd1234'
+				};
 
-				checkResponse( res, 200 );
-				expect( getTitle( res ) ).toEqual( 'MI - Login' );
-				done();
+				interceptBackend.get( '/oauth2/auth_url/' ).reply( 200, json );
+
+				supertest( app ).get( '/login/' ).end( ( err, res ) => {
+
+					checkResponse( res, 302 );
+					expect( res.headers.location ).toEqual( json.target_url );
+					done();
+				} );
+			} );
+		} );
+
+		describe( 'SAML login', function(){
+
+			it( 'Should return a 200 with the correct heading', function( done ){
+
+				interceptBackend.get( '/saml2/login/' ).reply( 200, 'test' );
+
+				supertest( app ).get( '/login-saml/' ).end( ( err, res ) => {
+
+					checkResponse( res, 200 );
+					expect( getTitle( res ) ).toEqual( 'MI - Login' );
+					done();
+				} );
+			} );
+		} );
+
+		describe( 'Oauth callback', function(){
+
+			it( 'Should POST the GET params to the backend', function( done ){
+
+				interceptBackend.post( '/oauth2/callback/', JSON.stringify( { code: '123abc', state: '234def' } ) ).reply( 200 );
+
+				supertest( app ).get( '/login/callback/?code=123abc&state=234def' ).end( ( err, res ) => {
+
+					checkResponse( res, 302 );
+					expect( res.headers.location ).toEqual( '/' );
+					done();
+				} );
 			} );
 		} );
 	} );
