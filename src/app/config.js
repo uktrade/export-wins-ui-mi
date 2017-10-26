@@ -14,9 +14,11 @@ function bool( name, defaultValue ){
 
 const cpus = ( os.cpus().length || 1 );
 const defaultWorkers = ( cpus > 1 ? cpus - 1 : cpus );
+const isDev = ( ( process.env.NODE_ENV || 'development' ) === 'development' );
 
 let config = {
-	showErrors: ( process.env.NODE_ENV !== 'production' ),
+	isDev,
+	showErrors: isDev,
 	version: env( 'npm_package_version', 'unknown' ),
 	server: {
 		protocol: env( 'SERVER_PROTOCOL', 'http' ),

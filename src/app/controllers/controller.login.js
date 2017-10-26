@@ -6,7 +6,23 @@ const config = require( '../config' );
 
 const MAX_LEN = Number( config.oauthParamLength );
 const isAlpha = /^[a-zA-Z0-9]+$/;
-const isDev = ( ( process.env.NODE_ENV || 'development' ) === 'development' );
+
+function createClearUserCookie(){
+
+	const parts = [
+		`${ config.userCookieName }=`,
+		'HttpOnly',
+		'Path=/',
+		`Expires=${ ( new Date( 1 ) ).toGMTString() }`
+	];
+
+	if( !config.isDev ){
+
+		parts.push( 'Secure' );
+	}
+
+	return parts.join( '; ' );
+}
 
 module.exports = {
 
@@ -16,7 +32,7 @@ module.exports = {
 
 			const json = info.data;
 
-			res.clearCookie( config.userCookieName, { httpOnly: true, secure: !isDev } );
+			res.set( 'Set-Cookie', [ createClearUserCookie() ] );
 
 			if( json && json.target_url ){
 
@@ -40,8 +56,7 @@ module.exports = {
 			backendService.postOauthCallback( `code=${ code }&state=${ state }` ).then( ( info ) => {
 
 				const response = info.response;
-				const cookies = response.headers[ 'set-cookie' ];
-				const sessionCookie = getSessionId( cookies );
+				const sessionCookie = getSessionId( response.headers[ 'set-cookie' ] );
 
 				res.set( 'Set-Cookie', [ sessionCookie ] );
 				res.redirect( '/' );
@@ -64,9 +79,9 @@ module.exports = {
 
 			const response = info.response;
 			const token = info.data;
+			const sessionCookie = getSessionId( response.headers[ 'set-cookie' ] );
 
-			res.clearCookie( config.userCookieName, { httpOnly: true, secure: !isDev } );
-			res.set( 'Set-Cookie', response.headers[ 'set-cookie' ] );
+			res.set( 'Set-Cookie', [ sessionCookie, createClearUserCookie() ] );
 			res.render( 'login.html', { token } );
 
 		} ).catch( renderError.createHandler( res ) );
