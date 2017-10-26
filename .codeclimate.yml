@@ -1,3 +1,8 @@
+engines:
+  nodesecurity:
+    enabled: true
+  eslint:
+    enabled: true
 exclude_paths:
 - src/data/
 - src/test/

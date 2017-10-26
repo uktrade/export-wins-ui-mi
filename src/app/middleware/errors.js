@@ -3,7 +3,7 @@ const logger = require( '../lib/logger' );
 
 module.exports = {
 
-	handle404: function( req, res, next ){
+	handle404: function( req, res ){
 
 		res.status( 404 );
 		res.render( 'error/404.html' );
