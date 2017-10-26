@@ -23,7 +23,7 @@ describe( 'Login controller', function(){
 			captureException: spy( 'reporter.captureException' )
 		};
 
-		config = { oauthParamLength: 8, userCookieName: 'aname'  };
+		config = { oauthParamLength: 8, userCookieName: 'aname', isDev: false  };
 
 		req = {
 			cookies: 'test'
@@ -42,6 +42,23 @@ describe( 'Login controller', function(){
 			'../config': config
 		} );
 	} );
+
+	function createClearUserCookie(){
+
+		const parts = [
+			`${ config.userCookieName }=`,
+			'HttpOnly',
+			'Path=/',
+			`Expires=${ ( new Date( 1 ) ).toGMTString() }`
+		];
+
+		if( !config.isDev ){
+
+			parts.push( 'Secure' );
+		}
+
+		return parts.join( '; ' );
+	}
 
 	describe( 'OAuth login', function(){
 
@@ -64,7 +81,7 @@ describe( 'Login controller', function(){
 
 					expect( backendService.getOauthUrl ).toHaveBeenCalled();
 					expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
-					expect( res.clearCookie ).toHaveBeenCalledWith( config.userCookieName, { httpOnly: true, secure: false } );
+					expect( res.set ).toHaveBeenCalledWith( 'Set-Cookie', [ createClearUserCookie() ] );
 					expect( res.redirect ).toHaveBeenCalledWith( json.target_url );
 					done();
 				} );
@@ -210,7 +227,7 @@ describe( 'Login controller', function(){
 			const token = 'test response';
 			const response = {
 				headers: {
-					'set-cookie': [ 'abc' ]
+					'set-cookie': [ 'abc', 'sessionid=123456' ]
 				}
 			};
 			const promise = new Promise( ( resolve ) => { resolve( { response, data: token } ); } );
@@ -223,8 +240,7 @@ describe( 'Login controller', function(){
 			promise.then( () => {
 
 				expect( backendService.getSamlLogin ).toHaveBeenCalledWith( req );
-				expect( res.clearCookie ).toHaveBeenCalledWith( config.userCookieName, { httpOnly: true, secure: false } );
-				expect( res.set ).toHaveBeenCalledWith( 'Set-Cookie', response.headers[ 'set-cookie' ] );
+				expect( res.set ).toHaveBeenCalledWith( 'Set-Cookie', [ 'sessionid=123456', createClearUserCookie() ] );
 				expect( res.render ).toHaveBeenCalledWith( 'login.html', { token } );
 				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				done();
