@@ -4,6 +4,27 @@
 		-webkit-print-color-adjust: exact;
 	}
 
+	body:before,
+	body:after {
+		content: "Internal use only";
+		font-size: 1.6em;
+		clear: both;
+		width: 100%;
+		padding: 0.5em;
+		font-family: times, Georgia, Serif;
+		text-align: center;
+		display: block;
+	}
+
+	body:before {
+		border-bottom: 1px solid #ccc !important;
+	}
+
+	body:after {
+		border-top: 1px solid #ccc !important;
+		margin-top: 1em;
+	}
+
 	html,
 	body,
 	button,
