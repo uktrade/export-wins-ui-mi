@@ -23,7 +23,7 @@ function getWins( view, type ){
 				wins: sortWins( data.results.wins[ type ], req.query.sort )
 			} );
 
-		} ).catch( renderError.createHandler( res ) );
+		} ).catch( renderError.createHandler( req, res ) );
 	};
 }
 
@@ -38,7 +38,7 @@ module.exports = {
 				regionGroups: regionGroups.results
 			} );
 
-		} ).catch( renderError.createHandler( res ) );
+		} ).catch( renderError.createHandler( req, res ) );
 	},
 
 	list: function( req, res ){
@@ -47,7 +47,7 @@ module.exports = {
 
 			res.render( 'overseas-regions/list.html', { regions: regions.results } );
 
-		} ).catch( renderError.createHandler( res ) );
+		} ).catch( renderError.createHandler( req, res ) );
 	},
 
 	region: function( req, res ){
@@ -66,7 +66,7 @@ module.exports = {
 				topMarkets: topMarkets.create( data.topNonHvc ),
 			} );
 
-		} ).catch( renderError.createHandler( res ) );
+		} ).catch( renderError.createHandler( req, res ) );
 	},
 
 	wins: getWins( 'overseas-regions/wins.html', 'hvc' ),

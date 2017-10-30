@@ -72,7 +72,7 @@ describe( 'Index controller', function(){
 					globalHvcs: globalHvcs.results,
 					summary: globalSummaryData
 				} );
-				expect( errorHandler.createHandler ).toHaveBeenCalled();
+				expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
 				done();
 			} );
 		} );

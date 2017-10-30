@@ -11,7 +11,7 @@ module.exports = {
 
 			res.render( 'investment/views/sector-teams/overview', { sectorTeams: data } );
 
-		} ).catch( renderError.createHandler( res ) );
+		} ).catch( renderError.createHandler( req, res ) );
 	},
 
 	sectorTeam: function( req, res ){
@@ -28,7 +28,7 @@ module.exports = {
 				markets: fdiSectorTeamMarketsViewModel.create( data.results.markets )
 			} );
 
-		} ).catch( renderError.createHandler( res ) );
+		} ).catch( renderError.createHandler( req, res ) );
 	},
 
 	hvcPerformance: function( req, res ){
@@ -39,7 +39,7 @@ module.exports = {
 
 			res.render( 'investment/views/sector-teams/hvc-performance', { dateRange: data.date_range, teamId, team: data.results } );
 
-		} ).catch( renderError.createHandler( res ) );
+		} ).catch( renderError.createHandler( req, res ) );
 	},
 
 	nonHvcPerformance: function( req, res ){
@@ -50,7 +50,7 @@ module.exports = {
 
 			res.render( 'investment/views/sector-teams/non-hvc-performance', { dateRange: data.date_range, teamId, team: data.results } );
 
-		} ).catch( renderError.createHandler( res ) );
+		} ).catch( renderError.createHandler( req, res ) );
 	},
 
 	wins: function( req, res ){
@@ -61,7 +61,7 @@ module.exports = {
 
 			res.render( 'investment/views/sector-teams/wins', { dateRange: data.date_range, teamId, team: data.results } );
 
-		} ).catch( renderError.createHandler( res ) );
+		} ).catch( renderError.createHandler( req, res ) );
 	},
 
 	nonHvcWins: function( req, res ){
@@ -72,6 +72,6 @@ module.exports = {
 
 			res.render( 'investment/views/sector-teams/non-hvc-wins', { dateRange: data.date_range, teamId, team: data.results } );
 
-		} ).catch( renderError.createHandler( res ) );
+		} ).catch( renderError.createHandler( req, res ) );
 	},
 };

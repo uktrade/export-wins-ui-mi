@@ -26,9 +26,11 @@ describe( 'Login controller', function(){
 		config = { oauthParamLength: 8, userCookieName: 'aname', isDev: false  };
 
 		req = {
-			cookies: 'test'
+			cookies: 'test',
+			query: {}
 		};
 		res = {
+			status: spy( 'res.status' ),
 			set: spy( 'res.set' ),
 			render: spy( 'res.render' ),
 			redirect: spy( 'res.redirect' ),
@@ -62,53 +64,102 @@ describe( 'Login controller', function(){
 
 	describe( 'OAuth login', function(){
 
-		describe( 'With a json response', function(){
+		describe( 'With a success response', function(){
 
-			it( 'Should get the login url and redirect to it', function( done ){
+			describe( 'With a json response', function(){
 
-				const json = {
-					target_url: 'https://localhost:2000/o/authorize/?response_type=code&client_id=some-id&redirect_uri=http%3A%2F%2Flocalhost%3A9001%2F&state=abcd1234'
-				};
+				let json;
+				let promise;
 
-				const promise = new Promise( ( resolve ) => resolve( { response: {}, data: json } ) );
+				beforeEach( function(){
 
-				backendService.getOauthUrl = spy( 'getOauthUrl', promise );
-				errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
+					json = {
+						target_url: 'https://localhost:2000/o/authorize/?response_type=code&client_id=some-id&redirect_uri=http%3A%2F%2Flocalhost%3A9001%2F&state=abcd1234'
+					};
+					promise = new Promise( ( resolve ) => resolve( { response: {}, data: json } ) );
 
-				controller.oauth( req, res );
+					backendService.getOauthUrl = spy( 'getOauthUrl', promise );
+				} );
 
-				promise.then( () => {
+				describe( 'Without a next param', function(){
 
-					expect( backendService.getOauthUrl ).toHaveBeenCalled();
-					expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
-					expect( res.set ).toHaveBeenCalledWith( 'Set-Cookie', [ createClearUserCookie() ] );
-					expect( res.redirect ).toHaveBeenCalledWith( json.target_url );
-					done();
+					it( 'Should get the login url and redirect to it', function( done ){
+
+						errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
+
+						controller.oauth( req, res );
+
+						promise.then( () => {
+
+							expect( backendService.getOauthUrl ).toHaveBeenCalled();
+							expect( errorHandler.createHandler ).not.toHaveBeenCalled();
+							expect( res.set ).toHaveBeenCalledWith( 'Set-Cookie', [ createClearUserCookie() ] );
+							expect( res.redirect ).toHaveBeenCalledWith( json.target_url );
+							done();
+						} );
+					} );
+				} );
+
+				describe( 'With a next URL param', function(){
+
+					it( 'Should pass the param to the backend', function(){
+
+						req.query = {
+							next: '/my/path/'
+						};
+
+						const promise = new Promise( ( resolve ) => resolve( { response: {}, data: null } ) );
+
+						backendService.getOauthUrl = spy( 'getOauthUrl', promise );
+
+						controller.oauth( req, res );
+
+						expect( backendService.getOauthUrl ).toHaveBeenCalledWith( req.query.next );
+					} );
+				} );
+			} );
+
+			describe( 'Without a json response', function(){
+
+				it( 'Should throw an error', function( done ){
+
+					const err = new Error( 'No target_url' );
+					const promise = new Promise( ( resolve ) => resolve( { response: {}, data: null } ) );
+
+					backendService.getOauthUrl = spy( 'getOauthUrl', promise );
+
+					controller.oauth( req, res );
+
+					process.nextTick( () => {
+
+						expect( res.status ).toHaveBeenCalledWith( 500 );
+						expect( res.render ).toHaveBeenCalledWith( 'error/unable-to-login.html' );
+						expect( reporter.captureException ).toHaveBeenCalledWith( err );
+						done();
+					} );
 				} );
 			} );
 		} );
 
-		/*
-		describe( 'Without a json response', function(){
+		describe( 'With a fail response', function(){
 
-			it( 'Should throw an error', function( done ){
+			it( 'Should render an error page', function( done ){
 
-				const errHandler = jasmine.createSpy( 'errHandler' );
-				const promise = new Promise( ( resolve ) => resolve( { response: {}, data: null } ) );
-
+				const err = new Error( 'fail response' );
+				const promise = new Promise( ( resolve, reject ) => reject( err ) );
 				backendService.getOauthUrl = spy( 'getOauthUrl', promise );
-				errorHandler.createHandler.and.callFake( () => errHandler );
 
 				controller.oauth( req, res );
 
 				process.nextTick( () => {
 
-					expect( errHandler ).toHaveBeenCalled();
+					expect( res.status ).toHaveBeenCalledWith( 500 );
+					expect( res.render ).toHaveBeenCalledWith( 'error/unable-to-login.html' );
+					expect( reporter.captureException ).toHaveBeenCalledWith( err );
 					done();
 				} );
 			} );
 		} );
-		*/
 	} );
 
 	describe( 'oauthCallback', function(){
@@ -125,27 +176,52 @@ describe( 'Login controller', function(){
 
 			describe( 'With valid params', function(){
 
-				it( 'Should call the backend service and pass the params as JSON', function( done ){
+				const response = {
+					headers: {
+						'set-cookie': [ 'abc=test', 'sessionid=1234' ]
+					}
+				};
 
-					const response = {
-						headers: {
-							'set-cookie': [ 'abc=test', 'sessionid=1234' ]
-						}
-					};
+				describe( 'With a JSON response', function(){
 
-					const promise = new Promise( ( resolve ) => resolve( { response, data: 'success' } ) );
+					it( 'Should redirect to the next location from the JSON', function( done ){
 
-					backendService.postOauthCallback = spy( 'postOauthCallback', promise );
-					errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
+						const next = '/my/url/';
+						const promise = new Promise( ( resolve ) => resolve( { response, data: { next } } ) );
 
-					controller.oauthCallback( req, res );
+						backendService.postOauthCallback = spy( 'postOauthCallback', promise );
+						errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
 
-					promise.then( () => {
+						controller.oauthCallback( req, res );
 
-						expect( backendService.postOauthCallback ).toHaveBeenCalledWith( `code=${ req.query.code }&state=${ req.query.state }` );
-						expect( res.set ).toHaveBeenCalledWith( 'Set-Cookie', [ response.headers[ 'set-cookie' ][ 1 ] ] );
-						expect( res.redirect ).toHaveBeenCalledWith( '/' );
-						done();
+						promise.then( () => {
+
+							expect( backendService.postOauthCallback ).toHaveBeenCalledWith( `code=${ req.query.code }&state=${ req.query.state }` );
+							expect( res.set ).toHaveBeenCalledWith( 'Set-Cookie', [ response.headers[ 'set-cookie' ][ 1 ] ] );
+							expect( res.redirect ).toHaveBeenCalledWith( next );
+							done();
+						} );
+					} );
+				} );
+
+				describe( 'Without a JSON response', function(){
+
+					it( 'Should call the backend service and pass the params as JSON', function( done ){
+
+						const promise = new Promise( ( resolve ) => resolve( { response, data: '' } ) );
+
+						backendService.postOauthCallback = spy( 'postOauthCallback', promise );
+						errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
+
+						controller.oauthCallback( req, res );
+
+						promise.then( () => {
+
+							expect( backendService.postOauthCallback ).toHaveBeenCalledWith( `code=${ req.query.code }&state=${ req.query.state }` );
+							expect( res.set ).toHaveBeenCalledWith( 'Set-Cookie', [ response.headers[ 'set-cookie' ][ 1 ] ] );
+							expect( res.redirect ).toHaveBeenCalledWith( '/' );
+							done();
+						} );
 					} );
 				} );
 			} );
@@ -212,6 +288,7 @@ describe( 'Login controller', function(){
 
 				process.nextTick( () => {
 
+					expect( res.status ).toHaveBeenCalledWith( 500 );
 					expect( res.render ).toHaveBeenCalledWith( 'error/unable-to-login.html' );
 					expect( reporter.captureException ).toHaveBeenCalledWith( e );
 					done();
@@ -242,7 +319,7 @@ describe( 'Login controller', function(){
 				expect( backendService.getSamlLogin ).toHaveBeenCalledWith( req );
 				expect( res.set ).toHaveBeenCalledWith( 'Set-Cookie', [ 'sessionid=123456', createClearUserCookie() ] );
 				expect( res.render ).toHaveBeenCalledWith( 'login.html', { token } );
-				expect( errorHandler.createHandler ).toHaveBeenCalled();
+				expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
 				done();
 			} );
 		} );

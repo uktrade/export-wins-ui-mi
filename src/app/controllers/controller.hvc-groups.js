@@ -16,7 +16,7 @@ module.exports = {
 
 			res.render( 'hvc-groups/list.html', { hvcGroups: hvcGroups.results } );
 
-		} ).catch( renderError.createHandler( res ) );
+		} ).catch( renderError.createHandler( req, res ) );
 	},
 
 	group: function( req, res ){
@@ -34,7 +34,7 @@ module.exports = {
 				hvcTargetPerformance: hvcTargetPerformance.create( data.campaigns )
 			} );
 
-		} ).catch( renderError.createHandler( res ) );
+		} ).catch( renderError.createHandler( req, res ) );
 	},
 
 	wins: function( req, res ){
@@ -49,6 +49,6 @@ module.exports = {
 				wins: sortWins( data.results.wins.hvc, req.query.sort )
 			} );
 
-		} ).catch( renderError.createHandler( res ) );
+		} ).catch( renderError.createHandler( req, res ) );
 	}
 };

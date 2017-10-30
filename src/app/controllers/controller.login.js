@@ -24,11 +24,21 @@ function createClearUserCookie(){
 	return parts.join( '; ' );
 }
 
+function createUnableToLoginHandler( res ){
+
+	return function( e ){
+
+		res.status( 500 );
+		res.render( 'error/unable-to-login.html' );
+		reporter.captureException( e );
+	};
+}
+
 module.exports = {
 
 	oauth: function( req, res ){
 
-		backendService.getOauthUrl().then( ( info ) => {
+		backendService.getOauthUrl( req.query.next ).then( ( info ) => {
 
 			const json = info.data;
 
@@ -43,7 +53,7 @@ module.exports = {
 				throw new Error( 'No target_url' );
 			}
 
-		} ).catch( renderError.createHandler( res ) );
+		} ).catch( createUnableToLoginHandler( res ) );
 	},
 
 	oauthCallback: function( req, res ){
@@ -56,16 +66,13 @@ module.exports = {
 			backendService.postOauthCallback( `code=${ code }&state=${ state }` ).then( ( info ) => {
 
 				const response = info.response;
+				const data = info.data;
 				const sessionCookie = getSessionId( response.headers[ 'set-cookie' ] );
 
 				res.set( 'Set-Cookie', [ sessionCookie ] );
-				res.redirect( '/' );
+				res.redirect( data && data.next || '/' );
 
-			} ).catch( ( e ) => {
-
-				res.render( 'error/unable-to-login.html' );
-				reporter.captureException( e );
-			} );
+			} ).catch( createUnableToLoginHandler( res ) );
 
 		} else {
 
@@ -84,6 +91,6 @@ module.exports = {
 			res.set( 'Set-Cookie', [ sessionCookie, createClearUserCookie() ] );
 			res.render( 'login.html', { token } );
 
-		} ).catch( renderError.createHandler( res ) );
+		} ).catch( renderError.createHandler( req, res ) );
 	}
 };

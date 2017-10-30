@@ -1090,15 +1090,35 @@ if( config.backend.mock ){
 
 		describe( 'Oauth callback', function(){
 
-			it( 'Should POST the GET params to the backend', function( done ){
+			describe( 'With a JSON response', function(){
 
-				interceptBackend.post( '/oauth2/callback/', JSON.stringify( { code: '123abc', state: '234def' } ) ).reply( 200 );
+				it( 'Should POST the GET params to the backend and redirect to the location in the JSON', function( done ){
 
-				supertest( app ).get( '/login/callback/?code=123abc&state=234def' ).end( ( err, res ) => {
+					const next = '/my/url/';
 
-					checkResponse( res, 302 );
-					expect( res.headers.location ).toEqual( '/' );
-					done();
+					interceptBackend.post( '/oauth2/callback/', JSON.stringify( { code: '123abc', state: '234def' } ) ).reply( 200, { next } );
+
+					supertest( app ).get( '/login/callback/?code=123abc&state=234def' ).end( ( err, res ) => {
+
+						checkResponse( res, 302 );
+						expect( res.headers.location ).toEqual( next );
+						done();
+					} );
+				} );
+			} );
+
+			describe( 'Without a JSON response', function(){
+
+				it( 'Should POST the GET params to the backend and redirect to the homepage', function( done ){
+
+					interceptBackend.post( '/oauth2/callback/', JSON.stringify( { code: '123abc', state: '234def' } ) ).reply( 200 );
+
+					supertest( app ).get( '/login/callback/?code=123abc&state=234def' ).end( ( err, res ) => {
+
+						checkResponse( res, 302 );
+						expect( res.headers.location ).toEqual( '/' );
+						done();
+					} );
 				} );
 			} );
 		} );

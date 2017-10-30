@@ -116,7 +116,7 @@ describe( 'Index controller', function(){
 
 				controller( req, res );
 
-				expect( createHandler ).toHaveBeenCalledWith( res );
+				expect( createHandler ).toHaveBeenCalledWith( req, res );
 
 				rejectPromise( err );
 

@@ -16,5 +16,5 @@ module.exports = function( req, res ){
 			showSectorTeams: !!req.query.sectorteams
 		} );
 
-	} ).catch( renderError.createHandler( res ) );
+	} ).catch( renderError.createHandler( req, res ) );
 };

@@ -49,6 +49,6 @@ module.exports = {
 			res.set( 'Content-Type', 'text/xml' );
 			res.send( xml );
 
-		} ).catch( renderError.createHandler( res ) );
+		} ).catch( renderError.createHandler( req, res ) );
 	}
 };

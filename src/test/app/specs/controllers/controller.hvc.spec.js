@@ -77,13 +77,12 @@ describe( 'HVC controller', function(){
 			promise.then( function(){
 
 				expect( exportBackendService.getHvcInfo ).toHaveBeenCalledWith( req, hvcId );
-				expect( errorHandler.createHandler ).toHaveBeenCalled();
+				expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
 				expect( hvcDetail.create ).toHaveBeenCalledWith( hvcData );
 				expect( topMarkets.create ).toHaveBeenCalledWith( hvcMarkets );
 
 				expect( res.render ).toHaveBeenCalledWith( 'hvc/detail.html', viewModel );
 				expect( viewModel.topMarkets ).toEqual( topMaketsModel );
-				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				done();
 			} );
 		} );

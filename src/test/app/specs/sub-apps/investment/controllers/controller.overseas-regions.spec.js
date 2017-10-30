@@ -53,7 +53,7 @@ describe( 'Investment Overseas Regions controller', function(){
 
 				controller.regions( req, res );
 
-				expect( createHandler ).toHaveBeenCalledWith( res );
+				expect( createHandler ).toHaveBeenCalledWith( req, res );
 
 				promise.then( ( data ) => {
 
@@ -79,7 +79,7 @@ describe( 'Investment Overseas Regions controller', function(){
 
 				controller.regions( req, res );
 
-				expect( createHandler ).toHaveBeenCalledWith( res );
+				expect( createHandler ).toHaveBeenCalledWith( req, res );
 
 				rejectPromise( err );
 
@@ -139,7 +139,7 @@ describe( 'Investment Overseas Regions controller', function(){
 
 				controller.region( req, res );
 
-				expect( createHandler ).toHaveBeenCalledWith( res );
+				expect( createHandler ).toHaveBeenCalledWith( req, res );
 
 				rejectPromise( err );
 
@@ -199,7 +199,7 @@ describe( 'Investment Overseas Regions controller', function(){
 
 				controller.hvcPerformance( req, res );
 
-				expect( createHandler ).toHaveBeenCalledWith( res );
+				expect( createHandler ).toHaveBeenCalledWith( req, res );
 
 				rejectPromise( err );
 
@@ -259,7 +259,7 @@ describe( 'Investment Overseas Regions controller', function(){
 
 				controller.nonHvcPerformance( req, res );
 
-				expect( createHandler ).toHaveBeenCalledWith( res );
+				expect( createHandler ).toHaveBeenCalledWith( req, res );
 
 				rejectPromise( err );
 
@@ -319,7 +319,7 @@ describe( 'Investment Overseas Regions controller', function(){
 
 				controller.wins( req, res );
 
-				expect( createHandler ).toHaveBeenCalledWith( res );
+				expect( createHandler ).toHaveBeenCalledWith( req, res );
 
 				rejectPromise( err );
 
@@ -379,7 +379,7 @@ describe( 'Investment Overseas Regions controller', function(){
 
 				controller.nonHvcWins( req, res );
 
-				expect( createHandler ).toHaveBeenCalledWith( res );
+				expect( createHandler ).toHaveBeenCalledWith( req, res );
 
 				rejectPromise( err );
 

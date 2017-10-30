@@ -9,7 +9,7 @@ module.exports = {
 
 			res.render( 'investment/views/overseas-regions/overview', { regions: data } );
 
-		} ).catch( renderError.createHandler( res ) );
+		} ).catch( renderError.createHandler( req, res ) );
 	},
 
 	region: function( req, res ){
@@ -20,7 +20,7 @@ module.exports = {
 
 			res.render( 'investment/views/overseas-regions/detail', { dateRange: data.date_range, region: data.results } );
 
-		} ).catch( renderError.createHandler( res ) );
+		} ).catch( renderError.createHandler( req, res ) );
 	},
 
 	hvcPerformance: function( req, res ){
@@ -31,7 +31,7 @@ module.exports = {
 
 			res.render( 'investment/views/overseas-regions/hvc-performance', { dateRange: data.date_range, region: data.results } );
 
-		} ).catch( renderError.createHandler( res ) );
+		} ).catch( renderError.createHandler( req, res ) );
 	},
 
 	nonHvcPerformance: function( req, res ){
@@ -42,7 +42,7 @@ module.exports = {
 
 			res.render( 'investment/views/overseas-regions/non-hvc-performance', { dateRange: data.date_range, region: data.results } );
 
-		} ).catch( renderError.createHandler( res ) );
+		} ).catch( renderError.createHandler( req, res ) );
 	},
 
 	wins: function( req, res ){
@@ -53,7 +53,7 @@ module.exports = {
 
 			res.render( 'investment/views/overseas-regions/wins', { dateRange: data.date_range, region: data.results } );
 
-		} ).catch( renderError.createHandler( res ) );
+		} ).catch( renderError.createHandler( req, res ) );
 	},
 
 	nonHvcWins: function( req, res ){
@@ -64,6 +64,6 @@ module.exports = {
 
 			res.render( 'investment/views/overseas-regions/non-hvc-wins', { dateRange: data.date_range, region: data.results } );
 
-		} ).catch( renderError.createHandler( res ) );
+		} ).catch( renderError.createHandler( req, res ) );
 	},
 };

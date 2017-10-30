@@ -73,7 +73,7 @@ describe( 'Sector Teams controller', function(){
 
 			promise.then( () => {
 				expect( exportBackendService.getSectorTeamsOverview ).toHaveBeenCalledWith( req );
-				expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
+				expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
 				expect( res.render ).toHaveBeenCalledWith( 'sector-teams/overview', {
 					dateRange: sectorTeams.date_range,
 					sectorTeams: sectorTeams.results
@@ -105,7 +105,7 @@ describe( 'Sector Teams controller', function(){
 
 			promise.then( () => {
 				expect( exportBackendService.getSectorTeams ).toHaveBeenCalledWith( req );
-				expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
+				expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
 				expect( res.render ).toHaveBeenCalledWith( 'sector-teams/list.html', {
 					sectorTeams: sectorTeams.results
 				} );
@@ -158,7 +158,7 @@ describe( 'Sector Teams controller', function(){
 			promise.then( () => {
 
 				expect( exportBackendService.getSectorTeamInfo ).toHaveBeenCalledWith( req, teamId );
-				expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
+				expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
 
 				expect( sectorSummary.create ).toHaveBeenCalledWith( teamInfo.wins );
 				expect( hvcSummary.create ).toHaveBeenCalledWith( teamInfo.wins );
@@ -177,7 +177,6 @@ describe( 'Sector Teams controller', function(){
 					monthlyPerformance: monthlyPerformanceResponse,
 					topMarkets: topMarketsResponse
 				} );
-				expect( errorHandler.createHandler ).toHaveBeenCalled();
 				done();
 			} );
 		} );
@@ -221,7 +220,7 @@ describe( 'Sector Teams controller', function(){
 
 				promise.then( () => {
 					expect( exportBackendService.getSectorTeamWinTable ).toHaveBeenCalledWith( req, teamId );
-					expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
+					expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
 					expect( sortWins ).toHaveBeenCalledWith( sectorTeamWins.results.wins[ type ], sort );
 					expect( res.render ).toHaveBeenCalledWith( view, {
 						dateRange: sectorTeamWins.date_range,

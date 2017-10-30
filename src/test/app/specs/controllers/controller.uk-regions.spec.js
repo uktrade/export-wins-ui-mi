@@ -92,7 +92,7 @@ describe( 'UK Regions controller', function(){
 			promise.then( () => {
 
 				expect( exportBackendService.getUkRegionsOverview ).toHaveBeenCalledWith( req );
-				expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
+				expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
 
 				expect( overviewSummary.create ).toHaveBeenCalledWith( ukRegions.date_range, ukRegions.results.summary );
 				expect( overviewRegions.create ).toHaveBeenCalledWith( ukRegions.date_range, ukRegions.results.region_groups );
@@ -150,7 +150,7 @@ describe( 'UK Regions controller', function(){
 			promise.then( () => {
 
 				expect( exportBackendService.getUkRegionInfo ).toHaveBeenCalledWith( req, regionId );
-				expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
+				expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
 
 				expect( regionSummary.create ).toHaveBeenCalledWith( data.wins );
 				expect( regionPerformance.create ).toHaveBeenCalledWith( data.wins );
@@ -207,7 +207,7 @@ describe( 'UK Regions controller', function(){
 				promise.then( () => {
 
 					expect( exportBackendService.getUkRegionWinTable ).toHaveBeenCalledWith( req, regionId );
-					expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
+					expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
 					expect( sortWins ).toHaveBeenCalledWith( ukRegionWins.results.wins[ type ], sort );
 					expect( res.render ).toHaveBeenCalledWith( view, {
 						dateRange: ukRegionWins.date_range,

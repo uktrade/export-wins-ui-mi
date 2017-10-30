@@ -22,7 +22,7 @@ function getWins( view, type ){
 				wins: sortWins( data.results.wins[ type ], req.query.sort )
 			} );
 
-		} ).catch( errorHandler.createHandler( res ) );
+		} ).catch( errorHandler.createHandler( req, res ) );
 	};
 }
 
@@ -34,7 +34,7 @@ module.exports = {
 
 			res.render( 'countries/list.html', { countries: countries.results } );
 
-		} ).catch( errorHandler.createHandler( res ) );
+		} ).catch( errorHandler.createHandler( req, res ) );
 	},
 
 	country: function( req, res ){
@@ -53,7 +53,7 @@ module.exports = {
 				topMarkets: topMarkets.create( data.topNonHvc ),
 			} );
 
-		} ).catch( errorHandler.createHandler( res ) );
+		} ).catch( errorHandler.createHandler( req, res ) );
 	},
 
 	wins: getWins( 'countries/wins.html', 'hvc' ),

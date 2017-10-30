@@ -72,7 +72,7 @@ describe( 'Posts controller', function(){
 			promise.then( () => {
 
 				expect( exportBackendService.getPosts ).toHaveBeenCalledWith( req );
-				expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
+				expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
 				expect( res.render ).toHaveBeenCalledWith( 'posts/list.html', { posts: posts.results } );
 				done();
 			} );
@@ -123,7 +123,7 @@ describe( 'Posts controller', function(){
 			promise.then( () => {
 
 				expect( exportBackendService.getPostInfo ).toHaveBeenCalledWith( req, postId );
-				expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
+				expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
 
 				expect( sectorSummary.create ).toHaveBeenCalledWith( data.wins );
 				expect( hvcSummary.create ).toHaveBeenCalledWith( data.wins );
@@ -181,7 +181,7 @@ describe( 'Posts controller', function(){
 				promise.then( () => {
 
 					expect( exportBackendService.getPostWinTable ).toHaveBeenCalledWith( req, postId );
-					expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
+					expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
 					expect( sortWins ).toHaveBeenCalledWith( postWins.results.wins[ type ], sort );
 					expect( res.render ).toHaveBeenCalledWith( view, {
 						dateRange: postWins.date_range,
