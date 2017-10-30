@@ -70,7 +70,7 @@ describe( 'HVC Groups controller', function(){
 				expect( res.render ).toHaveBeenCalledWith( 'hvc-groups/list.html', {
 					hvcGroups: hvcGroups.results
 				} );
-				expect( errorHandler.createHandler ).toHaveBeenCalled();
+				expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
 				done();
 			} );
 		} );
@@ -121,7 +121,7 @@ describe( 'HVC Groups controller', function(){
 			promise.then( () => {
 
 				expect( exportBackendService.getHvcGroupInfo ).toHaveBeenCalledWith( req, groupId );
-				expect( errorHandler.createHandler ).toHaveBeenCalled();
+				expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
 				expect( sectorSummary.create ).toHaveBeenCalledWith( wins );
 				expect( hvcSummary.create ).toHaveBeenCalledWith( wins );
 				expect( hvcTargetPerformance.create ).toHaveBeenCalledWith( campaigns );
@@ -181,7 +181,7 @@ describe( 'HVC Groups controller', function(){
 			promise.then( () => {
 
 				expect( exportBackendService.getHvcGroupWinTable ).toHaveBeenCalledWith( req, groupId );
-				expect( errorHandler.createHandler ).toHaveBeenCalled();
+				expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
 				expect( sortWins ).toHaveBeenCalledWith( hvcGroupWins.results.wins.hvc, sort );
 				expect( res.render ).toHaveBeenCalledWith( 'hvc-groups/wins.html', {
 					dateRange: hvcGroupWins.date_range,

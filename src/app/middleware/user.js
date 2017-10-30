@@ -60,7 +60,7 @@ module.exports = function( isDev ){
 					}
 				} );
 
-			} ).catch( renderError.createHandler( res ) );
+			} ).catch( renderError.createHandler( req, res ) );
 		}
 	};
 };

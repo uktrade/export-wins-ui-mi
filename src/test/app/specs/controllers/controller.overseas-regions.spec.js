@@ -79,7 +79,7 @@ describe( 'Overseas Regions controller', function(){
 			promise.then( () => {
 
 				expect( exportBackendService.getOverseasRegionsOverviewGroups ).toHaveBeenCalledWith( req );
-				expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
+				expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
 				expect( res.render ).toHaveBeenCalledWith( 'overseas-regions/overview.html', {
 					dateRange: regionGroups.date_range,
 					regionGroups: regionGroups.results
@@ -110,7 +110,7 @@ describe( 'Overseas Regions controller', function(){
 			promise.then( () => {
 
 				expect( exportBackendService.getOverseasRegions ).toHaveBeenCalledWith( req );
-				expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
+				expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
 				expect( res.render ).toHaveBeenCalledWith( 'overseas-regions/list.html', { regions: regions.results } );
 				done();
 			} );
@@ -160,7 +160,7 @@ describe( 'Overseas Regions controller', function(){
 			promise.then( () => {
 
 				expect( exportBackendService.getOverseasRegionInfo ).toHaveBeenCalledWith( req, regionId );
-				expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
+				expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
 
 				expect( sectorSummary.create ).toHaveBeenCalledWith( data.wins );
 				expect( hvcSummary.create ).toHaveBeenCalledWith( data.wins );
@@ -221,7 +221,7 @@ describe( 'Overseas Regions controller', function(){
 				promise.then( () => {
 
 					expect( exportBackendService.getOverseasRegionWinTable ).toHaveBeenCalledWith( req, regionId );
-					expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
+					expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
 					expect( sortWins ).toHaveBeenCalledWith( regionWins.results.wins[ type ], sort );
 					expect( res.render ).toHaveBeenCalledWith( view, {
 						dateRange: regionWins.date_range,

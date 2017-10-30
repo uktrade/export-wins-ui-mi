@@ -8,19 +8,25 @@ const configStub = {
 	showErrors: false
 };
 
-let stubs = {
-	'./reporter': reporterStub,
-	'../config': configStub
-};
-
 let renderError;
 let res;
+let req;
+let urls;
+let urlsResponse;
 
 describe( 'Render Error', function(){
 
 	beforeEach( function(){
 
-		renderError = proxyquire( '../../../../app/lib/render-error', stubs );
+		urlsResponse = {};
+		urls = jasmine.createSpy( 'urls' ).and.callFake( () => urlsResponse );
+
+		renderError = proxyquire( '../../../../app/lib/render-error', {
+			'./reporter': reporterStub,
+			'../config': configStub,
+			'./urls': urls
+		} );
+		req = {};
 		res = {
 			render: jasmine.createSpy( 'res.render' ),
 			status: jasmine.createSpy( 'res.status' ),
@@ -34,7 +40,7 @@ describe( 'Render Error', function(){
 
 		beforeEach( function(){
 
-			handler = renderError.createHandler( res );
+			handler = renderError.createHandler( req, res );
 		} );
 
 		it( 'Should return a function to handle errors with one parameter', function(){
@@ -85,13 +91,18 @@ describe( 'Render Error', function(){
 
 				describe( 'When the header value is oauth2', function(){
 
-					it( 'Should redirect to the login page', function(){
+					it( 'Should redirect to the login page with next specified as the current URL', function(){
 
+						const theUrl = '/my/long/url?with=params';
+						urlsResponse = {
+							current: () => theUrl
+						};
 						response.headers.preferauthwith = 'oauth2';
 
 						handler( err );
 
-						expect( res.redirect ).toHaveBeenCalledWith( '/login/' );
+						expect( urls ).toHaveBeenCalledWith( req );
+						expect( res.redirect ).toHaveBeenCalledWith( `/login/?next=${ encodeURIComponent( theUrl ) }` );
 					} );
 				} );
 

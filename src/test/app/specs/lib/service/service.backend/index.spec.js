@@ -70,25 +70,53 @@ describe( 'Backend service', function(){
 
 		describe( 'When the response is a success', function(){
 
-			it( 'Should return the response from the backend', function( done ){
+			describe( 'When calling with a next param', function(){
 
-				const responseBody = 'abc123';
+				it( 'Should call the URL with a next param and return the response from the backend', function( done ){
 
-				helpers.get.and.callFake( function(){
+					const nextUrl = '/my/url/?aparam=true';
+					const responseBody = 'abc123';
 
-					return new Promise( ( resolve ) => resolve( { data: responseBody } ) );
+					helpers.get.and.callFake( function(){
+
+						return new Promise( ( resolve ) => resolve( { data: responseBody } ) );
+					} );
+
+					backendService.getOauthUrl( nextUrl ).then( ( info ) => {
+
+						const args = helpers.get.calls.argsFor( 0 );
+
+						expect( args[ 0 ] ).toEqual( `/oauth2/auth_url/?next=${ encodeURIComponent( nextUrl ) }` );
+						expect( info.data ).toEqual( responseBody );
+						done();
+
+					} ).catch( done.fail );
 				} );
-
-				backendService.getOauthUrl().then( ( info ) => {
-
-					const args = helpers.get.calls.argsFor( 0 );
-
-					expect( args[ 0 ] ).toEqual( '/oauth2/auth_url/' );
-					expect( info.data ).toEqual( responseBody );
-					done();
-
-				} ).catch( done.fail );
 			} );
+
+			describe( 'When calling with no params', function(){
+
+				it( 'Should call the default URL and return the response from the backend', function( done ){
+
+					const responseBody = 'abc123';
+
+					helpers.get.and.callFake( function(){
+
+						return new Promise( ( resolve ) => resolve( { data: responseBody } ) );
+					} );
+
+					backendService.getOauthUrl().then( ( info ) => {
+
+						const args = helpers.get.calls.argsFor( 0 );
+
+						expect( args[ 0 ] ).toEqual( '/oauth2/auth_url/' );
+						expect( info.data ).toEqual( responseBody );
+						done();
+
+					} ).catch( done.fail );
+				} );
+			} );
+
 		} );
 
 		describe( 'When the response is not a success', function(){

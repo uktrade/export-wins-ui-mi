@@ -8,9 +8,16 @@ module.exports = {
 	export: require( './export' ),
 	investment: require( './investment' ),
 
-	getOauthUrl: function(){
+	getOauthUrl: function( next ){
 
-		return get( '/oauth2/auth_url/' );
+		let path = '/oauth2/auth_url/';
+
+		if( next ){
+
+			path += `?next=${ encodeURIComponent( next ) }`;
+		}
+
+		return get( path );
 	},
 
 	postOauthCallback: function( params ){

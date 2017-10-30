@@ -23,7 +23,7 @@ function getWins( view, type ){
 				wins: sortWins( data.results.wins[ type ], req.query.sort )
 			} );
 
-		} ).catch( errorHandler.createHandler( res ) );
+		} ).catch( errorHandler.createHandler( req, res ) );
 	};
 }
 
@@ -38,7 +38,7 @@ module.exports = {
 				regionGroups: overviewRegions.create( overview.date_range, overview.results.region_groups )
 			} );
 
-		} ).catch( errorHandler.createHandler( res ) );
+		} ).catch( errorHandler.createHandler( req, res ) );
 	},
 
 	region: function( req, res ){
@@ -57,7 +57,7 @@ module.exports = {
 				monthlyPerformance: monthlyPerformance.create( data.months )
 			} );
 
-		} ).catch( errorHandler.createHandler( res ) );
+		} ).catch( errorHandler.createHandler( req, res ) );
 	},
 
 	wins: getWins( 'uk-regions/wins.html', 'hvc' ),

@@ -20,7 +20,7 @@ module.exports = {
 
 			res.render( 'hvc/detail.html', viewModel );
 
-		} ).catch( renderError.createHandler( res ) );
+		} ).catch( renderError.createHandler( req, res ) );
 	},
 
 	winList: function( req, res ){
@@ -35,6 +35,6 @@ module.exports = {
 				wins: sortWins( data.results.wins.hvc, req.query.sort )
 			} );
 
-		} ).catch( renderError.createHandler( res ) );
+		} ).catch( renderError.createHandler( req, res ) );
 	}
 };

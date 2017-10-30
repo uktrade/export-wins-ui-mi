@@ -79,7 +79,7 @@ describe( 'Date controller', function(){
 			controller.selectYear( req, res );
 
 			expect( res.render ).toHaveBeenCalledWith( 'select-year.html' );
-			//expect( errorHandler.createHandler ).toHaveBeenCalled();
+			//expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
 			done();
 		} );
 	} );

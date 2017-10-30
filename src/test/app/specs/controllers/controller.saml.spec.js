@@ -204,7 +204,7 @@ describe( 'SAML controller', function(){
 				expect( backendService.getSamlMetadata ).toHaveBeenCalledWith( req );
 				expect( res.set ).toHaveBeenCalledWith( 'Content-Type', 'text/xml' );
 				expect( res.send ).toHaveBeenCalledWith( xml );
-				expect( errorHandler.createHandler ).toHaveBeenCalled();
+				expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
 				done();
 			} );
 		} );

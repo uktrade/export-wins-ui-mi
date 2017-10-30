@@ -1,5 +1,6 @@
 const config = require( '../config' );
 const reporter = require( './reporter' );
+const urls = require( './urls' );
 
 function sendResponse( res, err ){
 
@@ -13,7 +14,7 @@ module.exports = {
 
 	sendResponse,
 
-	createHandler: function( res ){
+	createHandler: function( req, res ){
 
 		return function( err ){
 
@@ -24,7 +25,8 @@ module.exports = {
 
 				if( preferauthwith && preferauthwith === 'oauth2' ){
 
-					res.redirect( '/login/' );
+					const currentUrl = urls( req ).current();
+					res.redirect( `/login/?next=${ encodeURIComponent( currentUrl ) }` );
 
 				} else {
 

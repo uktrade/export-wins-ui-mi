@@ -15,6 +15,7 @@ describe( 'user middleware', function(){
 	let res;
 	let middleware;
 	let backend;
+	let createHandler;
 	let errorHandler;
 	let createMiddleware;
 	let userCookieName;
@@ -25,13 +26,14 @@ describe( 'user middleware', function(){
 		res = { locals: {}, status: () => {} };
 		backend = {};
 		errorHandler = jasmine.createSpy( 'renderError.createHandler.errorHandler' );
+		createHandler = jasmine.createSpy( 'renderError.createHandler' ).and.callFake( () => errorHandler );
 		userCookieName = 'aname';
 
 		const stubs = {
 			'../config': { jwt: { secret: jwtSecret }, userCookieName },
 			'../lib/service/service.backend': backend,
 			'jsonwebtoken': jwt,
-			'../lib/render-error': { createHandler: () => errorHandler }
+			'../lib/render-error': { createHandler }
 		};
 
 		createMiddleware = proxyquire( '../../../../app/middleware/user', stubs );
@@ -182,6 +184,8 @@ describe( 'user middleware', function(){
 			it( 'Should show an error page', function( done ){
 
 				middleware( req, res, next );
+
+				expect( createHandler ).toHaveBeenCalledWith( req, res );
 
 				promise.catch( () => {
 

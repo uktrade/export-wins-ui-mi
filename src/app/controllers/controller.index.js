@@ -15,5 +15,5 @@ module.exports = function( req, res ){
 
 		res.render( 'index.html', { sectorTeams, overseasRegionGroups, ukRegions, globalHvcs, summary } );
 
-	} ).catch( renderError.createHandler( res ) );
+	} ).catch( renderError.createHandler( req, res ) );
 };

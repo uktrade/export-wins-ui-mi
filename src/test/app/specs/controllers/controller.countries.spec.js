@@ -72,7 +72,7 @@ describe( 'Countries controller', function(){
 			promise.then( () => {
 
 				expect( exportBackendService.getCountries ).toHaveBeenCalledWith( req );
-				expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
+				expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
 				expect( res.render ).toHaveBeenCalledWith( 'countries/list.html', { countries: countries.results } );
 				done();
 			} );
@@ -123,7 +123,7 @@ describe( 'Countries controller', function(){
 			promise.then( () => {
 
 				expect( exportBackendService.getCountryInfo ).toHaveBeenCalledWith( req, countryCode );
-				expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
+				expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
 
 				expect( sectorSummary.create ).toHaveBeenCalledWith( data.wins );
 				expect( hvcSummary.create ).toHaveBeenCalledWith( data.wins );
@@ -184,7 +184,7 @@ describe( 'Countries controller', function(){
 				promise.then( () => {
 
 					expect( exportBackendService.getCountryWinTable ).toHaveBeenCalledWith( req, countryId );
-					expect( errorHandler.createHandler ).toHaveBeenCalledWith( res );
+					expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
 					expect( sortWins ).toHaveBeenCalledWith( countryWins.results.wins[ type ], sort );
 					expect( res.render ).toHaveBeenCalledWith( view, {
 						dateRange: countryWins.date_range,
