@@ -11,7 +11,7 @@ function createRequestOptions( method, path, opts = { body: null, sessionId: nul
 	const options = {
 		url: ( backendHref + path ),
 		time: true,
-		method: method,
+		method,
 		headers: {
 			'X-Signature': createSignature( path, opts.body )
 		}

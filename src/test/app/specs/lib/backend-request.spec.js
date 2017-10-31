@@ -69,24 +69,48 @@ describe( 'Backend lib', function(){
 			} );
 		} );
 
-		it( 'Creates the correct options', ( done ) => {
+		describe( 'With a body', function(){
 
-			const body = 'Some text';
+			it( 'Creates the correct options', ( done ) => {
 
-			backend.post( path, body, function(){
+				const body = 'Some text';
 
-				expect( request.calls.argsFor( 0 )[ 0 ] ).toEqual( {
+				backend.post( path, body, function(){
 
-					url: ( href + path ),
-					time: true,
-					method: 'POST',
-					headers: {
-						'X-Signature': 'test-hash',
-						'Content-Type': 'application/x-www-form-urlencoded'
-					},
-					body
+					expect( request.calls.argsFor( 0 )[ 0 ] ).toEqual( {
+
+						url: ( href + path ),
+						time: true,
+						method: 'POST',
+						headers: {
+							'X-Signature': 'test-hash',
+							'Content-Type': 'application/x-www-form-urlencoded'
+						},
+						body
+					} );
+					done();
 				} );
-				done();
+			} );
+		} );
+
+		describe( 'Without a body', function(){
+
+			it( 'Creates the correct options', function( done ){
+
+				backend.post( path, null, function(){
+
+					expect( request.calls.argsFor( 0 )[ 0 ] ).toEqual( {
+
+						url: ( href + path ),
+						time: true,
+						method: 'POST',
+						headers: {
+							'X-Signature': 'test-hash'
+						}
+					} );
+
+					done();
+				} );
 			} );
 		} );
 	} );

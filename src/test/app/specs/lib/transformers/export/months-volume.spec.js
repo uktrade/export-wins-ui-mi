@@ -20,8 +20,17 @@ describe( 'Months transformer for volume', function(){
 			expect( outputMonth.date ).toEqual( month.date );
 			expect( outputMonth.totals.hvc.confirmed ).toEqual( month.totals.export.hvc.number.confirmed );
 			expect( outputMonth.totals.hvc.unconfirmed ).toEqual( month.totals.export.hvc.number.unconfirmed );
-			expect( outputMonth.totals.nonHvc.confirmed ).toEqual( month.totals.export.non_hvc.number.confirmed );
-			expect( outputMonth.totals.nonHvc.unconfirmed ).toEqual( month.totals.export.non_hvc.number.unconfirmed );
+
+			if( month.totals.export.non_hvc ){
+
+				expect( outputMonth.totals.nonHvc.confirmed ).toEqual( month.totals.export.non_hvc.number.confirmed );
+				expect( outputMonth.totals.nonHvc.unconfirmed ).toEqual( month.totals.export.non_hvc.number.unconfirmed );
+
+			} else {
+
+				expect( outputMonth.totals.nonHvc ).not.toBeDefined();
+			}
+
 			expect( outputMonth.totals.nonExport.confirmed ).toEqual( month.totals.non_export.number.confirmed );
 			expect( outputMonth.totals.nonExport.unconfirmed ).toEqual( month.totals.non_export.number.unconfirmed );
 		} );
@@ -29,11 +38,26 @@ describe( 'Months transformer for volume', function(){
 
 	describe( 'With a UK Region', function(){
 
-		it( 'Should return the correct format', function(){
+		describe( 'With non_hvc', function(){
 
-			checkOutput( input );
+			it( 'Should return the correct format', function(){
+
+				checkOutput( input );
+			} );
 		} );
 
+		describe( 'Without non_hvc', function(){
+
+			it( 'Should return the correct format', function(){
+
+				input.results.months.forEach( ( month ) => {
+
+					delete month.totals.export.non_hvc;
+				} );
+
+				checkOutput( input );
+			} );
+		} );
 	} );
 
 	describe( 'With zero values', function(){

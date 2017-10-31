@@ -179,22 +179,115 @@ describe( 'Backend service helpers', function(){
 				} );
 			} );
 
-			describe( 'When the backend is not available', function(){
+			describe( 'When there is an error', function(){
 
-				it( 'Should throw an error', function( done ){
+				describe( 'When the backend is not available', function(){
 
-					backendRequest.sessionGet.and.callFake( function( sessionId, path, cb ){
+					it( 'Should throw a custom error', function( done ){
+
+						backendRequest.sessionGet.and.callFake( function( sessionId, path, cb ){
+
+							const err = new Error();
+							err.code = 'ECONNREFUSED';
+
+							cb( err, { isSuccess: false, elapsedTime: 0 } );
+						} );
+
+						helpers.getJson( path, req ).then( done.fail ).catch( ( e ) => {
+
+							expect( e ).toEqual( new Error( 'The backend is not available.' ) );
+							done();
+						} );
+					} );
+				} );
+
+				describe( 'When there is another error', function(){
+
+					it( 'Should throw the orginial error', function( done ){
 
 						const err = new Error();
-						err.code = 'ECONNREFUSED';
+						err.code = 'SOME_ERROR';
 
-						cb( err, { isSuccess: false, elapsedTime: 0 } );
+						backendRequest.sessionGet.and.callFake( function( sessionId, path, cb ){
+
+							cb( err, { isSuccess: false, elapsedTime: 0 } );
+						} );
+
+						helpers.getJson( path, req ).then( done.fail ).catch( ( e ) => {
+
+							expect( e ).toEqual( err );
+							done();
+						} );
 					} );
+				} );
+			} );
 
-					helpers.getJson( path, req ).then( done.fail ).catch( ( e ) => {
+			describe( 'When the backend response is not a success code', function(){
 
-						expect( e ).toEqual( new Error( 'The backend is not available.' ) );
-						done();
+				describe( 'When it is a 403', function(){
+
+					it( 'Should set the correct message', function( done ){
+
+						const response = {
+							isSuccess: false,
+							elapsedTime: 0,
+							statusCode: 403,
+							request: {
+								uri: {
+									href: '/mi/some/uri'
+								}
+							}
+						};
+						const data = { someData: true };
+
+						backendRequest.sessionGet.and.callFake( function( sessionId, path, cb ){
+
+							cb( null, response, data );
+						} );
+
+						helpers.getJson( path, req ).then( done.fail ).catch( ( e ) => {
+
+							expect( e.message ).toEqual( 'Not logged in' );
+							expect( e.response ).toEqual( response );
+							expect( e.data ).toEqual( data );
+
+							expect( logger.debug ).toHaveBeenCalled();
+							done();
+						} );
+					} );
+				} );
+
+				describe( 'When it is not a 403', function(){
+
+					it( 'Should set the statusCode and use the default message', function( done ){
+
+						const response = {
+							isSuccess: false,
+							elapsedTime: 0,
+							statusCode: 400,
+							request: {
+								uri: {
+									href: '/mi/some/uri'
+								}
+							}
+						};
+						const data = { someData: true };
+
+						backendRequest.sessionGet.and.callFake( function( sessionId, path, cb ){
+
+							cb( null, response, data );
+						} );
+
+						helpers.getJson( path, req ).then( done.fail ).catch( ( e ) => {
+
+							expect( e.message ).toEqual( `Got a ${ response.statusCode } status code for url: ${ response.request.uri.href }` );
+							expect( e.response ).toEqual( response );
+							expect( e.data ).toEqual( data );
+
+							expect( logger.error ).toHaveBeenCalled();
+							done();
+						} );
+
 					} );
 				} );
 			} );

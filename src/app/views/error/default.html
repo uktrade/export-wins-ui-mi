@@ -5,11 +5,15 @@
 {% block page_content %}
 
 	<h1 class="error-heading">
-		{{ error.code | default( 500 ) }}
+		This page is unavailable
 	</h1>
 
 	<p>
-		Sorry, something went wrong. Try <a href="/">visiting the homepage</a>.
+		We are experiencing technical problems. Try again in a few moments.
+	</p>
+
+	<p>
+		If you’re still having trouble getting access try <a href="/">visiting the homepage</a> or <a href="{{ urls.email() }}">let us know</a>
 	</p>
 
 	<p>
@@ -17,6 +21,14 @@
 	</p>
 
 	{%- if showErrors -%}
+
+	{% if error.code %}
+
+	<h2 class="error-heading">
+		Code: {{ error.code }}
+	</h2>
+
+	{% endif %}
 
 	<p class="stack-trace">
 		{{ error.stack }}

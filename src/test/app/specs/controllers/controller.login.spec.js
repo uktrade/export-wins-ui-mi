@@ -230,6 +230,15 @@ describe( 'Login controller', function(){
 
 				const invalidParamsError = new Error( 'Invalid oauth params' );
 
+				describe( 'Without a code or state', function(){
+
+					it( 'Shouls throw an invalid params error', function(){
+
+						req.query = {};
+						expect( () => controller.oauthCallback( req, res ) ).toThrow( invalidParamsError );
+					} );
+				} );
+
 				describe( 'When they are too long', function(){
 
 					describe( 'When the code is too long', function(){
