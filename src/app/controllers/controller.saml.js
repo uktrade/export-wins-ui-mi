@@ -18,7 +18,7 @@ module.exports = {
 
 		} ).catch( ( e ) => {
 
-			switch( e.code ){
+			switch( e.response && e.response.statusCode ){
 
 				case 403:
 

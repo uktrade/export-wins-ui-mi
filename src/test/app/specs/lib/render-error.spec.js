@@ -57,11 +57,11 @@ describe( 'Render Error', function(){
 			beforeEach( function(){
 
 				response = {
-					headers: {}
+					headers: {},
+					statusCode: 403
 				};
 
 				err = new Error( 'test' );
-				err.code = 403;
 				err.response = response;
 			} );
 

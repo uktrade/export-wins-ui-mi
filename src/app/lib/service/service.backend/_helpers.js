@@ -24,7 +24,8 @@ function createResponseHandler( resolve, reject ){
 
 			} else {
 
-				let message = 'Not a successful response from the backend.';
+				let defaultMessage = `Got a ${ response.statusCode } status code for url: ${ response.request.uri.href }`;
+				let message = defaultMessage;
 				let logType = 'error';
 
 				if( response.statusCode === 403 ){
@@ -35,11 +36,10 @@ function createResponseHandler( resolve, reject ){
 
 				const e = new Error( message );
 
-				e.code = response.statusCode;
 				e.response = response;
 				e.data = data;
 
-				logger[ logType ]( 'Got a %s status code for url: %s', response.statusCode, response.request.uri.href );
+				logger[ logType ]( defaultMessage );
 				reject( e );
 			}
 		}

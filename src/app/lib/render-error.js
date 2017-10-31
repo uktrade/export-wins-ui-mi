@@ -18,7 +18,7 @@ module.exports = {
 
 		return function( err ){
 
-			if( err.code === 403 ){
+			if( err.response && err.response.statusCode === 403 ){
 
 				const headers = err.response.headers;
 				const preferauthwith = headers.preferauthwith;

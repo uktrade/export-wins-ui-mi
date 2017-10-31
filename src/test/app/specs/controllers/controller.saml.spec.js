@@ -98,7 +98,7 @@ describe( 'SAML controller', function(){
 						const promise = new Promise( ( resolve, reject ) => {
 
 							const err = new Error( 'not in MI group' );
-							err.code = 403;
+							err.response = { statusCode: 403 };
 
 							reject( err );
 
@@ -127,7 +127,7 @@ describe( 'SAML controller', function(){
 						const promise = new Promise( ( resolve, reject ) => {
 
 							const err = new Error( 'server error' );
-							err.code = 500;
+							err.response = { statusCode: 500 };
 
 							reject( err );
 
@@ -156,7 +156,7 @@ describe( 'SAML controller', function(){
 						const promise = new Promise( ( resolve, reject ) => {
 
 							const err = new Error( 'not found' );
-							err.code = 404;
+							err.response = { statusCode: 404 };
 
 							reject( err );
 
