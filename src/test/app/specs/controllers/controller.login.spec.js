@@ -130,12 +130,14 @@ describe( 'Login controller', function(){
 
 					controller.oauth( req, res );
 
-					process.nextTick( () => {
+					promise.then( () => {
+						process.nextTick( () => {
 
-						expect( res.status ).toHaveBeenCalledWith( 500 );
-						expect( res.render ).toHaveBeenCalledWith( 'error/unable-to-login.html' );
-						expect( reporter.captureException ).toHaveBeenCalledWith( err );
-						done();
+							expect( res.status ).toHaveBeenCalledWith( 500 );
+							expect( res.render ).toHaveBeenCalledWith( 'error/unable-to-login.html' );
+							expect( reporter.captureException ).toHaveBeenCalledWith( err );
+							done();
+						} );
 					} );
 				} );
 			} );

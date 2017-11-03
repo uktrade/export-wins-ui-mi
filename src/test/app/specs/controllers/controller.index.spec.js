@@ -26,25 +26,34 @@ describe( 'Index controller', function(){
 
 	describe( 'Handler', function(){
 
-		it( 'Should render the view with the corect data', function( done ){
+		let req;
+		let res;
+		let sectorTeams;
+		let overseasRegionGroups;
+		let ukRegions;
+		let globalHvcs;
+		let globalWins;
+		let promise;
 
-			const req = {
+		beforeEach( function(){
+
+			req = {
 				cookies: { sessionid: '456' },
-				query: { ukRegions: '1' },
+				query: {},
 				year: 2017
 			};
 
-			const res = {
+			res = {
 				render: jasmine.createSpy( 'res.render' )
 			};
 
-			const sectorTeams = { results: { sectorTeams: true } };
-			const overseasRegionGroups = { results: { overseasRegionGroups: true } };
-			const ukRegions = { results: { ukRegions: true } };
-			const globalHvcs = { results: { globalHvcs: true } };
-			const globalWins = { date_range: { test: 1 }, results: { globalWins: true } };
+			sectorTeams = { results: { sectorTeams: true } };
+			overseasRegionGroups = { results: { overseasRegionGroups: true } };
+			ukRegions = { results: { ukRegions: true } };
+			globalHvcs = { results: { globalHvcs: true } };
+			globalWins = { date_range: { test: 1 }, results: { globalWins: true } };
 
-			const promise = new Promise( ( resolve ) => {
+			promise = new Promise( ( resolve ) => {
 
 				resolve( {
 					sectorTeams,
@@ -56,24 +65,129 @@ describe( 'Index controller', function(){
 			} );
 
 			exportBackendService.getHomepageData = spy( 'getHomepageData', promise );
+		} );
 
-			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
+		describe( 'In the default year', function(){
 
-			controller( req, res );
+			beforeEach( function(){
 
-			promise.then( () => {
+				req.isDefaultYear = true;
+			} );
 
-				expect( exportBackendService.getHomepageData ).toHaveBeenCalledWith( req );
-				expect( globalSummary.create ).toHaveBeenCalledWith( globalWins );
-				expect( res.render ).toHaveBeenCalledWith( 'index.html', {
-					sectorTeams: sectorTeams.results,
-					overseasRegionGroups: overseasRegionGroups.results,
-					ukRegions: ukRegions.results,
-					globalHvcs: globalHvcs.results,
-					summary: globalSummaryData
+			describe( 'Without any query params', function(){
+
+				it( 'Should render the view with the corect data', function( done ){
+
+					errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
+
+					controller( req, res );
+
+					promise.then( () => {
+
+						expect( exportBackendService.getHomepageData ).toHaveBeenCalledWith( req );
+						expect( globalSummary.create ).toHaveBeenCalledWith( globalWins );
+						expect( res.render ).toHaveBeenCalledWith( 'index.html', {
+							sectorTeams: sectorTeams.results,
+							overseasRegionGroups: overseasRegionGroups.results,
+							ukRegions: ukRegions.results,
+							globalHvcs: globalHvcs.results,
+							summary: globalSummaryData,
+							showDownloadLink: false
+						} );
+						expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
+						done();
+					} );
 				} );
-				expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
-				done();
+			} );
+
+			describe( 'With ?download=true', function(){
+
+				it( 'Should set showDownloadLink to true', function( done ){
+
+					req.query.download = '1';
+
+					errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
+
+					controller( req, res );
+
+					promise.then( () => {
+
+						expect( exportBackendService.getHomepageData ).toHaveBeenCalledWith( req );
+						expect( globalSummary.create ).toHaveBeenCalledWith( globalWins );
+						expect( res.render ).toHaveBeenCalledWith( 'index.html', {
+							sectorTeams: sectorTeams.results,
+							overseasRegionGroups: overseasRegionGroups.results,
+							ukRegions: ukRegions.results,
+							globalHvcs: globalHvcs.results,
+							summary: globalSummaryData,
+							showDownloadLink: true
+						} );
+						expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
+						done();
+					} );
+				} );
+			} );
+		} );
+
+		describe( 'Not in the default year', function(){
+
+			beforeEach( function(){
+
+				req.isDefaultYear = false;
+			} );
+
+			describe( 'Without any query params', function(){
+
+				it( 'Should set showDownloadLink to false', function( done ){
+
+					errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
+
+					controller( req, res );
+
+					promise.then( () => {
+
+						expect( exportBackendService.getHomepageData ).toHaveBeenCalledWith( req );
+						expect( globalSummary.create ).toHaveBeenCalledWith( globalWins );
+						expect( res.render ).toHaveBeenCalledWith( 'index.html', {
+							sectorTeams: sectorTeams.results,
+							overseasRegionGroups: overseasRegionGroups.results,
+							ukRegions: ukRegions.results,
+							globalHvcs: globalHvcs.results,
+							summary: globalSummaryData,
+							showDownloadLink: false
+						} );
+						expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
+						done();
+					} );
+				} );
+			} );
+
+			describe( 'With ?download=1', function(){
+
+				it( 'Should set showDownloadLink to false', function( done ){
+
+					req.query.download = '1';
+
+					errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
+
+					controller( req, res );
+
+					promise.then( () => {
+
+						expect( exportBackendService.getHomepageData ).toHaveBeenCalledWith( req );
+						expect( globalSummary.create ).toHaveBeenCalledWith( globalWins );
+						expect( res.render ).toHaveBeenCalledWith( 'index.html', {
+							sectorTeams: sectorTeams.results,
+							overseasRegionGroups: overseasRegionGroups.results,
+							ukRegions: ukRegions.results,
+							globalHvcs: globalHvcs.results,
+							summary: globalSummaryData,
+							showDownloadLink: false
+						} );
+						expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
+						done();
+					} );
+				} );
 			} );
 		} );
 	} );

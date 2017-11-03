@@ -66,6 +66,59 @@ describe( 'Backend service', function(){
 		jasmine.DEFAULT_TIMEOUT_INTERVAL = oldTimeout;
 	} );
 
+	describe( 'CSV Files', function(){
+
+		describe( 'Getting the list of files', function(){
+
+			it( 'Should return the list', function( done ){
+
+				const responseBody = { id: 1, created: '2017-11-02T14:18:43.631943Z' };
+
+				helpers.sessionGet.and.callFake( () => new Promise( ( resolve ) => {
+
+						resolve( { response: null, data: responseBody } );
+					} )
+				);
+
+				backendService.getCsvFileList( req ).then( ( info ) => {
+
+					const args = helpers.sessionGet.calls.argsFor( 0 );
+
+					expect( args[ 0 ] ).toEqual( '/mi/csv_files/latest/' );
+					expect( args[ 1 ] ).toEqual( req );
+					expect( info.data ).toEqual( responseBody );
+					done();
+
+				} ).catch( done.fail );
+			} );
+		} );
+
+		describe( 'Getting a URL for the file', function(){
+
+			it( 'Should return the URL', function( done ){
+
+				const fileId = '1';
+				const responseBody = { id: 1, one_time_url: 'https://someurl.com' };
+
+				helpers.sessionGet.and.callFake( () => new Promise( ( resolve ) => {
+
+						resolve( { response: null, data: responseBody } );
+					} )
+				);
+
+				backendService.getCsvFileUrl( req, fileId ).then( ( info ) => {
+
+					const args = helpers.sessionGet.calls.argsFor( 0 );
+
+					expect( args[ 0 ] ).toEqual( `/mi/csv_files/generate_otu/${ fileId }/` );
+					expect( args[ 1 ] ).toEqual( req );
+					expect( info.data ).toEqual( responseBody );
+					done();
+				} );
+			} );
+		} );
+	} );
+
 	describe( 'OAuth login', function(){
 
 		describe( 'When the response is a success', function(){
