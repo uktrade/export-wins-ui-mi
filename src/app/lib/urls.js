@@ -52,6 +52,7 @@ module.exports = function( req ){
 
 		email: () => `mailto:${ config.feedbackEmail }`,
 		survey: () => config.feedbackSurvey,
+		csv: () => '/download-csv/',
 
 		index: () => filteredUrl( '/' ),
 

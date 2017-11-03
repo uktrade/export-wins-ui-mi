@@ -8,6 +8,16 @@ module.exports = {
 	export: require( './export' ),
 	investment: require( './investment' ),
 
+	getCsvFileList: function( req ){
+
+		return sessionGet( '/mi/csv_files/latest/', req );
+	},
+
+	getCsvFileUrl: function( req, fileId ){
+
+		return sessionGet( `/mi/csv_files/generate_otu/${ fileId }/`, req );
+	},
+
 	getOauthUrl: function( next ){
 
 		let path = '/oauth2/auth_url/';

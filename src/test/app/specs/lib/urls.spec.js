@@ -127,6 +127,14 @@ describe( 'urls middleware', function(){
 		} );
 	} );
 
+	describe( 'Download CSV', function(){
+
+		it( 'Should return the correct URL', function(){
+
+			expect( middleware( req ).csv() ).toEqual( '/download-csv/' );
+		} );
+	} );
+
 	describe( 'Email', function(){
 
 		it( 'Should return the correct URL', function(){

@@ -6,6 +6,7 @@ const investmentRoutes = require( '../sub-apps/investment/routes' );
 const loginController = require( '../controllers/controller.login' );
 const samlController = require( '../controllers/controller.saml' );
 const dateController = require( '../controllers/controller.date' );
+const downloadController = require( '../controllers/controller.download' );
 
 const data = require( '../middleware/data' );
 const returnPath = require( '../middleware/return-path' );
@@ -25,6 +26,8 @@ module.exports = function( express, app, isDev ){
 	app.get( '/login/', loginController.oauth );
 	app.get( '/login/callback/', loginController.oauthCallback );
 	app.get( '/login-saml/', loginController.saml );
+
+	app.get( '/download-csv/', downloadController.csv );
 
 	app.use( dateRange );
 

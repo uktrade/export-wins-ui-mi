@@ -1149,6 +1149,25 @@ if( config.backend.mock ){
 		} );
 	} );
 
+	describe( 'CSV Download', function(){
+
+		it( 'Should return the path to the CSV file', function( done ){
+
+			const fileId = '1';
+			const one_time_url = 'my/test/url';
+
+			interceptBackend.get( '/mi/csv_files/latest/' ).reply( 200, { id: fileId } );
+			interceptBackend.get( `/mi/csv_files/generate_otu/${ fileId }/` ).reply( 200, { one_time_url } );
+
+			supertest( app ).get( '/download-csv/' ).end( ( err, res ) => {
+
+				checkResponse( res, 302 );
+				expect( res.headers.location ).toEqual( one_time_url );
+				done();
+			} );
+		} );
+	} );
+
 	describe( 'Environments', function(){
 
 		let morgan;

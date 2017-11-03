@@ -11,9 +11,18 @@
 	padding-top: pem( 9 );
 }
 
+.download-csv-link {
+	margin-bottom: pem( -30 );
+}
+
 .homepage-links-row {
+
 	border-top: 1px solid $grey-2;
 	margin-top: pem( 50 );
+
+	.column-one-third:first-of-type {
+		margin-left: pem( -10 );/* line up left edge with content above (remove .sector-list padding below) */
+	}
 }
 
 .sector-list-heading {
