@@ -1,20 +1,20 @@
 const webdriver = require( 'selenium-webdriver' );
 
-const accessibilityCheck = require( '../helpers/accessibility-check' );
-const fetch = require( '../helpers/fetch' );
-const driver = require( '../helpers/driver' );
-const takeScreenshot = require( '../helpers/take-screenshot' );
+const accessibilityCheck = require( '../../../helpers/accessibility-check' );
+const fetch = require( '../../../helpers/fetch' );
+const driver = require( '../../../helpers/driver' );
+const takeScreenshot = require( '../../../helpers/take-screenshot' );
 
 const By = webdriver.By;
 
-describe( 'The Sector Team page', function(){
+describe( 'The Country list page', function(){
 
 	beforeAll( function( done ){
 
-		fetch( '/sector-teams/1/' ).then( takeScreenshot( 'sector-team' ) ).then( done );
+		fetch( '/countries/' ).then( takeScreenshot( 'countries' ) ).then( done );
 	} );
 
-	accessibilityCheck( 'sector-team' );
+	accessibilityCheck( 'countries' );
 
 	describe( 'Page heading', function(){
 
@@ -33,7 +33,7 @@ describe( 'The Sector Team page', function(){
 
 			heading.getText().then( ( text ) => {
 
-				expect( text ).toEqual( 'Financial & Professional Services Sector Team' );
+				expect( text ).toEqual( 'All countries' );
 				done();
 			} );
 		} );
@@ -48,13 +48,13 @@ describe( 'The Sector Team page', function(){
 		} );
 	} );
 
-	describe( 'Sector Team key', function(){
+	describe( 'Alpha list', function(){
 
-		it( 'Should find the key', function( done ){
+		it( 'Should find the list', function( done ){
 
-			driver.findElements( By.className( 'key' ) ).then( ( key ) => {
+			driver.findElements( By.className( 'alpha-list_letters-list' ) ).then( ( list ) => {
 
-				expect( key.length ).toEqual( 1 );
+				expect( list.length ).toEqual( 1 );
 				done();
 			} );
 		} );

@@ -1,3 +1,17 @@
+@import 'typography';
+
 .i-homepage-lists {
 	margin-top: 2em;
+}
+
+.i-homepage-lists_heading {
+	@include bold-24;
+}
+
+.i-homepage-list {
+	padding: 0;
+}
+
+.i-homepage-list_item {
+	line-height: 1.4;
 }

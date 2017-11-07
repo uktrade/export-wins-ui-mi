@@ -1,6 +1,6 @@
 {
   "name": "export-wins-ui-mi",
-  "version": "6.8.0",
+  "version": "6.8.1",
   "description": "An MI dashboard for Export Wins",
   "main": "server.js",
   "engines": {
@@ -49,9 +49,9 @@
     "sass:prod-investment": "node-sass src/public/sass/investment.scss src/public/css/investment.css --include-path ./node_modules/@uktrade/trade_elements/dist/sass/ -x --output-style compressed",
     "sass:prod": "npm run sass:prod-main && npm run sass:prod-investment",
     "backstop:generate": "backstop genConfig",
-    "backstop:reference": "backstop reference --config=src/test/backstop/backstop.json",
-    "backstop:test": "backstop test --config=src/test/backstop/backstop.json",
-    "backstop:approve": "backstop approve --config=src/test/backstop/backstop.json"
+    "backstop:reference": "backstop reference --config=src/test/backstop/backstop.js",
+    "backstop:test": "backstop test --config=src/test/backstop/backstop.js",
+    "backstop:approve": "backstop approve --config=src/test/backstop/backstop.js"
   },
   "repository": {
     "type": "git",
@@ -88,7 +88,7 @@
   "devDependencies": {
     "axe-core": "2.4.2",
     "axe-webdriverjs": "1.1.5",
-    "backstopjs": "2.7.5",
+    "backstopjs": "3.0.32",
     "eslint": "3.19.0",
     "faker": "4.1.0",
     "grunt": "*",

@@ -80,11 +80,13 @@
 
 			{% if showSectorTeams %}
 
-			<h3>{#<a href="{{ urls.investment.sectorTeams() }}">#}Sector Teams{#</a>#}</h3>
+			<h3 class="i-homepage-lists_heading">
+				{#<a href="{{ urls.investment.sectorTeams() }}">#}Sector Teams{#</a>#}
+			</h3>
 
-			<ul>
+			<ul class="i-homepage-list">
 			{% for team in sectorTeams.results %}
-				<li>
+				<li class="i-homepage-list_item">
 					<a href="{{ urls.investment.sectorTeam( team.id ) }}">{{ team.description }}</a>
 				</li>
 			{% endfor %}

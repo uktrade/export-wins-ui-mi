@@ -1,20 +1,20 @@
 const webdriver = require( 'selenium-webdriver' );
 
-const accessibilityCheck = require( '../helpers/accessibility-check' );
-const fetch = require( '../helpers/fetch' );
-const driver = require( '../helpers/driver' );
-const takeScreenshot = require( '../helpers/take-screenshot' );
+const accessibilityCheck = require( '../../../helpers/accessibility-check' );
+const fetch = require( '../../../helpers/fetch' );
+const driver = require( '../../../helpers/driver' );
+const takeScreenshot = require( '../../../helpers/take-screenshot' );
 
 const By = webdriver.By;
 
-describe( 'The sector teams overview page', function(){
+describe( 'The Sector Team page', function(){
 
 	beforeAll( function( done ){
 
-		fetch( '/sector-teams/overview/' ).then( takeScreenshot( 'sector-teams-overview' ) ).then( done );
+		fetch( '/sector-teams/1/' ).then( takeScreenshot( 'sector-team' ) ).then( done );
 	} );
 
-	accessibilityCheck( 'sector-teams-overview' );
+	accessibilityCheck( 'sector-team' );
 
 	describe( 'Page heading', function(){
 
@@ -33,7 +33,7 @@ describe( 'The sector teams overview page', function(){
 
 			heading.getText().then( ( text ) => {
 
-				expect( text ).toEqual( 'All sector teams review' );
+				expect( text ).toEqual( 'Financial & Professional Services Sector Team' );
 				done();
 			} );
 		} );
@@ -48,7 +48,7 @@ describe( 'The sector teams overview page', function(){
 		} );
 	} );
 
-	describe( 'Sector team key', function(){
+	describe( 'Sector Team key', function(){
 
 		it( 'Should find the key', function( done ){
 
@@ -60,14 +60,17 @@ describe( 'The sector teams overview page', function(){
 		} );
 	} );
 
-	describe( 'Sector team table', function(){
+	describe( 'Page Tab', function(){
 
-		it( 'Should find the table', function( done ){
+		it( 'Should have the correct tab active', function( done ){
 
-			driver.findElements( By.className( 'sector-teams-ov-table' ) ).then( ( table ) => {
+			driver.findElement( By.className( 'page-tabs_tab--active' ) ).then( ( tab ) => {
 
-				expect( table.length ).toEqual( 1 );
-				done();
+				tab.getText().then( ( text ) => {
+
+					expect( text ).toEqual( 'Performance' );
+					done();
+				} );
 			} );
 		} );
 	} );

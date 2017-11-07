@@ -1,20 +1,20 @@
 const webdriver = require( 'selenium-webdriver' );
 
-const accessibilityCheck = require( '../helpers/accessibility-check' );
-const fetch = require( '../helpers/fetch' );
-const driver = require( '../helpers/driver' );
-const takeScreenshot = require( '../helpers/take-screenshot' );
+const accessibilityCheck = require( '../../../helpers/accessibility-check' );
+const fetch = require( '../../../helpers/fetch' );
+const driver = require( '../../../helpers/driver' );
+const takeScreenshot = require( '../../../helpers/take-screenshot' );
 
 const By = webdriver.By;
 
-describe( 'The HVC Group page', function(){
+describe( 'The Overseas Region page', function(){
 
 	beforeAll( function( done ){
 
-		fetch( '/hvc-groups/1/' ).then( takeScreenshot( 'hvc-group' ) ).then( done );
+		fetch( '/hvc-groups/1/wins/' ).then( takeScreenshot( 'hvc-group-wins' ) ).then( done );
 	} );
 
-	accessibilityCheck( 'hvc-group' );
+	accessibilityCheck( 'hvc-group-wins' );
 
 	describe( 'Page heading', function(){
 
@@ -48,14 +48,17 @@ describe( 'The HVC Group page', function(){
 		} );
 	} );
 
-	describe( 'HVC Group key', function(){
+	describe( 'Page Tab', function(){
 
-		it( 'Should find the key', function( done ){
+		it( 'Should have the correct tab active', function( done ){
 
-			driver.findElements( By.className( 'key' ) ).then( ( key ) => {
+			driver.findElement( By.className( 'page-tabs_tab--active' ) ).then( ( tab ) => {
 
-				expect( key.length ).toEqual( 1 );
-				done();
+				tab.getText().then( ( text ) => {
+
+					expect( text ).toEqual( 'HVC wins' );
+					done();
+				} );
 			} );
 		} );
 	} );
