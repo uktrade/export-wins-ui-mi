@@ -1,20 +1,20 @@
 const webdriver = require( 'selenium-webdriver' );
 
-const accessibilityCheck = require( '../helpers/accessibility-check' );
-const fetch = require( '../helpers/fetch' );
-const driver = require( '../helpers/driver' );
-const takeScreenshot = require( '../helpers/take-screenshot' );
+const accessibilityCheck = require( '../../../helpers/accessibility-check' );
+const fetch = require( '../../../helpers/fetch' );
+const driver = require( '../../../helpers/driver' );
+const takeScreenshot = require( '../../../helpers/take-screenshot' );
 
 const By = webdriver.By;
 
-describe( 'The Overseas Region page', function(){
+describe( 'The sector teams overview page', function(){
 
 	beforeAll( function( done ){
 
-		fetch( '/overseas-regions/1/' ).then( takeScreenshot( 'os-region' ) ).then( done );
+		fetch( '/sector-teams/overview/' ).then( takeScreenshot( 'sector-teams-overview' ) ).then( done );
 	} );
 
-	accessibilityCheck( 'os-region' );
+	accessibilityCheck( 'sector-teams-overview' );
 
 	describe( 'Page heading', function(){
 
@@ -33,7 +33,7 @@ describe( 'The Overseas Region page', function(){
 
 			heading.getText().then( ( text ) => {
 
-				expect( text ).toEqual( 'North Africa Overseas Region' );
+				expect( text ).toEqual( 'All sector teams review' );
 				done();
 			} );
 		} );
@@ -48,13 +48,25 @@ describe( 'The Overseas Region page', function(){
 		} );
 	} );
 
-	describe( 'Overseas Region key', function(){
+	describe( 'Sector team key', function(){
 
 		it( 'Should find the key', function( done ){
 
 			driver.findElements( By.className( 'key' ) ).then( ( key ) => {
 
 				expect( key.length ).toEqual( 1 );
+				done();
+			} );
+		} );
+	} );
+
+	describe( 'Sector team table', function(){
+
+		it( 'Should find the table', function( done ){
+
+			driver.findElements( By.className( 'sector-teams-ov-table' ) ).then( ( table ) => {
+
+				expect( table.length ).toEqual( 1 );
 				done();
 			} );
 		} );

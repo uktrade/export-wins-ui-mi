@@ -1,9 +1,9 @@
 const webdriver = require( 'selenium-webdriver' );
 
-const accessibilityCheck = require( '../helpers/accessibility-check' );
-const fetch = require( '../helpers/fetch' );
-const driver = require( '../helpers/driver' );
-const takeScreenshot = require( '../helpers/take-screenshot' );
+const accessibilityCheck = require( '../../../helpers/accessibility-check' );
+const fetch = require( '../../../helpers/fetch' );
+const driver = require( '../../../helpers/driver' );
+const takeScreenshot = require( '../../../helpers/take-screenshot' );
 
 const By = webdriver.By;
 

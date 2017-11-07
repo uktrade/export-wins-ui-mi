@@ -1,10 +1,10 @@
 const webdriver = require( 'selenium-webdriver' );
 const AxeBuilder = require( 'axe-webdriverjs' );
 
-const fetch = require( '../helpers/fetch' );
-const driver = require( '../helpers/driver' );
-const takeScreenshot = require( '../helpers/take-screenshot' );
-const writeReport = require( '../helpers/write-report' );
+const fetch = require( '../../helpers/fetch' );
+const driver = require( '../../helpers/driver' );
+const takeScreenshot = require( '../../helpers/take-screenshot' );
+const writeReport = require( '../../helpers/write-report' );
 
 const By = webdriver.By;
 
