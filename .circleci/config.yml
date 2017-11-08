@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/app
     docker:
-      - image: circleci/node:6.11
+      - image: circleci/node:8.9
         environment:
           SERVER_WORKERS: 2
           MI_SECRET: "JKL123"
@@ -24,7 +24,7 @@ jobs:
           EMAIL_HOST: "$EMAIL_HOST"
           EMAIL_PORT: "$EMAIL_PORT"
         command: ./start-wait-for-db.sh
-      - image: selenium/standalone-chrome:3.4
+      - image: selenium/standalone-chrome:3.7
     steps:
       - checkout
       - restore_cache:
