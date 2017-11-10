@@ -58,10 +58,18 @@ module.exports = {
 
 	oauthCallback: function( req, res ){
 
+		const error = req.query.error;
 		const code = ( req.query.code || '' );
 		const state = ( req.query.state || '' );
 
-		if( code.length < MAX_LEN && state.length < MAX_LEN && isAlpha.test( code ) && isAlpha.test( state ) ){
+		if( error ){
+
+			const err = new Error( 'oAuth callback error' );
+			err.param = error;
+
+			createUnableToLoginHandler( res )( err );
+
+		} else if( code.length < MAX_LEN && state.length < MAX_LEN && isAlpha.test( code ) && isAlpha.test( state ) ){
 
 			backendService.postOauthCallback( `code=${ code }&state=${ state }` ).then( ( info ) => {
 

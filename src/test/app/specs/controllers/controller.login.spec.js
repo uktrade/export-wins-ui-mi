@@ -166,143 +166,166 @@ describe( 'Login controller', function(){
 
 	describe( 'oauthCallback', function(){
 
-		beforeEach( function(){
+		describe( 'With error param', function(){
 
-			req.query = {
-				code: 'acode',
-				state: 'astate'
-			};
-		} );
+			beforeEach( function(){
 
-		describe( 'With a success response', function(){
-
-			describe( 'With valid params', function(){
-
-				const response = {
-					headers: {
-						'set-cookie': [ 'abc=test', 'sessionid=1234' ]
-					}
-				};
-
-				describe( 'With a JSON response', function(){
-
-					it( 'Should redirect to the next location from the JSON', function( done ){
-
-						const next = '/my/url/';
-						const promise = new Promise( ( resolve ) => resolve( { response, data: { next } } ) );
-
-						backendService.postOauthCallback = spy( 'postOauthCallback', promise );
-						errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
-
-						controller.oauthCallback( req, res );
-
-						promise.then( () => {
-
-							expect( backendService.postOauthCallback ).toHaveBeenCalledWith( `code=${ req.query.code }&state=${ req.query.state }` );
-							expect( res.set ).toHaveBeenCalledWith( 'Set-Cookie', [ response.headers[ 'set-cookie' ][ 1 ] ] );
-							expect( res.redirect ).toHaveBeenCalledWith( next );
-							done();
-						} );
-					} );
-				} );
-
-				describe( 'Without a JSON response', function(){
-
-					it( 'Should call the backend service and pass the params as JSON', function( done ){
-
-						const promise = new Promise( ( resolve ) => resolve( { response, data: '' } ) );
-
-						backendService.postOauthCallback = spy( 'postOauthCallback', promise );
-						errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
-
-						controller.oauthCallback( req, res );
-
-						promise.then( () => {
-
-							expect( backendService.postOauthCallback ).toHaveBeenCalledWith( `code=${ req.query.code }&state=${ req.query.state }` );
-							expect( res.set ).toHaveBeenCalledWith( 'Set-Cookie', [ response.headers[ 'set-cookie' ][ 1 ] ] );
-							expect( res.redirect ).toHaveBeenCalledWith( '/' );
-							done();
-						} );
-					} );
-				} );
+				req.query = { error: 'something' };
 			} );
 
-			describe( 'With invalid params', function(){
+			it( 'Should render the unable-to-login page', function(){
 
-				const invalidParamsError = new Error( 'Invalid oauth params' );
-
-				describe( 'Without a code or state', function(){
-
-					it( 'Shouls throw an invalid params error', function(){
-
-						req.query = {};
-						expect( () => controller.oauthCallback( req, res ) ).toThrow( invalidParamsError );
-					} );
-				} );
-
-				describe( 'When they are too long', function(){
-
-					describe( 'When the code is too long', function(){
-
-						it( 'Should throw an invalid params error', function(){
-
-							req.query.code = 'abcdefghijklkmnop';
-							expect( () => controller.oauthCallback( req, res ) ).toThrow( invalidParamsError );
-						} );
-					} );
-
-					describe( 'When the state is too long', function(){
-
-						it( 'Should throw an invalid params error', function(){
-
-							req.query.state = 'abcdefghijklkmnop';
-							expect( () => controller.oauthCallback( req, res ) ).toThrow( invalidParamsError );
-						} );
-					} );
-				} );
-
-				describe( 'When the are not alphanumeric', function(){
-
-					describe( 'When the code is node valid', function(){
-
-						it( 'Should throw an invalid params error', function(){
-
-							req.query.code = 'a b c';
-							expect( () => controller.oauthCallback( req, res ) ).toThrow( invalidParamsError );
-						} );
-					} );
-
-					describe( 'When the state is node valid', function(){
-
-						it( 'Should throw an invalid params error', function(){
-
-							req.query.state = 'a b c';
-							expect( () => controller.oauthCallback( req, res ) ).toThrow( invalidParamsError );
-						} );
-					} );
-				} );
-			} );
-		} );
-
-		describe( 'With any other response', function(){
-
-			it( 'Should render the unable to login page', function( done ){
-
-				const e = new Error( 'something' );
-
-				const promise = new Promise( ( resolve, reject ) => reject( e ) );
-
-				backendService.postOauthCallback = spy( 'postOauthCallback', promise );
+				const err = new Error( 'oAuth callback error' );
 
 				controller.oauthCallback( req, res );
 
-				process.nextTick( () => {
+				expect( res.status ).toHaveBeenCalledWith( 500 );
+				expect( res.render ).toHaveBeenCalledWith( 'error/unable-to-login.html' );
+				expect( reporter.captureException ).toHaveBeenCalledWith( err );
+				expect( reporter.captureException.calls.argsFor( 0 )[ 0 ].param ).toEqual( req.query.error );
+			} );
+		} );
 
-					expect( res.status ).toHaveBeenCalledWith( 500 );
-					expect( res.render ).toHaveBeenCalledWith( 'error/unable-to-login.html' );
-					expect( reporter.captureException ).toHaveBeenCalledWith( e );
-					done();
+		describe( 'With code and state params', function(){
+
+			beforeEach( function(){
+
+				req.query = {
+					code: 'acode',
+					state: 'astate'
+				};
+			} );
+
+			describe( 'With a success response', function(){
+
+				describe( 'With valid params', function(){
+
+					const response = {
+						headers: {
+							'set-cookie': [ 'abc=test', 'sessionid=1234' ]
+						}
+					};
+
+					describe( 'With a JSON response', function(){
+
+						it( 'Should redirect to the next location from the JSON', function( done ){
+
+							const next = '/my/url/';
+							const promise = new Promise( ( resolve ) => resolve( { response, data: { next } } ) );
+
+							backendService.postOauthCallback = spy( 'postOauthCallback', promise );
+							errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
+
+							controller.oauthCallback( req, res );
+
+							promise.then( () => {
+
+								expect( backendService.postOauthCallback ).toHaveBeenCalledWith( `code=${ req.query.code }&state=${ req.query.state }` );
+								expect( res.set ).toHaveBeenCalledWith( 'Set-Cookie', [ response.headers[ 'set-cookie' ][ 1 ] ] );
+								expect( res.redirect ).toHaveBeenCalledWith( next );
+								done();
+							} );
+						} );
+					} );
+
+					describe( 'Without a JSON response', function(){
+
+						it( 'Should call the backend service and pass the params as JSON', function( done ){
+
+							const promise = new Promise( ( resolve ) => resolve( { response, data: '' } ) );
+
+							backendService.postOauthCallback = spy( 'postOauthCallback', promise );
+							errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
+
+							controller.oauthCallback( req, res );
+
+							promise.then( () => {
+
+								expect( backendService.postOauthCallback ).toHaveBeenCalledWith( `code=${ req.query.code }&state=${ req.query.state }` );
+								expect( res.set ).toHaveBeenCalledWith( 'Set-Cookie', [ response.headers[ 'set-cookie' ][ 1 ] ] );
+								expect( res.redirect ).toHaveBeenCalledWith( '/' );
+								done();
+							} );
+						} );
+					} );
+				} );
+
+				describe( 'With invalid params', function(){
+
+					const invalidParamsError = new Error( 'Invalid oauth params' );
+
+					describe( 'Without a code or state', function(){
+
+						it( 'Shouls throw an invalid params error', function(){
+
+							req.query = {};
+							expect( () => controller.oauthCallback( req, res ) ).toThrow( invalidParamsError );
+						} );
+					} );
+
+					describe( 'When they are too long', function(){
+
+						describe( 'When the code is too long', function(){
+
+							it( 'Should throw an invalid params error', function(){
+
+								req.query.code = 'abcdefghijklkmnop';
+								expect( () => controller.oauthCallback( req, res ) ).toThrow( invalidParamsError );
+							} );
+						} );
+
+						describe( 'When the state is too long', function(){
+
+							it( 'Should throw an invalid params error', function(){
+
+								req.query.state = 'abcdefghijklkmnop';
+								expect( () => controller.oauthCallback( req, res ) ).toThrow( invalidParamsError );
+							} );
+						} );
+					} );
+
+					describe( 'When the are not alphanumeric', function(){
+
+						describe( 'When the code is node valid', function(){
+
+							it( 'Should throw an invalid params error', function(){
+
+								req.query.code = 'a b c';
+								expect( () => controller.oauthCallback( req, res ) ).toThrow( invalidParamsError );
+							} );
+						} );
+
+						describe( 'When the state is node valid', function(){
+
+							it( 'Should throw an invalid params error', function(){
+
+								req.query.state = 'a b c';
+								expect( () => controller.oauthCallback( req, res ) ).toThrow( invalidParamsError );
+							} );
+						} );
+					} );
+				} );
+			} );
+
+			describe( 'With any other response', function(){
+
+				it( 'Should render the unable to login page', function( done ){
+
+					const e = new Error( 'something' );
+
+					const promise = new Promise( ( resolve, reject ) => reject( e ) );
+
+					backendService.postOauthCallback = spy( 'postOauthCallback', promise );
+
+					controller.oauthCallback( req, res );
+
+					process.nextTick( () => {
+
+						expect( res.status ).toHaveBeenCalledWith( 500 );
+						expect( res.render ).toHaveBeenCalledWith( 'error/unable-to-login.html' );
+						expect( reporter.captureException ).toHaveBeenCalledWith( e );
+						done();
+					} );
 				} );
 			} );
 		} );
