@@ -60,6 +60,7 @@ module.exports = function( path, year = 2016 ){
 
 	switch( path ){
 		case '/user/me.schema':
+		case '/csv/list.schema':
 			hasWrapper = false;
 		break;
 

@@ -1,6 +1,8 @@
 const paths = [
 	[ '/2016/', 'Homepage', [] ],
 
+	[ '/downloads/', 'MI - Downloads', [] ],
+
 	[ '/2016/select-date/', 'Select Year for Dates', [] ],
 	[ '/2016/select-date/2017/', 'Select Dates', [] ],
 
@@ -38,7 +40,8 @@ const paths = [
 	[ '/2016/uk-regions/north-west/wins/', ' UK Region HVC wins', [ '.page-date' ] ],
 	[ '/2016/uk-regions/north-west/non-hvc-wins/', ' UK Region Non HVC wins', [ '.page-date' ] ],
 
-	[ '/2016/investment/', 'Investment Homepage', [ '.fdi-overview-date', '.fdi-overview-yoy-date' ] ]
+	[ '/2016/investment/', 'Investment Homepage', [ '.fdi-overview-date', '.fdi-overview-yoy-date' ] ],
+	[ '/2016/investment/sector-teams/1/', 'MI - Investment - Sector team performance - Aerospace', [ '.page-date' ] ]
 ];
 
 const scenarios = paths.reduce( ( output, pathInfo ) => {

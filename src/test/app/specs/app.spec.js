@@ -1149,23 +1149,41 @@ if( config.backend.mock ){
 		} );
 	} );
 
-	describe( 'CSV Download', function(){
+	describe( 'Downloads', function(){
 
-		it( 'Should return the path to the CSV file', function( done ){
+		describe( 'The list of downloads', function(){
 
-			const fileId = '1';
-			const one_time_url = 'my/test/url';
+			it( 'Should return a status of 200', function( done ){
 
-			interceptBackend.get( '/mi/csv_files/latest/' ).reply( 200, { id: fileId } );
-			interceptBackend.get( `/mi/csv_files/generate_otu/${ fileId }/` ).reply( 200, { one_time_url } );
+				interceptBackend.getStub( '/csv/all_files/', 200, '/csv/all_files' );
 
-			supertest( app ).get( '/download-csv/' ).end( ( err, res ) => {
+				supertest( app ).get( '/downloads/' ).end( ( err, res ) => {
 
-				checkResponse( res, 302 );
-				expect( res.headers.location ).toEqual( one_time_url );
-				done();
+					checkResponse( res, 200 );
+					expect( getTitle( res ) ).toEqual( 'MI - Downloads' );
+					done();
+				} );
 			} );
 		} );
+
+		describe( 'Downloading a file', function(){
+
+			it( 'Should return the path to the CSV file', function( done ){
+
+				const fileId = '1';
+				const one_time_url = 'my/test/url';
+
+				interceptBackend.get( `/csv/generate_otu/${ fileId }/` ).reply( 200, { one_time_url } );
+
+				supertest( app ).get( `/downloads/${ fileId }/` ).end( ( err, res ) => {
+
+					checkResponse( res, 302 );
+					expect( res.headers.location ).toEqual( one_time_url );
+					done();
+				} );
+			} );
+		} );
+
 	} );
 
 	describe( 'Environments', function(){

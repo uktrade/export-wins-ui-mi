@@ -6,4 +6,5 @@ module.exports = function( env ){
 	env.addFilter( 'tablePercentage', require( './table-percentage' ) );
 	env.addFilter( 'dateOnly', require( './date-only' ) );
 	env.addFilter( 'dateWithTime', require( './date-with-time' ) );
+	env.addFilter( 'dateStamp', require( './date-stamp' ) );
 };

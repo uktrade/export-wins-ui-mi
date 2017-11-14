@@ -6,7 +6,6 @@
 @import 'elements/buttons';
 @import 'elements/forms';
 @import 'elements/forms/form-validation';
-@import 'elements/elements-typography';
 
 @import 'trade/components/button';
 
@@ -23,6 +22,8 @@
 @import 'page/select-dates';
 @import 'page/uk-region';
 @import 'page/uk-regions-overview';
+@import 'page/downloads';
+@import 'page/hvc-group';
 
 @import 'partials/global-performance';
 
@@ -34,17 +35,16 @@
 @import 'components/year-selector';
 @import 'components/zero-target-perf-table';
 @import 'components/region-performance-table';
+@import 'components/win-table';
+@import 'components/page-tabs';
+@import 'components/target-progress-bar';
+@import 'components/top-markets';
+@import 'components/pie';
 
 @import 'error';
-@import 'page-tabs';
-@import 'target-progress-bar';
-@import 'pie';
 @import 'sector-wins-list';
-@import 'top-markets';
 @import 'overview-blocks';
 @import 'overview-progress';
-@import 'win-table';
-@import 'hvc-group';
 @import 'os-regions-tabs';
 
 main {
@@ -53,6 +53,67 @@ main {
 
 .row-separator {
 	margin-top: pem( 60, 16 );
+}
+
+// Back link styles - with left pointing arrow
+.link-back {
+	@include core-16;
+	@include inline-block;
+	position: relative;
+	margin-top: $gutter-half;
+	margin-bottom: $gutter-half;
+	padding-left: 14px;
+	color: $black;
+	text-decoration: none;
+	border-bottom: 1px solid $black;
+
+	&:link,
+	&:visited,
+	&:hover,
+	&:active {
+		color: $black;
+	}
+
+	// Back arrow - left pointing black arrow
+	&::before {
+		content: '';
+		display: block;
+		width: 0;
+		height: 0;
+
+		border-top: 5px solid transparent;
+		border-right: 6px solid $text-colour;
+		border-bottom: 5px solid transparent;
+
+		position: absolute;
+		left: 0;
+		top: 50%;
+		margin-top: -6px;
+	}
+
+	// Fallback
+	// IE8 doesn't support rgba and only supports the single colon syntax for :before
+	// IE7 doesn't support pseudo-elements, let's fallback to an image instead.
+	// Ref: http://caniuse.com/#search=%3Abefore, http://caniuse.com/#search=rgba
+	@include ie-lte(8) {
+		background: file-url("icon-arrow-left-a68933e93e.png") no-repeat 0 4px;
+	}
+
+}
+
+// Horizontal rule style
+hr {
+	display: block;
+	background: $border-colour;
+	border: 0;
+	height: 1px;
+	margin-top: $gutter;
+	margin-bottom: $gutter;
+	padding: 0;
+
+	@include ie-lte(7) {
+		color: $border-colour;
+	}
 }
 
 .unit-marker {

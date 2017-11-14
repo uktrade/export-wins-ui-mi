@@ -15,7 +15,8 @@ if( config.backend.fake ){
 const response = { statusCode: 200, isSuccess: true, elapsedTime: 0 };
 
 const stubs = [
-	[ /^\/user\/me\/$/, 'user/me' ]
+	[ /^\/user\/me\/$/, 'user/me' ],
+	[ /^\/csv\/all_files\/$/, 'csv/all_files' ]
 ];
 
 const filteredStubs = [

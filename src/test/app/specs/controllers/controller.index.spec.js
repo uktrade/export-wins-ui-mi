@@ -91,36 +91,7 @@ describe( 'Index controller', function(){
 							overseasRegionGroups: overseasRegionGroups.results,
 							ukRegions: ukRegions.results,
 							globalHvcs: globalHvcs.results,
-							summary: globalSummaryData,
-							showDownloadLink: false
-						} );
-						expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
-						done();
-					} );
-				} );
-			} );
-
-			describe( 'With ?download=true', function(){
-
-				it( 'Should set showDownloadLink to true', function( done ){
-
-					req.query.download = '1';
-
-					errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
-
-					controller( req, res );
-
-					promise.then( () => {
-
-						expect( exportBackendService.getHomepageData ).toHaveBeenCalledWith( req );
-						expect( globalSummary.create ).toHaveBeenCalledWith( globalWins );
-						expect( res.render ).toHaveBeenCalledWith( 'index.html', {
-							sectorTeams: sectorTeams.results,
-							overseasRegionGroups: overseasRegionGroups.results,
-							ukRegions: ukRegions.results,
-							globalHvcs: globalHvcs.results,
-							summary: globalSummaryData,
-							showDownloadLink: true
+							summary: globalSummaryData
 						} );
 						expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
 						done();
@@ -138,7 +109,7 @@ describe( 'Index controller', function(){
 
 			describe( 'Without any query params', function(){
 
-				it( 'Should set showDownloadLink to false', function( done ){
+				it( 'Should render the page', function( done ){
 
 					errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
 
@@ -153,36 +124,7 @@ describe( 'Index controller', function(){
 							overseasRegionGroups: overseasRegionGroups.results,
 							ukRegions: ukRegions.results,
 							globalHvcs: globalHvcs.results,
-							summary: globalSummaryData,
-							showDownloadLink: false
-						} );
-						expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
-						done();
-					} );
-				} );
-			} );
-
-			describe( 'With ?download=1', function(){
-
-				it( 'Should set showDownloadLink to false', function( done ){
-
-					req.query.download = '1';
-
-					errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
-
-					controller( req, res );
-
-					promise.then( () => {
-
-						expect( exportBackendService.getHomepageData ).toHaveBeenCalledWith( req );
-						expect( globalSummary.create ).toHaveBeenCalledWith( globalWins );
-						expect( res.render ).toHaveBeenCalledWith( 'index.html', {
-							sectorTeams: sectorTeams.results,
-							overseasRegionGroups: overseasRegionGroups.results,
-							ukRegions: ukRegions.results,
-							globalHvcs: globalHvcs.results,
-							summary: globalSummaryData,
-							showDownloadLink: false
+							summary: globalSummaryData
 						} );
 						expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
 						done();
