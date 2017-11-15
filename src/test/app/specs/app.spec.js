@@ -98,7 +98,7 @@ if( config.backend.mock ){
 					supertest( app ).get( '/downloads/' ).end( ( err, res ) => {
 
 						checkResponse( res, 200 );
-						expect( getTitle( res ) ).toEqual( 'MI - Downloads' );
+						expect( getTitle( res ) ).toEqual( 'MI - Download raw data' );
 						done();
 					} );
 				} );

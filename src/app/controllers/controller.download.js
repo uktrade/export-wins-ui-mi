@@ -5,7 +5,7 @@ module.exports = {
 
 	list: function( req, res ){
 
-		const showFdi = !!req.query.fdi;
+		const showFdi = req.user.fdi;
 
 		backendService.getCsvFileList( req ).then( ( filesInfo ) => {
 

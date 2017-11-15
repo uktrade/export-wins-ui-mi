@@ -3,6 +3,7 @@ const { sessionGet, sessionPost, get, post } = require( './_helpers' );
 const transformCsvFiles = require( '../../transformers/csv-files' );
 
 const internalUsers = config.internalUsers.split( ',' );
+const fdiUsers = config.fdiUsers.split( ',' );
 
 module.exports = {
 
@@ -59,6 +60,7 @@ module.exports = {
 			const user = info.data;
 
 			user.internal = !!~internalUsers.indexOf( user.email );
+			user.fdi = ( user.internal || !!~fdiUsers.indexOf( user.email ) );
 
 			return user;
 		} );

@@ -41,11 +41,11 @@ describe( 'Download controller', function(){
 			backendService.getCsvFileList = spy( 'getCsvFileList', promise );
 		} );
 
-		describe( 'With a ?fdi=1 query param', function(){
+		describe( 'With a fdi user param', function(){
 
 			it( 'Should render the correct view', function( done ){
 
-				req.query.fdi = '1';
+				req.user = { fdi: true };
 
 				errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
 				controller.list( req, res );
@@ -62,9 +62,11 @@ describe( 'Download controller', function(){
 			} );
 		} );
 
-		describe( 'Without any query params', function(){
+		describe( 'Without an fdi user', function(){
 
 			it( 'Should render the correct view', function( done ){
+
+				req.user = { fdi: false };
 
 				errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
 				controller.list( req, res );
