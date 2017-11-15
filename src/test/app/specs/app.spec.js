@@ -87,6 +87,24 @@ if( config.backend.mock ){
 			expect( userIntercept.isDone() ).toEqual( true );
 		} );
 
+		describe( 'Downloads', function(){
+
+			describe( 'The list of downloads', function(){
+
+				it( 'Should return a status of 200', function( done ){
+
+					interceptBackend.getStub( '/csv/all_files/', 200, '/csv/all_files' );
+
+					supertest( app ).get( '/downloads/' ).end( ( err, res ) => {
+
+						checkResponse( res, 200 );
+						expect( getTitle( res ) ).toEqual( 'MI - Downloads' );
+						done();
+					} );
+				} );
+			} );
+		} );
+
 		describe( 'Export', function(){
 
 			describe( 'Index page', function(){
@@ -1150,21 +1168,6 @@ if( config.backend.mock ){
 	} );
 
 	describe( 'Downloads', function(){
-
-		describe( 'The list of downloads', function(){
-
-			it( 'Should return a status of 200', function( done ){
-
-				interceptBackend.getStub( '/csv/all_files/', 200, '/csv/all_files' );
-
-				supertest( app ).get( '/downloads/' ).end( ( err, res ) => {
-
-					checkResponse( res, 200 );
-					expect( getTitle( res ) ).toEqual( 'MI - Downloads' );
-					done();
-				} );
-			} );
-		} );
 
 		describe( 'Downloading a file', function(){
 
