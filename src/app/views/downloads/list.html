@@ -72,12 +72,13 @@
 
 	{% if files.contacts or files.companies %}
 
-	{% macro ukItems( files ) %}
+	{% macro ukItems( files, name='region' ) %}
 	<ol class="download-group-list">
 		{% for file in files %}
 		<li class="download-group-list_item">
 			<a href="{{ urls.downloadFile( file.id ) }}">
-				Download - {{ file.region }}
+				<span class="download-group-list_item_text1">Download -</span>
+				<span class="download-group-list_item_text2">{{ file[ name ] }}</span>
 			</a>
 			{% if file.updated -%}
 			<span class="download-group-list_item_updated">
@@ -92,17 +93,36 @@
 	<div class="grid-row download-group-separator">
 		<div class="column-one-third">
 
-			{% if files.contacts %}
-			<h2 class="download-group-heading">List of UK contacts</h2>
+			{% if files.contacts.regions %}
+			<h2 class="download-group-heading">UK contacts by region</h2>
 			{{ ukItems( files.contacts.regions ) }}
 			{% endif %}
 
 		</div>
 		<div class="column-one-third">
 
-			{% if files.companies %}
-			<h2 class="download-group-heading">List of UK companies</h2>
+			{% if files.companies.regions %}
+			<h2 class="download-group-heading">UK companies by region</h2>
 			{{ ukItems( files.companies.regions ) }}
+			{% endif %}
+
+		</div>
+	</div>
+
+	<div class="grid-row download-group-separator">
+		<div class="column-one-third">
+
+			{% if files.contacts.sectors %}
+			<h2 class="download-group-heading">UK contacts by sector</h2>
+			{{ ukItems( files.contacts.sectors, 'sector' ) }}
+			{% endif %}
+
+		</div>
+		<div class="column-one-third">
+
+			{% if files.companies.sectors %}
+			<h2 class="download-group-heading">UK companies by sector</h2>
+			{{ ukItems( files.companies.sectors, 'sector' ) }}
 			{% endif %}
 
 		</div>

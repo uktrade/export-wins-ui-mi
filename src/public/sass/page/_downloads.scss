@@ -47,6 +47,18 @@
 
 .download-group-list_item {
 	padding-bottom: pem( 10 );
+	position: relative;
+}
+
+.download-group-list_item_text1 {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.download-group-list_item_text2 {
+	display: inline-block;
+	padding-left: pem( 85 );
 }
 
 .download-group-list_item_updated {
