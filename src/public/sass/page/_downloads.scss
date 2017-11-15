@@ -1,0 +1,56 @@
+.download-message {
+	@include core-19;
+	margin: pem( 30, 19 ) 0;
+}
+
+.download-group-separator {
+	margin-top: pem( 50 );
+}
+
+.download-no-files {
+	text-align: center;
+	@include core-24;
+	margin: pem( 100, 24 );
+}
+
+.download-group-heading {
+	@include bold-24;
+	padding-bottom: pem( 20, 24 );
+}
+
+.download-group-heading_valign {
+	min-height: 2.5em;
+	display: inline-block;
+}
+
+.download-group-heading_text {
+	vertical-align: bottom;
+	display: inline-block;
+}
+
+.download-group-current {
+	margin: 0 0 pem( 20 ) 0;
+}
+
+.download-group-current_link {
+	display: block;
+}
+
+.download-group-current_date {
+	@include core-14;
+	color: $grey-1;
+}
+
+.download-group-list{
+	padding: 0;
+}
+
+.download-group-list_item {
+	padding-bottom: pem( 10 );
+}
+
+.download-group-list_item_updated {
+	color: $grey-1;
+	@include core-14;
+	display: block;
+}

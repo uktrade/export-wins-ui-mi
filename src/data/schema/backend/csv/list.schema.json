@@ -1,0 +1,228 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "CSV information",
+
+	"type": "object",
+	"required": [ "export", "fdi", "sdi", "contacts", "companies" ],
+	"properties": {
+
+		"export": {
+			"type": "object",
+			"required": [ "current", "previous" ],
+			"properties": {
+
+				"current": {
+					"$ref": "#/definitions/export-item"
+				},
+
+				"previous": {
+					"type": "array",
+					"minItems": 1,
+					"maxItems": 3,
+					"items": {
+						"$ref": "#/definitions/export-item"
+					}
+				}
+			}
+		},
+
+		"fdi": {
+			"type": "object",
+			"required": [ "latest", "months" ],
+			"properties": {
+
+				"latest": {
+					"$ref": "#/definitions/item"
+				},
+
+				"months": {
+					"type": "array",
+					"minItems": 1,
+					"maxItems": 3,
+					"items": {
+						"$ref": "#/definitions/item"
+					}
+				}
+			}
+		},
+
+		"sdi": {
+			"type": "object",
+			"required": [ "latest", "months" ],
+			"properties": {
+
+				"latest": {
+					"$ref": "#/definitions/item"
+				},
+
+				"months": {
+					"type": "array",
+					"minItems": 1,
+					"maxItems": 3,
+					"items": {
+						"$ref": "#/definitions/item"
+					}
+				}
+			}
+		},
+
+		"contacts": {
+			"$ref": "#/definitions/uk-item"
+		},
+
+		"companies": {
+			"$ref": "#/definitions/uk-item"
+		}
+	},
+
+	"definitions": {
+
+		"item": {
+			"type": "object",
+			"required": [ "id", "name", "report_date", "created" ],
+			"properties": {
+
+				"id": {
+					"type": "number",
+					"faker": "random.number"
+				},
+
+				"name": {
+					"type": "string",
+					"faker": "lorem.words"
+				},
+
+				"report_date": {
+					"type": "string",
+					"faker": "date.past"
+				},
+
+				"created": {
+					"type": "string",
+					"faker": "date.past"
+				}
+			}
+		},
+
+		"export-item": {
+			"type": "object",
+			"required": [ "id", "name", "report_date", "created", "financial_year" ],
+			"properties": {
+
+				"id": {
+					"type": "number",
+					"faker": "random.number"
+				},
+
+				"name": {
+					"type": "string",
+					"faker": "lorem.words"
+				},
+
+				"report_date": {
+					"type": "string",
+					"faker": "date.past"
+				},
+
+				"created": {
+					"type": "string",
+					"faker": "date.past"
+				},
+
+				"financial_year": {
+					"type": "string",
+					"pattern": "^20[0-9]{2}-[0-9]{2}$"
+				}
+			}
+		},
+
+		"uk-region": {
+			"type": "object",
+			"required": [ "id", "name", "report_date", "created", "region" ],
+			"properties": {
+
+				"id": {
+					"type": "number",
+					"faker": "random.number"
+				},
+
+				"name": {
+					"type": "string",
+					"faker": "lorem.words"
+				},
+
+				"report_date": {
+					"type": "string",
+					"faker": "date.past"
+				},
+
+				"created": {
+					"type": "string",
+					"faker": "date.past"
+				},
+
+				"region": {
+					"type": "string",
+					"faker": "address.county"
+				}
+			}
+		},
+
+		"uk-sector": {
+			"type": "object",
+			"required": [ "id", "name", "report_date", "created", "sector" ],
+			"properties": {
+
+				"id": {
+					"type": "number",
+					"faker": "random.number"
+				},
+
+				"name": {
+					"type": "string",
+					"faker": "lorem.words"
+				},
+
+				"report_date": {
+					"type": "string",
+					"faker": "date.past"
+				},
+
+				"created": {
+					"type": "string",
+					"faker": "date.past"
+				},
+
+				"sector": {
+					"type": "string",
+					"faker": "lorem.word"
+				}
+			}
+		},
+
+		"uk-item": {
+			"type": "object",
+			"required": [ "regions", "sectors" ],
+			"properties": {
+
+				"regions": {
+					"type": "array",
+					"minItems": 1,
+					"maxItems": 12,
+					"items": {
+						"$ref": "#/definitions/uk-region"
+					}
+				},
+
+				"sectors": {
+					"type": "array",
+					"minItems": 1,
+					"maxItems": 12,
+					"items": {
+						"$ref": "#/definitions/uk-sector"
+					}
+				}
+			}
+		}
+	}
+}

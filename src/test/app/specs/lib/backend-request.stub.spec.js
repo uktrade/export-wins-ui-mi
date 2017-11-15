@@ -69,6 +69,17 @@ describe( 'Backend stub', function(){
 		} );
 	} );
 
+	describe( 'CSV', function(){
+
+		describe( 'Getting the list of files', function(){
+
+			it( 'Should return the list', function( done ){
+
+				checkStub( '/csv/all_files/', '/csv/all_files', done );
+			} );
+		} );
+	} );
+
 	describe( 'HVC', function(){
 
 		describe( 'Getting the info', function(){

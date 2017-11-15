@@ -127,13 +127,28 @@ describe( 'urls middleware', function(){
 		} );
 	} );
 
-	describe( 'Download CSV', function(){
+	describe( 'Downloads', function(){
 
-		it( 'Should return the correct URL', function(){
+		describe( 'The list page', function(){
 
-			expect( middleware( req ).csv() ).toEqual( '/download-csv/' );
+			it( 'Should return the correct URL', function(){
+
+				expect( middleware( req ).downloads() ).toEqual( '/downloads/' );
+			} );
+		} );
+
+
+		describe( 'Downloading a file', function(){
+
+			it( 'Should return the correct URL', function(){
+
+				const fileId = '12';
+
+				expect( middleware( req ).downloadFile( fileId ) ).toEqual( `/downloads/${ fileId }/` );
+			} );
 		} );
 	} );
+
 
 	describe( 'Email', function(){
 

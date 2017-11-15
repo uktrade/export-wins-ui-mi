@@ -5,8 +5,6 @@ const globalSummary = require( '../lib/view-models/global-summary' );
 
 module.exports = function( req, res ){
 
-	const showDownloadLink = !!req.query.download && req.isDefaultYear;
-
 	exportBackendService.getHomepageData( req ).then( ( data ) => {
 
 		const sectorTeams = data.sectorTeams.results;
@@ -15,7 +13,7 @@ module.exports = function( req, res ){
 		const globalHvcs = data.globalHvcs.results;
 		const summary = globalSummary.create( data.globalWins );
 
-		res.render( 'index.html', { sectorTeams, overseasRegionGroups, ukRegions, globalHvcs, summary, showDownloadLink } );
+		res.render( 'index.html', { sectorTeams, overseasRegionGroups, ukRegions, globalHvcs, summary } );
 
 	} ).catch( renderError.createHandler( req, res ) );
 };

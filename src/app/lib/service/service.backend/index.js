@@ -1,5 +1,6 @@
 const config = require( '../../../config' );
 const { sessionGet, sessionPost, get, post } = require( './_helpers' );
+const transformCsvFiles = require( '../../transformers/csv-files' );
 
 const internalUsers = config.internalUsers.split( ',' );
 
@@ -10,12 +11,12 @@ module.exports = {
 
 	getCsvFileList: function( req ){
 
-		return sessionGet( '/mi/csv_files/latest/', req );
+		return sessionGet( '/csv/all_files/', req ).then( transformCsvFiles );
 	},
 
 	getCsvFileUrl: function( req, fileId ){
 
-		return sessionGet( `/mi/csv_files/generate_otu/${ fileId }/`, req );
+		return sessionGet( `/csv/generate_otu/${ fileId }/`, req );
 	},
 
 	getOauthUrl: function( next ){

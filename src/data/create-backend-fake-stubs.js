@@ -2,6 +2,7 @@ const path = require( 'path' );
 const writeJsonFiles = require( './faker/helpers/write-json-files' );
 
 const userJson = require( './faker/backend/scripts/lib/json-creators/user-json' );
+const csvJson = require( './faker/backend/scripts/lib/json-creators/csv/csv-json' );
 
 const hvcGroupsJson = require( './faker/backend/scripts/lib/json-creators/export/hvc-groups-json' );
 const osRegionsJson = require( './faker/backend/scripts/lib/json-creators/export/os-regions-json' );
@@ -26,7 +27,8 @@ const years = [ 2016, 2017 ];
 
 const jsonFiles = {
 
-	'user/me': userJson.createMe()
+	'user/me': userJson.createMe(),
+	'/csv/all_files': csvJson.createList()
 };
 
 const yearlyFiles = {

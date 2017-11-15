@@ -8,6 +8,7 @@ let helpers;
 let backendService;
 let configStub;
 let stubs;
+let csvTransformer;
 
 function returnStub( file ){
 
@@ -51,11 +52,14 @@ describe( 'Backend service', function(){
 			post: jasmine.createSpy( 'helpers.post' )
 		};
 
+		csvTransformer = jasmine.createSpy( 'csvTransformer' ).and.callFake( ( input ) => input );
+
 		configStub = { backend: { stub: false, fake: false, mock: false } };
 
 		stubs = {
 			'../../../config': configStub,
-			'./_helpers': helpers
+			'./_helpers': helpers,
+			'../../transformers/csv-files': csvTransformer
 		};
 
 		backendService = proxyquire( '../../../../../../app/lib/service/service.backend', stubs );
@@ -73,20 +77,18 @@ describe( 'Backend service', function(){
 			it( 'Should return the list', function( done ){
 
 				const responseBody = { id: 1, created: '2017-11-02T14:18:43.631943Z' };
+				const response = { response: null, data: responseBody };
 
-				helpers.sessionGet.and.callFake( () => new Promise( ( resolve ) => {
-
-						resolve( { response: null, data: responseBody } );
-					} )
-				);
+				helpers.sessionGet.and.callFake( () => new Promise( ( resolve ) => resolve( response ) ) );
 
 				backendService.getCsvFileList( req ).then( ( info ) => {
 
 					const args = helpers.sessionGet.calls.argsFor( 0 );
 
-					expect( args[ 0 ] ).toEqual( '/mi/csv_files/latest/' );
+					expect( args[ 0 ] ).toEqual( '/csv/all_files/' );
 					expect( args[ 1 ] ).toEqual( req );
 					expect( info.data ).toEqual( responseBody );
+					expect( csvTransformer ).toHaveBeenCalledWith( response );
 					done();
 
 				} ).catch( done.fail );
@@ -110,7 +112,7 @@ describe( 'Backend service', function(){
 
 					const args = helpers.sessionGet.calls.argsFor( 0 );
 
-					expect( args[ 0 ] ).toEqual( `/mi/csv_files/generate_otu/${ fileId }/` );
+					expect( args[ 0 ] ).toEqual( `/csv/generate_otu/${ fileId }/` );
 					expect( args[ 1 ] ).toEqual( req );
 					expect( info.data ).toEqual( responseBody );
 					done();

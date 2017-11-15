@@ -8,9 +8,10 @@
 		"src/app/**/*.js"
 	],
 	"exclude": [
-		"src/app/**/controller.{hvc,win,wins}.js",
+		"src/app/**/controller.win.js",
 		"src/app/app.js",
-		"src/app/lib/backend-request.stub.js"
+		"src/app/lib/backend-request.stub.js",
+		"src/app/cluster.js"
 	],
 	"reporter": [
 		"lcov",

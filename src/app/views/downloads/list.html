@@ -1,0 +1,113 @@
+{% extends 'layout.html' %}
+
+{% set pageName='Downloads' %}
+
+{% block page_content %}
+
+	<h1 class="page-heading">
+		Download data in a spreadsheet
+	</h1>
+
+	<p class="download-message">
+		Make sure you know the rules and your responsibilities around handling Official Sensitive DIT information. Read the 12 golden rules of handling data.
+	</p>
+
+	{% if files.export or files.fdi or files.sdi %}
+	<div class="grid-row">
+		<div class="column-one-third">
+			{% if files.export %}
+			<h2 class="download-group-heading"><span class="download-group-heading_text">Export Wins</span><span class="download-group-heading_valign"></span></h2>
+			<p class="download-group-current">
+				<a class="download-group-current_link" href="{{ urls.downloadFile( files.export.current.id ) }}">Download current CSV file.<br>{{ files.export.current.report_date | dateStamp }}</a>
+				<span class="download-group-current_date">(last updated {{ files.export.current.created | dateOnly }})</span>
+			</p>
+			<ol class="download-group-list">
+				{% for file in files.export.previous %}
+				<li class="download-group-list_item">
+					<a href="{{ urls.downloadFile( file.id ) }}">Download ({{ file.financial_year }})</a>
+				</li>
+				{% endfor %}
+			</ol>
+			{% endif %}
+		</div>
+		<div class="column-one-third">
+			{% if showFdi and files.fdi %}
+			<h2 class="download-group-heading"><span class="download-group-heading_text">FDI</span><span class="download-group-heading_valign"></span></h2>
+			<p class="download-group-current">
+				<a class="download-group-current_link" href="{{ urls.downloadFile( files.fdi.latest.id ) }}">Download current CSV file.<br>{{ files.fdi.latest.report_date | dateStamp }}</a>
+				<span class="download-group-current_date">(last updated {{ files.fdi.latest.created | dateOnly }})</span>
+			</p>
+			<ol class="download-group-list">
+				{% for file in files.fdi.months %}
+				<li class="download-group-list_item">
+					<a href="{{ urls.downloadFile( file.id ) }}">Download {{ file.report_date | dateStamp }}</a>
+				</li>
+				{% endfor %}
+			</ol>
+			{% endif %}
+		</div>
+		<div class="column-one-third">
+			{% if files.sdi %}
+			<h2 class="download-group-heading"><span class="download-group-heading_text">Service deliveries &amp; interactions</span><span class="download-group-heading_valign"></span></h2>
+			<p class="download-group-current">
+				<a class="download-group-current_link" href="{{ urls.downloadFile( files.sdi.latest.id ) }}">Download current CSV file.<br>{{ files.sdi.latest.report_date | dateStamp }}</a>
+				<span class="download-group-current_date">(last updated {{ files.sdi.latest.created | dateOnly }})</span>
+			</p>
+			<ol class="download-group-list">
+				{% for file in files.sdi.months %}
+				<li class="download-group-list_item">
+					<a href="{{ urls.downloadFile( file.id ) }}">Download {{ file.report_date | dateStamp }}</a>
+				</li>
+				{% endfor %}
+			</ol>
+			{% endif %}
+		</div>
+	</div>
+
+	{% else %}
+		<p class="download-no-files">
+			Sorry, there are no data downloads available.
+		</p>
+	{% endif %}
+
+	{% if files.contacts or files.companies %}
+
+	{% macro ukItems( files ) %}
+	<ol class="download-group-list">
+		{% for file in files %}
+		<li class="download-group-list_item">
+			<a href="{{ urls.downloadFile( file.id ) }}">
+				Download - {{ file.region }}
+			</a>
+			{% if file.updated -%}
+			<span class="download-group-list_item_updated">
+				(last updated {{ file.created | dateStamp }})
+			</span>
+			{%- endif %}
+		</li>
+		{% endfor %}
+	</ol>
+	{% endmacro %}
+
+	<div class="grid-row download-group-separator">
+		<div class="column-one-third">
+
+			{% if files.contacts %}
+			<h2 class="download-group-heading">List of UK contacts</h2>
+			{{ ukItems( files.contacts.regions ) }}
+			{% endif %}
+
+		</div>
+		<div class="column-one-third">
+
+			{% if files.companies %}
+			<h2 class="download-group-heading">List of UK companies</h2>
+			{{ ukItems( files.companies.regions ) }}
+			{% endif %}
+
+		</div>
+	</div>
+
+	{% endif %}
+
+{% endblock  %}

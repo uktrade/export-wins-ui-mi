@@ -3,18 +3,25 @@ const renderError = require( '../lib/render-error' );
 
 module.exports = {
 
-	csv: function( req, res ){
+	list: function( req, res ){
 
-		const errorHandler = renderError.createHandler( req, res );
+		const showFdi = !!req.query.fdi;
 
-		backendService.getCsvFileList( req ).then( ( fileInfo ) => {
+		backendService.getCsvFileList( req ).then( ( filesInfo ) => {
 
-			backendService.getCsvFileUrl( req, fileInfo.data.id ).then( ( urlInfo ) => {
+			res.render( 'downloads/list', { files: filesInfo.data, showFdi } );
 
-				res.redirect( urlInfo.data.one_time_url );
+		} ).catch( renderError.createHandler( req, res ) );
+	},
 
-			} ).catch( errorHandler );
+	file: function( req, res ){
 
-		} ).catch( errorHandler );
+		const fileId = req.params.id;
+
+		backendService.getCsvFileUrl( req, fileId ).then( ( urlInfo ) => {
+
+			res.redirect( urlInfo.data.one_time_url );
+
+		} ).catch( renderError.createHandler( req, res ) );
 	}
 };
