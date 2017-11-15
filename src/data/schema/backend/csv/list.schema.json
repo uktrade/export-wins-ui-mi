@@ -163,7 +163,7 @@
 
 				"region": {
 					"type": "string",
-					"faker": "address.county"
+					"faker": "lorem.words"
 				}
 			}
 		},
