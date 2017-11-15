@@ -27,7 +27,7 @@ module.exports = function( express, app, isDev ){
 	app.get( '/login/callback/', loginController.oauthCallback );
 	app.get( '/login-saml/', loginController.saml );
 
-	app.get( '/downloads/', downloadController.list );
+	app.get( '/downloads/', user, downloadController.list );
 	app.get( '/downloads/:id/', downloadController.file );
 
 	app.use( dateRange );
