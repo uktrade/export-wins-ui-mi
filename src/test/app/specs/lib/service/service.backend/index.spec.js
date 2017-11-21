@@ -56,7 +56,7 @@ describe( 'Backend service', function(){
 
 		csvTransformer = jasmine.createSpy( 'csvTransformer' ).and.callFake( ( input ) => input );
 
-		configStub = { backend: { stub: false, fake: false, mock: false } };
+		configStub = { isDev: false, backend: { stub: false, fake: false, mock: false } };
 
 		stubs = {
 			'../../../config': configStub,
@@ -343,13 +343,18 @@ describe( 'Backend service', function(){
 
 	describe( 'Getting the user info', function(){
 
-		describe( 'When the user is not in the interal users list', function(){
+		describe( 'In dev mode', function(){
 
-			it( 'Should set the internal flag to false and return the user info', function( done ){
+			it( 'Should set internal and fdi flags to true', function( done ){
 
 				const userStub = getBackendStub( '/user/me' );
-				userStub.fdi = false;
-				userStub.internal = false;
+
+				userStub.fdi = true;
+				userStub.internal = true;
+
+				configStub.isDev = true;
+
+				backendService = proxyquire( modulePath, stubs );
 
 				returnStub( '/user/me' );
 
@@ -361,92 +366,113 @@ describe( 'Backend service', function(){
 			} );
 		} );
 
-		describe( 'When the user is in the internal users list', function(){
+		describe( 'Not in dev mode', function(){
 
-			function setInternalUsers( str ){
+			describe( 'When the user is not in the interal users list', function(){
 
-				configStub.internalUsers = str;
+				it( 'Should set the internal flag to false and return the user info', function( done ){
 
-				stubs[ '../../config' ] = configStub;
+					const userStub = getBackendStub( '/user/me' );
+					userStub.fdi = false;
+					userStub.internal = false;
 
-				backendService = proxyquire( modulePath, stubs );
-			}
+					returnStub( '/user/me' );
 
-			function testUser( done ){
+					backendService.getUserInfo( req ).then( ( user ) => {
 
-				const userStub = getBackendStub( '/user/me.internal' );
-				userStub.fdi = true;
-				userStub.internal = true;
-
-				returnStub( '/user/me.internal' );
-
-				backendService.getUserInfo( req ).then( ( user ) => {
-
-					expect( user ).toEqual( userStub );
-					done();
-				} );
-			}
-
-			describe( 'When the list is just one item', function(){
-
-				it( 'Should set the internal flag to true and return the user info', function( done ){
-
-					setInternalUsers( 'Brianne31@gmail.com' );
-					testUser( done );
+						expect( user ).toEqual( userStub );
+						done();
+					} );
 				} );
 			} );
 
-			describe( 'When the list has many items', function(){
+			describe( 'When the user is in the internal users list', function(){
 
-				it( 'Should set the internal flag to true and return the user info', function( done ){
+				function setInternalUsers( str ){
 
-					setInternalUsers( 'Brianne31@gmail.com,test@test.com' );
-					testUser( done );
+					configStub.internalUsers = str;
+
+					stubs[ '../../config' ] = configStub;
+
+					backendService = proxyquire( modulePath, stubs );
+				}
+
+				function testUser( done ){
+
+					const userStub = getBackendStub( '/user/me.internal' );
+					userStub.fdi = true;
+					userStub.internal = true;
+
+					returnStub( '/user/me.internal' );
+
+					backendService.getUserInfo( req ).then( ( user ) => {
+
+						expect( user ).toEqual( userStub );
+						done();
+					} );
+				}
+
+				describe( 'When the list is just one item', function(){
+
+					it( 'Should set the internal flag to true and return the user info', function( done ){
+
+						setInternalUsers( 'Brianne31@gmail.com' );
+						testUser( done );
+					} );
+				} );
+
+				describe( 'When the list has many items', function(){
+
+					it( 'Should set the internal flag to true and return the user info', function( done ){
+
+						setInternalUsers( 'Brianne31@gmail.com,test@test.com' );
+						testUser( done );
+					} );
 				} );
 			} );
-		} );
 
-		describe( 'When the user is in the FDI users list', function(){
+			describe( 'When the user is in the FDI users list', function(){
 
-			function setFdiUsers( str ){
+				function setFdiUsers( str ){
 
-				configStub.fdiUsers = str;
+					configStub.fdiUsers = str;
 
-				stubs[ '../../config' ] = configStub;
+					stubs[ '../../config' ] = configStub;
 
-				backendService = proxyquire( modulePath, stubs );
-			}
+					backendService = proxyquire( modulePath, stubs );
+				}
 
-			function testFdiUser( done ){
+				function testFdiUser( done ){
 
-				const userStub = getBackendStub( '/user/me.internal' );
-				userStub.internal = false;
-				userStub.fdi = true;
+					const userStub = getBackendStub( '/user/me.internal' );
+					userStub.internal = false;
+					userStub.fdi = true;
 
-				returnStub( '/user/me.internal' );
+					returnStub( '/user/me.internal' );
 
-				backendService.getUserInfo( req ).then( ( user ) => {
+					backendService.getUserInfo( req ).then( ( user ) => {
 
-					expect( user ).toEqual( userStub );
-					done();
+						expect( user ).toEqual( userStub );
+						done();
+					} );
+				}
+
+				describe( 'When the list is just one item', function(){
+
+					it( 'Should set the fdi flag to true and return the user info', function( done ){
+
+						setFdiUsers( 'Brianne31@gmail.com' );
+						testFdiUser( done );
+					} );
 				} );
-			}
 
-			describe( 'When the list is just one item', function(){
+				describe( 'When the list is just one item', function(){
 
-				it( 'Should set the fdi flag to true and return the user info', function( done ){
+					it( 'Should set the fdi flag to true and return the user info', function( done ){
 
-					setFdiUsers( 'Brianne31@gmail.com' );
-					testFdiUser( done );
-				} );
-			} );
-
-			describe( 'When the list is just one item', function(){
-
-				it( 'Should set the fdi flag to true and return the user info', function( done ){
-
-					setFdiUsers( 'Brianne31@gmail.com,test2@gmail.com' );
-					testFdiUser( done );
+						setFdiUsers( 'Brianne31@gmail.com,test2@gmail.com' );
+						testFdiUser( done );
+					} );
 				} );
 			} );
 		} );

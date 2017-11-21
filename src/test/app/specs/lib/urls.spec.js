@@ -73,6 +73,14 @@ describe( 'urls middleware', function(){
 		} );
 	} );
 
+	describe( 'Experiments', function(){
+
+		it( 'Should return the correct URL', function(){
+
+			checkYearlyUrls( req, 'experiments', [], [ '/experiments/?path=%2Fmy%2Ftest%2F', '/2016/experiments/?path=%2F2016%2Fmy%2Ftest%2F' ] );
+		} );
+	} );
+
 	describe( 'selectDate', function(){
 
 		const methodName = 'selectDate';
@@ -424,6 +432,23 @@ describe( 'urls middleware', function(){
 			it( 'Should return the correct URL', function(){
 
 				checkFilteredUrls( req, 'investment.osRegionNonHvcWins', [ 1 ], '/investment/overseas-regions/1/non-hvc-wins/' );
+			} );
+		} );
+
+
+		describe( 'UK Regions', function(){
+
+			it( 'Should return the correct URL', function(){
+
+				checkFilteredUrls( req, 'investment.ukRegions', [], '/investment/uk-regions/' );
+			} );
+		} );
+
+		describe( 'UK Region', function(){
+
+			it( 'Should return the correct URL', function(){
+
+				checkFilteredUrls( req, 'investment.ukRegion', [ '1' ], '/investment/uk-regions/1/' );
 			} );
 		} );
 	} );

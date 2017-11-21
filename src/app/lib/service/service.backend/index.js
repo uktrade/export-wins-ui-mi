@@ -59,7 +59,7 @@ module.exports = {
 
 			const user = info.data;
 
-			user.internal = !!~internalUsers.indexOf( user.email );
+			user.internal = ( config.isDev || !!~internalUsers.indexOf( user.email ) );
 			user.fdi = ( user.internal || !!~fdiUsers.indexOf( user.email ) );
 
 			return user;

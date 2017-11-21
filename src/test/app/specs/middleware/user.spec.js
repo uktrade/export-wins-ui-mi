@@ -17,8 +17,8 @@ describe( 'user middleware', function(){
 	let backend;
 	let createHandler;
 	let errorHandler;
-	let createMiddleware;
 	let userCookieName;
+	let saveUserSpy;
 
 	beforeEach( function(){
 
@@ -28,16 +28,17 @@ describe( 'user middleware', function(){
 		errorHandler = jasmine.createSpy( 'renderError.createHandler.errorHandler' );
 		createHandler = jasmine.createSpy( 'renderError.createHandler' ).and.callFake( () => errorHandler );
 		userCookieName = 'aname';
+		saveUserSpy = jasmine.createSpy( 'save-user' ).and.callFake( ( user, res, cb ) => { cb(); } );
 
 		const stubs = {
 			'../config': { jwt: { secret: jwtSecret }, userCookieName },
 			'../lib/service/service.backend': backend,
 			'jsonwebtoken': jwt,
-			'../lib/render-error': { createHandler }
+			'../lib/render-error': { createHandler },
+			'../lib/save-user': saveUserSpy
 		};
 
-		createMiddleware = proxyquire( '../../../../app/middleware/user', stubs );
-		middleware = createMiddleware( false );
+		middleware = proxyquire( '../../../../app/middleware/user', stubs );
 	} );
 
 	describe( 'When there is a token', function(){
@@ -90,71 +91,15 @@ describe( 'user middleware', function(){
 				backend.getUserInfo = jasmine.createSpy( 'backend.getUserInfo' ).and.callFake( () => promise );
 			} );
 
-			it( 'Should add the user to the req and locals', function( done ){
+			it( 'Should add the user to the req and locals and call saveUser', function( done ){
 
-				middleware( req, res, function( err ){
+				middleware( req, res, function next( err ){
 
 					expect( req.user ).toEqual( user );
 					expect( res.locals.user ).toEqual( user );
 					expect( err ).not.toBeDefined();
+					expect( saveUserSpy ).toHaveBeenCalledWith( user, res, next );
 					done();
-				} );
-			} );
-
-			describe( 'When the sign call returns a token', function(){
-
-				describe( 'In dev mode', function(){
-
-					it( 'Should put the user in the cookies as a token without a secure flag', function( done ){
-
-						middleware = createMiddleware( true );
-
-						middleware( req, res, function( err ){
-
-							expect( res.cookie ).toHaveBeenCalledWith( userCookieName, token, {
-								httpOnly: true,
-								secure: false,
-								expires: 0
-							} );
-							expect( err ).not.toBeDefined();
-							done();
-						} );
-					} );
-				} );
-
-				describe( 'Not in dev mode', function(){
-
-					it( 'Should put the user in the cookies as a token with a secure flag', function( done ){
-
-						middleware( req, res, function( err ){
-
-							expect( res.cookie ).toHaveBeenCalledWith( userCookieName, token, {
-								httpOnly: true,
-								secure: true,
-								expires: 0
-							} );
-							expect( err ).not.toBeDefined();
-							done();
-						} );
-					} );
-				} );
-			} );
-
-			describe( 'When the sign call returns an error', function(){
-
-				it( 'Should pass the error on', function( done ){
-
-					const signError = new Error( 'unable to sign' );
-
-					jwt.sign = function( data, secret, opts, cb ){
-						cb( signError );
-					};
-
-					middleware( req, res, function( err ){
-
-						expect( err ).toEqual( signError );
-						done();
-					} );
 				} );
 			} );
 		} );
@@ -193,6 +138,7 @@ describe( 'user middleware', function(){
 
 						expect( next ).not.toHaveBeenCalled();
 						expect( errorHandler ).toHaveBeenCalledWith( err );
+						expect( saveUserSpy ).not.toHaveBeenCalled();
 						done();
 					} );
 				} );

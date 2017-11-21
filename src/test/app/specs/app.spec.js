@@ -87,6 +87,19 @@ if( config.backend.mock ){
 			expect( userIntercept.isDone() ).toEqual( true );
 		} );
 
+		describe( 'Refreshing the user', function(){
+
+			it( 'Should call the API and then redirect the user', function( done ){
+
+				supertest( app ).get( '/refresh/' ).end( ( err, res ) => {
+
+					checkResponse( res, 302 );
+					expect( res.headers.location ).toEqual( '/' );
+					done();
+				} );
+			} );
+		} );
+
 		describe( 'Downloads', function(){
 
 			describe( 'The list of downloads', function(){
@@ -783,7 +796,8 @@ if( config.backend.mock ){
 				it( 'Should return a 200 with the correct heading', function( done ){
 
 					interceptBackend.getStub( `/mi/fdi/sector_teams/?year=2017`, 200, '/investment/fdi/sector_teams/' );
-					//interceptBackend.getStub( `/mi/os_regions/?year=2017`, 200, '/investment/fdi/os_regions/' );
+					interceptBackend.getStub( `/mi/os_regions/?year=2017`, 200, '/investment/fdi/os_regions/' );
+					interceptBackend.getStub( `/mi/uk_regions/?year=2017`, 200, '/investment/fdi/uk_regions/' );
 					interceptBackend.getStub( `/mi/fdi/overview/?year=2017`, 200, '/investment/fdi/overview' );
 					interceptBackend.getStub( `/mi/fdi/overview/yoy/?year=2017`, 200, '/investment/fdi/overview-yoy' );
 

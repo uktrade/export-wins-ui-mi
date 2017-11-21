@@ -9,90 +9,60 @@ const By = webdriver.By;
 
 describe( 'Investment Index Page', function(){
 
-	describe( 'Without any feature flags', function(){
+	beforeAll( function( done ){
+
+		fetch( '/investment/' ).then( takeScreenshot( 'investment_index' ) ).then( done );
+	} );
+
+	accessibilityCheck( 'investment_index' );
+
+	describe( 'Homepage lists', function(){
+
+		let lists;
 
 		beforeAll( function( done ){
 
-			fetch( '/investment/' ).then( takeScreenshot( 'investment_index' ) ).then( done );
-		} );
+			driver.findElements( By.className( 'i-homepage-list' ) ).then( ( listElems ) => {
 
-		accessibilityCheck( 'investment_index' );
-
-		describe( 'Homepage lists', function(){
-
-			let lists;
-
-			beforeAll( function( done ){
-
-				driver.findElements( By.className( 'i-homepage-list' ) ).then( ( listElems ) => {
-
-					lists = listElems;
-					done();
-				} );
-			} );
-
-			it( 'Should not have any lists on the page', function(){
-
-				expect( lists.length ).toEqual( 0 );
+				lists = listElems;
+				done();
 			} );
 		} );
 
-		describe( 'Page heading', function(){
+		it( 'Should not have any lists on the page', function(){
 
-			let heading;
-
-			beforeAll( function( done ){
-
-				driver.findElement( By.className( 'page-heading' ) ).then( ( headingElem ) => {
-
-					heading = headingElem;
-					done();
-				} );
-			} );
-
-			it( 'Should have the correct title', function( done ){
-
-				heading.getText().then( ( text ) => {
-
-					expect( text ).toEqual( 'Investment performance' );
-					done();
-				} );
-			} );
-
-			it( 'Should have the correct tag', function( done ){
-
-				heading.getTagName().then( ( tagName ) => {
-
-					expect( tagName ).toEqual( 'h1' );
-					done();
-				} );
-			} );
+			expect( lists.length ).toEqual( 0 );
 		} );
 	} );
 
-	describe( 'With the ?sectorteams feature flag', function(){
+	describe( 'Page heading', function(){
+
+		let heading;
 
 		beforeAll( function( done ){
 
-			fetch( '/investment/?sectorteams=1' ).then( takeScreenshot( 'investment_index-sector-teams' ) ).then( done );
+			driver.findElement( By.className( 'page-heading' ) ).then( ( headingElem ) => {
+
+				heading = headingElem;
+				done();
+			} );
 		} );
 
-		describe( 'Homepage lists', function(){
+		it( 'Should have the correct title', function( done ){
 
-			let lists;
+			heading.getText().then( ( text ) => {
 
-			beforeAll( function( done ){
-
-				driver.findElements( By.className( 'i-homepage-list' ) ).then( ( listElems ) => {
-
-					lists = listElems;
-					done();
-				} );
+				expect( text ).toEqual( 'Investment performance' );
+				done();
 			} );
+		} );
 
-			it( 'Should have a list of sector teams on the page', function(){
+		it( 'Should have the correct tag', function( done ){
 
-				expect( lists.length ).toEqual( 1 );
+			heading.getTagName().then( ( tagName ) => {
+
+				expect( tagName ).toEqual( 'h1' );
+				done();
 			} );
 		} );
 	} );

@@ -32,7 +32,8 @@ describe( 'Index controller', function(){
 		req = {
 			cookies: { sessionid: '456' },
 			query: {},
-			year: 2017
+			year: 2017,
+			user: {}
 		};
 
 		res = {
@@ -44,19 +45,27 @@ describe( 'Index controller', function(){
 
 		describe( 'With success', function(){
 
-			function check( req, showSectorTeams, done ){
+			function check( req, done, opts ){
+
+				const {
+					showSectorTeams = false,
+					showOverseasRegions = false,
+					showUkRegions = false
+				} = opts;
 
 				const overviewResponse = { overviewResponse: true };
 				const overviewData = { date_range: { overviewDataDateRange: true }, results: { somedata: true } };
 				const overviewYoy = { overviewYoy: true };
 				const sectorTeams = { sectorTeams: true };
 				const overseasRegions = { overseasRegions: true };
+				const ukRegions = { ukRegions: true };
 				const promise =  new Promise( ( resolve ) => {
 					resolve( {
 						overview: overviewData,
 						overviewYoy,
 						sectorTeams,
-						overseasRegions
+						overseasRegions,
+						ukRegions
 					} );
 				} );
 
@@ -76,27 +85,30 @@ describe( 'Index controller', function(){
 						overviewYoy,
 						sectorTeams,
 						overseasRegions,
-						showSectorTeams
+						ukRegions,
+						showSectorTeams,
+						showOverseasRegions,
+						showUkRegions
 					} );
 					done();
 				} );
 			}
 
-			describe( 'Without a feature flag', function(){
+			describe( 'with experiments ON', function(){
 
-				it( 'Should render the view without the sector teams list', function( done ){
+				it( 'Should render the view with the sector teams and os regions lists', function( done ){
 
-					check( req, false, done );
+					req.user.experiments = true;
+
+					check( req, done, { showSectorTeams: true, showOverseasRegions: true, showUkRegions: true } );
 				} );
 			} );
 
-			describe( 'With a feature flag', function(){
+			describe( 'with experiments OFF', function(){
 
-				it( 'Should render the view with the sector teams list', function( done ){
+				it( 'Should render the view without the sector teams or os regions lists', function( done ){
 
-					req.query.sectorteams = '1';
-
-					check( req, true, done );
+					check( req, done, {} );
 				} );
 			} );
 		} );

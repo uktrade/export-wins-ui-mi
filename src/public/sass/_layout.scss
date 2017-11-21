@@ -118,6 +118,27 @@
 	}
 }
 
+.experiments {
+
+	position: absolute;
+	top: pem( 8 );
+	right: pem( 10 );
+	padding: pem( 10 );
+	background-color: $grey-2;
+	color: #000;
+	text-decoration: none;
+
+	&:visited,
+	&:active,
+	&:link {
+		color: #000;
+	}
+}
+
+.experiments--on {
+	background-color: $turquoise;
+}
+
 .page-content {
 	@extend %site-width-container;
 }

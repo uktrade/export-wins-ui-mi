@@ -3,64 +3,40 @@ const jwt = require( 'jsonwebtoken' );
 const config = require( '../config' );
 const backend = require( '../lib/service/service.backend' );
 const renderError = require( '../lib/render-error' );
+const saveUser = require( '../lib/save-user' );
 
 const secret = config.jwt.secret;
 const userCookieName = config.userCookieName;
 
-module.exports = function( isDev ){
+module.exports = function( req, res, next ){
 
-	const secure = !isDev;
+	const token = req.cookies[ userCookieName ];
 
-	return function( req, res, next ){
+	if( token ){
 
-		const token = req.cookies[ userCookieName ];
+		jwt.verify( token, secret, function( err, payload ){
 
-		if( token ){
+			if( err ){
 
-			jwt.verify( token, secret, function( err, payload ){
+				next( err );
 
-				if( err ){
+			} else {
 
-					next( err );
+				req.user = payload;
+				res.locals.user = payload;
+				next();
+			}
+		} );
 
-				} else {
+	} else {
 
-					req.user = payload;
-					res.locals.user = payload;
-					next();
-				}
-			} );
+		backend.getUserInfo( req ).then( ( user ) => {
 
-		} else {
+			req.user = user;
+			res.locals.user = user;
 
-			backend.getUserInfo( req ).then( ( user ) => {
+			saveUser( user, res, next );
 
-				req.user = user;
-				res.locals.user = user;
-
-				jwt.sign( user, secret, {
-
-					algorithm: 'HS256',
-					noTimestamp: true
-
-				}, function( err, token ){
-
-					if( err ){
-
-						next( err );
-
-					} else {
-
-						res.cookie( userCookieName, token, {
-							httpOnly: true,
-							secure,
-							expires: 0//session
-						} );
-						next();
-					}
-				} );
-
-			} ).catch( renderError.createHandler( req, res ) );
-		}
-	};
+		} ).catch( renderError.createHandler( req, res ) );
+	}
 };
