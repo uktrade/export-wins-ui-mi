@@ -13,7 +13,10 @@ module.exports = function( req, res ){
 			overviewYoy: data.overviewYoy,
 			sectorTeams: data.sectorTeams,
 			overseasRegions: data.overseasRegions,
-			showSectorTeams: !!req.query.sectorteams
+			ukRegions: data.ukRegions,
+			showSectorTeams: !!req.user.experiments,
+			showOverseasRegions: !!req.user.experiments,
+			showUkRegions: !!req.user.experiments
 		} );
 
 	} ).catch( renderError.createHandler( req, res ) );

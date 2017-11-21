@@ -7,18 +7,19 @@ const loginController = require( '../controllers/controller.login' );
 const samlController = require( '../controllers/controller.saml' );
 const dateController = require( '../controllers/controller.date' );
 const downloadController = require( '../controllers/controller.download' );
+const experimentsController = require( '../controllers/controller.experiments' );
+const refreshController = require( '../controllers/controller.refresh' );
 
 const data = require( '../middleware/data' );
 const returnPath = require( '../middleware/return-path' );
 const dateRange = require( '../middleware/date-range' );
-const createUserMiddleware = require( '../middleware/user' );
+const user = require( '../middleware/user' );
 
 const csrfProtection = csurf( { cookie: true } );
 
 module.exports = function( express, app, isDev ){
 
 	const urlBodyParser = express.urlencoded( { extended: true, limit: '1mb' } );
-	const user = createUserMiddleware( isDev );
 
 	app.get( '/saml2/metadata/', samlController.metadata );
 	app.post( '/saml2/acs/', data, samlController.acs );
@@ -29,6 +30,9 @@ module.exports = function( express, app, isDev ){
 
 	app.get( '/downloads/', user, downloadController.list );
 	app.get( '/downloads/:id/', downloadController.file );
+
+	app.get( '/refresh/', refreshController );
+	app.get( '/experiments/', user, experimentsController );
 
 	app.use( dateRange );
 

@@ -34,6 +34,12 @@
 			{%- endif %}
 		</nav>
 
+		{% if user.internal %}
+			<a href="{{ urls.experiments() }}" class="experiments{% if user.experiments %} experiments--on{% endif %}">
+				Experiments: {% if user.experiments %}ON{% else %}OFF{% endif %}
+			</a>
+		{% endif %}
+
 		{% block page_content %}{% endblock %}
 	</div>
 {% endblock %}

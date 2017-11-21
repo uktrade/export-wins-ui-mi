@@ -58,6 +58,8 @@ module.exports = function( req ){
 
 		index: () => filteredUrl( '/' ),
 
+		experiments: () => ( `${ prefix }/experiments/?path=` + encodeURIComponent( filteredUrl( currentUrl ) ) ),
+
 		selectDate: ( returnPath = addParams( prefix + currentUrl ) ) => ( `${ prefix }/select-date/?path=` + encodeURIComponent( returnPath ) ),
 		selectDateForYear: ( year, returnPath ) => {
 
@@ -132,7 +134,10 @@ module.exports = function( req ){
 			osRegionHvcPerformance: ( teamId ) => filteredUrl( `/investment/overseas-regions/${ teamId }/hvc-performance/` ),
 			osRegionNonHvcPerformance: ( teamId ) => filteredUrl( `/investment/overseas-regions/${ teamId }/non-hvc-performance/` ),
 			osRegionWins: ( teamId ) => filteredUrl( `/investment/overseas-regions/${ teamId }/wins/` ),
-			osRegionNonHvcWins: ( teamId ) => filteredUrl( `/investment/overseas-regions/${ teamId }/non-hvc-wins/` )
+			osRegionNonHvcWins: ( teamId ) => filteredUrl( `/investment/overseas-regions/${ teamId }/non-hvc-wins/` ),
+
+			ukRegions: () => filteredUrl( `/investment/uk-regions/` ),
+			ukRegion: ( teamId ) => filteredUrl( `/investment/uk-regions/${ teamId }/` ),
 		}
 	};
 };

@@ -40,6 +40,12 @@ function getOverseasRegion( req, teamId ){
 	return getOverseasRegions( req ).then( createIdMatcher( teamId ) );
 }
 
+function getUkRegions( req ){
+
+	//use export overseas regions for now
+	return getJson( '/mi/uk_regions/', req );
+}
+
 function getOverview( req ){
 
 	return getJson( '/mi/fdi/overview/', req );
@@ -58,6 +64,8 @@ module.exports = {
 	getOverseasRegions,
 	getOverseasRegion,
 
+	getUkRegions,
+
 	getOverview,
 	getOverviewYoy,
 
@@ -66,7 +74,8 @@ module.exports = {
 		return getAll( 'getHomepageData', [
 
 			getSectorTeams( req ),
-			//getOverseasRegions( req ),
+			getOverseasRegions( req ),
+			getUkRegions( req ),
 			getOverview( req ),
 			getOverviewYoy( req )
 
@@ -74,9 +83,10 @@ module.exports = {
 
 			return {
 				sectorTeams: data[ 0 ],
-				//overseasRegions: data[ 1 ],
-				overview: data[ 1 ],
-				overviewYoy: data[ 2 ]
+				overseasRegions: data[ 1 ],
+				ukRegions: data[ 2 ],
+				overview: data[ 3 ],
+				overviewYoy: data[ 4 ]
 			};
 		} );
 	}
