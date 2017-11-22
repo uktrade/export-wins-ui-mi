@@ -451,5 +451,37 @@ describe( 'urls middleware', function(){
 				checkFilteredUrls( req, 'investment.ukRegion', [ '1' ], '/investment/uk-regions/1/' );
 			} );
 		} );
+
+		describe( 'UK Region HVC performance', function(){
+
+			it( 'Should return the correct URL', function(){
+
+				checkFilteredUrls( req, 'investment.ukRegionHvcPerformance', [ 1 ], '/investment/uk-regions/1/hvc-performance/' );
+			} );
+		} );
+
+		describe( 'UK Region non HVC performance', function(){
+
+			it( 'Should return the correct URL', function(){
+
+				checkFilteredUrls( req, 'investment.ukRegionNonHvcPerformance', [ 1 ], '/investment/uk-regions/1/non-hvc-performance/' );
+			} );
+		} );
+
+		describe( 'UK Region HVC wins', function(){
+
+			it( 'Should return the correct URL', function(){
+
+				checkFilteredUrls( req, 'investment.ukRegionWins', [ 1 ], '/investment/uk-regions/1/wins/' );
+			} );
+		} );
+
+		describe( 'UK Region non HVC wins', function(){
+
+			it( 'Should return the correct URL', function(){
+
+				checkFilteredUrls( req, 'investment.ukRegionNonHvcWins', [ 1 ], '/investment/uk-regions/1/non-hvc-wins/' );
+			} );
+		} );
 	} );
 } );

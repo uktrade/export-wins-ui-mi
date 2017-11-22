@@ -1,0 +1,39 @@
+{% from 'macros/tabs/tab.html' import tab %}
+
+{% macro tabs( ukRegionId, performance = false, hvcPerformance = false, nonHvcPerformance = false, hvcWins = false, nonHvcWins = false ) -%}
+
+	{% set perfHref = urls.investment.ukRegion( ukRegionId ) %}
+	{% set hvcPerfHref = urls.investment.ukRegionHvcPerformance( ukRegionId ) %}
+	{% set nonHvcPerfHref = urls.investment.ukRegionNonHvcPerformance( ukRegionId ) %}
+	{% set hvcWinsHref = urls.investment.ukRegionWins( ukRegionId ) %}
+	{% set nonHvcWinsHref = urls.investment.ukRegionNonHvcWins( ukRegionId ) %}
+
+	{% if performance %}
+		{% set perfHref = '' %}
+	{% endif %}
+
+	{% if hvcPerformance %}
+		{% set hvcPerfHref = '' %}
+	{% endif %}
+
+	{% if nonHvcPerformance %}
+		{% set nonHvcPerfHref = '' %}
+	{% endif %}
+
+	{% if hvcWins %}
+		{% set hvcWinsHref = '' %}
+	{% endif %}
+
+	{% if nonHvcWins %}
+		{% set nonHvcWinsHref = '' %}
+	{% endif %}
+
+	<ul class="page-tabs">
+		{{ tab( 'Performance', href = perfHref ) }}
+		{{ tab( 'HVC', href = hvcPerfHref ) }}
+		{{ tab( 'Non HVC', href = nonHvcPerfHref ) }}
+		{{ tab( 'HVC wins', href = hvcWinsHref ) }}
+		{{ tab( 'Non HVC wins', href = nonHvcWinsHref ) }}
+	</ul>
+
+{%- endmacro %}

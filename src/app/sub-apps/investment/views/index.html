@@ -120,7 +120,7 @@
 			{%- for group in ukRegions.results.region_groups %}
 			{%- for region in group.regions %}
 				<li class="i-homepage-list_item">
-					{#<a href="{{ urls.investment.ukRegion( region.id ) }}">#}{{ region.name }}{#</a>#}
+					<a href="{{ urls.investment.ukRegion( region.id ) }}">{{ region.name }}</a>
 				</li>
 			{% endfor %}
 			{% endfor %}

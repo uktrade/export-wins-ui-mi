@@ -1,0 +1,22 @@
+{% extends 'layout-investment.html' %}
+
+{% from 'macros/dates.html' import financialYear %}
+{% from '../macros/tabs/fdi/uk-regions.html' import tabs %}
+
+{% set pageName %}Investment - UK Region performance - {{ region.name | safe }}{% endset %}
+
+{% block page_content %}
+
+	<h1 class="page-heading">
+		Investment
+	</h1>
+
+	<h2 class="page-sub-heading">{{ region.name }}<span class="page-sub-heading_secondary"> FDI UK Region</span></h2>
+
+	{% include 'partials/year-selector.html' %}
+	<h3 class="page-date">{{ financialYear( dateRange ) }}</h3>
+
+	{{ tabs( region.id, performance = true ) }}
+
+{% endblock %}
+

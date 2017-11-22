@@ -1,6 +1,7 @@
 const indexController = require( './controllers/controller.index' );
 const sectorTeamsController = require( './controllers/controller.sector-teams' );
 const osRegionsController = require( './controllers/controller.overseas-regions' );
+const ukRegionsController = require( './controllers/controller.uk-regions' );
 
 module.exports = function( router/*, isDev*/ ){
 
@@ -19,6 +20,13 @@ module.exports = function( router/*, isDev*/ ){
 	router.get( '/overseas-regions/:id/non-hvc-performance/', osRegionsController.nonHvcPerformance );
 	router.get( '/overseas-regions/:id/wins/', osRegionsController.wins );
 	router.get( '/overseas-regions/:id/non-hvc-wins/', osRegionsController.nonHvcWins );
+
+	router.get( '/uk-regions/', ukRegionsController.regions );
+	router.get( '/uk-regions/:id/', ukRegionsController.region );
+	router.get( '/uk-regions/:id/hvc-performance/', ukRegionsController.hvcPerformance );
+	router.get( '/uk-regions/:id/non-hvc-performance/', ukRegionsController.nonHvcPerformance );
+	router.get( '/uk-regions/:id/wins/', ukRegionsController.wins );
+	router.get( '/uk-regions/:id/non-hvc-wins/', ukRegionsController.nonHvcWins );
 
 	return router;
 };

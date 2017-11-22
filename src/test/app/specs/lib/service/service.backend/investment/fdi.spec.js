@@ -2,6 +2,7 @@ const proxyquire = require( 'proxyquire' );
 const rewire = require( 'rewire' );
 
 const spy = require( '../../../../../helpers/spy' );
+const getBackendStub = require( '../../../../../helpers/get-backend-stub' );
 
 const moduleFile = '../../../../../../../app/lib/service/service.backend/investment/fdi';
 
@@ -109,7 +110,7 @@ describe( 'Investment FDI backend service', function(){
 				fdiService.getOverseasRegion( req, regionId ).then( () => {
 
 					// Use export list for now
-					checkBackendArgs( `/mi/os_regions/`, req );
+					checkBackendArgs( '/mi/os_regions/', req );
 					done();
 				} );
 			} );
@@ -123,6 +124,26 @@ describe( 'Investment FDI backend service', function(){
 
 					// Use export list for now
 					checkBackendArgs( '/mi/uk_regions/', req );
+					done();
+				} );
+			} );
+		} );
+
+		describe( 'UK Region details', function(){
+
+			it( 'Should call the correct API', function( done ){
+
+				const regionId = 'jniawp-rtvz';
+
+				//This should not be needed
+				//Provide data while using export APIs
+				returnData( getBackendStub( '/investment/fdi/uk_regions/index' ) );
+
+				fdiService.getUkRegion( req, regionId ).then( ( data ) => {
+
+					// Use export list for now
+					checkBackendArgs( '/mi/uk_regions/', req );
+					expect( data.results.id ).toEqual( regionId );
 					done();
 				} );
 			} );
