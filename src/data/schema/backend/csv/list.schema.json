@@ -79,7 +79,7 @@
 
 		"item": {
 			"type": "object",
-			"required": [ "id", "name", "report_date", "created" ],
+			"required": [ "id", "name", "report_start_date", "report_end_date", "created" ],
 			"properties": {
 
 				"id": {
@@ -92,7 +92,12 @@
 					"faker": "lorem.words"
 				},
 
-				"report_date": {
+				"report_start_date": {
+					"type": "string",
+					"faker": "date.past"
+				},
+
+				"report_end_date": {
 					"type": "string",
 					"faker": "date.past"
 				},
@@ -106,7 +111,7 @@
 
 		"export-item": {
 			"type": "object",
-			"required": [ "id", "name", "report_date", "created", "financial_year" ],
+			"required": [ "id", "name", "report_start_date", "report_end_date", "created", "financial_year" ],
 			"properties": {
 
 				"id": {
@@ -119,7 +124,12 @@
 					"faker": "lorem.words"
 				},
 
-				"report_date": {
+				"report_start_date": {
+					"type": "string",
+					"faker": "date.past"
+				},
+
+				"report_end_date": {
 					"type": "string",
 					"faker": "date.past"
 				},
@@ -138,7 +148,7 @@
 
 		"uk-region": {
 			"type": "object",
-			"required": [ "id", "name", "report_date", "created", "region" ],
+			"required": [ "id", "name", "report_start_date", "report_end_date", "created", "region" ],
 			"properties": {
 
 				"id": {
@@ -151,7 +161,12 @@
 					"faker": "lorem.words"
 				},
 
-				"report_date": {
+				"report_start_date": {
+					"type": "string",
+					"faker": "date.past"
+				},
+
+				"report_end_date": {
 					"type": "string",
 					"faker": "date.past"
 				},
@@ -170,7 +185,7 @@
 
 		"uk-sector": {
 			"type": "object",
-			"required": [ "id", "name", "report_date", "created", "sector" ],
+			"required": [ "id", "name", "report_start_date", "report_end_date", "created", "sector" ],
 			"properties": {
 
 				"id": {
@@ -183,7 +198,12 @@
 					"faker": "lorem.words"
 				},
 
-				"report_date": {
+				"report_start_date": {
+					"type": "string",
+					"faker": "date.past"
+				},
+
+				"report_end_date": {
 					"type": "string",
 					"faker": "date.past"
 				},
