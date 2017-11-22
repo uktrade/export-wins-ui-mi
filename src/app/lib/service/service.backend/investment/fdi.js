@@ -46,6 +46,27 @@ function getUkRegions( req ){
 	return getJson( '/mi/uk_regions/', req );
 }
 
+function getUkRegion( req, regionId ){
+
+	return getUkRegions( req ).then( ( data ) => {
+
+		//flatten grouped regions into one list
+		data.results = data.results.region_groups.reduce( ( list, group ) => {
+
+			group.regions.forEach( ( region ) => {
+
+				list.push( region );
+			} );
+
+			return list;
+
+		}, [] );
+
+		return data;
+
+	} ).then( createIdMatcher( regionId ) );
+}
+
 function getOverview( req ){
 
 	return getJson( '/mi/fdi/overview/', req );
@@ -65,6 +86,7 @@ module.exports = {
 	getOverseasRegion,
 
 	getUkRegions,
+	getUkRegion,
 
 	getOverview,
 	getOverviewYoy,

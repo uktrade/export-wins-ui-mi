@@ -996,6 +996,97 @@ if( config.backend.mock ){
 					} );
 				} );
 			} );
+
+
+			describe( 'UK Regions', function(){
+
+				it( 'Should return a 200 with the correct heading', function( done ){
+
+					interceptBackend.getStub( `/mi/uk_regions/?year=2017`, 200, '/investment/fdi/uk_regions/' );
+
+					supertest( app ).get( '/investment/uk-regions/' ).end( ( err, res ) => {
+
+						checkResponse( res, 200 );
+						expect( getTitle( res ) ).toEqual( 'MI - Investment - UK Regions' );
+						done();
+					} );
+				} );
+			} );
+
+			describe( 'UK Region', function(){
+
+				it( 'Should return a 200 with the correct heading', function( done ){
+
+					interceptBackend.getStub( `/mi/uk_regions/?year=2017`, 200, '/investment/fdi/uk_regions/' );
+
+					supertest( app ).get( '/investment/uk-regions/afirtzq-rjev/' ).end( ( err, res ) => {
+
+						checkResponse( res, 200 );
+						expect( getTitle( res ) ).toEqual( 'MI - Investment - UK Region performance - sint aut et' );
+						done();
+					} );
+				} );
+			} );
+
+			describe( 'UK Region HVC performance', function(){
+
+				it( 'Should return a 200 with the correct heading', function( done ){
+
+					interceptBackend.getStub( `/mi/uk_regions/?year=2017`, 200, '/investment/fdi/uk_regions/' );
+
+					supertest( app ).get( '/investment/uk-regions/afirtzq-rjev/hvc-performance/' ).end( ( err, res ) => {
+
+						checkResponse( res, 200 );
+						expect( getTitle( res ) ).toEqual( 'MI - Investment - UK Region HVC performance - sint aut et' );
+						done();
+					} );
+				} );
+			} );
+
+			describe( 'UK Region non HVC performance', function(){
+
+				it( 'Should return a 200 with the correct heading', function( done ){
+
+					interceptBackend.getStub( `/mi/uk_regions/?year=2017`, 200, '/investment/fdi/uk_regions/' );
+
+					supertest( app ).get( '/investment/uk-regions/afirtzq-rjev/non-hvc-performance/' ).end( ( err, res ) => {
+
+						checkResponse( res, 200 );
+						expect( getTitle( res ) ).toEqual( 'MI - Investment - UK Region non HVC performance - sint aut et' );
+						done();
+					} );
+				} );
+			} );
+
+			describe( 'UK Region wins', function(){
+
+				it( 'Should return a 200 with the correct heading', function( done ){
+
+					interceptBackend.getStub( `/mi/uk_regions/?year=2017`, 200, '/investment/fdi/uk_regions/' );
+
+					supertest( app ).get( '/investment/uk-regions/afirtzq-rjev/wins/' ).end( ( err, res ) => {
+
+						checkResponse( res, 200 );
+						expect( getTitle( res ) ).toEqual( 'MI - Investment - UK Region HVC wins - sint aut et' );
+						done();
+					} );
+				} );
+			} );
+
+			describe( 'UK Region non HVC wins', function(){
+
+				it( 'Should return a 200 with the correct heading', function( done ){
+
+					interceptBackend.getStub( `/mi/uk_regions/?year=2017`, 200, '/investment/fdi/uk_regions/' );
+
+					supertest( app ).get( '/investment/uk-regions/afirtzq-rjev/non-hvc-wins/' ).end( ( err, res ) => {
+
+						checkResponse( res, 200 );
+						expect( getTitle( res ) ).toEqual( 'MI - Investment - UK Region non HVC wins - sint aut et' );
+						done();
+					} );
+				} );
+			} );
 		} );
 	} );
 

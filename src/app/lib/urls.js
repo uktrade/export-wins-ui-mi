@@ -138,6 +138,10 @@ module.exports = function( req ){
 
 			ukRegions: () => filteredUrl( `/investment/uk-regions/` ),
 			ukRegion: ( teamId ) => filteredUrl( `/investment/uk-regions/${ teamId }/` ),
+			ukRegionHvcPerformance: ( teamId ) => filteredUrl( `/investment/uk-regions/${ teamId }/hvc-performance/` ),
+			ukRegionNonHvcPerformance: ( teamId ) => filteredUrl( `/investment/uk-regions/${ teamId }/non-hvc-performance/` ),
+			ukRegionWins: ( teamId ) => filteredUrl( `/investment/uk-regions/${ teamId }/wins/` ),
+			ukRegionNonHvcWins: ( teamId ) => filteredUrl( `/investment/uk-regions/${ teamId }/non-hvc-wins/` )
 		}
 	};
 };
