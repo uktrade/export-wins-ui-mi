@@ -4,21 +4,24 @@
 			{
 				"id": 49512,
 				"name": "vel molestiae sapiente",
-				"report_date": "Sun Dec 11 2016 12:46:52 GMT+0000 (GMT)",
+				"report_start_date": "Sun Dec 11 2016 12:46:52 GMT+0000 (GMT)",
+				"report_end_date": "Sun Dec 11 2016 12:46:52 GMT+0000 (GMT)",
 				"created": "Sun Dec 11 2016 12:46:52 GMT+0000 (GMT)",
 				"sector": "ab"
 			},
 			{
 				"id": 94797,
 				"name": "consectetur rerum vel",
-				"report_date": "Tue Dec 27 2016 22:16:01 GMT+0000 (GMT)",
+				"report_start_date": "Tue Dec 27 2016 22:16:01 GMT+0000 (GMT)",
+				"report_end_date": "Tue Dec 27 2016 22:16:01 GMT+0000 (GMT)",
 				"created": "Wed Jun 14 2017 08:30:09 GMT+0100 (BST)",
 				"sector": "necessitatibus"
 			},
 			{
 				"id": 3619,
 				"name": "dolor magnam officia",
-				"report_date": "Sat Nov 11 2017 23:05:35 GMT+0000 (GMT)",
+				"report_start_date": "Sat Nov 11 2017 23:05:35 GMT+0000 (GMT)",
+				"report_end_date": "Sat Nov 11 2017 23:05:35 GMT+0000 (GMT)",
 				"created": "Mon May 15 2017 08:23:36 GMT+0100 (BST)",
 				"sector": "provident"
 			}

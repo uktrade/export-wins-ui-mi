@@ -1,6 +1,6 @@
 function updateItem( item ){
 
-	item.updated = ( item.report_date === item.created );
+	item.updated = ( item.report_end_date === item.created );
 }
 
 function checkItems( items ){
