@@ -34,11 +34,24 @@
 			{%- endif %}
 		</nav>
 
-		{% if user.internal %}
+		{%- if user.internal %}
+			<script>
+			function hideExperiments( button ){
+
+				var experiments = document.getElementsByClassName( 'experiments' );
+				button.parentNode.removeChild( button );
+
+				if( experiments.length ){
+					experiments = experiments[ 0 ];
+					experiments.parentNode.removeChild( experiments );
+				}
+			}
+			</script>
 			<a href="{{ urls.experiments() }}" class="experiments{% if user.experiments %} experiments--on{% endif %}">
 				Experiments: {% if user.experiments %}ON{% else %}OFF{% endif %}
 			</a>
-		{% endif %}
+			<span onclick="hideExperiments( this );" class="hide-experiments">x</span>
+		{% endif -%}
 
 		{% block page_content %}{% endblock %}
 	</div>
