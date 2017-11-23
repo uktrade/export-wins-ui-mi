@@ -56,7 +56,7 @@
 			<ol class="download-group-list">
 				{% for file in files.sdi.months %}
 				<li class="download-group-list_item">
-					<a href="{{ urls.downloadFile( file.id ) }}">Download {{ file.report_end_date | dateStamp }}</a>
+					<a href="{{ urls.downloadFile( file.id ) }}">Download {{ file.report_start_date | dateStamp }} - {{ file.report_end_date | dateStamp }}</a>
 				</li>
 				{% endfor %}
 			</ol>
