@@ -3,7 +3,8 @@ const jwt = require( 'jsonwebtoken' );
 const config = require( '../config' );
 
 const secret = config.jwt.secret;
-const userCookieName = config.userCookieName;
+const userCookieName = config.userCookie.name;
+const userCookieMaxAge = config.userCookie.maxAge;
 const secure = !config.isDev;
 
 module.exports = function( user, res, cb ){
@@ -25,7 +26,7 @@ module.exports = function( user, res, cb ){
 			res.cookie( userCookieName, token, {
 				httpOnly: true,
 				secure,
-				expires: 0//session
+				maxAge: userCookieMaxAge
 			} );
 			cb();
 		}

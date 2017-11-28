@@ -10,7 +10,7 @@ const isAlpha = /^[a-zA-Z0-9]+$/;
 function createClearUserCookie(){
 
 	const parts = [
-		`${ config.userCookieName }=`,
+		`${ config.userCookie.name }=`,
 		'HttpOnly',
 		'Path=/',
 		`Expires=${ ( new Date( 1 ) ).toGMTString() }`

@@ -6,6 +6,7 @@ let signSpy;
 let user;
 let res;
 let userCookieName;
+let userCookieMaxAge;
 let jwtSecret;
 let stubs;
 
@@ -19,11 +20,12 @@ describe( 'Saving the user info', function(){
 			cookie: jasmine.createSpy( 'res.cookie' )
 		};
 		userCookieName = 'thecookiename';
+		userCookieMaxAge = 1000;
 		stubs = {
 			'jsonwebtoken': { sign: signSpy  },
 			'../config': {
 				isDev: false,
-				userCookieName,
+				userCookie: { name: userCookieName, maxAge: userCookieMaxAge },
 				jwt: { secret: jwtSecret }
 			}
 		};
@@ -90,7 +92,7 @@ describe( 'Saving the user info', function(){
 					expect( res.cookie ).toHaveBeenCalledWith( userCookieName, token, {
 						httpOnly: true,
 						secure: false,
-						expires: 0
+						maxAge: userCookieMaxAge
 					} );
 					expect( err ).not.toBeDefined();
 					done();
@@ -111,7 +113,7 @@ describe( 'Saving the user info', function(){
 					expect( res.cookie ).toHaveBeenCalledWith( userCookieName, token, {
 						httpOnly: true,
 						secure: true,
-						expires: 0
+						maxAge: userCookieMaxAge
 					} );
 					expect( err ).not.toBeDefined();
 					done();
