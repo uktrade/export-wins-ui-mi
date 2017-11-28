@@ -6,7 +6,7 @@ const renderError = require( '../lib/render-error' );
 const saveUser = require( '../lib/save-user' );
 
 const secret = config.jwt.secret;
-const userCookieName = config.userCookieName;
+const userCookieName = config.userCookie.name;
 
 module.exports = function( req, res, next ){
 

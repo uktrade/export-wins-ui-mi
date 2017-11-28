@@ -35,7 +35,10 @@ let config = {
 	feedbackSurvey: env( 'FEEDBACK_SURVEY' ),
 	faqLink: env( 'FAQ_LINK' ),
 	cookieSecret: env( 'COOKIE_SECRET' ),
-	userCookieName: env( 'USER_COOKIE_NAME', 'user' ),
+	userCookie: {
+		name: env( 'USER_COOKIE_NAME', 'user' ),
+		maxAge: env( 'USER_COOKIE_MAX_AGE', ( 1000 * 60 * 5 ) )
+	},
 	logLevel: env( 'LOG_LEVEL', 'warn' ),
 	sentryDsn: env( 'SENTRY_DSN' ),
 	analyticsId: env( 'ANALYTICS_ID' ),

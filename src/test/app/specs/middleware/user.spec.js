@@ -31,7 +31,7 @@ describe( 'user middleware', function(){
 		saveUserSpy = jasmine.createSpy( 'save-user' ).and.callFake( ( user, res, cb ) => { cb(); } );
 
 		const stubs = {
-			'../config': { jwt: { secret: jwtSecret }, userCookieName },
+			'../config': { jwt: { secret: jwtSecret }, userCookie: { name: userCookieName } },
 			'../lib/service/service.backend': backend,
 			'jsonwebtoken': jwt,
 			'../lib/render-error': { createHandler },

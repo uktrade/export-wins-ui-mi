@@ -23,7 +23,10 @@ describe( 'Login controller', function(){
 			captureException: spy( 'reporter.captureException' )
 		};
 
-		config = { oauthParamLength: 8, userCookieName: 'aname', isDev: false  };
+		config = {
+			oauthParamLength: 8,
+			userCookie: { name: 'aname' },
+			isDev: false  };
 
 		req = {
 			cookies: 'test',
@@ -48,7 +51,7 @@ describe( 'Login controller', function(){
 	function createClearUserCookie(){
 
 		const parts = [
-			`${ config.userCookieName }=`,
+			`${ config.userCookie.name }=`,
 			'HttpOnly',
 			'Path=/',
 			`Expires=${ ( new Date( 1 ) ).toGMTString() }`
