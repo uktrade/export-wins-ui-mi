@@ -12,6 +12,11 @@ function bool( name, defaultValue ){
 	return ( env( name, defaultValue ) + '' ) === 'true';
 }
 
+function number( name, defaultValue ){
+
+	return parseInt( env( name, defaultValue ), 10 );
+}
+
 const cpus = ( os.cpus().length || 1 );
 const defaultWorkers = ( cpus > 1 ? cpus - 1 : cpus );
 const isDev = ( ( process.env.NODE_ENV || 'development' ) === 'development' );
@@ -30,14 +35,14 @@ let config = {
 	views: {
 		cache: bool( 'CACHE_VIEWS', true )
 	},
-	financialYearStart: env( 'FINANCIAL_YEAR_START', 2016 ),
+	financialYearStart: number( 'FINANCIAL_YEAR_START', 2016 ),
 	feedbackEmail: env( 'FEEDBACK_EMAIL' ),
 	feedbackSurvey: env( 'FEEDBACK_SURVEY' ),
 	faqLink: env( 'FAQ_LINK' ),
 	cookieSecret: env( 'COOKIE_SECRET' ),
 	userCookie: {
 		name: env( 'USER_COOKIE_NAME', 'user' ),
-		maxAge: env( 'USER_COOKIE_MAX_AGE', ( 1000 * 60 * 5 ) )
+		maxAge: number( 'USER_COOKIE_MAX_AGE', ( 1000 * 60 * 5 ) )
 	},
 	logLevel: env( 'LOG_LEVEL', 'warn' ),
 	sentryDsn: env( 'SENTRY_DSN' ),
