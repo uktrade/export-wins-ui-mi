@@ -5,6 +5,7 @@ const appConfig = require( '../app/config' );
 
 const stubs = [
 	[ 'user/me', '/user/me/', false ],
+	[ 'csv/all_files', '/csv/all_files/', false ],
 
 	[ 'sector_teams/index', '/mi/sector_teams/' ],
 	[ 'sector_teams/overview', '/mi/sector_teams/overview/' ],
@@ -61,7 +62,8 @@ const stubs = [
 	[ 'investment/fdi/overview_yoy', '/mi/fdi/overview/yoy/' ],
 	[ 'investment/fdi/sector_teams/index', '/mi/fdi/sector_teams/' ],
 	[ 'investment/fdi/sector_teams/sector_team', '/mi/fdi/sector_teams/1/' ],
-	[ 'investment/fdi/os_regions/index', '/mi/os_regions/' ]
+	[ 'investment/fdi/os_regions/index', '/mi/os_regions/' ],
+	[ 'investment/fdi/uk_regions/index', '/mi/uk_regions/' ]
 ];
 
 const years = [ 2016, 2017 ];

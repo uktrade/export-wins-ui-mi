@@ -24,46 +24,33 @@ module.exports = {
 	create: function(){
 
 		const app = express();
-		const env = app.get( 'env' );
-		const isDev = ( 'development' === env );
-
+		const isDev = config.isDev;
 		const pathToPublic = path.resolve( __dirname, '../public' );
-		const pathToUkTradeElements = path.resolve( __dirname, ( isDev ? '../../' : '../' ), 'node_modules/@uktrade/trade_elements' );
-		const pathToUkTradePublic = path.resolve( __dirname, pathToUkTradeElements, 'dist' );
+		const staticMaxAge = ( isDev ? 0 : '2y' );
 
-		let nunjucksEnv;
-		let staticMaxAge = 0;
+		const nunjucksEnv = nunjucks.configure( [
+				`${__dirname}/views`,
+				`${__dirname}/sub-apps`
+			], {
+			autoescape: true,
+			watch: isDev,
+			noCache: !config.views.cache,
+			express: app
+		} );
 
 		app.set( 'view engine', 'html' );
 		app.set( 'view cache', config.views.cache );
 
 		app.disable( 'x-powered-by' );
 
-		nunjucksEnv = nunjucks.configure( [
-				`${__dirname}/views`,
-				`${__dirname}/sub-apps`,
-				`${pathToUkTradeElements}/dist/nunjucks`,
-			], {
-			autoescape: true,
-			watch: config.isDev,
-			noCache: !config.views.cache,
-			express: app
-		} );
-
 		staticGlobals( nunjucksEnv );
 		nunjucksFilters( nunjucksEnv );
 
 		reporter.setup( app );
 
-		if( !isDev ){
-
-			app.use( compression() );
-			staticMaxAge = '2y';
-		}
-
+		if( !isDev ){ app.use( compression() ); }
 		app.use( forceHttps( isDev ) );
 		app.use( '/public', express.static( pathToPublic, { maxAge: staticMaxAge } ) );
-		app.use( '/public/uktrade', express.static( pathToUkTradePublic, { maxAge: staticMaxAge } ) );
 		app.use( morganLogger( ( isDev ? 'dev' : 'combined' ) ) );
 		app.use( cookieParser() );
 		app.use( headers( isDev ) );

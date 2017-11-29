@@ -49,6 +49,7 @@ let config = {
 	analyticsId: env( 'ANALYTICS_ID' ),
 	coreLoginUrl: env( 'CORE_LOGIN_URL', 'https://adfsmobile.azurecore.com/adfs/ls/' ),
 	exportWinsUrl: env( 'EXPORT_WINS_URL', 'https://www.exportwins.service.trade.gov.uk/' ),
+	datahubDomain: env( 'DATA_HUB_DOMAIN', 'https://www.datahub.trade.gov.uk' ),
 	jwt: {
 		secret: env( 'JWT_SECRET', 'thisshouldbeavalidsecret' )
 	},

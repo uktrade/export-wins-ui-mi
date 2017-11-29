@@ -7,6 +7,7 @@ describe( 'Static globals', function(){
 	const analyticsId = 'abc123';
 	const faqLink = 'http://abc123.com';
 	const financialYearStart = 2016;
+	const datahubDomain = 'https://some-domain.com';
 
 	let calls;
 	let staticGlobals;
@@ -19,7 +20,8 @@ describe( 'Static globals', function(){
 				feedbackSurvey,
 				analyticsId,
 				faqLink,
-				financialYearStart
+				financialYearStart,
+				datahubDomain
 			}
 		};
 
@@ -38,7 +40,7 @@ describe( 'Static globals', function(){
 		const args = calls.argsFor( 0 );
 
 		expect( args[ 0 ] ).toEqual( 'asset_path' );
-		expect( args[ 1 ] ).toEqual( '/public/uktrade/' );
+		expect( args[ 1 ] ).toEqual( '/public/' );
 	} );
 
 	it( 'Should add the analyticsId to the nunjucks env', function(){
@@ -118,5 +120,61 @@ describe( 'Static globals', function(){
 				}
 			} );
 		} );
+	} );
+
+	it( 'Should add the global nav items to the nunjucks env', function(){
+
+		const args = calls.argsFor( 4 );
+
+		expect( args[ 0 ] ).toEqual( 'globalNavItems' );
+		expect( Array.isArray( args[ 1 ] ) ).toEqual( true );
+	} );
+
+	it( 'Should add the default title to the nunjucks env', function(){
+
+		const args = calls.argsFor( 5 );
+
+		expect( args[ 0 ] ).toEqual( 'titleDefault' );
+		expect( args[ 1 ] ).toEqual( 'Department for International Trade' );
+	} );
+
+	it( 'Should add the default service to the nunjucks env', function(){
+
+		const args = calls.argsFor( 6 );
+
+		expect( args[ 0 ] ).toEqual( 'serviceTitle' );
+		expect( args[ 1 ] ).toEqual( 'Data Hub' );
+	} );
+
+	it( 'Should add the default service to the nunjucks env', function(){
+
+		const args = calls.argsFor( 7 );
+
+		expect( args[ 0 ] ).toEqual( 'projectPhase' );
+		expect( args[ 1 ] ).toEqual( 'beta' );
+	} );
+
+	it( 'Should add the default service to the nunjucks env', function(){
+
+		const args = calls.argsFor( 8 );
+
+		expect( args[ 0 ] ).toEqual( 'feedbackLink' );
+		expect( args[ 1 ] ).toEqual( `${ datahubDomain }/support` );
+	} );
+
+	it( 'Should add the headerLink to the nunjucks env', function(){
+
+		const args = calls.argsFor( 9 );
+
+		expect( args[ 0 ] ).toEqual( 'headerLink' );
+		expect( args[ 1 ] ).toEqual( `${ datahubDomain }/` );
+	} );
+
+	it( 'Should add the profileLink to the nunjucks env', function(){
+
+		const args = calls.argsFor( 10 );
+
+		expect( args[ 0 ] ).toEqual( 'profileLink' );
+		expect( args[ 1 ] ).toEqual( `${ datahubDomain }/profile` );
 	} );
 } );

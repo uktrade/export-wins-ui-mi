@@ -1299,12 +1299,23 @@ if( config.backend.mock ){
 		let morgan;
 		let disable;
 		let compression;
+		let express;
 
 		beforeEach( function(){
 
 			morgan = jasmine.createSpy( 'morgan' );
 			disable = jasmine.createSpy( 'app.disable' );
 			compression = jasmine.createSpy( 'compression' );
+
+			express = function(){
+				return {
+					disable,
+					use: jasmine.createSpy( 'app.use' ),
+					set: jasmine.createSpy( 'app.set' ),
+					get: jasmine.createSpy( 'app.get' ),
+					post: jasmine.createSpy( 'app.post' ),
+				};
+			};
 		} );
 
 		describe( 'Dev mode', function(){
@@ -1312,17 +1323,10 @@ if( config.backend.mock ){
 			it( 'Should setup the app in dev mode', function(){
 
 				const app = proxyquire( '../../../app/app', {
+					'./config': { isDev: true },
 					'morgan': morgan,
 					'compression': compression,
-					'express': function(){
-						return {
-							use: jasmine.createSpy( 'app.use' ),
-							get: () => 'development',
-							set: jasmine.createSpy( 'app.set' ),
-							disable,
-							post: jasmine.createSpy( 'app.post' ),
-						};
-					}
+					'express': express
 				} );
 
 				app.create();
@@ -1335,20 +1339,13 @@ if( config.backend.mock ){
 
 		describe( 'Prod mode', function(){
 
-			it( 'Should setup the app in dev mode', function(){
+			it( 'Should setup the app in prod mode', function(){
 
 				const app = proxyquire( '../../../app/app', {
+					'./config': { isDev: false },
 					'morgan': morgan,
 					'compression': compression,
-					'express': function(){
-						return {
-							use: jasmine.createSpy( 'app.use' ),
-							get: () => 'production',
-							set: jasmine.createSpy( 'app.set' ),
-							disable,
-							post: jasmine.createSpy( 'app.post' ),
-						};
-					}
+					'express': express
 				} );
 
 				app.create();

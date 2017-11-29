@@ -1,13 +1,31 @@
-@import 'colours';
+@import '_deprecated/colours';
 
 @import 'layout';
 
-@import 'design-patterns/_buttons.scss';
-@import 'elements/buttons';
-@import 'elements/forms';
-@import 'elements/forms/form-validation';
+@import '_deprecated/design-patterns/buttons.scss';
+@import '_deprecated/elements/buttons';
+@import '_deprecated/elements/forms';
+@import '_deprecated/elements/forms/form-validation';
 
-@import 'trade/components/button';
+@import '_deprecated/trade/components/button';
+
+@import 'components/global-header';
+@import 'components/global-nav';
+@import 'components/top-nav';
+@import 'components/experiments';
+@import 'components/alpha-list';
+@import 'components/hvc-target-performance';
+@import 'components/hvc-target-performance-key';
+@import 'components/monthly-performance-graph';
+@import 'components/monthly-performance-key';
+@import 'components/year-selector';
+@import 'components/zero-target-perf-table';
+@import 'components/region-performance-table';
+@import 'components/win-table';
+@import 'components/page-tabs';
+@import 'components/target-progress-bar';
+@import 'components/top-markets';
+@import 'components/pie';
 
 @import 'page/index';
 @import 'page/sector';
@@ -26,20 +44,6 @@
 @import 'page/hvc-group';
 
 @import 'partials/global-performance';
-
-@import 'components/alpha-list';
-@import 'components/hvc-target-performance';
-@import 'components/hvc-target-performance-key';
-@import 'components/monthly-performance-graph';
-@import 'components/monthly-performance-key';
-@import 'components/year-selector';
-@import 'components/zero-target-perf-table';
-@import 'components/region-performance-table';
-@import 'components/win-table';
-@import 'components/page-tabs';
-@import 'components/target-progress-bar';
-@import 'components/top-markets';
-@import 'components/pie';
 
 @import 'error';
 @import 'sector-wins-list';
@@ -96,7 +100,7 @@ main {
 	// IE7 doesn't support pseudo-elements, let's fallback to an image instead.
 	// Ref: http://caniuse.com/#search=%3Abefore, http://caniuse.com/#search=rgba
 	@include ie-lte(8) {
-		background: file-url("icon-arrow-left-a68933e93e.png") no-repeat 0 4px;
+		background: file-url("icon-arrow-left.png") no-repeat 0 4px;
 	}
 
 }
@@ -121,6 +125,11 @@ hr {
 	font-weight: normal;
 }
 
+.page-content {
+	@extend %site-width-container;
+	padding-bottom: 64px;
+}
+
 .page-heading {
 	@include bold-36;
 	margin-top: pem( 20, 36 );
@@ -142,7 +151,6 @@ hr {
 .page-financial-year {
 	@include bold-24;
 }
-
 
 .page-date {
 	@include bold-16;

@@ -1,4 +1,4 @@
-{% extends 'layouts/ukti_template.html' %}
+{% extends 'base.html' %}
 
 {% set homepage_url = "/" %}
 {% block service_name %}Data Hub{% endblock %}
@@ -12,14 +12,14 @@
 
 {% block content %}
 	<div class="page-content">
-
+{#
 		<div class="phase-banner">
 			<p>
 				<strong class="phase-tag">BETA</strong>
 				<span>This is a new service – your <a href="{{ urls.survey() }}">feedback</a> will help us to improve it.</span>
 			</p>
 		</div>
-
+#}
 		<nav class="top-nav">
 			<ul class="top-nav_list">
 				<li class="top-nav_list_item">
@@ -29,9 +29,6 @@
 					<a class="top-nav_link" href="{{ urls.investment.index() }}">MI Investment wins</a>
 				</li>
 			</ul>
-			{% if user.email -%}
-			<span class="top-nav_username">User{% if user.internal %} (internal){% endif %}: {{ user.email }}</span>
-			{%- endif %}
 		</nav>
 
 		{%- if user.internal %}
@@ -57,6 +54,7 @@
 	</div>
 {% endblock %}
 
+{#
 {% block footer %}
 
 	<footer class="group js-footer footer--govuk" id="footer" role="contentinfo">
@@ -73,6 +71,7 @@
 		</div>
   </footer>
 {% endblock %}
+#}
 
 {% block body_end %}
 	{%- block script -%}

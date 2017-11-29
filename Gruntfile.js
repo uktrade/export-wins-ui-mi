@@ -47,7 +47,7 @@ module.exports = function( grunt ){
 					{
 						expand: true,
 						cwd: 'src/',
-						src: [ 'public/**/*', '!*/{sass,css,js}/**', '!**/*.{js,es}hintrc', '!**/*.map' ],
+						src: [ 'public/**/*', '!*/{sass,css,js}/**', 'public/**/layout*', '!**/*.{js,es}hintrc', '!**/*.map' ],
 						dest: 'dist/'
 					}
 				]
