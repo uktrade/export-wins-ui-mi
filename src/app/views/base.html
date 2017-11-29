@@ -88,7 +88,9 @@
 
 		{%- block footer %}{% endblock -%}
 
+		<!-- build:js(src) /public/js/layout.min.js -->
 		<script src="/public/js/layout.js"></script>
+		<!-- endbuild -->
 		{% block body_end %}{% endblock %}
 		{% block body_end_scripts %}{% endblock %}
 	</body>

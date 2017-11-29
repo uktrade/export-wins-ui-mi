@@ -47,7 +47,7 @@ module.exports = function( grunt ){
 					{
 						expand: true,
 						cwd: 'src/',
-						src: [ 'public/**/*', '!*/{sass,css,js}/**', 'public/**/layout*', '!**/*.{js,es}hintrc', '!**/*.map' ],
+						src: [ 'public/**/*', '!*/{sass,css,js}/**', 'public/**/layout.css', '!**/*.{js,es}hintrc', '!**/*.map' ],
 						dest: 'dist/'
 					}
 				]
@@ -66,7 +66,7 @@ module.exports = function( grunt ){
 		},
 
 		useminPrepare: {
-			html: 'dist/app/views/layout*.html'
+			html: 'dist/app/views/{base,layout}*.html'
 		},
 
 		usemin: {
