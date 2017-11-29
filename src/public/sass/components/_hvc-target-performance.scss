@@ -1,7 +1,7 @@
-@import 'colours';
-@import 'typography';
+@import '_deprecated/colours';
+@import '_deprecated/typography';
 @import 'helpers';
-@import '../mi-colours';
+@import 'mi-colours';
 
 $keyBoxSize: 12px;
 

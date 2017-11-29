@@ -1,0 +1,95 @@
+{% from 'macros/global-nav.html' import globalNav %}
+{%- block top_of_page %}{% endblock -%}
+<!DOCTYPE html>
+<!--[if lt IE 9]><html class="lte-ie8" lang="{{ html_lang|default('en') }}"><![endif]-->
+<!--[if gt IE 8]><!--><html lang="{{ html_lang|default('en') }}"><!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+		<title>{% block page_title %}Department of International Trade{% endblock %}</title>
+		<link rel="shortcut icon" href="/public/img/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="/public/img/favicon-192x192.png" type="image/png">
+		{#
+		<link rel="mask-icon" href="{{ asset_path | default('/') }}images/gov-ebb5423b49.uk_logotype_crown.svg" color="#0b0c0c">
+		<link rel="apple-touch-icon-precomposed" sizes="152x152" href="{{ asset_path | default('/') }}images/apple-touch-icon-152x152.png">
+		<link rel="apple-touch-icon-precomposed" sizes="120x120" href="{{ asset_path | default('/') }}images/apple-touch-icon-120x120.png">
+		<link rel="apple-touch-icon-precomposed" sizes="76x76" href="{{ asset_path | default('/') }}images/apple-touch-icon-76x76-502fb715e0.png">
+		<link rel="apple-touch-icon-precomposed" href="{{ asset_path | default('/') }}images/apple-touch-icon-60x60-27e25ffcc8.png">
+		#}
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta property="og:image" content="/public/img/opengraph-image.png">
+		<link href="/public/css/layout.css" media="screen" rel="stylesheet">
+		{% block head %}{% endblock -%}
+		{% block head_styles %}{% endblock -%}
+		{% block head_script %}{% endblock -%}
+	</head>
+
+	<body class="{% block body_classes %}{% endblock %}">
+		<script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+		{% block body_start %}{% endblock -%}
+
+		<div id="skiplink-container">
+			<div>
+				<a href="#content" class="skiplink">{{ skip_link_message|default('Skip to main content') }}</a>
+			</div>
+		</div>
+
+		<div id="global-cookie-message">
+			{% block cookie_message -%}
+				<p>GOV.UK uses cookies to make the site simpler. <a href="https://www.gov.uk/help/cookies">Find out more about cookies</a></p>
+			{%- endblock %}
+		</div>
+
+		{% block body_site_header -%}
+
+			<header class="global-header" aria-label="global header">
+				<div class="global-header__inner">
+					{% block header_site_title %}
+						<div class="global-header__site-title">
+							<a href="{{ headerLink }}" class="global-header__link">
+								<span class="global-header__logo">
+									<span class="global-header__site-name">{{ siteTitle|default(titleDefault) }}</span>
+									{% if serviceTitle -%}
+										<span class="global-header__service-name">{{ serviceTitle }}</span>
+									{%- endif %}
+								</span>
+							</a>
+							{%- if not phaseBanner and projectPhase|lower in ['alpha', 'beta'] %}
+								<span class="phase-badge">{{ projectPhase.toUpperCase() }}</span>
+							{% endif -%}
+						</div>
+					{% endblock %}
+					{% block header_menu -%}
+						<nav aria-label="global nav">
+							<ul class="proposition-menu">
+								<li class="proposition-menu__item">
+									<a href="{{ feedbackLink }}" class="proposition-menu__link">Support</a>
+		  						</li>
+								{% if user -%}
+		 						<li class="proposition-menu__item">
+									<a href="{{ profileLink }}" class="proposition-menu__link">{% if user.internal %}(internal) {% endif %}{{ user.name or user.email }}</a>
+		 						</li>
+								{% endif -%}
+							</ul>
+						</nav>
+					{% endblock %}
+				</div>
+			</header>
+
+			{{ globalNav({ items: globalNavItems }) -}}
+
+		{%- endblock -%}
+
+		{%- block after_header %}{% endblock -%}
+
+		<main id="content" role="main">
+			{% block content %}{% endblock %}
+		</main>
+
+		{%- block footer %}{% endblock -%}
+
+		<script src="/public/js/layout.js"></script>
+		{% block body_end %}{% endblock %}
+		{% block body_end_scripts %}{% endblock %}
+	</body>
+</html>

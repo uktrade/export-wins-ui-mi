@@ -13,8 +13,25 @@ module.exports = function( env ){
 		year++;
 	}
 
-	env.addGlobal( 'asset_path', '/public/uktrade/' );
+	const globalNavItems = [
+		{ isActive: false, url: `${ config.datahubDomain }/companies`, label: 'Companies' },
+		{ isActive: false, url: `${ config.datahubDomain }/contacts`, label: 'Contacts' },
+		{ isActive: false, url: `${ config.datahubDomain }/events`, label: 'Events' },
+		{ isActive: false, url: `${ config.datahubDomain }/interactions`, label: 'Interactions and services' },
+		{ isActive: false, url: `${ config.datahubDomain }/investment-projects`, label: 'Investment projects' },
+		{ isActive: false, url: `${ config.datahubDomain }/omis`, label: 'Orders (OMIS)' },
+		{ isActive: true, url: '/', label: 'MI dashboards' },
+	];
+
+	env.addGlobal( 'asset_path', '/public/' );
 	env.addGlobal( 'analyticsId', config.analyticsId );
 	env.addGlobal( 'faqLink', config.faqLink );
 	env.addGlobal( 'yearList', years );
+	env.addGlobal( 'globalNavItems', globalNavItems );
+	env.addGlobal( 'titleDefault', 'Department for International Trade' );
+	env.addGlobal( 'serviceTitle', 'Data Hub' );
+	env.addGlobal( 'projectPhase', 'beta' );
+	env.addGlobal( 'feedbackLink', `${ config.datahubDomain }/support` );
+	env.addGlobal( 'headerLink', `${ config.datahubDomain }/` );
+	env.addGlobal( 'profileLink', `${ config.datahubDomain }/profile` );
 };

@@ -1,6 +1,6 @@
-@import 'typography';
+@import '_deprecated/typography';
 @import 'helpers';
-@import '../mi-colours';
+@import 'mi-colours';
 
 .sector-detail {
 	margin-top: pem( 50 );

@@ -2,7 +2,7 @@
 
 {% set pageName %}Choose {{ year }} financial year start and end dates{% endset %}
 
-{% from 'macros/trade.html' import errorPanel %}
+{% from 'macros/error-panel.html' import errorPanel %}
 {% from 'macros/textbox.html' import textbox %}
 
 {% macro monthList( name, id, months, selectedValue, error ) %}

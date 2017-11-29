@@ -1,0 +1,141 @@
+@import "_deprecated/colours";
+@import "_deprecated/grid_layout";
+@import "helpers";
+
+$base-font-size: 16px;
+$baseline-grid-unit: 4px;
+$default-spacing-unit: $baseline-grid-unit * 4;
+
+.global-header {
+	background-color: $black;
+	color: $white;
+}
+
+.global-header__inner {
+	@include clearfix;
+	@extend %site-width-container;
+	padding: 8px 0;
+}
+
+.global-header__site-title {
+	@include media(tablet) {
+		float: left;
+	}
+
+	.phase-badge {
+		margin-top: 5px;
+	}
+}
+
+.global-header__link {
+	display: inline-block;
+	color: inherit !important;
+	text-decoration: none;
+	padding: 0;
+	position: relative;
+	margin: 0 ($baseline-grid-unit * 3) 0 0;
+
+	&:hover,
+	&:visited,
+	&:focus {
+		color: inherit;
+	}
+}
+
+.global-header__logo {
+	border-bottom: 1px solid transparent;
+	margin-left: -4px;
+}
+
+.global-header__link:hover .global-header__logo {
+	border-color: $white;
+}
+
+.global-header__site-name {
+	@include visually-hidden;
+}
+
+.global-header__service-name {
+	@include bold-36;
+	color: inherit;
+	line-height: 1;
+	white-space: nowrap;
+
+	@include media(tablet) {
+		line-height: 1;
+		font-size: 30px;
+	}
+}
+
+span.phase-badge {
+  @include bold-14;
+  background-color: $govuk-blue;
+  color: $white;
+  cursor: default;
+  display: inline-block;
+  font-weight: 600;
+  letter-spacing: 1px;
+  line-height: 1;
+  margin: 0 ($default-spacing-unit / 2) 0 0;
+  padding: 3px 5px;
+  vertical-align: top;
+
+  @include media(tablet) {
+	 line-height: 1;
+  }
+}
+
+.proposition-menu {
+
+	@include bold-14;
+	color: $white !important;
+	margin: 0;
+	padding: $baseline-grid-unit 0 0;
+
+	@include media(tablet) {
+		@include bold-16;
+		float: right;
+	}
+}
+
+.proposition-menu__item {
+
+	border-bottom: 1px solid $grey-1;
+	display: block;
+
+  @include media(tablet) {
+		border-bottom: 0;
+		float: left;
+		padding-left: $default-spacing-unit;
+
+		&:first-child {
+			padding-left: 0;
+		}
+	}
+}
+
+.proposition-menu__link {
+
+	color: inherit !important;
+	display: block;
+	padding: ($default-spacing-unit / 2) 0;
+	text-decoration: none;
+
+	@include media(tablet) {
+		padding: 0;
+	}
+
+	&:active,
+	&:visited,
+	&:hover {
+		color: inherit;
+	}
+
+	&:hover {
+		text-decoration: underline;
+	}
+
+	&.is-active {
+		color: $light-blue;
+	}
+}

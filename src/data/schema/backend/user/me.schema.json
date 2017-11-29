@@ -3,8 +3,13 @@
 	"title": "User info",
 
 	"type": "object",
-	"required": [ "email", "last_login" ],
+	"required": [ "name", "email", "last_login" ],
 	"properties": {
+
+		"name": {
+			"type": "string",
+			"faker": "name.findName"
+		},
 
 		"email": {
 			"type": "string",

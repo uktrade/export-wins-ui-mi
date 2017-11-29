@@ -48,6 +48,8 @@ const scenarios = paths.reduce( ( output, pathInfo ) => {
 
 	const [ path, label, hideSelectors ] = pathInfo;
 
+	hideSelectors.push( '.experiments', '.hide-experiments' );
+
 	output.push( {
 		label,
 		url: `http://localhost:9001${ path }`,

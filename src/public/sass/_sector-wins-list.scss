@@ -1,5 +1,5 @@
 @import 'mi-colours';
-@import 'typography';
+@import '_deprecated/typography';
 
 .sector-wins_list-heading {
 	@include bold-19;
@@ -13,7 +13,7 @@
 }
 
 .sector-wins_list_item {
-	
+
 	display: table-cell;
 	padding: 0 pem( 26, 16 ) 0 0;
 	vertical-align: middle;

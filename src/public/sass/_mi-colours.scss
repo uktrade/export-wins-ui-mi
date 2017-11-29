@@ -1,4 +1,4 @@
-@import 'colours';
+@import '_deprecated/colours';
 
 @function tint( $color, $percentage ){
 	@return mix( white, $color, $percentage );
