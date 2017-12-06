@@ -7,6 +7,11 @@ module.exports = {
 		return generateSchema( '/investment/fdi/sector_teams/index.schema', year );
 	},
 
+	createOverview: function( year ){
+
+		return generateSchema( '/investment/fdi/sector_teams/overview.schema', year );
+	},
+
 	createTeam: function( year ){
 
 		return generateSchema( '/investment/fdi/sector_teams/sector-team.schema', year );

@@ -23,6 +23,11 @@ function getSectorTeams( req ){
 	return getJson( '/mi/fdi/sector_teams/', req );
 }
 
+function getSectorTeamsOverview( req ){
+
+	return getJson( '/mi/fdi/sector_teams/overview/', req );
+}
+
 function getSectorTeam( req, teamId ){
 
 	return getJson( `/mi/fdi/sector_teams/${ teamId }/`, req );
@@ -90,6 +95,7 @@ function getOverviewYoy( req ){
 module.exports = {
 
 	getSectorTeams,
+	getSectorTeamsOverview,
 	getSectorTeam,
 	getSectorTeamHvc,
 	getSectorTeamNonHvc,

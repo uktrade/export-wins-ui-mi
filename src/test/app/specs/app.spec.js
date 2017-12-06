@@ -814,7 +814,7 @@ if( config.backend.mock ){
 
 				it( 'Should return a 200 with the correct heading', function( done ){
 
-					interceptBackend.getStub( `/mi/fdi/sector_teams/?year=2017`, 200, '/investment/fdi/sector_teams/' );
+					interceptBackend.getStub( `/mi/fdi/sector_teams/overview/?year=2017`, 200, '/investment/fdi/sector_teams/overview' );
 
 					supertest( app ).get( '/investment/sector-teams/' ).end( ( err, res ) => {
 

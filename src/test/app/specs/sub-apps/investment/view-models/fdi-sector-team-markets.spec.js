@@ -13,6 +13,7 @@ describe( 'FDI Sector Team markets', function(){
 
 		for( let market of output ){
 
+			expect( market.id ).toBeDefined();
 			expect( market.name ).toBeDefined();
 			expect( Array.isArray( market.results ) ).toEqual( true );
 

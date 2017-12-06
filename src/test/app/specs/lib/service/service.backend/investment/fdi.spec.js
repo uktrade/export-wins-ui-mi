@@ -66,6 +66,18 @@ describe( 'Investment FDI backend service', function(){
 			} );
 		} );
 
+		describe( 'Sector Teams overview', function(){
+
+			it( 'Should call the correct API', function( done ){
+
+				fdiService.getSectorTeamsOverview( req ).then( () => {
+
+					checkBackendArgs( '/mi/fdi/sector_teams/overview/', req );
+					done();
+				} );
+			} );
+		} );
+
 		describe( 'Sector Team details', function(){
 
 			it( 'Should call the correct API', function( done ){

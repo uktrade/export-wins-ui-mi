@@ -18,6 +18,11 @@
 	color: $grey-1;
 }
 
+.fdi-sector-team-markets-list_team-heading {
+	@include bold-16;
+	padding: pem( 10 ) 0 0 pem( 5 );
+}
+
 .fdi-sector-team-markets-list_market-name {
 	@include core-16;
 	width: 29%;
