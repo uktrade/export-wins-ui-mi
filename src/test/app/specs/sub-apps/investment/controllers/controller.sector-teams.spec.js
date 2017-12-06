@@ -22,7 +22,7 @@ describe( 'Investment Sector Teams controller', function(){
 		createHandler = jasmine.createSpy( 'createHandler' ).and.callFake( () => renderErrorHandler );
 
 		fdiService = {
-			getSectorTeams: jasmine.createSpy( 'getSectorTeams' ),
+			getSectorTeamsOverview: jasmine.createSpy( 'getSectorTeamsOverview' ),
 			getSectorTeam: jasmine.createSpy( 'getSectorTeam' ),
 			getSectorTeamHvc: jasmine.createSpy( 'getSectorTeamHvc' ),
 			getSectorTeamNonHvc: jasmine.createSpy( 'getSectorTeamNonHvc' )
@@ -53,12 +53,14 @@ describe( 'Investment Sector Teams controller', function(){
 
 			it( 'Should render the view with the correct data', function( done ){
 
-				const sectorTeams = { date_range: { start: 1, end: 2 }, results: true };
-				const promise = new Promise( ( resolve ) => {
-					resolve( sectorTeams );
-				} );
+				const fdiOverviewViewModelResponse = { fdiOverviewViewModelResponse: true };
+				const fdiSectorTeamMarketsViewModelResponse = { fdiSectorTeamMarketsViewModelResponse: true };
+				const overviewResponse = { date_range: { start: 1, end: 2 }, results: { overview: { sectorTeamsOverview: true }, sector_teams: { sectorTeamsList: true } } };
+				const promise = new Promise( ( resolve ) => { resolve( overviewResponse );	} );
 
-				fdiService.getSectorTeams.and.callFake( () => promise );
+				fdiService.getSectorTeamsOverview.and.callFake( () => promise );
+				fdiOverviewViewModelSpy.and.callFake( () => fdiOverviewViewModelResponse );
+				fdiSectorTeamMarketsViewModelSpy.and.callFake( () => fdiSectorTeamMarketsViewModelResponse );
 
 				controller.sectorTeams( req, res );
 
@@ -66,9 +68,13 @@ describe( 'Investment Sector Teams controller', function(){
 
 				promise.then( () => {
 
-					expect( fdiService.getSectorTeams ).toHaveBeenCalledWith( req );
+					expect( fdiService.getSectorTeamsOverview ).toHaveBeenCalledWith( req );
+					expect( fdiOverviewViewModelSpy ).toHaveBeenCalledWith( overviewResponse.results.overview );
+					expect( fdiSectorTeamMarketsViewModelSpy ).toHaveBeenCalledWith( overviewResponse.results.sector_teams );
 					expect( res.render ).toHaveBeenCalledWith( 'investment/views/sector-teams/overview', {
-						sectorTeams
+						teams: overviewResponse,
+						overview: fdiOverviewViewModelResponse,
+						markets: fdiSectorTeamMarketsViewModelResponse
 					} );
 					done();
 				} );
@@ -86,7 +92,7 @@ describe( 'Investment Sector Teams controller', function(){
 					rejectPromise = reject;
 				} );
 
-				fdiService.getSectorTeams.and.callFake( () => promise );
+				fdiService.getSectorTeamsOverview.and.callFake( () => promise );
 
 				controller.sectorTeams( req, res );
 
@@ -96,7 +102,7 @@ describe( 'Investment Sector Teams controller', function(){
 
 				setTimeout( () => {
 
-					expect( fdiService.getSectorTeams ).toHaveBeenCalledWith( req );
+					expect( fdiService.getSectorTeamsOverview ).toHaveBeenCalledWith( req );
 					expect( res.render ).not.toHaveBeenCalled();
 					expect( renderErrorHandler ).toHaveBeenCalledWith( err );
 					done();

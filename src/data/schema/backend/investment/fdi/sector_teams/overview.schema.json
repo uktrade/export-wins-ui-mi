@@ -1,0 +1,127 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "Investment Sector Teams Overview",
+
+	"type": "object",
+	"required": [ "name", "description", "overview", "sector_teams" ],
+	"properties": {
+
+		"name": {
+			"type": "string",
+			"faker": "lorem.words"
+		},
+
+		"description": {
+			"type": "string",
+			"faker": "lorem.words"
+		},
+
+		"overview": {
+			"$ref": "$refs/fdi.json#/fdi-overview"
+		},
+
+		"sector_teams": {
+			"type": "array",
+			"minItems": 5,
+			"maxItems": 15,
+			"items": {
+				"type": "object",
+				"required": [ "id", "name", "verified", "confirmed", "pipeline", "target" ],
+				"properties": {
+
+					"id": {
+						"type": "number",
+						"faker": "random.number"
+					},
+
+					"name": {
+						"type": "string",
+						"faker": "lorem.word"
+					},
+
+					"verified": {
+						"$ref": "#/definitions/team-item"
+					},
+
+					"confirmed": {
+						"$ref": "#/definitions/team-item"
+					},
+
+					"pipeline": {
+						"$ref": "#/definitions/team-item"
+					},
+
+					"target": {
+						"type": "object",
+						"required": [ "total", "progress", "high", "good", "standard" ],
+						"properties": {
+
+							"total": {
+								"type": "number",
+								"faker": "random.number"
+							},
+
+							"progress": {
+								"$ref": "$refs/fdi.json#/percent"
+							},
+
+							"high": {
+								"type": "number",
+								"faker": "random.number"
+							},
+
+							"good": {
+								"type": "number",
+								"faker": "random.number"
+							},
+
+							"standard": {
+								"type": "number",
+								"faker": "random.number"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+
+	"definitions": {
+
+		"team-item": {
+			"type": "object",
+			"required": [ "total", "progress", "high", "good", "standard", "value" ],
+			"properties": {
+
+				"total": {
+					"type": "number",
+					"faker": "random.number"
+				},
+
+				"progress": {
+					"$ref": "$refs/fdi.json#/percent"
+				},
+
+				"high": {
+					"type": "number",
+					"faker": "random.number"
+				},
+
+				"good": {
+					"type": "number",
+					"faker": "random.number"
+				},
+
+				"standard": {
+					"type": "number",
+					"faker": "random.number"
+				},
+
+				"value": {
+					"type": "number",
+					"faker": "random.number"
+				}
+			}
+		}
+	}
+}

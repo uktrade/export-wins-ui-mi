@@ -7,9 +7,13 @@ module.exports = {
 
 	sectorTeams: function( req, res ){
 
-		fdiService.getSectorTeams( req ).then( ( data ) => {
+		fdiService.getSectorTeamsOverview( req ).then( ( data ) => {
 
-			res.render( 'investment/views/sector-teams/overview', { sectorTeams: data } );
+			res.render( 'investment/views/sector-teams/overview', {
+				teams: data,
+				overview: fdiOverviewViewModel.create( data.results.overview ),
+				markets: fdiSectorTeamMarketsViewModel.create( data.results.sector_teams )
+			} );
 
 		} ).catch( renderError.createHandler( req, res ) );
 	},

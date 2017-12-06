@@ -1,9 +1,13 @@
-{% macro fdiSectorTeamMarkets( team, markets ) %}
+{% macro fdiSectorTeamMarkets( team, markets, teamLink ) %}
 	<ul class="fdi-sector-team-markets-list">
 		{% for market in markets %}
 		<li class="fdi-sector-team-markets-list_item">
+			{%- if teamLink %}
+			<h3 class="fdi-sector-team-markets-list_team-heading"><a href="{{ teamLink( market.id ) }}">{{ market.name }}</a></h3>
+			{%- else %}
 			<h3 class="fdi-sector-team-markets-list_heading">{{ team.description }} Markets</h3>
 			<h4 class="fdi-sector-team-markets-list_market-name">{{ market.name }}</h4>
+			{% endif %}
 
 			<table class="fdi-sector-team-markets-list_table">
 				<thead>

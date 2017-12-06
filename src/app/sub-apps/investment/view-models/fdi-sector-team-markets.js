@@ -39,6 +39,7 @@ module.exports = {
 		for( let market of markets ){
 
 			out.push( {
+				id: market.id,
 				name: market.name,
 				results: [
 					createItem( market.target, 'Target', 'target', true ),

@@ -90,6 +90,7 @@ const yearlyFiles = {
 	'investment/fdi/overview_yoy': fdiOverviewJson.createOverviewYoy,
 
 	'investment/fdi/sector_teams/index': fdiSectorTeamsJson.createIndex,
+	'investment/fdi/sector_teams/overview': fdiSectorTeamsJson.createOverview,
 	'investment/fdi/sector_teams/sector_team': fdiSectorTeamsJson.createTeam,
 	'investment/fdi/sector_teams/sector_team_hvc': fdiSectorTeamsJson.createTeam,
 	'investment/fdi/sector_teams/sector_team_non_hvc': fdiSectorTeamsJson.createTeam,
