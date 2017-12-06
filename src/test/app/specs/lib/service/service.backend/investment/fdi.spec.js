@@ -84,6 +84,42 @@ describe( 'Investment FDI backend service', function(){
 			} );
 		} );
 
+		describe( 'Sector Team HVC details', function(){
+
+			it( 'Should call the correct API', function( done ){
+
+				const teamId = '1';
+
+				//This should not be needed
+				//Provide data while using export APIs
+				returnData( { results: [ { id: 1, name: 2 } ] } );
+
+				fdiService.getSectorTeamHvc( req, teamId ).then( () => {
+
+					checkBackendArgs( `/mi/fdi/sector_teams/${ teamId }/hvc/`, req );
+					done();
+				} );
+			} );
+		} );
+
+		describe( 'Sector Team Non HVC details', function(){
+
+			it( 'Should call the correct API', function( done ){
+
+				const teamId = '1';
+
+				//This should not be needed
+				//Provide data while using export APIs
+				returnData( { results: [ { id: 1, name: 2 } ] } );
+
+				fdiService.getSectorTeamNonHvc( req, teamId ).then( () => {
+
+					checkBackendArgs( `/mi/fdi/sector_teams/${ teamId }/non_hvc/`, req );
+					done();
+				} );
+			} );
+		} );
+
 		describe( 'Overseas Teams list', function(){
 
 			it( 'Should call the correct API', function( done ){

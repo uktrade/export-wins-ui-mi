@@ -1,0 +1,62 @@
+{% macro fdiSectorTeamMarkets( team, markets ) %}
+	<ul class="fdi-sector-team-markets-list">
+		{% for market in markets %}
+		<li class="fdi-sector-team-markets-list_item">
+			<h3 class="fdi-sector-team-markets-list_heading">{{ team.description }} Markets</h3>
+			<h4 class="fdi-sector-team-markets-list_market-name">{{ market.name }}</h4>
+
+			<table class="fdi-sector-team-markets-list_table">
+				<thead>
+					<tr>
+						<th class="fdi-sector-team-markets-list_table_heading fdi-sector-team-markets-list_table_heading--type">
+							<span class="visually-hidden">Type</span>
+						</th>
+						<th class="fdi-sector-team-markets-list_table_heading fdi-sector-team-markets-list_table_heading--total">
+							<span class="visually-hidden">Total</span>
+						</th>
+						<th class="fdi-sector-team-markets-list_table_heading fdi-sector-team-markets-list_table_heading--progress">
+							<span class="visually-hidden">Progress</span>
+						</th>
+						<th class="fdi-sector-team-markets-list_table_heading fdi-sector-team-markets-list_table_heading--high">
+							High
+						</th>
+						<th class="fdi-sector-team-markets-list_table_heading fdi-sector-team-markets-list_table_heading--good">
+							Good
+						</th>
+						<th class="fdi-sector-team-markets-list_table_heading fdi-sector-team-markets-list_table_heading--standard">
+							Standard
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for result in market.results %}
+					<tr class="fdi-sector-team-markets-list_table_row fdi-sector-team-markets-list_table_row--{{ result.modifyer }}">
+						<td class="fdi-sector-team-markets-list_table_cell fdi-sector-team-markets-list_table_cell--type">
+							{{ result.type }}
+						</td>
+						<td class="fdi-sector-team-markets-list_table_cell fdi-sector-team-markets-list_table_cell--total">
+							{{ result.total.number }}
+						</td>
+						<td class="fdi-sector-team-markets-list_table_cell fdi-sector-team-markets-list_table_cell--progress">
+							<span class="fdi-sector-team-markets-list_table_cell_progress-wrapper">
+								<span class="fdi-sector-team-markets-list_table_cell_progress-bar fdi-sector-team-markets-list_table_cell_progress-bar--{{ result.modifyer }}" style="width: {{ result.total.percent }};"></span>
+								<span class="fdi-sector-team-markets-list_table_cell_progress-value" style="left: {{ result.total.percent }};">{{ result.total.percent }}</span>
+							</span>
+						</td>
+						<td class="fdi-sector-team-markets-list_table_cell fdi-sector-team-markets-list_table_cell--high">
+							{{ result.high }}
+						</td>
+						<td class="fdi-sector-team-markets-list_table_cell fdi-sector-team-markets-list_table_cell--good">
+							{{ result.good }}
+						</td>
+						<td class="fdi-sector-team-markets-list_table_cell fdi-sector-team-markets-list_table_cell--standard">
+							{{ result.standard }}
+						</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</li>
+		{% endfor %}
+	</ul>
+{% endmacro %}

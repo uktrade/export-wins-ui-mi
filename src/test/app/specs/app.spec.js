@@ -848,7 +848,7 @@ if( config.backend.mock ){
 
 					it( 'Should return a 200 with the correct heading', function( done ){
 
-						interceptBackend.getStub( `/mi/fdi/sector_teams/${ teamId }/?year=2017`, 200, '/investment/fdi/sector_teams/sector_team' );
+						interceptBackend.getStub( `/mi/fdi/sector_teams/${ teamId }/hvc/?year=2017`, 200, '/investment/fdi/sector_teams/sector_team' );
 
 						supertest( app ).get( `/investment/sector-teams/${ teamId }/hvc-performance/` ).end( ( err, res ) => {
 
@@ -863,7 +863,7 @@ if( config.backend.mock ){
 
 					it( 'Should return a 200 with the correct heading', function( done ){
 
-						interceptBackend.getStub( `/mi/fdi/sector_teams/${ teamId }/?year=2017`, 200, '/investment/fdi/sector_teams/sector_team' );
+						interceptBackend.getStub( `/mi/fdi/sector_teams/${ teamId }/non_hvc/?year=2017`, 200, '/investment/fdi/sector_teams/sector_team' );
 
 						supertest( app ).get( `/investment/sector-teams/${ teamId }/non-hvc-performance/` ).end( ( err, res ) => {
 

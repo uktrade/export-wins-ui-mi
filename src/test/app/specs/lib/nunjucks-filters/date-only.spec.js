@@ -2,7 +2,7 @@ const dateOnly = require( '../../../../../app/lib/nunjucks-filters/date-only' );
 
 describe( 'Date only filter', function(){
 
-	describe( 'When a data is supplied', function(){
+	describe( 'When a date is supplied', function(){
 
 		describe( 'With a date string', function(){
 
@@ -25,6 +25,14 @@ describe( 'Date only filter', function(){
 			it( 'Should return the correct date', function(){
 
 				expect( dateOnly( 1491004799 * 1000 ) ).toEqual( '31 March 2017' );
+			} );
+		} );
+
+		describe( 'With a random string', function(){
+
+			it( 'Should default to an empty string', function(){
+
+				expect( dateOnly( 'sometext' ) ).toEqual( '' );
 			} );
 		} );
 	} );

@@ -28,6 +28,16 @@ function getSectorTeam( req, teamId ){
 	return getJson( `/mi/fdi/sector_teams/${ teamId }/`, req );
 }
 
+function getSectorTeamHvc( req, teamId ){
+
+	return getJson( `/mi/fdi/sector_teams/${ teamId }/hvc/`, req );
+}
+
+function getSectorTeamNonHvc( req, teamId ){
+
+	return getJson( `/mi/fdi/sector_teams/${ teamId }/non_hvc/`, req );
+}
+
 function getOverseasRegions( req ){
 
 	//use export overseas regions for now
@@ -81,6 +91,8 @@ module.exports = {
 
 	getSectorTeams,
 	getSectorTeam,
+	getSectorTeamHvc,
+	getSectorTeamNonHvc,
 
 	getOverseasRegions,
 	getOverseasRegion,

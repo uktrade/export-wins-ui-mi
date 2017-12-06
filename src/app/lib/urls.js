@@ -88,35 +88,35 @@ module.exports = function( req ){
 		},
 
 		sectorTeamsOverview: () => filteredUrl( '/sector-teams/overview/' ),
-		sectorTeam: ( teamId ) => filteredUrl( '/sector-teams/' + teamId + '/' ),
-		sectorTeamWins: ( teamId ) => filteredUrl( '/sector-teams/' + teamId + '/wins/' ),
-		sectorTeamNonHvcWins: ( teamId ) => filteredUrl( '/sector-teams/' + teamId + '/non-hvc-wins/' ),
+		sectorTeam: ( teamId ) => filteredUrl( `/sector-teams/${ teamId }/` ),
+		sectorTeamWins: ( teamId ) => filteredUrl( `/sector-teams/${ teamId }/wins/` ),
+		sectorTeamNonHvcWins: ( teamId ) => filteredUrl( `/sector-teams/${ teamId }/non-hvc-wins/` ),
 
 		countries: () => filteredUrl( '/countries/' ),
-		country: ( countryId ) => filteredUrl( '/countries/' + countryId + '/' ),
-		countryWins: ( countryId ) => filteredUrl( '/countries/' + countryId + '/wins/' ),
-		countryNonHvcWins: ( countryId ) => filteredUrl( '/countries/' + countryId + '/non-hvc-wins/' ),
+		country: ( countryId ) => filteredUrl( `/countries/${ countryId }/` ),
+		countryWins: ( countryId ) => filteredUrl( `/countries/${ countryId }/wins/` ),
+		countryNonHvcWins: ( countryId ) => filteredUrl( `/countries/${ countryId }/non-hvc-wins/` ),
 
 		posts: () => filteredUrl( '/posts/' ),
-		post: ( postId ) => filteredUrl( '/posts/' + postId + '/' ),
-		postWins: ( postId ) => filteredUrl( '/posts/' + postId + '/wins/' ),
-		postNonHvcWins: ( postId ) => filteredUrl( '/posts/' + postId + '/non-hvc-wins/' ),
+		post: ( postId ) => filteredUrl( `/posts/${ postId }/` ),
+		postWins: ( postId ) => filteredUrl( `/posts/${ postId }/wins/` ),
+		postNonHvcWins: ( postId ) => filteredUrl( `/posts/${ postId }/non-hvc-wins/` ),
 
 		ukRegions: () => filteredUrl( '/uk-regions/' ),
-		ukRegion: ( regionId ) => filteredUrl( '/uk-regions/' + regionId + '/' ),
-		ukRegionWins: ( regionId ) => filteredUrl( '/uk-regions/' + regionId + '/wins/' ),
-		ukRegionNonHvcWins: ( regionId ) => filteredUrl( '/uk-regions/' + regionId + '/non-hvc-wins/' ),
+		ukRegion: ( regionId ) => filteredUrl( `/uk-regions/${ regionId }/` ),
+		ukRegionWins: ( regionId ) => filteredUrl( `/uk-regions/${ regionId }/wins/` ),
+		ukRegionNonHvcWins: ( regionId ) => filteredUrl( `/uk-regions/${ regionId }/non-hvc-wins/` ),
 
-		hvcGroup: ( groupId ) => filteredUrl( '/hvc-groups/' + groupId + '/' ),
-		hvcGroupWins: ( groupId ) => filteredUrl( '/hvc-groups/' + groupId + '/wins/' ),
+		hvcGroup: ( groupId ) => filteredUrl( `/hvc-groups/${ groupId }/` ),
+		hvcGroupWins: ( groupId ) => filteredUrl( `/hvc-groups/${ groupId }/wins/` ),
 
 		osRegionsOverview: () => filteredUrl( '/overseas-regions/overview/' ),
-		osRegion: ( regionId ) => filteredUrl( '/overseas-regions/' + regionId + '/' ),
-		osRegionWins: ( regionId ) => filteredUrl( '/overseas-regions/' + regionId + '/wins/' ),
-		osRegionNonHvcWins: ( regionId ) => filteredUrl( '/overseas-regions/' + regionId + '/non-hvc-wins/' ),
+		osRegion: ( regionId ) => filteredUrl( `/overseas-regions/${ regionId }/` ),
+		osRegionWins: ( regionId ) => filteredUrl( `/overseas-regions/${ regionId }/wins/` ),
+		osRegionNonHvcWins: ( regionId ) => filteredUrl( `/overseas-regions/${ regionId }/non-hvc-wins/` ),
 
-		hvc: ( hvcId ) => filteredUrl( '/hvc/' + hvcId + '/' ),
-		hvcWins: ( hvcId ) => filteredUrl( '/hvc/' + hvcId + '/wins/' ),
+		hvc: ( hvcId ) => filteredUrl( `/hvc/${ hvcId }/` ),
+		hvcWins: ( hvcId ) => filteredUrl( `/hvc/${ hvcId }/wins/` ),
 
 		investment: {
 

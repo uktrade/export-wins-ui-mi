@@ -73,11 +73,14 @@ const filteredStubs = [
 	[ '/mi/uk_regions/[A-Za-z-]+/top_non_hvcs/', 'uk_regions/top_non_hvcs'  ],
 	[ '/mi/uk_regions/[A-Za-z-]+/win_table/', 'uk_regions/win_table'  ],
 
+	[ '/mi/fdi/overview/', 'investment/fdi/overview'  ],
+	[ '/mi/fdi/overview/yoy/', 'investment/fdi/overview_yoy'  ],
+
 	[ '/mi/fdi/sector_teams/', 'investment/fdi/sector_teams/index'  ],
 	[ '/mi/fdi/sector_teams/[0-9]+/', 'investment/fdi/sector_teams/sector_team'  ],
-	[ '/mi/fdi/os_regions/', 'investment/fdi/os_regions/index'  ],
-	[ '/mi/fdi/overview/', 'investment/fdi/overview'  ],
-	[ '/mi/fdi/overview/yoy/', 'investment/fdi/overview_yoy'  ]
+	[ '/mi/fdi/sector_teams/[0-9]+/hvc/', 'investment/fdi/sector_teams/sector_team_hvc'  ],
+	[ '/mi/fdi/sector_teams/[0-9]+/non_hvc/', 'investment/fdi/sector_teams/sector_team_non_hvc'  ],
+	[ '/mi/fdi/os_regions/', 'investment/fdi/os_regions/index'  ]
 ];
 
 for( let [ path, stubFile ] of filteredStubs ){

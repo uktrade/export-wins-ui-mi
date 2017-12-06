@@ -444,6 +444,22 @@ describe( 'Backend stub', function(){
 
 		describe( 'FDI', function(){
 
+			describe( 'Getting the FDI Overview', function(){
+
+				it( 'Should return the overview', function( done ){
+
+					checkMultipleYears( '/mi/fdi/overview/', '/investment/fdi/overview', done );
+				} );
+			} );
+
+			describe( 'Getting the FDI Overview YoY', function(){
+
+				it( 'Should return the overview', function( done ){
+
+					checkMultipleYears( '/mi/fdi/overview/yoy/', '/investment/fdi/overview_yoy', done );
+				} );
+			} );
+
 			describe( 'Getting the Sector Teams', function(){
 
 				it( 'Should return the list', function( done ){
@@ -459,27 +475,28 @@ describe( 'Backend stub', function(){
 					checkMultipleYears( '/mi/fdi/sector_teams/1234/', '/investment/fdi/sector_teams/sector_team', done );
 				} );
 			} );
+
+			describe( 'Getting a Sector Team HVC', function(){
+
+				it( 'Should return the details', function( done ){
+
+					checkMultipleYears( '/mi/fdi/sector_teams/1234/hvc/', '/investment/fdi/sector_teams/sector_team_hvc', done );
+				} );
+			} );
+
+			describe( 'Getting a Sector Team Non HVC', function(){
+
+				it( 'Should return the details', function( done ){
+
+					checkMultipleYears( '/mi/fdi/sector_teams/1234/non_hvc/', '/investment/fdi/sector_teams/sector_team_non_hvc', done );
+				} );
+			} );
+
 			describe( 'Getting the Overseas Regions', function(){
 
 				it( 'Should return the list', function( done ){
 
 					checkMultipleYears( '/mi/fdi/os_regions/', '/investment/fdi/os_regions/index', done );
-				} );
-			} );
-
-			describe( 'Getting the FDI Overview', function(){
-
-				it( 'Should return the overview', function( done ){
-
-					checkMultipleYears( '/mi/fdi/overview/', '/investment/fdi/overview', done );
-				} );
-			} );
-
-			describe( 'Getting the FDI Overview YoY', function(){
-
-				it( 'Should return the overview', function( done ){
-
-					checkMultipleYears( '/mi/fdi/overview/yoy/', '/investment/fdi/overview_yoy', done );
 				} );
 			} );
 		} );
