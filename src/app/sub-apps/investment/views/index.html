@@ -29,7 +29,7 @@
 					<th class="fdi-overview-yoy-table_heading fdi-overview-yoy-table_heading--projects">Number of<br>projects</th>
 					<th class="fdi-overview-yoy-table_heading">New jobs</th>
 					<th class="fdi-overview-yoy-table_heading">Safeguarded<br>new jobs</th>
-					<th class="fdi-overview-yoy-table_heading">CAPEX</th>
+					<th class="fdi-overview-yoy-table_heading">Total<br>value</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -46,7 +46,7 @@
 					<td class="fdi-overview-yoy-table_cell fdi-overview-yoy-table_cell--projects{{ additionalClass }}">{{ item.projects }}</td>
 					<td class="fdi-overview-yoy-table_cell{{ additionalClass }}">{{ item.jobs.new }}</td>
 					<td class="fdi-overview-yoy-table_cell{{ additionalClass }}">{{ item.jobs.safe }}</td>
-					<td class="fdi-overview-yoy-table_cell{{ additionalClass }}">{{ item.capex | largeNumber }}</td>
+					<td class="fdi-overview-yoy-table_cell{{ additionalClass }}"><span class="currency-marker">&pound;</span>{{ item.capex | largeNumber( true ) | safe }}</td>
 				</tr>
 				{% endfor %}
 			</tbody>

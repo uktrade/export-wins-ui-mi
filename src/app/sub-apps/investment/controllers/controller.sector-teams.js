@@ -35,9 +35,15 @@ module.exports = {
 
 		const teamId = req.params.id;
 
-		fdiService.getSectorTeam( req, teamId ).then( ( data ) => {
+		fdiService.getSectorTeamHvc( req, teamId ).then( ( data ) => {
 
-			res.render( 'investment/views/sector-teams/hvc-performance', { dateRange: data.date_range, teamId, team: data.results } );
+			res.render( 'investment/views/sector-teams/hvc-performance', {
+				dateRange: data.date_range,
+				teamId,
+				team: data.results,
+				overview: fdiOverviewViewModel.create( data.results.overview ),
+				markets: fdiSectorTeamMarketsViewModel.create( data.results.markets )
+			} );
 
 		} ).catch( renderError.createHandler( req, res ) );
 	},
@@ -46,9 +52,15 @@ module.exports = {
 
 		const teamId = req.params.id;
 
-		fdiService.getSectorTeam( req, teamId ).then( ( data ) => {
+		fdiService.getSectorTeamNonHvc( req, teamId ).then( ( data ) => {
 
-			res.render( 'investment/views/sector-teams/non-hvc-performance', { dateRange: data.date_range, teamId, team: data.results } );
+			res.render( 'investment/views/sector-teams/non-hvc-performance', {
+				dateRange: data.date_range,
+				teamId,
+				team: data.results,
+				overview: fdiOverviewViewModel.create( data.results.overview ),
+				markets: fdiSectorTeamMarketsViewModel.create( data.results.markets )
+			} );
 
 		} ).catch( renderError.createHandler( req, res ) );
 	},
@@ -59,7 +71,11 @@ module.exports = {
 
 		fdiService.getSectorTeam( req, teamId ).then( ( data ) => {
 
-			res.render( 'investment/views/sector-teams/wins', { dateRange: data.date_range, teamId, team: data.results } );
+			res.render( 'investment/views/sector-teams/wins', {
+				dateRange: data.date_range,
+				teamId,
+				team: data.results
+			} );
 
 		} ).catch( renderError.createHandler( req, res ) );
 	},
@@ -70,7 +86,11 @@ module.exports = {
 
 		fdiService.getSectorTeam( req, teamId ).then( ( data ) => {
 
-			res.render( 'investment/views/sector-teams/non-hvc-wins', { dateRange: data.date_range, teamId, team: data.results } );
+			res.render( 'investment/views/sector-teams/non-hvc-wins', {
+				dateRange: data.date_range,
+				teamId,
+				team: data.results
+			} );
 
 		} ).catch( renderError.createHandler( req, res ) );
 	},

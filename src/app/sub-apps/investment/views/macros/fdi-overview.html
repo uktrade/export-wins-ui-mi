@@ -30,8 +30,10 @@
 					</li>
 
 					<li class="fdi-overview-list_item fdi-overview-list_item--six">
-						<h4 class="fdi-overview-list_heading">CAPEX<br>verified</h4>
-						<p class="fdi-overview-list_text">{{ data.value.verified | largeNumber( true ) | safe }}</p>
+						<h4 class="fdi-overview-list_heading">Total value<br>verified</h4>
+						<p class="fdi-overview-list_text">
+							<span class="currency-marker">&pound;</span>{{ data.value.verified | largeNumber( true ) | safe }}
+						</p>
 					</li>
 				</dl>
 			</div>
@@ -42,8 +44,10 @@
 
 				<ul class="fdi-overview-list fdi-overview-list--confirmed">
 					<li class="fdi-overview-list_item fdi-overview-list_item--four">
-						<h4 class="fdi-overview-list_heading">CAPEX<br>success confirmed</h4>
-						<p class="fdi-overview-list_text fdi-overview-list_text--unconfirmed">{{ data.value.pending | largeNumber( true ) | safe }}</p>
+						<h4 class="fdi-overview-list_heading">Total value<br>success confirmed</h4>
+						<p class="fdi-overview-list_text fdi-overview-list_text--unconfirmed">
+							<span class="currency-marker">&pound;</span>{{ data.value.pending | largeNumber( true ) | safe }}
+						</p>
 					</li>
 
 					<li class="fdi-overview-list_item fdi-overview-list_item--four">

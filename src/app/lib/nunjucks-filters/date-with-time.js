@@ -1,10 +1,15 @@
 const dateFormat = require( 'dateformat' );
 
+function isValid( datestr ){
+
+	return ( typeof datestr === 'number' ) || !!Date.parse( datestr );
+}
+
 module.exports = function( datestr, maxDate ){
 
 	let date;
 
-	if( datestr ){
+	if( datestr && isValid( datestr ) ){
 
 		date = new Date( datestr );
 

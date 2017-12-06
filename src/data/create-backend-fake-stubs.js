@@ -86,12 +86,16 @@ const yearlyFiles = {
 	'uk_regions/top_non_hvcs': sharedJson.createTopNonHvcs,
 	'uk_regions/win_table': ukRegionJson.createWinTable,
 
+	'investment/fdi/overview': fdiOverviewJson.createOverview,
+	'investment/fdi/overview_yoy': fdiOverviewJson.createOverviewYoy,
+
 	'investment/fdi/sector_teams/index': fdiSectorTeamsJson.createIndex,
 	'investment/fdi/sector_teams/sector_team': fdiSectorTeamsJson.createTeam,
+	'investment/fdi/sector_teams/sector_team_hvc': fdiSectorTeamsJson.createTeam,
+	'investment/fdi/sector_teams/sector_team_non_hvc': fdiSectorTeamsJson.createTeam,
+
 	'investment/fdi/os_regions/index': fdiOsRegionsJson.createIndex,
-	'investment/fdi/uk_regions/index': fdiUkRegionsJson.createIndex,
-	'investment/fdi/overview': fdiOverviewJson.createOverview,
-	'investment/fdi/overview_yoy': fdiOverviewJson.createOverviewYoy
+	'investment/fdi/uk_regions/index': fdiUkRegionsJson.createIndex
 };
 
 for( let file in yearlyFiles ){

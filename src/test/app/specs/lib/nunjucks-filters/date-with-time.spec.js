@@ -23,6 +23,16 @@ describe( 'Date with time filter', function(){
 				} );
 			} );
 
+			describe( 'With a random string', function(){
+
+				it( 'Should return the current date and time', function(){
+
+					mockDate.set( 1498468857907 );
+					expect( dateWithTime( 'random string' ) ).toEqual( '9:20am 26 June 2017 GMT' );
+					mockDate.reset();
+				} );
+			} );
+
 			it( 'Should return the date and the time', function(){
 
 				expect( dateWithTime( 1487928284460 ) ).toEqual( '9:24am 24 February 2017 GMT' );

@@ -20,6 +20,16 @@ function createItem( data, type, modifyer, hasTotal ){
 	return item;
 }
 
+function totalItems( a, b ){
+
+	return {
+		total: ( a.total + b.total ),
+		high: ( a.high + b.high ),
+		good: ( a.good + b.good ),
+		standard: ( a.standard + b.standard )
+	};
+}
+
 module.exports = {
 
 	create: function( markets ){
@@ -34,7 +44,7 @@ module.exports = {
 					createItem( market.target, 'Target', 'target', true ),
 					createItem( market.verified, 'Verified', 'verified', true ),
 					createItem( market.confirmed, 'Result confirmed', 'confirmed', true ),
-					createItem( market.pipeline, 'Pipeline', 'pipeline', false )
+					createItem( totalItems( market.verified, market.confirmed ), 'Total', 'pipeline', false )
 				]
 			} );
 		}

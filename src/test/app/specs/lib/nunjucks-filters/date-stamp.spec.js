@@ -27,6 +27,14 @@ describe( 'Date stamp filter', function(){
 				expect( dateStamp( 1491004799 * 1000 ) ).toEqual( '31-03-2017' );
 			} );
 		} );
+
+		describe( 'With a random string', function(){
+
+			it( 'Should return an empty string', function(){
+
+				expect( dateStamp( 'a string' ) ).toEqual( '' );
+			} );
+		} );
 	} );
 
 	describe( 'When a date is not supplied', function(){

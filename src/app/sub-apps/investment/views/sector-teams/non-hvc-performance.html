@@ -2,13 +2,15 @@
 
 {% from 'macros/dates.html' import financialYear %}
 {% from '../macros/tabs/fdi/sector-teams.html' import tabs %}
+{% from '../macros/fdi-overview.html' import fdiOverview %}
+{% from '../macros/sector-team-markets.html' import fdiSectorTeamMarkets %}
 
 {% set pageName %}Investment - Sector team non HVC performance - {{ team.description | safe }}{% endset %}
 
 {% block page_content %}
 
 	<h1 class="page-heading">
-		Investment
+		Investment performance
 	</h1>
 
 	<h2 class="page-sub-heading">{{ team.description }}<span class="page-sub-heading_secondary"> FDI Sector Team</span></h2>
@@ -17,6 +19,10 @@
 	<h3 class="page-date">{{ financialYear( dateRange ) }}</h3>
 
 	{{ tabs( teamId, nonHvcPerformance = true ) }}
+
+	{{ fdiOverview( overview ) }}
+
+	{{ fdiSectorTeamMarkets( team, markets ) }}
 
 {% endblock %}
 
