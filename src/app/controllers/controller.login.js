@@ -7,10 +7,10 @@ const config = require( '../config' );
 const MAX_LEN = Number( config.oauthParamLength );
 const isAlpha = /^[a-zA-Z0-9]+$/;
 
-function createClearUserCookie(){
+function createClearCookieStr( name ){
 
 	const parts = [
-		`${ config.userCookie.name }=`,
+		`${ name }=`,
 		'HttpOnly',
 		'Path=/',
 		`Expires=${ ( new Date( 1 ) ).toGMTString() }`
@@ -22,6 +22,11 @@ function createClearUserCookie(){
 	}
 
 	return parts.join( '; ' );
+}
+
+function createClearUserCookie(){
+
+	return createClearCookieStr( config.userCookie.name );
 }
 
 function createUnableToLoginHandler( res ){
@@ -86,6 +91,12 @@ module.exports = {
 
 			throw new Error( 'Invalid oauth params' );
 		}
+	},
+
+	signout: function( req, res ){
+
+		res.set( 'Set-Cookie', [ createClearCookieStr( 'sessionid' ) ] );
+		res.redirect( `${ config.datahubDomain }/oauth/sign-out` );
 	},
 
 	saml: function( req, res ){

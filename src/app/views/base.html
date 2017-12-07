@@ -69,6 +69,9 @@
 		 						<li class="proposition-menu__item">
 									<a href="{{ profileLink }}" class="proposition-menu__link">{% if user.internal %}(internal) {% endif %}{{ user.name or user.email }}</a>
 		 						</li>
+								<li class="proposition-menu__item">
+									<a href="{{ urls.signout() }}" class="proposition-menu__link">Sign out</a>
+								</li>
 								{% endif -%}
 							</ul>
 						</nav>

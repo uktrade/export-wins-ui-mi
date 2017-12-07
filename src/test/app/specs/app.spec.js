@@ -1246,6 +1246,20 @@ if( config.backend.mock ){
 		} );
 	} );
 
+	describe( 'Sign out', function(){
+
+		it( 'Should delete the cookie and redirect to the Data hub signout', function( done ){
+
+			supertest( app ).get( '/sign-out/' ).end( ( err, res ) => {
+
+				checkResponse( res, 302 );
+				expect( res.headers[ 'set-cookie' ][ 0 ] ).toEqual( 'sessionid=; HttpOnly; Path=/; Expires=' + ( new Date( 1 ) ).toGMTString() );
+				expect( res.headers.location ).toEqual( `${ config.datahubDomain }/oauth/sign-out` );
+				done();
+			} );
+		} );
+	} );
+
 	describe( '404 page', function(){
 
 		it( 'Should render the 404 page', function( done ){

@@ -73,6 +73,14 @@ describe( 'urls middleware', function(){
 		} );
 	} );
 
+	describe( 'Sign out', function(){
+
+		it( 'Should return the correct URLs', function(){
+
+			checkUrl( req, 'signout', [], '/sign-out/' );
+		} );
+	} );
+
 	describe( 'Experiments', function(){
 
 		it( 'Should return the correct URL', function(){
