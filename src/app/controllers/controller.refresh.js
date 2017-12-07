@@ -19,7 +19,7 @@ module.exports = function( req, res ){
 				reporter.captureException( captureError );
 			}
 
-			res.redirect( '/' );
+			res.render( 'me' );
 		} );
 
 	} ).catch( renderError.createHandler( req, res ) );

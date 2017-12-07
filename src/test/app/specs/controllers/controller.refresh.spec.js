@@ -33,7 +33,8 @@ describe( 'Refresh controller', function(){
 
 		res = {
 			locals: {},
-			redirect: spy( 'res.redirect' )
+			redirect: spy( 'res.redirect' ),
+			render: spy( 'res.render' )
 		};
 
 		controller = proxyquire( modulePath, {
@@ -62,7 +63,7 @@ describe( 'Refresh controller', function(){
 				saveUser.and.callFake( ( user, res, cb ) => cb() );
 			} );
 
-			it( 'Should fetch and save the user and redirect', function( done ){
+			it( 'Should fetch and save the user and render the me page', function( done ){
 
 				controller( req, res );
 
@@ -74,7 +75,8 @@ describe( 'Refresh controller', function(){
 						expect( saveUser ).toHaveBeenCalled();
 						expect( saveUser.calls.argsFor( 0 )[ 0 ] ).toEqual( req.user );
 						expect( saveUser.calls.argsFor( 0 )[ 1 ] ).toEqual( res );
-						expect( res.redirect ).toHaveBeenCalledWith( '/' );
+						expect( res.redirect ).not.toHaveBeenCalled();
+						expect( res.render ).toHaveBeenCalledWith( 'me' );
 						done();
 					} );
 
@@ -85,7 +87,7 @@ describe( 'Refresh controller', function(){
 
 		describe( 'When saveUser returns an error', function(){
 
-			it( 'Should report the error and redirect to the return path', function( done ){
+			it( 'Should report the error and render the me page', function( done ){
 
 				const saveError = new Error( 'saveUser error' );
 				saveUser.and.callFake( ( user, res, cb ) => cb( saveError ) );
@@ -101,7 +103,8 @@ describe( 'Refresh controller', function(){
 						expect( saveUser ).toHaveBeenCalled();
 						expect( reporter.captureException ).toHaveBeenCalledWith( reporterError );
 						expect( reporter.captureException.calls.argsFor( 0 )[ 0 ].saveError ).toEqual( saveError );
-						expect( res.redirect ).toHaveBeenCalledWith( '/' );
+						expect( res.redirect ).not.toHaveBeenCalled();
+						expect( res.render ).toHaveBeenCalledWith( 'me' );
 						done();
 					} );
 

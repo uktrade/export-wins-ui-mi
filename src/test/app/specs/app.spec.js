@@ -89,12 +89,11 @@ if( config.backend.mock ){
 
 		describe( 'Refreshing the user', function(){
 
-			it( 'Should call the API and then redirect the user', function( done ){
+			it( 'Should call the API and then redner the user info', function( done ){
 
 				supertest( app ).get( '/refresh/' ).end( ( err, res ) => {
 
-					checkResponse( res, 302 );
-					expect( res.headers.location ).toEqual( '/' );
+					checkResponse( res, 200 );
 					done();
 				} );
 			} );
