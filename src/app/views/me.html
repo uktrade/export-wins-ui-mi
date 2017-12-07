@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% set pageName='Homepage' %}
+
+{% from 'macros/dates.html' import financialYear %}
+
+{% block head_styles %}
+	<style>
+		.me-list {
+			padding: 0;
+		}
+
+		.me-list_item {
+			font-size: 20px;
+			line-height: 40px;
+		}
+
+		.me-list_label {
+			font-weight: bold;
+		}
+	</style>
+{% endblock %}
+
+{% block page_content %}
+
+	<h1 class="page-heading">
+		About you
+	</h1>
+
+	<ul class="me-list">
+		<li class="me-list_item">
+			<span class="me-list_label">Name: </span>{{ user.name }}
+		</li>
+		<li class="me-list_item">
+			<span class="me-list_label">Email: </span>{{ user.email }}
+		</li>
+	</ul>
+
+{% endblock %}
