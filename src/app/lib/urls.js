@@ -52,6 +52,7 @@ module.exports = function( req ){
 
 		email: () => `mailto:${ config.feedbackEmail }`,
 		survey: () => config.feedbackSurvey,
+		signout: () => '/sign-out/',
 
 		downloads: () => '/downloads/',
 		downloadFile: ( fileId ) => `/downloads/${ fileId }/`,

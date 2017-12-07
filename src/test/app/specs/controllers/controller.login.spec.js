@@ -13,6 +13,8 @@ let config;
 
 describe( 'Login controller', function(){
 
+	const datahubDomain = 'abc.com';
+
 	beforeEach( function(){
 
 		backendService = {};
@@ -26,7 +28,9 @@ describe( 'Login controller', function(){
 		config = {
 			oauthParamLength: 8,
 			userCookie: { name: 'aname' },
-			isDev: false  };
+			isDev: false,
+			datahubDomain
+		};
 
 		req = {
 			cookies: 'test',
@@ -48,10 +52,10 @@ describe( 'Login controller', function(){
 		} );
 	} );
 
-	function createClearUserCookie(){
+	function createClearCookieStr( name ){
 
 		const parts = [
-			`${ config.userCookie.name }=`,
+			`${ name }=`,
 			'HttpOnly',
 			'Path=/',
 			`Expires=${ ( new Date( 1 ) ).toGMTString() }`
@@ -63,6 +67,11 @@ describe( 'Login controller', function(){
 		}
 
 		return parts.join( '; ' );
+	}
+
+	function createClearUserCookie(){
+
+		return createClearCookieStr( config.userCookie.name );
 	}
 
 	describe( 'OAuth login', function(){
@@ -331,6 +340,17 @@ describe( 'Login controller', function(){
 					} );
 				} );
 			} );
+		} );
+	} );
+
+	describe( 'Signout', function(){
+
+		it( 'Should delete the cookie and redirect', function(){
+
+			controller.signout( req, res );
+
+			expect( res.set ).toHaveBeenCalledWith( 'Set-Cookie', [ createClearCookieStr( 'sessionid' ) ] );
+			expect( res.redirect ).toHaveBeenCalledWith( `${ datahubDomain }/oauth/sign-out` );
 		} );
 	} );
 
