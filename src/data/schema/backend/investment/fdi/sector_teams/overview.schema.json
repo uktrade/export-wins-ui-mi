@@ -26,7 +26,7 @@
 			"maxItems": 15,
 			"items": {
 				"type": "object",
-				"required": [ "id", "name", "verified", "confirmed", "pipeline", "target" ],
+				"required": [ "id", "name", "description", "verified", "confirmed", "pipeline", "target" ],
 				"properties": {
 
 					"id": {
@@ -37,6 +37,11 @@
 					"name": {
 						"type": "string",
 						"faker": "lorem.word"
+					},
+
+					"description": {
+						"type": "string",
+						"faker": "lorem.words"
 					},
 
 					"verified": {

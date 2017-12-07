@@ -40,7 +40,7 @@ module.exports = {
 
 			out.push( {
 				id: market.id,
-				name: market.name,
+				name: ( market.description || market.name ),
 				results: [
 					createItem( market.target, 'Target', 'target', true ),
 					createItem( market.verified, 'Verified', 'verified', true ),
