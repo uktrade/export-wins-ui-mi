@@ -383,7 +383,7 @@ describe( 'urls middleware', function(){
 
 			it( 'Should return the correct URL', function(){
 
-				checkFilteredUrls( req, 'investment.sectorTeamWins', [ 1 ], '/investment/sector-teams/1/wins/' );
+				checkFilteredUrls( req, 'investment.sectorTeamHvcProjects', [ 1 ], '/investment/sector-teams/1/hvc-projects/' );
 			} );
 		} );
 
@@ -391,7 +391,7 @@ describe( 'urls middleware', function(){
 
 			it( 'Should return the correct URL', function(){
 
-				checkFilteredUrls( req, 'investment.sectorTeamNonHvcWins', [ 1 ], '/investment/sector-teams/1/non-hvc-wins/' );
+				checkFilteredUrls( req, 'investment.sectorTeamNonHvcProjects', [ 1 ], '/investment/sector-teams/1/non-hvc-projects/' );
 			} );
 		} );
 
@@ -431,7 +431,7 @@ describe( 'urls middleware', function(){
 
 			it( 'Should return the correct URL', function(){
 
-				checkFilteredUrls( req, 'investment.osRegionWins', [ 1 ], '/investment/overseas-regions/1/wins/' );
+				checkFilteredUrls( req, 'investment.osRegionHvcProjects', [ 1 ], '/investment/overseas-regions/1/hvc-projects/' );
 			} );
 		} );
 
@@ -439,7 +439,7 @@ describe( 'urls middleware', function(){
 
 			it( 'Should return the correct URL', function(){
 
-				checkFilteredUrls( req, 'investment.osRegionNonHvcWins', [ 1 ], '/investment/overseas-regions/1/non-hvc-wins/' );
+				checkFilteredUrls( req, 'investment.osRegionNonHvcProjects', [ 1 ], '/investment/overseas-regions/1/non-hvc-projects/' );
 			} );
 		} );
 
@@ -480,7 +480,7 @@ describe( 'urls middleware', function(){
 
 			it( 'Should return the correct URL', function(){
 
-				checkFilteredUrls( req, 'investment.ukRegionWins', [ 1 ], '/investment/uk-regions/1/wins/' );
+				checkFilteredUrls( req, 'investment.ukRegionHvcProjects', [ 1 ], '/investment/uk-regions/1/hvc-projects/' );
 			} );
 		} );
 
@@ -488,7 +488,7 @@ describe( 'urls middleware', function(){
 
 			it( 'Should return the correct URL', function(){
 
-				checkFilteredUrls( req, 'investment.ukRegionNonHvcWins', [ 1 ], '/investment/uk-regions/1/non-hvc-wins/' );
+				checkFilteredUrls( req, 'investment.ukRegionNonHvcProjects', [ 1 ], '/investment/uk-regions/1/non-hvc-projects/' );
 			} );
 		} );
 	} );

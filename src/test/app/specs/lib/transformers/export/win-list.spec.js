@@ -16,18 +16,6 @@ describe( 'Win List transformer', function(){
 			wins = output.wins.hvc;
 		} );
 
-		describe( 'Credit', function(){
-
-			it( 'Should convert the boolean', function(){
-
-				expect( wins[ 0 ].credit.name ).toEqual( 'No' );
-				expect( wins[ 0 ].credit.modifyer ).toEqual( 'no' );
-
-				expect( wins[ 1 ].credit.name ).toEqual( 'Yes' );
-				expect( wins[ 1 ].credit.modifyer ).toEqual( 'yes' );
-			} );
-		} );
-
 		describe( 'Status', function(){
 
 			it( 'Should convert the status', function(){
@@ -119,18 +107,6 @@ describe( 'Win List transformer', function(){
 				const data = getBackendStub( '/sector_teams/win_table' );
 				output = transform( data.results );
 				wins = output.wins.non_hvc;
-			} );
-
-			describe( 'Credit', function(){
-
-				it( 'Should convert the boolean', function(){
-
-					expect( wins[ 0 ].credit.name ).toEqual( 'Yes' );
-					expect( wins[ 0 ].credit.modifyer ).toEqual( 'yes' );
-
-					expect( wins[ 1 ].credit.name ).toEqual( 'No' );
-					expect( wins[ 1 ].credit.modifyer ).toEqual( 'no' );
-				} );
 			} );
 
 			describe( 'Status', function(){

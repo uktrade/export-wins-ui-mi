@@ -80,6 +80,8 @@ const filteredStubs = [
 	[ '/mi/fdi/sector_teams/[0-9]+/', 'investment/fdi/sector_teams/sector_team'  ],
 	[ '/mi/fdi/sector_teams/[0-9]+/hvc/', 'investment/fdi/sector_teams/sector_team_hvc'  ],
 	[ '/mi/fdi/sector_teams/[0-9]+/non_hvc/', 'investment/fdi/sector_teams/sector_team_non_hvc'  ],
+	[ '/mi/fdi/sector_teams/[0-9]+/win_table/', 'investment/fdi/sector_teams/win_table'  ],
+
 	[ '/mi/fdi/os_regions/', 'investment/fdi/os_regions/index'  ]
 ];
 

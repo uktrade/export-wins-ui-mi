@@ -873,31 +873,31 @@ if( config.backend.mock ){
 					} );
 				} );
 
-				describe( 'Sector Team wins', function(){
+				describe( 'Sector Team projects', function(){
 
 					it( 'Should return a 200 with the correct heading', function( done ){
 
-						interceptBackend.getStub( `/mi/fdi/sector_teams/${ teamId }/?year=2017`, 200, '/investment/fdi/sector_teams/sector_team' );
+						interceptBackend.getStub( `/mi/fdi/sector_teams/${ teamId }/win_table/?year=2017`, 200, '/investment/fdi/sector_teams/win_table' );
 
-						supertest( app ).get( `/investment/sector-teams/${ teamId }/wins/` ).end( ( err, res ) => {
+						supertest( app ).get( `/investment/sector-teams/${ teamId }/hvc-projects/` ).end( ( err, res ) => {
 
 							checkResponse( res, 200 );
-							expect( getTitle( res ) ).toEqual( 'MI - Investment - Sector team HVC wins - dolor sed explicabo' );
+							expect( getTitle( res ) ).toEqual( 'MI - Investment - Sector team HVC projects - quia fuga eum' );
 							done();
 						} );
 					} );
 				} );
 
-				describe( 'Sector Team non HVC wins', function(){
+				describe( 'Sector Team non HVC projects', function(){
 
 					it( 'Should return a 200 with the correct heading', function( done ){
 
-						interceptBackend.getStub( `/mi/fdi/sector_teams/${ teamId }/?year=2017`, 200, '/investment/fdi/sector_teams/sector_team' );
+						interceptBackend.getStub( `/mi/fdi/sector_teams/${ teamId }/win_table/?year=2017`, 200, '/investment/fdi/sector_teams/win_table' );
 
-						supertest( app ).get( `/investment/sector-teams/${ teamId }/non-hvc-wins/` ).end( ( err, res ) => {
+						supertest( app ).get( `/investment/sector-teams/${ teamId }/non-hvc-projects/` ).end( ( err, res ) => {
 
 							checkResponse( res, 200 );
-							expect( getTitle( res ) ).toEqual( 'MI - Investment - Sector team non HVC wins - dolor sed explicabo' );
+							expect( getTitle( res ) ).toEqual( 'MI - Investment - Sector team non HVC projects - quia fuga eum' );
 							done();
 						} );
 					} );
@@ -966,31 +966,31 @@ if( config.backend.mock ){
 				} );
 			} );
 
-			describe( 'Overseas Region wins', function(){
+			describe( 'Overseas Region projects', function(){
 
 				it( 'Should return a 200 with the correct heading', function( done ){
 
 					interceptBackend.getStub( `/mi/os_regions/?year=2017`, 200, '/investment/fdi/os_regions/' );
 
-					supertest( app ).get( '/investment/overseas-regions/40105/wins/' ).end( ( err, res ) => {
+					supertest( app ).get( '/investment/overseas-regions/40105/hvc-projects/' ).end( ( err, res ) => {
 
 						checkResponse( res, 200 );
-						expect( getTitle( res ) ).toEqual( 'MI - Investment - Overseas Region HVC wins - perspiciatis modi non' );
+						expect( getTitle( res ) ).toEqual( 'MI - Investment - Overseas Region HVC projects - perspiciatis modi non' );
 						done();
 					} );
 				} );
 			} );
 
-			describe( 'Overseas Region non HVC wins', function(){
+			describe( 'Overseas Region non HVC projects', function(){
 
 				it( 'Should return a 200 with the correct heading', function( done ){
 
 					interceptBackend.getStub( `/mi/os_regions/?year=2017`, 200, '/investment/fdi/os_regions/' );
 
-					supertest( app ).get( '/investment/overseas-regions/40105/non-hvc-wins/' ).end( ( err, res ) => {
+					supertest( app ).get( '/investment/overseas-regions/40105/non-hvc-projects/' ).end( ( err, res ) => {
 
 						checkResponse( res, 200 );
-						expect( getTitle( res ) ).toEqual( 'MI - Investment - Overseas Region non HVC wins - perspiciatis modi non' );
+						expect( getTitle( res ) ).toEqual( 'MI - Investment - Overseas Region non HVC projects - perspiciatis modi non' );
 						done();
 					} );
 				} );
@@ -1057,31 +1057,31 @@ if( config.backend.mock ){
 				} );
 			} );
 
-			describe( 'UK Region wins', function(){
+			describe( 'UK Region projects', function(){
 
 				it( 'Should return a 200 with the correct heading', function( done ){
 
 					interceptBackend.getStub( `/mi/uk_regions/?year=2017`, 200, '/investment/fdi/uk_regions/' );
 
-					supertest( app ).get( '/investment/uk-regions/afirtzq-rjev/wins/' ).end( ( err, res ) => {
+					supertest( app ).get( '/investment/uk-regions/afirtzq-rjev/hvc-projects/' ).end( ( err, res ) => {
 
 						checkResponse( res, 200 );
-						expect( getTitle( res ) ).toEqual( 'MI - Investment - UK Region HVC wins - sint aut et' );
+						expect( getTitle( res ) ).toEqual( 'MI - Investment - UK Region HVC projects - sint aut et' );
 						done();
 					} );
 				} );
 			} );
 
-			describe( 'UK Region non HVC wins', function(){
+			describe( 'UK Region non HVC projects', function(){
 
 				it( 'Should return a 200 with the correct heading', function( done ){
 
 					interceptBackend.getStub( `/mi/uk_regions/?year=2017`, 200, '/investment/fdi/uk_regions/' );
 
-					supertest( app ).get( '/investment/uk-regions/afirtzq-rjev/non-hvc-wins/' ).end( ( err, res ) => {
+					supertest( app ).get( '/investment/uk-regions/afirtzq-rjev/non-hvc-projects/' ).end( ( err, res ) => {
 
 						checkResponse( res, 200 );
-						expect( getTitle( res ) ).toEqual( 'MI - Investment - UK Region non HVC wins - sint aut et' );
+						expect( getTitle( res ) ).toEqual( 'MI - Investment - UK Region non HVC projects - sint aut et' );
 						done();
 					} );
 				} );

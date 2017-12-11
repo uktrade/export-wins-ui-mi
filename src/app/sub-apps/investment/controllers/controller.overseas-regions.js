@@ -45,24 +45,24 @@ module.exports = {
 		} ).catch( renderError.createHandler( req, res ) );
 	},
 
-	wins: function( req, res ){
+	hvcProjects: function( req, res ){
 
 		const regionId = req.params.id;
 
 		fdiService.getOverseasRegion( req, regionId ).then( ( data ) => {
 
-			res.render( 'investment/views/overseas-regions/wins', { dateRange: data.date_range, region: data.results } );
+			res.render( 'investment/views/overseas-regions/hvc-projects', { dateRange: data.date_range, region: data.results } );
 
 		} ).catch( renderError.createHandler( req, res ) );
 	},
 
-	nonHvcWins: function( req, res ){
+	nonHvcProjects: function( req, res ){
 
 		const regionId = req.params.id;
 
 		fdiService.getOverseasRegion( req, regionId ).then( ( data ) => {
 
-			res.render( 'investment/views/overseas-regions/non-hvc-wins', { dateRange: data.date_range, region: data.results } );
+			res.render( 'investment/views/overseas-regions/non-hvc-projects', { dateRange: data.date_range, region: data.results } );
 
 		} ).catch( renderError.createHandler( req, res ) );
 	},

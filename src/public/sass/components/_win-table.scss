@@ -41,7 +41,6 @@ $win-table-cell-padding: 5;
 	}
 }
 
-.win-table_head_cell--credited,
 .win-table_head_cell--date {
 	text-align: center;
 }
@@ -72,19 +71,15 @@ $win-table-cell-padding: 5;
 .win-table--hvc {
 
 	.win-table_cell--company {
-		width: 18%;
+		width: 22%;
 	}
 
 	.win-table_cell--hvc {
-		width: 20%;
+		width: 21%;
 	}
 
 	.win-table_cell--officer {
 		width: 15%;
-	}
-
-	.win-table_cell--credited {
-		width: 10%;
 	}
 
 	.win-table_cell--date {
@@ -103,15 +98,11 @@ $win-table-cell-padding: 5;
 .win-table--non-hvc {
 
 	.win-table_cell--company {
-		width: 28%;
+		width: 34%;
 	}
 
 	.win-table_cell--officer {
-		width: 22%;
-	}
-
-	.win-table_cell--credited {
-		width: 12%;
+		width: 28%;
 	}
 
 	.win-table_cell--date {
@@ -128,10 +119,6 @@ $win-table-cell-padding: 5;
 }
 
 
-
-.win-table_cell--credited {
-	text-align: center;
-}
 
 .win-table_cell--date {
 	font-size: 90%;
@@ -162,18 +149,6 @@ $win-table-cell-padding: 5;
 .win-table_cell_hvc-name {
 	display: block;
 	padding-top: pem( 5 );
-}
-
-.win-table_cell_credit-name {
-	display: inline-block;
-	padding: pem( 4 );
-	color: #fff;
-	background-color: #000;
-	width: 60%;
-}
-
-.win-table_cell_credit-name--yes {
-	background-color: $mi-green;
 }
 
 .win-table_cell--status-not-sent {

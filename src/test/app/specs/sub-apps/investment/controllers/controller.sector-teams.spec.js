@@ -25,7 +25,10 @@ describe( 'Investment Sector Teams controller', function(){
 			getSectorTeamsOverview: jasmine.createSpy( 'getSectorTeamsOverview' ),
 			getSectorTeam: jasmine.createSpy( 'getSectorTeam' ),
 			getSectorTeamHvc: jasmine.createSpy( 'getSectorTeamHvc' ),
-			getSectorTeamNonHvc: jasmine.createSpy( 'getSectorTeamNonHvc' )
+			getSectorTeamNonHvc: jasmine.createSpy( 'getSectorTeamNonHvc' ),
+			getSectorTeamWinTable: jasmine.createSpy( 'getSectorTeamWinTable' ),
+			getSectorTeamHvcWinTable: jasmine.createSpy( 'getSectorTeamHvcWinTable' ),
+			getSectorTeamNonHvcWinTable: jasmine.createSpy( 'getSectorTeamNonHvcWinTable' )
 		};
 
 		controller = proxyquire( moduleFile, {
@@ -319,21 +322,39 @@ describe( 'Investment Sector Teams controller', function(){
 			it( 'Should render the view with the correct data', function( done ){
 
 				const teamId = '1';
-				const sectorTeamResponse = { date_range: { start: 1, end: 2 }, results: { id: 1, name: 'abc' } };
+				const projectsResponse = {
+					date_range: { start: 1, end: 2 },
+					results: {
+						name: 'a name',
+						description: 'a description',
+						investments: {
+							hvc: { hvc_projects: true },
+							non_hvc: { non_hvc_project: true }
+						}
+					}
+				};
 				const promise =  new Promise( ( resolve ) => {
-					resolve( sectorTeamResponse );
+					resolve( projectsResponse );
 				} );
 
 				req.params = { id: teamId };
 
-				fdiService.getSectorTeam.and.callFake( () => promise );
+				fdiService.getSectorTeamHvcWinTable.and.callFake( () => promise );
 
-				controller.wins( req, res );
+				controller.hvcProjects( req, res );
 
 				promise.then( () => {
 
-					expect( fdiService.getSectorTeam ).toHaveBeenCalledWith( req, teamId );
-					expect( res.render ).toHaveBeenCalledWith( 'investment/views/sector-teams/wins', { dateRange: sectorTeamResponse.date_range, teamId, team: sectorTeamResponse.results } );
+					expect( fdiService.getSectorTeamHvcWinTable ).toHaveBeenCalledWith( req, teamId );
+					expect( res.render ).toHaveBeenCalledWith( 'investment/views/sector-teams/hvc-projects', {
+						dateRange: projectsResponse.date_range,
+						team: {
+							id: teamId,
+							name: projectsResponse.results.name,
+							description: projectsResponse.results.description
+						},
+						projects: projectsResponse.results.investments
+					} );
 					done();
 				} );
 			} );
@@ -353,9 +374,9 @@ describe( 'Investment Sector Teams controller', function(){
 
 				req.params = { id: teamId };
 
-				fdiService.getSectorTeam.and.callFake( () => promise );
+				fdiService.getSectorTeamHvcWinTable.and.callFake( () => promise );
 
-				controller.wins( req, res );
+				controller.hvcProjects( req, res );
 
 				expect( createHandler ).toHaveBeenCalledWith( req, res );
 
@@ -363,7 +384,7 @@ describe( 'Investment Sector Teams controller', function(){
 
 				setTimeout( () => {
 
-					expect( fdiService.getSectorTeam ).toHaveBeenCalledWith( req, teamId );
+					expect( fdiService.getSectorTeamHvcWinTable ).toHaveBeenCalledWith( req, teamId );
 					expect( res.render ).not.toHaveBeenCalled();
 					expect( renderErrorHandler ).toHaveBeenCalledWith( err );
 					done();
@@ -379,21 +400,39 @@ describe( 'Investment Sector Teams controller', function(){
 			it( 'Should render the view with the correct data', function( done ){
 
 				const teamId = '1';
-				const sectorTeamResponse = { date_range: { start: 1, end: 2 }, results: { id: 1, name: 'abc' } };
+				const projectsResponse = {
+					date_range: { start: 1, end: 2 },
+					results: {
+						name: 'a name',
+						description: 'a description',
+						investments: {
+							hvc: { hvc_projects: true },
+							non_hvc: { non_hvc_project: true }
+						}
+					}
+				};
 				const promise =  new Promise( ( resolve ) => {
-					resolve( sectorTeamResponse );
+					resolve( projectsResponse );
 				} );
 
 				req.params = { id: teamId };
 
-				fdiService.getSectorTeam.and.callFake( () => promise );
+				fdiService.getSectorTeamNonHvcWinTable.and.callFake( () => promise );
 
-				controller.nonHvcWins( req, res );
+				controller.nonHvcProjects( req, res );
 
 				promise.then( () => {
 
-					expect( fdiService.getSectorTeam ).toHaveBeenCalledWith( req, teamId );
-					expect( res.render ).toHaveBeenCalledWith( 'investment/views/sector-teams/non-hvc-wins', { dateRange: sectorTeamResponse.date_range, teamId, team: sectorTeamResponse.results } );
+					expect( fdiService.getSectorTeamNonHvcWinTable ).toHaveBeenCalledWith( req, teamId );
+					expect( res.render ).toHaveBeenCalledWith( 'investment/views/sector-teams/non-hvc-projects', {
+						dateRange: projectsResponse.date_range,
+						team: {
+							id: teamId,
+							name: projectsResponse.results.name,
+							description: projectsResponse.results.description
+						},
+						projects: projectsResponse.results.investments
+					} );
 					done();
 				} );
 			} );
@@ -413,9 +452,9 @@ describe( 'Investment Sector Teams controller', function(){
 
 				req.params = { id: teamId };
 
-				fdiService.getSectorTeam.and.callFake( () => promise );
+				fdiService.getSectorTeamNonHvcWinTable.and.callFake( () => promise );
 
-				controller.nonHvcWins( req, res );
+				controller.nonHvcProjects( req, res );
 
 				expect( createHandler ).toHaveBeenCalledWith( req, res );
 
@@ -423,7 +462,7 @@ describe( 'Investment Sector Teams controller', function(){
 
 				setTimeout( () => {
 
-					expect( fdiService.getSectorTeam ).toHaveBeenCalledWith( req, teamId );
+					expect( fdiService.getSectorTeamNonHvcWinTable ).toHaveBeenCalledWith( req, teamId );
 					expect( res.render ).not.toHaveBeenCalled();
 					expect( renderErrorHandler ).toHaveBeenCalledWith( err );
 					done();

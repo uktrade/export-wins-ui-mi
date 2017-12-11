@@ -1,0 +1,2132 @@
+{
+   "timestamp": 1512975424592,
+   "financial_year": {
+      "id": 2016,
+      "description": "2016-2017"
+   },
+   "results": {
+      "name": "accusamus",
+      "description": "quia fuga eum",
+      "target": {
+         "hvc": 3763,
+         "non_hvc": 3638,
+         "total": 3910
+      },
+      "investments": {
+         "hvc": [
+            {
+               "id": 4307,
+               "value": "high",
+               "project_code": "P-02226063",
+               "stage": "Pipeline",
+               "number_new_jobs": 2309,
+               "number_safeguarded_jobs": 4618,
+               "approved_high_value": true,
+               "approved_good_value": false,
+               "date_won": "Sun Dec 10 2017 11:06:27 GMT+0000 (GMT)",
+               "client_relationship_manager": "Tessie Treutel IV",
+               "client_relationship_manager_team": null,
+               "company_name": "Walsh - Flatley",
+               "company_reference": "ORG-74384049",
+               "investment_value": 623427755,
+               "foreign_equity_investment": 39262697,
+               "sector": {
+                  "name": "cum corrupti dolorum"
+               },
+               "uk_region": {
+                  "name": "Bedfordshire"
+               },
+               "company_country": {
+                  "name": "Somalia",
+                  "iso_code": "BY"
+               }
+            },
+            {
+               "id": 3928,
+               "value": "standard",
+               "project_code": "P-12729381",
+               "stage": "Won",
+               "number_new_jobs": 2107,
+               "number_safeguarded_jobs": 1115,
+               "approved_high_value": true,
+               "approved_good_value": false,
+               "date_won": "Mon Dec 11 2017 03:21:40 GMT+0000 (GMT)",
+               "client_relationship_manager": "Mr. Joshua Block",
+               "client_relationship_manager_team": null,
+               "company_name": "Boyer and Sons",
+               "company_reference": "ORG-27064648",
+               "investment_value": 541094299,
+               "foreign_equity_investment": 576817938,
+               "sector": {
+                  "name": "dolor vel sunt"
+               },
+               "uk_region": {
+                  "name": "Berkshire"
+               },
+               "company_country": {
+                  "name": "Colombia",
+                  "iso_code": "MC"
+               }
+            },
+            {
+               "id": 1793,
+               "value": "standard",
+               "project_code": "P-74129661",
+               "stage": "Pipeline",
+               "number_new_jobs": 2716,
+               "number_safeguarded_jobs": 4333,
+               "approved_high_value": false,
+               "approved_good_value": true,
+               "date_won": "Sun Dec 10 2017 15:18:39 GMT+0000 (GMT)",
+               "client_relationship_manager": "Helen Bosco",
+               "client_relationship_manager_team": null,
+               "company_name": "Herzog and Sons",
+               "company_reference": "ORG-65249548",
+               "investment_value": 758825928,
+               "foreign_equity_investment": 332600217,
+               "sector": {
+                  "name": "molestiae minus vel"
+               },
+               "uk_region": {
+                  "name": "Borders"
+               },
+               "company_country": {
+                  "name": "Sri Lanka",
+                  "iso_code": "CI"
+               }
+            },
+            {
+               "id": 163,
+               "value": "good",
+               "project_code": "P-38673332",
+               "stage": "Won",
+               "number_new_jobs": 4073,
+               "number_safeguarded_jobs": 448,
+               "approved_high_value": true,
+               "approved_good_value": true,
+               "date_won": "Sun Dec 10 2017 20:29:20 GMT+0000 (GMT)",
+               "client_relationship_manager": "Mr. Rachel Little",
+               "client_relationship_manager_team": null,
+               "company_name": "Renner Inc",
+               "company_reference": "ORG-06360633",
+               "investment_value": 756507505,
+               "foreign_equity_investment": 197326454,
+               "sector": {
+                  "name": "distinctio architecto qui"
+               },
+               "uk_region": {
+                  "name": "Borders"
+               },
+               "company_country": {
+                  "name": "Angola",
+                  "iso_code": "BZ"
+               }
+            },
+            {
+               "id": 694,
+               "value": "high",
+               "project_code": "P-51581120",
+               "stage": "Verified",
+               "number_new_jobs": 4046,
+               "number_safeguarded_jobs": 3554,
+               "approved_high_value": true,
+               "approved_good_value": true,
+               "date_won": "Mon Dec 11 2017 02:29:45 GMT+0000 (GMT)",
+               "client_relationship_manager": "Melisa Gutmann",
+               "client_relationship_manager_team": null,
+               "company_name": "Hintz, Bradtke and Schmitt",
+               "company_reference": "ORG-14599887",
+               "investment_value": 127347422,
+               "foreign_equity_investment": 884864580,
+               "sector": {
+                  "name": "vitae accusantium rerum"
+               },
+               "uk_region": {
+                  "name": "Cambridgeshire"
+               },
+               "company_country": {
+                  "name": "Yemen",
+                  "iso_code": "DZ"
+               }
+            },
+            {
+               "id": 120,
+               "value": "high",
+               "project_code": "P-63957405",
+               "stage": "Pipeline",
+               "number_new_jobs": 2511,
+               "number_safeguarded_jobs": 3887,
+               "approved_high_value": false,
+               "approved_good_value": true,
+               "date_won": "Mon Dec 11 2017 02:41:02 GMT+0000 (GMT)",
+               "client_relationship_manager": "Dr. Idell Kirlin",
+               "client_relationship_manager_team": null,
+               "company_name": "Homenick - Schiller",
+               "company_reference": "ORG-41579160",
+               "investment_value": 823589858,
+               "foreign_equity_investment": 785666627,
+               "sector": {
+                  "name": "rerum sit vel"
+               },
+               "uk_region": {
+                  "name": "Buckinghamshire"
+               },
+               "company_country": {
+                  "name": "Niger",
+                  "iso_code": "KG"
+               }
+            },
+            {
+               "id": 607,
+               "value": "good",
+               "project_code": "P-14072846",
+               "stage": "Won",
+               "number_new_jobs": 3573,
+               "number_safeguarded_jobs": 772,
+               "approved_high_value": true,
+               "approved_good_value": false,
+               "date_won": "Mon Dec 11 2017 03:24:22 GMT+0000 (GMT)",
+               "client_relationship_manager": "Crystel Paucek",
+               "client_relationship_manager_team": null,
+               "company_name": "Quitzon - Mraz",
+               "company_reference": "ORG-35036433",
+               "investment_value": 438137377,
+               "foreign_equity_investment": 511057413,
+               "sector": {
+                  "name": "quia at officiis"
+               },
+               "uk_region": {
+                  "name": "Berkshire"
+               },
+               "company_country": {
+                  "name": "Norway",
+                  "iso_code": "KR"
+               }
+            },
+            {
+               "id": 4107,
+               "value": "standard",
+               "project_code": "P-85267660",
+               "stage": "Won",
+               "number_new_jobs": 2977,
+               "number_safeguarded_jobs": 892,
+               "approved_high_value": false,
+               "approved_good_value": true,
+               "date_won": "Sun Dec 10 2017 21:08:54 GMT+0000 (GMT)",
+               "client_relationship_manager": "Oran Beer",
+               "client_relationship_manager_team": null,
+               "company_name": "Connelly, Pfannerstill and Terry",
+               "company_reference": "ORG-20590495",
+               "investment_value": 682153404,
+               "foreign_equity_investment": 924828794,
+               "sector": {
+                  "name": "culpa ullam cum"
+               },
+               "uk_region": {
+                  "name": "Berkshire"
+               },
+               "company_country": {
+                  "name": "Bahamas",
+                  "iso_code": "TW"
+               }
+            },
+            {
+               "id": 1262,
+               "value": "good",
+               "project_code": "P-82436304",
+               "stage": "Won",
+               "number_new_jobs": 2725,
+               "number_safeguarded_jobs": 2018,
+               "approved_high_value": false,
+               "approved_good_value": false,
+               "date_won": "Sun Dec 10 2017 15:06:20 GMT+0000 (GMT)",
+               "client_relationship_manager": "Robert Boyer",
+               "client_relationship_manager_team": null,
+               "company_name": "Stroman - Smith",
+               "company_reference": "ORG-81798099",
+               "investment_value": 49415701,
+               "foreign_equity_investment": 232430892,
+               "sector": {
+                  "name": "hic quo occaecati"
+               },
+               "uk_region": {
+                  "name": "Berkshire"
+               },
+               "company_country": {
+                  "name": "India",
+                  "iso_code": "NF"
+               }
+            },
+            {
+               "id": 2327,
+               "value": "standard",
+               "project_code": "P-58381761",
+               "stage": "Won",
+               "number_new_jobs": 2543,
+               "number_safeguarded_jobs": 3678,
+               "approved_high_value": false,
+               "approved_good_value": false,
+               "date_won": "Sun Dec 10 2017 09:28:22 GMT+0000 (GMT)",
+               "client_relationship_manager": "Dino Hyatt",
+               "client_relationship_manager_team": null,
+               "company_name": "Wiegand, Schuster and Cummings",
+               "company_reference": "ORG-92241238",
+               "investment_value": 507057423,
+               "foreign_equity_investment": 123898779,
+               "sector": {
+                  "name": "qui quis quidem"
+               },
+               "uk_region": {
+                  "name": "Berkshire"
+               },
+               "company_country": {
+                  "name": "United States Minor Outlying Islands",
+                  "iso_code": "DM"
+               }
+            },
+            {
+               "id": 4776,
+               "value": "high",
+               "project_code": "P-45885046",
+               "stage": "Verified",
+               "number_new_jobs": 3068,
+               "number_safeguarded_jobs": 3549,
+               "approved_high_value": false,
+               "approved_good_value": false,
+               "date_won": "Sun Dec 10 2017 14:47:20 GMT+0000 (GMT)",
+               "client_relationship_manager": "Jessica Skiles",
+               "client_relationship_manager_team": null,
+               "company_name": "Strosin LLC",
+               "company_reference": "ORG-94195778",
+               "investment_value": 799353785,
+               "foreign_equity_investment": 969517567,
+               "sector": {
+                  "name": "aut labore et"
+               },
+               "uk_region": {
+                  "name": "Bedfordshire"
+               },
+               "company_country": {
+                  "name": "Zambia",
+                  "iso_code": "MM"
+               }
+            },
+            {
+               "id": 2818,
+               "value": "standard",
+               "project_code": "P-13940428",
+               "stage": "Verified",
+               "number_new_jobs": 2223,
+               "number_safeguarded_jobs": 2090,
+               "approved_high_value": true,
+               "approved_good_value": true,
+               "date_won": "Mon Dec 11 2017 02:49:26 GMT+0000 (GMT)",
+               "client_relationship_manager": "Miss Jerald Weber",
+               "client_relationship_manager_team": null,
+               "company_name": "Keeling Group",
+               "company_reference": "ORG-87316515",
+               "investment_value": 321938446,
+               "foreign_equity_investment": 745576380,
+               "sector": {
+                  "name": "deleniti mollitia ducimus"
+               },
+               "uk_region": {
+                  "name": "Avon"
+               },
+               "company_country": {
+                  "name": "Barbados",
+                  "iso_code": "GQ"
+               }
+            },
+            {
+               "id": 2199,
+               "value": "standard",
+               "project_code": "P-00596147",
+               "stage": "Won",
+               "number_new_jobs": 4060,
+               "number_safeguarded_jobs": 4997,
+               "approved_high_value": false,
+               "approved_good_value": false,
+               "date_won": "Sun Dec 10 2017 13:47:03 GMT+0000 (GMT)",
+               "client_relationship_manager": "Mr. Adrianna Raynor",
+               "client_relationship_manager_team": null,
+               "company_name": "Corkery - Champlin",
+               "company_reference": "ORG-24227596",
+               "investment_value": 461256489,
+               "foreign_equity_investment": 364661229,
+               "sector": {
+                  "name": "temporibus fugit ab"
+               },
+               "uk_region": {
+                  "name": "Borders"
+               },
+               "company_country": {
+                  "name": "Bhutan",
+                  "iso_code": "KH"
+               }
+            },
+            {
+               "id": 2321,
+               "value": "good",
+               "project_code": "P-10784907",
+               "stage": "Won",
+               "number_new_jobs": 56,
+               "number_safeguarded_jobs": 4193,
+               "approved_high_value": true,
+               "approved_good_value": false,
+               "date_won": "Sun Dec 10 2017 21:01:33 GMT+0000 (GMT)",
+               "client_relationship_manager": "Jaclyn Rempel",
+               "client_relationship_manager_team": null,
+               "company_name": "Gaylord, Jakubowski and Franecki",
+               "company_reference": "ORG-35677082",
+               "investment_value": 54830483,
+               "foreign_equity_investment": 301463863,
+               "sector": {
+                  "name": "ducimus at et"
+               },
+               "uk_region": {
+                  "name": "Bedfordshire"
+               },
+               "company_country": {
+                  "name": "Benin",
+                  "iso_code": "FJ"
+               }
+            },
+            {
+               "id": 2096,
+               "value": "standard",
+               "project_code": "P-97360034",
+               "stage": "Verified",
+               "number_new_jobs": 3387,
+               "number_safeguarded_jobs": 3121,
+               "approved_high_value": false,
+               "approved_good_value": true,
+               "date_won": "Mon Dec 11 2017 05:07:51 GMT+0000 (GMT)",
+               "client_relationship_manager": "Alanis Cronin II",
+               "client_relationship_manager_team": null,
+               "company_name": "Rath and Sons",
+               "company_reference": "ORG-17393293",
+               "investment_value": 709879772,
+               "foreign_equity_investment": 845195652,
+               "sector": {
+                  "name": "ut dolorem molestiae"
+               },
+               "uk_region": {
+                  "name": "Bedfordshire"
+               },
+               "company_country": {
+                  "name": "Bulgaria",
+                  "iso_code": "ER"
+               }
+            }
+         ],
+         "non_hvc": [
+            {
+               "id": 1919,
+               "value": "good",
+               "project_code": "P-32915702",
+               "stage": "Verified",
+               "number_new_jobs": 1677,
+               "number_safeguarded_jobs": 3251,
+               "approved_high_value": true,
+               "approved_good_value": true,
+               "date_won": "Sun Dec 10 2017 23:47:42 GMT+0000 (GMT)",
+               "client_relationship_manager": "Teagan Cronin",
+               "client_relationship_manager_team": null,
+               "company_name": "Wiza, O'Conner and Haag",
+               "company_reference": "ORG-05586023",
+               "investment_value": 5754492,
+               "foreign_equity_investment": 846180989,
+               "sector": {
+                  "name": "facere aut optio"
+               },
+               "uk_region": {
+                  "name": "Borders"
+               },
+               "company_country": {
+                  "name": "Tanzania",
+                  "iso_code": "CN"
+               }
+            },
+            {
+               "id": 3176,
+               "value": "standard",
+               "project_code": "P-24625910",
+               "stage": "Verified",
+               "number_new_jobs": 2770,
+               "number_safeguarded_jobs": 2067,
+               "approved_high_value": false,
+               "approved_good_value": false,
+               "date_won": "Sun Dec 10 2017 14:18:49 GMT+0000 (GMT)",
+               "client_relationship_manager": "Bettie Pfannerstill",
+               "client_relationship_manager_team": null,
+               "company_name": "Larkin - Zieme",
+               "company_reference": "ORG-40352717",
+               "investment_value": 201447427,
+               "foreign_equity_investment": 436980921,
+               "sector": {
+                  "name": "impedit nobis laborum"
+               },
+               "uk_region": {
+                  "name": "Avon"
+               },
+               "company_country": {
+                  "name": "Dominica",
+                  "iso_code": "MU"
+               }
+            },
+            {
+               "id": 3015,
+               "value": "good",
+               "project_code": "P-20170386",
+               "stage": "Won",
+               "number_new_jobs": 1109,
+               "number_safeguarded_jobs": 4009,
+               "approved_high_value": true,
+               "approved_good_value": true,
+               "date_won": "Sun Dec 10 2017 23:10:49 GMT+0000 (GMT)",
+               "client_relationship_manager": "Zelma Schumm",
+               "client_relationship_manager_team": null,
+               "company_name": "Bahringer, Schamberger and Friesen",
+               "company_reference": "ORG-86090591",
+               "investment_value": 250134328,
+               "foreign_equity_investment": 532375404,
+               "sector": {
+                  "name": "voluptate architecto omnis"
+               },
+               "uk_region": {
+                  "name": "Borders"
+               },
+               "company_country": {
+                  "name": "Guam",
+                  "iso_code": "ST"
+               }
+            },
+            {
+               "id": 1980,
+               "value": "good",
+               "project_code": "P-17329293",
+               "stage": "Verified",
+               "number_new_jobs": 621,
+               "number_safeguarded_jobs": 3752,
+               "approved_high_value": false,
+               "approved_good_value": true,
+               "date_won": "Sun Dec 10 2017 20:32:29 GMT+0000 (GMT)",
+               "client_relationship_manager": "D'angelo Kuvalis DVM",
+               "client_relationship_manager_team": null,
+               "company_name": "Abbott LLC",
+               "company_reference": "ORG-31364353",
+               "investment_value": 757748467,
+               "foreign_equity_investment": 489532956,
+               "sector": {
+                  "name": "in dignissimos omnis"
+               },
+               "uk_region": {
+                  "name": "Buckinghamshire"
+               },
+               "company_country": {
+                  "name": "American Samoa",
+                  "iso_code": "ET"
+               }
+            },
+            {
+               "id": 3725,
+               "value": "standard",
+               "project_code": "P-06247437",
+               "stage": "Won",
+               "number_new_jobs": 989,
+               "number_safeguarded_jobs": 265,
+               "approved_high_value": false,
+               "approved_good_value": true,
+               "date_won": "Mon Dec 11 2017 06:16:50 GMT+0000 (GMT)",
+               "client_relationship_manager": "Graham Weber",
+               "client_relationship_manager_team": null,
+               "company_name": "Thompson, Howe and Cartwright",
+               "company_reference": "ORG-09440232",
+               "investment_value": 522372096,
+               "foreign_equity_investment": 572624819,
+               "sector": {
+                  "name": "aut a in"
+               },
+               "uk_region": {
+                  "name": "Avon"
+               },
+               "company_country": {
+                  "name": "Christmas Island",
+                  "iso_code": "PR"
+               }
+            },
+            {
+               "id": 218,
+               "value": "high",
+               "project_code": "P-40079214",
+               "stage": "Pipeline",
+               "number_new_jobs": 504,
+               "number_safeguarded_jobs": 2332,
+               "approved_high_value": false,
+               "approved_good_value": true,
+               "date_won": "Sun Dec 10 2017 18:59:50 GMT+0000 (GMT)",
+               "client_relationship_manager": "Mr. Florencio Kreiger",
+               "client_relationship_manager_team": null,
+               "company_name": "Kozey, Carter and Greenholt",
+               "company_reference": "ORG-48437926",
+               "investment_value": 324646202,
+               "foreign_equity_investment": 618391832,
+               "sector": {
+                  "name": "non laborum repellendus"
+               },
+               "uk_region": {
+                  "name": "Avon"
+               },
+               "company_country": {
+                  "name": "Malawi",
+                  "iso_code": "PG"
+               }
+            },
+            {
+               "id": 2442,
+               "value": "high",
+               "project_code": "P-50451197",
+               "stage": "Pipeline",
+               "number_new_jobs": 1715,
+               "number_safeguarded_jobs": 1684,
+               "approved_high_value": false,
+               "approved_good_value": true,
+               "date_won": "Mon Dec 11 2017 00:20:46 GMT+0000 (GMT)",
+               "client_relationship_manager": "Pat Gaylord DDS",
+               "client_relationship_manager_team": null,
+               "company_name": "Casper - Armstrong",
+               "company_reference": "ORG-38196071",
+               "investment_value": 792986385,
+               "foreign_equity_investment": 299766471,
+               "sector": {
+                  "name": "consequuntur omnis qui"
+               },
+               "uk_region": {
+                  "name": "Cambridgeshire"
+               },
+               "company_country": {
+                  "name": "Guernsey",
+                  "iso_code": "PT"
+               }
+            },
+            {
+               "id": 2810,
+               "value": "high",
+               "project_code": "P-30821775",
+               "stage": "Verified",
+               "number_new_jobs": 3536,
+               "number_safeguarded_jobs": 4449,
+               "approved_high_value": true,
+               "approved_good_value": true,
+               "date_won": "Sun Dec 10 2017 23:06:59 GMT+0000 (GMT)",
+               "client_relationship_manager": "Dino Johnson",
+               "client_relationship_manager_team": null,
+               "company_name": "Mertz and Sons",
+               "company_reference": "ORG-40666812",
+               "investment_value": 507847718,
+               "foreign_equity_investment": 17742432,
+               "sector": {
+                  "name": "quibusdam et illum"
+               },
+               "uk_region": {
+                  "name": "Bedfordshire"
+               },
+               "company_country": {
+                  "name": "Guam",
+                  "iso_code": "GT"
+               }
+            },
+            {
+               "id": 2183,
+               "value": "good",
+               "project_code": "P-33123927",
+               "stage": "Won",
+               "number_new_jobs": 1778,
+               "number_safeguarded_jobs": 3920,
+               "approved_high_value": true,
+               "approved_good_value": true,
+               "date_won": "Mon Dec 11 2017 00:14:36 GMT+0000 (GMT)",
+               "client_relationship_manager": "Darrel Batz MD",
+               "client_relationship_manager_team": null,
+               "company_name": "Barton Group",
+               "company_reference": "ORG-67648483",
+               "investment_value": 530382620,
+               "foreign_equity_investment": 107680189,
+               "sector": {
+                  "name": "atque hic sit"
+               },
+               "uk_region": {
+                  "name": "Avon"
+               },
+               "company_country": {
+                  "name": "Germany",
+                  "iso_code": "FO"
+               }
+            },
+            {
+               "id": 2068,
+               "value": "high",
+               "project_code": "P-51666091",
+               "stage": "Pipeline",
+               "number_new_jobs": 2637,
+               "number_safeguarded_jobs": 4857,
+               "approved_high_value": false,
+               "approved_good_value": true,
+               "date_won": "Mon Dec 11 2017 06:24:28 GMT+0000 (GMT)",
+               "client_relationship_manager": "Anne Padberg",
+               "client_relationship_manager_team": null,
+               "company_name": "Stracke and Sons",
+               "company_reference": "ORG-20795581",
+               "investment_value": 289612138,
+               "foreign_equity_investment": 184739919,
+               "sector": {
+                  "name": "deserunt quod soluta"
+               },
+               "uk_region": {
+                  "name": "Borders"
+               },
+               "company_country": {
+                  "name": "Pakistan",
+                  "iso_code": "CV"
+               }
+            },
+            {
+               "id": 4876,
+               "value": "standard",
+               "project_code": "P-62554310",
+               "stage": "Pipeline",
+               "number_new_jobs": 240,
+               "number_safeguarded_jobs": 1750,
+               "approved_high_value": false,
+               "approved_good_value": true,
+               "date_won": "Sun Dec 10 2017 17:06:43 GMT+0000 (GMT)",
+               "client_relationship_manager": "Emely Rempel",
+               "client_relationship_manager_team": null,
+               "company_name": "Kuvalis, Jacobi and Erdman",
+               "company_reference": "ORG-33668826",
+               "investment_value": 346108462,
+               "foreign_equity_investment": 491171913,
+               "sector": {
+                  "name": "consequatur qui assumenda"
+               },
+               "uk_region": {
+                  "name": "Buckinghamshire"
+               },
+               "company_country": {
+                  "name": "Denmark",
+                  "iso_code": "BQ"
+               }
+            },
+            {
+               "id": 2503,
+               "value": "good",
+               "project_code": "P-84476153",
+               "stage": "Verified",
+               "number_new_jobs": 1345,
+               "number_safeguarded_jobs": 3363,
+               "approved_high_value": false,
+               "approved_good_value": false,
+               "date_won": "Sun Dec 10 2017 10:15:10 GMT+0000 (GMT)",
+               "client_relationship_manager": "Mr. Delia Altenwerth",
+               "client_relationship_manager_team": null,
+               "company_name": "Pacocha - Schowalter",
+               "company_reference": "ORG-06522716",
+               "investment_value": 595648592,
+               "foreign_equity_investment": 272831297,
+               "sector": {
+                  "name": "omnis cumque atque"
+               },
+               "uk_region": {
+                  "name": "Berkshire"
+               },
+               "company_country": {
+                  "name": "Gambia",
+                  "iso_code": "AO"
+               }
+            },
+            {
+               "id": 1981,
+               "value": "high",
+               "project_code": "P-33777138",
+               "stage": "Won",
+               "number_new_jobs": 1846,
+               "number_safeguarded_jobs": 3234,
+               "approved_high_value": false,
+               "approved_good_value": false,
+               "date_won": "Mon Dec 11 2017 01:56:28 GMT+0000 (GMT)",
+               "client_relationship_manager": "Sigmund Lebsack",
+               "client_relationship_manager_team": null,
+               "company_name": "Romaguera LLC",
+               "company_reference": "ORG-55265760",
+               "investment_value": 440829334,
+               "foreign_equity_investment": 850936257,
+               "sector": {
+                  "name": "ducimus maxime vel"
+               },
+               "uk_region": {
+                  "name": "Avon"
+               },
+               "company_country": {
+                  "name": "Somalia",
+                  "iso_code": "MD"
+               }
+            },
+            {
+               "id": 4209,
+               "value": "high",
+               "project_code": "P-29821110",
+               "stage": "Pipeline",
+               "number_new_jobs": 3219,
+               "number_safeguarded_jobs": 4814,
+               "approved_high_value": false,
+               "approved_good_value": true,
+               "date_won": "Mon Dec 11 2017 03:11:47 GMT+0000 (GMT)",
+               "client_relationship_manager": "Gerardo Larson Sr.",
+               "client_relationship_manager_team": null,
+               "company_name": "Gaylord - Strosin",
+               "company_reference": "ORG-60428189",
+               "investment_value": 773418747,
+               "foreign_equity_investment": 996293409,
+               "sector": {
+                  "name": "itaque voluptates quae"
+               },
+               "uk_region": {
+                  "name": "Cambridgeshire"
+               },
+               "company_country": {
+                  "name": "Aruba",
+                  "iso_code": "SV"
+               }
+            },
+            {
+               "id": 886,
+               "value": "high",
+               "project_code": "P-40915267",
+               "stage": "Won",
+               "number_new_jobs": 887,
+               "number_safeguarded_jobs": 840,
+               "approved_high_value": true,
+               "approved_good_value": true,
+               "date_won": "Sun Dec 10 2017 15:07:03 GMT+0000 (GMT)",
+               "client_relationship_manager": "Colt Schmitt",
+               "client_relationship_manager_team": null,
+               "company_name": "Hamill Inc",
+               "company_reference": "ORG-20305084",
+               "investment_value": 201656655,
+               "foreign_equity_investment": 675168487,
+               "sector": {
+                  "name": "natus eum id"
+               },
+               "uk_region": {
+                  "name": "Berkshire"
+               },
+               "company_country": {
+                  "name": "China",
+                  "iso_code": "CW"
+               }
+            },
+            {
+               "id": 3116,
+               "value": "high",
+               "project_code": "P-99213452",
+               "stage": "Pipeline",
+               "number_new_jobs": 3838,
+               "number_safeguarded_jobs": 3301,
+               "approved_high_value": true,
+               "approved_good_value": true,
+               "date_won": "Sun Dec 10 2017 07:13:25 GMT+0000 (GMT)",
+               "client_relationship_manager": "Ora Senger",
+               "client_relationship_manager_team": null,
+               "company_name": "Hansen, Roberts and Dietrich",
+               "company_reference": "ORG-40483536",
+               "investment_value": 476876890,
+               "foreign_equity_investment": 600992933,
+               "sector": {
+                  "name": "omnis quia occaecati"
+               },
+               "uk_region": {
+                  "name": "Avon"
+               },
+               "company_country": {
+                  "name": "Maldives",
+                  "iso_code": "ET"
+               }
+            },
+            {
+               "id": 2812,
+               "value": "good",
+               "project_code": "P-33041353",
+               "stage": "Pipeline",
+               "number_new_jobs": 1561,
+               "number_safeguarded_jobs": 1889,
+               "approved_high_value": true,
+               "approved_good_value": false,
+               "date_won": "Sun Dec 10 2017 07:50:51 GMT+0000 (GMT)",
+               "client_relationship_manager": "Noemy O'Hara DVM",
+               "client_relationship_manager_team": null,
+               "company_name": "Konopelski Group",
+               "company_reference": "ORG-00419771",
+               "investment_value": 98990398,
+               "foreign_equity_investment": 332746537,
+               "sector": {
+                  "name": "facere minima voluptates"
+               },
+               "uk_region": {
+                  "name": "Berkshire"
+               },
+               "company_country": {
+                  "name": "Nigeria",
+                  "iso_code": "AI"
+               }
+            },
+            {
+               "id": 3561,
+               "value": "high",
+               "project_code": "P-82827458",
+               "stage": "Pipeline",
+               "number_new_jobs": 1966,
+               "number_safeguarded_jobs": 1554,
+               "approved_high_value": false,
+               "approved_good_value": false,
+               "date_won": "Sun Dec 10 2017 07:50:11 GMT+0000 (GMT)",
+               "client_relationship_manager": "Dr. Cecilia Moore",
+               "client_relationship_manager_team": null,
+               "company_name": "Beier - Schowalter",
+               "company_reference": "ORG-27191316",
+               "investment_value": 825114754,
+               "foreign_equity_investment": 204463808,
+               "sector": {
+                  "name": "rerum architecto velit"
+               },
+               "uk_region": {
+                  "name": "Borders"
+               },
+               "company_country": {
+                  "name": "Gabon",
+                  "iso_code": "BA"
+               }
+            },
+            {
+               "id": 3446,
+               "value": "standard",
+               "project_code": "P-79441018",
+               "stage": "Won",
+               "number_new_jobs": 2429,
+               "number_safeguarded_jobs": 4230,
+               "approved_high_value": true,
+               "approved_good_value": false,
+               "date_won": "Mon Dec 11 2017 01:30:10 GMT+0000 (GMT)",
+               "client_relationship_manager": "Baby Deckow IV",
+               "client_relationship_manager_team": null,
+               "company_name": "Boyer, Wiegand and Cartwright",
+               "company_reference": "ORG-97886934",
+               "investment_value": 865800958,
+               "foreign_equity_investment": 440053264,
+               "sector": {
+                  "name": "alias voluptas voluptatem"
+               },
+               "uk_region": {
+                  "name": "Borders"
+               },
+               "company_country": {
+                  "name": "Papua New Guinea",
+                  "iso_code": "EC"
+               }
+            },
+            {
+               "id": 1640,
+               "value": "standard",
+               "project_code": "P-68772997",
+               "stage": "Pipeline",
+               "number_new_jobs": 1616,
+               "number_safeguarded_jobs": 3827,
+               "approved_high_value": false,
+               "approved_good_value": false,
+               "date_won": "Sun Dec 10 2017 09:06:29 GMT+0000 (GMT)",
+               "client_relationship_manager": "Mr. Roosevelt VonRueden",
+               "client_relationship_manager_team": null,
+               "company_name": "Ferry and Sons",
+               "company_reference": "ORG-14802241",
+               "investment_value": 436636347,
+               "foreign_equity_investment": 842482750,
+               "sector": {
+                  "name": "provident cum rerum"
+               },
+               "uk_region": {
+                  "name": "Berkshire"
+               },
+               "company_country": {
+                  "name": "Antigua and Barbuda",
+                  "iso_code": "DJ"
+               }
+            },
+            {
+               "id": 2963,
+               "value": "standard",
+               "project_code": "P-48500072",
+               "stage": "Won",
+               "number_new_jobs": 3124,
+               "number_safeguarded_jobs": 1415,
+               "approved_high_value": false,
+               "approved_good_value": false,
+               "date_won": "Sun Dec 10 2017 18:02:43 GMT+0000 (GMT)",
+               "client_relationship_manager": "Selina Paucek",
+               "client_relationship_manager_team": null,
+               "company_name": "Botsford Inc",
+               "company_reference": "ORG-74181625",
+               "investment_value": 54603407,
+               "foreign_equity_investment": 943430674,
+               "sector": {
+                  "name": "eos natus commodi"
+               },
+               "uk_region": {
+                  "name": "Berkshire"
+               },
+               "company_country": {
+                  "name": "Dominica",
+                  "iso_code": "GS"
+               }
+            },
+            {
+               "id": 588,
+               "value": "standard",
+               "project_code": "P-63507203",
+               "stage": "Won",
+               "number_new_jobs": 1534,
+               "number_safeguarded_jobs": 2427,
+               "approved_high_value": true,
+               "approved_good_value": true,
+               "date_won": "Sun Dec 10 2017 08:24:23 GMT+0000 (GMT)",
+               "client_relationship_manager": "Zachariah Trantow",
+               "client_relationship_manager_team": null,
+               "company_name": "Russel LLC",
+               "company_reference": "ORG-69656152",
+               "investment_value": 895774133,
+               "foreign_equity_investment": 886505276,
+               "sector": {
+                  "name": "aut temporibus ullam"
+               },
+               "uk_region": {
+                  "name": "Cambridgeshire"
+               },
+               "company_country": {
+                  "name": "Guyana",
+                  "iso_code": "TF"
+               }
+            },
+            {
+               "id": 207,
+               "value": "high",
+               "project_code": "P-09778781",
+               "stage": "Verified",
+               "number_new_jobs": 1831,
+               "number_safeguarded_jobs": 3920,
+               "approved_high_value": true,
+               "approved_good_value": false,
+               "date_won": "Sun Dec 10 2017 08:38:37 GMT+0000 (GMT)",
+               "client_relationship_manager": "Dewayne Wunsch",
+               "client_relationship_manager_team": null,
+               "company_name": "Jacobs LLC",
+               "company_reference": "ORG-93392990",
+               "investment_value": 596950840,
+               "foreign_equity_investment": 279760687,
+               "sector": {
+                  "name": "vel quas et"
+               },
+               "uk_region": {
+                  "name": "Buckinghamshire"
+               },
+               "company_country": {
+                  "name": "Maldives",
+                  "iso_code": "ID"
+               }
+            },
+            {
+               "id": 4597,
+               "value": "good",
+               "project_code": "P-20837172",
+               "stage": "Verified",
+               "number_new_jobs": 2003,
+               "number_safeguarded_jobs": 79,
+               "approved_high_value": true,
+               "approved_good_value": true,
+               "date_won": "Mon Dec 11 2017 00:00:13 GMT+0000 (GMT)",
+               "client_relationship_manager": "Presley Stiedemann",
+               "client_relationship_manager_team": null,
+               "company_name": "Berge and Sons",
+               "company_reference": "ORG-20987371",
+               "investment_value": 480647172,
+               "foreign_equity_investment": 49024066,
+               "sector": {
+                  "name": "vero et assumenda"
+               },
+               "uk_region": {
+                  "name": "Avon"
+               },
+               "company_country": {
+                  "name": "Jamaica",
+                  "iso_code": "HU"
+               }
+            },
+            {
+               "id": 1840,
+               "value": "good",
+               "project_code": "P-41665413",
+               "stage": "Won",
+               "number_new_jobs": 4784,
+               "number_safeguarded_jobs": 1214,
+               "approved_high_value": false,
+               "approved_good_value": true,
+               "date_won": "Sun Dec 10 2017 11:31:31 GMT+0000 (GMT)",
+               "client_relationship_manager": "Wava Daugherty III",
+               "client_relationship_manager_team": null,
+               "company_name": "Koch Group",
+               "company_reference": "ORG-44830484",
+               "investment_value": 911889075,
+               "foreign_equity_investment": 867012338,
+               "sector": {
+                  "name": "unde rerum ab"
+               },
+               "uk_region": {
+                  "name": "Avon"
+               },
+               "company_country": {
+                  "name": "Moldova",
+                  "iso_code": "IL"
+               }
+            },
+            {
+               "id": 2533,
+               "value": "standard",
+               "project_code": "P-65583581",
+               "stage": "Won",
+               "number_new_jobs": 4208,
+               "number_safeguarded_jobs": 992,
+               "approved_high_value": false,
+               "approved_good_value": true,
+               "date_won": "Sun Dec 10 2017 07:26:50 GMT+0000 (GMT)",
+               "client_relationship_manager": "Dr. Glenda Wiza",
+               "client_relationship_manager_team": null,
+               "company_name": "Stracke - Kilback",
+               "company_reference": "ORG-90438186",
+               "investment_value": 446005424,
+               "foreign_equity_investment": 954094060,
+               "sector": {
+                  "name": "a ducimus tenetur"
+               },
+               "uk_region": {
+                  "name": "Avon"
+               },
+               "company_country": {
+                  "name": "Barbados",
+                  "iso_code": "SM"
+               }
+            },
+            {
+               "id": 1666,
+               "value": "standard",
+               "project_code": "P-87392590",
+               "stage": "Won",
+               "number_new_jobs": 1800,
+               "number_safeguarded_jobs": 223,
+               "approved_high_value": false,
+               "approved_good_value": false,
+               "date_won": "Sun Dec 10 2017 21:22:09 GMT+0000 (GMT)",
+               "client_relationship_manager": "Mya Deckow",
+               "client_relationship_manager_team": null,
+               "company_name": "Sipes LLC",
+               "company_reference": "ORG-90453137",
+               "investment_value": 548009637,
+               "foreign_equity_investment": 824236103,
+               "sector": {
+                  "name": "animi quisquam nihil"
+               },
+               "uk_region": {
+                  "name": "Cambridgeshire"
+               },
+               "company_country": {
+                  "name": "Aruba",
+                  "iso_code": "MT"
+               }
+            },
+            {
+               "id": 226,
+               "value": "good",
+               "project_code": "P-39787309",
+               "stage": "Won",
+               "number_new_jobs": 353,
+               "number_safeguarded_jobs": 1791,
+               "approved_high_value": false,
+               "approved_good_value": true,
+               "date_won": "Mon Dec 11 2017 05:48:39 GMT+0000 (GMT)",
+               "client_relationship_manager": "Vinnie Homenick",
+               "client_relationship_manager_team": null,
+               "company_name": "Becker - Bednar",
+               "company_reference": "ORG-16032902",
+               "investment_value": 499053249,
+               "foreign_equity_investment": 689126346,
+               "sector": {
+                  "name": "sunt vitae et"
+               },
+               "uk_region": {
+                  "name": "Avon"
+               },
+               "company_country": {
+                  "name": "Burundi",
+                  "iso_code": "BF"
+               }
+            },
+            {
+               "id": 3391,
+               "value": "standard",
+               "project_code": "P-19739930",
+               "stage": "Won",
+               "number_new_jobs": 2807,
+               "number_safeguarded_jobs": 1306,
+               "approved_high_value": false,
+               "approved_good_value": true,
+               "date_won": "Mon Dec 11 2017 00:37:25 GMT+0000 (GMT)",
+               "client_relationship_manager": "Alice Veum",
+               "client_relationship_manager_team": null,
+               "company_name": "Stanton LLC",
+               "company_reference": "ORG-93035654",
+               "investment_value": 131642477,
+               "foreign_equity_investment": 738205929,
+               "sector": {
+                  "name": "sed eum cumque"
+               },
+               "uk_region": {
+                  "name": "Avon"
+               },
+               "company_country": {
+                  "name": "Wallis and Futuna",
+                  "iso_code": "FR"
+               }
+            },
+            {
+               "id": 3652,
+               "value": "high",
+               "project_code": "P-25771940",
+               "stage": "Verified",
+               "number_new_jobs": 2644,
+               "number_safeguarded_jobs": 2539,
+               "approved_high_value": false,
+               "approved_good_value": true,
+               "date_won": "Sun Dec 10 2017 07:06:54 GMT+0000 (GMT)",
+               "client_relationship_manager": "Giovani Bednar",
+               "client_relationship_manager_team": null,
+               "company_name": "Murphy, Monahan and Renner",
+               "company_reference": "ORG-69460910",
+               "investment_value": 82958064,
+               "foreign_equity_investment": 448801642,
+               "sector": {
+                  "name": "maiores cum libero"
+               },
+               "uk_region": {
+                  "name": "Avon"
+               },
+               "company_country": {
+                  "name": "Guernsey",
+                  "iso_code": "GN"
+               }
+            },
+            {
+               "id": 4271,
+               "value": "standard",
+               "project_code": "P-41526937",
+               "stage": "Verified",
+               "number_new_jobs": 418,
+               "number_safeguarded_jobs": 2568,
+               "approved_high_value": true,
+               "approved_good_value": false,
+               "date_won": "Sun Dec 10 2017 14:07:22 GMT+0000 (GMT)",
+               "client_relationship_manager": "Mr. Britney Abernathy",
+               "client_relationship_manager_team": null,
+               "company_name": "Gottlieb - Sipes",
+               "company_reference": "ORG-51147229",
+               "investment_value": 96629078,
+               "foreign_equity_investment": 503386923,
+               "sector": {
+                  "name": "adipisci incidunt sed"
+               },
+               "uk_region": {
+                  "name": "Cambridgeshire"
+               },
+               "company_country": {
+                  "name": "Guinea-Bissau",
+                  "iso_code": "KH"
+               }
+            },
+            {
+               "id": 4817,
+               "value": "high",
+               "project_code": "P-25186563",
+               "stage": "Pipeline",
+               "number_new_jobs": 2614,
+               "number_safeguarded_jobs": 4467,
+               "approved_high_value": false,
+               "approved_good_value": false,
+               "date_won": "Mon Dec 11 2017 02:47:37 GMT+0000 (GMT)",
+               "client_relationship_manager": "Elizabeth Grant",
+               "client_relationship_manager_team": null,
+               "company_name": "Douglas, Kozey and Walker",
+               "company_reference": "ORG-34847548",
+               "investment_value": 223879341,
+               "foreign_equity_investment": 627601757,
+               "sector": {
+                  "name": "voluptas qui tempora"
+               },
+               "uk_region": {
+                  "name": "Berkshire"
+               },
+               "company_country": {
+                  "name": "Tanzania",
+                  "iso_code": "BT"
+               }
+            },
+            {
+               "id": 357,
+               "value": "standard",
+               "project_code": "P-51596857",
+               "stage": "Won",
+               "number_new_jobs": 1244,
+               "number_safeguarded_jobs": 1336,
+               "approved_high_value": false,
+               "approved_good_value": false,
+               "date_won": "Sun Dec 10 2017 14:51:31 GMT+0000 (GMT)",
+               "client_relationship_manager": "Sage Jenkins",
+               "client_relationship_manager_team": null,
+               "company_name": "Cartwright LLC",
+               "company_reference": "ORG-38160718",
+               "investment_value": 420757056,
+               "foreign_equity_investment": 261821860,
+               "sector": {
+                  "name": "tenetur eius voluptatem"
+               },
+               "uk_region": {
+                  "name": "Berkshire"
+               },
+               "company_country": {
+                  "name": "Gabon",
+                  "iso_code": "HK"
+               }
+            },
+            {
+               "id": 3732,
+               "value": "good",
+               "project_code": "P-21586125",
+               "stage": "Verified",
+               "number_new_jobs": 3417,
+               "number_safeguarded_jobs": 3067,
+               "approved_high_value": true,
+               "approved_good_value": false,
+               "date_won": "Sun Dec 10 2017 21:58:17 GMT+0000 (GMT)",
+               "client_relationship_manager": "Alvena Grimes",
+               "client_relationship_manager_team": null,
+               "company_name": "Pfannerstill Group",
+               "company_reference": "ORG-52323724",
+               "investment_value": 704889431,
+               "foreign_equity_investment": 716881767,
+               "sector": {
+                  "name": "possimus molestiae placeat"
+               },
+               "uk_region": {
+                  "name": "Bedfordshire"
+               },
+               "company_country": {
+                  "name": "Mali",
+                  "iso_code": "QA"
+               }
+            },
+            {
+               "id": 3060,
+               "value": "high",
+               "project_code": "P-46006940",
+               "stage": "Pipeline",
+               "number_new_jobs": 2967,
+               "number_safeguarded_jobs": 2365,
+               "approved_high_value": false,
+               "approved_good_value": true,
+               "date_won": "Sun Dec 10 2017 16:12:40 GMT+0000 (GMT)",
+               "client_relationship_manager": "Mrs. Loraine Torphy",
+               "client_relationship_manager_team": null,
+               "company_name": "Schimmel, Hagenes and O'Keefe",
+               "company_reference": "ORG-86596536",
+               "investment_value": 284558500,
+               "foreign_equity_investment": 440204021,
+               "sector": {
+                  "name": "ab alias ut"
+               },
+               "uk_region": {
+                  "name": "Avon"
+               },
+               "company_country": {
+                  "name": "Iran",
+                  "iso_code": "VC"
+               }
+            },
+            {
+               "id": 3375,
+               "value": "high",
+               "project_code": "P-16684336",
+               "stage": "Pipeline",
+               "number_new_jobs": 4290,
+               "number_safeguarded_jobs": 291,
+               "approved_high_value": true,
+               "approved_good_value": true,
+               "date_won": "Sun Dec 10 2017 08:47:02 GMT+0000 (GMT)",
+               "client_relationship_manager": "Jasmin Durgan",
+               "client_relationship_manager_team": null,
+               "company_name": "Zemlak - Hamill",
+               "company_reference": "ORG-44647022",
+               "investment_value": 127989680,
+               "foreign_equity_investment": 966933301,
+               "sector": {
+                  "name": "in et quidem"
+               },
+               "uk_region": {
+                  "name": "Borders"
+               },
+               "company_country": {
+                  "name": "United States Minor Outlying Islands",
+                  "iso_code": "MZ"
+               }
+            },
+            {
+               "id": 3739,
+               "value": "high",
+               "project_code": "P-32683089",
+               "stage": "Won",
+               "number_new_jobs": 4634,
+               "number_safeguarded_jobs": 1148,
+               "approved_high_value": false,
+               "approved_good_value": true,
+               "date_won": "Sun Dec 10 2017 21:48:39 GMT+0000 (GMT)",
+               "client_relationship_manager": "Kaylee Littel",
+               "client_relationship_manager_team": null,
+               "company_name": "Dickens - Kuhlman",
+               "company_reference": "ORG-15013827",
+               "investment_value": 303254903,
+               "foreign_equity_investment": 179435107,
+               "sector": {
+                  "name": "sequi optio quia"
+               },
+               "uk_region": {
+                  "name": "Bedfordshire"
+               },
+               "company_country": {
+                  "name": "Cote d'Ivoire",
+                  "iso_code": "LC"
+               }
+            },
+            {
+               "id": 2726,
+               "value": "standard",
+               "project_code": "P-73789270",
+               "stage": "Verified",
+               "number_new_jobs": 4231,
+               "number_safeguarded_jobs": 3837,
+               "approved_high_value": true,
+               "approved_good_value": false,
+               "date_won": "Sun Dec 10 2017 20:23:26 GMT+0000 (GMT)",
+               "client_relationship_manager": "Ludwig Cruickshank",
+               "client_relationship_manager_team": null,
+               "company_name": "Will - Anderson",
+               "company_reference": "ORG-57797793",
+               "investment_value": 819734664,
+               "foreign_equity_investment": 315750697,
+               "sector": {
+                  "name": "et ratione possimus"
+               },
+               "uk_region": {
+                  "name": "Borders"
+               },
+               "company_country": {
+                  "name": "Saudi Arabia",
+                  "iso_code": "VI"
+               }
+            },
+            {
+               "id": 2451,
+               "value": "high",
+               "project_code": "P-93106971",
+               "stage": "Pipeline",
+               "number_new_jobs": 4317,
+               "number_safeguarded_jobs": 4182,
+               "approved_high_value": false,
+               "approved_good_value": true,
+               "date_won": "Sun Dec 10 2017 07:31:10 GMT+0000 (GMT)",
+               "client_relationship_manager": "Destiny Baumbach",
+               "client_relationship_manager_team": null,
+               "company_name": "Eichmann - Brakus",
+               "company_reference": "ORG-64466664",
+               "investment_value": 404768245,
+               "foreign_equity_investment": 807545222,
+               "sector": {
+                  "name": "voluptate optio omnis"
+               },
+               "uk_region": {
+                  "name": "Buckinghamshire"
+               },
+               "company_country": {
+                  "name": "Saint Martin",
+                  "iso_code": "AI"
+               }
+            },
+            {
+               "id": 4013,
+               "value": "standard",
+               "project_code": "P-60327787",
+               "stage": "Verified",
+               "number_new_jobs": 4239,
+               "number_safeguarded_jobs": 3266,
+               "approved_high_value": false,
+               "approved_good_value": false,
+               "date_won": "Sun Dec 10 2017 15:29:55 GMT+0000 (GMT)",
+               "client_relationship_manager": "Richie Durgan II",
+               "client_relationship_manager_team": null,
+               "company_name": "Crist, Treutel and Williamson",
+               "company_reference": "ORG-64437969",
+               "investment_value": 282052447,
+               "foreign_equity_investment": 131638747,
+               "sector": {
+                  "name": "aut autem sed"
+               },
+               "uk_region": {
+                  "name": "Buckinghamshire"
+               },
+               "company_country": {
+                  "name": "Palau",
+                  "iso_code": "AQ"
+               }
+            },
+            {
+               "id": 672,
+               "value": "good",
+               "project_code": "P-56917162",
+               "stage": "Verified",
+               "number_new_jobs": 1786,
+               "number_safeguarded_jobs": 122,
+               "approved_high_value": false,
+               "approved_good_value": true,
+               "date_won": "Sun Dec 10 2017 21:20:03 GMT+0000 (GMT)",
+               "client_relationship_manager": "Myrna Zieme",
+               "client_relationship_manager_team": null,
+               "company_name": "Powlowski - Smith",
+               "company_reference": "ORG-78629180",
+               "investment_value": 512873815,
+               "foreign_equity_investment": 318905847,
+               "sector": {
+                  "name": "quibusdam velit repudiandae"
+               },
+               "uk_region": {
+                  "name": "Borders"
+               },
+               "company_country": {
+                  "name": "Argentina",
+                  "iso_code": "SZ"
+               }
+            },
+            {
+               "id": 2066,
+               "value": "good",
+               "project_code": "P-23832303",
+               "stage": "Verified",
+               "number_new_jobs": 1744,
+               "number_safeguarded_jobs": 832,
+               "approved_high_value": true,
+               "approved_good_value": true,
+               "date_won": "Mon Dec 11 2017 04:39:29 GMT+0000 (GMT)",
+               "client_relationship_manager": "Onie Torphy",
+               "client_relationship_manager_team": null,
+               "company_name": "Runolfsdottir, Zboncak and Ebert",
+               "company_reference": "ORG-16697266",
+               "investment_value": 95662416,
+               "foreign_equity_investment": 624837278,
+               "sector": {
+                  "name": "accusantium maxime voluptatem"
+               },
+               "uk_region": {
+                  "name": "Cambridgeshire"
+               },
+               "company_country": {
+                  "name": "Somalia",
+                  "iso_code": "KP"
+               }
+            },
+            {
+               "id": 819,
+               "value": "standard",
+               "project_code": "P-63253921",
+               "stage": "Won",
+               "number_new_jobs": 4327,
+               "number_safeguarded_jobs": 96,
+               "approved_high_value": true,
+               "approved_good_value": true,
+               "date_won": "Sun Dec 10 2017 12:44:32 GMT+0000 (GMT)",
+               "client_relationship_manager": "Darryl Shanahan DVM",
+               "client_relationship_manager_team": null,
+               "company_name": "Mann LLC",
+               "company_reference": "ORG-36268294",
+               "investment_value": 366266610,
+               "foreign_equity_investment": 256563159,
+               "sector": {
+                  "name": "error facilis eum"
+               },
+               "uk_region": {
+                  "name": "Buckinghamshire"
+               },
+               "company_country": {
+                  "name": "Falkland Islands (Malvinas)",
+                  "iso_code": "MY"
+               }
+            },
+            {
+               "id": 3184,
+               "value": "high",
+               "project_code": "P-81516464",
+               "stage": "Pipeline",
+               "number_new_jobs": 3045,
+               "number_safeguarded_jobs": 111,
+               "approved_high_value": false,
+               "approved_good_value": true,
+               "date_won": "Sun Dec 10 2017 13:42:51 GMT+0000 (GMT)",
+               "client_relationship_manager": "Baron Kilback Sr.",
+               "client_relationship_manager_team": null,
+               "company_name": "Sauer Group",
+               "company_reference": "ORG-54633675",
+               "investment_value": 45502313,
+               "foreign_equity_investment": 22889352,
+               "sector": {
+                  "name": "veritatis illo numquam"
+               },
+               "uk_region": {
+                  "name": "Borders"
+               },
+               "company_country": {
+                  "name": "Wallis and Futuna",
+                  "iso_code": "SK"
+               }
+            },
+            {
+               "id": 221,
+               "value": "high",
+               "project_code": "P-78199115",
+               "stage": "Won",
+               "number_new_jobs": 2645,
+               "number_safeguarded_jobs": 959,
+               "approved_high_value": true,
+               "approved_good_value": false,
+               "date_won": "Sun Dec 10 2017 18:09:54 GMT+0000 (GMT)",
+               "client_relationship_manager": "Adelle Haley V",
+               "client_relationship_manager_team": null,
+               "company_name": "Halvorson - Kerluke",
+               "company_reference": "ORG-48066188",
+               "investment_value": 534398271,
+               "foreign_equity_investment": 619134208,
+               "sector": {
+                  "name": "eligendi quisquam quod"
+               },
+               "uk_region": {
+                  "name": "Borders"
+               },
+               "company_country": {
+                  "name": "Spain",
+                  "iso_code": "IT"
+               }
+            },
+            {
+               "id": 1685,
+               "value": "standard",
+               "project_code": "P-24807039",
+               "stage": "Won",
+               "number_new_jobs": 227,
+               "number_safeguarded_jobs": 4573,
+               "approved_high_value": true,
+               "approved_good_value": false,
+               "date_won": "Sun Dec 10 2017 22:45:47 GMT+0000 (GMT)",
+               "client_relationship_manager": "Estel Welch",
+               "client_relationship_manager_team": null,
+               "company_name": "Medhurst - Schumm",
+               "company_reference": "ORG-46925334",
+               "investment_value": 852452372,
+               "foreign_equity_investment": 642405412,
+               "sector": {
+                  "name": "ullam aliquam possimus"
+               },
+               "uk_region": {
+                  "name": "Cambridgeshire"
+               },
+               "company_country": {
+                  "name": "Saint Lucia",
+                  "iso_code": "RW"
+               }
+            },
+            {
+               "id": 2688,
+               "value": "standard",
+               "project_code": "P-28720621",
+               "stage": "Verified",
+               "number_new_jobs": 1699,
+               "number_safeguarded_jobs": 3029,
+               "approved_high_value": true,
+               "approved_good_value": true,
+               "date_won": "Sun Dec 10 2017 08:06:30 GMT+0000 (GMT)",
+               "client_relationship_manager": "Dr. Lydia Witting",
+               "client_relationship_manager_team": null,
+               "company_name": "O'Keefe, Schoen and Flatley",
+               "company_reference": "ORG-60729883",
+               "investment_value": 574969858,
+               "foreign_equity_investment": 366204179,
+               "sector": {
+                  "name": "odio ipsum quos"
+               },
+               "uk_region": {
+                  "name": "Borders"
+               },
+               "company_country": {
+                  "name": "Bermuda",
+                  "iso_code": "AL"
+               }
+            },
+            {
+               "id": 3601,
+               "value": "standard",
+               "project_code": "P-72815313",
+               "stage": "Won",
+               "number_new_jobs": 540,
+               "number_safeguarded_jobs": 1647,
+               "approved_high_value": false,
+               "approved_good_value": false,
+               "date_won": "Sun Dec 10 2017 22:41:08 GMT+0000 (GMT)",
+               "client_relationship_manager": "Clair Yost",
+               "client_relationship_manager_team": null,
+               "company_name": "Donnelly, Will and Bernier",
+               "company_reference": "ORG-23027932",
+               "investment_value": 932349732,
+               "foreign_equity_investment": 830956736,
+               "sector": {
+                  "name": "nisi quia aliquam"
+               },
+               "uk_region": {
+                  "name": "Buckinghamshire"
+               },
+               "company_country": {
+                  "name": "Bahamas",
+                  "iso_code": "GM"
+               }
+            },
+            {
+               "id": 1215,
+               "value": "high",
+               "project_code": "P-50735157",
+               "stage": "Pipeline",
+               "number_new_jobs": 2734,
+               "number_safeguarded_jobs": 2190,
+               "approved_high_value": false,
+               "approved_good_value": false,
+               "date_won": "Sun Dec 10 2017 08:25:15 GMT+0000 (GMT)",
+               "client_relationship_manager": "Stefan Cremin",
+               "client_relationship_manager_team": null,
+               "company_name": "Rippin and Sons",
+               "company_reference": "ORG-78872576",
+               "investment_value": 932214695,
+               "foreign_equity_investment": 902908719,
+               "sector": {
+                  "name": "assumenda in distinctio"
+               },
+               "uk_region": {
+                  "name": "Buckinghamshire"
+               },
+               "company_country": {
+                  "name": "Colombia",
+                  "iso_code": "UY"
+               }
+            },
+            {
+               "id": 947,
+               "value": "good",
+               "project_code": "P-63564992",
+               "stage": "Won",
+               "number_new_jobs": 3891,
+               "number_safeguarded_jobs": 42,
+               "approved_high_value": false,
+               "approved_good_value": true,
+               "date_won": "Sun Dec 10 2017 23:56:34 GMT+0000 (GMT)",
+               "client_relationship_manager": "Dr. Shyanne Carter",
+               "client_relationship_manager_team": null,
+               "company_name": "Gleason and Sons",
+               "company_reference": "ORG-20803174",
+               "investment_value": 259593521,
+               "foreign_equity_investment": 965805533,
+               "sector": {
+                  "name": "alias eveniet libero"
+               },
+               "uk_region": {
+                  "name": "Buckinghamshire"
+               },
+               "company_country": {
+                  "name": "Gambia",
+                  "iso_code": "AI"
+               }
+            },
+            {
+               "id": 1689,
+               "value": "good",
+               "project_code": "P-41880393",
+               "stage": "Pipeline",
+               "number_new_jobs": 4636,
+               "number_safeguarded_jobs": 2915,
+               "approved_high_value": true,
+               "approved_good_value": false,
+               "date_won": "Sun Dec 10 2017 18:37:19 GMT+0000 (GMT)",
+               "client_relationship_manager": "Mrs. Brandon Waelchi",
+               "client_relationship_manager_team": null,
+               "company_name": "Nikolaus, Weber and Kirlin",
+               "company_reference": "ORG-58574454",
+               "investment_value": 829878394,
+               "foreign_equity_investment": 440202439,
+               "sector": {
+                  "name": "unde qui ipsa"
+               },
+               "uk_region": {
+                  "name": "Bedfordshire"
+               },
+               "company_country": {
+                  "name": "Reunion",
+                  "iso_code": "LA"
+               }
+            },
+            {
+               "id": 4084,
+               "value": "high",
+               "project_code": "P-32097180",
+               "stage": "Pipeline",
+               "number_new_jobs": 4112,
+               "number_safeguarded_jobs": 2275,
+               "approved_high_value": false,
+               "approved_good_value": false,
+               "date_won": "Sun Dec 10 2017 20:40:59 GMT+0000 (GMT)",
+               "client_relationship_manager": "Dianna Langworth I",
+               "client_relationship_manager_team": null,
+               "company_name": "Hyatt, Davis and Mosciski",
+               "company_reference": "ORG-27656144",
+               "investment_value": 502148534,
+               "foreign_equity_investment": 862612355,
+               "sector": {
+                  "name": "nulla quo voluptatem"
+               },
+               "uk_region": {
+                  "name": "Buckinghamshire"
+               },
+               "company_country": {
+                  "name": "San Marino",
+                  "iso_code": "NO"
+               }
+            },
+            {
+               "id": 2178,
+               "value": "high",
+               "project_code": "P-31877251",
+               "stage": "Verified",
+               "number_new_jobs": 2669,
+               "number_safeguarded_jobs": 2251,
+               "approved_high_value": true,
+               "approved_good_value": false,
+               "date_won": "Sun Dec 10 2017 13:35:08 GMT+0000 (GMT)",
+               "client_relationship_manager": "Zoe Hane",
+               "client_relationship_manager_team": null,
+               "company_name": "Little Group",
+               "company_reference": "ORG-93102879",
+               "investment_value": 299355533,
+               "foreign_equity_investment": 971808672,
+               "sector": {
+                  "name": "exercitationem laborum vel"
+               },
+               "uk_region": {
+                  "name": "Avon"
+               },
+               "company_country": {
+                  "name": "Germany",
+                  "iso_code": "MS"
+               }
+            },
+            {
+               "id": 597,
+               "value": "standard",
+               "project_code": "P-62855473",
+               "stage": "Verified",
+               "number_new_jobs": 2797,
+               "number_safeguarded_jobs": 2879,
+               "approved_high_value": false,
+               "approved_good_value": false,
+               "date_won": "Sun Dec 10 2017 14:43:07 GMT+0000 (GMT)",
+               "client_relationship_manager": "Markus Crooks",
+               "client_relationship_manager_team": null,
+               "company_name": "Fadel and Sons",
+               "company_reference": "ORG-55721460",
+               "investment_value": 763940742,
+               "foreign_equity_investment": 293744821,
+               "sector": {
+                  "name": "voluptate est ea"
+               },
+               "uk_region": {
+                  "name": "Berkshire"
+               },
+               "company_country": {
+                  "name": "United Kingdom",
+                  "iso_code": "SG"
+               }
+            },
+            {
+               "id": 500,
+               "value": "high",
+               "project_code": "P-92595210",
+               "stage": "Pipeline",
+               "number_new_jobs": 83,
+               "number_safeguarded_jobs": 4856,
+               "approved_high_value": true,
+               "approved_good_value": true,
+               "date_won": "Sun Dec 10 2017 06:57:16 GMT+0000 (GMT)",
+               "client_relationship_manager": "Mrs. Haylie Crooks",
+               "client_relationship_manager_team": null,
+               "company_name": "Borer - Mraz",
+               "company_reference": "ORG-72057051",
+               "investment_value": 86584947,
+               "foreign_equity_investment": 915418430,
+               "sector": {
+                  "name": "maiores vel dignissimos"
+               },
+               "uk_region": {
+                  "name": "Cambridgeshire"
+               },
+               "company_country": {
+                  "name": "Qatar",
+                  "iso_code": "NC"
+               }
+            },
+            {
+               "id": 4571,
+               "value": "good",
+               "project_code": "P-81050378",
+               "stage": "Won",
+               "number_new_jobs": 926,
+               "number_safeguarded_jobs": 3543,
+               "approved_high_value": false,
+               "approved_good_value": true,
+               "date_won": "Mon Dec 11 2017 03:27:51 GMT+0000 (GMT)",
+               "client_relationship_manager": "Adriana D'Amore",
+               "client_relationship_manager_team": null,
+               "company_name": "Anderson LLC",
+               "company_reference": "ORG-24825194",
+               "investment_value": 129945092,
+               "foreign_equity_investment": 44709578,
+               "sector": {
+                  "name": "sit animi quos"
+               },
+               "uk_region": {
+                  "name": "Cambridgeshire"
+               },
+               "company_country": {
+                  "name": "Pakistan",
+                  "iso_code": "TM"
+               }
+            },
+            {
+               "id": 1198,
+               "value": "standard",
+               "project_code": "P-09728797",
+               "stage": "Pipeline",
+               "number_new_jobs": 1059,
+               "number_safeguarded_jobs": 788,
+               "approved_high_value": true,
+               "approved_good_value": true,
+               "date_won": "Mon Dec 11 2017 04:50:17 GMT+0000 (GMT)",
+               "client_relationship_manager": "Deon Runte",
+               "client_relationship_manager_team": null,
+               "company_name": "Barrows LLC",
+               "company_reference": "ORG-13592756",
+               "investment_value": 155503193,
+               "foreign_equity_investment": 808328954,
+               "sector": {
+                  "name": "id commodi magnam"
+               },
+               "uk_region": {
+                  "name": "Buckinghamshire"
+               },
+               "company_country": {
+                  "name": "Dominica",
+                  "iso_code": "MX"
+               }
+            },
+            {
+               "id": 3211,
+               "value": "good",
+               "project_code": "P-43972084",
+               "stage": "Verified",
+               "number_new_jobs": 1487,
+               "number_safeguarded_jobs": 2446,
+               "approved_high_value": false,
+               "approved_good_value": false,
+               "date_won": "Sun Dec 10 2017 13:36:46 GMT+0000 (GMT)",
+               "client_relationship_manager": "Velda Homenick Jr.",
+               "client_relationship_manager_team": null,
+               "company_name": "Volkman Inc",
+               "company_reference": "ORG-37648745",
+               "investment_value": 783550272,
+               "foreign_equity_investment": 310167614,
+               "sector": {
+                  "name": "optio consequatur aut"
+               },
+               "uk_region": {
+                  "name": "Buckinghamshire"
+               },
+               "company_country": {
+                  "name": "Papua New Guinea",
+                  "iso_code": "MO"
+               }
+            },
+            {
+               "id": 4526,
+               "value": "standard",
+               "project_code": "P-08935386",
+               "stage": "Pipeline",
+               "number_new_jobs": 3227,
+               "number_safeguarded_jobs": 3024,
+               "approved_high_value": false,
+               "approved_good_value": false,
+               "date_won": "Sun Dec 10 2017 23:58:08 GMT+0000 (GMT)",
+               "client_relationship_manager": "Jaylen Koss",
+               "client_relationship_manager_team": null,
+               "company_name": "Braun, Will and Towne",
+               "company_reference": "ORG-89126968",
+               "investment_value": 735710769,
+               "foreign_equity_investment": 628492290,
+               "sector": {
+                  "name": "sed tempora explicabo"
+               },
+               "uk_region": {
+                  "name": "Berkshire"
+               },
+               "company_country": {
+                  "name": "Jamaica",
+                  "iso_code": "CL"
+               }
+            },
+            {
+               "id": 4750,
+               "value": "standard",
+               "project_code": "P-10419327",
+               "stage": "Verified",
+               "number_new_jobs": 1829,
+               "number_safeguarded_jobs": 1847,
+               "approved_high_value": true,
+               "approved_good_value": false,
+               "date_won": "Mon Dec 11 2017 04:46:02 GMT+0000 (GMT)",
+               "client_relationship_manager": "Otis Johnson",
+               "client_relationship_manager_team": null,
+               "company_name": "Schultz - Keeling",
+               "company_reference": "ORG-99910482",
+               "investment_value": 798610675,
+               "foreign_equity_investment": 325710739,
+               "sector": {
+                  "name": "voluptatem aliquam sit"
+               },
+               "uk_region": {
+                  "name": "Buckinghamshire"
+               },
+               "company_country": {
+                  "name": "United States of America",
+                  "iso_code": "GU"
+               }
+            },
+            {
+               "id": 2712,
+               "value": "standard",
+               "project_code": "P-62085887",
+               "stage": "Verified",
+               "number_new_jobs": 4292,
+               "number_safeguarded_jobs": 1929,
+               "approved_high_value": false,
+               "approved_good_value": false,
+               "date_won": "Sun Dec 10 2017 17:18:25 GMT+0000 (GMT)",
+               "client_relationship_manager": "Fannie O'Keefe",
+               "client_relationship_manager_team": null,
+               "company_name": "Cole - Zemlak",
+               "company_reference": "ORG-31162474",
+               "investment_value": 954355106,
+               "foreign_equity_investment": 715086333,
+               "sector": {
+                  "name": "aperiam eius laborum"
+               },
+               "uk_region": {
+                  "name": "Buckinghamshire"
+               },
+               "company_country": {
+                  "name": "India",
+                  "iso_code": "HK"
+               }
+            },
+            {
+               "id": 189,
+               "value": "standard",
+               "project_code": "P-46529109",
+               "stage": "Verified",
+               "number_new_jobs": 3538,
+               "number_safeguarded_jobs": 4833,
+               "approved_high_value": false,
+               "approved_good_value": true,
+               "date_won": "Sun Dec 10 2017 18:24:58 GMT+0000 (GMT)",
+               "client_relationship_manager": "Roman Crist",
+               "client_relationship_manager_team": null,
+               "company_name": "Heidenreich - Bashirian",
+               "company_reference": "ORG-56773878",
+               "investment_value": 154856523,
+               "foreign_equity_investment": 129100625,
+               "sector": {
+                  "name": "iure itaque nulla"
+               },
+               "uk_region": {
+                  "name": "Berkshire"
+               },
+               "company_country": {
+                  "name": "Saint Lucia",
+                  "iso_code": "CK"
+               }
+            },
+            {
+               "id": 1013,
+               "value": "standard",
+               "project_code": "P-85374144",
+               "stage": "Verified",
+               "number_new_jobs": 2931,
+               "number_safeguarded_jobs": 4674,
+               "approved_high_value": true,
+               "approved_good_value": false,
+               "date_won": "Mon Dec 11 2017 01:37:56 GMT+0000 (GMT)",
+               "client_relationship_manager": "Mr. Trystan Herzog",
+               "client_relationship_manager_team": null,
+               "company_name": "Doyle - Marquardt",
+               "company_reference": "ORG-66423086",
+               "investment_value": 592693722,
+               "foreign_equity_investment": 437992543,
+               "sector": {
+                  "name": "expedita aperiam atque"
+               },
+               "uk_region": {
+                  "name": "Cambridgeshire"
+               },
+               "company_country": {
+                  "name": "Australia",
+                  "iso_code": "BB"
+               }
+            }
+         ]
+      }
+   },
+   "date_range": {
+      "start": "Fri, 01 Apr 2016 00:00:00 GMT",
+      "end": "Fri, 31 Mar 2017 23:59:59 GMT"
+   }
+}

@@ -3,7 +3,7 @@
 {% from 'macros/dates.html' import financialYear %}
 {% from '../macros/tabs/fdi/overseas-regions.html' import tabs %}
 
-{% set pageName %}Investment - Overseas Region non HVC wins - {{ region.name | safe }}{% endset %}
+{% set pageName %}Investment - Overseas Region non HVC projects - {{ region.name | safe }}{% endset %}
 
 {% block page_content %}
 
@@ -16,7 +16,7 @@
 	{% include 'partials/year-selector.html' %}
 	<h3 class="page-date">{{ financialYear( dateRange ) }}</h3>
 
-	{{ tabs( region.id, nonHvcWins = true ) }}
+	{{ tabs( region.id, nonHvcProjects = true ) }}
 
 {% endblock %}
 

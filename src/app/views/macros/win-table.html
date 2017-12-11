@@ -30,9 +30,6 @@
 							Lead officer
 						</a>
 					</th>
-					<th class="win-table_head_cell win-table_head_cell--credited">
-						Credited to sector team
-					</th>
 					<th class="{{ tableHeadingClass( 'date', wins.sortKey, wins.sortDir ) }} win-table_head_cell--date">
 						<a href="{{ urls.addSort( currentUrl, 'date', wins.sortKey, wins.sortDir ) }}" class="win-table_head_cell_link" title="Sort by Win date">
 							Confirmed date
@@ -66,11 +63,6 @@
 					{% endif -%}
 					<td class="win-table_cell win-table_cell--officer">
 						{{- win.lead_officer.name -}}
-					</td>
-					<td class="win-table_cell win-table_cell--credited">
-						<span class="win-table_cell_credit-name win-table_cell_credit-name--{{ win.credit.modifyer }}">
-							{{- win.credit.name -}}
-						</span>
 					</td>
 					<td class="win-table_cell win-table_cell--date">{{ win.win_date | dateOnly }}</td>
 					<td class="win-table_cell win-table_cell--export">

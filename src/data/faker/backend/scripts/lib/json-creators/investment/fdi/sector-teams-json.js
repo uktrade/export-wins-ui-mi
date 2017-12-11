@@ -15,5 +15,10 @@ module.exports = {
 	createTeam: function( year ){
 
 		return generateSchema( '/investment/fdi/sector_teams/sector-team.schema', year );
+	},
+
+	createWinTable: function( year ){
+
+		return generateSchema( '/investment/fdi/sector_teams/win-table.schema', year );
 	}
 };
