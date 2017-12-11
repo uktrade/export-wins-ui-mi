@@ -127,22 +127,22 @@ module.exports = function( req ){
 			sectorTeam: ( teamId ) => filteredUrl( `/investment/sector-teams/${ teamId }/` ),
 			sectorTeamHvcPerformance: ( teamId ) => filteredUrl( `/investment/sector-teams/${ teamId }/hvc-performance/` ),
 			sectorTeamNonHvcPerformance: ( teamId ) => filteredUrl( `/investment/sector-teams/${ teamId }/non-hvc-performance/` ),
-			sectorTeamWins: ( teamId ) => filteredUrl( `/investment/sector-teams/${ teamId }/wins/` ),
-			sectorTeamNonHvcWins: ( teamId ) => filteredUrl( `/investment/sector-teams/${ teamId }/non-hvc-wins/` ),
+			sectorTeamHvcProjects: ( teamId ) => filteredUrl( `/investment/sector-teams/${ teamId }/hvc-projects/` ),
+			sectorTeamNonHvcProjects: ( teamId ) => filteredUrl( `/investment/sector-teams/${ teamId }/non-hvc-projects/` ),
 
 			osRegions: () => filteredUrl( `/investment/overseas-regions/` ),
 			osRegion: ( teamId ) => filteredUrl( `/investment/overseas-regions/${ teamId }/` ),
 			osRegionHvcPerformance: ( teamId ) => filteredUrl( `/investment/overseas-regions/${ teamId }/hvc-performance/` ),
 			osRegionNonHvcPerformance: ( teamId ) => filteredUrl( `/investment/overseas-regions/${ teamId }/non-hvc-performance/` ),
-			osRegionWins: ( teamId ) => filteredUrl( `/investment/overseas-regions/${ teamId }/wins/` ),
-			osRegionNonHvcWins: ( teamId ) => filteredUrl( `/investment/overseas-regions/${ teamId }/non-hvc-wins/` ),
+			osRegionHvcProjects: ( teamId ) => filteredUrl( `/investment/overseas-regions/${ teamId }/hvc-projects/` ),
+			osRegionNonHvcProjects: ( teamId ) => filteredUrl( `/investment/overseas-regions/${ teamId }/non-hvc-projects/` ),
 
 			ukRegions: () => filteredUrl( `/investment/uk-regions/` ),
 			ukRegion: ( teamId ) => filteredUrl( `/investment/uk-regions/${ teamId }/` ),
 			ukRegionHvcPerformance: ( teamId ) => filteredUrl( `/investment/uk-regions/${ teamId }/hvc-performance/` ),
 			ukRegionNonHvcPerformance: ( teamId ) => filteredUrl( `/investment/uk-regions/${ teamId }/non-hvc-performance/` ),
-			ukRegionWins: ( teamId ) => filteredUrl( `/investment/uk-regions/${ teamId }/wins/` ),
-			ukRegionNonHvcWins: ( teamId ) => filteredUrl( `/investment/uk-regions/${ teamId }/non-hvc-wins/` )
+			ukRegionHvcProjects: ( teamId ) => filteredUrl( `/investment/uk-regions/${ teamId }/hvc-projects/` ),
+			ukRegionNonHvcProjects: ( teamId ) => filteredUrl( `/investment/uk-regions/${ teamId }/non-hvc-projects/` )
 		}
 	};
 };

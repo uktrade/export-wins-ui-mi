@@ -1,6 +1,7 @@
 const { getAll, getJson } = require( '../_helpers' );
 
 const transformFdiOverviewYoy = require( '../../../transformers/fdi/overview-yoy' );
+const transformFdiProjectList = require( '../../../transformers/fdi/project-list' );
 
 function createIdMatcher( id ){
 
@@ -41,6 +42,29 @@ function getSectorTeamHvc( req, teamId ){
 function getSectorTeamNonHvc( req, teamId ){
 
 	return getJson( `/mi/fdi/sector_teams/${ teamId }/non_hvc/`, req );
+}
+
+function getSectorTeamWinTable( req, teamId ){
+
+	return getJson( `/mi/fdi/sector_teams/${ teamId }/win_table/`, req );
+}
+
+function getSectorTeamHvcWinTable( req, teamId ){
+
+	return getSectorTeamWinTable( req, teamId ).then( ( data ) => {
+
+		data.results.investments = transformFdiProjectList( data.results.investments.hvc );
+		return data;
+	} );
+}
+
+function getSectorTeamNonHvcWinTable( req, teamId ){
+
+	return getSectorTeamWinTable( req, teamId ).then( ( data ) => {
+
+		data.results.investments = transformFdiProjectList( data.results.investments.non_hvc );
+		return data;
+	} );
 }
 
 function getOverseasRegions( req ){
@@ -99,6 +123,9 @@ module.exports = {
 	getSectorTeam,
 	getSectorTeamHvc,
 	getSectorTeamNonHvc,
+	getSectorTeamWinTable,
+	getSectorTeamHvcWinTable,
+	getSectorTeamNonHvcWinTable,
 
 	getOverseasRegions,
 	getOverseasRegion,

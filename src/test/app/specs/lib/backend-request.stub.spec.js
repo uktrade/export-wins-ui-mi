@@ -492,6 +492,14 @@ describe( 'Backend stub', function(){
 				} );
 			} );
 
+			describe( 'Getting a Sector Team win table', function(){
+
+				it( 'Should return the details', function( done ){
+
+					checkMultipleYears( '/mi/fdi/sector_teams/1234/win_table/', '/investment/fdi/sector_teams/win_table', done );
+				} );
+			} );
+
 			describe( 'Getting the Overseas Regions', function(){
 
 				it( 'Should return the list', function( done ){

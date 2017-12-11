@@ -77,6 +77,11 @@
 		}
 	},
 
+	"boolean": {
+		"type": "boolean",
+		"faker": "random.boolean"
+	},
+
 	"total": {
 		"type": "object",
 		"required": [ "number_new_jobs__sum", "number_safeguarded_jobs__sum", "investment_value__sum", "count" ],

@@ -1,12 +1,12 @@
 {% from 'macros/tabs/tab.html' import tab %}
 
-{% macro tabs( sectorTeamId, performance = false, hvcPerformance = false, nonHvcPerformance = false, hvcWins = false, nonHvcWins = false ) -%}
+{% macro tabs( sectorTeamId, performance = false, hvcPerformance = false, nonHvcPerformance = false, hvcProjects = false, nonHvcProjects = false ) -%}
 
 	{% set perfHref = urls.investment.sectorTeam( sectorTeamId ) %}
 	{% set hvcPerfHref = urls.investment.sectorTeamHvcPerformance( sectorTeamId ) %}
 	{% set nonHvcPerfHref = urls.investment.sectorTeamNonHvcPerformance( sectorTeamId ) %}
-	{% set hvcWinsHref = urls.investment.sectorTeamWins( sectorTeamId ) %}
-	{% set nonHvcWinsHref = urls.investment.sectorTeamNonHvcWins( sectorTeamId ) %}
+	{% set hvcProjectsHref = urls.investment.sectorTeamHvcProjects( sectorTeamId ) %}
+	{% set nonHvcProjectsHref = urls.investment.sectorTeamNonHvcProjects( sectorTeamId ) %}
 
 	{% if performance %}
 		{% set perfHref = '' %}
@@ -20,22 +20,20 @@
 		{% set nonHvcPerfHref = '' %}
 	{% endif %}
 
-	{% if hvcWins %}
-		{% set hvcWinsHref = '' %}
+	{% if hvcProjects %}
+		{% set hvcProjectsHref = '' %}
 	{% endif %}
 
-	{% if nonHvcWins %}
-		{% set nonHvcWinsHref = '' %}
+	{% if nonHvcProjects %}
+		{% set nonHvcProjectsHref = '' %}
 	{% endif %}
 
 	<ul class="page-tabs">
 		{{ tab( 'Performance', href = perfHref ) }}
 		{{ tab( 'HVC', href = hvcPerfHref ) }}
 		{{ tab( 'Non HVC', href = nonHvcPerfHref ) }}
-		{#
-		{{ tab( 'HVC wins', href = hvcWinsHref ) }}
-		{{ tab( 'Non HVC wins', href = nonHvcWinsHref ) }}
-		#}
+		{{ tab( 'HVC projects', href = hvcProjectsHref ) }}
+		{{ tab( 'Non HVC projects', href = nonHvcProjectsHref ) }}
 	</ul>
 
 {%- endmacro %}

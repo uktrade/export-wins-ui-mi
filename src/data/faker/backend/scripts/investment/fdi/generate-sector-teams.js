@@ -10,7 +10,8 @@ let jsonFiles = {
 	overview: sectorTeamsJson.createOverview(),
 	sector_team: sectorTeamsJson.createTeam(),
 	sector_team_hvc: sectorTeamsJson.createTeam(),
-	sector_team_non_nvc: sectorTeamsJson.createTeam()
+	sector_team_non_nvc: sectorTeamsJson.createTeam(),
+	win_table: sectorTeamsJson.createWinTable()
 };
 
 writeJsonFiles( outputPath, jsonFiles );

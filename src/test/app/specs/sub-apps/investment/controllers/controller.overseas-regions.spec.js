@@ -274,7 +274,7 @@ describe( 'Investment Overseas Regions controller', function(){
 		} );
 	} );
 
-	describe( 'HVC Wins', function(){
+	describe( 'HVC projects', function(){
 
 		describe( 'With success', function(){
 
@@ -290,12 +290,12 @@ describe( 'Investment Overseas Regions controller', function(){
 
 				fdiService.getOverseasRegion.and.callFake( () => promise );
 
-				controller.wins( req, res );
+				controller.hvcProjects( req, res );
 
 				promise.then( () => {
 
 					expect( fdiService.getOverseasRegion ).toHaveBeenCalledWith( req, teamId );
-					expect( res.render ).toHaveBeenCalledWith( 'investment/views/overseas-regions/wins', { dateRange: osRegionResponse.date_range, region: osRegionResponse.results } );
+					expect( res.render ).toHaveBeenCalledWith( 'investment/views/overseas-regions/hvc-projects', { dateRange: osRegionResponse.date_range, region: osRegionResponse.results } );
 					done();
 				} );
 			} );
@@ -317,7 +317,7 @@ describe( 'Investment Overseas Regions controller', function(){
 
 				fdiService.getOverseasRegion.and.callFake( () => promise );
 
-				controller.wins( req, res );
+				controller.hvcProjects( req, res );
 
 				expect( createHandler ).toHaveBeenCalledWith( req, res );
 
@@ -334,7 +334,7 @@ describe( 'Investment Overseas Regions controller', function(){
 		} );
 	} );
 
-	describe( 'Non HVC wins', function(){
+	describe( 'Non HVC projects', function(){
 
 		describe( 'With success', function(){
 
@@ -350,12 +350,12 @@ describe( 'Investment Overseas Regions controller', function(){
 
 				fdiService.getOverseasRegion.and.callFake( () => promise );
 
-				controller.nonHvcWins( req, res );
+				controller.nonHvcProjects( req, res );
 
 				promise.then( () => {
 
 					expect( fdiService.getOverseasRegion ).toHaveBeenCalledWith( req, teamId );
-					expect( res.render ).toHaveBeenCalledWith( 'investment/views/overseas-regions/non-hvc-wins', { dateRange: osRegionResponse.date_range, region: osRegionResponse.results } );
+					expect( res.render ).toHaveBeenCalledWith( 'investment/views/overseas-regions/non-hvc-projects', { dateRange: osRegionResponse.date_range, region: osRegionResponse.results } );
 					done();
 				} );
 			} );
@@ -377,7 +377,7 @@ describe( 'Investment Overseas Regions controller', function(){
 
 				fdiService.getOverseasRegion.and.callFake( () => promise );
 
-				controller.nonHvcWins( req, res );
+				controller.nonHvcProjects( req, res );
 
 				expect( createHandler ).toHaveBeenCalledWith( req, res );
 

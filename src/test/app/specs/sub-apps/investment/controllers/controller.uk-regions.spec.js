@@ -292,12 +292,12 @@ describe( 'Investment UK Regions controller', function(){
 
 				fdiService.getUkRegion.and.callFake( () => promise );
 
-				controller.wins( req, res );
+				controller.hvcProjects( req, res );
 
 				promise.then( () => {
 
 					expect( fdiService.getUkRegion ).toHaveBeenCalledWith( req, teamId );
-					expect( res.render ).toHaveBeenCalledWith( 'investment/views/uk-regions/wins', { dateRange: ukRegionResponse.date_range, region: ukRegionResponse.results } );
+					expect( res.render ).toHaveBeenCalledWith( 'investment/views/uk-regions/hvc-projects', { dateRange: ukRegionResponse.date_range, region: ukRegionResponse.results } );
 					done();
 				} );
 			} );
@@ -319,7 +319,7 @@ describe( 'Investment UK Regions controller', function(){
 
 				fdiService.getUkRegion.and.callFake( () => promise );
 
-				controller.wins( req, res );
+				controller.hvcProjects( req, res );
 
 				expect( createHandler ).toHaveBeenCalledWith( req, res );
 
@@ -352,12 +352,12 @@ describe( 'Investment UK Regions controller', function(){
 
 				fdiService.getUkRegion.and.callFake( () => promise );
 
-				controller.nonHvcWins( req, res );
+				controller.nonHvcProjects( req, res );
 
 				promise.then( () => {
 
 					expect( fdiService.getUkRegion ).toHaveBeenCalledWith( req, teamId );
-					expect( res.render ).toHaveBeenCalledWith( 'investment/views/uk-regions/non-hvc-wins', { dateRange: ukRegionResponse.date_range, region: ukRegionResponse.results } );
+					expect( res.render ).toHaveBeenCalledWith( 'investment/views/uk-regions/non-hvc-projects', { dateRange: ukRegionResponse.date_range, region: ukRegionResponse.results } );
 					done();
 				} );
 			} );
@@ -379,7 +379,7 @@ describe( 'Investment UK Regions controller', function(){
 
 				fdiService.getUkRegion.and.callFake( () => promise );
 
-				controller.nonHvcWins( req, res );
+				controller.nonHvcProjects( req, res );
 
 				expect( createHandler ).toHaveBeenCalledWith( req, res );
 

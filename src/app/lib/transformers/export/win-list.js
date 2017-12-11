@@ -1,10 +1,5 @@
 const MAX_CDMS_ID_LENGTH = 24;
 
-function createCredit( win, name, modifyer ){
-
-	win.credit = { name, modifyer };
-}
-
 function createStatus( win, name, modifyer ){
 
 	win.status = { name, modifyer };
@@ -34,15 +29,6 @@ function checkHvcName( win ){
 }
 
 function transformWin( win ){
-
-	if( win.credit ){
-
-		createCredit( win, 'Yes', 'yes' );
-
-	} else {
-
-		createCredit( win, 'No', 'no' );
-	}
 
 	switch( win.status ){
 

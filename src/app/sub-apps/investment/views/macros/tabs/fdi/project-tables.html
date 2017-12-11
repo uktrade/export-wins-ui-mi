@@ -1,0 +1,45 @@
+{% from './project-table.html' import projectTable %}
+
+{% macro projectMessage( projectCount ) %}
+	<p>
+		Total number of projects: <strong>{{ projectCount }}</strong>.
+	</p>
+{% endmacro %}
+
+{% macro singleProjectTable( type, hvcProjects = false, nonHvcProjects = false, noNonHvcProjectsMessage ) %}
+
+	{%- if hvcProjects -%}
+
+		{% if hvcProjects.length %}
+
+			{{ projectMessage( hvcProjects.length ) }}
+			{{ projectTable( hvcProjects, hvc=true ) }}
+
+		{%- else -%}
+
+			<p class="no-wins-message">There aren&#39;t any HVC projects recorded for this {{ type }}.</p>
+
+		{%- endif %}
+
+	{% else %}
+
+		{% if nonHvcProjects.length %}
+
+			{{ projectMessage( nonHvcProjects.length ) }}
+			{{ projectTable( nonHvcProjects, nonHvc=true ) }}
+
+		{%- else -%}
+
+			<p class="no-wins-message">
+				{%- if noNonHvcProjectsMessage %}
+					{{ noNonHvcProjectsMessage }}
+				{% else -%}
+					There aren&#39;t any non HVC projects recorded for this {{ type }}.
+				{% endif -%}
+			</p>
+
+		{%- endif %}
+
+	{% endif %}
+
+{% endmacro %}

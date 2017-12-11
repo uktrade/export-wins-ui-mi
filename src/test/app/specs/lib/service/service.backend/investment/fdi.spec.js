@@ -9,6 +9,7 @@ const moduleFile = '../../../../../../../app/lib/service/service.backend/investm
 let getJson;
 let fdiService;
 let fdiOverviewYoyTransformer;
+let fdiProjectListTransformer;
 let req;
 
 function checkBackendArgs( path, req, transformer ){
@@ -40,6 +41,7 @@ describe( 'Investment FDI backend service', function(){
 		req = { cookies: { sessionid: 'test' } };
 		getJson = jasmine.createSpy( 'getJson' );
 		fdiOverviewYoyTransformer = jasmine.createSpy( 'fdiOverviewYoyTransformer' );
+		fdiProjectListTransformer = jasmine.createSpy( 'fdiProjectListTransformer' );
 	} );
 
 	describe( 'Single methods', function(){
@@ -50,7 +52,8 @@ describe( 'Investment FDI backend service', function(){
 
 			fdiService = proxyquire( moduleFile, {
 				'../_helpers': { getJson },
-				'../../../transformers/fdi/overview-yoy': fdiOverviewYoyTransformer
+				'../../../transformers/fdi/overview-yoy': fdiOverviewYoyTransformer,
+				'../../../transformers/fdi/project-list': fdiProjectListTransformer
 			} );
 		} );
 
@@ -84,10 +87,6 @@ describe( 'Investment FDI backend service', function(){
 
 				const teamId = '1';
 
-				//This should not be needed
-				//Provide data while using export APIs
-				returnData( { results: [ { id: 1, name: 2 } ] } );
-
 				fdiService.getSectorTeam( req, teamId ).then( () => {
 
 					checkBackendArgs( `/mi/fdi/sector_teams/${ teamId }/`, req );
@@ -101,10 +100,6 @@ describe( 'Investment FDI backend service', function(){
 			it( 'Should call the correct API', function( done ){
 
 				const teamId = '1';
-
-				//This should not be needed
-				//Provide data while using export APIs
-				returnData( { results: [ { id: 1, name: 2 } ] } );
 
 				fdiService.getSectorTeamHvc( req, teamId ).then( () => {
 
@@ -120,13 +115,65 @@ describe( 'Investment FDI backend service', function(){
 
 				const teamId = '1';
 
-				//This should not be needed
-				//Provide data while using export APIs
-				returnData( { results: [ { id: 1, name: 2 } ] } );
-
 				fdiService.getSectorTeamNonHvc( req, teamId ).then( () => {
 
 					checkBackendArgs( `/mi/fdi/sector_teams/${ teamId }/non_hvc/`, req );
+					done();
+				} );
+			} );
+		} );
+
+		describe( 'Sector Team win table', function(){
+
+			it( 'Should call the correct API', function( done ){
+
+				const teamId = '1';
+
+				fdiService.getSectorTeamWinTable( req, teamId ).then( () => {
+
+					checkBackendArgs( `/mi/fdi/sector_teams/${ teamId }/win_table/`, req );
+					done();
+				} );
+			} );
+		} );
+
+		describe( 'Sector Team HVC win table', function(){
+
+			it( 'Should call the correct API', function( done ){
+
+				const teamId = '1';
+				const stubFile = '/investment/fdi/sector_teams/win_table';
+				const transformResponse = { response: true };
+
+				returnData( getBackendStub( stubFile ) );
+				fdiProjectListTransformer.and.callFake( () => transformResponse );
+
+				fdiService.getSectorTeamHvcWinTable( req, teamId ).then( ( data ) => {
+
+					checkBackendArgs( `/mi/fdi/sector_teams/${ teamId }/win_table/`, req );
+					expect( fdiProjectListTransformer ).toHaveBeenCalledWith( getBackendStub( stubFile ).results.investments.hvc );
+					expect( data.results.investments ).toEqual( transformResponse );
+					done();
+				} );
+			} );
+		} );
+
+		describe( 'Sector Team Non HVC win table', function(){
+
+			it( 'Should call the correct API', function( done ){
+
+				const teamId = '1';
+				const stubFile = '/investment/fdi/sector_teams/win_table';
+				const transformResponse = { response: true };
+
+				returnData( getBackendStub( stubFile ) );
+				fdiProjectListTransformer.and.callFake( () => transformResponse );
+
+				fdiService.getSectorTeamNonHvcWinTable( req, teamId ).then( ( data ) => {
+
+					checkBackendArgs( `/mi/fdi/sector_teams/${ teamId }/win_table/`, req );
+					expect( fdiProjectListTransformer ).toHaveBeenCalledWith( getBackendStub( stubFile ).results.investments.non_hvc );
+					expect( data.results.investments ).toEqual( transformResponse );
 					done();
 				} );
 			} );
