@@ -1,10 +1,10 @@
 {
   "name": "export-wins-ui-mi",
-  "version": "6.21.0",
+  "version": "6.21.1",
   "description": "An MI dashboard for Export Wins",
   "main": "server.js",
   "engines": {
-    "node": "8.9.1",
+    "node": "8.9.3",
     "npm": "5.5.1"
   },
   "scripts": {
@@ -79,7 +79,7 @@
     "normalize-strings": "1.1.0",
     "nunjucks": "3.0.1",
     "random-int": "^1.0.0",
-    "raven": "2.2.1",
+    "raven": "2.3.0",
     "request": "2.83.0",
     "winston": "2.4.0"
   },
@@ -108,9 +108,9 @@
     "karma-jasmine": "*",
     "load-grunt-tasks": "*",
     "mockdate": "2.0.2",
-    "nock": "9.1.0",
+    "nock": "9.1.4",
     "node-sass": "4.7.2",
-    "nodemon": "1.12.1",
+    "nodemon": "1.12.5",
     "npm-run-all": "4.1.2",
     "nyc": "11.3.0",
     "proxyquire": "1.8.0",
