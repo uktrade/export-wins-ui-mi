@@ -5,6 +5,7 @@
 
 {% set pageName %}Country performance - {{ countryName | safe  }}{% endset %}
 {% set sectorName %}{{ countryName | safe }}{% endset %}
+{% set loadMoreUrl = urls.countryTopNonHvc( countryCode ) %}
 
 {% block year_selector %}
 	{{ super() }}

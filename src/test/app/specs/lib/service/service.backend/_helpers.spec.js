@@ -142,6 +142,20 @@ describe( 'Backend service helpers', function(){
 
 		describe( 'getJson', function(){
 
+			describe( 'When the path already has a query param', function(){
+
+				it( 'Should add the year to the existing params', function( done ){
+
+					const allPath = `${ path }?all=1`;
+
+					helpers.getJson( allPath, req ).then( () => {
+
+						checkSessionGetArgs( `${ allPath }&year=${ year }`, req );
+						done();
+					} );
+				} );
+			} );
+
 			describe( 'Passing a date to the backend', function(){
 
 				describe( 'When there is a date[start] in the req', function(){

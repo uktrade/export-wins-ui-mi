@@ -21,6 +21,7 @@ module.exports = {
 		return {
 			dateRange: data.date_range,
 			items: data.results,
+			count: data.count,
 			scale: createScale( data.results )
 		};
 	}

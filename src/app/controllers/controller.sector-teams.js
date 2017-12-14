@@ -50,6 +50,17 @@ module.exports = {
 		} ).catch( renderError.createHandler( req, res ) );
 	},
 
+	topNonHvcs: function( req, res ){
+
+		const teamId = req.params.id;
+
+		exportBackendService.getSectorTeamTopNonHvc( req, teamId, true ).then( ( topNonHvcs ) => {
+
+			res.render( 'partials/top-non-hvcs.html', { topNonHvcs: topNonHvcs.results } );
+
+		} ).catch( renderError.createHandler( req, res ) );
+	},
+
 	team: function( req, res ){
 
 		const teamId = req.params.id;

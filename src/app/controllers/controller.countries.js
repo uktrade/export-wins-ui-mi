@@ -37,6 +37,17 @@ module.exports = {
 		} ).catch( errorHandler.createHandler( req, res ) );
 	},
 
+	topNonHvcs: function( req, res ){
+
+		const countryCode = req.params.code;
+
+		exportBackendService.getCountryTopNonHvc( req, countryCode, true ).then( ( topNonHvcs ) => {
+
+			res.render( 'partials/top-non-hvcs.html', { topNonHvcs: topNonHvcs.results } );
+
+		} ).catch( errorHandler.createHandler( req, res ) );
+	},
+
 	country: function( req, res ){
 
 		const countryCode = req.params.code;

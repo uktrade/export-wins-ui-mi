@@ -79,6 +79,37 @@ describe( 'Countries controller', function(){
 		} );
 	} );
 
+	describe( 'Top non HVCs', function(){
+
+		it( 'Should get the list data and render the correct view', function( done ){
+
+			const req = {
+				cookies: { sessionid: '456' },
+				params: { code: 'SI' },
+				year
+			};
+
+			const topNonHvcs = { results: { 'topNonHvcs': true } };
+
+			const promise = new Promise( ( resolve ) => { resolve( topNonHvcs ); } );
+
+			exportBackendService.getCountryTopNonHvc = spy( 'getCountryTopNonHvc', promise );
+			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
+
+			controller.topNonHvcs( req, res );
+
+			promise.then( () => {
+
+				expect( exportBackendService.getCountryTopNonHvc ).toHaveBeenCalledWith( req, req.params.code, true );
+				expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
+				expect( res.render ).toHaveBeenCalledWith( 'partials/top-non-hvcs.html', {
+					topNonHvcs: topNonHvcs.results
+				} );
+				done();
+			} );
+		} );
+	} );
+
 	describe( 'Country', function(){
 
 		it( 'Should get the data and render the correct view', function( done ){

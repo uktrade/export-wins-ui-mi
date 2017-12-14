@@ -3,6 +3,7 @@
 {% from 'macros/tabs/sector-team.html' import tabs %}
 
 {% set pageName %}Sector team performance - {{ teamName | safe }}{% endset %}
+{% set loadMoreUrl = urls.sectorTeamTopNonHvc( teamId ) %}
 
 {% block page_content %}
 

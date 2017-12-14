@@ -79,6 +79,37 @@ describe( 'Posts controller', function(){
 		} );
 	} );
 
+	describe( 'Top Non HVcs', function(){
+
+		it( 'Should get the list data and render the correct view', function( done ){
+
+			const req = {
+				cookies: { sessionid: '456' },
+				params: { id: 'SI' },
+				year
+			};
+
+			const topNonHvcs = { results: { 'topNonHvcs': true } };
+
+			const promise = new Promise( ( resolve ) => { resolve( topNonHvcs ); } );
+
+			exportBackendService.getPostTopNonHvc = spy( 'getPostTopNonHvc', promise );
+			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
+
+			controller.topNonHvcs( req, res );
+
+			promise.then( () => {
+
+				expect( exportBackendService.getPostTopNonHvc ).toHaveBeenCalledWith( req, req.params.id, true );
+				expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
+				expect( res.render ).toHaveBeenCalledWith( 'partials/top-non-hvcs.html', {
+					topNonHvcs: topNonHvcs.results
+				} );
+				done();
+			} );
+		} );
+	} );
+
 	describe( 'Post', function(){
 
 		it( 'Should get the data and render the correct view', function( done ){

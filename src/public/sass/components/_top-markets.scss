@@ -18,11 +18,24 @@ $right-padding: 2em;
 	border-collapse: collapse;
 }
 
-.top-markets_table_row:first-of-type {
-	border-top: 1px solid #000;
+.top-markets_table_row {
+
+	$transition-time: .5s;
+	transition: opacity $transition-time ease-in;
+	-moz-transition: opacity $transition-time ease-in;
+	-webkit-transition: opacity $transition-time ease-in;
+	opacity: 1;
+
+	&:first-of-type {
+		border-top: 1px solid #000;
+	}
+	&:nth-of-type(even) {
+		background-color: $grey-4;
+	}
 }
-.top-markets_table_row:nth-of-type(even) {
-	background-color: $grey-4;
+
+.top-markets_table_row--new {
+	opacity: 0;
 }
 
 .top-markets_table_heading {
