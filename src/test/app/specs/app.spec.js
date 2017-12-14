@@ -73,6 +73,94 @@ if( config.backend.mock ){
 	} );
 }
 
+	describe( 'Top non HVCs partial', function(){
+
+		describe( 'For Sector Team', function(){
+
+			describe( 'When the API returns a status of 200', function(){
+
+				it( 'Should return a 200 with the correct heading', function( done ){
+
+					interceptBackend.getStub( '/mi/sector_teams/1/top_non_hvcs/?all=1&year=2017', 200, '/sector_teams/top_non_hvcs' );
+
+					supertest( app ).get( '/sector-teams/1/top-non-hvc/' ).end( ( err, res ) => {
+
+						checkResponse( res, 200 );
+						done();
+					} );
+				} );
+			} );
+		} );
+
+		describe( 'For Overseas Region', function(){
+
+			describe( 'When the API returns a status of 200', function(){
+
+				it( 'Should return a 200 with the correct heading', function( done ){
+
+					interceptBackend.getStub( '/mi/os_regions/1/top_non_hvcs/?all=1&year=2017', 200, '/os_regions/top_non_hvcs' );
+
+					supertest( app ).get( '/overseas-regions/1/top-non-hvc/' ).end( ( err, res ) => {
+
+						checkResponse( res, 200 );
+						done();
+					} );
+				} );
+			} );
+		} );
+
+		describe( 'For Country', function(){
+
+			describe( 'When the API returns a status of 200', function(){
+
+				it( 'Should return a 200 with the correct heading', function( done ){
+
+					interceptBackend.getStub( '/mi/countries/AU/top_non_hvcs/?all=1&year=2017', 200, '/countries/top_non_hvcs' );
+
+					supertest( app ).get( '/countries/AU/top-non-hvc/' ).end( ( err, res ) => {
+
+						checkResponse( res, 200 );
+						done();
+					} );
+				} );
+			} );
+		} );
+
+		describe( 'For Post', function(){
+
+			describe( 'When the API returns a status of 200', function(){
+
+				it( 'Should return a 200 with the correct heading', function( done ){
+
+					interceptBackend.getStub( '/mi/posts/australia-perth/top_non_hvcs/?all=1&year=2017', 200, '/posts/top_non_hvcs' );
+
+					supertest( app ).get( '/posts/australia-perth/top-non-hvc/' ).end( ( err, res ) => {
+
+						checkResponse( res, 200 );
+						done();
+					} );
+				} );
+			} );
+		} );
+
+		describe( 'For UK Region', function(){
+
+			describe( 'When the API returns a status of 200', function(){
+
+				it( 'Should return a 200 with the correct heading', function( done ){
+
+					interceptBackend.getStub( '/mi/uk_regions/north-west/top_non_hvcs/?all=1&year=2017', 200, '/uk_regions/top_non_hvcs' );
+
+					supertest( app ).get( '/uk-regions/north-west/top-non-hvc/' ).end( ( err, res ) => {
+
+						checkResponse( res, 200 );
+						done();
+					} );
+				} );
+			} );
+		} );
+	} );
+
 	describe( 'User pages', function(){
 
 		let userIntercept;

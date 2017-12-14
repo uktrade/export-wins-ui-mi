@@ -92,21 +92,25 @@ module.exports = function( req ){
 		sectorTeam: ( teamId ) => filteredUrl( `/sector-teams/${ teamId }/` ),
 		sectorTeamWins: ( teamId ) => filteredUrl( `/sector-teams/${ teamId }/wins/` ),
 		sectorTeamNonHvcWins: ( teamId ) => filteredUrl( `/sector-teams/${ teamId }/non-hvc-wins/` ),
+		sectorTeamTopNonHvc: ( teamId ) => filteredUrl( `/sector-teams/${ teamId }/top-non-hvc/` ),
 
 		countries: () => filteredUrl( '/countries/' ),
 		country: ( countryId ) => filteredUrl( `/countries/${ countryId }/` ),
 		countryWins: ( countryId ) => filteredUrl( `/countries/${ countryId }/wins/` ),
 		countryNonHvcWins: ( countryId ) => filteredUrl( `/countries/${ countryId }/non-hvc-wins/` ),
+		countryTopNonHvc: ( countryId ) => filteredUrl( `/countries/${ countryId }/top-non-hvc/` ),
 
 		posts: () => filteredUrl( '/posts/' ),
 		post: ( postId ) => filteredUrl( `/posts/${ postId }/` ),
 		postWins: ( postId ) => filteredUrl( `/posts/${ postId }/wins/` ),
 		postNonHvcWins: ( postId ) => filteredUrl( `/posts/${ postId }/non-hvc-wins/` ),
+		postTopNonHvc: ( postId ) => filteredUrl( `/posts/${ postId }/top-non-hvc/` ),
 
 		ukRegions: () => filteredUrl( '/uk-regions/' ),
 		ukRegion: ( regionId ) => filteredUrl( `/uk-regions/${ regionId }/` ),
 		ukRegionWins: ( regionId ) => filteredUrl( `/uk-regions/${ regionId }/wins/` ),
 		ukRegionNonHvcWins: ( regionId ) => filteredUrl( `/uk-regions/${ regionId }/non-hvc-wins/` ),
+		ukRegionTopNonHvc: ( regionId ) => filteredUrl( `/uk-regions/${ regionId }/top-non-hvc/` ),
 
 		hvcGroup: ( groupId ) => filteredUrl( `/hvc-groups/${ groupId }/` ),
 		hvcGroupWins: ( groupId ) => filteredUrl( `/hvc-groups/${ groupId }/wins/` ),
@@ -115,6 +119,7 @@ module.exports = function( req ){
 		osRegion: ( regionId ) => filteredUrl( `/overseas-regions/${ regionId }/` ),
 		osRegionWins: ( regionId ) => filteredUrl( `/overseas-regions/${ regionId }/wins/` ),
 		osRegionNonHvcWins: ( regionId ) => filteredUrl( `/overseas-regions/${ regionId }/non-hvc-wins/` ),
+		osRegionTopNonHvc: ( regionId ) => filteredUrl( `/overseas-regions/${ regionId }/top-non-hvc/` ),
 
 		hvc: ( hvcId ) => filteredUrl( `/hvc/${ hvcId }/` ),
 		hvcWins: ( hvcId ) => filteredUrl( `/hvc/${ hvcId }/wins/` ),

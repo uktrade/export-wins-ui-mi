@@ -5,6 +5,7 @@
 
 {% set pageName %}Post performance - {{ postName | safe  }}{% endset %}
 {% set sectorName %}{{ postName | safe }}{% endset %}
+{% set loadMoreUrl = urls.postTopNonHvc( postId ) %}
 
 {% block year_selector %}
 	{{ super() }}

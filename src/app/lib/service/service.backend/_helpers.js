@@ -60,6 +60,7 @@ function addParamsFromReq( path, req ){
 
 	const params = [ `year=${ req.year }` ];
 	const dateRange = req.dateRange;
+	const paramJoiner = ( ~path.indexOf( '?' ) ? '&' : '?' );
 
 	if( dateRange ){
 
@@ -74,7 +75,7 @@ function addParamsFromReq( path, req ){
 		}
 	}
 
-	return ( path + '?' + params.join( '&' ) );
+	return ( path + paramJoiner + params.join( '&' ) );
 }
 
 function sessionGet( path, req ){

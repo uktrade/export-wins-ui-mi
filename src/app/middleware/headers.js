@@ -8,7 +8,8 @@ const cspValues = [
 	`style-src 'self' 'unsafe-inline'`,
 	`font-src 'self'`,
 	`img-src 'self' www.google-analytics.com`,
-	`form-action 'self' ${ config.coreLoginUrl }`
+	`form-action 'self' ${ config.coreLoginUrl }`,
+	`connect-src 'self'`
 
 ].join( ';' );
 

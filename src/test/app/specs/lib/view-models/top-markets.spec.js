@@ -12,6 +12,7 @@ describe( 'Top non HVC view model', function(){
 
 		expect( output.dateRange ).toEqual( input.date_range );
 		expect( output.items ).toBeDefined();
+		expect( output.count ).toEqual( input.count );
 
 		expect( output.scale.high ).toEqual( high );
 		expect( output.scale.mid ).toEqual( high / 2 );

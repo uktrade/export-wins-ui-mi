@@ -17,6 +17,18 @@ const transformAlphabeticalList = require( '../../transformers/export/alphabetic
 let transformOverseasRegionsOverviewGroups = require( '../../transformers/export/os-regions-overview-groups' );
 
 
+function withAll( path, all ){
+
+	if( all ){
+
+		return path += '?all=1';
+
+	} else {
+
+		return path;
+	}
+}
+
 function getSectorTeams( req ){
 
 	return getJson( '/mi/sector_teams/', req );
@@ -37,9 +49,9 @@ function getSectorTeamCampaigns( req, teamId ){
 	return getJson( `/mi/sector_teams/${ teamId }/campaigns/`, req, transformCampaigns );
 }
 
-function getSectorTeamTopNonHvc( req, teamId ){
+function getSectorTeamTopNonHvc( req, teamId, all ){
 
-	return getJson( `/mi/sector_teams/${ teamId }/top_non_hvcs/`, req );
+	return getJson( withAll( `/mi/sector_teams/${ teamId }/top_non_hvcs/`, all ), req );
 }
 
 function getSectorTeamWinTable( req, teamId ){
@@ -73,9 +85,9 @@ function getCountryMonths( req, countryCode ){
 	return getJson( `/mi/countries/${ countryCode }/months/`, req, transformMonths );
 }
 
-function getCountryTopNonHvc( req, countryCode ){
+function getCountryTopNonHvc( req, countryCode, all ){
 
-	return getJson( `/mi/countries/${ countryCode }/top_non_hvcs/`, req );
+	return getJson( withAll( `/mi/countries/${ countryCode }/top_non_hvcs/`, all ), req );
 }
 
 function getCountryWinTable( req, countryCode ){
@@ -104,9 +116,9 @@ function getPostMonths( req, postId ){
 	return getJson( `/mi/posts/${ postId }/months/`, req, transformMonths );
 }
 
-function getPostTopNonHvc( req, postId ){
+function getPostTopNonHvc( req, postId, all ){
 
-	return getJson( `/mi/posts/${ postId }/top_non_hvcs/`, req );
+	return getJson( withAll( `/mi/posts/${ postId }/top_non_hvcs/`, all ), req );
 }
 
 function getPostWinTable( req, postId ){
@@ -125,24 +137,24 @@ function getUkRegionsOverview( req ){
 	return getJson( '/mi/uk_regions/overview/', req );
 }
 
-function getUkRegion( req, postId ){
+function getUkRegion( req, regionId ){
 
-	return getJson( `/mi/uk_regions/${ postId }/`, req );
+	return getJson( `/mi/uk_regions/${ regionId }/`, req );
 }
 
-function getUkRegionMonths( req, postId ){
+function getUkRegionMonths( req, regionId ){
 
-	return getJson( `/mi/uk_regions/${ postId }/months/`, req, transformMonthsForVolume );
+	return getJson( `/mi/uk_regions/${ regionId }/months/`, req, transformMonthsForVolume );
 }
 
-function getUkRegionTopNonHvc( req, postId ){
+function getUkRegionTopNonHvc( req, regionId, all  ){
 
-	return getJson( `/mi/uk_regions/${ postId }/top_non_hvcs/`, req );
+	return getJson( withAll( `/mi/uk_regions/${ regionId }/top_non_hvcs/`, all ), req );
 }
 
-function getUkRegionWinTable( req, postId ){
+function getUkRegionWinTable( req, regionId ){
 
-	return getJson( `/mi/uk_regions/${ postId }/win_table/`, req, transformWinList );
+	return getJson( `/mi/uk_regions/${ regionId }/win_table/`, req, transformWinList );
 }
 
 
@@ -171,9 +183,9 @@ function getOverseasRegionCampaigns( req, regionId ){
 	return getJson( `/mi/os_regions/${ regionId }/campaigns/`, req, transformCampaigns );
 }
 
-function getOverseasRegionTopNonHvc( req, regionId ){
+function getOverseasRegionTopNonHvc( req, regionId, all ){
 
-	return getJson( `/mi/os_regions/${ regionId }/top_non_hvcs/`, req );
+	return getJson( withAll( `/mi/os_regions/${ regionId }/top_non_hvcs/`, all ), req );
 }
 
 function getOverseasRegionWinTable( req, regionId ){

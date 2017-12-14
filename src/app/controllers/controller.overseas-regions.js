@@ -50,6 +50,17 @@ module.exports = {
 		} ).catch( renderError.createHandler( req, res ) );
 	},
 
+	topNonHvcs: function( req, res ){
+
+		const regionId = req.params.id;
+
+		exportBackendService.getOverseasRegionTopNonHvc( req, regionId, true ).then( ( topNonHvcs ) => {
+
+			res.render( 'partials/top-non-hvcs.html', { topNonHvcs: topNonHvcs.results } );
+
+		} ).catch( renderError.createHandler( req, res ) );
+	},
+
 	region: function( req, res ){
 
 		const regionId = req.params.id;

@@ -117,6 +117,39 @@ describe( 'Overseas Regions controller', function(){
 		} );
 	} );
 
+	describe( 'Top non HVCs', function(){
+
+		it( 'Should get the list data and render the correct view', function( done ){
+
+			const req = {
+				cookies: { sessionid: '456' },
+				year,
+				params: {
+					id: 1234
+				}
+			};
+
+			const topNonHvcs = { results: { 'topNonHvcs': true } };
+
+			const promise = new Promise( ( resolve ) => {	resolve( topNonHvcs ); } );
+
+			exportBackendService.getOverseasRegionTopNonHvc = spy( 'getOverseasRegionTopNonHvc', promise );
+			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
+
+			controller.topNonHvcs( req, res );
+
+			promise.then( () => {
+
+				expect( exportBackendService.getOverseasRegionTopNonHvc ).toHaveBeenCalledWith( req, req.params.id, true );
+				expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
+				expect( res.render ).toHaveBeenCalledWith( 'partials/top-non-hvcs.html', {
+					topNonHvcs: topNonHvcs.results
+				} );
+				done();
+			} );
+		} );
+	} );
+
 	describe( 'Region', function(){
 
 		it( 'Should get the region data and render the correct view', function( done ){

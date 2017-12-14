@@ -7,8 +7,8 @@ function createPercentage( total, inputA, inputB ){
 
 		const parts = ( 100 / total );
 
-		a = Math.round( parts * inputA );
-		b = Math.round( parts * inputB );
+		a = Number( ( parts * inputA ).toFixed( 1 ) );
+		b = Number( ( parts * inputB ).toFixed( 1 ) );
 	}
 
 	return [ a, b ];

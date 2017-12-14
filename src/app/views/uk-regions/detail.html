@@ -148,3 +148,21 @@
 	{% endif %}
 
 {% endblock %}
+
+{%- block pageScript %}
+<script>
+	{% if user.experiments %}
+	mi.pages.ukRegion({
+		progress: {{ summary.progress | dump | safe }},
+		topMarkets: {
+			count: {{ topMarkets.count | dump | safe }},
+			url: {{ urls.ukRegionTopNonHvc( regionId ) | dump | safe }}
+		}
+	});
+	{% else %}
+	mi.pages.ukRegion({
+		progress: {{ summary.progress | dump | safe }}
+	});
+	{% endif %}
+</script>
+{% endblock pageScript -%}

@@ -114,7 +114,21 @@ const inputZeros = {
 };
 
 
-describe( 'Sector Pie Charts data data set', function(){
+describe( 'Sector Pie Charts data set', function(){
+
+	describe( 'createConfirmedUnconfirmedPercentages', function(){
+
+		describe( 'When the unconfirmed is tiny compared to the confirmed', function(){
+
+			it( 'Should return more than zero for the unconfirmed', function(){
+
+				const output = dataset.createConfirmedUnconfirmedPercentages( 36245000, 36200000, 45000 );
+
+				expect( output.confirmed ).toEqual( 99.9 );
+				expect( output.unconfirmed ).toEqual( 0.1 );
+			} );
+		} );
+	} );
 
 	describe( 'Create (for value)', function(){
 
@@ -124,11 +138,11 @@ describe( 'Sector Pie Charts data data set', function(){
 
 				const output = dataset.create( input );
 
-				expect( output.hvcNonHvcValue.hvc ).toEqual( 34 );
-				expect( output.hvcNonHvcValue.nonHvc ).toEqual( 66 );
+				expect( output.hvcNonHvcValue.hvc ).toEqual( 33.9 );
+				expect( output.hvcNonHvcValue.nonHvc ).toEqual( 66.1 );
 
-				expect( output.confirmedUnconfirmedValue.confirmed ).toEqual( 36 );
-				expect( output.confirmedUnconfirmedValue.unconfirmed ).toEqual( 64 );
+				expect( output.confirmedUnconfirmedValue.confirmed ).toEqual( 36.5 );
+				expect( output.confirmedUnconfirmedValue.unconfirmed ).toEqual( 63.5 );
 			} );
 		} );
 
@@ -193,11 +207,11 @@ describe( 'Sector Pie Charts data data set', function(){
 
 				const output = dataset.createForNumber( input );
 
-				expect( output.hvcNonHvcValue.hvc ).toEqual( 34 );
-				expect( output.hvcNonHvcValue.nonHvc ).toEqual( 66 );
+				expect( output.hvcNonHvcValue.hvc ).toEqual( 33.9 );
+				expect( output.hvcNonHvcValue.nonHvc ).toEqual( 66.1 );
 
-				expect( output.confirmedUnconfirmedValue.confirmed ).toEqual( 36 );
-				expect( output.confirmedUnconfirmedValue.unconfirmed ).toEqual( 64 );
+				expect( output.confirmedUnconfirmedValue.confirmed ).toEqual( 36.5 );
+				expect( output.confirmedUnconfirmedValue.unconfirmed ).toEqual( 63.5 );
 			} );
 		} );
 

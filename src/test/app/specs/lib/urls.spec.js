@@ -264,6 +264,7 @@ describe( 'urls middleware', function(){
 			checkFilteredUrls( req, 'sectorTeam', [ 1 ], '/sector-teams/1/' );
 			checkFilteredUrls( req, 'sectorTeamWins', [ 2 ], '/sector-teams/2/wins/' );
 			checkFilteredUrls( req, 'sectorTeamNonHvcWins', [ 3 ], '/sector-teams/3/non-hvc-wins/' );
+			checkFilteredUrls( req, 'sectorTeamTopNonHvc', [ 4 ], '/sector-teams/4/top-non-hvc/' );
 		} );
 	} );
 
@@ -275,6 +276,7 @@ describe( 'urls middleware', function(){
 			checkFilteredUrls( req, 'country', [ 'AU' ], '/countries/AU/' );
 			checkFilteredUrls( req, 'countryWins', [ 'AU' ], '/countries/AU/wins/' );
 			checkFilteredUrls( req, 'countryNonHvcWins', [ 'AU' ], '/countries/AU/non-hvc-wins/' );
+			checkFilteredUrls( req, 'countryTopNonHvc', [ 'AU' ], '/countries/AU/top-non-hvc/' );
 		} );
 	} );
 
@@ -286,6 +288,7 @@ describe( 'urls middleware', function(){
 			checkFilteredUrls( req, 'post', [ 'a-post-name' ], '/posts/a-post-name/' );
 			checkFilteredUrls( req, 'postWins', [ 'a-post-name' ], '/posts/a-post-name/wins/' );
 			checkFilteredUrls( req, 'postNonHvcWins', [ 'a-post-name' ], '/posts/a-post-name/non-hvc-wins/' );
+			checkFilteredUrls( req, 'postTopNonHvc', [ 'a-post-name' ], '/posts/a-post-name/top-non-hvc/' );
 		} );
 	} );
 
@@ -297,6 +300,7 @@ describe( 'urls middleware', function(){
 			checkFilteredUrls( req, 'ukRegion', [ 'a-region-name' ], '/uk-regions/a-region-name/' );
 			checkFilteredUrls( req, 'ukRegionWins', [ 'a-region-name' ], '/uk-regions/a-region-name/wins/' );
 			checkFilteredUrls( req, 'ukRegionNonHvcWins', [ 'a-region-name' ], '/uk-regions/a-region-name/non-hvc-wins/' );
+			checkFilteredUrls( req, 'ukRegionTopNonHvc', [ 'a-region-name' ], '/uk-regions/a-region-name/top-non-hvc/' );
 		} );
 	} );
 
@@ -317,6 +321,7 @@ describe( 'urls middleware', function(){
 			checkFilteredUrls( req, 'osRegion', [ 1 ], '/overseas-regions/1/' );
 			checkFilteredUrls( req, 'osRegionWins', [ 2 ], '/overseas-regions/2/wins/' );
 			checkFilteredUrls( req, 'osRegionNonHvcWins', [ 3 ], '/overseas-regions/3/non-hvc-wins/' );
+			checkFilteredUrls( req, 'osRegionTopNonHvc', [ 4 ], '/overseas-regions/4/top-non-hvc/' );
 		} );
 
 		describe( 'Sorted win tables', function(){

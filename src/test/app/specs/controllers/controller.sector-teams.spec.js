@@ -114,6 +114,40 @@ describe( 'Sector Teams controller', function(){
 		} );
 	} );
 
+	describe( 'Top Non HVC', function(){
+
+		it( 'Should get the list data and render the correct view', function( done ){
+
+			const req = {
+				cookies: { sessionid: '456' },
+				year,
+				params: {
+					id: 1234
+				}
+			};
+
+			const topNonHvcs = {
+				results: [ 'some list results' ]
+			};
+
+			const promise = new Promise( ( resolve ) => { resolve( topNonHvcs ); } );
+
+			exportBackendService.getSectorTeamTopNonHvc = spy( 'getSectorTeamTopNonHvc', promise );
+			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
+
+			controller.topNonHvcs( req, res );
+
+			promise.then( () => {
+				expect( exportBackendService.getSectorTeamTopNonHvc ).toHaveBeenCalledWith( req, req.params.id, true );
+				expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
+				expect( res.render ).toHaveBeenCalledWith( 'partials/top-non-hvcs.html', {
+					topNonHvcs: topNonHvcs.results
+				} );
+				done();
+			} );
+		} );
+	} );
+
 	describe( 'Team', function(){
 
 		it( 'Should get the team data and render the correct view', function( done ){

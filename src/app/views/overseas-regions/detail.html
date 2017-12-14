@@ -4,6 +4,7 @@
 
 {% set pageName %}Overseas region performance - {{ regionName | safe  }}{% endset %}
 {% set sectorName %}{{ regionName | safe }}{% endset %}
+{% set loadMoreUrl = urls.osRegionTopNonHvc( regionId ) %}
 
 {% block page_content %}
 

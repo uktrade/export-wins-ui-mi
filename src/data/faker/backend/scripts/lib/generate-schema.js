@@ -31,7 +31,7 @@ function getEndDate( endDate ){
 	return endDate + 'T23:59:59Z';
 }
 
-function createWrapper( results, year, includeStartDate ){
+function createWrapper( results, year, includeStartDate, hasCount ){
 
 	const nextYear = ( year + 1 );
 	const startDate = `${ year }-04-01`;
@@ -50,6 +50,10 @@ function createWrapper( results, year, includeStartDate ){
 		}
 	};
 
+	if( hasCount ){
+		wrapper.count = Math.floor( Math.random() * 50 );
+	}
+
 	return wrapper;
 }
 
@@ -57,6 +61,7 @@ module.exports = function( path, year = 2016 ){
 
 	let includeStartDate = true;
 	let hasWrapper = true;
+	let hasCount = false;
 
 	switch( path ){
 		case '/user/me.schema':
@@ -67,6 +72,10 @@ module.exports = function( path, year = 2016 ){
 		case '/investment/fdi/overview-yoy.schema':
 			includeStartDate = false;
 		break;
+
+		case '/shared/top_non_hvcs.schema':
+			hasCount = true;
+		break;
 	}
 
 	const result = require( SCHEMA_PATH + path );
@@ -74,7 +83,7 @@ module.exports = function( path, year = 2016 ){
 
 	if( hasWrapper ){
 
-		return promise.then( ( json ) => createWrapper( json, year, includeStartDate ) );
+		return promise.then( ( json ) => createWrapper( json, year, includeStartDate, hasCount ) );
 
 	} else {
 

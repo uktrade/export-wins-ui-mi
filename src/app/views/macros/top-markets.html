@@ -1,6 +1,6 @@
-{% macro topMarketsTable( topMarkets, type ) %}
+{% macro topMarketsTable( topMarkets, type, id='top-markets_table' ) %}
 <div class="top-markets{% if type %} top-markets--{{ type }}{% endif %}">
-	<table class="top-markets_table">
+	<table class="top-markets_table" id="{{ id }}">
 		<caption class="visually-hidden">Top performing markets without an HVC tagged</caption>
 		<thead>
 			<tr>
@@ -44,19 +44,7 @@
 				<td colspan="4"></td>
 			</tr>
 
-			{% for item in topMarkets.items %}
-			<tr class="top-markets_table_row">
-				<td class="top-markets_table_cell top-markets_table_cell--region">{{ item.region }}</td>
-				<td class="top-markets_table_cell top-markets_table_cell--sector">{{ item.sector }}</td>
-				<td class="top-markets_table_cell top-markets_table_cell--percent">
-					<span class="visually-hidden">{{ item.percentComplete }}%</span>
-					<span class="top-markets_table_cell_bar" style="width:{{ item.percentComplete }}%"></span>
-				</td>
-				<td class="top-markets_table_cell top-markets_table_cell--total-value">{{ item.totalValue | largeNumber }}</td>
-				<td class="top-markets_table_cell top-markets_table_cell--total-wins">{{ item.totalWins }}</td>
-				<td class="top-markets_table_cell top-markets_table_cell--average-win-value">{{ item.averageWinValue | largeNumber }}</td>
-			</tr>
-			{% endfor %}
+			{{ topMarketsRows( topMarkets.items ) }}
 
 			<tr class="top-markets_table_markers-row">
 				<td colspan="2"></td>
@@ -90,4 +78,20 @@
 		</tbody>
 	</table>
 </div>
+{% endmacro %}
+
+{% macro topMarketsRows( rows ) %}
+	{% for item in rows %}
+	<tr class="top-markets_table_row">
+		<td class="top-markets_table_cell top-markets_table_cell--region">{{ item.region }}</td>
+		<td class="top-markets_table_cell top-markets_table_cell--sector">{{ item.sector }}</td>
+		<td class="top-markets_table_cell top-markets_table_cell--percent">
+			<span class="visually-hidden">{{ item.percentComplete }}%</span>
+			<span class="top-markets_table_cell_bar" style="width:{{ item.percentComplete }}%"></span>
+		</td>
+		<td class="top-markets_table_cell top-markets_table_cell--total-value">{{ item.totalValue | largeNumber }}</td>
+		<td class="top-markets_table_cell top-markets_table_cell--total-wins">{{ item.totalWins }}</td>
+		<td class="top-markets_table_cell top-markets_table_cell--average-win-value">{{ item.averageWinValue | largeNumber }}</td>
+	</tr>
+	{% endfor %}
 {% endmacro %}
