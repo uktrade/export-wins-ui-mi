@@ -10,19 +10,48 @@ function getParams( obj ){
 
 	for( let key in obj ){
 
-		r.push( key + '=' + obj[ key ] );
+		r.push( [ key, obj[ key ] ] );
 	}
 
 	return r;
 }
 
+function addParams( path, params ){
+
+	if( params.length ){
+
+		const separator = ( ~path.indexOf( '?' ) ? '&' : '?' );
+		const paramStr = params.map( ( [ key, value ] ) => `${ key }=${ encodeURIComponent( value ) }` ).join( '&' );
+
+		return path + separator + paramStr;
+	}
+
+	return path;
+}
+
 function addSort( url, key, sortedKey, sortedDir ){
 
-	const separator = ( ~url.indexOf( '?' ) ? '&' : '?' );
 	const isSortedKey = ( sortedKey === key );
 	const sortDir = ( isSortedKey ? ( sortedDir === 'asc' ? 'desc' : 'asc' ) : 'asc' );
 
-	return ( url + separator + `sort[key]=${ key }&sort[dir]=${ sortDir }` );
+	return addParams( url, [ [ 'sort[key]', key ], [ 'sort[dir]', sortDir ] ] );
+}
+
+function downloadFile( file, type ){
+
+	const params = [];
+
+	if( file.name ){
+
+		params.push( [ 'name', file.name ] );
+	}
+
+	if( type ){
+
+		params.push( [ 'type', type ] );
+	}
+
+	return addParams( `/downloads/${ file.id }/`, params );
 }
 
 module.exports = function( req ){
@@ -31,15 +60,13 @@ module.exports = function( req ){
 	const basePrefix = '';
 	let prefix = basePrefix;
 
-	function addParams( path ){
+	function addFilters( path ){
 
-		const params = getParams( req.filters ).join( '&' );
-
-		return ( path + ( params.length ? ( '?' + params ) : '' ) );
+		return addParams( path, getParams( req.filters ) );
 	}
 
 	function filteredUrl( path ){
-		return prefix + addParams( path );
+		return prefix + addFilters( path );
 	}
 
 	if( !req.isDefaultYear ){
@@ -49,26 +76,33 @@ module.exports = function( req ){
 
 	return {
 		addSort,
+		downloadFile,
 
 		email: () => `mailto:${ config.feedbackEmail }`,
 		survey: () => config.feedbackSurvey,
 		signout: () => '/sign-out/',
 
 		downloads: () => '/downloads/',
-		downloadFile: ( fileId ) => `/downloads/${ fileId }/`,
+		downloadExportFile: ( file ) => downloadFile( file, 'CSV - Export wins' ),
+		downloadFdiFile: ( file ) => downloadFile( file, 'CSV - FDI' ),
+		downloadInteractionsFile: ( file ) => downloadFile( file, 'CSV - Interactions' ),
+		downloadContactsByRegionFile: ( file ) => downloadFile( file, 'CSV - Contacts by region' ),
+		downloadCompaniesByRegionFile: ( file ) => downloadFile( file, 'CSV - Companies by region' ),
+		downloadContactsBySectorFile: ( file ) => downloadFile( file, 'CSV - Contacts by sector' ),
+		downloadCompaniesBySectorFile: ( file ) => downloadFile( file, 'CSV - Companies by sector' ),
 
 		index: () => filteredUrl( '/' ),
 
-		experiments: () => ( `${ prefix }/experiments/?path=` + encodeURIComponent( filteredUrl( currentUrl ) ) ),
+		experiments: () => addParams( `${ prefix }/experiments/`, [ [ 'path', filteredUrl( currentUrl ) ] ] ),
 
-		selectDate: ( returnPath = addParams( prefix + currentUrl ) ) => ( `${ prefix }/select-date/?path=` + encodeURIComponent( returnPath ) ),
+		selectDate: ( returnPath = addFilters( prefix + currentUrl ) ) => addParams( `${ prefix }/select-date/`, [ [ 'path', returnPath ] ] ),
 		selectDateForYear: ( year, returnPath ) => {
 
 			const path = `${ prefix }/select-date/${ year }/`;
 
 			if( returnPath ){
 
-				return ( path + '?path=' + encodeURIComponent( returnPath ) );
+				return addParams( path, [ [ 'path', returnPath ] ] );
 			}
 
 			return path;

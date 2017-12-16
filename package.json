@@ -1,6 +1,6 @@
 {
   "name": "export-wins-ui-mi",
-  "version": "6.22.0",
+  "version": "6.23.0",
   "description": "An MI dashboard for Export Wins",
   "main": "server.js",
   "engines": {
@@ -81,6 +81,7 @@
     "random-int": "^1.0.0",
     "raven": "2.3.0",
     "request": "2.83.0",
+    "universal-analytics": "0.4.16",
     "winston": "2.4.0"
   },
   "devDependencies": {
