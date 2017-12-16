@@ -153,14 +153,86 @@ describe( 'urls middleware', function(){
 			} );
 		} );
 
-
 		describe( 'Downloading a file', function(){
 
-			it( 'Should return the correct URL', function(){
+			describe( 'With just an id', function(){
 
-				const fileId = '12';
+				describe( 'Without an action type', function(){
 
-				expect( middleware( req ).downloadFile( fileId ) ).toEqual( `/downloads/${ fileId }/` );
+					it( 'Should return the correct URL', function(){
+
+						const file = {	id: '12'	};
+
+						expect( middleware( req ).downloadFile( file ) ).toEqual( `/downloads/${ file.id }/` );
+					} );
+				} );
+
+				describe( 'With an action type', function(){
+
+					it( 'Should return the correct URL', function(){
+
+						const file = {	id: '12'	};
+						const type = 'CSV - Type A';
+
+						expect( middleware( req ).downloadFile( file, type ) ).toEqual( `/downloads/${ file.id }/?type=${ encodeURIComponent( type ) }` );
+					} );
+				} );
+			} );
+
+			describe( 'With a name', function(){
+
+				describe( 'Without an action type', function(){
+
+					it( 'Should return the correct URL', function(){
+
+						const file = {
+							id: '12',
+							name: 'a test'
+						};
+
+						expect( middleware( req ).downloadFile( file ) ).toEqual( `/downloads/${ file.id }/?name=${ encodeURIComponent( file.name ) }` );
+					} );
+				} );
+
+				describe( 'With an action type', function(){
+
+					it( 'Should return the correct URL', function(){
+
+						const file = {
+							id: '12',
+							name: 'a test'
+						};
+						const type = 'CSV - Type B';
+
+						expect( middleware( req ).downloadFile( file, type ) ).toEqual( `/downloads/${ file.id }/?name=${ encodeURIComponent( file.name ) }&type=${ encodeURIComponent( type ) }` );
+					} );
+				} );
+			} );
+		} );
+
+		describe( 'Types of downloads', function(){
+
+			function checkTypes( name, type ){
+
+				const fileWithId = { id: '100' };
+				const fileWithName = {
+					id: '12',
+					name: 'a test'
+				};
+
+				expect( middleware( req )[ name ]( fileWithId, type ) ).toEqual( `/downloads/${ fileWithId.id }/?type=${ encodeURIComponent( type ) }` );
+				expect( middleware( req )[ name ]( fileWithName, type ) ).toEqual( `/downloads/${ fileWithName.id }/?name=${ encodeURIComponent( fileWithName.name ) }&type=${ encodeURIComponent( type ) }` );
+			}
+
+			it( 'Should use the correct type', function(){
+
+				checkTypes( 'downloadExportFile', 'CSV - Export wins' );
+				checkTypes( 'downloadFdiFile', 'CSV - FDI' );
+				checkTypes( 'downloadInteractionsFile', 'CSV - Interactions' );
+				checkTypes( 'downloadContactsByRegionFile', 'CSV - Contacts by region' );
+				checkTypes( 'downloadCompaniesByRegionFile', 'CSV - Companies by region' );
+				checkTypes( 'downloadContactsBySectorFile', 'CSV - Contacts by sector' );
+				checkTypes( 'downloadCompaniesBySectorFile', 'CSV - Companies by sector' );
 			} );
 		} );
 	} );

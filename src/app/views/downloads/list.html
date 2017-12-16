@@ -18,13 +18,13 @@
 			{% if files.export %}
 			<h2 class="download-group-heading"><span class="download-group-heading_text">Export Wins</span><span class="download-group-heading_valign"></span></h2>
 			<p class="download-group-current">
-				<a class="download-group-current_link" href="{{ urls.downloadFile( files.export.current.id ) }}">Download current CSV file.<br>{{ files.export.current.report_end_date | dateStamp }}</a>
+				<a class="download-group-current_link" href="{{ urls.downloadExportFile( files.export.current ) }}">Download current CSV file.<br>{{ files.export.current.report_end_date | dateStamp }}</a>
 				<span class="download-group-current_date">(last updated {{ files.export.current.created | dateOnly }})</span>
 			</p>
 			<ol class="download-group-list">
 				{% for file in files.export.previous %}
 				<li class="download-group-list_item">
-					<a href="{{ urls.downloadFile( file.id ) }}">Download ({{ file.financial_year }})</a>
+					<a href="{{ urls.downloadExportFile( file ) }}">Download ({{ file.financial_year }})</a>
 				</li>
 				{% endfor %}
 			</ol>
@@ -34,13 +34,13 @@
 			{% if showFdi and files.fdi %}
 			<h2 class="download-group-heading"><span class="download-group-heading_text">FDI</span><span class="download-group-heading_valign"></span></h2>
 			<p class="download-group-current">
-				<a class="download-group-current_link" href="{{ urls.downloadFile( files.fdi.latest.id ) }}">Download current CSV file.<br>{{ files.fdi.latest.report_end_date | dateStamp }}</a>
+				<a class="download-group-current_link" href="{{ urls.downloadFdiFile( files.fdi.latest, 'CSV - ' ) }}">Download current CSV file.<br>{{ files.fdi.latest.report_end_date | dateStamp }}</a>
 				<span class="download-group-current_date">(last updated {{ files.fdi.latest.created | dateOnly }})</span>
 			</p>
 			<ol class="download-group-list">
 				{% for file in files.fdi.months %}
 				<li class="download-group-list_item">
-					<a href="{{ urls.downloadFile( file.id ) }}">Download {{ file.report_end_date | dateStamp }}</a>
+					<a href="{{ urls.downloadFdiFile( file ) }}">Download {{ file.report_end_date | dateStamp }}</a>
 				</li>
 				{% endfor %}
 			</ol>
@@ -50,13 +50,13 @@
 			{% if files.sdi %}
 			<h2 class="download-group-heading"><span class="download-group-heading_text">Service deliveries &amp; interactions</span><span class="download-group-heading_valign"></span></h2>
 			<p class="download-group-current">
-				<a class="download-group-current_link" href="{{ urls.downloadFile( files.sdi.latest.id ) }}">Download current CSV file.<br>{{ files.sdi.latest.report_end_date | dateStamp }}</a>
+				<a class="download-group-current_link" href="{{ urls.downloadInteractionsFile( files.sdi.latest ) }}">Download current CSV file.<br>{{ files.sdi.latest.report_end_date | dateStamp }}</a>
 				<span class="download-group-current_date">(last updated {{ files.sdi.latest.created | dateOnly }})</span>
 			</p>
 			<ol class="download-group-list">
 				{% for file in files.sdi.months %}
 				<li class="download-group-list_item">
-					<a href="{{ urls.downloadFile( file.id ) }}">Download {{ file.report_start_date | dateStamp }} - {{ file.report_end_date | dateStamp }}</a>
+					<a href="{{ urls.downloadInteractionsFile( file ) }}">Download {{ file.report_start_date | dateStamp }} - {{ file.report_end_date | dateStamp }}</a>
 				</li>
 				{% endfor %}
 			</ol>
@@ -72,11 +72,11 @@
 
 	{% if files.contacts or files.companies %}
 
-	{% macro ukItems( files, name='region' ) %}
+	{% macro ukItems( downloadName, files, name='region' ) %}
 	<ol class="download-group-list">
 		{% for file in files %}
 		<li class="download-group-list_item">
-			<a href="{{ urls.downloadFile( file.id ) }}">
+			<a href="{{ urls[ downloadName ]( file ) }}">
 				<span class="download-group-list_item_text1">Download -</span>
 				<span class="download-group-list_item_text2">{{ file[ name ] }}</span>
 			</a>
@@ -95,7 +95,7 @@
 
 			{% if files.contacts.regions %}
 			<h2 class="download-group-heading">UK contacts by region</h2>
-			{{ ukItems( files.contacts.regions ) }}
+			{{ ukItems( 'downloadContactsByRegionFile', files.contacts.regions ) }}
 			{% endif %}
 
 		</div>
@@ -103,7 +103,7 @@
 
 			{% if files.companies.regions %}
 			<h2 class="download-group-heading">UK companies by region</h2>
-			{{ ukItems( files.companies.regions ) }}
+			{{ ukItems( 'downloadCompaniesByRegionFile', files.companies.regions ) }}
 			{% endif %}
 
 		</div>
@@ -114,7 +114,7 @@
 
 			{% if files.contacts.sectors %}
 			<h2 class="download-group-heading">UK contacts by sector</h2>
-			{{ ukItems( files.contacts.sectors, 'sector' ) }}
+			{{ ukItems( 'downloadContactsBySectorFile', files.contacts.sectors, 'sector' ) }}
 			{% endif %}
 
 		</div>
@@ -122,7 +122,7 @@
 
 			{% if files.companies.sectors %}
 			<h2 class="download-group-heading">UK companies by sector</h2>
-			{{ ukItems( files.companies.sectors, 'sector' ) }}
+			{{ ukItems( 'downloadCompaniesBySectorFile', files.companies.sectors, 'sector' ) }}
 			{% endif %}
 
 		</div>
