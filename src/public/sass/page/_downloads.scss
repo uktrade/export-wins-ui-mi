@@ -66,3 +66,16 @@
 	@include core-14;
 	display: block;
 }
+
+.download-section-heading {
+	@include bold-27;
+	padding-top: pem( 30, 27 );
+}
+
+.download-section-message {
+	@include core-19;
+}
+
+.download-section-separator {
+	border-top: 1px solid $grey-2;
+}

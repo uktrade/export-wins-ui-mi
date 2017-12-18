@@ -72,6 +72,15 @@
 
 	{% if files.contacts or files.companies %}
 
+	<div class="grid-row download-section-separator">
+		<div class="column-two-thirds">
+			<h2 class="download-section-heading">Contacts and Companies</h2>
+			<p class="download-section-message">
+				Only send email marketing to contacts that have checked yes in the email marketing column
+			</p>
+		</div>
+	</div>
+
 	{% macro ukItems( downloadName, files, name='region' ) %}
 	<ol class="download-group-list">
 		{% for file in files %}
@@ -94,7 +103,7 @@
 		<div class="column-one-third">
 
 			{% if files.contacts.regions %}
-			<h2 class="download-group-heading">UK contacts by region</h2>
+			<h3 class="download-group-heading">UK contacts by region</h3>
 			{{ ukItems( 'downloadContactsByRegionFile', files.contacts.regions ) }}
 			{% endif %}
 
@@ -102,7 +111,7 @@
 		<div class="column-one-third">
 
 			{% if files.companies.regions %}
-			<h2 class="download-group-heading">UK companies by region</h2>
+			<h3 class="download-group-heading">UK companies by region</h3>
 			{{ ukItems( 'downloadCompaniesByRegionFile', files.companies.regions ) }}
 			{% endif %}
 
@@ -113,7 +122,7 @@
 		<div class="column-one-third">
 
 			{% if files.contacts.sectors %}
-			<h2 class="download-group-heading">UK contacts by sector</h2>
+			<h3 class="download-group-heading">UK contacts by sector</h3>
 			{{ ukItems( 'downloadContactsBySectorFile', files.contacts.sectors, 'sector' ) }}
 			{% endif %}
 
@@ -121,7 +130,7 @@
 		<div class="column-one-third">
 
 			{% if files.companies.sectors %}
-			<h2 class="download-group-heading">UK companies by sector</h2>
+			<h3 class="download-group-heading">UK companies by sector</h3>
 			{{ ukItems( 'downloadCompaniesBySectorFile', files.companies.sectors, 'sector' ) }}
 			{% endif %}
 
