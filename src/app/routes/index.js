@@ -42,5 +42,5 @@ module.exports = function( express, app, isDev ){
 	app.post( '/select-date/:year/', user, returnPath, urlBodyParser, csrfProtection, dateController.setDate );
 
 	app.use( exportRoutes( express.Router(), user, isDev ) );
-	app.use( '/investment/', user, investmentRoutes( express.Router(), isDev ) );
+	app.use( investmentRoutes( express.Router(), user, isDev ) );
 };
