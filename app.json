@@ -1,5 +1,6 @@
 {
   "name": "export-wins-ui-mi",
+  "stack": "heroku-16",
   "env": {
     "NODE_MODULES_CACHE": {
       "description": "Set to false so the build works",
