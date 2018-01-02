@@ -11,8 +11,14 @@ describe( 'Static globals', function(){
 
 	let calls;
 	let staticGlobals;
+	let financialYear;
+	const financialYearResponse = 2017;
 
 	beforeEach( function(){
+
+		financialYear = {
+			getCurrent: jasmine.createSpy( 'financialYear.getCurrent' ).and.callFake( () => financialYearResponse )
+		};
 
 		const stubs = {
 			'../config': {
@@ -22,7 +28,8 @@ describe( 'Static globals', function(){
 				faqLink,
 				financialYearStart,
 				datahubDomain
-			}
+			},
+			'./financial-year': financialYear
 		};
 
 		staticGlobals = proxyquire( '../../../../app/lib/static-globals', stubs );
@@ -65,13 +72,21 @@ describe( 'Static globals', function(){
 
 		beforeAll( function(){
 
-			const currentYear = ( new Date() ).getFullYear();
+			const currentYear = financialYearResponse;
 			let year = 2016;
 
 			while( year <= currentYear ){
 				yearList.push( { year, label: `${ year }/${ ( year + 1 ).toString().substr( 2, 4) }` } );
 				year++;
 			}
+		} );
+
+		describe( 'Creating the year list', function(){
+
+			it( 'Should call getCurrent from financialYear', function(){
+
+				expect( financialYear.getCurrent ).toHaveBeenCalled();
+			} );
 		} );
 
 		describe( 'When the financialYearStart is a Number', function(){
