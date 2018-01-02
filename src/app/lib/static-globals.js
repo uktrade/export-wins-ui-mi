@@ -1,9 +1,10 @@
 const config = require( '../config' );
+const financialYear = require( './financial-year' );
 
 module.exports = function( env ){
 
 	const startYear = Number( config.financialYearStart );
-	const currentYear = ( new Date() ).getFullYear();
+	const currentYear = financialYear.getCurrent();
 	const years = [];
 
 	let year = startYear;
