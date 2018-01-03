@@ -97,8 +97,6 @@ describe( 'Login controller', function(){
 
 					it( 'Should get the login url and redirect to it', function( done ){
 
-						errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
-
 						controller.oauth( req, res );
 
 						promise.then( () => {
@@ -226,7 +224,6 @@ describe( 'Login controller', function(){
 							const promise = new Promise( ( resolve ) => resolve( { response, data: { next } } ) );
 
 							backendService.postOauthCallback = spy( 'postOauthCallback', promise );
-							errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
 
 							controller.oauthCallback( req, res );
 
@@ -247,7 +244,6 @@ describe( 'Login controller', function(){
 							const promise = new Promise( ( resolve ) => resolve( { response, data: '' } ) );
 
 							backendService.postOauthCallback = spy( 'postOauthCallback', promise );
-							errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
 
 							controller.oauthCallback( req, res );
 
@@ -351,34 +347,6 @@ describe( 'Login controller', function(){
 
 			expect( res.set ).toHaveBeenCalledWith( 'Set-Cookie', [ createClearCookieStr( 'sessionid' ) ] );
 			expect( res.redirect ).toHaveBeenCalledWith( `${ datahubDomain }/oauth/sign-out` );
-		} );
-	} );
-
-	describe( 'Saml Login', function(){
-
-		it( 'Should get the login token and render the view', function( done ){
-
-			const token = 'test response';
-			const response = {
-				headers: {
-					'set-cookie': [ 'abc', 'sessionid=123456' ]
-				}
-			};
-			const promise = new Promise( ( resolve ) => { resolve( { response, data: token } ); } );
-
-			backendService.getSamlLogin = spy( 'getSamlLogin', promise );
-			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
-
-			controller.saml( req, res );
-
-			promise.then( () => {
-
-				expect( backendService.getSamlLogin ).toHaveBeenCalledWith( req );
-				expect( res.set ).toHaveBeenCalledWith( 'Set-Cookie', [ 'sessionid=123456', createClearUserCookie() ] );
-				expect( res.render ).toHaveBeenCalledWith( 'login.html', { token } );
-				expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
-				done();
-			} );
 		} );
 	} );
 } );

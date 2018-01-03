@@ -1178,90 +1178,6 @@ if( config.backend.mock ){
 	} );
 
 
-	describe( 'Saml metadata', function(){
-
-		it( 'Should return the metadata', function( done ){
-
-			const xml = '<test>';
-
-			interceptBackend.get( '/saml2/metadata/' ).reply( 200, xml );
-
-			supertest( app ).get( '/saml2/metadata/' ).end( ( err, res ) => {
-
-				checkResponse( res, 200 );
-				expect( res.text ).toEqual( xml );
-				done();
-			} );
-		} );
-	} );
-
-	describe( 'Saml acs', function(){
-
-		const xml = '<xml/>';
-
-		describe( 'When the response is success', function(){
-
-			it( 'Should redirect', function( done ){
-
-				const response = 'test';
-
-				interceptBackend.post( '/saml2/acs/', xml ).reply( 200, response, {
-					'Set-Cookie': [ 'sessionid=test' ]
-				} );
-
-				supertest( app ).post( '/saml2/acs/' ).end( ( err, res ) => {
-
-					checkResponse( res, 302 );
-					expect( res.text ).toEqual( 'Found. Redirecting to /' );
-					done();
-				} );
-			} );
-		} );
-
-		describe( 'When the response is not a success', function(){
-
-			describe( 'When it is a 403', function(){
-
-				it( 'Should render the access denied page', function( done ){
-
-					const response = '{ "code": 1, "message": "not in group" }';
-
-					interceptBackend.post( '/saml2/acs/', xml ).reply( 403, response, {
-						'Set-Cookie': 'sessionid=test',
-						'Content-Type': 'application/json'
-					} );
-
-					supertest( app ).post( '/saml2/acs/' ).end( ( err, res ) => {
-
-						checkResponse( res, 200 );
-						expect( getTitle( res ) ).toEqual( 'MI - Access denied' );
-						done();
-					} );
-				} );
-			} );
-
-			describe( 'When it is a 500', function(){
-
-				it( 'Should render an unable to login error', function( done ){
-
-					const response = '{ "code": 2, "message": "error" }';
-
-					interceptBackend.post( '/saml2/acs/', xml ).reply( 500, response, {
-						'Set-Cookie': 'sessionid=test',
-						'Content-Type': 'application/json'
-					} );
-
-					supertest( app ).post( '/saml2/acs/' ).end( ( err, res ) => {
-
-						checkResponse( res, 200 );
-						expect( getTitle( res ) ).toEqual( 'MI - Unable to login' );
-						done();
-					} );
-				} );
-			} );
-		} );
-	} );
-
 	describe( 'Login', function(){
 
 		describe( 'Default login', function(){
@@ -1278,21 +1194,6 @@ if( config.backend.mock ){
 
 					checkResponse( res, 302 );
 					expect( res.headers.location ).toEqual( json.target_url );
-					done();
-				} );
-			} );
-		} );
-
-		describe( 'SAML login', function(){
-
-			it( 'Should return a 200 with the correct heading', function( done ){
-
-				interceptBackend.get( '/saml2/login/' ).reply( 200, 'test' );
-
-				supertest( app ).get( '/login-saml/' ).end( ( err, res ) => {
-
-					checkResponse( res, 200 );
-					expect( getTitle( res ) ).toEqual( 'MI - Login' );
 					done();
 				} );
 			} );
@@ -1392,7 +1293,6 @@ if( config.backend.mock ){
 				} );
 			} );
 		} );
-
 	} );
 
 	describe( 'Environments', function(){
