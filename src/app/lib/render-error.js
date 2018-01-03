@@ -20,18 +20,8 @@ module.exports = {
 
 			if( err.response && err.response.statusCode === 403 ){
 
-				const headers = err.response.headers;
-				const preferauthwith = headers.preferauthwith;
-
-				if( preferauthwith && preferauthwith === 'oauth2' ){
-
-					const currentUrl = urls( req ).current();
-					res.redirect( `/login/?next=${ encodeURIComponent( currentUrl ) }` );
-
-				} else {
-
-					res.redirect( '/login-saml/' );
-				}
+				const currentUrl = urls( req ).current();
+				res.redirect( `/login/?next=${ encodeURIComponent( currentUrl ) }` );
 
 			} else {
 

@@ -1,5 +1,4 @@
 const backendService = require( '../lib/service/service.backend' );
-const renderError = require( '../lib/render-error' );
 const reporter = require( '../lib/reporter' );
 const getSessionId = require( '../lib/get-session-id' );
 const config = require( '../config' );
@@ -97,19 +96,5 @@ module.exports = {
 
 		res.set( 'Set-Cookie', [ createClearCookieStr( 'sessionid' ) ] );
 		res.redirect( `${ config.datahubDomain }/oauth/sign-out` );
-	},
-
-	saml: function( req, res ){
-
-		backendService.getSamlLogin( req ).then( ( info ) => {
-
-			const response = info.response;
-			const token = info.data;
-			const sessionCookie = getSessionId( response.headers[ 'set-cookie' ] );
-
-			res.set( 'Set-Cookie', [ sessionCookie, createClearUserCookie() ] );
-			res.render( 'login.html', { token } );
-
-		} ).catch( renderError.createHandler( req, res ) );
 	}
 };

@@ -53,6 +53,7 @@ describe( 'Render Error', function(){
 
 			let err;
 			let response;
+			let loginPath;
 
 			beforeEach( function(){
 
@@ -63,15 +64,22 @@ describe( 'Render Error', function(){
 
 				err = new Error( 'test' );
 				err.response = response;
+
+				const theUrl = '/my/long/url?with=params';
+				urlsResponse = {
+					current: () => theUrl
+				};
+
+				loginPath = `/login/?next=${ encodeURIComponent( theUrl ) }`;
 			} );
 
 			describe( 'Without a PreferAuthWith header', function(){
 
-				it( 'Should redirect to the SAML login page', function(){
+				it( 'Should redirect to the login page', function(){
 
 					handler( err );
 
-					expect( res.redirect ).toHaveBeenCalledWith( '/login-saml/' );
+					expect( res.redirect ).toHaveBeenCalledWith( loginPath );
 				} );
 			} );
 
@@ -79,13 +87,13 @@ describe( 'Render Error', function(){
 
 				describe( 'When the header value is saml2', function(){
 
-					it( 'Should redirect to the SAML login page', function(){
+					it( 'Should redirect to the login page', function(){
 
 						response.headers.preferauthwith = 'saml2';
 
 						handler( err );
 
-						expect( res.redirect ).toHaveBeenCalledWith( '/login-saml/' );
+						expect( res.redirect ).toHaveBeenCalledWith( loginPath );
 					} );
 				} );
 
@@ -93,28 +101,24 @@ describe( 'Render Error', function(){
 
 					it( 'Should redirect to the login page with next specified as the current URL', function(){
 
-						const theUrl = '/my/long/url?with=params';
-						urlsResponse = {
-							current: () => theUrl
-						};
 						response.headers.preferauthwith = 'oauth2';
 
 						handler( err );
 
 						expect( urls ).toHaveBeenCalledWith( req );
-						expect( res.redirect ).toHaveBeenCalledWith( `/login/?next=${ encodeURIComponent( theUrl ) }` );
+						expect( res.redirect ).toHaveBeenCalledWith( loginPath );
 					} );
 				} );
 
 				describe( 'When the header value is something else', function(){
 
-					it( 'Should redirect to the SAML login page', function(){
+					it( 'Should redirect to the login page', function(){
 
 						response.headers.preferauthwith = 'test';
 
 						handler( err );
 
-						expect( res.redirect ).toHaveBeenCalledWith( '/login-saml/' );
+						expect( res.redirect ).toHaveBeenCalledWith( loginPath );
 					} );
 				} );
 			} );

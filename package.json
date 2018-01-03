@@ -1,6 +1,6 @@
 {
   "name": "export-wins-ui-mi",
-  "version": "6.23.4",
+  "version": "6.24.0",
   "description": "An MI dashboard for Export Wins",
   "main": "server.js",
   "engines": {
@@ -109,11 +109,11 @@
     "karma-jasmine": "*",
     "load-grunt-tasks": "*",
     "mockdate": "2.0.2",
-    "nock": "9.1.4",
+    "nock": "9.1.5",
     "node-sass": "4.7.2",
-    "nodemon": "1.12.5",
+    "nodemon": "1.14.7",
     "npm-run-all": "4.1.2",
-    "nyc": "11.3.0",
+    "nyc": "11.4.1",
     "proxyquire": "1.8.0",
     "rewire": "2.5.2",
     "selenium-webdriver": "3.6.0",
