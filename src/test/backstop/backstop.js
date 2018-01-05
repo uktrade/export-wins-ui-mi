@@ -43,7 +43,9 @@ const paths = [
 	[ '/2016/investment/', 'Investment Homepage', [ '.fdi-overview-date', '.fdi-overview-yoy-date' ] ],
 	[ '/2016/investment/sector-teams/1/', 'Investment - Sector team performance', [ '.page-date' ] ],
 	[ '/2016/investment/sector-teams/1/hvc-performance/', 'Investment - Sector team HVC performance', [ '.page-date' ] ],
-	[ '/2016/investment/sector-teams/1/non-hvc-performance/', 'Investment - Sector team Non HVC performance', [ '.page-date' ] ]
+	[ '/2016/investment/sector-teams/1/non-hvc-performance/', 'Investment - Sector team Non HVC performance', [ '.page-date' ] ],
+	[ '/2016/investment/sector-teams/1/hvc-projects/', 'Investment - Sector team HVC projects', [ '.page-date' ] ],
+	[ '/2016/investment/sector-teams/1/non-hvc-projects/', 'Investment - Sector team Non HVC projects', [ '.page-date' ] ]
 ];
 
 const scenarios = paths.reduce( ( output, pathInfo ) => {
