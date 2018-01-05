@@ -85,8 +85,8 @@
     "winston": "2.4.0"
   },
   "devDependencies": {
-    "axe-core": "2.5.0",
-    "axe-webdriverjs": "1.2.0",
+    "axe-core": "2.6.1",
+    "axe-webdriverjs": "1.2.1",
     "backstopjs": "3.0.37",
     "eslint": "3.19.0",
     "faker": "4.1.0",
