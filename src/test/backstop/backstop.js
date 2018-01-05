@@ -41,8 +41,8 @@ const paths = [
 	[ '/2016/uk-regions/north-west/non-hvc-wins/', ' UK Region Non HVC wins', [ '.page-date' ] ],
 
 	[ '/2016/investment/', 'Investment Homepage', [ '.fdi-overview-date', '.fdi-overview-yoy-date' ] ],
-	[ '/2016/investment/sector-teams/1/', 'Investment - Sector team performance', [ '.page-date' ] ]
-	[ '/2016/investment/sector-teams/1/hvc-performance/', 'Investment - Sector team HVC performance', [ '.page-date' ] ]
+	[ '/2016/investment/sector-teams/1/', 'Investment - Sector team performance', [ '.page-date' ] ],
+	[ '/2016/investment/sector-teams/1/hvc-performance/', 'Investment - Sector team HVC performance', [ '.page-date' ] ],
 	[ '/2016/investment/sector-teams/1/non-hvc-performance/', 'Investment - Sector team Non HVC performance', [ '.page-date' ] ]
 ];
 
