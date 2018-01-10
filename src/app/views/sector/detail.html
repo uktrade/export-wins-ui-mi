@@ -128,7 +128,6 @@
 
 {%- block pageScript %}
 <script>
-	{% if user.experiments %}
 	mi.pages.sector({
 		progress: {{ hvcSummary.progress | dump | safe }},
 		topMarkets: {
@@ -136,10 +135,5 @@
 			url: {{ loadMoreUrl | dump | safe }}
 		}
 	});
-	{% else %}
-	mi.pages.sector({
-		progress: {{ hvcSummary.progress | dump | safe }}
-	});
-	{% endif %}
 </script>
 {% endblock pageScript -%}
