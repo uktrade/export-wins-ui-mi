@@ -2,7 +2,7 @@
 
 {% from 'macros/dates.html' import financialYear %}
 {% from '../macros/tabs/fdi/sector-teams.html' import tabs %}
-{% from '../macros/tabs/fdi/project-tables.html' import singleProjectTable %}
+{% from 'macros/table-standard-types.html' import nonHvcProjectTable %}
 
 {% set pageName %}Investment - Sector team non HVC projects - {{ team.description | safe }}{% endset %}
 
@@ -19,7 +19,7 @@
 
 	{{ tabs( team.id, nonHvcProjects = true ) }}
 
-	{{ singleProjectTable( 'Sector Team', nonHvcProjects = projects or [] ) }}
+	{{ nonHvcProjectTable( 'Sector Team', projects or [] ) }}
 
 {% endblock %}
 

@@ -19,7 +19,9 @@ const staticInput = [
 		export_amount: 100,
 		lead_officer: {
 			name: "Eldon Kihn"
-		}
+		},
+		"country": "Burkina Faso",
+		"uk_region": "Avon"
 	},{
 		hvc: {
 			code: "A110",
@@ -38,7 +40,9 @@ const staticInput = [
 		export_amount: 1000,
 		lead_officer: {
 			name: "Ludwig Williamson"
-		}
+		},
+		"country": "Swaziland",
+		"uk_region": "Borders"
 	},{
 		hvc: {
 			code: "A26",
@@ -58,7 +62,9 @@ const staticInput = [
 		credit: false,
 		lead_officer: {
 			name: "Donnell Windler"
-		}
+		},
+		"country": "Zambia",
+		"uk_region": "Bedfordshire"
 	},{
 		hvc: {
 			code: "A26",
@@ -78,7 +84,9 @@ const staticInput = [
 		credit: false,
 		lead_officer: {
 			name: "Donnell Windler"
-		}
+		},
+		"country": "South Georgia and the South Sandwich Islands",
+		"uk_region": "Buckinghamshire"
 	}
 ];
 
@@ -112,7 +120,7 @@ describe( 'sortWins', function(){
 				expect( output ).toEqual( input );
 			} );
 
-			it( 'Shout not set the sortKey or sortDir property', function(){
+			it( 'Should not set the sortKey or sortDir property', function(){
 
 				const output = sortWins( input, { key: 'blah' } );
 
@@ -132,7 +140,7 @@ describe( 'sortWins', function(){
 				expect( output ).toEqual( input );
 			} );
 
-			it( 'Shout not set the sortKey or sortDir property', function(){
+			it( 'Should not set the sortKey or sortDir property', function(){
 
 				const output = sortWins( input, { key: 'company', dir: 'blah' } );
 
@@ -490,6 +498,92 @@ describe( 'sortWins', function(){
 						expect( output.sortKey ).toEqual( sortKey );
 						expect( output.sortDir ).toEqual( sortDir );
 						expect( output.sortName ).toEqual( 'Status' );
+						expect( output.sortDirName ).toEqual( 'descending' );
+					} );
+				} );
+			} );
+
+			describe( 'Sort by Country', function(){
+
+				const sortKey = 'country';
+
+				describe( 'Ascending', function(){
+
+					it( 'Should sort it correctly', function(){
+
+						const sortDir = 'asc';
+						const sort = { key: sortKey, dir: sortDir };
+						const output = sortWins( input, sort );
+
+						expect( output[ 0 ].country ).toEqual( staticInput[ 0 ].country );
+						expect( output[ 1 ].country ).toEqual( staticInput[ 3 ].country );
+						expect( output[ 2 ].country ).toEqual( staticInput[ 1 ].country );
+						expect( output[ 3 ].country ).toEqual( staticInput[ 2 ].country );
+						expect( output.sortKey ).toEqual( sortKey );
+						expect( output.sortDir ).toEqual( sortDir );
+						expect( output.sortName ).toEqual( 'Country' );
+						expect( output.sortDirName ).toEqual( 'ascending' );
+					} );
+				} );
+
+				describe( 'Descending', function(){
+
+					it( 'Should sort it correctly', function(){
+
+						const sortDir = 'desc';
+						const sort = { key: sortKey, dir: sortDir };
+						const output = sortWins( input, sort );
+
+						expect( output[ 0 ].country ).toEqual( staticInput[ 2 ].country );
+						expect( output[ 1 ].country ).toEqual( staticInput[ 1 ].country );
+						expect( output[ 2 ].country ).toEqual( staticInput[ 3 ].country );
+						expect( output[ 3 ].country ).toEqual( staticInput[ 0 ].country );
+						expect( output.sortKey ).toEqual( sortKey );
+						expect( output.sortDir ).toEqual( sortDir );
+						expect( output.sortName ).toEqual( 'Country' );
+						expect( output.sortDirName ).toEqual( 'descending' );
+					} );
+				} );
+			} );
+
+			describe( 'Sort by UK Region', function(){
+
+				const sortKey = 'uk-region';
+
+				describe( 'Ascending', function(){
+
+					it( 'Should sort it correctly', function(){
+
+						const sortDir = 'asc';
+						const sort = { key: sortKey, dir: sortDir };
+						const output = sortWins( input, sort );
+
+						expect( output[ 0 ].ukRegion ).toEqual( staticInput[ 0 ].ukRegion );
+						expect( output[ 1 ].ukRegion ).toEqual( staticInput[ 3 ].ukRegion );
+						expect( output[ 2 ].ukRegion ).toEqual( staticInput[ 1 ].ukRegion );
+						expect( output[ 3 ].ukRegion ).toEqual( staticInput[ 2 ].ukRegion );
+						expect( output.sortKey ).toEqual( sortKey );
+						expect( output.sortDir ).toEqual( sortDir );
+						expect( output.sortName ).toEqual( 'UK Region' );
+						expect( output.sortDirName ).toEqual( 'ascending' );
+					} );
+				} );
+
+				describe( 'Descending', function(){
+
+					it( 'Should sort it correctly', function(){
+
+						const sortDir = 'desc';
+						const sort = { key: sortKey, dir: sortDir };
+						const output = sortWins( input, sort );
+
+						expect( output[ 0 ].ukRegion ).toEqual( staticInput[ 2 ].ukRegion );
+						expect( output[ 1 ].ukRegion ).toEqual( staticInput[ 1 ].ukRegion );
+						expect( output[ 2 ].ukRegion ).toEqual( staticInput[ 3 ].ukRegion );
+						expect( output[ 3 ].ukRegion ).toEqual( staticInput[ 0 ].ukRegion );
+						expect( output.sortKey ).toEqual( sortKey );
+						expect( output.sortDir ).toEqual( sortDir );
+						expect( output.sortName ).toEqual( 'UK Region' );
 						expect( output.sortDirName ).toEqual( 'descending' );
 					} );
 				} );

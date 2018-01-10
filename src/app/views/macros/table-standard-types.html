@@ -1,0 +1,68 @@
+{% from 'macros/table-standard.html' import standardTable %}
+
+{% macro standardTableOrMessage( rows, columns, type, noRowsMessage = '', nonHvc = false, projects = false, customModifyer = '' ) %}
+
+	{%- if projects %}
+		{% set tableClass='project-table' %}
+		{% set rowItems='projects' %}
+	{% else %}
+		{% set tableClass='win-table' %}
+		{% set rowItems='wins' %}
+	{% endif -%}
+
+	{% if nonHvc %}
+		{% set tableModifyer = 'non-hvc' %}
+		{% set itemType %}Non HVC {{ rowItems }}{% endset %}
+	{% else %}
+		{% set tableModifyer = 'hvc' %}
+		{% set itemType %}HVC {{ rowItems }}{% endset %}
+	{% endif %}
+
+	{% if customModifyer %}
+		{% set tableModifyer %}{{ customModifyer }}{% endset %}
+	{% endif %}
+
+	{% if rows.length %}
+
+		<p>
+			Total number of {{ rowItems }}: <strong>{{ rows.length }}</strong>.
+		</p>
+		{{ standardTable( rows, columns, tableClass, tableModifyer, itemType, projects ) }}
+
+	{%- else -%}
+
+		<p class="no-wins-message">
+			{%- if noRowsMessage %}
+				{{ noRowsMessage }}
+			{% else -%}
+				There aren&#39;t any {{ itemType }} recorded for this {{ type }}.
+			{% endif -%}
+		</p>
+
+	{%- endif %}
+
+{% endmacro %}
+
+{% macro hvcWinTable( type, rows, columns = winTableColumns.hvc, noRowsMessage='', customModifyer='' ) %}
+
+	{{ standardTableOrMessage( rows, columns, type, noRowsMessage=noRowsMessage, customModifyer=customModifyer ) }}
+
+{% endmacro %}
+
+{% macro nonHvcWinTable( type, rows, columns = winTableColumns.nonHvc, noRowsMessage='', customModifyer='' ) %}
+
+	{{ standardTableOrMessage( rows, columns, type, noRowsMessage=noRowsMessage, customModifyer=customModifyer, nonHvc = true ) }}
+
+{% endmacro %}
+
+{% macro hvcProjectTable( type, rows, columns = fdiTableColumns.hvc, noRowsMessage='', customModifyer='' ) %}
+
+	{{ standardTableOrMessage( rows, columns, type, noRowsMessage=noRowsMessage, customModifyer=customModifyer, projects = true ) }}
+
+{% endmacro %}
+
+{% macro nonHvcProjectTable( type, rows, columns = fdiTableColumns.nonHvc, noRowsMessage='', customModifyer='' ) %}
+
+	{{ standardTableOrMessage( rows, columns, type, noRowsMessage=noRowsMessage, customModifyer=customModifyer, nonHvc = true, projects = true ) }}
+
+{% endmacro %}

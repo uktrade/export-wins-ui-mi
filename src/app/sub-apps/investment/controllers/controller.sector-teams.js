@@ -2,6 +2,7 @@ const fdiService = require( '../../../lib/service/service.backend/investment/fdi
 const renderError = require( '../../../lib/render-error' );
 const fdiOverviewViewModel = require( '../view-models/fdi-overview' );
 const fdiSectorTeamMarketsViewModel = require( '../view-models/fdi-sector-team-markets' );
+const sortProjects = require( '../lib/sort-projects' );
 
 function renderProjects( req, res, view, service ){
 
@@ -16,7 +17,7 @@ function renderProjects( req, res, view, service ){
 				name: data.results.name,
 				description: data.results.description
 			},
-			projects: data.results.investments
+			projects: sortProjects( data.results.investments, req.query.sort )
 		} );
 
 	} ).catch( renderError.createHandler( req, res ) );

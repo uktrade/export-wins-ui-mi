@@ -17,7 +17,7 @@
                "status": "email_not_sent",
                "company": {
                   "name": "Schuster and Sons",
-                  "cdms_id": "40479"
+                  "id": "40479"
                },
                "export_amount": 16164617.27,
                "credit": false,
@@ -31,7 +31,7 @@
                "status": "customer_rejected",
                "company": {
                   "name": "Hilpert LLC",
-                  "cdms_id": "some massive long id that should be truncted because it's too long"
+                  "id": "some massive long id that should be truncted because it's too long"
                },
                "export_amount": 700948735.96,
                "credit": true,
@@ -45,7 +45,7 @@
                "status": "customer_confirmed",
                "company": {
                   "name": "Price - Mayert",
-                  "cdms_id": "20811"
+                  "id": "20811"
                },
                "export_amount": 610330058.25,
                "credit": true,
@@ -59,7 +59,7 @@
                "status": "response_not_received",
                "company": {
                   "name": "Hermiston - Runolfsdottir",
-                  "cdms_id": "67571"
+                  "id": "67571"
                },
                "export_amount": 124042473.01,
                "credit": true,
@@ -73,7 +73,7 @@
                "status": "response_not_received",
                "company": {
                   "name": "Berge and Sons",
-                  "cdms_id": "39853"
+                  "id": "39853"
                },
                "export_amount": 371948988.57,
                "credit": true,
@@ -87,7 +87,7 @@
                "status": "customer_confirmed",
                "company": {
                   "name": "Mills, Pagac and Davis",
-                  "cdms_id": "49618"
+                  "id": "49618"
                },
                "export_amount": 569384261,
                "credit": true,
@@ -101,7 +101,7 @@
                "status": "response_not_received",
                "company": {
                   "name": "Rau - Rau",
-                  "cdms_id": "72000"
+                  "id": "72000"
                },
                "export_amount": 644094278.7,
                "credit": true,
@@ -115,7 +115,7 @@
                "status": "customer_confirmed",
                "company": {
                   "name": "Cruickshank, Lebsack and Nienow",
-                  "cdms_id": "69080"
+                  "id": "69080"
                },
                "export_amount": 619347885.7,
                "credit": false,
@@ -129,7 +129,7 @@
                "status": "customer_confirmed",
                "company": {
                   "name": "Schuster LLC",
-                  "cdms_id": "74800"
+                  "id": "74800"
                },
                "export_amount": 318790076.77,
                "credit": false,
@@ -143,7 +143,7 @@
                "status": "customer_confirmed",
                "company": {
                   "name": "Simonis - Price",
-                  "cdms_id": "71489"
+                  "id": "71489"
                },
                "export_amount": 813164860.26,
                "credit": false,
@@ -157,7 +157,7 @@
                "status": "response_not_received",
                "company": {
                   "name": "Reynolds, Effertz and Gleichner",
-                  "cdms_id": "33501"
+                  "id": "33501"
                },
                "export_amount": 143265995.63,
                "credit": false,
@@ -171,7 +171,7 @@
                "status": "response_not_received",
                "company": {
                   "name": "Davis, Cruickshank and Senger",
-                  "cdms_id": "7321"
+                  "id": "7321"
                },
                "export_amount": 104800862.66,
                "credit": false,
@@ -185,7 +185,7 @@
                "status": "response_not_received",
                "company": {
                   "name": "Cormier LLC",
-                  "cdms_id": "50374"
+                  "id": "50374"
                },
                "export_amount": 503232503.75,
                "credit": true,

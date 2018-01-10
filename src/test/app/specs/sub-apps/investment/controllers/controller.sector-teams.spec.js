@@ -8,6 +8,7 @@ let createHandler;
 let renderErrorHandler;
 let fdiOverviewViewModelSpy;
 let fdiSectorTeamMarketsViewModelSpy;
+let sortProjectsSpy;
 let req;
 let res;
 
@@ -17,6 +18,7 @@ describe( 'Investment Sector Teams controller', function(){
 
 		fdiOverviewViewModelSpy = jasmine.createSpy( 'fdiOverviewViewModel' );
 		fdiSectorTeamMarketsViewModelSpy = jasmine.createSpy( 'fdiSectorTeamMarketsViewModel' );
+		sortProjectsSpy = jasmine.createSpy( 'sortProjects' );
 
 		renderErrorHandler = jasmine.createSpy( 'renderErrorHandler' );
 		createHandler = jasmine.createSpy( 'createHandler' ).and.callFake( () => renderErrorHandler );
@@ -35,7 +37,8 @@ describe( 'Investment Sector Teams controller', function(){
 			'../../../lib/service/service.backend/investment/fdi': fdiService,
 			'../../../lib/render-error': { createHandler },
 			'../view-models/fdi-overview': { create: fdiOverviewViewModelSpy },
-			'../view-models/fdi-sector-team-markets': { create: fdiSectorTeamMarketsViewModelSpy }
+			'../view-models/fdi-sector-team-markets': { create: fdiSectorTeamMarketsViewModelSpy },
+			'../lib/sort-projects': sortProjectsSpy
 		} );
 
 		req = {
@@ -315,7 +318,15 @@ describe( 'Investment Sector Teams controller', function(){
 		} );
 	} );
 
-	describe( 'HVC Wins', function(){
+	describe( 'HVC Projects', function(){
+
+		let sortProjectsResponse;
+
+		beforeEach( function(){
+
+			sortProjectsResponse = { sortProjectsResponse: true };
+			sortProjectsSpy.and.callFake( () => sortProjectsResponse );
+		} );
 
 		describe( 'With success', function(){
 
@@ -338,6 +349,7 @@ describe( 'Investment Sector Teams controller', function(){
 				} );
 
 				req.params = { id: teamId };
+				req.query.sort = { key: 'test', dir: 'asc' };
 
 				fdiService.getSectorTeamHvcWinTable.and.callFake( () => promise );
 
@@ -346,6 +358,7 @@ describe( 'Investment Sector Teams controller', function(){
 				promise.then( () => {
 
 					expect( fdiService.getSectorTeamHvcWinTable ).toHaveBeenCalledWith( req, teamId );
+					expect( sortProjectsSpy ).toHaveBeenCalledWith( projectsResponse.results.investments, req.query.sort );
 					expect( res.render ).toHaveBeenCalledWith( 'investment/views/sector-teams/hvc-projects', {
 						dateRange: projectsResponse.date_range,
 						team: {
@@ -353,7 +366,7 @@ describe( 'Investment Sector Teams controller', function(){
 							name: projectsResponse.results.name,
 							description: projectsResponse.results.description
 						},
-						projects: projectsResponse.results.investments
+						projects: sortProjectsResponse
 					} );
 					done();
 				} );
@@ -385,6 +398,7 @@ describe( 'Investment Sector Teams controller', function(){
 				setTimeout( () => {
 
 					expect( fdiService.getSectorTeamHvcWinTable ).toHaveBeenCalledWith( req, teamId );
+					expect( sortProjectsSpy ).not.toHaveBeenCalled();
 					expect( res.render ).not.toHaveBeenCalled();
 					expect( renderErrorHandler ).toHaveBeenCalledWith( err );
 					done();
@@ -393,7 +407,15 @@ describe( 'Investment Sector Teams controller', function(){
 		} );
 	} );
 
-	describe( 'Non HVC wins', function(){
+	describe( 'Non HVC Projects', function(){
+
+		let sortProjectsResponse;
+
+		beforeEach( function(){
+
+			sortProjectsResponse = { sortProjectsResponse: true };
+			sortProjectsSpy.and.callFake( () => sortProjectsResponse );
+		} );
 
 		describe( 'With success', function(){
 
@@ -416,6 +438,7 @@ describe( 'Investment Sector Teams controller', function(){
 				} );
 
 				req.params = { id: teamId };
+				req.query.sort = { key: 'testing', dir: 'asc' };
 
 				fdiService.getSectorTeamNonHvcWinTable.and.callFake( () => promise );
 
@@ -424,6 +447,7 @@ describe( 'Investment Sector Teams controller', function(){
 				promise.then( () => {
 
 					expect( fdiService.getSectorTeamNonHvcWinTable ).toHaveBeenCalledWith( req, teamId );
+					expect( sortProjectsSpy ).toHaveBeenCalledWith( projectsResponse.results.investments, req.query.sort );
 					expect( res.render ).toHaveBeenCalledWith( 'investment/views/sector-teams/non-hvc-projects', {
 						dateRange: projectsResponse.date_range,
 						team: {
@@ -431,7 +455,7 @@ describe( 'Investment Sector Teams controller', function(){
 							name: projectsResponse.results.name,
 							description: projectsResponse.results.description
 						},
-						projects: projectsResponse.results.investments
+						projects: sortProjectsResponse
 					} );
 					done();
 				} );
@@ -463,6 +487,7 @@ describe( 'Investment Sector Teams controller', function(){
 				setTimeout( () => {
 
 					expect( fdiService.getSectorTeamNonHvcWinTable ).toHaveBeenCalledWith( req, teamId );
+					expect( sortProjectsSpy ).not.toHaveBeenCalled();
 					expect( res.render ).not.toHaveBeenCalled();
 					expect( renderErrorHandler ).toHaveBeenCalledWith( err );
 					done();

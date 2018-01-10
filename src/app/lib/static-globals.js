@@ -24,6 +24,26 @@ module.exports = function( env ){
 		{ isActive: true, url: '/', label: 'MI dashboards' },
 	];
 
+	const winTableColumns = {
+
+		hvc: [
+			'company', 'hvc', 'officer', 'country', 'uk-region', 'date', 'value', 'status'
+		],
+		nonHvc: [
+			'company', 'officer', 'country', 'date', 'value', 'status'
+		]
+	};
+
+	const fdiTableColumns = {
+
+		hvc: [
+			'company', 'code', 'manager', 'stage', 'date', 'value', 'new-jobs', 'safe-jobs'
+		],
+		nonHvc: [
+			'company', 'code', 'manager', 'stage', 'date', 'value', 'new-jobs', 'safe-jobs'
+		]
+	};
+
 	env.addGlobal( 'asset_path', '/public/' );
 	env.addGlobal( 'analyticsId', config.analyticsId );
 	env.addGlobal( 'faqLink', config.faqLink );
@@ -35,4 +55,6 @@ module.exports = function( env ){
 	env.addGlobal( 'feedbackLink', `${ config.datahubDomain }/support` );
 	env.addGlobal( 'headerLink', `${ config.datahubDomain }/` );
 	env.addGlobal( 'profileLink', `${ config.datahubDomain }/profile` );
+	env.addGlobal( 'winTableColumns', winTableColumns );
+	env.addGlobal( 'fdiTableColumns', fdiTableColumns );
 };

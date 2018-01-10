@@ -1,123 +1,70 @@
 @import 'mi-colours';
 
-.win-table {
-	border-collapse: collapse;
-	line-height: 1;
-}
-
-.win-table_head_row {
-	border-top: 1px solid #000;
-	border-bottom: 1px solid #000;
-	text-align: left;
-}
-
-.win-table_body_row {
-
-	border-bottom: 1px solid $grey-2;
-
-	&:last-of-type {
-		border-bottom: 0;
-	}
-}
-
-$win-table-cell-padding: 5;
-
-.win-table_head_cell {
-
-	padding: pem( 8 ) pem( $win-table-cell-padding );
-	font-size: 95%;
-	text-align: left;
-}
-
-.win-table_head_cell--sorted-asc {
-	&:after {
-		content: "\00a0\00a0\25B2";
-	}
-}
-
-.win-table_head_cell--sorted-desc {
-	&:after {
-		content: "\00a0\00a0\25BC";
-	}
-}
-
 .win-table_head_cell--date {
 	text-align: center;
-}
-
-.win-table_head_cell_double-heading {
-	float: left;
-}
-
-.win-table_head_cell_sub-heading {
-	color: $grey-1;
-	font-size: 90%;
-	display: block;
-	padding-top: pem( 3, 14 );
-}
-
-.win-table_head_cell_link,
-.win-table_head_cell_link:visited,
-.win-table_head_cell_link:hover,
-.win-table_head_cell_link:link {
-	text-decoration: none;
-	color: #000;
-}
-
-.win-table_cell {
-	padding: pem( 8 ) pem( $win-table-cell-padding );
 }
 
 .win-table--hvc {
 
 	.win-table_cell--company {
-		width: 22%;
-	}
-
-	.win-table_cell--hvc {
-		width: 21%;
-	}
-
-	.win-table_cell--officer {
-		width: 15%;
-	}
-
-	.win-table_cell--date {
 		width: 16%;
 	}
 
-	.win-table_cell--export {
+	.win-table_cell--hvc {
+		width: 18%;
+	}
+
+	.win-table_cell--officer {
+		width: 13%;
+	}
+
+	.win-table_cell--country {
+		width: 10%;
+	}
+
+	.win-table_cell--uk-region {
+		width: 12%;
+	}
+
+	.win-table_cell--date {
+		width: 11%;
+	}
+
+	.win-table_cell--value {
 		width: 10%;
 	}
 
 	.win-table_cell--status {
-		width: 11%;
+		width: 10%;
 	}
 }
 
 .win-table--non-hvc {
 
 	.win-table_cell--company {
-		width: 34%;
+		width: 33%;
 	}
 
 	.win-table_cell--officer {
-		width: 28%;
+		width: 20%;
+	}
+
+	.win-table_cell--country {
+		width: 10%;
 	}
 
 	.win-table_cell--date {
 		width: 17%;
 	}
 
-	.win-table_cell--export {
+	.win-table_cell--value {
 		width: 10%;
 	}
 
 	.win-table_cell--status {
-		width: 11%;
+		width: 10%;
 	}
 }
-
 
 
 .win-table_cell--date {
@@ -125,7 +72,7 @@ $win-table-cell-padding: 5;
 	text-align: center;
 }
 
-.win-table_cell--export {
+.win-table_cell--value {
 	font-size: 95%;
 	font-weight: bold;
 }
@@ -136,7 +83,7 @@ $win-table-cell-padding: 5;
 	text-decoration: none;
 }
 
-.win-table_cell_cdms-ref {
+.win-table_cell_company-id {
 	color: $grey-1;
 	@include core-14;
 }

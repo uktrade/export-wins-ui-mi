@@ -3,7 +3,7 @@
 {% set pageName %}Post HVC wins - {{ post.name | safe }}{% endset %}
 
 {% from 'macros/dates.html' import financialYear %}
-{% from 'macros/win-tables.html' import singleWinTable %}
+{% from 'macros/table-standard-types.html' import hvcWinTable %}
 {% from 'macros/tabs/post.html' import tabs %}
 {% from 'macros/os-regions-types-tabs.html' import osRegionsTypesTabs %}
 
@@ -18,6 +18,6 @@
 
 	{{ tabs( post.id, hvcWins = true ) }}
 
-	{{ singleWinTable( 'Post', hvcWins = wins ) }}
+	{{ hvcWinTable( 'Post', wins ) }}
 
 {% endblock %}

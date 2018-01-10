@@ -3,7 +3,7 @@
 {% set pageName %}Overseas region non HVC wins - {{ region.name | safe }}{% endset %}
 
 {% from 'macros/dates.html' import financialYear %}
-{% from 'macros/win-tables.html' import singleWinTable %}
+{% from 'macros/table-standard-types.html' import nonHvcWinTable %}
 {% from 'macros/tabs/os-regions.html' import tabs %}
 
 {% block page_content %}
@@ -16,6 +16,6 @@
 
 	{{ tabs( region.id, nonHvcWins = true ) }}
 
-	{{ singleWinTable( 'Overseas Region', nonHvcWins = wins ) }}
+	{{ nonHvcWinTable( 'Overseas Region', wins ) }}
 
 {% endblock %}

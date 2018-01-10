@@ -3,7 +3,7 @@
 {% set pageName %}HVC wins - {{ hvc.name | safe }}{% endset %}
 
 {% from 'macros/dates.html' import financialYear %}
-{% from 'macros/win-tables.html' import singleWinTable %}
+{% from 'macros/table-standard-types.html' import hvcWinTable %}
 {% from 'macros/tabs/hvc.html' import tabs %}
 
 {% block page_content %}
@@ -15,6 +15,6 @@
 
 	{{ tabs( hvc.code, hvcWins = true ) }}
 
-	{{ singleWinTable( 'HVC', nonHvcWins = wins, noNonHvcWinsMessage="There aren't any wins recorded for this HVC" ) }}
+	{{ hvcWinTable( 'HVC', wins, columns=winTableColumns.nonHvc, noRowsMessage="There aren't any wins recorded for this HVC", customModifyer='non-hvc' ) }}
 
 {% endblock %}

@@ -3,7 +3,7 @@
 {% set pageName %}HVC group wins - {{ hvcGroup.name | safe }}{% endset %}
 
 {% from 'macros/dates.html' import financialYear %}
-{% from 'macros/win-tables.html' import singleWinTable %}
+{% from 'macros/table-standard-types.html' import hvcWinTable %}
 {% from 'macros/tabs/hvc-group.html' import tabs %}
 
 {% block page_content %}
@@ -16,6 +16,6 @@
 
 	{{ tabs( hvcGroup.id, hvcWins = true ) }}
 
-	{{ singleWinTable( 'HVC Group', hvcWins = wins ) }}
+	{{ hvcWinTable( 'HVC Group', wins ) }}
 
 {% endblock %}
