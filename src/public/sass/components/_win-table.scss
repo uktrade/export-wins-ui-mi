@@ -42,7 +42,69 @@
 .win-table--non-hvc {
 
 	.win-table_cell--company {
-		width: 33%;
+		width: 25%;
+	}
+
+	.win-table_cell--officer {
+		width: 14%;
+	}
+
+	.win-table_cell--country {
+		width: 12%;
+	}
+
+	.win-table_cell--uk-region {
+		width: 12%;
+	}
+
+	.win-table_cell--date {
+		width: 17%;
+	}
+
+	.win-table_cell--value {
+		width: 10%;
+	}
+
+	.win-table_cell--status {
+		width: 10%;
+	}
+}
+
+.win-table--uk-regions-hvc {
+
+	.win-table_cell--company {
+		width: 21%;
+	}
+
+	.win-table_cell--hvc {
+		width: 23%;
+	}
+
+	.win-table_cell--officer {
+		width: 13%;
+	}
+
+	.win-table_cell--country {
+		width: 12%;
+	}
+
+	.win-table_cell--date {
+		width: 11%;
+	}
+
+	.win-table_cell--value {
+		width: 10%;
+	}
+
+	.win-table_cell--status {
+		width: 10%;
+	}
+}
+
+.win-table--uk-regions-non-hvc {
+
+	.win-table_cell--company {
+		width: 31%;
 	}
 
 	.win-table_cell--officer {
@@ -50,7 +112,7 @@
 	}
 
 	.win-table_cell--country {
-		width: 10%;
+		width: 12%;
 	}
 
 	.win-table_cell--date {

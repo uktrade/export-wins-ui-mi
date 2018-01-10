@@ -28,6 +28,16 @@ function checkHvcName( win ){
 	}
 }
 
+function checkForEmail( name ){
+
+	if( typeof name === 'string' && name.includes( '@' ) ){
+
+		return name.split( '@' ).join( ' @' );
+	}
+
+	return name;
+}
+
 function transformWin( win ){
 
 	switch( win.status ){
@@ -47,6 +57,7 @@ function transformWin( win ){
 	}
 
 	win.company.truncated_id = truncate( win.company.id, MAX_CDMS_ID_LENGTH );
+	win.lead_officer.name = checkForEmail( win.lead_officer.name );
 
 	if( win.hvc ){
 

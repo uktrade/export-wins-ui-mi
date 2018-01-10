@@ -15,6 +15,6 @@
 
 	{{ tabs( hvc.code, hvcWins = true ) }}
 
-	{{ hvcWinTable( 'HVC', wins, columns=winTableColumns.nonHvc, noRowsMessage="There aren't any wins recorded for this HVC", customModifyer='non-hvc' ) }}
+	{{ hvcWinTable( 'HVC', wins, columns=winTableColumns.nonHvc, noRowsMessage="There aren't any wins recorded for this HVC", modifyer='non-hvc' ) }}
 
 {% endblock %}

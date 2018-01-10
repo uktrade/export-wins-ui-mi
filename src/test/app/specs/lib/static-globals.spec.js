@@ -200,6 +200,8 @@ describe( 'Static globals', function(){
 		expect( args[ 0 ] ).toEqual( 'winTableColumns' );
 		expect( Array.isArray( args[ 1 ].hvc ) ).toEqual( true );
 		expect( Array.isArray( args[ 1 ].nonHvc ) ).toEqual( true );
+		expect( Array.isArray( args[ 1 ].ukRegions.hvc ) ).toEqual( true );
+		expect( Array.isArray( args[ 1 ].ukRegions.nonHvc ) ).toEqual( true );
 	} );
 
 	it( 'Should add the fdi table columns to the nunjucks env', function(){

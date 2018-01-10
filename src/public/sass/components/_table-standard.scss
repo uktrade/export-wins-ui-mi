@@ -73,6 +73,10 @@ $table-standard-cell-padding: 5;
 
 .table-standard_head_cell_link:hover {
 	text-decoration: underline;
+
+	.table-standard_head_cell_sub-heading {
+		color: $grey-1;
+	}
 }
 
 .table-standard_cell {

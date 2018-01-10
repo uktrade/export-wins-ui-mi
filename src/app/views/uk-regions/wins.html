@@ -16,6 +16,6 @@
 
 	{{ tabs( region.id, hvcWins = true ) }}
 
-	{{ hvcWinTable( 'UK Region', wins ) }}
+	{{ hvcWinTable( 'UK Region', wins, columns=winTableColumns.ukRegions.hvc, modifyer='uk-regions-hvc' ) }}
 
 {% endblock %}
