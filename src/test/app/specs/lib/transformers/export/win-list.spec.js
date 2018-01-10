@@ -34,13 +34,13 @@ describe( 'Win List transformer', function(){
 			} );
 		} );
 
-		describe( 'CDMS ref', function(){
+		describe( 'Company id', function(){
 
 			it( 'Should create a truncated ref property', function(){
 
 				for( let win of wins ){
 
-					expect( win.company.truncated_cdms_id ).toBeDefined();
+					expect( win.company.truncated_id ).toBeDefined();
 				}
 			} );
 
@@ -48,7 +48,7 @@ describe( 'Win List transformer', function(){
 
 				it( 'Should have the full reference', function(){
 
-					expect( wins[ 0 ].company.truncated_cdms_id ).toEqual( '40479' );
+					expect( wins[ 0 ].company.truncated_id ).toEqual( '40479' );
 				} );
 			} );
 
@@ -56,10 +56,10 @@ describe( 'Win List transformer', function(){
 
 				it( 'Should truncate the reference', function(){
 
-					let truncated = wins[ 1 ].company.truncated_cdms_id.substr( 0, 24 );
+					let truncated = wins[ 1 ].company.truncated_id.substr( 0, 24 );
 					truncated += '...';
 
-					expect( wins[ 1 ].company.truncated_cdms_id ).toEqual( truncated );
+					expect( wins[ 1 ].company.truncated_id ).toEqual( truncated );
 				} );
 			} );
 		} );

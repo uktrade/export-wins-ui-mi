@@ -1,0 +1,240 @@
+
+{% macro tableHeading( name, tableClass, sortKey, sortDir, projects ) -%}
+
+	{% set currentUrl = urls.current() %}
+	{% set double = false %}
+	{%- set tableHeadingClass %}table-standard_head_cell{% if name === sortKey %} table-standard_head_cell--sorted-{{ sortDir }}{% endif %}{% endset %}
+
+	{% if projects %}
+
+		{%- if name === 'company' -%}
+
+			{% set double = true %}
+			{% set titleSuffix = 'Company name' %}
+			{% set text -%}
+				Company Name<span class="visually-hidden"> and </span>
+				<span class="table-standard_head_cell_sub-heading">Reference number</span>
+			{%- endset %}
+
+		{%- elif name === 'code' -%}
+
+			{% set titleSuffix = 'Project Code' %}
+			{% set text = 'Project code' %}
+
+		{%- elif name === 'manager' -%}
+
+			{% set titleSuffix = 'Manager' %}
+			{% set text = 'Manager' %}
+
+		{%- elif name === 'stage' -%}
+
+			{% set titleSuffix = 'Stage' %}
+			{% set text = 'Stage' %}
+
+		{%- elif name === 'date' -%}
+
+			{% set titleSuffix = 'date' %}
+			{% set text = 'Date' %}
+
+		{%- elif name === 'value' -%}
+
+			{% set titleSuffix = 'Value' %}
+			{% set text = 'Value' %}
+
+		{%- elif name === 'new-jobs' -%}
+
+			{% set titleSuffix = 'New Jobs' %}
+			{% set text = 'New<br>Jobs' %}
+
+		{%- elif name === 'safe-jobs' -%}
+
+			{% set titleSuffix = 'Safeguarded jobs' %}
+			{% set text = 'Safeguarded<br>jobs' %}
+
+		{%- endif	-%}
+
+	{% else %}
+
+		{%- if name === 'company' -%}
+
+			{% set double = true %}
+			{% set titleSuffix = 'Company name' %}
+			{% set text -%}
+				Company Name<span class="visually-hidden"> and </span>
+				<span class="table-standard_head_cell_sub-heading">Reference number</span>
+			{%- endset %}
+
+		{%- elif name === 'hvc' -%}
+
+			{% set titleSuffix = 'HVC Code' %}
+			{% set text = 'HVC' %}
+
+		{%- elif name === 'officer' -%}
+
+			{% set titleSuffix = 'Lead officer' %}
+			{% set text = 'Lead officer' %}
+
+		{%- elif name === 'country' -%}
+
+			{% set titleSuffix = 'Country' %}
+			{% set text = 'Country' %}
+
+		{%- elif name === 'uk-region' -%}
+
+			{% set titleSuffix = 'UK Region' %}
+			{% set text = 'UK region' %}
+
+		{%- elif name === 'date' -%}
+
+			{% set titleSuffix = 'Win date' %}
+			{% set text %}
+				Confirmed<br>date
+			{% endset %}
+
+		{%- elif name === 'value' -%}
+
+			{% set titleSuffix = 'Export value' %}
+			{% set text = 'Export value' %}
+
+		{%- elif name === 'status' -%}
+
+			{% set titleSuffix = 'Status' %}
+			{% set text = 'Status' %}
+
+		{%- endif	-%}
+
+	{% endif %}
+
+
+	<th class="{{ tableHeadingClass }} {{ tableClass }}_head_cell--{{ name }}">
+		<a href="{{ urls.addSort( currentUrl, name, sortKey, sortDir ) }}" class="table-standard_head_cell_link{% if double %} table-standard_head_cell_double-heading{% endif %}" title="Sort by {{ titleSuffix }}">
+			{{ text | safe }}
+		</a>
+	</th>
+
+{%- endmacro %}
+
+{% macro tableCell( name, row, tableClass, projects ) -%}
+
+	{% set cellClass %}table-standard_cell {{ tableClass }}_cell--{{ name }}{% endset %}
+
+	{% if projects %}
+
+		{%- if name === 'company' -%}
+
+			{% set text %}
+				<span class="{{ tableClass }}_cell_company-name">{{ row.company.name }}</span>
+				<span class="{{ tableClass }}_cell_company-id">{{ row.company.reference }}</span>
+			{% endset %}
+
+		{%- elif name === 'code' -%}
+
+			{% set text %}{{ row.code }}{% endset %}
+
+		{%- elif name === 'manager' -%}
+
+			{% set text %}{{ row.relationshipManager }}{% endset %}
+
+		{%- elif name === 'stage' -%}
+
+			{% set text %}{{ row.stage }}{% endset %}
+
+		{%- elif name === 'date' -%}
+
+			{% set text %}{{ row.date | dateOnly }}{% endset %}
+
+		{%- elif name === 'value' -%}
+
+			{% set text %}&pound;{{ row.investmentValue | largeNumber }}{% endset %}
+
+		{%- elif name === 'new-jobs' -%}
+
+			{% set text %}{{ row.jobs.new }}{% endset %}
+
+		{%- elif name === 'safe-jobs' -%}
+
+			{% set text %}{{ row.jobs.safe }}{% endset %}
+
+		{%- endif	-%}
+
+	{% else %}
+
+		{%- if name === 'company' -%}
+
+			{% set text %}
+				<span class="{{ tableClass }}_cell_company-name">{{ row.company.name }}</span>
+				<span class="{{ tableClass }}_cell_company-id" title="{{ row.company.id }}">{{ row.company.truncated_id }}</span>
+			{% endset %}
+
+		{%- elif name === 'hvc' -%}
+
+			{% set text %}
+				<span class="{{ tableClass }}_cell_hvc">HVC: </span>{{ row.hvc.code }}
+				<span class="{{ tableClass }}_cell_hvc-name">{{ row.hvc.name }}</span>
+			{% endset %}
+
+		{%- elif name === 'officer' -%}
+
+			{% set text %}{{ row.lead_officer.name }}{% endset %}
+
+		{%- elif name === 'country' -%}
+
+			{% set text %}{{ row.country }}{% endset %}
+
+		{%- elif name === 'uk-region' -%}
+
+			{% set text %}{{ row.uk_region }}{% endset %}
+
+		{%- elif name === 'date' -%}
+
+			{% set text %}{{ row.win_date | dateOnly }}{% endset %}
+
+		{%- elif name === 'value' -%}
+
+			{% set text %}&pound;{{ row.export_amount | largeNumber }}{% endset %}
+
+		{%- elif name === 'status' -%}
+
+			{% set cellClass %}{{ cellClass }} {{ tableClass }}_cell--status-{{ row.status.modifyer }}{% endset %}
+			{% set text %}{{- row.status.name -}}{% endset %}
+
+		{%- endif %}
+
+	{%- endif -%}
+
+	<td class="{{ cellClass }}">
+		{{- text | safe -}}
+	</td>
+
+{%- endmacro %}
+
+{% macro standardTable( rows, columns, tableClass, tableModifyer, itemType, projects=false ) %}
+
+	<div class="grid-row">
+		<div class="column-single">
+			<table class="table-standard {{ tableClass }}--{{ tableModifyer }}">
+				<caption class="visually-hidden">
+					{{ itemType }}, sorted by {{ rows.sortName }} {{ rows.sortDirName }}
+				</caption>
+				<thead>
+					<tr class="table-standard_head_row">
+						{% for column in columns %}
+							{{ tableHeading( column, tableClass, rows.sortKey, rows.sortDir, projects ) }}
+						{% endfor %}
+					</tr>
+				</thead>
+				<tbody>
+				{%- for row in rows %}
+					<tr class="table-standard_body_row">
+						{% for column in columns %}
+							{{ tableCell( column, row, tableClass, projects ) }}
+						{% endfor %}
+					</tr>
+				{%- endfor %}
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+
+{%- endmacro %}

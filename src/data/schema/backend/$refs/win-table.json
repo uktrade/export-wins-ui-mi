@@ -5,7 +5,7 @@
 		"maxItems": 20,
 		"items": {
 			"type": "object",
-			"required": [ "id", "win_date", "status", "company", "export_amount", "credit", "lead_officer" ],
+			"required": [ "id", "win_date", "status", "company", "export_amount", "credit", "lead_officer", "country", "uk_region", "export_experience" ],
 			"properties": {
 
 				"id": {
@@ -34,6 +34,18 @@
 
 				"lead_officer": {
 					"$ref": "#/definitions/lead_officer"
+				},
+
+				"country": {
+					"$ref": "#/definitions/country"
+				},
+
+				"uk_region": {
+					"$ref": "#/definitions/uk_region"
+				},
+
+				"export_experience": {
+					"$ref": "#/definitions/export_experience"
 				}
 			}
 		}
@@ -45,7 +57,7 @@
 		"maxItems": 20,
 		"items": {
 			"type": "object",
-			"required": [ "hvc", "id", "win_date", "status", "company", "export_amount", "credit", "lead_officer" ],
+			"required": [ "hvc", "id", "win_date", "status", "company", "export_amount", "credit", "lead_officer", "country", "uk_region", "export_experience" ],
 			"properties": {
 
 				"hvc": {
@@ -91,12 +103,25 @@
 
 				"lead_officer": {
 					"$ref": "#/definitions/lead_officer"
+				},
+
+				"country": {
+					"$ref": "#/definitions/country"
+				},
+
+				"uk_region": {
+					"$ref": "#/definitions/uk_region"
+				},
+
+				"export_experience": {
+					"$ref": "#/definitions/export_experience"
 				}
 			}
 		}
 	},
 
 	"definitions": {
+
 		"id": {
 			"type": "string",
 			"faker": "random.uuid"
@@ -114,13 +139,13 @@
 
 		"company": {
 			"type": "object",
-			"required": [ "name", "cdms_id" ],
+			"required": [ "name", "id" ],
 			"properties": {
 				"name": {
 					"type": "string",
 					"faker": "company.companyName"
 				},
-				"cdms_id": {
+				"id": {
 					"type": "string",
 					"faker": "random.number"
 				}
@@ -146,6 +171,31 @@
 				"name": {
 					"type": "string",
 					"faker": "name.findName"
+				}
+			}
+		},
+
+		"country": {
+			"type": "string",
+			"faker": "address.country"
+		},
+
+		"uk_region": {
+			"type": "string",
+			"faker": "address.county"
+		},
+
+		"export_experience": {
+			"type": "object",
+			"required": [ "key", "description" ],
+			"properties": {
+				"key": {
+					"type": "string",
+					"pattern": "^[A-Z]{6,10}$"
+				},
+				"description": {
+					"type": "string",
+					"faker": "lorem.words"
 				}
 			}
 		}

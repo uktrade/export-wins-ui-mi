@@ -7,7 +7,7 @@ function createStatus( win, name, modifyer ){
 
 function truncate( str, maxLength ){
 
-	if( str.length > maxLength ){
+	if( str && str.length > maxLength ){
 
 		return ( str.substr( 0, maxLength ) + '...' );
 	}
@@ -46,7 +46,7 @@ function transformWin( win ){
 		break;
 	}
 
-	win.company.truncated_cdms_id = truncate( win.company.cdms_id, MAX_CDMS_ID_LENGTH );
+	win.company.truncated_id = truncate( win.company.id, MAX_CDMS_ID_LENGTH );
 
 	if( win.hvc ){
 

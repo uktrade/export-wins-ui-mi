@@ -192,4 +192,22 @@ describe( 'Static globals', function(){
 		expect( args[ 0 ] ).toEqual( 'profileLink' );
 		expect( args[ 1 ] ).toEqual( `${ datahubDomain }/profile` );
 	} );
+
+	it( 'Should add the win table columns to the nunjucks env', function(){
+
+		const args = calls.argsFor( 11 );
+
+		expect( args[ 0 ] ).toEqual( 'winTableColumns' );
+		expect( Array.isArray( args[ 1 ].hvc ) ).toEqual( true );
+		expect( Array.isArray( args[ 1 ].nonHvc ) ).toEqual( true );
+	} );
+
+	it( 'Should add the fdi table columns to the nunjucks env', function(){
+
+		const args = calls.argsFor( 12 );
+
+		expect( args[ 0 ] ).toEqual( 'fdiTableColumns' );
+		expect( Array.isArray( args[ 1 ].hvc ) ).toEqual( true );
+		expect( Array.isArray( args[ 1 ].nonHvc ) ).toEqual( true );
+	} );
 } );

@@ -3,7 +3,7 @@
 {% set pageName %}Sector team non HVC wins - {{ sectorTeam.name | safe }}{% endset %}
 
 {% from 'macros/dates.html' import financialYear %}
-{% from 'macros/win-tables.html' import singleWinTable %}
+{% from 'macros/table-standard-types.html' import nonHvcWinTable %}
 {% from 'macros/tabs/sector-team.html' import tabs %}
 
 {% block page_content %}
@@ -16,6 +16,6 @@
 
 	{{ tabs( sectorTeam.id, nonHvcWins = true ) }}
 
-	{{ singleWinTable( 'Sector Team', nonHvcWins = wins ) }}
+	{{ nonHvcWinTable( 'Sector Team', wins ) }}
 
 {% endblock %}
