@@ -18,6 +18,8 @@ let hvcSummary;
 let hvcTargetPerformance;
 let topMarkets;
 let monthlyPerformance;
+let analyticsService;
+let mockTracker;
 
 describe( 'Posts controller', function(){
 
@@ -25,9 +27,13 @@ describe( 'Posts controller', function(){
 
 		sortWinsResponse = { some: 'wins' };
 
+		mockTracker = null;
 		exportBackendService = {};
 		errorHandler = { createHandler: spy( 'errorHandler.createHandler' ) };
 		sortWins = spy( 'sortWins', sortWinsResponse );
+		analyticsService = {
+			createTracker: jasmine.createSpy( 'analyticsService.createTracker' ).and.callFake( () => mockTracker )
+		};
 
 		sectorSummary = {};
 		hvcSummary = {};
@@ -41,6 +47,7 @@ describe( 'Posts controller', function(){
 
 		controller = proxyquire( '../../../../app/controllers/controller.posts', {
 			'../lib/service/service.backend': { export: exportBackendService },
+			'../lib/service/analytics': analyticsService,
 			'../lib/render-error': errorHandler,
 			'../lib/sort-wins': sortWins,
 			'../lib/view-models/sector-summary': sectorSummary,
@@ -81,31 +88,69 @@ describe( 'Posts controller', function(){
 
 	describe( 'Top Non HVcs', function(){
 
-		it( 'Should get the list data and render the correct view', function( done ){
+		let req;
+		let topNonHvcs;
+		let promise;
 
-			const req = {
+		beforeEach( function(){
+
+			req = {
 				cookies: { sessionid: '456' },
 				params: { id: 'SI' },
 				year
 			};
 
-			const topNonHvcs = { results: { 'topNonHvcs': true } };
+			topNonHvcs = { results: { 'topNonHvcs': true } };
 
-			const promise = new Promise( ( resolve ) => { resolve( topNonHvcs ); } );
+			promise = new Promise( ( resolve ) => { resolve( topNonHvcs ); } );
 
 			exportBackendService.getPostTopNonHvc = spy( 'getPostTopNonHvc', promise );
-			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
+		} );
 
-			controller.topNonHvcs( req, res );
+		describe( 'When an analytics tracker is created', function(){
 
-			promise.then( () => {
+			it( 'Should get the list data, render the correct view and track the event', function( done ){
 
-				expect( exportBackendService.getPostTopNonHvc ).toHaveBeenCalledWith( req, req.params.id, true );
-				expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
-				expect( res.render ).toHaveBeenCalledWith( 'partials/top-non-hvcs.html', {
-					topNonHvcs: topNonHvcs.results
+				mockTracker = {
+					loadAllTopMarkets: jasmine.createSpy( 'loadAllTopMarkets' )
+				};
+
+				errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
+
+				controller.topNonHvcs( req, res );
+
+				promise.then( () => {
+
+					expect( exportBackendService.getPostTopNonHvc ).toHaveBeenCalledWith( req, req.params.id, true );
+					expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
+					expect( res.render ).toHaveBeenCalledWith( 'partials/top-non-hvcs.html', {
+						topNonHvcs: topNonHvcs.results
+					} );
+					expect( analyticsService.createTracker ).toHaveBeenCalledWith( req );
+					expect( mockTracker.loadAllTopMarkets ).toHaveBeenCalledWith( req.url, 'Export Post', req.params.id  );
+					done();
 				} );
-				done();
+			} );
+		} );
+
+		describe( 'When an analytics tracker is not created', function(){
+
+			it( 'Should not throw an error', function( done ){
+
+				errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
+
+				controller.topNonHvcs( req, res );
+
+				promise.then( () => {
+
+					expect( exportBackendService.getPostTopNonHvc ).toHaveBeenCalledWith( req, req.params.id, true );
+					expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
+					expect( res.render ).toHaveBeenCalledWith( 'partials/top-non-hvcs.html', {
+						topNonHvcs: topNonHvcs.results
+					} );
+					expect( analyticsService.createTracker ).toHaveBeenCalledWith( req );
+					done();
+				} );
 			} );
 		} );
 	} );

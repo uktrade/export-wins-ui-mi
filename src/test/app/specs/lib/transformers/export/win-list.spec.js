@@ -65,6 +65,20 @@ describe( 'Win List transformer', function(){
 		} );
 	} );
 
+	describe( 'When the lead officer name is an email address', function(){
+
+		it( 'Should add a space before the @', function(){
+
+			const data = getBackendStub( '/sector_teams/win_table' );
+
+			data.results.wins.hvc[ 0 ].lead_officer.name = 'somerandomemail@mail.com';
+
+			const output = transform( data.results );
+
+			expect( output.wins.hvc[ 0 ].lead_officer.name ).toEqual( 'somerandomemail @mail.com' );
+		} );
+	} );
+
 	describe( 'Sector Team HVC and non HVC wins', function(){
 
 		describe( 'HVC wins', function(){

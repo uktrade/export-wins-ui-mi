@@ -71,6 +71,14 @@ $table-standard-cell-padding: 5;
 	color: $link-colour;
 }
 
+.table-standard_head_cell_link:hover {
+	text-decoration: underline;
+
+	.table-standard_head_cell_sub-heading {
+		color: $grey-1;
+	}
+}
+
 .table-standard_cell {
 	padding: pem( 8 ) pem( $table-standard-cell-padding );
 }

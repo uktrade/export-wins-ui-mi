@@ -123,7 +123,65 @@ describe( 'Creating a tracker', function(){
 
 							args[ 1 ]( new Error( 'Unable to track event' ) );
 
-							expect( reporter.message ).toHaveBeenCalledWith( 'info', 'Unable to send download event to Google Analytics', {
+							expect( reporter.message ).toHaveBeenCalledWith( 'info', 'Unable to send Downloads event to Google Analytics', {
+								eventAction: action,
+								eventLabel: fileName,
+							} );
+						} );
+					} );
+
+					describe( 'When the event tracking calls the callback without an error', function(){
+
+						it( 'Should not report an error', function(){
+
+							args[ 1 ]( null );
+
+							expect( reporter.message ).not.toHaveBeenCalled();
+						} );
+					} );
+				} );
+
+				describe( 'loadAllTopMarkets', function(){
+
+					let path;
+					let action;
+					let fileName;
+					let args;
+
+					beforeEach( function(){
+
+						path = '/my/path/';
+						action = 'CSV - test';
+						fileName = 'Some file';
+
+						tracker.loadAllTopMarkets( path, action, fileName );
+
+						args = mockTracker.event.calls.argsFor( 0 );
+					} );
+
+					it( 'Should track the correct event', function(){
+
+						expect( args[ 0 ] ).toEqual( {
+
+							eventCategory: 'Load All',
+							eventAction: action,
+							eventLabel: fileName,
+							documentPath: path,
+							dataSource: 'web',
+							documentTitle: 'Load all top markets'
+
+						} );
+
+						expect( typeof args[ 1 ] ).toEqual( 'function' );
+					} );
+
+					describe( 'When the event tracking calls the callback with an error', function(){
+
+						it( 'Should report the error the reporter', function(){
+
+							args[ 1 ]( new Error( 'Unable to track event' ) );
+
+							expect( reporter.message ).toHaveBeenCalledWith( 'info', 'Unable to send Load All event to Google Analytics', {
 								eventAction: action,
 								eventLabel: fileName,
 							} );

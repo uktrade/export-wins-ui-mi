@@ -18,9 +18,24 @@ function Tracker( analyticsId, uid ){
 	this.tracker = ua( analyticsId, uid, { strictCidFormat: false, https: true } );
 }
 
+Tracker.prototype.trackEvent = function( opts ){
+
+	this.tracker.event( opts, ( err ) => {
+
+		if( err ){
+
+			reporter.message( 'info', `Unable to send ${ opts.eventCategory } event to Google Analytics`, {
+				eventAction: opts.eventAction,
+				eventLabel: opts.eventLabel,
+			} );
+		}
+	} );
+
+};
+
 Tracker.prototype.downloadCsvFile = function( path, action, fileName ){
 
-	this.tracker.event( {
+	this.trackEvent( {
 
 		eventCategory: 'Downloads',
 		eventAction: action,
@@ -29,15 +44,18 @@ Tracker.prototype.downloadCsvFile = function( path, action, fileName ){
 		dataSource: 'web',
 		documentTitle: 'CSV download'
 
-	}, ( err ) => {
+	} );
+};
 
-		if( err ){
+Tracker.prototype.loadAllTopMarkets = function( path, action, label ){
 
-			reporter.message( 'info', 'Unable to send download event to Google Analytics', {
-				eventAction: action,
-				eventLabel: fileName,
-			} );
-		}
+	this.trackEvent( {
+		eventCategory: 'Load All',
+		eventAction: action,
+		eventLabel: label,
+		documentPath: path,
+		dataSource: 'web',
+		documentTitle: 'Load all top markets'
 	} );
 };
 

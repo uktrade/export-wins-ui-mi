@@ -1,6 +1,6 @@
 {% from 'macros/table-standard.html' import standardTable %}
 
-{% macro standardTableOrMessage( rows, columns, type, noRowsMessage = '', nonHvc = false, projects = false, customModifyer = '' ) %}
+{% macro standardTableOrMessage( rows, columns, type, noRowsMessage = '', nonHvc = false, projects = false, modifyer = '' ) %}
 
 	{%- if projects %}
 		{% set tableClass='project-table' %}
@@ -18,8 +18,8 @@
 		{% set itemType %}HVC {{ rowItems }}{% endset %}
 	{% endif %}
 
-	{% if customModifyer %}
-		{% set tableModifyer %}{{ customModifyer }}{% endset %}
+	{% if modifyer %}
+		{% set tableModifyer %}{{ modifyer }}{% endset %}
 	{% endif %}
 
 	{% if rows.length %}
@@ -43,26 +43,26 @@
 
 {% endmacro %}
 
-{% macro hvcWinTable( type, rows, columns = winTableColumns.hvc, noRowsMessage='', customModifyer='' ) %}
+{% macro hvcWinTable( type, rows, columns = winTableColumns.hvc, noRowsMessage='', modifyer='' ) %}
 
-	{{ standardTableOrMessage( rows, columns, type, noRowsMessage=noRowsMessage, customModifyer=customModifyer ) }}
-
-{% endmacro %}
-
-{% macro nonHvcWinTable( type, rows, columns = winTableColumns.nonHvc, noRowsMessage='', customModifyer='' ) %}
-
-	{{ standardTableOrMessage( rows, columns, type, noRowsMessage=noRowsMessage, customModifyer=customModifyer, nonHvc = true ) }}
+	{{ standardTableOrMessage( rows, columns, type, noRowsMessage=noRowsMessage, modifyer=modifyer ) }}
 
 {% endmacro %}
 
-{% macro hvcProjectTable( type, rows, columns = fdiTableColumns.hvc, noRowsMessage='', customModifyer='' ) %}
+{% macro nonHvcWinTable( type, rows, columns = winTableColumns.nonHvc, noRowsMessage='', modifyer='' ) %}
 
-	{{ standardTableOrMessage( rows, columns, type, noRowsMessage=noRowsMessage, customModifyer=customModifyer, projects = true ) }}
+	{{ standardTableOrMessage( rows, columns, type, noRowsMessage=noRowsMessage, modifyer=modifyer, nonHvc = true ) }}
 
 {% endmacro %}
 
-{% macro nonHvcProjectTable( type, rows, columns = fdiTableColumns.nonHvc, noRowsMessage='', customModifyer='' ) %}
+{% macro hvcProjectTable( type, rows, columns = fdiTableColumns.hvc, noRowsMessage='', modifyer='' ) %}
 
-	{{ standardTableOrMessage( rows, columns, type, noRowsMessage=noRowsMessage, customModifyer=customModifyer, nonHvc = true, projects = true ) }}
+	{{ standardTableOrMessage( rows, columns, type, noRowsMessage=noRowsMessage, modifyer=modifyer, projects = true ) }}
+
+{% endmacro %}
+
+{% macro nonHvcProjectTable( type, rows, columns = fdiTableColumns.nonHvc, noRowsMessage='', modifyer='' ) %}
+
+	{{ standardTableOrMessage( rows, columns, type, noRowsMessage=noRowsMessage, modifyer=modifyer, nonHvc = true, projects = true ) }}
 
 {% endmacro %}

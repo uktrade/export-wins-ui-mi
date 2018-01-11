@@ -30,8 +30,17 @@ module.exports = function( env ){
 			'company', 'hvc', 'officer', 'country', 'uk-region', 'date', 'value', 'status'
 		],
 		nonHvc: [
-			'company', 'officer', 'country', 'date', 'value', 'status'
-		]
+			'company', 'officer', 'country', 'uk-region', 'date', 'value', 'status'
+		],
+
+		ukRegions: {
+			hvc: [
+				'company', 'hvc', 'officer', 'country', 'date', 'value', 'status'
+			],
+			nonHvc: [
+				'company', 'officer', 'country', 'date', 'value', 'status'
+			]
+		}
 	};
 
 	const fdiTableColumns = {

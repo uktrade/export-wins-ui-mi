@@ -14,6 +14,8 @@ let hvcSummary;
 let hvcTargetPerformance;
 let topMarkets;
 let monthlyPerformance;
+let analyticsService;
+let mockTracker;
 
 let res;
 let controller;
@@ -24,9 +26,13 @@ describe( 'Sector Teams controller', function(){
 
 		sortWinsResponse = { some: 'wins' };
 
+		mockTracker = null;
 		exportBackendService = {};
 		errorHandler = { createHandler: spy( 'errorHandler.createHandler' ) };
 		sortWins = spy( 'sortWins', sortWinsResponse );
+		analyticsService = {
+			createTracker: jasmine.createSpy( 'analyticsService.createTracker' ).and.callFake( () => mockTracker )
+		};
 
 		sectorSummary = {};
 		hvcSummary = {};
@@ -40,6 +46,7 @@ describe( 'Sector Teams controller', function(){
 
 		controller = proxyquire( '../../../../app/controllers/controller.sector-teams', {
 			'../lib/service/service.backend': { export: exportBackendService },
+			'../lib/service/analytics': analyticsService,
 			'../lib/render-error': errorHandler,
 			'../lib/sort-wins': sortWins,
 			'../lib/view-models/sector-summary': sectorSummary,
@@ -116,34 +123,72 @@ describe( 'Sector Teams controller', function(){
 
 	describe( 'Top Non HVC', function(){
 
-		it( 'Should get the list data and render the correct view', function( done ){
+		let req;
+		let topNonHvcs;
+		let promise;
 
-			const req = {
+		beforeEach( function(){
+
+			req = {
 				cookies: { sessionid: '456' },
 				year,
+				url: '/a/url/',
 				params: {
 					id: 1234
 				}
 			};
 
-			const topNonHvcs = {
+			topNonHvcs = {
 				results: [ 'some list results' ]
 			};
 
-			const promise = new Promise( ( resolve ) => { resolve( topNonHvcs ); } );
-
+			promise = new Promise( ( resolve ) => { resolve( topNonHvcs ); } );
 			exportBackendService.getSectorTeamTopNonHvc = spy( 'getSectorTeamTopNonHvc', promise );
-			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
+		} );
 
-			controller.topNonHvcs( req, res );
+		describe( 'When an analytics tracker is created', function(){
 
-			promise.then( () => {
-				expect( exportBackendService.getSectorTeamTopNonHvc ).toHaveBeenCalledWith( req, req.params.id, true );
-				expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
-				expect( res.render ).toHaveBeenCalledWith( 'partials/top-non-hvcs.html', {
-					topNonHvcs: topNonHvcs.results
+			it( 'Should get the list data, render the correct view and track the event', function( done ){
+
+				mockTracker = {
+					loadAllTopMarkets: jasmine.createSpy( 'loadAllTopMarkets' )
+				};
+
+				errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
+
+				controller.topNonHvcs( req, res );
+
+				promise.then( () => {
+					expect( exportBackendService.getSectorTeamTopNonHvc ).toHaveBeenCalledWith( req, req.params.id, true );
+					expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
+					expect( res.render ).toHaveBeenCalledWith( 'partials/top-non-hvcs.html', {
+						topNonHvcs: topNonHvcs.results
+					} );
+					expect( analyticsService.createTracker ).toHaveBeenCalledWith( req );
+					expect( mockTracker.loadAllTopMarkets ).toHaveBeenCalledWith( req.url, 'Export Sector Team', req.params.id  );
+					done();
 				} );
-				done();
+			} );
+		} );
+
+		describe( 'When an analytics tracker is not created', function(){
+
+			it( 'Should not throw an error', function( done ){
+
+				errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
+
+				controller.topNonHvcs( req, res );
+
+				promise.then( () => {
+
+					expect( exportBackendService.getSectorTeamTopNonHvc ).toHaveBeenCalledWith( req, req.params.id, true );
+					expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
+					expect( res.render ).toHaveBeenCalledWith( 'partials/top-non-hvcs.html', {
+						topNonHvcs: topNonHvcs.results
+					} );
+					expect( analyticsService.createTracker ).toHaveBeenCalledWith( req );
+					done();
+				} );
 			} );
 		} );
 	} );
