@@ -90,6 +90,7 @@ module.exports = function( req ){
 		downloadCompaniesByRegionFile: ( file ) => downloadFile( file, 'CSV - Companies by region' ),
 		downloadContactsBySectorFile: ( file ) => downloadFile( file, 'CSV - Contacts by sector' ),
 		downloadCompaniesBySectorFile: ( file ) => downloadFile( file, 'CSV - Companies by sector' ),
+		downloadSampleFrameFile: ( file ) => downloadFile( file, 'CSV - Export Client Sample Frame' ),
 
 		index: () => filteredUrl( '/' ),
 

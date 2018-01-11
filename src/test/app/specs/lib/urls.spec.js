@@ -233,6 +233,7 @@ describe( 'urls middleware', function(){
 				checkTypes( 'downloadCompaniesByRegionFile', 'CSV - Companies by region' );
 				checkTypes( 'downloadContactsBySectorFile', 'CSV - Contacts by sector' );
 				checkTypes( 'downloadCompaniesBySectorFile', 'CSV - Companies by sector' );
+				checkTypes( 'downloadSampleFrameFile', 'CSV - Export Client Sample Frame' );
 			} );
 		} );
 	} );
