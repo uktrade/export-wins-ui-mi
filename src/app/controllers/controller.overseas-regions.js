@@ -1,5 +1,6 @@
 
 const exportBackendService = require( '../lib/service/service.backend' ).export;
+const analyticsService = require( '../lib/service/analytics' );
 const renderError = require( '../lib/render-error' );
 const sortWins = require( '../lib/sort-wins' );
 
@@ -57,6 +58,10 @@ module.exports = {
 		exportBackendService.getOverseasRegionTopNonHvc( req, regionId, true ).then( ( topNonHvcs ) => {
 
 			res.render( 'partials/top-non-hvcs.html', { topNonHvcs: topNonHvcs.results } );
+
+			const tracker = analyticsService.createTracker( req );
+
+			tracker && tracker.loadAllTopMarkets( req.url, 'Export Overseas Region', regionId );
 
 		} ).catch( renderError.createHandler( req, res ) );
 	},
