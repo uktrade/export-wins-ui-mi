@@ -79,7 +79,7 @@
 				<ol class="download-group-list">
 					{% for file in files.kantar.months %}
 					<li class="download-group-list_item">
-						<a href="{{ urls.downloadInteractionsFile( file ) }}">Download {{ file.report_start_date | dateStamp }} - {{ file.report_end_date | dateStamp }}</a>
+						<a href="{{ urls.downloadSampleFrameFile( file ) }}">Download {{ file.report_start_date | dateStamp }} - {{ file.report_end_date | dateStamp }}</a>
 					</li>
 					{% endfor %}
 				</ol>
