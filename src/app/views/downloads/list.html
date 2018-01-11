@@ -70,6 +70,23 @@
 		</p>
 	{% endif %}
 
+	{% if files.kantar and files.kantar.months.length %}
+		<div class="grid-row">
+			<div class="column-one-third">
+				<h2 class="download-group-heading">
+					Export Client Sample Frame
+				</h2>
+				<ol class="download-group-list">
+					{% for file in files.kantar.months %}
+					<li class="download-group-list_item">
+						<a href="{{ urls.downloadInteractionsFile( file ) }}">Download {{ file.report_start_date | dateStamp }} - {{ file.report_end_date | dateStamp }}</a>
+					</li>
+					{% endfor %}
+				</ol>
+			</div>
+		</div>
+	{% endif %}
+
 	{% if files.contacts or files.companies %}
 
 	<div class="grid-row download-section-separator">
