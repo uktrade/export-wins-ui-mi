@@ -24,7 +24,7 @@ module.exports = function( express, app, isDev ){
 	app.get( '/sign-out/', loginController.signout );
 
 	app.get( '/downloads/', user, downloadController.list );
-	app.get( '/downloads/:id/', downloadController.file );
+	app.get( '/downloads/:id/', user, downloadController.file );
 
 	app.get( '/refresh/', refreshController );
 	app.get( '/experiments/', user, experimentsController );

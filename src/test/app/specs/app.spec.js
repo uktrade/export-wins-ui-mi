@@ -73,93 +73,6 @@ if( config.backend.mock ){
 	} );
 }
 
-	describe( 'Top non HVCs partial', function(){
-
-		describe( 'For Sector Team', function(){
-
-			describe( 'When the API returns a status of 200', function(){
-
-				it( 'Should return a 200 with the correct heading', function( done ){
-
-					interceptBackend.getStub( '/mi/sector_teams/1/top_non_hvcs/?all=1&year=2017', 200, '/sector_teams/top_non_hvcs' );
-
-					supertest( app ).get( '/sector-teams/1/top-non-hvc/' ).end( ( err, res ) => {
-
-						checkResponse( res, 200 );
-						done();
-					} );
-				} );
-			} );
-		} );
-
-		describe( 'For Overseas Region', function(){
-
-			describe( 'When the API returns a status of 200', function(){
-
-				it( 'Should return a 200 with the correct heading', function( done ){
-
-					interceptBackend.getStub( '/mi/os_regions/1/top_non_hvcs/?all=1&year=2017', 200, '/os_regions/top_non_hvcs' );
-
-					supertest( app ).get( '/overseas-regions/1/top-non-hvc/' ).end( ( err, res ) => {
-
-						checkResponse( res, 200 );
-						done();
-					} );
-				} );
-			} );
-		} );
-
-		describe( 'For Country', function(){
-
-			describe( 'When the API returns a status of 200', function(){
-
-				it( 'Should return a 200 with the correct heading', function( done ){
-
-					interceptBackend.getStub( '/mi/countries/AU/top_non_hvcs/?all=1&year=2017', 200, '/countries/top_non_hvcs' );
-
-					supertest( app ).get( '/countries/AU/top-non-hvc/' ).end( ( err, res ) => {
-
-						checkResponse( res, 200 );
-						done();
-					} );
-				} );
-			} );
-		} );
-
-		describe( 'For Post', function(){
-
-			describe( 'When the API returns a status of 200', function(){
-
-				it( 'Should return a 200 with the correct heading', function( done ){
-
-					interceptBackend.getStub( '/mi/posts/australia-perth/top_non_hvcs/?all=1&year=2017', 200, '/posts/top_non_hvcs' );
-
-					supertest( app ).get( '/posts/australia-perth/top-non-hvc/' ).end( ( err, res ) => {
-
-						checkResponse( res, 200 );
-						done();
-					} );
-				} );
-			} );
-		} );
-
-		describe( 'For UK Region', function(){
-
-			describe( 'When the API returns a status of 200', function(){
-
-				it( 'Should return a 200 with the correct heading', function( done ){
-
-					interceptBackend.getStub( '/mi/uk_regions/north-west/top_non_hvcs/?all=1&year=2017', 200, '/uk_regions/top_non_hvcs' );
-
-					supertest( app ).get( '/uk-regions/north-west/top-non-hvc/' ).end( ( err, res ) => {
-
-						checkResponse( res, 200 );
-						done();
-					} );
-				} );
-			} );
-		} );
-	} );
 
 	describe( 'User pages', function(){
 
@@ -177,7 +90,7 @@ if( config.backend.mock ){
 
 		describe( 'Refreshing the user', function(){
 
-			it( 'Should call the API and then redner the user info', function( done ){
+			it( 'Should call the API and then render the user info', function( done ){
 
 				supertest( app ).get( '/refresh/' ).end( ( err, res ) => {
 
@@ -200,6 +113,67 @@ if( config.backend.mock ){
 						checkResponse( res, 200 );
 						expect( getTitle( res ) ).toEqual( 'MI - Download raw data' );
 						done();
+					} );
+				} );
+			} );
+
+			describe( 'Downloading a file', function(){
+
+				it( 'Should return the path to the CSV file', function( done ){
+
+					const fileId = '1';
+					const one_time_url = 'my/test/url';
+
+					interceptBackend.get( `/csv/generate_otu/${ fileId }/` ).reply( 200, { one_time_url } );
+
+					supertest( app ).get( `/downloads/${ fileId }/` ).end( ( err, res ) => {
+
+						checkResponse( res, 302 );
+						expect( res.headers.location ).toEqual( one_time_url );
+						done();
+					} );
+				} );
+			} );
+		} );
+
+		describe( 'Selecting a date range', function(){
+
+			describe( 'Selecting the year', function(){
+
+				it( 'Should return a 200 with the correct heading', function( done ){
+
+					supertest( app ).get( '/select-date/' ).end( ( err, res ) => {
+
+						checkResponse( res, 200 );
+						expect( getTitle( res ) ).toEqual( 'MI - Choose date range' );
+						done();
+					} );
+				} );
+			} );
+
+			describe( 'Selecting the month and day', function(){
+
+				describe( '2016', function(){
+
+					it( 'Should return a 200 with the correct heading', function( done ){
+
+						supertest( app ).get( '/select-date/2016/' ).end( ( err, res ) => {
+
+							expect( getTitle( res ) ).toEqual( 'MI - Choose 2016 financial year start and end dates');
+							done();
+						} );
+					} );
+				} );
+
+				describe( '2017', function(){
+
+					it( 'Should return a 200 with the correct heading', function( done ){
+
+						supertest( app ).get( '/select-date/2017/' ).end( ( err, res ) => {
+
+							expect( getTitle( res ) ).toEqual( 'MI - Choose 2017 financial year start and end dates');
+							done();
+						} );
 					} );
 				} );
 			} );
@@ -303,49 +277,6 @@ if( config.backend.mock ){
 				} );
 			} );
 
-			describe( 'Selecting a date range', function(){
-
-				describe( 'Selecting the year', function(){
-
-					it( 'Should return a 200 with the correct heading', function( done ){
-
-						supertest( app ).get( '/select-date/' ).end( ( err, res ) => {
-
-							checkResponse( res, 200 );
-							expect( getTitle( res ) ).toEqual( 'MI - Choose date range' );
-							done();
-						} );
-					} );
-				} );
-
-				describe( 'Selecting the month and day', function(){
-
-					describe( '2016', function(){
-
-						it( 'Should return a 200 with the correct heading', function( done ){
-
-							supertest( app ).get( '/select-date/2016/' ).end( ( err, res ) => {
-
-								expect( getTitle( res ) ).toEqual( 'MI - Choose 2016 financial year start and end dates');
-								done();
-							} );
-						} );
-					} );
-
-					describe( '2017', function(){
-
-						it( 'Should return a 200 with the correct heading', function( done ){
-
-							supertest( app ).get( '/select-date/2017/' ).end( ( err, res ) => {
-
-								expect( getTitle( res ) ).toEqual( 'MI - Choose 2017 financial year start and end dates');
-								done();
-							} );
-						} );
-					} );
-				} );
-			} );
-
 			describe( 'Sector Teams', function(){
 
 				describe( 'Overview', function(){
@@ -435,6 +366,23 @@ if( config.backend.mock ){
 
 								checkResponse( res, 200 );
 								expect( getTitle( res ) ).toEqual( 'MI - Sector team non HVC wins - animi architecto nam' );
+								done();
+							} );
+						} );
+					} );
+				} );
+
+				describe( 'Top non HVCs partial', function(){
+
+					describe( 'When the API returns a status of 200', function(){
+
+						it( 'Should return a 200 with the correct heading', function( done ){
+
+							interceptBackend.getStub( '/mi/sector_teams/1/top_non_hvcs/?all=1&year=2017', 200, '/sector_teams/top_non_hvcs' );
+
+							supertest( app ).get( '/sector-teams/1/top-non-hvc/' ).end( ( err, res ) => {
+
+								checkResponse( res, 200 );
 								done();
 							} );
 						} );
@@ -634,6 +582,23 @@ if( config.backend.mock ){
 						} );
 					} );
 				} );
+
+				describe( 'Top non HVCs partial', function(){
+
+					describe( 'When the API returns a status of 200', function(){
+
+						it( 'Should return a 200 with the correct heading', function( done ){
+
+							interceptBackend.getStub( '/mi/os_regions/1/top_non_hvcs/?all=1&year=2017', 200, '/os_regions/top_non_hvcs' );
+
+							supertest( app ).get( '/overseas-regions/1/top-non-hvc/' ).end( ( err, res ) => {
+
+								checkResponse( res, 200 );
+								done();
+							} );
+						} );
+					} );
+				} );
 			} );
 
 			describe( 'Countries', function(){
@@ -709,6 +674,23 @@ if( config.backend.mock ){
 
 								checkResponse( res, 200 );
 								expect( getTitle( res ) ).toEqual( 'MI - Country non HVC wins - atque at atque' );
+								done();
+							} );
+						} );
+					} );
+				} );
+
+				describe( 'Top non HVCs partial', function(){
+
+					describe( 'When the API returns a status of 200', function(){
+
+						it( 'Should return a 200 with the correct heading', function( done ){
+
+							interceptBackend.getStub( '/mi/countries/AU/top_non_hvcs/?all=1&year=2017', 200, '/countries/top_non_hvcs' );
+
+							supertest( app ).get( '/countries/AU/top-non-hvc/' ).end( ( err, res ) => {
+
+								checkResponse( res, 200 );
 								done();
 							} );
 						} );
@@ -794,6 +776,23 @@ if( config.backend.mock ){
 						} );
 					} );
 				} );
+
+				describe( 'Top non HVCs partial', function(){
+
+					describe( 'When the API returns a status of 200', function(){
+
+						it( 'Should return a 200 with the correct heading', function( done ){
+
+							interceptBackend.getStub( '/mi/posts/australia-perth/top_non_hvcs/?all=1&year=2017', 200, '/posts/top_non_hvcs' );
+
+							supertest( app ).get( '/posts/australia-perth/top-non-hvc/' ).end( ( err, res ) => {
+
+								checkResponse( res, 200 );
+								done();
+							} );
+						} );
+					} );
+				} );
 			} );
 
 			describe( 'UK Regions', function(){
@@ -873,6 +872,23 @@ if( config.backend.mock ){
 						} );
 					} );
 				} );
+
+				describe( 'Top non HVCs partial', function(){
+
+					describe( 'When the API returns a status of 200', function(){
+
+						it( 'Should return a 200 with the correct heading', function( done ){
+
+							interceptBackend.getStub( '/mi/uk_regions/north-west/top_non_hvcs/?all=1&year=2017', 200, '/uk_regions/top_non_hvcs' );
+
+							supertest( app ).get( '/uk-regions/north-west/top-non-hvc/' ).end( ( err, res ) => {
+
+								checkResponse( res, 200 );
+								done();
+							} );
+						} );
+					} );
+				} );
 			} );
 		} );
 
@@ -896,6 +912,7 @@ if( config.backend.mock ){
 					} );
 				} );
 			} );
+
 
 			describe( 'Sector Teams', function(){
 
@@ -991,7 +1008,6 @@ if( config.backend.mock ){
 					} );
 				} );
 			} );
-
 
 
 			describe( 'Overseas Regions', function(){
@@ -1270,27 +1286,6 @@ if( config.backend.mock ){
 
 				checkResponse( res, 200 );
 				done();
-			} );
-		} );
-	} );
-
-	describe( 'Downloads', function(){
-
-		describe( 'Downloading a file', function(){
-
-			it( 'Should return the path to the CSV file', function( done ){
-
-				const fileId = '1';
-				const one_time_url = 'my/test/url';
-
-				interceptBackend.get( `/csv/generate_otu/${ fileId }/` ).reply( 200, { one_time_url } );
-
-				supertest( app ).get( `/downloads/${ fileId }/` ).end( ( err, res ) => {
-
-					checkResponse( res, 302 );
-					expect( res.headers.location ).toEqual( one_time_url );
-					done();
-				} );
 			} );
 		} );
 	} );

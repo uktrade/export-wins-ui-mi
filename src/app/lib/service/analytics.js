@@ -63,7 +63,7 @@ module.exports = {
 
 	createTracker: function( req ){
 
-		if( analyticsId ) {
+		if( analyticsId ){
 
 			const uid = getId( req.cookies[ '_ga' ] );
 
@@ -73,7 +73,17 @@ module.exports = {
 
 			} else {
 
-				reporter.message( 'info', 'No Google Analytics id cookie found - cannot create tracker' );
+				if( req.user ){
+
+					if( !req.user.internal ){
+
+						reporter.message( 'info', 'No Google Analytics id cookie found - cannot create tracker' );
+					}
+
+				} else {
+
+					reporter.message( 'info', `No user in req for ${ req.url }` );
+				}
 			}
 		}
 	}

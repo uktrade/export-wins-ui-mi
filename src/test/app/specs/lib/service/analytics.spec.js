@@ -203,23 +203,60 @@ describe( 'Creating a tracker', function(){
 
 		describe( 'When there is not an id in the cookie', function(){
 
-			it( 'Should not create a tracker and send sentry a message', function(){
+			describe( 'When there is not a user', function(){
 
-				const tracker = analyticsService.createTracker( req );
+				it( 'Should log an event to sentry', function(){
 
-				expect( tracker ).not.toBeDefined();
-				expect( reporter.message ).toHaveBeenCalledWith( 'info', 'No Google Analytics id cookie found - cannot create tracker' );
+					req.url = '/my/fake/url/';
+
+					const tracker = analyticsService.createTracker( req );
+
+					expect( tracker ).not.toBeDefined();
+					expect( reporter.message ).toHaveBeenCalledWith( 'info', `No user in req for ${ req.url }` );
+				} );
+			} );
+
+			describe( 'When there is a user in the req', function(){
+
+				beforeEach( function(){
+
+					req.user = {};
+				} );
+
+				describe( 'When the user internal', function(){
+
+					it( 'Should not create the tracker and a message should not be sent to Sentry', function(){
+
+						req.user.internal = true;
+
+						const tracker = analyticsService.createTracker( req );
+
+						expect( tracker ).not.toBeDefined();
+						expect( reporter.message ).not.toHaveBeenCalled();
+					} );
+				} );
+
+				describe( 'When the user is not an internal user', function(){
+
+					it( 'Should not create a tracker and send sentry a message', function(){
+
+						const tracker = analyticsService.createTracker( req );
+
+						expect( tracker ).not.toBeDefined();
+						expect( reporter.message ).toHaveBeenCalledWith( 'info', 'No Google Analytics id cookie found - cannot create tracker' );
+					} );
+				} );
 			} );
 		} );
 	} );
 
 	describe( 'When there is not an analytics id in the config', function(){
 
-			beforeEach( function(){
+		beforeEach( function(){
 
-				config = {};
-				createService();
-			} );
+			config = {};
+			createService();
+		} );
 
 		it( 'Should not create a tracker', function(){
 
