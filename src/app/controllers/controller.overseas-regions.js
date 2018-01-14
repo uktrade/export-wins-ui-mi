@@ -42,15 +42,6 @@ module.exports = {
 		} ).catch( renderError.createHandler( req, res ) );
 	},
 
-	list: function( req, res ){
-
-		exportBackendService.getOverseasRegions( req ).then( ( regions ) => {
-
-			res.render( 'overseas-regions/list.html', { regions: regions.results } );
-
-		} ).catch( renderError.createHandler( req, res ) );
-	},
-
 	topNonHvcs: function( req, res ){
 
 		const regionId = req.params.id;

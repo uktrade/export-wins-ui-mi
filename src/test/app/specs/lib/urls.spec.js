@@ -333,7 +333,7 @@ describe( 'urls middleware', function(){
 
 		it( 'Should return the correct URLs', function(){
 
-			checkFilteredUrls( req, 'sectorTeamsOverview', [], '/sector-teams/overview/' );
+			checkFilteredUrls( req, 'sectorTeamsOverview', [], '/sector-teams/' );
 			checkFilteredUrls( req, 'sectorTeam', [ 1 ], '/sector-teams/1/' );
 			checkFilteredUrls( req, 'sectorTeamWins', [ 2 ], '/sector-teams/2/wins/' );
 			checkFilteredUrls( req, 'sectorTeamNonHvcWins', [ 3 ], '/sector-teams/3/non-hvc-wins/' );
@@ -390,7 +390,7 @@ describe( 'urls middleware', function(){
 
 		it( 'Should return the correct URLs', function(){
 
-			checkFilteredUrls( req, 'osRegionsOverview', [], '/overseas-regions/overview/' );
+			checkFilteredUrls( req, 'osRegionsOverview', [], '/overseas-regions/' );
 			checkFilteredUrls( req, 'osRegion', [ 1 ], '/overseas-regions/1/' );
 			checkFilteredUrls( req, 'osRegionWins', [ 2 ], '/overseas-regions/2/wins/' );
 			checkFilteredUrls( req, 'osRegionNonHvcWins', [ 3 ], '/overseas-regions/3/non-hvc-wins/' );

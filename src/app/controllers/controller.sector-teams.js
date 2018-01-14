@@ -42,15 +42,6 @@ module.exports = {
 		} ).catch( renderError.createHandler( req, res ) );
 	},
 
-	list: function( req, res ){
-
-		exportBackendService.getSectorTeams( req ).then( ( sectorTeams ) => {
-
-			res.render( 'sector-teams/list.html', { sectorTeams: sectorTeams.results } );
-
-		} ).catch( renderError.createHandler( req, res ) );
-	},
-
 	topNonHvcs: function( req, res ){
 
 		const teamId = req.params.id;

@@ -96,34 +96,6 @@ describe( 'Overseas Regions controller', function(){
 		} );
 	} );
 
-	describe( 'List', function(){
-
-		it( 'Should get the list data and render the correct view', function( done ){
-
-			const req = {
-				cookies: { sessionid: '456' },
-				year
-			};
-
-			const regions = { results: { 'regions': true } };
-
-			const promise = new Promise( ( resolve ) => {	resolve( regions ); } );
-
-			exportBackendService.getOverseasRegions = spy( 'getOverseasRegions', promise );
-			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
-
-			controller.list( req, res );
-
-			promise.then( () => {
-
-				expect( exportBackendService.getOverseasRegions ).toHaveBeenCalledWith( req );
-				expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
-				expect( res.render ).toHaveBeenCalledWith( 'overseas-regions/list.html', { regions: regions.results } );
-				done();
-			} );
-		} );
-	} );
-
 	describe( 'Top non HVCs', function(){
 
 		let req;
