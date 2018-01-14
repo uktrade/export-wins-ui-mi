@@ -287,28 +287,10 @@ if( config.backend.mock ){
 
 							interceptBackend.getStub( '/mi/sector_teams/overview/?year=2017', 200, '/sector_teams/overview' );
 
-							supertest( app ).get( '/sector-teams/overview/' ).end( ( err, res ) => {
-
-								checkResponse( res, 200 );
-								expect( getTitle( res ) ).toEqual( 'MI - Sector Teams Overview' );
-								done();
-							} );
-						} );
-					} );
-				} );
-
-				describe( 'List', function(){
-
-					describe( 'When the API returns a status of 200', function(){
-
-						it( 'Should return a 200 with the correct heading', function( done ){
-
-							interceptBackend.getStub( '/mi/sector_teams/?year=2017', 200, '/sector_teams/' );
-
 							supertest( app ).get( '/sector-teams/' ).end( ( err, res ) => {
 
 								checkResponse( res, 200 );
-								expect( getTitle( res ) ).toEqual( 'MI - Sector Teams' );
+								expect( getTitle( res ) ).toEqual( 'MI - Sector Teams Overview' );
 								done();
 							} );
 						} );
@@ -498,28 +480,10 @@ if( config.backend.mock ){
 							interceptBackend.getStub( '/mi/os_regions/overview/?year=2017', 200, '/os_regions/overview.2017' );
 							interceptBackend.getStub( '/mi/os_region_groups/?year=2017', 200, '/os_region_groups/index.2017' );
 
-							supertest( app ).get( '/overseas-regions/overview/' ).end( ( err, res ) => {
-
-								checkResponse( res, 200 );
-								expect( getTitle( res ) ).toEqual( 'MI - Overseas Regions Overview' );
-								done();
-							} );
-						} );
-					} );
-				} );
-
-				describe( 'List', function(){
-
-					describe( 'When the API returns a status of 200', function(){
-
-						it( 'Should return a 200 with the correct heading', function( done ){
-
-							interceptBackend.getStub( '/mi/os_regions/?year=2017', 200, '/os_regions/' );
-
 							supertest( app ).get( '/overseas-regions/' ).end( ( err, res ) => {
 
 								checkResponse( res, 200 );
-								expect( getTitle( res ) ).toEqual( 'MI - Overseas Regions' );
+								expect( getTitle( res ) ).toEqual( 'MI - Overseas Regions Overview' );
 								done();
 							} );
 						} );
@@ -1189,6 +1153,32 @@ if( config.backend.mock ){
 						done();
 					} );
 				} );
+			} );
+		} );
+	} );
+
+	describe( 'Sector Teams old overview redirect', function(){
+
+		it( 'Should return a 301 with the correct location', function( done ){
+
+			supertest( app ).get( '/sector-teams/overview/' ).end( ( err, res ) => {
+
+				checkResponse( res, 301 );
+				expect( res.headers.location ).toEqual( '/sector-teams/' );
+				done();
+			} );
+		} );
+	} );
+
+	describe( 'Overseas Regions old overview redirect', function(){
+
+		it( 'Should return a 200 with the correct heading', function( done ){
+
+			supertest( app ).get( '/overseas-regions/overview/' ).end( ( err, res ) => {
+
+				checkResponse( res, 301 );
+				expect( res.headers.location ).toEqual( '/overseas-regions/' );
+				done();
 			} );
 		} );
 	} );

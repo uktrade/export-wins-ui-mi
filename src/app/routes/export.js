@@ -14,15 +14,15 @@ module.exports = function( router, user/*, isDev */ ){
 
 	router.get( '/', user, indexController );
 
-	router.get( '/sector-teams/', user, sectorTeamController.list );
-	router.get( '/sector-teams/overview/', user, sectorTeamController.overview );
+	router.get( '/sector-teams/', user, sectorTeamController.overview );
+	router.get( '/sector-teams/overview/', ( req, res ) => res.redirect( 301, '/sector-teams/' ) );
 	router.get( '/sector-teams/:id', user, sectorTeamController.team );
 	router.get( '/sector-teams/:id/wins/', user, sectorTeamController.wins );
 	router.get( '/sector-teams/:id/non-hvc-wins/', user, sectorTeamController.nonHvcWins );
 	router.get( '/sector-teams/:id/top-non-hvc/', user, sectorTeamController.topNonHvcs );
 
-	router.get( '/overseas-regions/', user, regionController.list );
-	router.get( '/overseas-regions/overview/', user, regionController.overview );
+	router.get( '/overseas-regions/', user, regionController.overview );
+	router.get( '/overseas-regions/overview/', ( req, res ) => res.redirect( 301, '/overseas-regions/' ) );
 	router.get( '/overseas-regions/:id', user, regionController.region );
 	router.get( '/overseas-regions/:id/wins/', user, regionController.wins );
 	router.get( '/overseas-regions/:id/non-hvc-wins/', user, regionController.nonHvcWins );

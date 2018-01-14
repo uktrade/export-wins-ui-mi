@@ -123,7 +123,7 @@ module.exports = function( req ){
 			return ( yearPrefix + currentUrl );
 		},
 
-		sectorTeamsOverview: () => filteredUrl( '/sector-teams/overview/' ),
+		sectorTeamsOverview: () => filteredUrl( '/sector-teams/' ),
 		sectorTeam: ( teamId ) => filteredUrl( `/sector-teams/${ teamId }/` ),
 		sectorTeamWins: ( teamId ) => filteredUrl( `/sector-teams/${ teamId }/wins/` ),
 		sectorTeamNonHvcWins: ( teamId ) => filteredUrl( `/sector-teams/${ teamId }/non-hvc-wins/` ),
@@ -150,7 +150,7 @@ module.exports = function( req ){
 		hvcGroup: ( groupId ) => filteredUrl( `/hvc-groups/${ groupId }/` ),
 		hvcGroupWins: ( groupId ) => filteredUrl( `/hvc-groups/${ groupId }/wins/` ),
 
-		osRegionsOverview: () => filteredUrl( '/overseas-regions/overview/' ),
+		osRegionsOverview: () => filteredUrl( '/overseas-regions/' ),
 		osRegion: ( regionId ) => filteredUrl( `/overseas-regions/${ regionId }/` ),
 		osRegionWins: ( regionId ) => filteredUrl( `/overseas-regions/${ regionId }/wins/` ),
 		osRegionNonHvcWins: ( regionId ) => filteredUrl( `/overseas-regions/${ regionId }/non-hvc-wins/` ),

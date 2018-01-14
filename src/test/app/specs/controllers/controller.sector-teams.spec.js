@@ -90,37 +90,6 @@ describe( 'Sector Teams controller', function(){
 		} );
 	} );
 
-	describe( 'List', function(){
-
-		it( 'Should get the list data and render the correct view', function( done ){
-
-			const req = {
-				cookies: { sessionid: '456' },
-				year
-			};
-
-			const sectorTeams = {
-				results: [ 'some list restuls' ]
-			};
-
-			const promise = new Promise( ( resolve ) => { resolve( sectorTeams ); } );
-
-			exportBackendService.getSectorTeams = spy( 'getSectorTeams', promise );
-			errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
-
-			controller.list( req, res );
-
-			promise.then( () => {
-				expect( exportBackendService.getSectorTeams ).toHaveBeenCalledWith( req );
-				expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
-				expect( res.render ).toHaveBeenCalledWith( 'sector-teams/list.html', {
-					sectorTeams: sectorTeams.results
-				} );
-				done();
-			} );
-		} );
-	} );
-
 	describe( 'Top Non HVC', function(){
 
 		let req;
