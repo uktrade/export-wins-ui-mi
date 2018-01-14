@@ -200,6 +200,17 @@ describe( 'Creating a tracker', function(){
 				} );
 			} );
 		} );
+
+		describe( 'When there is not an id in the cookie', function(){
+
+			it( 'Should not create a tracker and send sentry a message', function(){
+
+				const tracker = analyticsService.createTracker( req );
+
+				expect( tracker ).not.toBeDefined();
+				expect( reporter.message ).toHaveBeenCalledWith( 'info', 'No Google Analytics id cookie found - cannot create tracker' );
+			} );
+		} );
 	} );
 
 	describe( 'When there is not an analytics id in the config', function(){

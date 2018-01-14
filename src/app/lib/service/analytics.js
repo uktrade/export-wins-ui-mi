@@ -63,15 +63,18 @@ module.exports = {
 
 	createTracker: function( req ){
 
-		const uid = getId( req.cookies[ '_ga' ] );
+		if( analyticsId ) {
 
-		if( analyticsId && uid ){
+			const uid = getId( req.cookies[ '_ga' ] );
 
-			return new Tracker( analyticsId, uid );
+			if( uid ){
 
-		} else {
+				return new Tracker( analyticsId, uid );
 
-			//send to sentry?
+			} else {
+
+				reporter.message( 'info', 'No Google Analytics id cookie found - cannot create tracker' );
+			}
 		}
 	}
 };
