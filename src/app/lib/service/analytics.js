@@ -65,25 +65,25 @@ module.exports = {
 
 		if( analyticsId ){
 
-			const uid = getId( req.cookies[ '_ga' ] );
+			if( req.user ){
 
-			if( uid ){
+				if( !req.user.internal ){
 
-				return new Tracker( analyticsId, uid );
+					const uid = getId( req.cookies[ '_ga' ] );
 
-			} else {
+					if( uid ){
 
-				if( req.user ){
+						return new Tracker( analyticsId, uid );
 
-					if( !req.user.internal ){
+					} else {
 
 						reporter.message( 'info', 'No Google Analytics id cookie found - cannot create tracker' );
 					}
-
-				} else {
-
-					reporter.message( 'info', `No user in req for ${ req.url }` );
 				}
+
+			} else {
+
+				reporter.message( 'info', `No user in req for ${ req.url }` );
 			}
 		}
 	}
