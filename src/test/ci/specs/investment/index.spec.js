@@ -7,7 +7,7 @@ const takeScreenshot = require( '../../helpers/take-screenshot' );
 
 const By = webdriver.By;
 
-describe( 'Investment Index Page', function(){
+xdescribe( 'Investment Index Page', function(){
 
 	beforeAll( function( done ){
 
