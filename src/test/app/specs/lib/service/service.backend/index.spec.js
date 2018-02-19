@@ -1,6 +1,5 @@
 const proxyquire = require( 'proxyquire' );
 
-const getBackendFile = require( '../../../../helpers/get-backend-file' );
 const getBackendStub = require( '../../../../helpers/get-backend-stub' );
 
 const modulePath = '../../../../../../app/lib/service/service.backend';
@@ -23,14 +22,6 @@ function returnStub( file ){
 
 		} ) );
 	} );
-}
-
-function checkBackendArgs( path, req ){
-
-	const args = helpers.sessionGet.calls.argsFor( 0 );
-
-	expect( args[ 0 ] ).toEqual( path );
-	expect( args[ 1 ] ).toEqual( req );
 }
 
 describe( 'Backend service', function(){
@@ -224,11 +215,10 @@ describe( 'Backend service', function(){
 
 		describe( 'In dev mode', function(){
 
-			it( 'Should set internal and fdi flags to true', function( done ){
+			it( 'Should set the internal flag to true', function( done ){
 
 				const userStub = getBackendStub( '/user/me' );
 
-				userStub.fdi = true;
 				userStub.internal = true;
 
 				configStub.isDev = true;
@@ -252,7 +242,6 @@ describe( 'Backend service', function(){
 				it( 'Should set the internal flag to false and return the user info', function( done ){
 
 					const userStub = getBackendStub( '/user/me' );
-					userStub.fdi = false;
 					userStub.internal = false;
 
 					returnStub( '/user/me' );
@@ -279,7 +268,6 @@ describe( 'Backend service', function(){
 				function testUser( done ){
 
 					const userStub = getBackendStub( '/user/me.internal' );
-					userStub.fdi = true;
 					userStub.internal = true;
 
 					returnStub( '/user/me.internal' );
@@ -306,51 +294,6 @@ describe( 'Backend service', function(){
 
 						setInternalUsers( 'Brianne31@gmail.com,test@test.com' );
 						testUser( done );
-					} );
-				} );
-			} );
-
-			describe( 'When the user is in the FDI users list', function(){
-
-				function setFdiUsers( str ){
-
-					configStub.fdiUsers = str;
-
-					stubs[ '../../config' ] = configStub;
-
-					backendService = proxyquire( modulePath, stubs );
-				}
-
-				function testFdiUser( done ){
-
-					const userStub = getBackendStub( '/user/me.internal' );
-					userStub.internal = false;
-					userStub.fdi = true;
-
-					returnStub( '/user/me.internal' );
-
-					backendService.getUserInfo( req ).then( ( user ) => {
-
-						expect( user ).toEqual( userStub );
-						done();
-					} );
-				}
-
-				describe( 'When the list is just one item', function(){
-
-					it( 'Should set the fdi flag to true and return the user info', function( done ){
-
-						setFdiUsers( 'Brianne31@gmail.com' );
-						testFdiUser( done );
-					} );
-				} );
-
-				describe( 'When the list is just one item', function(){
-
-					it( 'Should set the fdi flag to true and return the user info', function( done ){
-
-						setFdiUsers( 'Brianne31@gmail.com,test2@gmail.com' );
-						testFdiUser( done );
 					} );
 				} );
 			} );

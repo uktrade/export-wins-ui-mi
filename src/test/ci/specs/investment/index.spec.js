@@ -7,11 +7,12 @@ const takeScreenshot = require( '../../helpers/take-screenshot' );
 
 const By = webdriver.By;
 
+/*
 describe( 'Investment Index Page', function(){
 
 	beforeAll( function( done ){
 
-		fetch( '/investment/' ).then( takeScreenshot( 'investment_index' ) ).then( done );
+		fetch( '/investment/' ).then( takeScreenshot( 'investment_index' ) ).then( done ).catch( done.fail );
 	} );
 
 	accessibilityCheck( 'investment_index' );
@@ -67,3 +68,4 @@ describe( 'Investment Index Page', function(){
 		} );
 	} );
 } );
+*/

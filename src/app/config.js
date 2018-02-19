@@ -55,7 +55,6 @@ let config = {
 	},
 	oauthParamLength: env( 'OAUTH_PARAM_LENGTH', '75' ),
 	internalUsers: env( 'INTERNAL_USERS', '' ),
-	fdiUsers: env( 'FDI_USERS', '' ),
 	backend: {
 		secret: env( 'MI_SECRET' ),
 		protocol: env( 'MI_PROTOCOL', 'http' ),
