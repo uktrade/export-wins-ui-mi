@@ -1,7 +1,6 @@
 const { getAll, getJson } = require( '../_helpers' );
 
-const transformFdiOverviewYoy = require( '../../../transformers/fdi/overview-yoy' );
-const transformFdiProjectList = require( '../../../transformers/fdi/project-list' );
+//const transformFdiProjectList = require( '../../../transformers/fdi/project-list' );
 
 function createIdMatcher( id ){
 
@@ -24,31 +23,11 @@ function getSectorTeams( req ){
 	return getJson( '/mi/fdi/sector_teams/', req );
 }
 
-function getSectorTeamsOverview( req ){
-
-	return getJson( '/mi/fdi/sector_teams/overview/', req );
-}
-
-function getSectorTeam( req, teamId ){
-
-	return getJson( `/mi/fdi/sector_teams/${ teamId }/`, req );
-}
-
-function getSectorTeamHvc( req, teamId ){
-
-	return getJson( `/mi/fdi/sector_teams/${ teamId }/hvc/`, req );
-}
-
-function getSectorTeamNonHvc( req, teamId ){
-
-	return getJson( `/mi/fdi/sector_teams/${ teamId }/non_hvc/`, req );
-}
-
+/*
 function getSectorTeamWinTable( req, teamId ){
 
 	return getJson( `/mi/fdi/sector_teams/${ teamId }/win_table/`, req );
 }
-
 function getSectorTeamHvcWinTable( req, teamId ){
 
 	return getSectorTeamWinTable( req, teamId ).then( ( data ) => {
@@ -66,7 +45,7 @@ function getSectorTeamNonHvcWinTable( req, teamId ){
 		return data;
 	} );
 }
-
+*/
 function getOverseasRegions( req ){
 
 	//use export overseas regions for now
@@ -106,35 +85,21 @@ function getUkRegion( req, regionId ){
 	} ).then( createIdMatcher( regionId ) );
 }
 
-function getOverview( req ){
+function getPerformance( req ){
 
-	return getJson( '/mi/fdi/overview/', req );
-}
-
-function getOverviewYoy( req ){
-
-	return getJson( '/mi/fdi/overview/yoy/', req, transformFdiOverviewYoy );
+	return getJson( '/mi/fdi/performance/', req );
 }
 
 module.exports = {
 
 	getSectorTeams,
-	getSectorTeamsOverview,
-	getSectorTeam,
-	getSectorTeamHvc,
-	getSectorTeamNonHvc,
-	getSectorTeamWinTable,
-	getSectorTeamHvcWinTable,
-	getSectorTeamNonHvcWinTable,
-
 	getOverseasRegions,
 	getOverseasRegion,
 
 	getUkRegions,
 	getUkRegion,
 
-	getOverview,
-	getOverviewYoy,
+	getPerformance,
 
 	getHomepageData: function( req ){
 
@@ -143,8 +108,7 @@ module.exports = {
 			getSectorTeams( req ),
 			getOverseasRegions( req ),
 			getUkRegions( req ),
-			getOverview( req ),
-			getOverviewYoy( req )
+			getPerformance( req )
 
 		], function( data ){
 
@@ -152,8 +116,7 @@ module.exports = {
 				sectorTeams: data[ 0 ],
 				overseasRegions: data[ 1 ],
 				ukRegions: data[ 2 ],
-				overview: data[ 3 ],
-				overviewYoy: data[ 4 ]
+				performance: data[ 3 ]
 			};
 		} );
 	}

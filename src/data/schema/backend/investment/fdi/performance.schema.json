@@ -1,0 +1,21 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "Investment FDI performance headlines",
+
+	"type": "object",
+	"required": [ "wins", "pipeline", "stages" ],
+	"properties": {
+
+		"wins": { "$ref": "$refs/fdi.json#/win-performance" },
+
+		"pipeline": {
+			"type": "object",
+			"required": [ "active", "assign_pm", "prospect" ],
+			"properties": {
+				"active": { "$ref": "$refs/fdi.json#/pipeline-performance" }
+			}
+		},
+
+		"stages": { "$ref": "$refs/fdi.json#/stages" }
+	}
+}

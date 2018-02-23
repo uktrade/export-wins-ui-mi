@@ -1,0 +1,32 @@
+@import 'helpers';
+
+.fy-selector {
+
+	margin-top: pem( 15 );
+
+	@include media( tablet ){
+
+		margin-top: pem( -15 );
+	}
+}
+
+.fy-selector_label {
+	display: block;
+	margin-bottom: pem( 5 );
+}
+
+.fy-selector_select {
+	width: 75%;
+}
+
+.fy-selector_button {
+
+	margin: pem( -1 ) 0 0 1%;
+	width: 22%;
+	padding: pem( 8 ) 0;
+
+	@include media( tablet ){
+
+		padding: pem( 4 ) 0;
+	}
+}

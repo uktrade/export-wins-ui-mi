@@ -1,0 +1,240 @@
+{
+   "timestamp": 1519022992781,
+   "financial_year": {
+      "id": 2016,
+      "description": "2016-2017"
+   },
+   "results": {
+      "wins": {
+         "count": 4587,
+         "total_investment_value__sum": 179982265,
+         "jobs": {
+            "new": 63,
+            "safeguarded": 3268,
+            "total": 2629
+         },
+         "campaign": {
+            "hvc": {
+               "count": 4987,
+               "percent": 5.51
+            },
+            "non_hvc": {
+               "count": 1844,
+               "percent": 78.24
+            }
+         },
+         "performance": {
+            "high": {
+               "count": 2863,
+               "percent": 58.11,
+               "campaign": {
+                  "hvc": {
+                     "count": 4703,
+                     "percent": 39.97
+                  },
+                  "non_hvc": {
+                     "count": 873,
+                     "percent": 78.28
+                  }
+               },
+               "jobs": {
+                  "new": 2406,
+                  "safeguarded": 4902,
+                  "total": 883
+               }
+            },
+            "good": {
+               "count": 3274,
+               "percent": 5.78,
+               "campaign": {
+                  "hvc": {
+                     "count": 101,
+                     "percent": 93.44
+                  },
+                  "non_hvc": {
+                     "count": 2872,
+                     "percent": 44.03
+                  }
+               },
+               "jobs": {
+                  "new": 265,
+                  "safeguarded": 2049,
+                  "total": 3316
+               }
+            },
+            "standard": {
+               "count": 2316,
+               "percent": 7.04,
+               "campaign": {
+                  "hvc": {
+                     "count": 857,
+                     "percent": 93.58
+                  },
+                  "non_hvc": {
+                     "count": 4468,
+                     "percent": 86.72
+                  }
+               },
+               "jobs": {
+                  "new": 4213,
+                  "safeguarded": 4551,
+                  "total": 1379
+               }
+            }
+         },
+         "stages": {
+            "active": {
+               "count": 4415,
+               "percent": 32.29
+            },
+            "assign_pm": {
+               "count": 2919,
+               "percent": 24.53
+            },
+            "prospect": {
+               "count": 1275,
+               "percent": 46.28
+            },
+            "verify_win": {
+               "count": 512,
+               "percent": 23.57
+            },
+            "won": {
+               "count": 303,
+               "percent": 35.9
+            }
+         }
+      },
+      "pipeline": {
+         "active": {
+            "count": 667,
+            "percent": 53.72,
+            "total_investment_value__sum": 244223154,
+            "jobs": {
+               "new": 3166,
+               "safeguarded": 4524,
+               "total": 3173
+            },
+            "campaign": {
+               "hvc": {
+                  "count": 3670,
+                  "percent": 48.36
+               },
+               "non_hvc": {
+                  "count": 1160,
+                  "percent": 56.61
+               }
+            },
+            "performance": {
+               "high": {
+                  "count": 2927,
+                  "percent": 14.02,
+                  "campaign": {
+                     "hvc": {
+                        "count": 443,
+                        "percent": 40.77
+                     },
+                     "non_hvc": {
+                        "count": 2979,
+                        "percent": 43.58
+                     }
+                  },
+                  "jobs": {
+                     "new": 4388,
+                     "safeguarded": 820,
+                     "total": 3151
+                  }
+               },
+               "good": {
+                  "count": 1581,
+                  "percent": 69.97,
+                  "campaign": {
+                     "hvc": {
+                        "count": 4900,
+                        "percent": 47.42
+                     },
+                     "non_hvc": {
+                        "count": 3825,
+                        "percent": 14.05
+                     }
+                  },
+                  "jobs": {
+                     "new": 1178,
+                     "safeguarded": 2725,
+                     "total": 278
+                  }
+               },
+               "standard": {
+                  "count": 1803,
+                  "percent": 63.88,
+                  "campaign": {
+                     "hvc": {
+                        "count": 158,
+                        "percent": 65.24
+                     },
+                     "non_hvc": {
+                        "count": 3174,
+                        "percent": 8.72
+                     }
+                  },
+                  "jobs": {
+                     "new": 1945,
+                     "safeguarded": 940,
+                     "total": 3826
+                  }
+               }
+            },
+            "stages": {
+               "active": {
+                  "count": 3615,
+                  "percent": 92.66
+               },
+               "assign_pm": {
+                  "count": 2294,
+                  "percent": 66.12
+               },
+               "prospect": {
+                  "count": 1026,
+                  "percent": 52.17
+               },
+               "verify_win": {
+                  "count": 4903,
+                  "percent": 9.98
+               },
+               "won": {
+                  "count": 1074,
+                  "percent": 74.49
+               }
+            }
+         },
+         "aliquip109": "pariatur in ipsum sit",
+         "aliqua96c": true
+      },
+      "stages": {
+         "active": {
+            "count": 1978,
+            "percent": 84.33
+         },
+         "assign_pm": {
+            "count": 1116,
+            "percent": 36.45
+         },
+         "prospect": {
+            "count": 3010,
+            "percent": 91.3
+         },
+         "verify_win": {
+            "count": 3210,
+            "percent": 59.78
+         },
+         "won": {
+            "count": 3758,
+            "percent": 8.26
+         }
+      }
+   },
+   "date_range": {
+      "start": "Fri, 01 Apr 2016 00:00:00 GMT",
+      "end": "Fri, 31 Mar 2017 23:59:59 GMT"
+   }
+}

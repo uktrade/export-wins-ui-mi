@@ -5,13 +5,14 @@
 {% from 'macros/dates.html' import financialYear %}
 {% from 'macros/table-standard-types.html' import hvcWinTable %}
 {% from 'macros/tabs/hvc-group.html' import tabs %}
+{% from 'macros/page-heading.html' import pageHeading %}
+
+{% block page_heading %}
+	{{ pageHeading( hvcGroup.name, subHeading='HVC Group' ) }}
+{% endblock %}
 
 {% block page_content %}
 
-	<h1 class="page-heading">
-		{{ hvcGroup.name }} <span class="page-heading_secondary">HVC Group</span>
-	</h1>
-	{% include 'partials/year-selector.html' %}
 	<h2 class="page-date page-date--hvc">{{ financialYear( dateRange ) }}</h2>
 
 	{{ tabs( hvcGroup.id, hvcWins = true ) }}

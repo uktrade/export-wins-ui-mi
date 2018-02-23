@@ -444,19 +444,11 @@ describe( 'Backend stub', function(){
 
 		describe( 'FDI', function(){
 
-			describe( 'Getting the FDI Overview', function(){
+			describe( 'Getting the FDI Performance', function(){
 
-				it( 'Should return the overview', function( done ){
+				it( 'Should return the performance', function( done ){
 
-					checkMultipleYears( '/mi/fdi/overview/', '/investment/fdi/overview', done );
-				} );
-			} );
-
-			describe( 'Getting the FDI Overview YoY', function(){
-
-				it( 'Should return the overview', function( done ){
-
-					checkMultipleYears( '/mi/fdi/overview/yoy/', '/investment/fdi/overview_yoy', done );
+					checkMultipleYears( '/mi/fdi/performance/', '/investment/fdi/performance', done );
 				} );
 			} );
 
@@ -467,31 +459,7 @@ describe( 'Backend stub', function(){
 					checkMultipleYears( '/mi/fdi/sector_teams/', '/investment/fdi/sector_teams/index', done );
 				} );
 			} );
-
-			describe( 'Getting a Sector Team', function(){
-
-				it( 'Should return the details', function( done ){
-
-					checkMultipleYears( '/mi/fdi/sector_teams/1234/', '/investment/fdi/sector_teams/sector_team', done );
-				} );
-			} );
-
-			describe( 'Getting a Sector Team HVC', function(){
-
-				it( 'Should return the details', function( done ){
-
-					checkMultipleYears( '/mi/fdi/sector_teams/1234/hvc/', '/investment/fdi/sector_teams/sector_team_hvc', done );
-				} );
-			} );
-
-			describe( 'Getting a Sector Team Non HVC', function(){
-
-				it( 'Should return the details', function( done ){
-
-					checkMultipleYears( '/mi/fdi/sector_teams/1234/non_hvc/', '/investment/fdi/sector_teams/sector_team_non_hvc', done );
-				} );
-			} );
-
+/*
 			describe( 'Getting a Sector Team win table', function(){
 
 				it( 'Should return the details', function( done ){
@@ -499,7 +467,7 @@ describe( 'Backend stub', function(){
 					checkMultipleYears( '/mi/fdi/sector_teams/1234/win_table/', '/investment/fdi/sector_teams/win_table', done );
 				} );
 			} );
-
+*/
 			describe( 'Getting the Overseas Regions', function(){
 
 				it( 'Should return the list', function( done ){

@@ -4,12 +4,13 @@
 
 {% from 'macros/os-regions-types-tabs.html' import osRegionsTypesTabs %}
 {% from 'macros/alpha-list.html' import alphaList %}
+{% from 'macros/page-heading.html' import pageHeading %}
+
+{% block page_heading %}
+	{{ pageHeading( 'All posts' ) }}
+{% endblock %}
 
 {% block page_content %}
-
-	<h1 class="page-heading">All posts</h1>
-
-	{% include 'partials/year-selector.html' %}
 
 	{{ osRegionsTypesTabs( posts=true ) }}
 

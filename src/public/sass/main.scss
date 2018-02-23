@@ -13,12 +13,12 @@
 @import 'components/global-nav';
 @import 'components/top-nav';
 @import 'components/experiments';
+@import 'components/fy-selector';
 @import 'components/alpha-list';
 @import 'components/hvc-target-performance';
 @import 'components/hvc-target-performance-key';
 @import 'components/monthly-performance-graph';
 @import 'components/monthly-performance-key';
-@import 'components/year-selector';
 @import 'components/zero-target-perf-table';
 @import 'components/region-performance-table';
 @import 'components/table-standard';
@@ -65,7 +65,7 @@ main {
 	@include core-16;
 	@include inline-block;
 	position: relative;
-	margin-top: $gutter-half;
+	margin-top: 0;
 	margin-bottom: $gutter-half;
 	padding-left: 14px;
 	color: $black;
@@ -103,7 +103,6 @@ main {
 	@include ie-lte(8) {
 		background: file-url("icon-arrow-left.png") no-repeat 0 4px;
 	}
-
 }
 
 // Horizontal rule style
@@ -132,10 +131,21 @@ hr {
 	padding-bottom: 64px;
 }
 
+.page-heading-wrapper {
+	background-color: $highlight-colour;
+	margin-bottom: pem( 40 );
+	padding-top: pem( 10 );
+}
+
+.page-heading-content {
+	@extend %site-width-container;
+	padding-bottom: pem( 26 );
+}
+
 .page-heading {
 	@include bold-36;
-	margin-top: pem( 20, 36 );
-	margin-bottom: pem( 20, 36 );
+	margin: 0;
+	padding: 0;
 }
 
 .page-heading_secondary,
@@ -152,6 +162,10 @@ hr {
 
 .page-financial-year {
 	@include bold-24;
+}
+
+.page-financia-year--right {
+	float: right;
 }
 
 .page-date {

@@ -7,4 +7,6 @@ module.exports = function( env ){
 	env.addFilter( 'dateOnly', require( './date-only' ) );
 	env.addFilter( 'dateWithTime', require( './date-with-time' ) );
 	env.addFilter( 'dateStamp', require( './date-stamp' ) );
+	env.addFilter( 'timeOnly', require( './time-only' ) );
+	env.addFilter( 'preciseNumber', require( './precise-number' ) );
 };

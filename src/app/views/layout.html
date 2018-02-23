@@ -11,29 +11,29 @@
 {% endblock head %}
 
 {% block content %}
-	<div class="page-content">
-{#
-		<div class="phase-banner">
-			<p>
-				<strong class="phase-tag">BETA</strong>
-				<span>This is a new service – your <a href="{{ urls.survey() }}">feedback</a> will help us to improve it.</span>
-			</p>
-		</div>
-#}
-		<nav class="top-nav">
-			<ul class="top-nav_list">
-				<li class="top-nav_list_item">
-					<a class="top-nav_link" href="{{ urls.index() }}">MI Export wins</a>
-				</li>
-				<li class="top-nav_list_item">
-					<a class="top-nav_link" href="{{ urls.investment.index() }}">MI Investment wins</a>
-				</li>
-				<li class="top-nav_list_item">
-					<a class="top-nav_link" href="{{ urls.downloads() }}">Data download</a>
-				</li>
-			</ul>
-		</nav>
 
+		<div class="page-heading-wrapper">
+			<div class="page-heading-content">
+				<nav class="top-nav">
+					<ul class="top-nav_list">
+						<li class="top-nav_list_item">
+							<a class="top-nav_link{% if nav.isExport %} top-nav_link--active{% endif %}" href="{{ urls.index() }}">MI Export wins</a>
+						</li>
+						<li class="top-nav_list_item">
+							<a class="top-nav_link{% if nav.isInvestment %} top-nav_link--active{% endif %}" href="{{ urls.investment.index() }}">MI Investment wins</a>
+						</li>
+						<li class="top-nav_list_item">
+							<a class="top-nav_link{% if nav.isDownload %} top-nav_link--active{% endif %}" href="{{ urls.downloads() }}">Data download</a>
+						</li>
+					</ul>
+				</nav>
+
+				{% block page_heading %}{% endblock %}
+			</div>
+		</div>
+
+
+		<div class="page-content">
 		{%- if user.internal %}
 			<script>
 			function hideExperiments( button ){

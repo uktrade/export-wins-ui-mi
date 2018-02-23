@@ -2,6 +2,7 @@
 
 {% from 'macros/overview.html' import overviewBlocks, currentValueOver, overviewPie %}
 {% from 'macros/dates.html' import financialYear %}
+{% from 'macros/page-heading.html' import pageHeading %}
 
 {% set pageName='Sector Teams Overview' %}
 
@@ -51,13 +52,14 @@
 	</tr>
 {% endmacro %}
 
-{% block page_content %}
+{% block page_heading %}
+	{{ pageHeading( 'All sector teams review' ) }}
+{% endblock %}
 
-	<h1 class="page-heading">All sector teams review</h1>
+{% block page_content %}
 
 	<section class="grid-row">
 		<div class="column-half column--relative">
-			{% include 'partials/year-selector.html' %}
 			<h2 class="column-date">{{ financialYear( dateRange ) }}</h2>
 			<h3 class="visually-hidden">Confirmed wins values</h3>
 		</div>

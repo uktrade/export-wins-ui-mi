@@ -1,6 +1,7 @@
 const fdiService = require( '../../../lib/service/service.backend/investment/fdi' );
 const renderError = require( '../../../lib/render-error' );
-const overviewViewModel = require( '../view-models/fdi-overview' );
+const performanceHeadlinesViewModel = require( '../view-models/fdi-performance-headlines' );
+const performanceDetailsViewModel = require( '../view-models/fdi-performance-details' );
 
 module.exports = function( req, res ){
 
@@ -8,9 +9,9 @@ module.exports = function( req, res ){
 
 		res.render( 'investment/views/index', {
 
-			dateRange: data.overview.date_range,
-			overview: overviewViewModel.create( data.overview.results ),
-			overviewYoy: data.overviewYoy,
+			dateRange: data.performance.date_range,
+			headlines: performanceHeadlinesViewModel.create( data.performance.results ),
+			details: performanceDetailsViewModel.create( data.performance.results ),
 			sectorTeams: data.sectorTeams,
 			overseasRegions: data.overseasRegions,
 			ukRegions: data.ukRegions,

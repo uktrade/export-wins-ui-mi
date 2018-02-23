@@ -1,9 +1,12 @@
+const navMiddleware = require( '../../middleware/nav' );
 const indexController = require( './controllers/controller.index' );
-const sectorTeamsController = require( './controllers/controller.sector-teams' );
+//const sectorTeamsController = require( './controllers/controller.sector-teams' );
 const osRegionsController = require( './controllers/controller.overseas-regions' );
 const ukRegionsController = require( './controllers/controller.uk-regions' );
 
 const MOUNT_POINT = '/investment';
+
+const nav = navMiddleware( { isInvestment: true } );
 
 module.exports = function( router, user/*, isDev*/ ){
 
@@ -14,20 +17,14 @@ module.exports = function( router, user/*, isDev*/ ){
 
 	function get( path, ...args ){
 
-		//ensure the user middleware gets run for each route
-		args.unshift( user );
-
-		router.get( ( MOUNT_POINT + path ), ...args );
+		//ensure the user and nav middleware gets run for each route
+		router.get( ( MOUNT_POINT + path ), user, nav, ...args );
 	}
 
 	get( '/', indexController );
 
-	get( '/sector-teams/', sectorTeamsController.sectorTeams );
-	get( '/sector-teams/:id/', sectorTeamsController.sectorTeam );
-	get( '/sector-teams/:id/hvc-performance/', sectorTeamsController.hvcPerformance );
-	get( '/sector-teams/:id/non-hvc-performance/', sectorTeamsController.nonHvcPerformance );
-	get( '/sector-teams/:id/hvc-projects/', sectorTeamsController.hvcProjects );
-	get( '/sector-teams/:id/non-hvc-projects/', sectorTeamsController.nonHvcProjects );
+	//get( '/sector-teams/:id/hvc-projects/', sectorTeamsController.hvcProjects );
+	//get( '/sector-teams/:id/non-hvc-projects/', sectorTeamsController.nonHvcProjects );
 
 	get( '/overseas-regions/', osRegionsController.regions );
 	get( '/overseas-regions/:id/', osRegionsController.region );

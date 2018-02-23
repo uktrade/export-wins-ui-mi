@@ -26,7 +26,8 @@ describe( 'The Country detail page', function(){
 
 				heading = headingElem;
 				done();
-			} );
+
+			} ).catch( done.fail );
 		} );
 
 		it( 'Should have the correct title', function( done ){
@@ -35,7 +36,8 @@ describe( 'The Country detail page', function(){
 
 				expect( text ).toEqual( 'United States of America Country' );
 				done();
-			} );
+
+			} ).catch( done.fail );
 		} );
 
 		it( 'Should have the correct tag', function( done ){
@@ -44,7 +46,8 @@ describe( 'The Country detail page', function(){
 
 				expect( tagName ).toEqual( 'h1' );
 				done();
-			} );
+
+			} ).catch( done.fail );
 		} );
 	} );
 
@@ -58,8 +61,9 @@ describe( 'The Country detail page', function(){
 
 					expect( text ).toEqual( 'Performance' );
 					done();
-				} );
-			} );
+
+				} ).catch( done.fail );
+			} ).catch( done.fail );
 		} );
 	} );
 
@@ -71,7 +75,8 @@ describe( 'The Country detail page', function(){
 
 				expect( graph.length ).toEqual( 1 );
 				done();
-			} );
+
+			} ).catch( done.fail );
 		} );
 	} );
 
@@ -83,7 +88,8 @@ describe( 'The Country detail page', function(){
 
 				expect( key.length ).toEqual( 1 );
 				done();
-			} );
+
+			} ).catch( done.fail );
 		} );
 	} );
 } );

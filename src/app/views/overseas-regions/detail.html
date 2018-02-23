@@ -1,19 +1,18 @@
 {% extends 'sector/detail.html' %}
 
 {% from 'macros/tabs/os-regions.html' import tabs %}
+{% from 'macros/page-heading.html' import pageHeading %}
 
 {% set pageName %}Overseas region performance - {{ regionName | safe  }}{% endset %}
 {% set sectorName %}{{ regionName | safe }}{% endset %}
 {% set loadMoreUrl = urls.osRegionTopNonHvc( regionId ) %}
 
+{% block page_heading %}
+	{{ pageHeading( regionName, subHeading = 'Overseas Region' ) }}
+{% endblock %}
+
 {% block page_content %}
-
-	<h1 class="page-heading">
-		{{ regionName }} <span class="page-heading_secondary">Overseas Region</span>
-	</h1>
-
 	{{- super() -}}
-
 {% endblock %}
 
 {% block page_tabs %}

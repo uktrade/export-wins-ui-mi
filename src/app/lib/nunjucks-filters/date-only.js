@@ -1,12 +1,14 @@
 const dateFormat = require( 'dateformat' );
 
+const formatStr = 'UTC:d mmmm yyyy';
+
 module.exports = function( datestr ){
 
 	if( datestr ){
 
 		try {
 
-			return dateFormat( new Date( datestr ), 'UTC:d mmmm yyyy' );
+			return dateFormat( new Date( datestr ), formatStr );
 
 		} catch( e ){
 
@@ -15,6 +17,6 @@ module.exports = function( datestr ){
 
 	} else {
 
-		return '';
+		return dateFormat( new Date(), formatStr );
 	}
 };

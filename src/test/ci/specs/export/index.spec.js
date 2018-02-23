@@ -27,7 +27,8 @@ describe( 'The homepage', function(){
 
 					heading = headingElem;
 					done();
-				} );
+
+				} ).catch( done.fail );
 			} );
 
 			it( 'Should have the correct title', function( done ){
@@ -36,7 +37,8 @@ describe( 'The homepage', function(){
 
 					expect( text ).toEqual( 'Export Wins performance' );
 					done();
-				} );
+
+				} ).catch( done.fail );
 			} );
 
 			it( 'Should have the correct tag', function( done ){
@@ -45,7 +47,8 @@ describe( 'The homepage', function(){
 
 					expect( tagName ).toEqual( 'h1' );
 					done();
-				} );
+
+				} ).catch( done.fail );
 			} );
 		} );
 
@@ -59,13 +62,13 @@ describe( 'The homepage', function(){
 
 					headings = headingElems;
 					done();
-				} );
+
+				} ).catch( done.fail );
 			} );
 
-			it( 'Should have a heading for each list', function( done ){
+			it( 'Should have a heading for each list', function(){
 
 				expect( headings.length ).toEqual( 3 );
-				done();
 			} );
 
 			it( 'Should have the correct text for the first heading', function( done ){
@@ -74,7 +77,8 @@ describe( 'The homepage', function(){
 
 					expect( text ).toEqual( 'Sector Teams' );
 					done();
-				} );
+
+				} ).catch( done.fail );
 			} );
 
 			it( 'Should have the correct text for the second heading', function( done ){
@@ -83,7 +87,8 @@ describe( 'The homepage', function(){
 
 					expect( text ).toEqual( 'Overseas Regions' );
 					done();
-				} );
+
+				} ).catch( done.fail );
 			} );
 
 			it( 'Should have the correct text for the third heading', function( done ){
@@ -92,7 +97,8 @@ describe( 'The homepage', function(){
 
 					expect( text ).toEqual( 'UK Nations & Regions' );
 					done();
-				} );
+
+				} ).catch( done.fail );
 			} );
 
 			describe( 'Links', function(){
@@ -103,7 +109,8 @@ describe( 'The homepage', function(){
 
 						expect( linkElems.length ).toEqual( headings.length );
 						done();
-					} );
+
+					} ).catch( done.fail );
 				} );
 			} );
 		} );
@@ -116,7 +123,8 @@ describe( 'The homepage', function(){
 
 					expect( list.length ).toEqual( 1 );
 					done();
-				} );
+
+				} ).catch( done.fail );
 			} );
 		} );
 
@@ -128,7 +136,8 @@ describe( 'The homepage', function(){
 
 					expect( list.length ).toEqual( 1 );
 					done();
-				} );
+
+				} ).catch( done.fail );
 			} );
 		} );
 

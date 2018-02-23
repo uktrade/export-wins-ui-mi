@@ -1,0 +1,71 @@
+@import 'helpers';
+@import 'mi-typography';
+
+.headline-figure {
+	background-color: $black;
+	color: #fff;
+	text-align: center;
+	padding: pem( 10 ) pem( 5 );
+	width: 100%;
+	margin-bottom: pem( 15 );
+}
+
+.headline-figure_heading {
+	@include bold-16;
+	margin-bottom: pem( 15 );
+}
+
+.headline-figure_value {
+	@include bold-64( $line-height: 1 );
+}
+
+.headline-sub-figure {
+	@extend .headline-figure;
+	background-color: $grey-3;
+	color: $black;
+}
+
+.headline-sub-figure_heading {
+	@include bold-16;
+}
+
+.headline-sub-figure_sub-heading {
+	@include core-16;
+	margin-bottom: pem( 10 );
+	display: inline-block;
+}
+
+.headline-sub-figure_value {
+	@include bold-48;
+	display: block;
+}
+
+.headline-figure-breakdown {
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	overflow: hidden;
+}
+
+.headline-figure-breakdown_item {
+	display: inline-block;
+	width: 33.3%;
+	margin: 0;
+	padding: 0;
+	float: left;
+}
+
+.headline-figure-breakdown_item--half {
+	width: 50%;
+}
+
+.headline-figure-breakdown_key {
+	display: block;
+	@include core-14( $line-height: 1 );
+	margin-bottom: pem( 10, 14 );
+}
+
+.headline-figure-breakdown_value {
+	display: block;
+	@include core-24( $line-height: 1 );
+}

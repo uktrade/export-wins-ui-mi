@@ -89,6 +89,14 @@ describe( 'urls middleware', function(){
 		} );
 	} );
 
+	describe( 'Change Financial Year', function(){
+
+		it( 'Should return the correct URL', function(){
+
+			checkUrl( req, 'changeFy', [], '/change-fy/' );
+		} );
+	} );
+
 	describe( 'selectDate', function(){
 
 		const methodName = 'selectDate';

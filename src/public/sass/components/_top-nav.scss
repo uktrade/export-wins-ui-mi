@@ -1,8 +1,12 @@
 .top-nav {
-	border-bottom: 1px solid $grey-2;
-	padding: 0.5em 0;
- 	margin-bottom: 0.5em;
- 	overflow: hidden;
+
+	@include media( tablet ){
+
+		border-bottom: 1px solid $grey-2;
+		padding: 0 0 pem( 8 ) 0;
+	 	margin-bottom: pem( 60 );
+	 	overflow: hidden;
+	}
 }
 
 .top-nav_list {
@@ -11,13 +15,28 @@
 	display: inline-block;
 }
 
-.top-nav_list_item {
+.top-nav_link {
+	text-decoration: none;
+	color: $link-colour;
+}
 
-	margin-bottom: pem( 5 );
+.top-nav_link--active {
+
+	border-bottom: 2px solid $link-colour;
 
 	@include media( tablet ){
 
-		border-left: 1px solid $grey-2;
+		padding-bottom: pem( 5 );
+		border-bottom: 5px solid $link-colour
+	}
+}
+
+.top-nav_list_item {
+
+	margin-bottom: pem( 10 );
+
+	@include media( tablet ){
+
 		padding-left: pem( 10 );
 		margin-left: pem( 10 );
 		margin-bottom: 0;

@@ -1,6 +1,5 @@
-@import 'page/investment/index';
-@import 'page/investment/overview';
-@import 'page/investment/sector-team';
-@import 'page/investment/sector-teams-overview';
+@import 'components/table-data';
+@import 'components/investment/pipeline-projects';
+@import 'components/investment/headline-figures';
 
-@import 'components/investment/project-table';
+@import 'page/investment/index';

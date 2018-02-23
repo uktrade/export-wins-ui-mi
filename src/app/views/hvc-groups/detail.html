@@ -8,15 +8,16 @@
 {% from 'macros/pie-charts.html' import confirmedUnconfirmedPieChart %}
 {% from 'macros/monthly-performance-key.html' import monthlyPerformanceKey %}
 {% from 'macros/monthly-performance-graph.html' import monthlyPerformanceGraph %}
+{% from 'macros/page-heading.html' import pageHeading %}
 
 {% set pageName %}HVC group performance - {{ sectorName | safe }}{% endset %}
 
+{% block page_heading %}
+	{{ pageHeading( sectorName, subHeading = 'HVC Group' ) }}
+{% endblock %}
+
 {% block page_content %}
 
-	<h1 class="page-heading">
-		{{ sectorName }} <span class="page-heading_secondary">HVC Group</span>
-	</h1>
-	{% include 'partials/year-selector.html' %}
 	<h2 class="page-date">{{ financialYear( summary.dateRange ) }}</h2>
 
 	{{ tabs( groupId, performance = true ) }}
