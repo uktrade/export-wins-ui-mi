@@ -1,0 +1,85 @@
+@import '_deprecated/typography';
+@import 'helpers';
+@import 'mi-colours';
+
+.fdi-pipeline-projects {
+
+	border: 2px solid $grey-2;
+	border-radius: pem( 10 );
+	padding: pem( 15 );
+	margin-top: pem( 30 );
+	max-width: 60%;
+
+	@include media( tablet ){
+		margin-top: 0;
+		max-width: 100%;
+	}
+}
+
+.fdi-pipeline-projects-heading {
+	@include bold-16( $line-height: 1 );
+	margin-bottom: pem( 15 );
+}
+
+.fdi-pipeline-projects-list {
+	padding: 0;
+	margin: 0 0 0 pem( 10 );
+}
+
+.fdi-pipeline-projects-list_item {
+
+	list-style: none;
+	margin-bottom: 0;
+	min-height: 70px;
+	padding: 0 0 0 pem( 20 );
+	border-left: 4px solid $grey-1;
+
+	&:nth-of-type( 3 ) {
+		border-left-color: white;
+		min-height: 0;
+	}
+
+	.position-marker {
+		position: relative;
+	}
+
+	.position-marker[ data-number ]:after {
+		content: attr( data-number );
+		position: absolute;
+		top: -1px;
+		left: pem( -34 );
+		font-size: 1em;
+		background: $grey-1;
+		color: white;
+		width: 1.5em;
+		height: 1.5em;
+		text-align: center;
+		line-height: 1.5em;
+		border-radius: 50%;
+		font-weight: bold;
+	}
+}
+
+.fdi-pipeline-projects-list_detail {
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+.fdi-pipeline-projects-list_detail_term {
+	float: left;
+	width: 65%;
+	font-weight: bold;
+	min-height: 1.75em;
+}
+
+.fdi-pipeline-projects-list_detail_value {
+	float: right;
+	width: 35%;
+	margin: 0;
+	padding: 0;
+
+	&:first-of-type {
+		padding-bottom: pem( 5 );
+	}
+}

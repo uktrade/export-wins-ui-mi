@@ -1,0 +1,30 @@
+@import 'helpers';
+@import 'mi-colours';
+
+.fdi-data-table-wrapper {
+	width: 100%;
+	overflow: auto;
+	padding-bottom: pem( 10 );
+}
+
+.fdi-data-table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.fdi-data-table_heading {
+	padding: 0 pem( 15 ) pem( 15 ) pem( 15 );
+	border-bottom: 1px solid $grey-2;
+	text-align: left;
+	vertical-align: bottom;
+}
+
+.fdi-data-table_cell {
+	padding: pem( 15 );
+	border-bottom: 1px solid $grey-2;
+}
+
+.fdi-data-table_cell--total {
+	background-color: $grey-3;
+	font-weight: bold;
+}

@@ -69,10 +69,6 @@ module.exports = function( path, year = 2016 ){
 			hasWrapper = false;
 		break;
 
-		case '/investment/fdi/overview-yoy.schema':
-			includeStartDate = false;
-		break;
-
 		case '/shared/top_non_hvcs.schema':
 			hasCount = true;
 		break;

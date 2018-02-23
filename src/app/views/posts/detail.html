@@ -2,13 +2,13 @@
 
 {% from 'macros/tabs/post.html' import tabs %}
 {% from 'macros/os-regions-types-tabs.html' import osRegionsTypesTabs %}
+{% from 'macros/page-heading.html' import pageHeading %}
 
 {% set pageName %}Post performance - {{ postName | safe  }}{% endset %}
 {% set sectorName %}{{ postName | safe }}{% endset %}
 {% set loadMoreUrl = urls.postTopNonHvc( postId ) %}
 
-{% block year_selector %}
-	{{ super() }}
+{% block heading_tabs %}
 	{{ osRegionsTypesTabs( posts=true, linkPosts=true ) }}
 {% endblock %}
 
@@ -33,14 +33,12 @@
 	</section>
 {% endblock %}
 
+{% block page_heading %}
+	{{ pageHeading( postName, subHeading='Post' ) }}
+{% endblock %}
+
 {% block page_content %}
-
-	<h1 class="page-heading">
-		{{ postName }} <span class="page-heading_secondary">Post</span>
-	</h1>
-
 	{{- super() -}}
-
 {% endblock %}
 
 {% block page_tabs %}

@@ -1,0 +1,26 @@
+{% macro headlineFigure( title, subtitle, value ) %}
+	<div class="headline-figure">
+		<h4 class="headline-figure_heading">{{ title }}</h4>
+		<span class="visually-hidden">{{ subtitle }}</span>
+		<span class="headline-figure_value">{{ value }}</span>
+	</div>
+{% endmacro %}
+
+{% macro headlineSubFigure( title, subtitle, value ) %}
+	<div class="headline-sub-figure">
+		<h4 class="headline-sub-figure_heading">{{ title }}</h4>
+		<span class="headline-sub-figure_sub-heading">{{ subtitle }}</span>
+		<span class="headline-sub-figure_value">{{ value }}</span>
+	</div>
+{% endmacro %}
+
+{% macro headlineBreakdown( rows, modifyer ) %}
+	<ul class="headline-figure-breakdown{% if modifyer %} headline-figure-breakdown--{{ modifyer }}{% endif %}">
+	{% for label, value in rows %}
+		<li class="headline-figure-breakdown_item">
+			<span class="headline-figure-breakdown_key">{{ label }}</span>
+			<span class="headline-figure-breakdown_value">{{ value }}</span>
+		</li>
+	{% endfor %}
+	</ul>
+{% endmacro %}

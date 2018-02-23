@@ -1,5 +1,101 @@
-@import '_deprecated/typography';
+ @import '_deprecated/typography';
+ @import 'helpers';
 
+.fdi-overview-heading {
+	@include bold-24;
+	margin: 0 0 pem( 5, 24 ) 0;
+}
+
+.fdi-overview-sub-heading {
+	@include core-16;
+	margin: 0 0 pem( 30 ) 0;
+}
+
+.fdi-page-date_emphasize {
+	font-weight: bold;
+}
+
+.fdi-section {
+	margin-bottom: pem( 45 );
+}
+
+.fdi-section-row {
+
+	margin-bottom: pem( 30 );
+
+	@include media( tablet ){
+
+		margin-bottom: 0;
+	}
+}
+
+.pie--fdi-perf-stage {
+
+	margin-left: pem( 30 );
+
+	@include media( tablet ){
+
+		margin-left: 0;
+	}
+}
+
+.pie--fdi-perf-stage,
+.pie-key--fdi-perf-stage {
+
+	@include media( tablet ){
+
+		margin-top: pem( 10 );
+	}
+}
+
+.headline-figure-breakdown--jobs {
+
+	.headline-figure-breakdown_item {
+
+		width: 52%;
+
+		&:first-of-type {
+
+			width: 48%;
+		}
+	}
+}
+
+.fdi-data-table--fdi-wins,
+.fdi-data-table--fdi-active-pipeline {
+
+	.fdi-data-table_heading {
+
+		&:nth-of-type( 2 ) {
+			text-align: center;
+		}
+	}
+
+	.fdi-data-table_cell {
+
+		&:nth-of-type( 1 ) {
+			width: 37%;
+		}
+
+		&:nth-of-type( 2 ),
+		&:nth-of-type( 3 ),
+		&:nth-of-type( 4 ),
+		&:nth-of-type( 5 ) {
+			width: 12%;
+		}
+
+		&:nth-of-type( 2 ) {
+			text-align: center;
+		}
+
+		&:nth-of-type( 6 ) {
+			width: 15%;
+		}
+	}
+}
+
+
+/*
 .i-homepage-lists {
 	margin-top: 2em;
 }
@@ -15,3 +111,4 @@
 .i-homepage-list_item {
 	line-height: 1.4;
 }
+*/

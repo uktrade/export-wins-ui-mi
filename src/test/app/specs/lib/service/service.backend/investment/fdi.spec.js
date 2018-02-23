@@ -8,7 +8,6 @@ const moduleFile = '../../../../../../../app/lib/service/service.backend/investm
 
 let getJson;
 let fdiService;
-let fdiOverviewYoyTransformer;
 let fdiProjectListTransformer;
 let req;
 
@@ -40,7 +39,6 @@ describe( 'Investment FDI backend service', function(){
 
 		req = { cookies: { sessionid: 'test' } };
 		getJson = jasmine.createSpy( 'getJson' );
-		fdiOverviewYoyTransformer = jasmine.createSpy( 'fdiOverviewYoyTransformer' );
 		fdiProjectListTransformer = jasmine.createSpy( 'fdiProjectListTransformer' );
 	} );
 
@@ -52,7 +50,6 @@ describe( 'Investment FDI backend service', function(){
 
 			fdiService = proxyquire( moduleFile, {
 				'../_helpers': { getJson },
-				'../../../transformers/fdi/overview-yoy': fdiOverviewYoyTransformer,
 				'../../../transformers/fdi/project-list': fdiProjectListTransformer
 			} );
 		} );
@@ -68,61 +65,7 @@ describe( 'Investment FDI backend service', function(){
 				} );
 			} );
 		} );
-
-		describe( 'Sector Teams overview', function(){
-
-			it( 'Should call the correct API', function( done ){
-
-				fdiService.getSectorTeamsOverview( req ).then( () => {
-
-					checkBackendArgs( '/mi/fdi/sector_teams/overview/', req );
-					done();
-				} );
-			} );
-		} );
-
-		describe( 'Sector Team details', function(){
-
-			it( 'Should call the correct API', function( done ){
-
-				const teamId = '1';
-
-				fdiService.getSectorTeam( req, teamId ).then( () => {
-
-					checkBackendArgs( `/mi/fdi/sector_teams/${ teamId }/`, req );
-					done();
-				} );
-			} );
-		} );
-
-		describe( 'Sector Team HVC details', function(){
-
-			it( 'Should call the correct API', function( done ){
-
-				const teamId = '1';
-
-				fdiService.getSectorTeamHvc( req, teamId ).then( () => {
-
-					checkBackendArgs( `/mi/fdi/sector_teams/${ teamId }/hvc/`, req );
-					done();
-				} );
-			} );
-		} );
-
-		describe( 'Sector Team Non HVC details', function(){
-
-			it( 'Should call the correct API', function( done ){
-
-				const teamId = '1';
-
-				fdiService.getSectorTeamNonHvc( req, teamId ).then( () => {
-
-					checkBackendArgs( `/mi/fdi/sector_teams/${ teamId }/non_hvc/`, req );
-					done();
-				} );
-			} );
-		} );
-
+/*
 		describe( 'Sector Team win table', function(){
 
 			it( 'Should call the correct API', function( done ){
@@ -157,7 +100,6 @@ describe( 'Investment FDI backend service', function(){
 				} );
 			} );
 		} );
-
 		describe( 'Sector Team Non HVC win table', function(){
 
 			it( 'Should call the correct API', function( done ){
@@ -178,6 +120,7 @@ describe( 'Investment FDI backend service', function(){
 				} );
 			} );
 		} );
+*/
 
 		describe( 'Overseas Teams list', function(){
 
@@ -244,25 +187,13 @@ describe( 'Investment FDI backend service', function(){
 			} );
 		} );
 
-		describe( 'FDI overview', function(){
+		describe( 'FDI performance', function(){
 
 			it( 'Should call the correct API', function( done ){
 
-				fdiService.getOverview( req ).then( () => {
+				fdiService.getPerformance( req ).then( () => {
 
-					checkBackendArgs( '/mi/fdi/overview/', req );
-					done();
-				} );
-			} );
-		} );
-
-		describe( 'getOverviewYoy', function(){
-
-			it( 'Should call the correct API', function( done ){
-
-				fdiService.getOverviewYoy( req ).then( () => {
-
-					checkBackendArgs( '/mi/fdi/overview/yoy/', req, fdiOverviewYoyTransformer );
+					checkBackendArgs( '/mi/fdi/performance/', req );
 					done();
 				} );
 			} );
@@ -302,8 +233,7 @@ describe( 'Investment FDI backend service', function(){
 					'getSectorTeams',
 					'getOverseasRegions',
 					'getUkRegions',
-					'getOverview',
-					'getOverviewYoy'
+					'getPerformance'
 				] );
 
 				fdiService.getHomepageData( req ).then( ( data ) => {
@@ -311,14 +241,12 @@ describe( 'Investment FDI backend service', function(){
 					expect( spies.getSectorTeams.spy ).toHaveBeenCalledWith( req );
 					expect( spies.getOverseasRegions.spy ).toHaveBeenCalledWith( req );
 					expect( spies.getUkRegions.spy ).toHaveBeenCalledWith( req );
-					expect( spies.getOverview.spy ).toHaveBeenCalledWith( req );
-					expect( spies.getOverviewYoy.spy ).toHaveBeenCalledWith( req );
+					expect( spies.getPerformance.spy ).toHaveBeenCalledWith( req );
 
 					expect( data.sectorTeams ).toEqual( spies.getSectorTeams.response );
 					expect( data.overseasRegions ).toEqual( spies.getOverseasRegions.response );
 					expect( data.ukRegions ).toEqual( spies.getUkRegions.response );
-					expect( data.overview ).toEqual( spies.getOverview.response );
-					expect( data.overviewYoy ).toEqual( spies.getOverviewYoy.response );
+					expect( data.performance ).toEqual( spies.getPerformance.response );
 
 					done();
 

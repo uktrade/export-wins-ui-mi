@@ -22,24 +22,18 @@
 
 {% endmacro %}
 
-{% block page_content %}
-
+{% block page_heading %}
 	<a href="{{ urls.selectDate( returnPath ) }}" class="link-back">Back</a>
 
+	<h1 class="page-heading">
+		Select dates for {{ year }} financial year
+	</h1>
+{% endblock %}
+
+{% block page_content %}
+
 	{% if errors -%}
-
 		{{ errorPanel( errors, labels ) -}}
-
-		<h2 class="page-heading">
-			Select dates for {{ year }} financial year
-		</h2>
-
-	{%- else -%}
-
-		<h1 class="page-heading">
-			Select dates for {{ year }} financial year
-		</h1>
-
 	{%- endif -%}
 
 	<form action="{{ urls.selectDateForYear( year, returnPath ) }}" method="post" class="select-dates_form">

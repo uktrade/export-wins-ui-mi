@@ -18,6 +18,7 @@ Thanks Lea!
 	background-image: linear-gradient(to right, transparent 50%, $pie-default-wedge 0);
 	color: transparent;
 	text-align: center;
+	vertical-align: top;
 }
 
 $sector-size: 66px;
@@ -25,6 +26,22 @@ $sector-size: 66px;
 	width: $sector-size;
 	height: $sector-size;
 	line-height: $sector-size;
+}
+
+$fdi-size-mobile: 55px;
+$fdi-size-desktop: 80px;
+.pie--fdi {
+
+	width: $fdi-size-mobile;
+	height: $fdi-size-mobile;
+	line-height: $fdi-size-mobile;
+
+	@include media( tablet ){
+
+		width: $fdi-size-desktop;
+		height: $fdi-size-desktop;
+		line-height: $fdi-size-desktop;
+	}
 }
 
 .pie--hvc-vs-non {
@@ -35,6 +52,16 @@ $sector-size: 66px;
 .pie--confirmed-vs-un {
 	background: $confirmed;
 	background-image: linear-gradient(to right, transparent 50%, $unconfirmed 0);
+}
+
+.pie--fdi-hvc-vs-non {
+	background: $fdi-hvc;
+	background-image: linear-gradient(to right, transparent 50%, $fdi-non-hvc 0);
+}
+
+.pie--fdi-stage {
+	background: $fdi-won;
+	background-image: linear-gradient(to right, transparent 50%, $fdi-verify-win 0);
 }
 
 .pie--center {
@@ -52,6 +79,18 @@ $sector-size: 66px;
 	@extend .pie--sector;
 }
 
+.pie--fdi-performance-hvc {
+	@extend .pie--fdi-hvc-vs-non;
+	@extend .pie--inline;
+	@extend .pie--fdi;
+}
+
+.pie--fdi-performance-stage {
+	@extend .pie--fdi-stage;
+	@extend .pie--inline;
+	@extend .pie--fdi;
+}
+
 @keyframes spin {
 	to { transform: rotate( .5turn ); }
 }
@@ -65,6 +104,14 @@ $sector-size: 66px;
 
 @keyframes bg-unconfirmed {
 	50% { background: $unconfirmed; }
+}
+
+@keyframes bg-fdi-non-hvc {
+	50% { background: $fdi-non-hvc; }
+}
+
+@keyframes bg-fdi-stage {
+	50% { background: $fdi-verify-win; }
 }
 
 .pie::before {
@@ -92,6 +139,18 @@ $sector-size: 66px;
 	animation-delay: inherit;
 }
 
+.pie--fdi-hvc-vs-non::before {
+	animation: spin 50s linear infinite, bg-fdi-non-hvc 100s step-end infinite;
+	animation-play-state: paused;
+	animation-delay: inherit;
+}
+
+.pie--fdi-stage::before {
+	animation: spin 50s linear infinite, bg-fdi-stage 100s step-end infinite;
+	animation-play-state: paused;
+	animation-delay: inherit;
+}
+
 .pie-text {
 	position: absolute;
 	top: 0;
@@ -108,6 +167,7 @@ $sector-size: 66px;
 .pie-key {
 	list-style: none;
 	padding: 0 0 0 pem( 8 );
+	margin: 0;
 }
 
 .pie-key--inline {
@@ -116,10 +176,16 @@ $sector-size: 66px;
 
 .pie-key_item {
 	@include core-14;
+	margin-bottom: pem( 5, 14 );
 }
 
 .pie-key_item_percentage {
 	@include bold-14;
+}
+
+.pie-key_text {
+	display: block;
+	margin-left: 15px;
 }
 
 .pie-key_block {
@@ -152,3 +218,20 @@ $sector-size: 66px;
 	}
 }
 
+.pie-key--fdi-hvc-vs-non {
+	.pie-key_block {
+		background-color: $fdi-hvc;
+	}
+	.pie-key_block--slice {
+		background-color: $fdi-non-hvc;
+	}
+}
+
+.pie-key--fdi-stage {
+	.pie-key_block {
+		background-color: $fdi-won;
+	}
+	.pie-key_block--slice {
+		background-color: $fdi-verify-win;
+	}
+}

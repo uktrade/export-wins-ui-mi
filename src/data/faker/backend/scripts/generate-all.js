@@ -16,7 +16,8 @@ const scripts = [
 
 	'investment/fdi/generate-sector-teams',
 	'investment/fdi/generate-os-regions',
-	'investment/fdi/generate-overview'
+	'investment/fdi/generate-uk-regions',
+	'investment/fdi/generate-performance'
 ];
 
 for( let script of scripts ){

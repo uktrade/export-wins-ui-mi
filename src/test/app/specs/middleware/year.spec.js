@@ -51,12 +51,6 @@ describe( 'Year middleware', function(){
 
 				expect( next ).toHaveBeenCalled();
 			} );
-
-			it( 'Should add the year as a local and it should be a number', function(){
-
-				expect( res.locals.selectedYear ).toEqual( Number( req.year ) );
-				expect( typeof res.locals.selectedYear ).toEqual( 'number' );
-			} );
 		} );
 	} );
 
@@ -75,11 +69,6 @@ describe( 'Year middleware', function(){
 		it( 'Should set isDefaultYear to true', function(){
 
 			expect( req.isDefaultYear ).toEqual( true );
-		} );
-
-		it( 'Should add the year as a local', function(){
-
-			expect( res.locals.selectedYear ).toEqual( Number( req.year ) );
 		} );
 
 		it( 'Should add the year to the req', function(){

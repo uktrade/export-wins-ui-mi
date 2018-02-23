@@ -1,6 +1,5 @@
 const proxyquire = require( 'proxyquire' );
 
-
 describe( 'Nunjucks filters', function(){
 
 	let nunjucksFilters;
@@ -11,6 +10,8 @@ describe( 'Nunjucks filters', function(){
 	let dateOnly;
 	let dateWithTime;
 	let dateStamp;
+	let timeOnly;
+	let preciseNumber;
 
 	beforeEach( function(){
 
@@ -21,6 +22,8 @@ describe( 'Nunjucks filters', function(){
 		dateOnly = jasmine.createSpy( 'dateOnly' );
 		dateWithTime = jasmine.createSpy( 'dateWithTime' );
 		dateStamp = jasmine.createSpy( 'dateStamp' );
+		timeOnly = jasmine.createSpy( 'timeOnly' );
+		preciseNumber = jasmine.createSpy( 'preciseNumber' );
 
 		nunjucksFilters = proxyquire( '../../../../../app/lib/nunjucks-filters', {
 			'./large-number': largeNumber,
@@ -29,7 +32,9 @@ describe( 'Nunjucks filters', function(){
 			'./table-percentage': tablePercentage,
 			'./date-only': dateOnly,
 			'./date-with-time': dateWithTime,
-			'./date-stamp': dateStamp
+			'./date-stamp': dateStamp,
+			'./time-only': timeOnly,
+			'./precise-number': preciseNumber
 		} );
 	} );
 
@@ -73,5 +78,15 @@ describe( 'Nunjucks filters', function(){
 
 		expect( args[ 0 ] ).toEqual( 'dateStamp' );
 		expect( args[ 1 ] ).toEqual( dateStamp );
+
+		args = addFilter.calls.argsFor( 7 );
+
+		expect( args[ 0 ] ).toEqual( 'timeOnly' );
+		expect( args[ 1 ] ).toEqual( timeOnly );
+
+		args = addFilter.calls.argsFor( 8 );
+
+		expect( args[ 0 ] ).toEqual( 'preciseNumber' );
+		expect( args[ 1 ] ).toEqual( preciseNumber );
 	} );
 } );

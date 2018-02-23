@@ -6,13 +6,14 @@
 {% from 'macros/table-standard-types.html' import nonHvcWinTable %}
 {% from 'macros/tabs/country.html' import tabs %}
 {% from 'macros/os-regions-types-tabs.html' import osRegionsTypesTabs %}
+{% from 'macros/page-heading.html' import pageHeading %}
+
+{% block page_heading %}
+	{{ pageHeading ( country.name, subHeading = 'Country' ) }}
+{% endblock %}
 
 {% block page_content %}
 
-	<h1 class="page-heading">
-		{{ country.name }} <span class="page-heading_secondary">Country</span>
-	</h1>
-	{% include 'partials/year-selector.html' %}
 	{{ osRegionsTypesTabs( countries=true, linkCountries=true ) }}
 	<h2 class="page-date page-date--hvc">{{ financialYear( dateRange ) }}</h2>
 

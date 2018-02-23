@@ -31,3 +31,31 @@
 		</li>
 	</ul>
 {% endmacro %}
+
+{% macro fdiHvcPieChart( nameA, valuesA, nameB, valuesB, modifyer ) %}
+
+	<div class="pie pie--fdi-performance-hvc{% if modifyer %} pie--fdi-{{ modifyer }}{% endif %}" style="animation-delay: -{{ valuesA.percent | piePercentage }}s">{{ valuesA.percent }}%</div>
+
+	<ul class="pie-key pie-key--fdi-hvc-vs-non pie-key--inline{% if modifyer %} pie-key--fdi-{{ modifyer }}{% endif %}">
+		<li class="pie-key_item">
+			<span class="pie-key_block pie-key_block--slice"></span>{{ nameA }}<span class="pie-key_text">{{ valuesA.percent }}% / {{ valuesA.count | preciseNumber }}</span>
+		</li>
+		<li class="pie-key_item">
+			<span class="pie-key_block"></span>{{ nameB }}<br><span class="pie-key_text">{{ valuesB.percent }}% / {{ valuesB.count | preciseNumber }}</span>
+		</li>
+	</ul>
+{% endmacro %}
+
+{% macro fdiStagePieChart( nameA, valuesA, nameB, valuesB, modifyer ) %}
+
+	<div class="pie pie--fdi-performance-stage{% if modifyer %} pie--fdi-{{ modifyer }}{% endif %}" style="animation-delay: -{{ valuesA.percent | piePercentage }}s">{{ valuesA.percent }}%</div>
+
+	<ul class="pie-key pie-key--fdi-stage pie-key--inline{% if modifyer %} pie-key--fdi-{{ modifyer }}{% endif %}">
+		<li class="pie-key_item">
+			<span class="pie-key_block pie-key_block--slice"></span>{{ nameA }}<span class="pie-key_text">{{ valuesA.percent }}% / {{ valuesA.count | preciseNumber }}</span>
+		</li>
+		<li class="pie-key_item">
+			<span class="pie-key_block"></span>{{ nameB }}<br><span class="pie-key_text">{{ valuesB.percent }}% / {{ valuesB.count | preciseNumber }}</span>
+		</li>
+	</ul>
+{% endmacro %}

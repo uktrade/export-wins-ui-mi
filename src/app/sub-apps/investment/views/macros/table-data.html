@@ -1,0 +1,30 @@
+{% macro dataTable( modifyer, data ) %}
+	<div class="fdi-data-table-wrapper">
+		<table class="fdi-data-table fdi-data-table--{{ modifyer }}">
+			<thead>
+				<tr>
+					{% for heading in data.headings %}
+					<th class="fdi-data-table_heading">{{ heading }}</th>
+					{% endfor %}
+				</tr>
+			</thead>
+			<tbody>
+				{% for row in data.rows %}
+				<tr>
+					{% for cell in row %}
+					<td class="fdi-data-table_cell">{{ cell }}</td>
+					{% endfor %}
+				</tr>
+				{% endfor %}
+				{% if data.totals %}
+				<tr>
+					{% for cell in data.totals %}
+					<td class="fdi-data-table_cell fdi-data-table_cell--total">{{ cell }}</td>
+					{% endfor %}
+				</tr>
+				{% endif %}
+			</tbody>
+		</table>
+	</div>
+
+{% endmacro %}

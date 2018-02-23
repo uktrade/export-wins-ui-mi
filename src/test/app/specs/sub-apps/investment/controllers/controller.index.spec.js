@@ -7,7 +7,8 @@ let fdiService;
 let getHomepageData;
 let createHandler;
 let renderErrorHandler;
-let overviewViewModelSpy;
+let performanceHeadlinesViewModelSpy;
+let performanceDetailsViewModelSpy;
 let req;
 let res;
 
@@ -16,7 +17,8 @@ describe( 'Index controller', function(){
 	beforeEach( function(){
 
 		getHomepageData = jasmine.createSpy( 'getHomepageData' );
-		overviewViewModelSpy = jasmine.createSpy( 'overviewViewModel' );
+		performanceHeadlinesViewModelSpy = jasmine.createSpy( 'performanceHeadlinesViewModel' );
+		performanceDetailsViewModelSpy = jasmine.createSpy( 'performanceDetailsViewModel' );
 
 		renderErrorHandler = jasmine.createSpy( 'renderErrorHandler' );
 		createHandler = jasmine.createSpy( 'createHandler' ).and.callFake( () => renderErrorHandler );
@@ -26,7 +28,8 @@ describe( 'Index controller', function(){
 		controller = proxyquire( moduleFile, {
 			'../../../lib/service/service.backend/investment/fdi': fdiService,
 			'../../../lib/render-error': { createHandler },
-			'../view-models/fdi-overview': { create: overviewViewModelSpy }
+			'../view-models/fdi-performance-headlines': { create: performanceHeadlinesViewModelSpy },
+			'../view-models/fdi-performance-details': { create: performanceDetailsViewModelSpy }
 		} );
 
 		req = {
@@ -53,16 +56,15 @@ describe( 'Index controller', function(){
 					showUkRegions = false
 				} = opts;
 
-				const overviewResponse = { overviewResponse: true };
-				const overviewData = { date_range: { overviewDataDateRange: true }, results: { somedata: true } };
-				const overviewYoy = { overviewYoy: true };
+				const performanceHeadlinesResponse = { performanceHeadlinesResponse: true };
+				const performanceDetailsResponse = { performanceDetailsResponse: true };
+				const performanceData = { date_range: { performanceDataDateRange: true }, results: { somedata: true } };
 				const sectorTeams = { sectorTeams: true };
 				const overseasRegions = { overseasRegions: true };
 				const ukRegions = { ukRegions: true };
 				const promise =  new Promise( ( resolve ) => {
 					resolve( {
-						overview: overviewData,
-						overviewYoy,
+						performance: performanceData,
 						sectorTeams,
 						overseasRegions,
 						ukRegions
@@ -70,19 +72,21 @@ describe( 'Index controller', function(){
 				} );
 
 				getHomepageData.and.callFake( () => promise );
-				overviewViewModelSpy.and.callFake( () => overviewResponse );
+				performanceHeadlinesViewModelSpy.and.callFake( () => performanceHeadlinesResponse );
+				performanceDetailsViewModelSpy.and.callFake( () => performanceDetailsResponse );
 
 				controller( req, res );
 
 				promise.then( () => {
 
 					expect( getHomepageData ).toHaveBeenCalledWith( req );
-					expect( overviewViewModelSpy ).toHaveBeenCalledWith( overviewData.results );
+					expect( performanceHeadlinesViewModelSpy ).toHaveBeenCalledWith( performanceData.results );
+					expect( performanceDetailsViewModelSpy ).toHaveBeenCalledWith( performanceData.results );
 					expect( res.render ).toHaveBeenCalledWith( 'investment/views/index', {
 
-						dateRange: overviewData.date_range,
-						overview: overviewResponse,
-						overviewYoy,
+						dateRange: performanceData.date_range,
+						headlines: performanceHeadlinesResponse,
+						details: performanceDetailsResponse,
 						sectorTeams,
 						overseasRegions,
 						ukRegions,

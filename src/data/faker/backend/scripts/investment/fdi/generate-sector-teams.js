@@ -7,10 +7,6 @@ let outputPath = path.resolve( __dirname, '../../../output/investment/fdi/sector
 
 let jsonFiles = {
 	index: sectorTeamsJson.createIndex(),
-	overview: sectorTeamsJson.createOverview(),
-	sector_team: sectorTeamsJson.createTeam(),
-	sector_team_hvc: sectorTeamsJson.createTeam(),
-	sector_team_non_nvc: sectorTeamsJson.createTeam(),
 	win_table: sectorTeamsJson.createWinTable()
 };
 

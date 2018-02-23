@@ -7,7 +7,7 @@ const takeScreenshot = require( '../../helpers/take-screenshot' );
 
 const By = webdriver.By;
 
-/*
+
 describe( 'Investment Index Page', function(){
 
 	beforeAll( function( done ){
@@ -16,7 +16,7 @@ describe( 'Investment Index Page', function(){
 	} );
 
 	accessibilityCheck( 'investment_index' );
-
+/*
 	describe( 'Homepage lists', function(){
 
 		let lists;
@@ -27,7 +27,8 @@ describe( 'Investment Index Page', function(){
 
 				lists = listElems;
 				done();
-			} );
+
+			} ).catch( done.fail );
 		} );
 
 		it( 'Should not have any lists on the page', function(){
@@ -35,7 +36,7 @@ describe( 'Investment Index Page', function(){
 			expect( lists.length ).toEqual( 0 );
 		} );
 	} );
-
+*/
 	describe( 'Page heading', function(){
 
 		let heading;
@@ -46,7 +47,8 @@ describe( 'Investment Index Page', function(){
 
 				heading = headingElem;
 				done();
-			} );
+
+			} ).catch( done.fail );
 		} );
 
 		it( 'Should have the correct title', function( done ){
@@ -55,7 +57,8 @@ describe( 'Investment Index Page', function(){
 
 				expect( text ).toEqual( 'Investment performance' );
 				done();
-			} );
+
+			} ).catch( done.fail );
 		} );
 
 		it( 'Should have the correct tag', function( done ){
@@ -64,8 +67,8 @@ describe( 'Investment Index Page', function(){
 
 				expect( tagName ).toEqual( 'h1' );
 				done();
-			} );
+
+			} ).catch( done.fail );
 		} );
 	} );
 } );
-*/

@@ -1,4 +1,5 @@
 const config = require( '../config' );
+const navMiddleware = require( '../middleware/nav' );
 
 const indexController = require( '../controllers/controller.index' );
 const sectorTeamController = require( '../controllers/controller.sector-teams' );
@@ -10,52 +11,61 @@ const countryController = require( '../controllers/controller.countries' );
 const postController = require( '../controllers/controller.posts' );
 const ukRegionController = require( '../controllers/controller.uk-regions' );
 
+const nav = navMiddleware( { isExport: true } );
+
 module.exports = function( router, user/*, isDev */ ){
 
-	router.get( '/', user, indexController );
+	function get( path, ...args ){
 
-	router.get( '/sector-teams/', user, sectorTeamController.overview );
+		//ensure the user and nav middleware gets run for each route
+		router.get( path, user, nav, ...args );
+	}
+
 	router.get( '/sector-teams/overview/', ( req, res ) => res.redirect( 301, '/sector-teams/' ) );
-	router.get( '/sector-teams/:id', user, sectorTeamController.team );
-	router.get( '/sector-teams/:id/wins/', user, sectorTeamController.wins );
-	router.get( '/sector-teams/:id/non-hvc-wins/', user, sectorTeamController.nonHvcWins );
-	router.get( '/sector-teams/:id/top-non-hvc/', user, sectorTeamController.topNonHvcs );
-
-	router.get( '/overseas-regions/', user, regionController.overview );
 	router.get( '/overseas-regions/overview/', ( req, res ) => res.redirect( 301, '/overseas-regions/' ) );
-	router.get( '/overseas-regions/:id', user, regionController.region );
-	router.get( '/overseas-regions/:id/wins/', user, regionController.wins );
-	router.get( '/overseas-regions/:id/non-hvc-wins/', user, regionController.nonHvcWins );
-	router.get( '/overseas-regions/:id/top-non-hvc/', user, regionController.topNonHvcs );
 
-	router.get( '/hvc/:id', user, hvcController.hvc );
-	router.get( '/hvc/:id/wins', user, hvcController.winList );
+	get( '/', indexController );
 
-	router.get( '/hvc-groups/', user, hvcGroupController.list );
-	router.get( '/hvc-groups/:id', user, hvcGroupController.group );
-	router.get( '/hvc-groups/:id/wins', user, hvcGroupController.wins );
+	get( '/sector-teams/', sectorTeamController.overview );
+	get( '/sector-teams/:id', sectorTeamController.team );
+	get( '/sector-teams/:id/wins/', sectorTeamController.wins );
+	get( '/sector-teams/:id/non-hvc-wins/', sectorTeamController.nonHvcWins );
+	get( '/sector-teams/:id/top-non-hvc/', sectorTeamController.topNonHvcs );
 
-	router.get( '/countries/', user, countryController.list );
-	router.get( '/countries/:code/', user, countryController.country );
-	router.get( '/countries/:code/wins/', user, countryController.wins );
-	router.get( '/countries/:code/non-hvc-wins/', user, countryController.nonHvcWins );
-	router.get( '/countries/:code/top-non-hvc/', user, countryController.topNonHvcs );
+	get( '/overseas-regions/', regionController.overview );
+	get( '/overseas-regions/:id', regionController.region );
+	get( '/overseas-regions/:id/wins/', regionController.wins );
+	get( '/overseas-regions/:id/non-hvc-wins/', regionController.nonHvcWins );
+	get( '/overseas-regions/:id/top-non-hvc/', regionController.topNonHvcs );
 
-	router.get( '/posts/', user, postController.list );
-	router.get( '/posts/:id/', user, postController.post );
-	router.get( '/posts/:id/wins/', user, postController.wins );
-	router.get( '/posts/:id/non-hvc-wins/', user, postController.nonHvcWins );
-	router.get( '/posts/:id/top-non-hvc/', user, postController.topNonHvcs );
+	get( '/hvc/:id', hvcController.hvc );
+	get( '/hvc/:id/wins', hvcController.winList );
 
-	router.get( '/uk-regions/', user, ukRegionController.overview );
-	router.get( '/uk-regions/:id/', user, ukRegionController.region );
-	router.get( '/uk-regions/:id/wins/', user, ukRegionController.wins );
-	router.get( '/uk-regions/:id/non-hvc-wins/', user, ukRegionController.nonHvcWins );
-	router.get( '/uk-regions/:id/top-non-hvc/', user, ukRegionController.topNonHvcs );
+	get( '/hvc-groups/', hvcGroupController.list );
+	get( '/hvc-groups/:id', hvcGroupController.group );
+	get( '/hvc-groups/:id/wins', hvcGroupController.wins );
+
+	get( '/countries/', countryController.list );
+	get( '/countries/:code/', countryController.country );
+	get( '/countries/:code/wins/', countryController.wins );
+	get( '/countries/:code/non-hvc-wins/', countryController.nonHvcWins );
+	get( '/countries/:code/top-non-hvc/', countryController.topNonHvcs );
+
+	get( '/posts/', postController.list );
+	get( '/posts/:id/', postController.post );
+	get( '/posts/:id/wins/', postController.wins );
+	get( '/posts/:id/non-hvc-wins/', postController.nonHvcWins );
+	get( '/posts/:id/top-non-hvc/', postController.topNonHvcs );
+
+	get( '/uk-regions/', ukRegionController.overview );
+	get( '/uk-regions/:id/', ukRegionController.region );
+	get( '/uk-regions/:id/wins/', ukRegionController.wins );
+	get( '/uk-regions/:id/non-hvc-wins/', ukRegionController.nonHvcWins );
+	get( '/uk-regions/:id/top-non-hvc/', ukRegionController.topNonHvcs );
 
 	if( config.backend.mock ){
 
-		router.get( '/win/', user, winController.win );
+		get( '/win/', winController.win );
 	}
 
 	return router;

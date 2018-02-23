@@ -1,12 +1,14 @@
 {% extends 'layout.html' %}
 
+{% from 'macros/page-heading.html' import pageHeading %}
+
 {% set pageName='Login' %}
 
-{% block page_content %}
+{% block page_heading %}
+	{{ pageHeading( 'Export Wins performance Login' ) }}
+{% endblock %}
 
-	<h1 class="page-heading">
-		Export Wins performance Login
-	</h1>
+{% block page_content %}
 
 	{{ token | safe }}
 

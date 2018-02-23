@@ -81,6 +81,7 @@ module.exports = function( req ){
 		email: () => `mailto:${ config.feedbackEmail }`,
 		survey: () => config.feedbackSurvey,
 		signout: () => '/sign-out/',
+		changeFy: () => '/change-fy/',
 
 		downloads: () => '/downloads/',
 		downloadExportFile: ( file ) => downloadFile( file, 'CSV - Export wins' ),

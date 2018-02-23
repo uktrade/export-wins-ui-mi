@@ -1,3 +1,4 @@
+const mockDate = require( 'mockdate' );
 const dateOnly = require( '../../../../../app/lib/nunjucks-filters/date-only' );
 
 describe( 'Date only filter', function(){
@@ -39,9 +40,11 @@ describe( 'Date only filter', function(){
 
 	describe( 'When a date is not supplied', function(){
 
-		it( 'Should default to an empty string', function(){
+		it( 'Should default to the current date', function(){
 
-			expect( dateOnly() ).toEqual( '' );
+			mockDate.set( 1498468857907 );
+			expect( dateOnly() ).toEqual( '26 June 2017' );
+			mockDate.reset();
 		} );
 	} );
 } );

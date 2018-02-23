@@ -1,0 +1,18 @@
+{% macro pageHeading( heading, subHeading=null ) %}
+	<div class="grid-row">
+		<div class="column-two-thirds">
+			<h1 class="page-heading">{{ heading }}{% if subHeading %} <span class="page-heading_secondary">{{ subHeading }}</span>{% endif %}</h1>
+		</div>
+		<div class="column-one-third">
+			<form action="{{ urls.changeFy() }}" class="fy-selector">
+				<label for="fy" class="fy-selector_label">Financial Year</label>
+				<select name="path" id="fy" class="form-control fy-selector_select">
+					{% for yearInfo in yearList -%}
+						<option{% if yearInfo.year == selectedYear %} selected{% endif %} value="{{ urls.currentForYear( yearInfo.year ) }}">{{ yearInfo.label }}{% if currentFy == yearInfo.year %} (Current year){% endif %}</option>
+					{% endfor -%}
+				</select>
+				<input type="submit" value="Apply" class="button fy-selector_button">
+			</form>
+		</div>
+	</div>
+{% endmacro %}

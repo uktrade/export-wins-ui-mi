@@ -2,11 +2,13 @@
 
 {% set pageName='Choose date range' %}
 
-{% block page_content %}
-
+{% block page_heading %}
 	<h1 class="page-heading">
 		Which financial year?
 	</h1>
+{% endblock %}
+
+{% block page_content %}
 
 	<ol class="change-date-years">
 		{%- for yearInfo in yearList -%}

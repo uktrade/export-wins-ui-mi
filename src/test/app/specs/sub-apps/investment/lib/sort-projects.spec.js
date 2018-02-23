@@ -1,4 +1,4 @@
-const sortProjects = require( '../../../../../app/sub-apps/investment/lib/sort-projects' );
+const sortProjects = require( '../../../../../../app/sub-apps/investment/lib/sort-projects' );
 
 const staticInput = [
 			{

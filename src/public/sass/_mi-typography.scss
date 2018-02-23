@@ -1,0 +1,21 @@
+@mixin core-64($line-height: (20 / 12), $line-height-640: (15 / 10), $tabular-numbers: false, $font-weight: 400) {
+	$font-size: 12px;
+	$font-size-640: 10px;
+	$font-size-print: 11pt;
+	@include _core-font-generator($font-size, $font-size-640, $font-size-print, $line-height, $line-height-640, $tabular-numbers, $font-weight);
+}
+
+@mixin bold-12($line-height: (20 / 12), $line-height-640: (15 / 10), $tabular-numbers: false) {
+	@include core-12($line-height, $line-height-640, $tabular-numbers: $tabular-numbers, $font-weight: 700);
+}
+
+@mixin core-64($line-height: 1, $line-height-640: 1, $tabular-numbers: false, $font-weight: 400) {
+	$font-size: 64px;
+	$font-size-640: 40px;
+	$font-size-print: 30pt;
+	@include _core-font-generator($font-size, $font-size-640, $font-size-print, $line-height, $line-height-640, $tabular-numbers, $font-weight);
+}
+
+@mixin bold-64($line-height: 1, $line-height-640: 1, $tabular-numbers: false) {
+	@include core-64($line-height, $line-height-640, $tabular-numbers: $tabular-numbers, $font-weight: 700);
+}

@@ -2,24 +2,18 @@
 
 {% from 'macros/tabs/country.html' import tabs %}
 {% from 'macros/os-regions-types-tabs.html' import osRegionsTypesTabs %}
+{% from 'macros/page-heading.html' import pageHeading %}
 
 {% set pageName %}Country performance - {{ countryName | safe  }}{% endset %}
 {% set sectorName %}{{ countryName | safe }}{% endset %}
 {% set loadMoreUrl = urls.countryTopNonHvc( countryCode ) %}
 
-{% block year_selector %}
-	{{ super() }}
+{% block heading_tabs %}
 	{{ osRegionsTypesTabs( countries=true, linkCountries=true ) }}
 {% endblock %}
 
-{% block page_content %}
-
-	<h1 class="page-heading">
-		{{ countryName }} <span class="page-heading_secondary">Country</span>
-	</h1>
-
-	{{- super() -}}
-
+{% block page_heading %}
+	{{ pageHeading( countryName, subHeading = 'Country' ) }}
 {% endblock %}
 
 {% block page_tabs %}

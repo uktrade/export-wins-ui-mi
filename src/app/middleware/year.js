@@ -21,7 +21,5 @@ module.exports = function( req, res, next ){
 		req.isDefaultYear = true;
 	}
 
-	res.locals.selectedYear = Number( req.year );
-
 	next();
 };

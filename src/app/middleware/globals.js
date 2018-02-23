@@ -1,4 +1,5 @@
 const urls = require( '../lib/urls' );
+const financialYear = require( '../lib/financial-year' );
 
 module.exports = function( env ){
 
@@ -6,6 +7,8 @@ module.exports = function( env ){
 	return function( req, res, next ){
 
 		env.addGlobal( 'urls', urls( req ) );
+		env.addGlobal( 'currentFy', financialYear.getCurrent() );
+		env.addGlobal( 'selectedYear', Number( req.year ) );
 
 		next();
 	};

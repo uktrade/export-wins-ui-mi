@@ -20,7 +20,8 @@ describe( '404 Page', function(){
 
 				expect( text ).toEqual( 'MI - Not found' );
 				done();
-			} );
+
+			} ).catch( done.fail );
 		} );
 	} );
 } );

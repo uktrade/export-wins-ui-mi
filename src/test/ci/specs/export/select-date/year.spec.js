@@ -26,7 +26,8 @@ describe( 'The select year dates page', function(){
 
 				heading = headingElem;
 				done();
-			} );
+
+			} ).catch( done.fail );
 		} );
 
 		it( 'Should have the correct title', function( done ){
