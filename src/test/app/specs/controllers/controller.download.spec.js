@@ -8,6 +8,7 @@ const spy = require( '../../helpers/spy' );
 let controller;
 let analyticsService;
 let mockTracker;
+let config;
 
 describe( 'Download controller', function(){
 
@@ -17,11 +18,18 @@ describe( 'Download controller', function(){
 		analyticsService = {
 			createTracker: jasmine.createSpy( 'createTracker' ).and.callFake( () => mockTracker )
 		};
+		config = {
+			urls: {
+				usingMi: 'some-link-here',
+				kimPrinciples: 'some-other-link'
+			}
+		};
 
 		controller = proxyquire( '../../../../app/controllers/controller.download', {
 			'../lib/service/service.backend': backendService,
 			'../lib/service/analytics': analyticsService,
-			'../lib/render-error': errorHandler
+			'../lib/render-error': errorHandler,
+			'../config': config
 		} );
 	} );
 
@@ -61,7 +69,12 @@ describe( 'Download controller', function(){
 				promise.then( ( ) => {
 
 					expect( backendService.getCsvFileList ).toHaveBeenCalledWith( req );
-					expect( res.render ).toHaveBeenCalledWith( 'downloads/list', { files: fileListResponse, showFdi: true } );
+					expect( res.render ).toHaveBeenCalledWith( 'downloads/list', {
+						files: fileListResponse,
+						showFdi: true,
+						usingMiUrl: config.urls.usingMi,
+						kimPrinciplesUrl: config.urls.kimPrinciples
+					} );
 					done();
 
 				} ).catch( done.fail );
@@ -82,7 +95,12 @@ describe( 'Download controller', function(){
 				promise.then( ( ) => {
 
 					expect( backendService.getCsvFileList ).toHaveBeenCalledWith( req );
-					expect( res.render ).toHaveBeenCalledWith( 'downloads/list', { files: fileListResponse, showFdi: false } );
+					expect( res.render ).toHaveBeenCalledWith( 'downloads/list', {
+						files: fileListResponse,
+						showFdi: false,
+						usingMiUrl: config.urls.usingMi,
+						kimPrinciplesUrl: config.urls.kimPrinciples
+					} );
 					done();
 
 				} ).catch( done.fail );
