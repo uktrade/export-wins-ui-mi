@@ -1,6 +1,7 @@
 .download-message {
 	@include core-19;
 	margin: pem( 30, 19 ) 0;
+	max-width: 30em;
 }
 
 .download-group-separator {

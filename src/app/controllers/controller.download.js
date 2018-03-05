@@ -1,3 +1,4 @@
+const config = require( '../config' );
 const backendService = require( '../lib/service/service.backend' );
 const analyticsService = require( '../lib/service/analytics' );
 const renderError = require( '../lib/render-error' );
@@ -10,7 +11,12 @@ module.exports = {
 
 		backendService.getCsvFileList( req ).then( ( filesInfo ) => {
 
-			res.render( 'downloads/list', { files: filesInfo.data, showFdi } );
+			res.render( 'downloads/list', {
+				files: filesInfo.data,
+				showFdi,
+				usingMiUrl: config.urls.usingMi,
+				kimPrinciplesUrl: config.urls.kimPrinciples
+			} );
 
 		} ).catch( renderError.createHandler( req, res ) );
 	},

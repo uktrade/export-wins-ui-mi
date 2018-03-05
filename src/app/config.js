@@ -1,4 +1,5 @@
 const os = require( 'os' );
+const requiredEnvs = [];
 
 function env( name, defaultValue ){
 
@@ -17,6 +18,13 @@ function number( name, defaultValue ){
 	return parseInt( env( name, defaultValue ), 10 );
 }
 
+function requiredEnv( name, type = env ){
+
+	requiredEnvs.push( name );
+
+	return type( name );
+}
+
 const cpus = ( os.cpus().length || 1 );
 const defaultWorkers = ( cpus > 1 ? cpus - 1 : cpus );
 const isDev = ( ( process.env.NODE_ENV || 'development' ) === 'development' );
@@ -26,7 +34,7 @@ let config = {
 	showErrors: isDev,
 	version: env( 'npm_package_version', 'unknown' ),
 	server: {
-		protocol: env( 'SERVER_PROTOCOL', 'http' ),
+		protocol: env( 'SERVER_PROTOCOL', 'https' ),
 		host: env( 'SERVER_HOST', 'localhost' ),
 		port: env( 'SERVER_PORT', env( 'PORT', 8080 ) ),
 		cpus,
@@ -38,8 +46,12 @@ let config = {
 	financialYearStart: number( 'FINANCIAL_YEAR_START', 2016 ),
 	feedbackEmail: env( 'FEEDBACK_EMAIL' ),
 	feedbackSurvey: env( 'FEEDBACK_SURVEY' ),
+	urls: {
+		usingMi: requiredEnv( 'URL_USING_MI' ),
+		kimPrinciples: requiredEnv( 'URL_KIM_PRINCIPLES' )
+	},
 	faqLink: env( 'FAQ_LINK' ),
-	cookieSecret: env( 'COOKIE_SECRET' ),
+	cookieSecret: requiredEnv( 'COOKIE_SECRET' ),
 	userCookie: {
 		name: env( 'USER_COOKIE_NAME', 'user' ),
 		maxAge: number( 'USER_COOKIE_MAX_AGE', ( 1000 * 60 * 5 ) )
@@ -51,13 +63,13 @@ let config = {
 	exportWinsUrl: env( 'EXPORT_WINS_URL', 'https://www.exportwins.service.trade.gov.uk/' ),
 	datahubDomain: env( 'DATA_HUB_DOMAIN', 'https://www.datahub.trade.gov.uk' ),
 	jwt: {
-		secret: env( 'JWT_SECRET', 'thisshouldbeavalidsecret' )
+		secret: requiredEnv( 'JWT_SECRET' )
 	},
 	oauthParamLength: env( 'OAUTH_PARAM_LENGTH', '75' ),
 	internalUsers: env( 'INTERNAL_USERS', '' ),
 	backend: {
-		secret: env( 'MI_SECRET' ),
-		protocol: env( 'MI_PROTOCOL', 'http' ),
+		secret: requiredEnv( 'MI_SECRET' ),
+		protocol: env( 'MI_PROTOCOL', 'https' ),
 		host: env( 'MI_HOST', 'localhost' ),
 		port: env( 'MI_PORT', 8000 ),
 		timeout: env( 'MI_TIMEOUT', 1000 ),
@@ -69,5 +81,21 @@ let config = {
 };
 
 config.backend.href = `${config.backend.protocol}://${config.backend.host}:${config.backend.port}`;
+
+const missing = [];
+
+for( let name of requiredEnvs ){
+
+	if( typeof process.env[ name ] === 'undefined' ){
+
+		missing.push( name );
+	}
+}
+
+if( missing.length ){
+
+	console.log( 'Missing required env variables:', missing );
+	throw new Error( 'Missing required env variables' );
+}
 
 module.exports = config;
