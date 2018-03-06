@@ -57,6 +57,7 @@ module.exports = {
 
 		let output = {
 			dateRange: {},
+			financialYear: {},
 			zeroTarget: [],
 			withTarget: []
 		};
@@ -64,6 +65,7 @@ module.exports = {
 		if( data ){
 
 			output.dateRange = data.date_range;
+			output.financialYear = data.financial_year;
 
 			if( data.results ){
 
