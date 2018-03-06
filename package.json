@@ -4,8 +4,8 @@
   "description": "An MI dashboard for Export Wins",
   "main": "server.js",
   "engines": {
-    "node": "8.9.3",
-    "npm": "5.5.1"
+    "node": "8.9.4",
+    "npm": "5.6.0"
   },
   "scripts": {
     "preversion": "npm test",
