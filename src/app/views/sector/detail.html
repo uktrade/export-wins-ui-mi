@@ -89,7 +89,7 @@
 	{% if hvcTargetPerformance.zeroTarget.length %}
 	<section class="grid-row">
 		<div class="column-single">
-			<h2 class="sector-heading sector-heading--zero-target">HVCs with no target in 2016-17</h2>
+			<h2 class="sector-heading sector-heading--zero-target">HVCs with no target in {{ hvcTargetPerformance.financialYear.description }}</h2>
 			{{ hvcZeroTargetPerformanceTable( hvcTargetPerformance.zeroTarget ) }}
 		</div>
 	</section>

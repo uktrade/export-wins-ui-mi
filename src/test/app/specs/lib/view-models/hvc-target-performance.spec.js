@@ -5,6 +5,10 @@ const date_range = {
 	end: 10000
 };
 
+const financial_year = {
+	description: '2000-2001'
+};
+
 const input = [
 	{
 		campaign: 'test',
@@ -140,7 +144,7 @@ const input = [
 
 describe( 'HVC target performance data set', function(){
 
-	const output = dataset.create( { date_range, results: input } );
+	const output = dataset.create( { date_range, financial_year, results: input } );
 
 	function checkResult( index, targetConfirmed, targetUnconfirmed, targetOver ){
 
@@ -160,7 +164,8 @@ describe( 'HVC target performance data set', function(){
 
 			const out = dataset.create();
 
-			expect( out.dateRange ).toBeDefined();
+			expect( out.dateRange ).toEqual( {} );
+			expect( out.financialYear ).toEqual( {} );
 			expect( out.withTarget.length ).toEqual( 0 );
 			expect( out.zeroTarget.length ).toEqual( 0 );
 		} );
@@ -168,11 +173,12 @@ describe( 'HVC target performance data set', function(){
 
 	describe( 'With data but without out any results', function(){
 
-		it( 'Should user the date_range and return empty arrays', function(){
+		it( 'Should use the date_range and financial_year but return empty arrays', function(){
 
-			const out = dataset.create( { date_range: {} } );
+			const out = dataset.create( { date_range, financial_year } );
 
-			expect( out.dateRange ).toBeDefined();
+			expect( out.dateRange ).toEqual( date_range );
+			expect( out.financialYear ).toEqual( financial_year );
 			expect( out.withTarget.length ).toEqual( 0 );
 			expect( out.zeroTarget.length ).toEqual( 0 );
 		} );
@@ -183,6 +189,11 @@ describe( 'HVC target performance data set', function(){
 		it( 'Should output the date range', function(){
 
 			expect( output.dateRange ).toEqual( date_range );
+		} );
+
+		it( 'Should output the financialYear', function(){
+
+			expect( output.financialYear ).toEqual( financial_year );
 		} );
 
 		it( 'Should separate the data into two lists', function(){
