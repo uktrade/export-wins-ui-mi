@@ -86,7 +86,8 @@ const yearlyFiles = {
 	'uk_regions/top_non_hvcs': sharedJson.createTopNonHvcs,
 	'uk_regions/win_table': ukRegionJson.createWinTable,
 
-	'investment/fdi/performance': fdiPerformanceJson,
+	'investment/fdi/performance/index': fdiPerformanceJson.index,
+	'investment/fdi/performance/tab.sectors': fdiPerformanceJson.tab,
 
 	'investment/fdi/sector_teams/index': fdiSectorTeamsJson.createIndex,
 	'investment/fdi/sector_teams/win_table': fdiSectorTeamsJson.createWinTable,

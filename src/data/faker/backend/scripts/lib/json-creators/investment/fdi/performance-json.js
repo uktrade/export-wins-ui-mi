@@ -1,6 +1,14 @@
 const generateSchema = require( '../../../generate-schema' );
 
-module.exports = function( year ){
+module.exports = {
 
-	return generateSchema( '/investment/fdi/performance.schema', year );
+	index: function( year ){
+
+		return generateSchema( '/investment/fdi/performance/index.schema', year );
+	},
+
+	tab: function( year ){
+
+		return generateSchema( '/investment/fdi/performance/tab.schema', year );
+	}
 };

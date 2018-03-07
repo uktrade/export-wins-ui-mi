@@ -448,7 +448,15 @@ describe( 'Backend stub', function(){
 
 				it( 'Should return the performance', function( done ){
 
-					checkMultipleYears( '/mi/fdi/performance/', '/investment/fdi/performance', done );
+					checkMultipleYears( '/mi/fdi/performance/', '/investment/fdi/performance/index', done );
+				} );
+			} );
+
+			describe( 'Getting the FDI Performance for sectors tab', function(){
+
+				it( 'Should return the performance', function( done ){
+
+					checkMultipleYears( '/mi/fdi/performance/tab/sectors/', '/investment/fdi/performance/tab.sectors', done );
 				} );
 			} );
 
