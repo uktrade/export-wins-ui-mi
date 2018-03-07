@@ -40,7 +40,7 @@ describe( 'FDI Performance Details View Model', function(){
 		beforeEach( function(){
 
 			//get stub each time
-			input = getBackendStub( '/investment/fdi/performance' ).results;
+			input = getBackendStub( '/investment/fdi/performance/' ).results;
 			output = performanceDetails.create( input );
 		} );
 

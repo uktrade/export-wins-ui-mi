@@ -12,12 +12,7 @@ module.exports = function( req, res ){
 			dateRange: data.performance.date_range,
 			headlines: performanceHeadlinesViewModel.create( data.performance.results ),
 			details: performanceDetailsViewModel.create( data.performance.results ),
-			sectorTeams: data.sectorTeams,
-			overseasRegions: data.overseasRegions,
-			ukRegions: data.ukRegions,
-			showSectorTeams: !!req.user.experiments,
-			showOverseasRegions: !!req.user.experiments,
-			showUkRegions: !!req.user.experiments
+			sectors: data.sectors.results
 		} );
 
 	} ).catch( renderError.createHandler( req, res ) );

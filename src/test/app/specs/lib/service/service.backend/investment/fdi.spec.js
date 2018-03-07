@@ -198,6 +198,18 @@ describe( 'Investment FDI backend service', function(){
 				} );
 			} );
 		} );
+
+		describe( 'FDI sectors performance', function(){
+
+			it( 'Should call the correct API', function( done ){
+
+				fdiService.getSectorsPerformance( req ).then( () => {
+
+					checkBackendArgs( '/mi/fdi/performance/tab/sector/', req );
+					done();
+				} );
+			} );
+		} );
 	} );
 
 	describe( 'Aggregate methods', function(){
@@ -230,23 +242,17 @@ describe( 'Investment FDI backend service', function(){
 			it( 'Should return the correct data', function( done ){
 
 				const spies = createSpies( [
-					'getSectorTeams',
-					'getOverseasRegions',
-					'getUkRegions',
-					'getPerformance'
+					'getPerformance',
+					'getSectorsPerformance'
 				] );
 
 				fdiService.getHomepageData( req ).then( ( data ) => {
 
-					expect( spies.getSectorTeams.spy ).toHaveBeenCalledWith( req );
-					expect( spies.getOverseasRegions.spy ).toHaveBeenCalledWith( req );
-					expect( spies.getUkRegions.spy ).toHaveBeenCalledWith( req );
 					expect( spies.getPerformance.spy ).toHaveBeenCalledWith( req );
+					expect( spies.getSectorsPerformance.spy ).toHaveBeenCalledWith( req );
 
-					expect( data.sectorTeams ).toEqual( spies.getSectorTeams.response );
-					expect( data.overseasRegions ).toEqual( spies.getOverseasRegions.response );
-					expect( data.ukRegions ).toEqual( spies.getUkRegions.response );
 					expect( data.performance ).toEqual( spies.getPerformance.response );
+					expect( data.sectors ).toEqual( spies.getSectorsPerformance.response );
 
 					done();
 
