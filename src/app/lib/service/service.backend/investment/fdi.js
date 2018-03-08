@@ -95,6 +95,13 @@ function getSectorsPerformance( req ){
 	return getJson( '/mi/fdi/performance/tab/sector/', req );
 }
 
+/*
+function getOverseasRegionsPerformance( req ){
+
+	return getJson( '/mi/fdi/performance/tab/os_region/', req );
+}
+*/
+
 module.exports = {
 
 	getSectorTeams,

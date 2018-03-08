@@ -93,3 +93,22 @@
 		}
 	}
 }
+
+.table-fdi-win-progress_cell {
+
+	&:nth-of-type( 1 ){
+		width: 36%;
+	}
+
+	&:nth-of-type( 2 ){
+		width: 7%;
+	}
+
+	&:nth-of-type( 3 ){
+		width: 7%;
+	}
+
+	&:nth-of-type( 4 ){
+		width: 50%;
+	}
+}

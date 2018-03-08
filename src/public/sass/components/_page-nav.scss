@@ -1,26 +1,42 @@
-.top-nav {
+.page-nav {
 
 	@include media( tablet ){
 
 		border-bottom: 1px solid $grey-2;
 		padding: 0 0 pem( 8 ) 0;
-	 	margin-bottom: pem( 60 );
-	 	overflow: hidden;
+		overflow: hidden;
 	}
 }
 
-.top-nav_list {
+.page-nav--heading {
+
+	@include media( tablet ){
+
+		margin-bottom: pem( 60 );
+	}
+}
+
+.page-nav--divider {
+
+	@include media( tablet ){
+
+		margin-top: pem( 45 );
+		margin-bottom: pem( 30 );
+	}
+}
+
+.page-nav_list {
 	margin: 0;
 	padding: 0;
 	display: inline-block;
 }
 
-.top-nav_link {
+.page-nav_link {
 	text-decoration: none;
 	color: $link-colour;
 }
 
-.top-nav_link--active {
+.page-nav_link--active {
 
 	border-bottom: 2px solid $link-colour;
 
@@ -31,7 +47,7 @@
 	}
 }
 
-.top-nav_list_item {
+.page-nav_list_item {
 
 	margin-bottom: pem( 10 );
 

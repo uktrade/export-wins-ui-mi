@@ -9,6 +9,7 @@ let createHandler;
 let renderErrorHandler;
 let performanceHeadlinesViewModelSpy;
 let performanceDetailsViewModelSpy;
+let performanceWinProgressViewModelSpy;
 let req;
 let res;
 
@@ -19,6 +20,7 @@ describe( 'Index controller', function(){
 		getHomepageData = jasmine.createSpy( 'getHomepageData' );
 		performanceHeadlinesViewModelSpy = jasmine.createSpy( 'performanceHeadlinesViewModel' );
 		performanceDetailsViewModelSpy = jasmine.createSpy( 'performanceDetailsViewModel' );
+		performanceWinProgressViewModelSpy = jasmine.createSpy( 'performanceWinProgressViewModel' );
 
 		renderErrorHandler = jasmine.createSpy( 'renderErrorHandler' );
 		createHandler = jasmine.createSpy( 'createHandler' ).and.callFake( () => renderErrorHandler );
@@ -29,7 +31,8 @@ describe( 'Index controller', function(){
 			'../../../lib/service/service.backend/investment/fdi': fdiService,
 			'../../../lib/render-error': { createHandler },
 			'../view-models/fdi-performance-headlines': { create: performanceHeadlinesViewModelSpy },
-			'../view-models/fdi-performance-details': { create: performanceDetailsViewModelSpy }
+			'../view-models/fdi-performance-details': { create: performanceDetailsViewModelSpy },
+			'../view-models/fdi-performance-win-progress': { create: performanceWinProgressViewModelSpy }
 		} );
 
 		req = {
@@ -52,6 +55,7 @@ describe( 'Index controller', function(){
 
 				const performanceHeadlinesResponse = { performanceHeadlinesResponse: true };
 				const performanceDetailsResponse = { performanceDetailsResponse: true };
+				const performanceWinProgressResponse = { performanceWinProgressResponse: true };
 				const performanceData = { date_range: { performanceDataDateRange: true }, results: { somedata: true } };
 				const sectorsData = { date_range: { sectorsDataDateRange: true }, results: { someSectorsData: true } };
 
@@ -65,6 +69,7 @@ describe( 'Index controller', function(){
 				getHomepageData.and.callFake( () => promise );
 				performanceHeadlinesViewModelSpy.and.callFake( () => performanceHeadlinesResponse );
 				performanceDetailsViewModelSpy.and.callFake( () => performanceDetailsResponse );
+				performanceWinProgressViewModelSpy.and.callFake( () => performanceWinProgressResponse );
 
 				controller( req, res );
 
@@ -73,12 +78,18 @@ describe( 'Index controller', function(){
 					expect( getHomepageData ).toHaveBeenCalledWith( req );
 					expect( performanceHeadlinesViewModelSpy ).toHaveBeenCalledWith( performanceData.results );
 					expect( performanceDetailsViewModelSpy ).toHaveBeenCalledWith( performanceData.results );
+					expect( performanceWinProgressViewModelSpy ).toHaveBeenCalledWith( sectorsData.results );
 					expect( res.render ).toHaveBeenCalledWith( 'investment/views/index', {
 
 						dateRange: performanceData.date_range,
 						headlines: performanceHeadlinesResponse,
 						details: performanceDetailsResponse,
-						sectors: sectorsData.results
+						sectors: performanceWinProgressResponse,
+						tab: {
+							isSectors: true,
+							isOverseasRegions: false,
+							isUkRegions: false
+						}
 					} );
 					done();
 				} );
