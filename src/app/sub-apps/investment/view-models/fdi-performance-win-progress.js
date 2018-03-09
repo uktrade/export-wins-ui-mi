@@ -1,3 +1,4 @@
+const createScale = require( '../../../lib/graphs/create-scale' );
 
 function createItemWithParts( parts ){
 
@@ -39,7 +40,8 @@ module.exports = {
 				return Math.max( highest, item.target, combinedTotal );
 			}, 0 );
 
-			const parts = ( 100 / max );
+			const scale = createScale( max, 4, [ 0, 0.2 ] );
+			const parts = ( 100 / scale[ scale.length - 1 ] );
 			const createItem = createItemWithParts( parts );
 
 			for( let item of input ){
@@ -55,6 +57,8 @@ module.exports = {
 					segments: createSegments( item, createItem )
 				} );
 			}
+
+			output.scale = scale;
 		}
 
 		return output;

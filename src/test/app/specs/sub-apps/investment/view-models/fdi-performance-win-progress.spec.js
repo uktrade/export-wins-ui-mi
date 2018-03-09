@@ -1,5 +1,11 @@
-const performanceWinProgress = require( '../../../../../../app/sub-apps/investment/view-models/fdi-performance-win-progress' );
+const proxyquire = require( 'proxyquire' );
 const getBackendStub = require( '../../../../helpers/get-backend-stub' );
+
+const modulePath = '../../../../../../app/sub-apps/investment/view-models/fdi-performance-win-progress';
+
+let createScale;
+let createScaleResponse;
+let performanceWinProgress;
 
 function item( count, start, percent ){
 
@@ -7,6 +13,16 @@ function item( count, start, percent ){
 }
 
 describe( 'FDI Performance Win Progress View Model', function(){
+
+	beforeEach( function(){
+
+		createScaleResponse = [ 0, 500 ];
+		createScale = jasmine.createSpy( 'create-scale' ).and.callFake( () => createScaleResponse );
+
+		performanceWinProgress = proxyquire( modulePath, {
+			'../../../lib/graphs/create-scale': createScale
+		} );
+	} );
 
 	describe( 'With a full response', function(){
 
@@ -63,6 +79,9 @@ describe( 'FDI Performance Win Progress View Model', function(){
 					expect( item.wins.hvc ).toEqual( inputItem.wins.hvc_wins );
 					expect( item.segments ).toEqual( values[ index ] );
 				} );
+
+				expect( createScale ).toHaveBeenCalledWith( 500, 4, [ 0, 0.2 ] );
+				expect( output.scale ).toEqual( createScaleResponse );
 			} );
 		} );
 	} );
@@ -72,6 +91,7 @@ describe( 'FDI Performance Win Progress View Model', function(){
 		it( 'Should return the input', function(){
 
 			expect( performanceWinProgress.create( null ) ).toEqual( null );
+			expect( createScale ).not.toHaveBeenCalled();
 		} );
 	} );
 } );

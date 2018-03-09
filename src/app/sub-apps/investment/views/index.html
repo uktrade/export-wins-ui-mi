@@ -155,6 +155,19 @@
 			</tr>
 		</thead>
 		<tbody>
+			<tr>
+				<td colspan="3"></td>
+				<td class="table-fdi-win-progress_scale-cell">
+					<span class="visually-hidden">Scale for graph:</span>
+					<span class="table-fdi-win-progress_scale">
+						{% for point in sectors.scale %}
+							<span class="table-fdi-win-progress_scale-point">
+								<span class="table-fdi-win-progress_scale-point_value">{{ point }}</span>
+							</span>
+						{% endfor %}
+					</span>
+				</td>
+			</tr>
 			{% for sector in sectors %}
 			<tr>
 				<td class="table-fdi-win-progress_cell">{{ sector.name }}</td>
