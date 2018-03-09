@@ -1,0 +1,41 @@
+@import 'mi-typography';
+
+.key-fdi-win-progress {
+	margin: pem( 10 ) 0 pem( 15 ) 0;
+	padding: 0;
+}
+
+.key-fdi-win-progress_item {
+	display: inline;
+	@include core-12;
+	padding-right: pem( 15, 12 );
+}
+
+.key-fdi-win-progress_block {
+	display: inline-block;
+	width: 20px;
+	height: 10px;
+	margin-left: pem( 5, 12 );
+	position: relative;
+	top: pem( 1, 12 );
+}
+
+.key-fdi-win-progress_block--won {
+	background-color: $fdi-won;
+}
+
+.key-fdi-win-progress_block--verify-win {
+	background-color: $fdi-verify-win;
+}
+
+.key-fdi-win-progress_block--pipeline {
+	background-color: $grey-3;
+	border: 1px dashed black;
+	width: 18px;
+	height: 8px;
+}
+
+.key-fdi-win-progress_target {
+	border-right: 4px solid black;
+	margin-left: pem( 5, 12 );
+}
