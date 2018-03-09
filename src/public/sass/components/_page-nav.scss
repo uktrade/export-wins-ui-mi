@@ -3,7 +3,7 @@
 	@include media( tablet ){
 
 		border-bottom: 1px solid $grey-2;
-		padding: 0 0 pem( 8 ) 0;
+		padding: 0;
 		overflow: hidden;
 	}
 }
@@ -34,6 +34,9 @@
 .page-nav_link {
 	text-decoration: none;
 	color: $link-colour;
+	min-width: pem( 100 );
+	display: inline-block;
+	text-align: center;
 }
 
 .page-nav_link--active {
