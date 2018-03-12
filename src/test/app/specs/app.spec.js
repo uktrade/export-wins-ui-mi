@@ -860,16 +860,51 @@ if( config.backend.mock ){
 
 			describe( 'Index', function(){
 
-				it( 'Should return a 200 with the correct heading', function( done ){
+				describe( 'Without any params', function(){
 
-					interceptBackend.getStub( `/mi/fdi/performance/?year=2017`, 200, '/investment/fdi/performance/' );
-					interceptBackend.getStub( `/mi/fdi/performance/tab/sector/?year=2017`, 200, '/investment/fdi/performance/tab.sectors' );
+					it( 'Should return a 200 with the correct heading', function( done ){
 
-					supertest( app ).get( '/investment/' ).end( ( err, res ) => {
+						interceptBackend.getStub( `/mi/fdi/performance/?year=2017`, 200, '/investment/fdi/performance/' );
+						interceptBackend.getStub( `/mi/fdi/performance/tab/sector/?year=2017`, 200, '/investment/fdi/performance/tab.sectors' );
 
-						checkResponse( res, 200 );
-						expect( getTitle( res ) ).toEqual( 'MI - Investment Homepage' );
-						done();
+						supertest( app ).get( '/investment/' ).end( ( err, res ) => {
+
+							checkResponse( res, 200 );
+							expect( getTitle( res ) ).toEqual( 'MI - Investment Homepage' );
+							done();
+						} );
+					} );
+				} );
+
+				describe( 'With tab param set to sectors', function(){
+
+					it( 'Should return a 200 with the correct heading', function( done ){
+
+						interceptBackend.getStub( `/mi/fdi/performance/?year=2017`, 200, '/investment/fdi/performance/' );
+						interceptBackend.getStub( `/mi/fdi/performance/tab/sector/?year=2017`, 200, '/investment/fdi/performance/tab.sectors' );
+
+						supertest( app ).get( '/investment/?tab=sectors' ).end( ( err, res ) => {
+
+							checkResponse( res, 200 );
+							expect( getTitle( res ) ).toEqual( 'MI - Investment Homepage' );
+							done();
+						} );
+					} );
+				} );
+
+				describe( 'With tab param set to os-regions', function(){
+
+					it( 'Should return a 200 with the correct heading', function( done ){
+
+						interceptBackend.getStub( `/mi/fdi/performance/?year=2017`, 200, '/investment/fdi/performance/' );
+						interceptBackend.getStub( `/mi/fdi/performance/tab/os_region/?year=2017`, 200, '/investment/fdi/performance/tab.os_regions' );
+
+						supertest( app ).get( '/investment/?tab=os-regions' ).end( ( err, res ) => {
+
+							checkResponse( res, 200 );
+							expect( getTitle( res ) ).toEqual( 'MI - Investment Homepage with overseas markets' );
+							done();
+						} );
 					} );
 				} );
 			} );

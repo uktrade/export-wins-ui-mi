@@ -4,22 +4,58 @@ const performanceHeadlinesViewModel = require( '../view-models/fdi-performance-h
 const performanceDetailsViewModel = require( '../view-models/fdi-performance-details' );
 const performanceWinProgressViewModel = require( '../view-models/fdi-performance-win-progress' );
 
-module.exports = function( req, res ){
+function getTabs( tabParam ){
 
-	fdiService.getHomepageData( req ).then( ( data ) => {
+	const isOverseasRegions = ( tabParam === 'os-regions' );
+	const isUkRegions = !isOverseasRegions && ( tabParam === 'uk-regions' );
+	const isSectors = !isOverseasRegions && !isUkRegions && true;
+
+	return {
+		isSectors,
+		isOverseasRegions,
+		isUkRegions
+	};
+}
+
+module.exports = async function( req, res ){
+
+	const tab = getTabs( req.query.tab );
+
+	try {
+
+		let data;
+		let progressRows;
+		let progressHeading;
+		let progressColumnHeading;
+
+		if( tab.isSectors ){
+
+			data = await fdiService.getSectorsHomepageData( req );
+			progressRows = performanceWinProgressViewModel.create( data.sectors.results );
+			progressHeading = 'Sectors';
+			progressColumnHeading = 'Sector';
+
+		} else if( tab.isOverseasRegions ){
+
+			data = await fdiService.getOverseasRegionsHomepageData( req );
+			progressRows = performanceWinProgressViewModel.create( data.overseasRegions.results );
+			progressHeading = 'Overseas markets';
+			progressColumnHeading = 'Market';
+		}
 
 		res.render( 'investment/views/index', {
 
 			dateRange: data.performance.date_range,
 			headlines: performanceHeadlinesViewModel.create( data.performance.results ),
 			details: performanceDetailsViewModel.create( data.performance.results ),
-			sectors: performanceWinProgressViewModel.create( data.sectors.results ),
-			tab: {
-				isSectors: true,
-				isOverseasRegions: false,
-				isUkRegions: false
-			}
+			progressRows,
+			progressHeading,
+			progressColumnHeading,
+			tab
 		} );
 
-	} ).catch( renderError.createHandler( req, res ) );
+	} catch( e ){
+
+		renderError.createHandler( req, res )( e );
+	}
 };

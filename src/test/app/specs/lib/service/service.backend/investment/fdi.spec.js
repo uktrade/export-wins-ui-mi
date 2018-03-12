@@ -210,6 +210,18 @@ describe( 'Investment FDI backend service', function(){
 				} );
 			} );
 		} );
+
+		describe( 'FDI overseas regions performance', function(){
+
+			it( 'Should call the correct API', function( done ){
+
+				fdiService.getOverseasRegionsPerformance( req ).then( () => {
+
+					checkBackendArgs( '/mi/fdi/performance/tab/os_region/', req );
+					done();
+				} );
+			} );
+		} );
 	} );
 
 	describe( 'Aggregate methods', function(){
@@ -237,7 +249,7 @@ describe( 'Investment FDI backend service', function(){
 			return spies;
 		}
 
-		describe( 'Homepage data', function(){
+		describe( 'getSectorsHomepageData data', function(){
 
 			it( 'Should return the correct data', function( done ){
 
@@ -246,13 +258,36 @@ describe( 'Investment FDI backend service', function(){
 					'getSectorsPerformance'
 				] );
 
-				fdiService.getHomepageData( req ).then( ( data ) => {
+				fdiService.getSectorsHomepageData( req ).then( ( data ) => {
 
 					expect( spies.getPerformance.spy ).toHaveBeenCalledWith( req );
 					expect( spies.getSectorsPerformance.spy ).toHaveBeenCalledWith( req );
 
 					expect( data.performance ).toEqual( spies.getPerformance.response );
 					expect( data.sectors ).toEqual( spies.getSectorsPerformance.response );
+
+					done();
+
+				} ).catch( done.fail );
+			} );
+		} );
+
+		describe( 'getOverseasRegionsHomepageData data', function(){
+
+			it( 'Should return the correct data', function( done ){
+
+				const spies = createSpies( [
+					'getPerformance',
+					'getOverseasRegionsPerformance'
+				] );
+
+				fdiService.getOverseasRegionsHomepageData( req ).then( ( data ) => {
+
+					expect( spies.getPerformance.spy ).toHaveBeenCalledWith( req );
+					expect( spies.getOverseasRegionsPerformance.spy ).toHaveBeenCalledWith( req );
+
+					expect( data.performance ).toEqual( spies.getPerformance.response );
+					expect( data.overseasRegions ).toEqual( spies.getOverseasRegionsPerformance.response );
 
 					done();
 

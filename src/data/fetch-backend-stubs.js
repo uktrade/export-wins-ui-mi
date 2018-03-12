@@ -60,6 +60,7 @@ const stubs = [
 
 	[ 'investment/fdi/performance/index', '/mi/fdi/performance/' ],
 	[ 'investment/fdi/performance/tab.sectors', '/mi/fdi/performance/tab/sector/' ],
+	[ 'investment/fdi/performance/tab.os_regions', '/mi/fdi/performance/tab/os_region/' ],
 
 	[ 'investment/fdi/sector_teams/index', '/mi/fdi/sector_teams/' ],
 	[ 'investment/fdi/sector_teams/win_table', '/mi/fdi/sector_teams/1/win_table/' ],

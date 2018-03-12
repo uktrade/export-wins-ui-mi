@@ -95,12 +95,10 @@ function getSectorsPerformance( req ){
 	return getJson( '/mi/fdi/performance/tab/sector/', req );
 }
 
-/*
 function getOverseasRegionsPerformance( req ){
 
 	return getJson( '/mi/fdi/performance/tab/os_region/', req );
 }
-*/
 
 module.exports = {
 
@@ -113,10 +111,11 @@ module.exports = {
 
 	getPerformance,
 	getSectorsPerformance,
+	getOverseasRegionsPerformance,
 
-	getHomepageData: function( req ){
+	getSectorsHomepageData: function( req ){
 
-		return getAll( 'getHomepageData', [
+		return getAll( 'getSectorsHomepageData', [
 
 			getPerformance( req ),
 			getSectorsPerformance( req )
@@ -126,6 +125,22 @@ module.exports = {
 			return {
 				performance: data[ 0 ],
 				sectors: data[ 1 ]
+			};
+		} );
+	},
+
+	getOverseasRegionsHomepageData: function( req ){
+
+		return getAll( 'getOverseasRegionsHomepageData', [
+
+			getPerformance( req ),
+			getOverseasRegionsPerformance( req )
+
+		], function( data ){
+
+			return {
+				performance: data[ 0 ],
+				overseasRegions: data[ 1 ]
 			};
 		} );
 	}

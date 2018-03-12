@@ -4,7 +4,8 @@ const moduleFile = '../../../../../../app/sub-apps/investment/controllers/contro
 
 let controller;
 let fdiService;
-let getHomepageData;
+let getSectorsHomepageData;
+let getOverseasRegionsHomepageData;
 let createHandler;
 let renderErrorHandler;
 let performanceHeadlinesViewModelSpy;
@@ -17,7 +18,8 @@ describe( 'Index controller', function(){
 
 	beforeEach( function(){
 
-		getHomepageData = jasmine.createSpy( 'getHomepageData' );
+		getSectorsHomepageData = jasmine.createSpy( 'getSectorsHomepageData' );
+		getOverseasRegionsHomepageData = jasmine.createSpy( 'getOverseasRegionsHomepageData' );
 		performanceHeadlinesViewModelSpy = jasmine.createSpy( 'performanceHeadlinesViewModel' );
 		performanceDetailsViewModelSpy = jasmine.createSpy( 'performanceDetailsViewModel' );
 		performanceWinProgressViewModelSpy = jasmine.createSpy( 'performanceWinProgressViewModel' );
@@ -25,7 +27,7 @@ describe( 'Index controller', function(){
 		renderErrorHandler = jasmine.createSpy( 'renderErrorHandler' );
 		createHandler = jasmine.createSpy( 'createHandler' ).and.callFake( () => renderErrorHandler );
 
-		fdiService = { getHomepageData };
+		fdiService = { getSectorsHomepageData, getOverseasRegionsHomepageData };
 
 		controller = proxyquire( moduleFile, {
 			'../../../lib/service/service.backend/investment/fdi': fdiService,
@@ -51,47 +53,105 @@ describe( 'Index controller', function(){
 
 		describe( 'With success', function(){
 
-			it( 'Should render the view', function( done ){
+			beforeEach( function(){
 
-				const performanceHeadlinesResponse = { performanceHeadlinesResponse: true };
-				const performanceDetailsResponse = { performanceDetailsResponse: true };
-				const performanceWinProgressResponse = { performanceWinProgressResponse: true };
-				const performanceData = { date_range: { performanceDataDateRange: true }, results: { somedata: true } };
-				const sectorsData = { date_range: { sectorsDataDateRange: true }, results: { someSectorsData: true } };
+				this.performanceHeadlinesResponse = { performanceHeadlinesResponse: true };
+				this.performanceDetailsResponse = { performanceDetailsResponse: true };
+				this.performanceWinProgressResponse = { performanceWinProgressResponse: true };
+				this.performanceData = { date_range: { performanceDataDateRange: true }, results: { somedata: true } };
+			} );
 
-				const promise =  new Promise( ( resolve ) => {
-					resolve( {
-						performance: performanceData,
-						sectors: sectorsData
+			describe( 'for sectors/default', function(){
+
+				it( 'Should render the view', function( done ){
+
+					const sectorsData = { date_range: { sectorsDataDateRange: true }, results: { someSectorsData: true } };
+
+					const promise =  new Promise( ( resolve ) => {
+						resolve( {
+							performance: this.performanceData,
+							sectors: sectorsData
+						} );
+					} );
+
+					getSectorsHomepageData.and.callFake( () => promise );
+					performanceHeadlinesViewModelSpy.and.callFake( () => this.performanceHeadlinesResponse );
+					performanceDetailsViewModelSpy.and.callFake( () => this.performanceDetailsResponse );
+					performanceWinProgressViewModelSpy.and.callFake( () => this.performanceWinProgressResponse );
+
+					controller( req, res );
+
+					promise.then( () => {
+
+						expect( getSectorsHomepageData ).toHaveBeenCalledWith( req );
+						expect( performanceHeadlinesViewModelSpy ).toHaveBeenCalledWith( this.performanceData.results );
+						expect( performanceDetailsViewModelSpy ).toHaveBeenCalledWith( this.performanceData.results );
+						expect( performanceWinProgressViewModelSpy ).toHaveBeenCalledWith( sectorsData.results );
+						expect( res.render ).toHaveBeenCalledWith( 'investment/views/index', {
+
+							dateRange: this.performanceData.date_range,
+							headlines: this.performanceHeadlinesResponse,
+							details: this.performanceDetailsResponse,
+							progressRows: this.performanceWinProgressResponse,
+							progressHeading: 'Sectors',
+							progressColumnHeading: 'Sector',
+							tab: {
+								isSectors: true,
+								isOverseasRegions: false,
+								isUkRegions: false
+							}
+						} );
+
+						done();
 					} );
 				} );
+			} );
 
-				getHomepageData.and.callFake( () => promise );
-				performanceHeadlinesViewModelSpy.and.callFake( () => performanceHeadlinesResponse );
-				performanceDetailsViewModelSpy.and.callFake( () => performanceDetailsResponse );
-				performanceWinProgressViewModelSpy.and.callFake( () => performanceWinProgressResponse );
+			describe( 'for overseas regions', function(){
 
-				controller( req, res );
+				it( 'Should render the view', function( done ){
 
-				promise.then( () => {
+					const osRegionsData = { date_range: { osRegionsDataDateRange: true }, results: { someOsRegionsData: true } };
 
-					expect( getHomepageData ).toHaveBeenCalledWith( req );
-					expect( performanceHeadlinesViewModelSpy ).toHaveBeenCalledWith( performanceData.results );
-					expect( performanceDetailsViewModelSpy ).toHaveBeenCalledWith( performanceData.results );
-					expect( performanceWinProgressViewModelSpy ).toHaveBeenCalledWith( sectorsData.results );
-					expect( res.render ).toHaveBeenCalledWith( 'investment/views/index', {
-
-						dateRange: performanceData.date_range,
-						headlines: performanceHeadlinesResponse,
-						details: performanceDetailsResponse,
-						sectors: performanceWinProgressResponse,
-						tab: {
-							isSectors: true,
-							isOverseasRegions: false,
-							isUkRegions: false
-						}
+					const promise = new Promise( ( resolve ) => {
+						resolve( {
+							performance: this.performanceData,
+							overseasRegions: osRegionsData
+						} );
 					} );
-					done();
+
+					getOverseasRegionsHomepageData.and.callFake( () => promise );
+					performanceHeadlinesViewModelSpy.and.callFake( () => this.performanceHeadlinesResponse );
+					performanceDetailsViewModelSpy.and.callFake( () => this.performanceDetailsResponse );
+					performanceWinProgressViewModelSpy.and.callFake( () => this.performanceWinProgressResponse );
+
+					req.query.tab = 'os-regions';
+
+					controller( req, res );
+
+					promise.then( () => {
+
+						expect( getOverseasRegionsHomepageData ).toHaveBeenCalledWith( req );
+						expect( performanceHeadlinesViewModelSpy ).toHaveBeenCalledWith( this.performanceData.results );
+						expect( performanceDetailsViewModelSpy ).toHaveBeenCalledWith( this.performanceData.results );
+						expect( performanceWinProgressViewModelSpy ).toHaveBeenCalledWith( osRegionsData.results );
+						expect( res.render ).toHaveBeenCalledWith( 'investment/views/index', {
+
+							dateRange: this.performanceData.date_range,
+							headlines: this.performanceHeadlinesResponse,
+							details: this.performanceDetailsResponse,
+							progressRows: this.performanceWinProgressResponse,
+							progressHeading: 'Overseas markets',
+							progressColumnHeading: 'Market',
+							tab: {
+								isSectors: false,
+								isOverseasRegions: true,
+								isUkRegions: false
+							}
+						} );
+
+						done();
+					} );
 				} );
 			} );
 		} );
@@ -101,23 +161,19 @@ describe( 'Index controller', function(){
 			it( 'Should call render error', function( done ){
 
 				const err = new Error( 'some error' );
-				let rejectPromise;
 
 				const promise = new Promise( ( resolve, reject ) => {
-					rejectPromise = reject;
+					reject( err );
 				} );
 
-				getHomepageData.and.callFake( () => promise );
+				getSectorsHomepageData.and.callFake( () => promise );
 
 				controller( req, res );
 
-				expect( createHandler ).toHaveBeenCalledWith( req, res );
-
-				rejectPromise( err );
-
 				setTimeout( () => {
 
-					expect( getHomepageData ).toHaveBeenCalledWith( req );
+					expect( createHandler ).toHaveBeenCalledWith( req, res );
+					expect( getSectorsHomepageData ).toHaveBeenCalledWith( req );
 					expect( res.render ).not.toHaveBeenCalled();
 					expect( renderErrorHandler ).toHaveBeenCalledWith( err );
 					done();

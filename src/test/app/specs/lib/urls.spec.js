@@ -58,11 +58,12 @@ describe( 'urls middleware', function(){
 
 	function checkFilteredUrls( req, method, args, output ){
 
+		const separator = ( ~output.indexOf( '?' ) ? '&' : '?' );
 		req.filters = {};
 		checkYearlyUrls( req, method, args, output );
 
 		req.filters = { a: 1, b: 2 };
-		checkYearlyUrls( req, method, args, ( output + '?a=1&b=2' ) );
+		checkYearlyUrls( req, method, args, ( output + separator + 'a=1&b=2' ) );
 	}
 
 	describe( 'Index', function(){
@@ -427,9 +428,36 @@ describe( 'urls middleware', function(){
 
 		describe( 'Index', function(){
 
-			it( 'Should return the correct url', function(){
+			describe( 'Without a tab specified', function(){
 
-				checkFilteredUrls( req, 'investment.index', [], '/investment/' );
+				it( 'Should return the correct url', function(){
+
+					checkFilteredUrls( req, 'investment.index', [], '/investment/' );
+				} );
+			} );
+
+			describe( 'With the sectors tab specified', function(){
+
+				it( 'Should return the correct url', function(){
+
+					checkFilteredUrls( req, 'investment.index', [ { sectors: true } ], '/investment/?tab=sectors' );
+				} );
+			} );
+
+			describe( 'With the overseas regions tab specified', function(){
+
+				it( 'Should return the correct url', function(){
+
+					checkFilteredUrls( req, 'investment.index', [ { osRegions: true } ], '/investment/?tab=os-regions' );
+				} );
+			} );
+
+			describe( 'With the uk regions tab specified', function(){
+
+				it( 'Should return the correct url', function(){
+
+					checkFilteredUrls( req, 'investment.index', [ { ukRegions: true } ], '/investment/?tab=uk-regions' );
+				} );
 			} );
 		} );
 

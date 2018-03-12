@@ -1,6 +1,11 @@
 {% extends 'layout-investment.html' %}
 
-{% set pageName='Investment Homepage' %}
+{% if tab.isOverseasRegions %}
+	{% set pageName='Investment Homepage with overseas markets' %}
+
+{% else %}
+	{% set pageName='Investment Homepage' %}
+{% endif %}
 
 {% from 'macros/dates.html' import financialYear %}
 {% from 'macros/pie-charts.html' import fdiStagePieChart, fdiHvcPieChart %}
@@ -133,7 +138,7 @@
 				<a class="page-nav_link{% if tab.isSectors %} page-nav_link--active{% endif %}" href="{{ urls.investment.index() }}#page-tabs">Sectors</a>
 			</li>
 			<li class="page-nav_list_item">
-				<a class="page-nav_link{% if tab.isOverseasRegions %} page-nav_link--active{% endif %}" href="#page-tabs">Overseas markets</a>
+				<a class="page-nav_link{% if tab.isOverseasRegions %} page-nav_link--active{% endif %}" href="{{ urls.investment.index({ osRegions: true } ) }}#page-tabs">Overseas markets</a>
 			</li>
 			{#
 			<li class="page-nav_list_item">
@@ -143,7 +148,7 @@
 		</ul>
 	</nav>
 
-	<h2 class="fdi-overview-heading">Sectors</h2>
+	<h2 class="fdi-overview-heading">{{ progressHeading }}</h2>
 
 	<p class="visually-hidden">Project broken down by:</p>
 	<ul class="key-fdi-win-progress">
@@ -156,7 +161,7 @@
 	<table class="table-fdi-win-progress">
 		<thead>
 			<tr>
-				<th class="table-fdi-win-progress_heading">Sector</th>
+				<th class="table-fdi-win-progress_heading">{{ progressColumnHeading }}</th>
 				<th class="table-fdi-win-progress_heading">Project wins</th>
 				<th class="table-fdi-win-progress_heading">HVC wins</th>
 				<th class="table-fdi-win-progress_heading"><span class="visually-hidden">Project breakdown</span></th>
@@ -168,7 +173,7 @@
 				<td class="table-fdi-win-progress_scale-cell">
 					<span class="visually-hidden">Scale for graph:</span>
 					<span class="table-fdi-win-progress_scale">
-						{% for point in sectors.scale %}
+						{% for point in progressRows.scale %}
 							<span class="table-fdi-win-progress_scale-point">
 								<span class="table-fdi-win-progress_scale-point_value">{{ point }}</span>
 							</span>
@@ -176,25 +181,25 @@
 					</span>
 				</td>
 			</tr>
-			{% for sector in sectors %}
+			{% for row in progressRows %}
 			<tr>
-				<td class="table-fdi-win-progress_cell">{{ sector.name }}</td>
-				<td class="table-fdi-win-progress_cell">{{ sector.wins.total }}</td>
-				<td class="table-fdi-win-progress_cell">{{ sector.wins.hvc }}</td>
+				<td class="table-fdi-win-progress_cell">{{ row.name }}</td>
+				<td class="table-fdi-win-progress_cell">{{ row.wins.total }}</td>
+				<td class="table-fdi-win-progress_cell">{{ row.wins.hvc }}</td>
 				<td class="table-fdi-win-progress_cell">
 					<div class="table-fdi-win-progress_segments">
-						<span class="visually-hidden">Won: {{ sector.segments.won.count }}</span>
-						<span class="table-fdi-win-progress_segment table-fdi-win-progress_segment--won" style="left: {{ sector.segments.won.start }}%; width: {{ sector.segments.won.percent }}%;"></span>
+						<span class="visually-hidden">Won: {{ row.segments.won.count }}</span>
+						<span class="table-fdi-win-progress_segment table-fdi-win-progress_segment--won" style="left: {{ row.segments.won.start }}%; width: {{ row.segments.won.percent }}%;"></span>
 
-						<span class="visually-hidden">Verify win: {{ sector.segments.verifyWin.count }}</span>
-						<span class="table-fdi-win-progress_segment table-fdi-win-progress_segment--verify-win" style="left: {{ sector.segments.verifyWin.start }}%; width: {{ sector.segments.verifyWin.percent }}%;"></span>
+						<span class="visually-hidden">Verify win: {{ row.segments.verifyWin.count }}</span>
+						<span class="table-fdi-win-progress_segment table-fdi-win-progress_segment--verify-win" style="left: {{ row.segments.verifyWin.start }}%; width: {{ row.segments.verifyWin.percent }}%;"></span>
 
-						<span class="visually-hidden">Active pipeline: {{ sector.segments.pipeline.count }}</span>
-						<span class="table-fdi-win-progress_segment table-fdi-win-progress_segment--pipeline" style="left: {{ sector.segments.pipeline.start }}%; width: {{ sector.segments.pipeline.percent }}%;"></span>
+						<span class="visually-hidden">Active pipeline: {{ row.segments.pipeline.count }}</span>
+						<span class="table-fdi-win-progress_segment table-fdi-win-progress_segment--pipeline" style="left: {{ row.segments.pipeline.start }}%; width: {{ row.segments.pipeline.percent }}%;"></span>
 
-						<span class="visually-hidden">Target: {{ sector.segments.target.count }}</span>
-						{% if sector.segments.target.percent %}
-						<span class="table-fdi-win-progress_target" style="left: {{ sector.segments.target.percent }}%;"></span>
+						<span class="visually-hidden">Target: {{ row.segments.target.count }}</span>
+						{% if row.segments.target.percent %}
+						<span class="table-fdi-win-progress_target" style="left: {{ row.segments.target.percent }}%;"></span>
 						{% endif %}
 					</div>
 				</td>

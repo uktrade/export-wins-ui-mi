@@ -88,6 +88,7 @@ const yearlyFiles = {
 
 	'investment/fdi/performance/index': fdiPerformanceJson.index,
 	'investment/fdi/performance/tab.sectors': fdiPerformanceJson.tab,
+	'investment/fdi/performance/tab.os_regions': fdiPerformanceJson.tab,
 
 	'investment/fdi/sector_teams/index': fdiSectorTeamsJson.createIndex,
 	'investment/fdi/sector_teams/win_table': fdiSectorTeamsJson.createWinTable,
