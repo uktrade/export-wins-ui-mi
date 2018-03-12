@@ -1,7 +1,15 @@
+.table-fdi-win-progress-wrapper {
+	width: 100%;
+	overflow: auto;
+	padding-bottom: pem( 10 );
+}
+
 .table-fdi-win-progress {
+	width: 99.9%;//for some reason 100% makes the overflow of the container scroll :-(
 	border-collapse: collapse;
 	margin: 0;
 	padding: 0;
+	min-width: pem( 750 );
 }
 
 .table-fdi-win-progress_heading {
@@ -17,20 +25,19 @@
 }
 
 .table-fdi-win-progress_cell {
-
 	@include core-19;
 	padding: pem( 14, 19 ) 0;
 	border-bottom: 1px solid #000;
+}
 
-	&:nth-of-type( 1 ){
-		padding-left: pem( 10, 19 );
-	}
+.table-fdi-win-progress_cell--name {
+	padding-left: pem( 10, 19 );
+}
 
-	&:nth-of-type( 4 ) {
-		border-left: 2px solid black;
-		border-right: 2px solid black;
-		position: relative;
-	}
+.table-fdi-win-progress_cell--progress {
+	border-left: 2px solid black;
+	border-right: 2px solid black;
+	position: relative;
 }
 
 .table-fdi-win-progress_scale-cell {
@@ -50,26 +57,32 @@
 
 	position: absolute;
 	top: pem( -25, 19 );
+	visibility: hidden; //hide scale for browsers that don't understand CSS3 selctors (IE7/8)
 
 	&:first-of-type {
 		left: 0;
 		color: #fff;
+		visibility: visible;
 	}
 
 	&:nth-of-type( 2 ){
 		left: 25%;
+		visibility: visible;
 	}
 
 	&:nth-of-type( 3 ){
 		left: 50%;
+		visibility: visible;
 	}
 
 	&:nth-of-type( 4 ){
 		left: 75%;
+		visibility: visible;
 	}
 
 	&:nth-of-type( 5 ){
 		left: 100%;
+		visibility: visible;
 	}
 }
 
@@ -98,9 +111,9 @@
 .table-fdi-win-progress_segment {
 	position: absolute;
 	top: pem( 13, 19 );
+	left: 0;
 	display: block;
 	height: pem( 25, 19 );
-	left: 0;
 	overflow: hidden;
 }
 
