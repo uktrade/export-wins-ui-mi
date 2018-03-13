@@ -11,6 +11,10 @@ let renderErrorHandler;
 let performanceHeadlinesViewModelSpy;
 let performanceDetailsViewModelSpy;
 let performanceWinProgressViewModelSpy;
+let sortSectorProgressSpy;
+let sortSectorProgressSpyResponse;
+let sortMarketProgressSpy;
+let sortMarketProgressSpyResponse;
 let req;
 let res;
 
@@ -18,11 +22,16 @@ describe( 'Index controller', function(){
 
 	beforeEach( function(){
 
+		sortSectorProgressSpyResponse = { sortedSectors: true, KEYS: { sector: 'sector', projectWins: 'project-wins', hvcWins: 'hvc-wins' } };
+		sortMarketProgressSpyResponse = { sortedMarkets: true, KEYS: { market: 'market', projectWins: 'project-wins', hvcWins: 'hvc-wins' } };
+
 		getSectorsHomepageData = jasmine.createSpy( 'getSectorsHomepageData' );
 		getOverseasRegionsHomepageData = jasmine.createSpy( 'getOverseasRegionsHomepageData' );
 		performanceHeadlinesViewModelSpy = jasmine.createSpy( 'performanceHeadlinesViewModel' );
 		performanceDetailsViewModelSpy = jasmine.createSpy( 'performanceDetailsViewModel' );
 		performanceWinProgressViewModelSpy = jasmine.createSpy( 'performanceWinProgressViewModel' );
+		sortSectorProgressSpy = jasmine.createSpy( 'sortSectorProgressSpy' ).and.callFake( () => sortSectorProgressSpyResponse );
+		sortMarketProgressSpy = jasmine.createSpy( 'sortMarketProgressSpy' ).and.callFake( () => sortMarketProgressSpyResponse );
 
 		renderErrorHandler = jasmine.createSpy( 'renderErrorHandler' );
 		createHandler = jasmine.createSpy( 'createHandler' ).and.callFake( () => renderErrorHandler );
@@ -32,6 +41,8 @@ describe( 'Index controller', function(){
 		controller = proxyquire( moduleFile, {
 			'../../../lib/service/service.backend/investment/fdi': fdiService,
 			'../../../lib/render-error': { createHandler },
+			'../lib/sort-sector-progress': sortSectorProgressSpy,
+			'../lib/sort-market-progress': sortMarketProgressSpy,
 			'../view-models/fdi-performance-headlines': { create: performanceHeadlinesViewModelSpy },
 			'../view-models/fdi-performance-details': { create: performanceDetailsViewModelSpy },
 			'../view-models/fdi-performance-win-progress': { create: performanceWinProgressViewModelSpy }
@@ -65,6 +76,8 @@ describe( 'Index controller', function(){
 
 				it( 'Should render the view', function( done ){
 
+					let selected;
+					const sortSectors = { sortParams: true };
 					const sectorsData = { date_range: { sectorsDataDateRange: true }, results: { someSectorsData: true } };
 
 					const promise =  new Promise( ( resolve ) => {
@@ -79,6 +92,8 @@ describe( 'Index controller', function(){
 					performanceDetailsViewModelSpy.and.callFake( () => this.performanceDetailsResponse );
 					performanceWinProgressViewModelSpy.and.callFake( () => this.performanceWinProgressResponse );
 
+					req.query.sort = sortSectors;
+
 					controller( req, res );
 
 					promise.then( () => {
@@ -87,18 +102,22 @@ describe( 'Index controller', function(){
 						expect( performanceHeadlinesViewModelSpy ).toHaveBeenCalledWith( this.performanceData.results );
 						expect( performanceDetailsViewModelSpy ).toHaveBeenCalledWith( this.performanceData.results );
 						expect( performanceWinProgressViewModelSpy ).toHaveBeenCalledWith( sectorsData.results );
+						expect( sortSectorProgressSpy ).toHaveBeenCalledWith( this.performanceWinProgressResponse, sortSectors );
 						expect( res.render ).toHaveBeenCalledWith( 'investment/views/index', {
 
 							dateRange: this.performanceData.date_range,
 							headlines: this.performanceHeadlinesResponse,
 							details: this.performanceDetailsResponse,
-							progressRows: this.performanceWinProgressResponse,
+							progressRows: sortSectorProgressSpyResponse,
+							sortKeys: sortSectorProgressSpyResponse.KEYS,
 							progressHeading: 'Sectors',
 							progressColumnHeading: 'Sector',
+							progressColumnHeadingKey: sortSectorProgressSpyResponse.KEYS.sector,
 							tab: {
 								isSectors: true,
 								isOverseasRegions: false,
-								isUkRegions: false
+								isUkRegions: false,
+								selected
 							}
 						} );
 
@@ -111,6 +130,7 @@ describe( 'Index controller', function(){
 
 				it( 'Should render the view', function( done ){
 
+					const sortMarkets = { marketSort: true };
 					const osRegionsData = { date_range: { osRegionsDataDateRange: true }, results: { someOsRegionsData: true } };
 
 					const promise = new Promise( ( resolve ) => {
@@ -125,6 +145,7 @@ describe( 'Index controller', function(){
 					performanceDetailsViewModelSpy.and.callFake( () => this.performanceDetailsResponse );
 					performanceWinProgressViewModelSpy.and.callFake( () => this.performanceWinProgressResponse );
 
+					req.query.sort = sortMarkets;
 					req.query.tab = 'os-regions';
 
 					controller( req, res );
@@ -135,18 +156,22 @@ describe( 'Index controller', function(){
 						expect( performanceHeadlinesViewModelSpy ).toHaveBeenCalledWith( this.performanceData.results );
 						expect( performanceDetailsViewModelSpy ).toHaveBeenCalledWith( this.performanceData.results );
 						expect( performanceWinProgressViewModelSpy ).toHaveBeenCalledWith( osRegionsData.results );
+						expect( sortMarketProgressSpy ).toHaveBeenCalledWith( this.performanceWinProgressResponse, sortMarkets );
 						expect( res.render ).toHaveBeenCalledWith( 'investment/views/index', {
 
 							dateRange: this.performanceData.date_range,
 							headlines: this.performanceHeadlinesResponse,
 							details: this.performanceDetailsResponse,
-							progressRows: this.performanceWinProgressResponse,
+							progressRows: sortMarketProgressSpyResponse,
+							sortKeys: sortMarketProgressSpyResponse.KEYS,
 							progressHeading: 'Overseas markets',
 							progressColumnHeading: 'Market',
+							progressColumnHeadingKey: sortMarketProgressSpyResponse.KEYS.market,
 							tab: {
 								isSectors: false,
 								isOverseasRegions: true,
-								isUkRegions: false
+								isUkRegions: false,
+								selected: 'os-regions'
 							}
 						} );
 

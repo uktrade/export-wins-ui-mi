@@ -183,6 +183,33 @@ hr {
 	margin-top: pem( 5 );
 }
 
+.sort-heading {
+
+	text-decoration: none;
+	color: $link-colour;
+
+	&:visited {
+		color: $link-colour;
+	}
+
+	&:after {
+		position: relative;
+		left: -0.25em;
+	}
+}
+
+.sort-heading--asc {
+	&:after {
+		content: "\00a0\00a0\25B2";
+	}
+}
+
+.sort-heading--desc {
+	&:after {
+		content: "\00a0\00a0\25BC";
+	}
+}
+
 .column-date {
 	@extend .page-date;
 	margin-top: 0;

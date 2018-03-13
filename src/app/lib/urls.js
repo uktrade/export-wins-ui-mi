@@ -10,7 +10,12 @@ function getParams( obj ){
 
 	for( let key in obj ){
 
-		r.push( [ key, obj[ key ] ] );
+		const value = obj[ key ];
+
+		if( typeof( value ) !== 'undefined' ){
+
+			r.push( [ key, value ] );
+		}
 	}
 
 	return r;
@@ -110,7 +115,17 @@ module.exports = function( req ){
 			return path;
 		},
 
-		current: () => filteredUrl( currentUrl ),
+		current: ( opts ) => {
+
+			let url = currentUrl;
+
+			if( opts && opts.query ){
+
+				url = addParams( url, getParams( opts.query ) );
+			}
+
+			return filteredUrl( url );
+		},
 
 		currentForYear: ( year ) => {
 

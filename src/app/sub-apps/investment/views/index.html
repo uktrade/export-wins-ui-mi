@@ -158,13 +158,18 @@
 		<li class="key-fdi-win-progress_item">Target<span class="key-fdi-win-progress_target"></span></li>
 	</ul>
 
+	{% macro sortedHeading( name, key, rows ) %}
+		<a class="sort-heading{% if rows.sortKey == key %} sort-heading--{{ rows.sortDir }}{% endif %}" href="{{ urls.addSort( urls.current( { query: { tab: tab.selected } } ), key, rows.sortKey, rows.sortDir ) }}#page-tabs" title="Sort by {{ name }}">{{ name }}</a>
+	{% endmacro %}
+
+
 	<div class="table-fdi-win-progress-wrapper">
 		<table class="table-fdi-win-progress">
 			<thead>
 				<tr>
-					<th class="table-fdi-win-progress_heading">{{ progressColumnHeading }}</th>
-					<th class="table-fdi-win-progress_heading">Project wins</th>
-					<th class="table-fdi-win-progress_heading">HVC wins</th>
+					<th class="table-fdi-win-progress_heading">{{ sortedHeading( progressColumnHeading, progressColumnHeadingKey, progressRows ) }}</th>
+					<th class="table-fdi-win-progress_heading">{{ sortedHeading( 'Project wins', sortKeys.projectWins, progressRows ) }}</th>
+					<th class="table-fdi-win-progress_heading">{{ sortedHeading( 'HVC wins', sortKeys.hvcWins, progressRows ) }}</th>
 					<th class="table-fdi-win-progress_heading"><span class="visually-hidden">Project breakdown</span></th>
 				</tr>
 			</thead>

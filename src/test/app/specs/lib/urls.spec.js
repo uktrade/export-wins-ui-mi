@@ -332,9 +332,33 @@ describe( 'urls middleware', function(){
 
 	describe( 'Current', function(){
 
-		it( 'Should return the current URL', function(){
+		describe( 'Without any arguments', function(){
 
-			checkFilteredUrls( req, 'current', [], req.url );
+			it( 'Should return the current URL', function(){
+
+				checkFilteredUrls( req, 'current', [], req.url );
+			} );
+		} );
+
+		describe( 'With query arguments', function(){
+
+			describe( 'When there is a value', function(){
+
+				it( 'Should return the current URL with the query arguments', function(){
+
+					checkFilteredUrls( req, 'current', [ { query: { tab: 'blah' } } ], req.url + '?tab=blah' );
+				} );
+			} );
+
+			describe( 'When the value is undefined', function(){
+
+				it( 'Should return the current URL without the query arguments', function(){
+
+					let tab;
+
+					checkFilteredUrls( req, 'current', [ { query: { tab } } ], req.url );
+				} );
+			} );
 		} );
 	} );
 
