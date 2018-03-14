@@ -16,27 +16,7 @@ describe( 'Investment Index Page', function(){
 	} );
 
 	accessibilityCheck( 'investment_index' );
-/*
-	describe( 'Homepage lists', function(){
 
-		let lists;
-
-		beforeAll( function( done ){
-
-			driver.findElements( By.className( 'i-homepage-list' ) ).then( ( listElems ) => {
-
-				lists = listElems;
-				done();
-
-			} ).catch( done.fail );
-		} );
-
-		it( 'Should not have any lists on the page', function(){
-
-			expect( lists.length ).toEqual( 0 );
-		} );
-	} );
-*/
 	describe( 'Page heading', function(){
 
 		let heading;
@@ -69,6 +49,30 @@ describe( 'Investment Index Page', function(){
 				done();
 
 			} ).catch( done.fail );
+		} );
+	} );
+
+	describe( 'Overview heading', function(){
+
+		let overviewHeading;
+
+		beforeEach( function( done ){
+
+			driver.findElement( By.className( 'fdi-overview-heading' ) ).then( ( overviewHeadingElem ) => {
+
+				overviewHeading = overviewHeadingElem;
+				done();
+
+			} ).catch( done.fail );
+		} );
+
+		it( 'Should have the correct heading', function( done ){
+
+			overviewHeading.getText().then( ( text ) => {
+
+				expect( text ).toEqual( 'Sectors' );
+				done();
+			} );
 		} );
 	} );
 } );
