@@ -6,7 +6,7 @@
 	"minItems": 5,
 	"maxItems": 15,
 	"items": {
-		"required": [ "id", "name", "short_name", "wins", "target", "pipeline" ],
+		"required": [ "id", "name", "short_name", "wins", "target", "total_jobs", "pipeline" ],
 		"properties": {
 
 			"id": { "$ref": "$refs/fdi.json#/number" },
@@ -20,15 +20,17 @@
 			},
 			"wins": {
 				"type": "object",
-				"required": [ "verify_win", "won", "hvc_wins", "total" ],
+				"required": [ "verify_win", "won", "hvc", "non_hvc", "total" ],
 				"properties": {
-					"verify_win": { "$ref": "$refs/fdi.json#/number" },
-					"won": { "$ref": "$refs/fdi.json#/number" },
-					"hvc_wins": { "$ref": "$refs/fdi.json#/number" },
+					"verify_win": { "$ref": "$refs/fdi.json#/count" },
+					"won": { "$ref": "$refs/fdi.json#/count" },
+					"hvc": { "$ref": "$refs/fdi.json#/count" },
+					"non_hvc": { "$ref": "$refs/fdi.json#/count" },
 					"total": { "$ref": "$refs/fdi.json#/number" }
 				}
 			},
 			"target": { "$ref": "$refs/fdi.json#/number" },
+			"total_jobs": { "$ref": "$refs/fdi.json#/number" },
 			"pipeline": { "$ref": "$refs/fdi.json#/number" }
 		}
 	}

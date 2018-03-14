@@ -76,7 +76,7 @@ describe( 'FDI Performance Win Progress View Model', function(){
 					expect( item.id ).toEqual( inputItem.id );
 					expect( item.name ).toEqual( inputItem.name );
 					expect( item.wins.total ).toEqual( inputItem.wins.total );
-					expect( item.wins.hvc ).toEqual( inputItem.wins.hvc_wins );
+					expect( item.wins.hvc ).toEqual( inputItem.wins.hvc.count );
 					expect( item.segments ).toEqual( values[ index ] );
 				} );
 

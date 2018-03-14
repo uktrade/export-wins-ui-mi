@@ -11,8 +11,8 @@ function createItemWithParts( parts ){
 
 function createSegments( item, createItem ){
 
-	const won = createItem( item.wins.won );
-	const verifyWin = createItem( item.wins.verify_win, won );
+	const won = createItem( item.wins.won.count );
+	const verifyWin = createItem( item.wins.verify_win.count, won );
 	const pipeline = createItem( item.pipeline, verifyWin );
 
 	return {
@@ -52,7 +52,7 @@ module.exports = {
 					name: item.name,
 					wins: {
 						total: item.wins.total,
-						hvc: item.wins.hvc_wins
+						hvc: item.wins.hvc.count
 					},
 					segments: createSegments( item, createItem )
 				} );

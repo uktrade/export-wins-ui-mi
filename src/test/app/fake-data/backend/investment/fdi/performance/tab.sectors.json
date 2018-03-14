@@ -1,5 +1,5 @@
 {
-   "timestamp": 1520441168400,
+   "timestamp": 1520938707618,
    "financial_year": {
       "id": 2016,
       "description": "2016-2017"
@@ -7,67 +7,137 @@
    "results": [
       {
          "id": 1,
-         "name": "possimus sint dolores",
-         "short_name": "et",
+         "name": "at rerum quae",
+         "short_name": "vel",
          "wins": {
-            "verify_win": 20,
-            "won": 20,
-            "hvc_wins": 20,
+            "verify_win": {
+               "count": 20,
+               "percent": 21.54
+            },
+            "won": {
+               "count": 20,
+               "percent": 4.6
+            },
+            "hvc": {
+               "count": 30,
+               "percent": 26.32
+            },
+            "non_hvc": {
+               "count": 30,
+               "percent": 11.91
+            },
             "total": 60
          },
          "target": 100,
+         "total_jobs": 200,
          "pipeline": 200
       },
       {
          "id": 2,
-         "name": "earum impedit molestiae",
-         "short_name": "nobis",
+         "name": "tempora nam minus",
+         "short_name": "et",
          "wins": {
-            "verify_win": 50,
-            "won": 50,
-            "hvc_wins": 50,
+            "verify_win": {
+               "count": 50,
+               "percent": 33.53
+            },
+            "won": {
+               "count": 50,
+               "percent": 39.11
+            },
+            "hvc": {
+               "count": 50,
+               "percent": 29
+            },
+            "non_hvc": {
+               "count": 100,
+               "percent": 85.49
+            },
             "total": 150
          },
          "target": 200,
+         "total_jobs": 300,
          "pipeline": 300
       },
       {
          "id": 3,
-         "name": "et omnis eaque",
-         "short_name": "nostrum",
+         "name": "consequatur in id",
+         "short_name": "modi",
          "wins": {
-            "verify_win": 25,
-            "won": 25,
-            "hvc_wins": 25,
+            "verify_win": {
+               "count": 25,
+               "percent": 8.79
+            },
+            "won": {
+               "count": 25,
+               "percent": 73.46
+            },
+            "hvc": {
+               "count": 45,
+               "percent": 4.96
+            },
+            "non_hvc": {
+               "count": 30,
+               "percent": 14.1
+            },
             "total": 75
          },
          "target": 100,
+         "total_jobs": 200,
          "pipeline": 200
       },
       {
          "id": 4,
-         "name": "expedita qui cumque",
-         "short_name": "qui",
+         "name": "adipisci est nulla",
+         "short_name": "voluptate",
          "wins": {
-            "verify_win": 61,
-            "won": 62,
-            "hvc_wins": 63,
+            "verify_win": {
+               "count": 61,
+               "percent": 41.25
+            },
+            "won": {
+               "count": 62,
+               "percent": 38.5
+            },
+            "hvc": {
+               "count": 86,
+               "percent": 40.08
+            },
+            "non_hvc": {
+               "count": 100,
+               "percent": 53.62
+            },
             "total": 186
          },
          "target": 500,
+         "total_jobs": 100,
          "pipeline": 100
       },
       {
          "id": 5,
-         "name": "reiciendis quis rerum",
-         "short_name": "placeat",
+         "name": "nam nesciunt voluptatem",
+         "short_name": "ipsum",
          "wins": {
-            "verify_win": 10,
-            "won": 10,
-            "hvc_wins": 10,
+            "verify_win": {
+               "count": 10,
+               "percent": 38.91
+            },
+            "won": {
+               "count": 10,
+               "percent": 88.58
+            },
+            "hvc": {
+               "count": 20,
+               "percent": 47.42
+            },
+            "non_hvc": {
+               "count": 10,
+               "percent": 38.08
+            },
             "total": 30
          },
          "target": 100,
+         "total_jobs": 50,
          "pipeline": 50
       }
    ],
