@@ -10,7 +10,12 @@ function getParams( obj ){
 
 	for( let key in obj ){
 
-		r.push( [ key, obj[ key ] ] );
+		const value = obj[ key ];
+
+		if( typeof( value ) !== 'undefined' ){
+
+			r.push( [ key, value ] );
+		}
 	}
 
 	return r;
@@ -110,7 +115,17 @@ module.exports = function( req ){
 			return path;
 		},
 
-		current: () => filteredUrl( currentUrl ),
+		current: ( opts ) => {
+
+			let url = currentUrl;
+
+			if( opts && opts.query ){
+
+				url = addParams( url, getParams( opts.query ) );
+			}
+
+			return filteredUrl( url );
+		},
 
 		currentForYear: ( year ) => {
 
@@ -162,7 +177,30 @@ module.exports = function( req ){
 
 		investment: {
 
-			index: () => filteredUrl( '/investment/' ),
+			index: ( tab = {} ) => {
+
+				let param = '';
+
+				if( tab.sectors ){
+
+					param = 'sectors';
+
+				} else if( tab.osRegions ){
+
+					param = 'os-regions';
+
+				} else if( tab.ukRegions ){
+
+					param = 'uk-regions';
+				}
+
+				if( param ){
+
+					param = `?tab=${ param }`;
+				}
+
+				return filteredUrl( `/investment/${ param }` );
+			},
 
 			sectorTeams: () => filteredUrl( `/investment/sector-teams/` ),
 			sectorTeam: ( teamId ) => filteredUrl( `/investment/sector-teams/${ teamId }/` ),

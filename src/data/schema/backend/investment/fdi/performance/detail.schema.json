@@ -1,0 +1,37 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "Investment FDI performance tab details",
+
+	"type": "array",
+	"minItems": 5,
+	"maxItems": 15,
+	"items": {
+		"required": [ "id", "name", "short_name", "wins", "target", "total_jobs", "pipeline" ],
+		"properties": {
+
+			"id": { "$ref": "$refs/fdi.json#/number" },
+			"name": {
+				"type": "string",
+				"faker": "lorem.words"
+			},
+			"short_name": {
+				"type": "string",
+				"faker": "lorem.word"
+			},
+			"wins": {
+				"type": "object",
+				"required": [ "verify_win", "won", "hvc", "non_hvc", "total" ],
+				"properties": {
+					"verify_win": { "$ref": "$refs/fdi.json#/count" },
+					"won": { "$ref": "$refs/fdi.json#/count" },
+					"hvc": { "$ref": "$refs/fdi.json#/count" },
+					"non_hvc": { "$ref": "$refs/fdi.json#/count" },
+					"total": { "$ref": "$refs/fdi.json#/number" }
+				}
+			},
+			"target": { "$ref": "$refs/fdi.json#/number" },
+			"total_jobs": { "$ref": "$refs/fdi.json#/number" },
+			"pipeline": { "$ref": "$refs/fdi.json#/number" }
+		}
+	}
+}

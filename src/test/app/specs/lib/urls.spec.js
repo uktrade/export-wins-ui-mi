@@ -58,11 +58,12 @@ describe( 'urls middleware', function(){
 
 	function checkFilteredUrls( req, method, args, output ){
 
+		const separator = ( ~output.indexOf( '?' ) ? '&' : '?' );
 		req.filters = {};
 		checkYearlyUrls( req, method, args, output );
 
 		req.filters = { a: 1, b: 2 };
-		checkYearlyUrls( req, method, args, ( output + '?a=1&b=2' ) );
+		checkYearlyUrls( req, method, args, ( output + separator + 'a=1&b=2' ) );
 	}
 
 	describe( 'Index', function(){
@@ -331,9 +332,33 @@ describe( 'urls middleware', function(){
 
 	describe( 'Current', function(){
 
-		it( 'Should return the current URL', function(){
+		describe( 'Without any arguments', function(){
 
-			checkFilteredUrls( req, 'current', [], req.url );
+			it( 'Should return the current URL', function(){
+
+				checkFilteredUrls( req, 'current', [], req.url );
+			} );
+		} );
+
+		describe( 'With query arguments', function(){
+
+			describe( 'When there is a value', function(){
+
+				it( 'Should return the current URL with the query arguments', function(){
+
+					checkFilteredUrls( req, 'current', [ { query: { tab: 'blah' } } ], req.url + '?tab=blah' );
+				} );
+			} );
+
+			describe( 'When the value is undefined', function(){
+
+				it( 'Should return the current URL without the query arguments', function(){
+
+					let tab;
+
+					checkFilteredUrls( req, 'current', [ { query: { tab } } ], req.url );
+				} );
+			} );
 		} );
 	} );
 
@@ -427,9 +452,36 @@ describe( 'urls middleware', function(){
 
 		describe( 'Index', function(){
 
-			it( 'Should return the correct url', function(){
+			describe( 'Without a tab specified', function(){
 
-				checkFilteredUrls( req, 'investment.index', [], '/investment/' );
+				it( 'Should return the correct url', function(){
+
+					checkFilteredUrls( req, 'investment.index', [], '/investment/' );
+				} );
+			} );
+
+			describe( 'With the sectors tab specified', function(){
+
+				it( 'Should return the correct url', function(){
+
+					checkFilteredUrls( req, 'investment.index', [ { sectors: true } ], '/investment/?tab=sectors' );
+				} );
+			} );
+
+			describe( 'With the overseas regions tab specified', function(){
+
+				it( 'Should return the correct url', function(){
+
+					checkFilteredUrls( req, 'investment.index', [ { osRegions: true } ], '/investment/?tab=os-regions' );
+				} );
+			} );
+
+			describe( 'With the uk regions tab specified', function(){
+
+				it( 'Should return the correct url', function(){
+
+					checkFilteredUrls( req, 'investment.index', [ { ukRegions: true } ], '/investment/?tab=uk-regions' );
+				} );
 			} );
 		} );
 

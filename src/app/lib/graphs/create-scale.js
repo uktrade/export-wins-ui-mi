@@ -1,30 +1,45 @@
 const getCeil = require( './get-ceil' );
-const ticks = 5;
-const maxTicks = ( ticks * 10 );
 const closestGreaterInteger = require( './closest-greatest-integer' );
 
-module.exports = function( num ){
+module.exports = function( num, points = 5, ceilTo = [ 0, 0.25 ] ){
 
-	let ceil;
+	let scale;
 
-	if( num > 1 && num < maxTicks ){
+	if( num === 0 ){
 
-		ceil = closestGreaterInteger( num, ticks );
+		scale = [];
+		let i = 0;
+
+		while( i++ < points ){
+
+			scale.push( 0 );
+		}
 
 	} else {
 
-		ceil = getCeil( num, [ 0, 0.25 ] );
+		const integerLimit = ( points * 10 );
+		let ceil;
+
+		if( num > 1 && num < integerLimit ){
+
+			ceil = closestGreaterInteger( num, points );
+
+		} else {
+
+			ceil = getCeil( num, ceilTo );
+		}
+
+		const parts = ( ceil / points );
+		scale = [ 0, parts ];
+
+		for( let i = 2; i < points; i++ ){
+
+			scale.push( parts * i );
+		}
+
+		scale.push( ceil );
 	}
 
-	const parts = ( ceil / ticks );
-	const scale = [ 0, parts ];
-
-	for( let i = 2; i < ticks; i++ ){
-
-		scale.push( parts * i );
-	}
-
-	scale.push( ceil );
 
 	return scale;
 };

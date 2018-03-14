@@ -8,5 +8,9 @@
 		"mi": true,
 		"Plotly": false,
 		"jessie": false
-	}
+	},
+
+	"parserOptions": {
+		"ecmaVersion": 5
+	},
 }

@@ -1,6 +1,11 @@
 {% extends 'layout-investment.html' %}
 
-{% set pageName='Investment Homepage' %}
+{% if tab.isOverseasRegions %}
+	{% set pageName='Investment Homepage with overseas markets' %}
+
+{% else %}
+	{% set pageName='Investment Homepage' %}
+{% endif %}
 
 {% from 'macros/dates.html' import financialYear %}
 {% from 'macros/pie-charts.html' import fdiStagePieChart, fdiHvcPieChart %}
@@ -126,60 +131,88 @@
 			</div>
 		</div>
 	</section>
-{#
-	<section class="grid-row i-homepage-lists">
-		<div class="column-one-third">
 
-			{%- if showSectorTeams -%}
+	<nav class="page-nav page-nav--divider" id="page-tabs">
+		<ul class="page-nav_list">
+			<li class="page-nav_list_item">
+				<a class="page-nav_link{% if tab.isSectors %} page-nav_link--active{% endif %}" href="{{ urls.investment.index() }}#page-tabs">Sectors</a>
+			</li>
+			<li class="page-nav_list_item">
+				<a class="page-nav_link{% if tab.isOverseasRegions %} page-nav_link--active{% endif %}" href="{{ urls.investment.index({ osRegions: true } ) }}#page-tabs">Overseas markets</a>
+			</li>
+			{#
+			<li class="page-nav_list_item">
+				<a class="page-nav_link{% if tab.isUkRegions %} page-nav_link--active{% endif %}" href="#page-tabs">UK regions</a>
+			</li>
+			#}
+		</ul>
+	</nav>
 
-			<h3 class="i-homepage-lists_heading">
-				<a href="{{ urls.investment.sectorTeams() }}">Sector Teams</a>
-			</h3>
+	<h2 class="fdi-overview-heading" id="progress-tab-heading">{{ progressHeading }}</h2>
 
-			<ul class="i-homepage-list">
-			{%- for team in sectorTeams.results %}
-				<li class="i-homepage-list_item">
-					<a href="{{ urls.investment.sectorTeam( team.id ) }}">{{ team.description }}</a>
-				</li>
-			{% endfor %}
-			</ul>
+	<p class="visually-hidden">Project broken down by:</p>
+	<ul class="key-fdi-win-progress">
+		<li class="key-fdi-win-progress_item">Won<span class="key-fdi-win-progress_block key-fdi-win-progress_block--won"></span></li>
+		<li class="key-fdi-win-progress_item">Verify win<span class="key-fdi-win-progress_block key-fdi-win-progress_block--verify-win"></span></li>
+		<li class="key-fdi-win-progress_item">Active pipeline<span class="key-fdi-win-progress_block key-fdi-win-progress_block--pipeline"></span></li>
+		<li class="key-fdi-win-progress_item">Target<span class="key-fdi-win-progress_target"></span></li>
+	</ul>
 
-			{%- endif %}
-		</div>
-		<div class="column-one-third">
+	{% macro sortedHeading( name, key, rows ) %}
+		<a class="sort-heading{% if rows.sortKey == key %} sort-heading--{{ rows.sortDir }}{% endif %}" href="{{ urls.addSort( urls.current( { query: { tab: tab.selected } } ), key, rows.sortKey, rows.sortDir ) }}#page-tabs" title="Sort by {{ name }}">{{ name }}</a>
+	{% endmacro %}
 
-			{%- if showOverseasRegions -%}
 
-			<h3><a href="{{ urls.investment.osRegions() }}">Overseas Regions</a></h3>
+	<div class="table-fdi-win-progress-wrapper">
+		<table class="table-fdi-win-progress">
+			<thead>
+				<tr>
+					<th class="table-fdi-win-progress_heading">{{ sortedHeading( progressColumnHeading, progressColumnHeadingKey, progressRows ) }}</th>
+					<th class="table-fdi-win-progress_heading">{{ sortedHeading( 'Project wins', sortKeys.projectWins, progressRows ) }}</th>
+					<th class="table-fdi-win-progress_heading">{{ sortedHeading( 'HVC wins', sortKeys.hvcWins, progressRows ) }}</th>
+					<th class="table-fdi-win-progress_heading"><span class="visually-hidden">Project breakdown</span></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td colspan="3"></td>
+					<td class="table-fdi-win-progress_scale-cell">
+						<span class="visually-hidden">Scale for graph:</span>
+						<span class="table-fdi-win-progress_scale">
+							{% for point in progressRows.scale %}
+								<span class="table-fdi-win-progress_scale-point">
+									<span class="table-fdi-win-progress_scale-point_value">{{ point }}</span>
+								</span>
+							{% endfor %}
+						</span>
+					</td>
+				</tr>
+				{% for row in progressRows %}
+				<tr>
+					<td class="table-fdi-win-progress_cell table-fdi-win-progress_cell--name">{{ row.name }}</td>
+					<td class="table-fdi-win-progress_cell table-fdi-win-progress_cell--total">{{ row.wins.total }}</td>
+					<td class="table-fdi-win-progress_cell table-fdi-win-progress_cell--hvc">{{ row.wins.hvc }}</td>
+					<td class="table-fdi-win-progress_cell table-fdi-win-progress_cell--progress">
+						<div class="table-fdi-win-progress_segments">
+							<span class="visually-hidden">Won: {{ row.segments.won.count }}</span>
+							<span class="table-fdi-win-progress_segment table-fdi-win-progress_segment--won" style="left: {{ row.segments.won.start }}%; width: {{ row.segments.won.percent }}%;"></span>
 
-			<ul class="i-homepage-list">
-			{%- for region in overseasRegions.results %}
-				<li class="i-homepage-list_item">
-					<a href="{{ urls.investment.osRegion( region.id ) }}">{{ region.name }}</a>
-				</li>
-			{% endfor %}
-			</ul>
+							<span class="visually-hidden">Verify win: {{ row.segments.verifyWin.count }}</span>
+							<span class="table-fdi-win-progress_segment table-fdi-win-progress_segment--verify-win" style="left: {{ row.segments.verifyWin.start }}%; width: {{ row.segments.verifyWin.percent }}%;"></span>
 
-			{%- endif %}
-		</div>
-		<div class="column-one-third">
+							<span class="visually-hidden">Active pipeline: {{ row.segments.pipeline.count }}</span>
+							<span class="table-fdi-win-progress_segment table-fdi-win-progress_segment--pipeline" style="left: {{ row.segments.pipeline.start }}%; width: {{ row.segments.pipeline.percent }}%;"></span>
 
-			{%- if showUkRegions -%}
+							<span class="visually-hidden">Target: {{ row.segments.target.count }}</span>
+							{% if row.segments.target.percent %}
+							<span class="table-fdi-win-progress_target" style="left: {{ row.segments.target.percent }}%;"></span>
+							{% endif %}
+						</div>
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
 
-			<h3><a href="{{ urls.investment.ukRegions() }}">UK Nations and Regions</a></h3>
-
-			<ul class="i-homepage-list">
-			{%- for group in ukRegions.results.region_groups %}
-			{%- for region in group.regions %}
-				<li class="i-homepage-list_item">
-					<a href="{{ urls.investment.ukRegion( region.id ) }}">{{ region.name }}</a>
-				</li>
-			{% endfor %}
-			{% endfor %}
-			</ul>
-
-			{%- endif %}
-		</div>
-	</section>
-#}
 {% endblock %}

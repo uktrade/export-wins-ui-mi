@@ -57,8 +57,11 @@ const stubs = [
 	[ 'uk_regions/region', '/mi/uk_regions/yorkshire-and-the-humber/' ],
 	[ 'uk_regions/win_table', '/mi/uk_regions/yorkshire-and-the-humber/win_table/' ],
 	[ 'uk_regions/top_non_hvcs', '/mi/uk_regions/yorkshire-and-the-humber/top_non_hvcs/' ],
+	[ 'uk_regions/months', '/mi/uk_regions/yorkshire-and-the-humber/months/' ],
 
-	[ 'investment/fdi/performance', '/mi/fdi/performance/' ],
+	[ 'investment/fdi/performance/index', '/mi/fdi/performance/' ],
+	[ 'investment/fdi/performance/sectors', '/mi/fdi/performance/sector/' ],
+	[ 'investment/fdi/performance/os_regions', '/mi/fdi/performance/os_region/' ],
 
 	[ 'investment/fdi/sector_teams/index', '/mi/fdi/sector_teams/' ],
 	[ 'investment/fdi/sector_teams/win_table', '/mi/fdi/sector_teams/1/win_table/' ],

@@ -12,7 +12,7 @@ describe( 'FDI Performance Headlines View Model', function(){
 		beforeEach( function(){
 
 			//get stub each time
-			input = getBackendStub( '/investment/fdi/performance' ).results;
+			input = getBackendStub( '/investment/fdi/performance/' ).results;
 			output = performanceHeadlines.create( input );
 		} );
 

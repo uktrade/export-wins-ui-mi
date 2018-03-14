@@ -9,6 +9,7 @@
 	padding: pem( 15 );
 	margin-top: pem( 30 );
 	max-width: 60%;
+	min-width: pem( 145 );
 
 	@include media( tablet ){
 		margin-top: 0;

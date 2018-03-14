@@ -1,4 +1,4 @@
-@mixin core-64($line-height: (20 / 12), $line-height-640: (15 / 10), $tabular-numbers: false, $font-weight: 400) {
+@mixin core-12($line-height: (20 / 12), $line-height-640: (15 / 10), $tabular-numbers: false, $font-weight: 400) {
 	$font-size: 12px;
 	$font-size-640: 10px;
 	$font-size-print: 11pt;
