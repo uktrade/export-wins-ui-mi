@@ -7,8 +7,7 @@ const takeScreenshot = require( '../../helpers/take-screenshot' );
 
 const By = webdriver.By;
 
-
-describe( 'Investment Index Page', function(){
+fdescribe( 'Investment Index Page', function(){
 
 	beforeAll( function( done ){
 
@@ -19,60 +18,111 @@ describe( 'Investment Index Page', function(){
 
 	describe( 'Page heading', function(){
 
-		let heading;
+		it( 'Should have the correct tag and title', async function( done ){
 
-		beforeAll( function( done ){
+			try {
 
-			driver.findElement( By.className( 'page-heading' ) ).then( ( headingElem ) => {
-
-				heading = headingElem;
-				done();
-
-			} ).catch( done.fail );
-		} );
-
-		it( 'Should have the correct title', function( done ){
-
-			heading.getText().then( ( text ) => {
+				const heading = await driver.findElement( By.className( 'page-heading' ) );
+				const text = await heading.getText();
+				const tagName = await heading.getTagName();
 
 				expect( text ).toEqual( 'Investment performance' );
-				done();
-
-			} ).catch( done.fail );
-		} );
-
-		it( 'Should have the correct tag', function( done ){
-
-			heading.getTagName().then( ( tagName ) => {
-
 				expect( tagName ).toEqual( 'h1' );
 				done();
 
-			} ).catch( done.fail );
+			} catch( e ){
+
+				done.fail( e );
+			}
+		} );
+	} );
+
+	describe( 'Overview tabs', function(){
+
+		it( 'Should have two links', async function( done ){
+
+			try {
+
+				const links = await driver.findElements( By.css( '#page-tabs .page-nav_link' ) );
+				const text1 = await links[ 0 ].getText();
+				const text2 = await links[ 1 ].getText();
+
+				expect( text1 ).toEqual( 'Sectors' );
+				expect( text2 ).toEqual( 'Overseas markets' );
+				done();
+
+			} catch( e ){
+
+				done.fail( e );
+			}
 		} );
 	} );
 
 	describe( 'Overview heading', function(){
 
-		let overviewHeading;
+		it( 'Should have the correct heading', async function( done ){
 
-		beforeEach( function( done ){
+			try {
 
-			driver.findElement( By.className( 'fdi-overview-heading' ) ).then( ( overviewHeadingElem ) => {
-
-				overviewHeading = overviewHeadingElem;
-				done();
-
-			} ).catch( done.fail );
-		} );
-
-		it( 'Should have the correct heading', function( done ){
-
-			overviewHeading.getText().then( ( text ) => {
+				const overviewHeading = await driver.findElement( By.id( 'progress-tab-heading' ) );
+				const text = await overviewHeading.getText();
 
 				expect( text ).toEqual( 'Sectors' );
 				done();
-			} );
+
+			} catch( e ){
+
+				done.fail( e );
+			}
+		} );
+	} );
+
+	describe( 'Clicking the Overseas markets link', function(){
+
+		beforeEach( async function( done ){
+
+			try {
+
+				const linkElems = await driver.findElements( By.css( '#page-tabs .page-nav_link' ) );
+				await linkElems[ 1 ].click();
+				done();
+
+			} catch( e ){
+
+				done.fail( e );
+			}
+		} );
+
+		it( 'Should have the overseas markets tab selected', async function( done ){
+
+			try {
+
+				const linkElem = await driver.findElement( By.css( '#page-tabs .page-nav_link--active' ) );
+				const text = await linkElem.getText();
+
+				expect( text ).toEqual( 'Overseas markets' );
+				done();
+
+			} catch( e ) {
+
+				done.fail( e );
+			}
+		} );
+
+		it( 'Should have the correct heading', async function( done ){
+
+			try {
+
+				const overviewHeading = await driver.findElement( By.id( 'progress-tab-heading' ) );
+				const text = await overviewHeading.getText();
+
+				expect( text ).toEqual( 'Overseas markets' );
+				done();
+
+			} catch( e ){
+
+				done.fail( e );
+			}
 		} );
 	} );
 } );
