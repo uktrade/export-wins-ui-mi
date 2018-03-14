@@ -205,7 +205,7 @@ describe( 'Investment FDI backend service', function(){
 
 				fdiService.getSectorsPerformance( req ).then( () => {
 
-					checkBackendArgs( '/mi/fdi/performance/tab/sector/', req );
+					checkBackendArgs( '/mi/fdi/performance/sector/', req );
 					done();
 				} );
 			} );
@@ -217,7 +217,7 @@ describe( 'Investment FDI backend service', function(){
 
 				fdiService.getOverseasRegionsPerformance( req ).then( () => {
 
-					checkBackendArgs( '/mi/fdi/performance/tab/os_region/', req );
+					checkBackendArgs( '/mi/fdi/performance/os_region/', req );
 					done();
 				} );
 			} );

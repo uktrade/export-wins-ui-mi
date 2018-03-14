@@ -456,7 +456,7 @@ describe( 'Backend stub', function(){
 
 				it( 'Should return the performance', function( done ){
 
-					checkMultipleYears( '/mi/fdi/performance/tab/sector/', '/investment/fdi/performance/tab.sectors', done );
+					checkMultipleYears( '/mi/fdi/performance/sector/', '/investment/fdi/performance/sectors', done );
 				} );
 			} );
 
@@ -464,7 +464,7 @@ describe( 'Backend stub', function(){
 
 				it( 'Should return the performance', function( done ){
 
-					checkMultipleYears( '/mi/fdi/performance/tab/os_region/', '/investment/fdi/performance/tab.os_regions', done );
+					checkMultipleYears( '/mi/fdi/performance/os_region/', '/investment/fdi/performance/os_regions', done );
 				} );
 			} );
 

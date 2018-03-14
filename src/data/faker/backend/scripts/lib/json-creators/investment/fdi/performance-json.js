@@ -7,8 +7,8 @@ module.exports = {
 		return generateSchema( '/investment/fdi/performance/index.schema', year );
 	},
 
-	tab: function( year ){
+	detail: function( year ){
 
-		return generateSchema( '/investment/fdi/performance/tab.schema', year );
+		return generateSchema( '/investment/fdi/performance/detail.schema', year );
 	}
 };

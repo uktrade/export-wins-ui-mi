@@ -87,8 +87,8 @@ const yearlyFiles = {
 	'uk_regions/win_table': ukRegionJson.createWinTable,
 
 	'investment/fdi/performance/index': fdiPerformanceJson.index,
-	'investment/fdi/performance/tab.sectors': fdiPerformanceJson.tab,
-	'investment/fdi/performance/tab.os_regions': fdiPerformanceJson.tab,
+	'investment/fdi/performance/sectors': fdiPerformanceJson.detail,
+	'investment/fdi/performance/os_regions': fdiPerformanceJson.detail,
 
 	'investment/fdi/sector_teams/index': fdiSectorTeamsJson.createIndex,
 	'investment/fdi/sector_teams/win_table': fdiSectorTeamsJson.createWinTable,

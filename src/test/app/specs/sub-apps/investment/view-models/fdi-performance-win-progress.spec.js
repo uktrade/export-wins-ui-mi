@@ -32,7 +32,7 @@ describe( 'FDI Performance Win Progress View Model', function(){
 		beforeEach( function(){
 
 			//get stub each time
-			input = getBackendStub( '/investment/fdi/performance/tab.sectors' ).results;
+			input = getBackendStub( '/investment/fdi/performance/sectors' ).results;
 			output = performanceWinProgress.create( input );
 		} );
 

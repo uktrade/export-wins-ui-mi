@@ -92,12 +92,12 @@ function getPerformance( req ){
 
 function getSectorsPerformance( req ){
 
-	return getJson( '/mi/fdi/performance/tab/sector/', req );
+	return getJson( '/mi/fdi/performance/sector/', req );
 }
 
 function getOverseasRegionsPerformance( req ){
 
-	return getJson( '/mi/fdi/performance/tab/os_region/', req );
+	return getJson( '/mi/fdi/performance/os_region/', req );
 }
 
 module.exports = {

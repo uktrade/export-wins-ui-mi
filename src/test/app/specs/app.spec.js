@@ -865,7 +865,7 @@ if( config.backend.mock ){
 					it( 'Should return a 200 with the correct heading', function( done ){
 
 						interceptBackend.getStub( `/mi/fdi/performance/?year=2017`, 200, '/investment/fdi/performance/' );
-						interceptBackend.getStub( `/mi/fdi/performance/tab/sector/?year=2017`, 200, '/investment/fdi/performance/tab.sectors' );
+						interceptBackend.getStub( `/mi/fdi/performance/sector/?year=2017`, 200, '/investment/fdi/performance/sectors' );
 
 						supertest( app ).get( '/investment/' ).end( ( err, res ) => {
 
@@ -881,7 +881,7 @@ if( config.backend.mock ){
 					it( 'Should return a 200 with the correct heading', function( done ){
 
 						interceptBackend.getStub( `/mi/fdi/performance/?year=2017`, 200, '/investment/fdi/performance/' );
-						interceptBackend.getStub( `/mi/fdi/performance/tab/sector/?year=2017`, 200, '/investment/fdi/performance/tab.sectors' );
+						interceptBackend.getStub( `/mi/fdi/performance/sector/?year=2017`, 200, '/investment/fdi/performance/sectors' );
 
 						supertest( app ).get( '/investment/?tab=sectors' ).end( ( err, res ) => {
 
@@ -897,7 +897,7 @@ if( config.backend.mock ){
 					it( 'Should return a 200 with the correct heading', function( done ){
 
 						interceptBackend.getStub( `/mi/fdi/performance/?year=2017`, 200, '/investment/fdi/performance/' );
-						interceptBackend.getStub( `/mi/fdi/performance/tab/os_region/?year=2017`, 200, '/investment/fdi/performance/tab.os_regions' );
+						interceptBackend.getStub( `/mi/fdi/performance/os_region/?year=2017`, 200, '/investment/fdi/performance/os_regions' );
 
 						supertest( app ).get( '/investment/?tab=os-regions' ).end( ( err, res ) => {
 

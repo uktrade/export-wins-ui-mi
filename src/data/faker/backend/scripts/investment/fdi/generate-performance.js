@@ -7,8 +7,8 @@ let outputPath = path.resolve( __dirname, '../../../output/investment/fdi/perfor
 
 let jsonFiles = {
 	index: performance.index(),
-	'tab.sectors': performance.tab(),
-	'tab.os_regions': performance.tab()
+	sectors: performance.detail(),
+	os_regions: performance.detail()
 };
 
 writeJsonFiles( outputPath, jsonFiles );
