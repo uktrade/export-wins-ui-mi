@@ -130,6 +130,31 @@ describe( 'financialYear', function(){
 					expect( financialYear.getMonths( 2017 ) ).toEqual( monthList );
 				} );
 			} );
+
+			describe( 'March', function(){
+
+				it( 'Should return a list of months and years for the current financial year up to March', function(){
+
+					const monthList = [
+						{ year: 2017, name: 'April', number: 4 },
+						{ year: 2017, name: 'May', number: 5 },
+						{ year: 2017, name: 'June', number: 6 },
+						{ year: 2017, name: 'July', number: 7 },
+						{ year: 2017, name: 'August', number: 8 },
+						{ year: 2017, name: 'September', number: 9 },
+						{ year: 2017, name: 'October', number: 10 },
+						{ year: 2017, name: 'November', number: 11 },
+						{ year: 2017, name: 'December', number: 12 },
+						{ year: 2018, name: 'January', number: 1 },
+						{ year: 2018, name: 'February', number: 2 },
+						{ year: 2018, name: 'March', number: 3 }
+					];
+
+					mockdate.set( '2018-03-14' );
+
+					expect( financialYear.getMonths( 2017 ) ).toEqual( monthList );
+				} );
+			} );
 		} );
 	} );
 } );

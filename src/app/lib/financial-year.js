@@ -43,7 +43,8 @@ module.exports = {
 		if( fy == currentFy ){
 
 			const currentMonthPositionInList = ( ( new Date() ).getMonth() - 3 );
-			const endPoint = ( currentMonthPositionInList + 1 );
+			const isLast = ( currentMonthPositionInList === -1 );
+			const endPoint = ( isLast ? monthList.length : ( currentMonthPositionInList + 1 ) );
 
 			months = monthList.slice( 0, endPoint );
 
