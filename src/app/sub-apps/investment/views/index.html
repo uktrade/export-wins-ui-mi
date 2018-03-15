@@ -20,13 +20,13 @@
 {% block page_content %}
 
 	<h2 class="fdi-overview-heading">Headlines</h2>
-	<h3 class="fdi-overview-sub-heading">On <span class="fdi-page-date_emphasize">{{ null | dateOnly }}</span> at {{ null | timeOnly }} releated to <span class="fdi-page-date_emphasize">financial year {{ selectedYear }}/{{ ( selectedYear - 2000 ) + 1  }}</span></h3>
+	<h3 class="fdi-overview-sub-heading">On <span class="fdi-page-date_emphasize">{{ null | dateOnly }}</span> at {{ null | timeOnly }} related to <span class="fdi-page-date_emphasize">financial year {{ selectedYear }}/{{ ( selectedYear - 2000 ) + 1  }}</span></h3>
 
 	<section class="grid-row fdi-section">
 
 		<div class="column-one-quarter fdi-section-row">
 
-			{{ headlineFigure( 'Project wins', 'Total', headlines.wins.total | largeNumber ) }}
+			{{ headlineFigure( 'Project wins', 'Total', headlines.wins.total | preciseNumber ) }}
 
 			{{ headlineBreakdown( [
 				[ 'High', headlines.wins.percentage.high + '%' ],
@@ -51,17 +51,17 @@
 		</div>
 		<div class="column-one-quarter fdi-section-row">
 
-			{{ headlineSubFigure( 'Jobs', 'Total', headlines.jobs.total | largeNumber ) }}
+			{{ headlineSubFigure( 'Jobs', 'Total', headlines.jobs.total | preciseNumber ) }}
 
 			{{ headlineBreakdown( [
-				[ 'New jobs', headlines.jobs.new | largeNumber ],
-				[ 'Safeguarded jobs', headlines.jobs.safeguarded | largeNumber ]
+				[ 'New jobs', headlines.jobs.new | preciseNumber ],
+				[ 'Safeguarded jobs', headlines.jobs.safeguarded | preciseNumber ]
 			], 'jobs' ) }}
 
 		</div>
 		<div class="column-one-quarter">
 
-			{{ headlineSubFigure( 'Pipeline', 'Active', headlines.pipeline.total | largeNumber ) }}
+			{{ headlineSubFigure( 'Pipeline', 'Active', headlines.pipeline.total | preciseNumber ) }}
 
 			{{ headlineBreakdown( [
 				[ 'High', headlines.pipeline.percentage.high + '%' ],
