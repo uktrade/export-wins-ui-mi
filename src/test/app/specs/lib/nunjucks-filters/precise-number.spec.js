@@ -45,4 +45,13 @@ describe( 'Precise number', function(){
 			testAll( 3084510000, '3.08b' );
 		} );
 	} );
+
+	describe( 'Without a number', function(){
+
+		it( 'Should return null', function(){
+
+			expect( preciseNumber() ).toEqual( null );
+			expect( preciseNumber( 'test' ) ).toEqual( null );
+		} );
+	} );
 } );

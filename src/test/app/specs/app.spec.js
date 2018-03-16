@@ -907,6 +907,22 @@ if( config.backend.mock ){
 						} );
 					} );
 				} );
+
+				describe( 'With tab param set to uk-regions', function(){
+
+					it( 'Should return a 200 with the correct heading', function( done ){
+
+						interceptBackend.getStub( `/mi/fdi/performance/?year=2017`, 200, '/investment/fdi/performance/' );
+						interceptBackend.getStub( `/mi/fdi/performance/uk_region/?year=2017`, 200, '/investment/fdi/performance/uk_regions' );
+
+						supertest( app ).get( '/investment/?tab=uk-regions' ).end( ( err, res ) => {
+
+							checkResponse( res, 200 );
+							expect( getTitle( res ) ).toEqual( 'MI - Investment Homepage with UK regions' );
+							done();
+						} );
+					} );
+				} );
 			} );
 
 

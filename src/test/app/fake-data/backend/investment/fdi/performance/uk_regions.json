@@ -1,0 +1,385 @@
+{
+   "timestamp": 1521127095701,
+   "financial_year": {
+      "id": 2016,
+      "description": "2016-2017"
+   },
+   "results": [
+      {
+         "id": 4511,
+         "name": "sed voluptas neque",
+         "short_name": "quia",
+         "wins": {
+            "verify_win": {
+               "count": 108,
+               "percent": 48.59
+            },
+            "won": {
+               "count": 2271,
+               "percent": 48.29
+            },
+            "hvc": {
+               "count": 4069,
+               "percent": 8.78
+            },
+            "non_hvc": {
+               "count": 314,
+               "percent": 36.21
+            },
+            "total": 434
+         },
+         "target": 3251,
+         "jobs": {
+            "new": 3260,
+            "safeguarded": 2782,
+            "total": 4240
+         },
+         "pipeline": 4590
+      },
+      {
+         "id": 2246,
+         "name": "cupiditate eos architecto",
+         "short_name": "quia",
+         "wins": {
+            "verify_win": {
+               "count": 2752,
+               "percent": 97.26
+            },
+            "won": {
+               "count": 1728,
+               "percent": 21.32
+            },
+            "hvc": {
+               "count": 3611,
+               "percent": 77.87
+            },
+            "non_hvc": {
+               "count": 4934,
+               "percent": 86.22
+            },
+            "total": 1887
+         },
+         "target": 1358,
+         "jobs": {
+            "new": 4361,
+            "safeguarded": 1466,
+            "total": 3594
+         },
+         "pipeline": 3
+      },
+      {
+         "id": 1220,
+         "name": "ducimus quae ab",
+         "short_name": "voluptatem",
+         "wins": {
+            "verify_win": {
+               "count": 531,
+               "percent": 90.64
+            },
+            "won": {
+               "count": 1824,
+               "percent": 0.71
+            },
+            "hvc": {
+               "count": 3222,
+               "percent": 87.63
+            },
+            "non_hvc": {
+               "count": 56,
+               "percent": 50.01
+            },
+            "total": 4070
+         },
+         "target": 4725,
+         "jobs": {
+            "new": 4689,
+            "safeguarded": 434,
+            "total": 57
+         },
+         "pipeline": 2420
+      },
+      {
+         "id": 950,
+         "name": "mollitia quam vel",
+         "short_name": "dignissimos",
+         "wins": {
+            "verify_win": {
+               "count": 2232,
+               "percent": 25.69
+            },
+            "won": {
+               "count": 4381,
+               "percent": 25.69
+            },
+            "hvc": {
+               "count": 2110,
+               "percent": 76.44
+            },
+            "non_hvc": {
+               "count": 448,
+               "percent": 87.76
+            },
+            "total": 1394
+         },
+         "target": 4006,
+         "jobs": {
+            "new": 3927,
+            "safeguarded": 2904,
+            "total": 3886
+         },
+         "pipeline": 586
+      },
+      {
+         "id": 4437,
+         "name": "laudantium quo minus",
+         "short_name": "voluptatem",
+         "wins": {
+            "verify_win": {
+               "count": 390,
+               "percent": 53.82
+            },
+            "won": {
+               "count": 1568,
+               "percent": 48.91
+            },
+            "hvc": {
+               "count": 449,
+               "percent": 4.6
+            },
+            "non_hvc": {
+               "count": 166,
+               "percent": 98.26
+            },
+            "total": 3617
+         },
+         "target": 2090,
+         "jobs": {
+            "new": 699,
+            "safeguarded": 4714,
+            "total": 4413
+         },
+         "pipeline": 3568
+      },
+      {
+         "id": 191,
+         "name": "aliquid atque vero",
+         "short_name": "dolore",
+         "wins": {
+            "verify_win": {
+               "count": 2850,
+               "percent": 31.82
+            },
+            "won": {
+               "count": 4437,
+               "percent": 85.51
+            },
+            "hvc": {
+               "count": 2629,
+               "percent": 6.76
+            },
+            "non_hvc": {
+               "count": 2662,
+               "percent": 45.46
+            },
+            "total": 2359
+         },
+         "target": 3190,
+         "jobs": {
+            "new": 29,
+            "safeguarded": 1959,
+            "total": 3059
+         },
+         "pipeline": 1447
+      },
+      {
+         "id": 3923,
+         "name": "aut et voluptas",
+         "short_name": "corrupti",
+         "wins": {
+            "verify_win": {
+               "count": 3279,
+               "percent": 2.67
+            },
+            "won": {
+               "count": 2349,
+               "percent": 5.01
+            },
+            "hvc": {
+               "count": 4220,
+               "percent": 13.55
+            },
+            "non_hvc": {
+               "count": 1475,
+               "percent": 23.92
+            },
+            "total": 3511
+         },
+         "target": 2412,
+         "jobs": {
+            "new": 1594,
+            "safeguarded": 2643,
+            "total": 1007
+         },
+         "pipeline": 2197
+      },
+      {
+         "id": 676,
+         "name": "occaecati velit sapiente",
+         "short_name": "dicta",
+         "wins": {
+            "verify_win": {
+               "count": 4020,
+               "percent": 22.05
+            },
+            "won": {
+               "count": 3840,
+               "percent": 87.63
+            },
+            "hvc": {
+               "count": 1284,
+               "percent": 33.18
+            },
+            "non_hvc": {
+               "count": 4585,
+               "percent": 13.11
+            },
+            "total": 546
+         },
+         "target": 1068,
+         "jobs": {
+            "new": 4516,
+            "safeguarded": 3084,
+            "total": 4578
+         },
+         "pipeline": 484
+      },
+      {
+         "id": 1959,
+         "name": "voluptas consequuntur ad",
+         "short_name": "eveniet",
+         "wins": {
+            "verify_win": {
+               "count": 334,
+               "percent": 8.41
+            },
+            "won": {
+               "count": 3465,
+               "percent": 34.54
+            },
+            "hvc": {
+               "count": 2194,
+               "percent": 65.25
+            },
+            "non_hvc": {
+               "count": 2578,
+               "percent": 41.41
+            },
+            "total": 2208
+         },
+         "target": 3913,
+         "jobs": {
+            "new": 3162,
+            "safeguarded": 3365,
+            "total": 3989
+         },
+         "pipeline": 4562
+      },
+      {
+         "id": 836,
+         "name": "exercitationem dolores aspernatur",
+         "short_name": "necessitatibus",
+         "wins": {
+            "verify_win": {
+               "count": 3265,
+               "percent": 10.96
+            },
+            "won": {
+               "count": 2278,
+               "percent": 22.61
+            },
+            "hvc": {
+               "count": 652,
+               "percent": 89.27
+            },
+            "non_hvc": {
+               "count": 4742,
+               "percent": 30.92
+            },
+            "total": 4097
+         },
+         "target": 3539,
+         "jobs": {
+            "new": 4928,
+            "safeguarded": 3763,
+            "total": 2746
+         },
+         "pipeline": 3523
+      },
+      {
+         "id": 3594,
+         "name": "porro ut inventore",
+         "short_name": "animi",
+         "wins": {
+            "verify_win": {
+               "count": 2315,
+               "percent": 40.69
+            },
+            "won": {
+               "count": 2318,
+               "percent": 74.63
+            },
+            "hvc": {
+               "count": 1077,
+               "percent": 80.61
+            },
+            "non_hvc": {
+               "count": 3974,
+               "percent": 4.23
+            },
+            "total": 4616
+         },
+         "target": 3386,
+         "jobs": {
+            "new": 593,
+            "safeguarded": 4030,
+            "total": 4701
+         },
+         "pipeline": 4851
+      },
+      {
+         "id": 2394,
+         "name": "fuga atque consequatur",
+         "short_name": "numquam",
+         "wins": {
+            "verify_win": {
+               "count": 4690,
+               "percent": 28.79
+            },
+            "won": {
+               "count": 4002,
+               "percent": 2.47
+            },
+            "hvc": {
+               "count": 764,
+               "percent": 37.86
+            },
+            "non_hvc": {
+               "count": 3158,
+               "percent": 99.52
+            },
+            "total": 1954
+         },
+         "target": 4851,
+         "jobs": {
+            "new": 2754,
+            "safeguarded": 4595,
+            "total": 776
+         },
+         "pipeline": 2324
+      }
+   ],
+   "date_range": {
+      "start": "Fri, 01 Apr 2016 00:00:00 GMT",
+      "end": "Fri, 31 Mar 2017 23:59:59 GMT"
+   }
+}

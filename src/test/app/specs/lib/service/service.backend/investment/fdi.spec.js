@@ -222,6 +222,18 @@ describe( 'Investment FDI backend service', function(){
 				} );
 			} );
 		} );
+
+		describe( 'FDI UK regions performance', function(){
+
+			it( 'Should call the correct API', function( done ){
+
+				fdiService.getUkRegionsPerformance( req ).then( () => {
+
+					checkBackendArgs( '/mi/fdi/performance/uk_region/', req );
+					done();
+				} );
+			} );
+		} );
 	} );
 
 	describe( 'Aggregate methods', function(){
@@ -288,6 +300,29 @@ describe( 'Investment FDI backend service', function(){
 
 					expect( data.performance ).toEqual( spies.getPerformance.response );
 					expect( data.overseasRegions ).toEqual( spies.getOverseasRegionsPerformance.response );
+
+					done();
+
+				} ).catch( done.fail );
+			} );
+		} );
+
+		describe( 'getUkRegionsHomepageData data', function(){
+
+			it( 'Should return the correct data', function( done ){
+
+				const spies = createSpies( [
+					'getPerformance',
+					'getUkRegionsPerformance'
+				] );
+
+				fdiService.getUkRegionsHomepageData( req ).then( ( data ) => {
+
+					expect( spies.getPerformance.spy ).toHaveBeenCalledWith( req );
+					expect( spies.getUkRegionsPerformance.spy ).toHaveBeenCalledWith( req );
+
+					expect( data.performance ).toEqual( spies.getPerformance.response );
+					expect( data.ukRegions ).toEqual( spies.getUkRegionsPerformance.response );
 
 					done();
 

@@ -1,0 +1,50 @@
+.table-fdi-region-progress {
+	border-collapse: collapse;
+	margin: 0;
+	padding: 0;
+	min-width: pem( 750 );
+}
+
+.table-fdi-region-progress_heading {
+
+	border-bottom: 4px solid #000;
+	text-align: left;
+	padding-bottom: pem( 10 );
+	vertical-align: bottom;
+
+	&:first-of-type {
+		padding-left: pem( 10 );
+	}
+}
+
+.table-fdi-region-progress_cell {
+
+	@include core-19;
+	padding: pem( 14, 19 ) 0;
+	border-bottom: 1px solid #000;
+}
+
+.table-fdi-region-progress_cell--name {
+	padding-left: pem( 10, 19 );
+	width: 48%;
+}
+
+.table-fdi-region-progress_cell--total-wins {
+	width: 10%;
+}
+
+.table-fdi-region-progress_cell--verify {
+	width: 12%;
+}
+
+.table-fdi-region-progress_cell--total-jobs {
+	width: 10%;
+}
+
+.table-fdi-region-progress_cell--new-jobs {
+	width: 10%;
+}
+
+.table-fdi-region-progress_cell--safe-jobs {
+	width: 10%;
+}

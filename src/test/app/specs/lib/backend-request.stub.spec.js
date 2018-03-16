@@ -460,11 +460,19 @@ describe( 'Backend stub', function(){
 				} );
 			} );
 
-			describe( 'Getting the FDI Performance for sectors tab', function(){
+			describe( 'Getting the FDI Performance for overseas regions tab', function(){
 
 				it( 'Should return the performance', function( done ){
 
 					checkMultipleYears( '/mi/fdi/performance/os_region/', '/investment/fdi/performance/os_regions', done );
+				} );
+			} );
+
+			describe( 'Getting the FDI Performance for uk regions tab', function(){
+
+				it( 'Should return the performance', function( done ){
+
+					checkMultipleYears( '/mi/fdi/performance/uk_region/', '/investment/fdi/performance/uk_regions', done );
 				} );
 			} );
 

@@ -100,6 +100,11 @@ function getOverseasRegionsPerformance( req ){
 	return getJson( '/mi/fdi/performance/os_region/', req );
 }
 
+function getUkRegionsPerformance( req ){
+
+	return getJson( '/mi/fdi/performance/uk_region/', req );
+}
+
 module.exports = {
 
 	getSectorTeams,
@@ -112,6 +117,7 @@ module.exports = {
 	getPerformance,
 	getSectorsPerformance,
 	getOverseasRegionsPerformance,
+	getUkRegionsPerformance,
 
 	getSectorsHomepageData: function( req ){
 
@@ -141,6 +147,22 @@ module.exports = {
 			return {
 				performance: data[ 0 ],
 				overseasRegions: data[ 1 ]
+			};
+		} );
+	},
+
+	getUkRegionsHomepageData: function( req ){
+
+		return getAll( 'getUkRegionsHomepageData', [
+
+			getPerformance( req ),
+			getUkRegionsPerformance( req )
+
+		], function( data ){
+
+			return {
+				performance: data[ 0 ],
+				ukRegions: data[ 1 ]
 			};
 		} );
 	}

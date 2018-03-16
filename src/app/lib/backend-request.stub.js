@@ -76,6 +76,7 @@ const filteredStubs = [
 	[ '/mi/fdi/performance/', 'investment/fdi/performance/index'  ],
 	[ '/mi/fdi/performance/sector/', 'investment/fdi/performance/sectors'  ],
 	[ '/mi/fdi/performance/os_region/', 'investment/fdi/performance/os_regions'  ],
+	[ '/mi/fdi/performance/uk_region/', 'investment/fdi/performance/uk_regions'  ],
 
 	[ '/mi/fdi/sector_teams/', 'investment/fdi/sector_teams/index'  ],
 	//[ '/mi/fdi/sector_teams/[0-9]+/win_table/', 'investment/fdi/sector_teams/win_table'  ],
