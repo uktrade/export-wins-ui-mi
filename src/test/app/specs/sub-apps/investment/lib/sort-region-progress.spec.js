@@ -158,7 +158,7 @@ const staticInput = [
       }
    ];
 
-fdescribe( 'Sort Region Progress', function(){
+describe( 'Sort Region Progress', function(){
 
 	describe( 'When there are not any wins', function(){
 
