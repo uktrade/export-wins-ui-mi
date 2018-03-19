@@ -7,7 +7,7 @@ const takeScreenshot = require( '../../helpers/take-screenshot' );
 
 const By = webdriver.By;
 
-fdescribe( 'Investment Index Page', function(){
+describe( 'Investment Index Page', function(){
 
 	beforeAll( function( done ){
 
@@ -39,16 +39,19 @@ fdescribe( 'Investment Index Page', function(){
 
 	describe( 'Overview tabs', function(){
 
-		it( 'Should have two links', async function( done ){
+		it( 'Should have three links', async function( done ){
 
 			try {
 
 				const links = await driver.findElements( By.css( '#page-tabs .page-nav_link' ) );
 				const text1 = await links[ 0 ].getText();
 				const text2 = await links[ 1 ].getText();
+				const text3 = await links[ 2 ].getText();
 
+				expect( links.length ).toEqual( 3 );
 				expect( text1 ).toEqual( 'Sectors' );
 				expect( text2 ).toEqual( 'Overseas markets' );
+				expect( text3 ).toEqual( 'UK regions' );
 				done();
 
 			} catch( e ){
@@ -117,6 +120,55 @@ fdescribe( 'Investment Index Page', function(){
 				const text = await overviewHeading.getText();
 
 				expect( text ).toEqual( 'Overseas markets' );
+				done();
+
+			} catch( e ){
+
+				done.fail( e );
+			}
+		} );
+	} );
+
+	describe( 'Clicking the UK regions link', function(){
+
+		beforeEach( async function( done ){
+
+			try {
+
+				const linkElems = await driver.findElements( By.css( '#page-tabs .page-nav_link' ) );
+				await linkElems[ 2 ].click();
+				done();
+
+			} catch( e ){
+
+				done.fail( e );
+			}
+		} );
+
+		it( 'Should have the UK regions tab selected', async function( done ){
+
+			try {
+
+				const linkElem = await driver.findElement( By.css( '#page-tabs .page-nav_link--active' ) );
+				const text = await linkElem.getText();
+
+				expect( text ).toEqual( 'UK regions' );
+				done();
+
+			} catch( e ) {
+
+				done.fail( e );
+			}
+		} );
+
+		it( 'Should have the correct heading', async function( done ){
+
+			try {
+
+				const overviewHeading = await driver.findElement( By.id( 'progress-tab-heading' ) );
+				const text = await overviewHeading.getText();
+
+				expect( text ).toEqual( 'UK regions' );
 				done();
 
 			} catch( e ){
