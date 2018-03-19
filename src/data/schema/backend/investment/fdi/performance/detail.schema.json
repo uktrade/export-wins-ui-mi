@@ -30,7 +30,7 @@
 				}
 			},
 			"target": { "$ref": "$refs/fdi.json#/number" },
-			"jobs": { "$ref": "$refs/fdi.json#/jobs" },
+			"jobs": { "$ref": "$refs/fdi.json#/jobs2" },
 			"pipeline": { "$ref": "$refs/fdi.json#/number" }
 		}
 	}
