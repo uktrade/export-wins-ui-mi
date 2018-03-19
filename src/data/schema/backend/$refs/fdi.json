@@ -16,6 +16,23 @@
 		}
 	},
 
+	"jobs2": {
+		"type": "object",
+		"required": [ "new", "safe", "total" ],
+		"properties": {
+
+			"new": {
+				"$ref": "#/number"
+			},
+			"safe": {
+				"$ref": "#/number"
+			},
+			"total": {
+				"$ref": "#/number"
+			}
+		}
+	},
+
 	"campaign": {
 		"type": "object",
 		"required": [ "hvc", "non_hvc" ],

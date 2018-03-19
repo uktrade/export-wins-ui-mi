@@ -2,7 +2,8 @@
 
 {% if tab.isOverseasRegions %}
 	{% set pageName='Investment Homepage with overseas markets' %}
-
+{% elif tab.isUkRegions %}
+	{% set pageName='Investment Homepage with UK regions' %}
 {% else %}
 	{% set pageName='Investment Homepage' %}
 {% endif %}
@@ -12,6 +13,8 @@
 {% from 'macros/page-heading.html' import pageHeading %}
 {% from './macros/headline-figures.html' import headlineFigure, headlineSubFigure, headlineBreakdown %}
 {% from './macros/table-data.html' import dataTable %}
+{% from './macros/table-win-progress.html' import winProgressTable %}
+{% from './macros/table-region-progress.html' import regionProgressTable %}
 
 {% block page_heading %}
 	{{ pageHeading( 'Investment performance' ) }}
@@ -140,16 +143,15 @@
 			<li class="page-nav_list_item">
 				<a class="page-nav_link{% if tab.isOverseasRegions %} page-nav_link--active{% endif %}" href="{{ urls.investment.index({ osRegions: true } ) }}#page-tabs">Overseas markets</a>
 			</li>
-			{#
 			<li class="page-nav_list_item">
-				<a class="page-nav_link{% if tab.isUkRegions %} page-nav_link--active{% endif %}" href="#page-tabs">UK regions</a>
+				<a class="page-nav_link{% if tab.isUkRegions %} page-nav_link--active{% endif %}" href="{{ urls.investment.index({ ukRegions: true } ) }}#page-tabs">UK regions</a>
 			</li>
-			#}
 		</ul>
 	</nav>
 
 	<h2 class="fdi-overview-heading" id="progress-tab-heading">{{ progressHeading }}</h2>
 
+	{% if not tab.isUkRegions %}
 	<p class="visually-hidden">Project broken down by:</p>
 	<ul class="key-fdi-win-progress">
 		<li class="key-fdi-win-progress_item">Won<span class="key-fdi-win-progress_block key-fdi-win-progress_block--won"></span></li>
@@ -157,62 +159,21 @@
 		<li class="key-fdi-win-progress_item">Active pipeline<span class="key-fdi-win-progress_block key-fdi-win-progress_block--pipeline"></span></li>
 		<li class="key-fdi-win-progress_item">Target<span class="key-fdi-win-progress_target"></span></li>
 	</ul>
-
-	{% macro sortedHeading( name, key, rows ) %}
-		<a class="sort-heading{% if rows.sortKey == key %} sort-heading--{{ rows.sortDir }}{% endif %}" href="{{ urls.addSort( urls.current( { query: { tab: tab.selected } } ), key, rows.sortKey, rows.sortDir ) }}#page-tabs" title="Sort by {{ name }}">{{ name }}</a>
-	{% endmacro %}
-
+	{% endif %}
 
 	<div class="table-fdi-win-progress-wrapper">
-		<table class="table-fdi-win-progress">
-			<thead>
-				<tr>
-					<th class="table-fdi-win-progress_heading">{{ sortedHeading( progressColumnHeading, progressColumnHeadingKey, progressRows ) }}</th>
-					<th class="table-fdi-win-progress_heading">{{ sortedHeading( 'Project wins', sortKeys.projectWins, progressRows ) }}</th>
-					<th class="table-fdi-win-progress_heading">{{ sortedHeading( 'HVC wins', sortKeys.hvcWins, progressRows ) }}</th>
-					<th class="table-fdi-win-progress_heading"><span class="visually-hidden">Project breakdown</span></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td colspan="3"></td>
-					<td class="table-fdi-win-progress_scale-cell">
-						<span class="visually-hidden">Scale for graph:</span>
-						<span class="table-fdi-win-progress_scale">
-							{% for point in progressRows.scale %}
-								<span class="table-fdi-win-progress_scale-point">
-									<span class="table-fdi-win-progress_scale-point_value">{{ point }}</span>
-								</span>
-							{% endfor %}
-						</span>
-					</td>
-				</tr>
-				{% for row in progressRows %}
-				<tr>
-					<td class="table-fdi-win-progress_cell table-fdi-win-progress_cell--name">{{ row.name }}</td>
-					<td class="table-fdi-win-progress_cell table-fdi-win-progress_cell--total">{{ row.wins.total }}</td>
-					<td class="table-fdi-win-progress_cell table-fdi-win-progress_cell--hvc">{{ row.wins.hvc }}</td>
-					<td class="table-fdi-win-progress_cell table-fdi-win-progress_cell--progress">
-						<div class="table-fdi-win-progress_segments">
-							<span class="visually-hidden">Won: {{ row.segments.won.count }}</span>
-							<span class="table-fdi-win-progress_segment table-fdi-win-progress_segment--won" style="left: {{ row.segments.won.start }}%; width: {{ row.segments.won.percent }}%;"></span>
 
-							<span class="visually-hidden">Verify win: {{ row.segments.verifyWin.count }}</span>
-							<span class="table-fdi-win-progress_segment table-fdi-win-progress_segment--verify-win" style="left: {{ row.segments.verifyWin.start }}%; width: {{ row.segments.verifyWin.percent }}%;"></span>
+		{% set url=urls.current( { query: { tab: tab.selected } } ) %}
 
-							<span class="visually-hidden">Active pipeline: {{ row.segments.pipeline.count }}</span>
-							<span class="table-fdi-win-progress_segment table-fdi-win-progress_segment--pipeline" style="left: {{ row.segments.pipeline.start }}%; width: {{ row.segments.pipeline.percent }}%;"></span>
+		{%- if tab.isUkRegions -%}
 
-							<span class="visually-hidden">Target: {{ row.segments.target.count }}</span>
-							{% if row.segments.target.percent %}
-							<span class="table-fdi-win-progress_target" style="left: {{ row.segments.target.percent }}%;"></span>
-							{% endif %}
-						</div>
-					</td>
-				</tr>
-				{% endfor %}
-			</tbody>
-		</table>
+			{{ regionProgressTable( progressRows, url, sortKeys ) }}
+
+		{% else -%}
+
+			{{ winProgressTable( progressRows, url, progressColumnHeading, progressColumnHeadingKey, sortKeys ) }}
+
+		{%- endif %}
 	</div>
 
 {% endblock %}

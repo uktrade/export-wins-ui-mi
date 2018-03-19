@@ -1,8 +1,5 @@
 const navMiddleware = require( '../../middleware/nav' );
 const indexController = require( './controllers/controller.index' );
-//const sectorTeamsController = require( './controllers/controller.sector-teams' );
-const osRegionsController = require( './controllers/controller.overseas-regions' );
-const ukRegionsController = require( './controllers/controller.uk-regions' );
 
 const MOUNT_POINT = '/investment';
 
@@ -22,23 +19,6 @@ module.exports = function( router, user/*, isDev*/ ){
 	}
 
 	get( '/', indexController );
-
-	//get( '/sector-teams/:id/hvc-projects/', sectorTeamsController.hvcProjects );
-	//get( '/sector-teams/:id/non-hvc-projects/', sectorTeamsController.nonHvcProjects );
-
-	get( '/overseas-regions/', osRegionsController.regions );
-	get( '/overseas-regions/:id/', osRegionsController.region );
-	get( '/overseas-regions/:id/hvc-performance/', osRegionsController.hvcPerformance );
-	get( '/overseas-regions/:id/non-hvc-performance/', osRegionsController.nonHvcPerformance );
-	get( '/overseas-regions/:id/hvc-projects/', osRegionsController.hvcProjects );
-	get( '/overseas-regions/:id/non-hvc-projects/', osRegionsController.nonHvcProjects );
-
-	get( '/uk-regions/', ukRegionsController.regions );
-	get( '/uk-regions/:id/', ukRegionsController.region );
-	get( '/uk-regions/:id/hvc-performance/', ukRegionsController.hvcPerformance );
-	get( '/uk-regions/:id/non-hvc-performance/', ukRegionsController.nonHvcPerformance );
-	get( '/uk-regions/:id/hvc-projects/', ukRegionsController.hvcProjects );
-	get( '/uk-regions/:id/non-hvc-projects/', ukRegionsController.nonHvcProjects );
 
 	return router;
 };

@@ -1,0 +1,3 @@
+{% macro sortedHeading( url, name, key, rows ) %}
+	<a class="sort-heading{% if rows.sortKey == key %} sort-heading--{{ rows.sortDir }}{% endif %}" href="{{ urls.addSort( url, key, rows.sortKey, rows.sortDir ) }}#page-tabs" title="Sort by {{ name }}">{{ name }}</a>
+{% endmacro %}

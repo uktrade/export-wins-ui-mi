@@ -2,9 +2,11 @@ const fdiService = require( '../../../lib/service/service.backend/investment/fdi
 const renderError = require( '../../../lib/render-error' );
 const sortSectorProgress = require( '../lib/sort-sector-progress' );
 const sortMarketProgress = require( '../lib/sort-market-progress' );
+const sortRegionProgress = require( '../lib/sort-region-progress' );
 const performanceHeadlinesViewModel = require( '../view-models/fdi-performance-headlines' );
 const performanceDetailsViewModel = require( '../view-models/fdi-performance-details' );
 const performanceWinProgressViewModel = require( '../view-models/fdi-performance-win-progress' );
+const regionProgressViewModel = require( '../view-models/fdi-performance-region-progress' );
 
 const tabValues = {
 	overseasRegions: 'os-regions',
@@ -48,43 +50,61 @@ module.exports = async function( req, res ){
 	try {
 
 		let data;
-		let sortRows;
 		let progressRows;
 		let progressHeading;
-		let progressColumnHeading;
-		let progressColumnHeadingKey;
+		let viewData = {};
 
-		if( tab.isSectors ){
+		if( tab.isUkRegions ){
 
-			data = await fdiService.getSectorsHomepageData( req );
-			sortRows = sortSectorProgress;
-			progressRows = data.sectors.results;
-			progressHeading = 'Sectors';
-			progressColumnHeading = 'Sector';
-			progressColumnHeadingKey = sortSectorProgress.KEYS.sector;
+			data = await fdiService.getUkRegionsHomepageData( req );
+			viewData = {
+				progressRows: regionProgressViewModel.create( sortRegionProgress( data.ukRegions.results, req.query.sort ) ),
+				progressHeading: 'UK regions',
+				sortKeys: sortRegionProgress.KEYS
+			};
 
-		} else if( tab.isOverseasRegions ){
+		} else {
 
-			data = await fdiService.getOverseasRegionsHomepageData( req );
-			sortRows = sortMarketProgress;
-			progressRows = data.overseasRegions.results;
-			progressHeading = 'Overseas markets';
-			progressColumnHeading = 'Market';
-			progressColumnHeadingKey = sortMarketProgress.KEYS.market;
+			let sortRows;
+			let progressColumnHeading;
+			let progressColumnHeadingKey;
+
+			if( tab.isSectors ){
+
+				data = await fdiService.getSectorsHomepageData( req );
+				sortRows = sortSectorProgress;
+				progressRows = data.sectors.results;
+				progressHeading = 'Sectors';
+				progressColumnHeading = 'Sector';
+				progressColumnHeadingKey = sortSectorProgress.KEYS.sector;
+
+			} else if( tab.isOverseasRegions ){
+
+				data = await fdiService.getOverseasRegionsHomepageData( req );
+				sortRows = sortMarketProgress;
+				progressRows = data.overseasRegions.results;
+				progressHeading = 'Overseas markets';
+				progressColumnHeading = 'Market';
+				progressColumnHeadingKey = sortMarketProgress.KEYS.market;
+			}
+
+			viewData = {
+
+				sortKeys: sortRows.KEYS,
+				progressRows: sortRows( performanceWinProgressViewModel.create( progressRows ), req.query.sort ),
+				progressHeading,
+				progressColumnHeading,
+				progressColumnHeadingKey
+			};
 		}
 
-		res.render( 'investment/views/index', {
+		res.render( 'investment/views/index', Object.assign( {
 
 			dateRange: data.performance.date_range,
 			headlines: performanceHeadlinesViewModel.create( data.performance.results ),
 			details: performanceDetailsViewModel.create( data.performance.results ),
-			progressRows: sortRows( performanceWinProgressViewModel.create( progressRows ), req.query.sort ),
-			sortKeys: sortRows.KEYS,
-			progressHeading,
-			progressColumnHeading,
-			progressColumnHeadingKey,
 			tab
-		} );
+		}, viewData ) );
 
 	} catch( e ){
 

@@ -7,6 +7,8 @@ function formatNumber( num, zeros, suffix ){
 
 module.exports = function( num ){
 
+	if( typeof num === 'undefined' || isNaN( num ) ){ return null; }
+
 	const absValue = Math.abs( num );
 
 	// Nine zeroes for billions

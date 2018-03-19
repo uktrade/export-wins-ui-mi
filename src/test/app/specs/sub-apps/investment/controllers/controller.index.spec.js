@@ -6,15 +6,19 @@ let controller;
 let fdiService;
 let getSectorsHomepageData;
 let getOverseasRegionsHomepageData;
+let getUkRegionsHomepageData;
 let createHandler;
 let renderErrorHandler;
 let performanceHeadlinesViewModelSpy;
 let performanceDetailsViewModelSpy;
 let performanceWinProgressViewModelSpy;
+let regionPerformanceViewModelSpy;
 let sortSectorProgressSpy;
 let sortSectorProgressSpyResponse;
 let sortMarketProgressSpy;
 let sortMarketProgressSpyResponse;
+let sortRegionProgressSpy;
+let sortRegionProgressSpyResponse;
 let req;
 let res;
 
@@ -24,28 +28,34 @@ describe( 'Index controller', function(){
 
 		sortSectorProgressSpyResponse = { sortedSectors: true, KEYS: { sector: 'sector', projectWins: 'project-wins', hvcWins: 'hvc-wins' } };
 		sortMarketProgressSpyResponse = { sortedMarkets: true, KEYS: { market: 'market', projectWins: 'project-wins', hvcWins: 'hvc-wins' } };
+		sortRegionProgressSpyResponse = { sortedRegions: true, KEYS: { region: 'region',	totalWins: 'total-wins', verifyWin: 'verify-win', totalJobs: 'total-jobs',	newJobs: 'new-jobs',	safeJobs: 'safe-jobs' } };
 
 		getSectorsHomepageData = jasmine.createSpy( 'getSectorsHomepageData' );
 		getOverseasRegionsHomepageData = jasmine.createSpy( 'getOverseasRegionsHomepageData' );
+		getUkRegionsHomepageData = jasmine.createSpy( 'getUkRegionsHomepageData' );
 		performanceHeadlinesViewModelSpy = jasmine.createSpy( 'performanceHeadlinesViewModel' );
 		performanceDetailsViewModelSpy = jasmine.createSpy( 'performanceDetailsViewModel' );
 		performanceWinProgressViewModelSpy = jasmine.createSpy( 'performanceWinProgressViewModel' );
+		regionPerformanceViewModelSpy = jasmine.createSpy( 'regionPerformanceViewModelSpy' );
 		sortSectorProgressSpy = jasmine.createSpy( 'sortSectorProgressSpy' ).and.callFake( () => sortSectorProgressSpyResponse );
 		sortMarketProgressSpy = jasmine.createSpy( 'sortMarketProgressSpy' ).and.callFake( () => sortMarketProgressSpyResponse );
+		sortRegionProgressSpy = jasmine.createSpy( 'sortRegionProgressSpy' ).and.callFake( () => sortRegionProgressSpyResponse );
 
 		renderErrorHandler = jasmine.createSpy( 'renderErrorHandler' );
 		createHandler = jasmine.createSpy( 'createHandler' ).and.callFake( () => renderErrorHandler );
 
-		fdiService = { getSectorsHomepageData, getOverseasRegionsHomepageData };
+		fdiService = { getSectorsHomepageData, getOverseasRegionsHomepageData, getUkRegionsHomepageData };
 
 		controller = proxyquire( moduleFile, {
 			'../../../lib/service/service.backend/investment/fdi': fdiService,
 			'../../../lib/render-error': { createHandler },
 			'../lib/sort-sector-progress': sortSectorProgressSpy,
 			'../lib/sort-market-progress': sortMarketProgressSpy,
+			'../lib/sort-region-progress': sortRegionProgressSpy,
 			'../view-models/fdi-performance-headlines': { create: performanceHeadlinesViewModelSpy },
 			'../view-models/fdi-performance-details': { create: performanceDetailsViewModelSpy },
-			'../view-models/fdi-performance-win-progress': { create: performanceWinProgressViewModelSpy }
+			'../view-models/fdi-performance-win-progress': { create: performanceWinProgressViewModelSpy },
+			'../view-models/fdi-performance-region-progress': { create: regionPerformanceViewModelSpy }
 		} );
 
 		req = {
@@ -172,6 +182,59 @@ describe( 'Index controller', function(){
 								isOverseasRegions: true,
 								isUkRegions: false,
 								selected: 'os-regions'
+							}
+						} );
+
+						done();
+					} );
+				} );
+			} );
+
+			describe( 'for uk regions', function(){
+
+				it( 'Should render the view', function( done ){
+
+					const sortUkRegions = { regionSort: true };
+					const ukRegionsData = { date_range: { ukRegionsDataDateRange: true }, results: { someUkRegionsData: true } };
+					const regionPerformanceViewModelSpyResponse = { someRegionData: true };
+
+					const promise = new Promise( ( resolve ) => {
+						resolve( {
+							performance: this.performanceData,
+							ukRegions: ukRegionsData
+						} );
+					} );
+
+					getUkRegionsHomepageData.and.callFake( () => promise );
+					performanceHeadlinesViewModelSpy.and.callFake( () => this.performanceHeadlinesResponse );
+					performanceDetailsViewModelSpy.and.callFake( () => this.performanceDetailsResponse );
+					regionPerformanceViewModelSpy.and.callFake( () => regionPerformanceViewModelSpyResponse );
+
+					req.query.sort = sortUkRegions;
+					req.query.tab = 'uk-regions';
+
+					controller( req, res );
+
+					promise.then( () => {
+
+						expect( getUkRegionsHomepageData ).toHaveBeenCalledWith( req );
+						expect( performanceHeadlinesViewModelSpy ).toHaveBeenCalledWith( this.performanceData.results );
+						expect( performanceDetailsViewModelSpy ).toHaveBeenCalledWith( this.performanceData.results );
+						expect( sortRegionProgressSpy ).toHaveBeenCalledWith( ukRegionsData.results, sortUkRegions );
+						expect( regionPerformanceViewModelSpy ).toHaveBeenCalledWith( sortRegionProgressSpyResponse );
+						expect( res.render ).toHaveBeenCalledWith( 'investment/views/index', {
+
+							dateRange: this.performanceData.date_range,
+							headlines: this.performanceHeadlinesResponse,
+							details: this.performanceDetailsResponse,
+							progressRows: regionPerformanceViewModelSpyResponse,
+							sortKeys: sortRegionProgressSpyResponse.KEYS,
+							progressHeading: 'UK regions',
+							tab: {
+								isSectors: false,
+								isOverseasRegions: false,
+								isUkRegions: true,
+								selected: 'uk-regions'
 							}
 						} );
 

@@ -6,7 +6,7 @@
 	"minItems": 5,
 	"maxItems": 15,
 	"items": {
-		"required": [ "id", "name", "short_name", "wins", "target", "total_jobs", "pipeline" ],
+		"required": [ "id", "name", "short_name", "wins", "target", "jobs", "pipeline" ],
 		"properties": {
 
 			"id": { "$ref": "$refs/fdi.json#/number" },
@@ -30,7 +30,7 @@
 				}
 			},
 			"target": { "$ref": "$refs/fdi.json#/number" },
-			"total_jobs": { "$ref": "$refs/fdi.json#/number" },
+			"jobs": { "$ref": "$refs/fdi.json#/jobs2" },
 			"pipeline": { "$ref": "$refs/fdi.json#/number" }
 		}
 	}

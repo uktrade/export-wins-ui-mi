@@ -76,12 +76,7 @@ const filteredStubs = [
 	[ '/mi/fdi/performance/', 'investment/fdi/performance/index'  ],
 	[ '/mi/fdi/performance/sector/', 'investment/fdi/performance/sectors'  ],
 	[ '/mi/fdi/performance/os_region/', 'investment/fdi/performance/os_regions'  ],
-
-	[ '/mi/fdi/sector_teams/', 'investment/fdi/sector_teams/index'  ],
-	//[ '/mi/fdi/sector_teams/[0-9]+/win_table/', 'investment/fdi/sector_teams/win_table'  ],
-
-	[ '/mi/fdi/os_regions/', 'investment/fdi/os_regions/index'  ],
-	[ '/mi/fdi/uk_regions/', 'investment/fdi/uk_regions/index'  ]
+	[ '/mi/fdi/performance/uk_region/', 'investment/fdi/performance/uk_regions'  ],
 ];
 
 for( let [ path, stubFile ] of filteredStubs ){

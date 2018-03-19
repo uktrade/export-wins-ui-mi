@@ -16,9 +16,6 @@ const countriesJson = require( './faker/backend/scripts/lib/json-creators/export
 const postsJson = require( './faker/backend/scripts/lib/json-creators/export/posts-json' );
 const ukRegionJson = require( './faker/backend/scripts/lib/json-creators/export/uk-regions-json' );
 
-const fdiSectorTeamsJson = require( './faker/backend/scripts/lib/json-creators/investment/fdi/sector-teams-json' );
-const fdiOsRegionsJson = require( './faker/backend/scripts/lib/json-creators/investment/fdi/os-regions-json' );
-const fdiUkRegionsJson = require( './faker/backend/scripts/lib/json-creators/investment/fdi/uk-regions-json' );
 const fdiPerformanceJson = require( './faker/backend/scripts/lib/json-creators/investment/fdi/performance-json' );
 
 
@@ -89,12 +86,7 @@ const yearlyFiles = {
 	'investment/fdi/performance/index': fdiPerformanceJson.index,
 	'investment/fdi/performance/sectors': fdiPerformanceJson.detail,
 	'investment/fdi/performance/os_regions': fdiPerformanceJson.detail,
-
-	'investment/fdi/sector_teams/index': fdiSectorTeamsJson.createIndex,
-	'investment/fdi/sector_teams/win_table': fdiSectorTeamsJson.createWinTable,
-
-	'investment/fdi/os_regions/index': fdiOsRegionsJson.createIndex,
-	'investment/fdi/uk_regions/index': fdiUkRegionsJson.createIndex
+	'investment/fdi/performance/uk_regions': fdiPerformanceJson.detail
 };
 
 for( let file in yearlyFiles ){

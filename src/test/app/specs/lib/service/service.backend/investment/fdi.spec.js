@@ -54,17 +54,6 @@ describe( 'Investment FDI backend service', function(){
 			} );
 		} );
 
-		describe( 'Sector Teams list', function(){
-
-			it( 'Should call the correct API', function( done ){
-
-				fdiService.getSectorTeams( req ).then( () => {
-
-					checkBackendArgs( '/mi/fdi/sector_teams/', req );
-					done();
-				} );
-			} );
-		} );
 /*
 		describe( 'Sector Team win table', function(){
 
@@ -122,71 +111,6 @@ describe( 'Investment FDI backend service', function(){
 		} );
 */
 
-		describe( 'Overseas Teams list', function(){
-
-			it( 'Should call the correct API', function( done ){
-
-				fdiService.getOverseasRegions( req ).then( () => {
-
-					// Use export list for now
-					checkBackendArgs( '/mi/os_regions/', req );
-					done();
-				} );
-			} );
-		} );
-
-		describe( 'Overseas Region details', function(){
-
-			it( 'Should call the correct API', function( done ){
-
-				const regionId = '1';
-
-				//This should not be needed
-				//Provide data while using export APIs
-				returnData( { results: [ { id: 1, name: 2 } ] } );
-
-				fdiService.getOverseasRegion( req, regionId ).then( () => {
-
-					// Use export list for now
-					checkBackendArgs( '/mi/os_regions/', req );
-					done();
-				} );
-			} );
-		} );
-
-		describe( 'UK Regions Teams list', function(){
-
-			it( 'Should call the correct API', function( done ){
-
-				fdiService.getUkRegions( req ).then( () => {
-
-					// Use export list for now
-					checkBackendArgs( '/mi/uk_regions/', req );
-					done();
-				} );
-			} );
-		} );
-
-		describe( 'UK Region details', function(){
-
-			it( 'Should call the correct API', function( done ){
-
-				const regionId = 'jniawp-rtvz';
-
-				//This should not be needed
-				//Provide data while using export APIs
-				returnData( getBackendStub( '/investment/fdi/uk_regions/index' ) );
-
-				fdiService.getUkRegion( req, regionId ).then( ( data ) => {
-
-					// Use export list for now
-					checkBackendArgs( '/mi/uk_regions/', req );
-					expect( data.results.id ).toEqual( regionId );
-					done();
-				} );
-			} );
-		} );
-
 		describe( 'FDI performance', function(){
 
 			it( 'Should call the correct API', function( done ){
@@ -218,6 +142,18 @@ describe( 'Investment FDI backend service', function(){
 				fdiService.getOverseasRegionsPerformance( req ).then( () => {
 
 					checkBackendArgs( '/mi/fdi/performance/os_region/', req );
+					done();
+				} );
+			} );
+		} );
+
+		describe( 'FDI UK regions performance', function(){
+
+			it( 'Should call the correct API', function( done ){
+
+				fdiService.getUkRegionsPerformance( req ).then( () => {
+
+					checkBackendArgs( '/mi/fdi/performance/uk_region/', req );
 					done();
 				} );
 			} );
@@ -288,6 +224,29 @@ describe( 'Investment FDI backend service', function(){
 
 					expect( data.performance ).toEqual( spies.getPerformance.response );
 					expect( data.overseasRegions ).toEqual( spies.getOverseasRegionsPerformance.response );
+
+					done();
+
+				} ).catch( done.fail );
+			} );
+		} );
+
+		describe( 'getUkRegionsHomepageData data', function(){
+
+			it( 'Should return the correct data', function( done ){
+
+				const spies = createSpies( [
+					'getPerformance',
+					'getUkRegionsPerformance'
+				] );
+
+				fdiService.getUkRegionsHomepageData( req ).then( ( data ) => {
+
+					expect( spies.getPerformance.spy ).toHaveBeenCalledWith( req );
+					expect( spies.getUkRegionsPerformance.spy ).toHaveBeenCalledWith( req );
+
+					expect( data.performance ).toEqual( spies.getPerformance.response );
+					expect( data.ukRegions ).toEqual( spies.getUkRegionsPerformance.response );
 
 					done();
 

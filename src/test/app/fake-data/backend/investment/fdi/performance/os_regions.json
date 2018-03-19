@@ -29,7 +29,11 @@
             "total": 4517
          },
          "target": 1410,
-         "total_jobs": 4703,
+         "jobs": {
+            "new": 3260,
+            "safeguarded": 2782,
+            "total": 4240
+         },
          "pipeline": 1550
       },
       {
@@ -56,7 +60,11 @@
             "total": 4302
          },
          "target": 943,
-         "total_jobs": 130,
+         "jobs": {
+            "new": 4361,
+            "safeguarded": 1466,
+            "total": 3594
+         },
          "pipeline": 934
       },
       {
@@ -83,7 +91,11 @@
             "total": 4677
          },
          "target": 742,
-         "total_jobs": 1267,
+         "jobs": {
+            "new": 4689,
+            "safeguarded": 434,
+            "total": 57
+         },
          "pipeline": 2151
       },
       {
@@ -110,7 +122,11 @@
             "total": 1758
          },
          "target": 4987,
-         "total_jobs": 2663,
+         "jobs": {
+            "new": 3927,
+            "safeguarded": 2904,
+            "total": 3886
+         },
          "pipeline": 1959
       },
       {
@@ -137,7 +153,11 @@
             "total": 666
          },
          "target": 2163,
-         "total_jobs": 544,
+         "jobs": {
+            "new": 699,
+            "safeguarded": 4714,
+            "total": 4413
+         },
          "pipeline": 3353
       },
       {
@@ -164,7 +184,11 @@
             "total": 2667
          },
          "target": 2194,
-         "total_jobs": 35,
+         "jobs": {
+            "new": 29,
+            "safeguarded": 1959,
+            "total": 3059
+         },
          "pipeline": 1104
       },
       {
@@ -191,7 +215,11 @@
             "total": 2907
          },
          "target": 2586,
-         "total_jobs": 4364,
+         "jobs": {
+            "new": 1594,
+            "safeguarded": 2643,
+            "total": 1007
+         },
          "pipeline": 743
       }
    ],
