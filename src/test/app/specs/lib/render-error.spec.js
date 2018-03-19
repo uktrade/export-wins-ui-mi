@@ -11,20 +11,14 @@ const configStub = {
 let renderError;
 let res;
 let req;
-let urls;
-let urlsResponse;
 
 describe( 'Render Error', function(){
 
 	beforeEach( function(){
 
-		urlsResponse = {};
-		urls = jasmine.createSpy( 'urls' ).and.callFake( () => urlsResponse );
-
 		renderError = proxyquire( '../../../../app/lib/render-error', {
 			'./reporter': reporterStub,
-			'../config': configStub,
-			'./urls': urls
+			'../config': configStub
 		} );
 		req = {};
 		res = {
@@ -65,12 +59,9 @@ describe( 'Render Error', function(){
 				err = new Error( 'test' );
 				err.response = response;
 
-				const theUrl = '/my/long/url?with=params';
-				urlsResponse = {
-					current: () => theUrl
-				};
+				req.originalUrl = '/my/long/url?with=params';
 
-				loginPath = `/login/?next=${ encodeURIComponent( theUrl ) }`;
+				loginPath = `/login/?next=${ encodeURIComponent( req.originalUrl ) }`;
 			} );
 
 			describe( 'Without a PreferAuthWith header', function(){
@@ -105,7 +96,6 @@ describe( 'Render Error', function(){
 
 						handler( err );
 
-						expect( urls ).toHaveBeenCalledWith( req );
 						expect( res.redirect ).toHaveBeenCalledWith( loginPath );
 					} );
 				} );

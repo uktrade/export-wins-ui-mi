@@ -1,6 +1,5 @@
 const config = require( '../config' );
 const reporter = require( './reporter' );
-const urls = require( './urls' );
 
 function sendResponse( res, err ){
 
@@ -20,8 +19,7 @@ module.exports = {
 
 			if( err.response && err.response.statusCode === 403 ){
 
-				const currentUrl = urls( req ).current();
-				res.redirect( `/login/?next=${ encodeURIComponent( currentUrl ) }` );
+				res.redirect( `/login/?next=${ encodeURIComponent( req.originalUrl ) }` );
 
 			} else {
 
