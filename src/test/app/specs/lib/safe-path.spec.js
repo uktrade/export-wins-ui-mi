@@ -2,21 +2,48 @@ const safePath = require( '../../../../app/lib/safe-path' );
 
 describe( 'Safe path', function(){
 
-	it( 'Should only return a safe redirect path', function(){
+	describe( 'When there is a path', function(){
 
-		const inputs = [
-			[ 'https://www.test.com', '/' ],
-			[ 'http://test.com', '/' ],
-			[ '//www.test.com', '/' ],
-			[ '/', '/' ],
-			[ '/relative/', '/relative/' ]
-		];
+		it( 'Should only return a safe redirect path', function(){
 
-		for( let i = 0, l = inputs.length; i < l; i++ ){
+			const inputs = [
+				[ 'https://www.test.com', '/' ],
+				[ 'http://test.com', '/' ],
+				[ '//www.test.com', '/' ],
+				[ '/', '/' ],
+				[ '/relative/', '/relative/' ]
+			];
 
-			const [ input, output ] = inputs[ i ];
+			for( let i = 0, l = inputs.length; i < l; i++ ){
 
-			expect( safePath( input ) ).toEqual( output );
-		}
+				const [ input, output ] = inputs[ i ];
+
+				expect( safePath( input ) ).toEqual( output );
+			}
+		} );
+	} );
+
+	describe( 'When the path is undefined', function(){
+
+		it( 'Should return the default path', function(){
+
+			expect( safePath() ).toEqual( '/' );
+		} );
+	} );
+
+	describe( 'When the path is null', function(){
+
+		it( 'Should return the default path', function(){
+
+			expect( safePath( null ) ).toEqual( '/' );
+		} );
+	} );
+
+	describe( 'When the path is boolean true', function(){
+
+		it( 'Should return the default path', function(){
+
+			expect( safePath( true ) ).toEqual( '/' );
+		} );
 	} );
 } );

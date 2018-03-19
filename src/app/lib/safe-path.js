@@ -1,6 +1,8 @@
 module.exports = function( path ){
 
-	if( path.charAt( 0 ) === '/' && path.charAt( 1 ) !== '/' ){
+	const hasCharAt = ( path && typeof path.charAt === 'function' );
+
+	if( hasCharAt && path.charAt( 0 ) === '/' && path.charAt( 1 ) !== '/' ){
 
 		return path;
 
