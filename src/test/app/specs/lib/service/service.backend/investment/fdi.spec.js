@@ -54,17 +54,6 @@ describe( 'Investment FDI backend service', function(){
 			} );
 		} );
 
-		describe( 'Sector Teams list', function(){
-
-			it( 'Should call the correct API', function( done ){
-
-				fdiService.getSectorTeams( req ).then( () => {
-
-					checkBackendArgs( '/mi/fdi/sector_teams/', req );
-					done();
-				} );
-			} );
-		} );
 /*
 		describe( 'Sector Team win table', function(){
 
@@ -121,71 +110,6 @@ describe( 'Investment FDI backend service', function(){
 			} );
 		} );
 */
-
-		describe( 'Overseas Teams list', function(){
-
-			it( 'Should call the correct API', function( done ){
-
-				fdiService.getOverseasRegions( req ).then( () => {
-
-					// Use export list for now
-					checkBackendArgs( '/mi/os_regions/', req );
-					done();
-				} );
-			} );
-		} );
-
-		describe( 'Overseas Region details', function(){
-
-			it( 'Should call the correct API', function( done ){
-
-				const regionId = '1';
-
-				//This should not be needed
-				//Provide data while using export APIs
-				returnData( { results: [ { id: 1, name: 2 } ] } );
-
-				fdiService.getOverseasRegion( req, regionId ).then( () => {
-
-					// Use export list for now
-					checkBackendArgs( '/mi/os_regions/', req );
-					done();
-				} );
-			} );
-		} );
-
-		describe( 'UK Regions Teams list', function(){
-
-			it( 'Should call the correct API', function( done ){
-
-				fdiService.getUkRegions( req ).then( () => {
-
-					// Use export list for now
-					checkBackendArgs( '/mi/uk_regions/', req );
-					done();
-				} );
-			} );
-		} );
-
-		describe( 'UK Region details', function(){
-
-			it( 'Should call the correct API', function( done ){
-
-				const regionId = 'jniawp-rtvz';
-
-				//This should not be needed
-				//Provide data while using export APIs
-				returnData( getBackendStub( '/investment/fdi/uk_regions/index' ) );
-
-				fdiService.getUkRegion( req, regionId ).then( ( data ) => {
-
-					// Use export list for now
-					checkBackendArgs( '/mi/uk_regions/', req );
-					expect( data.results.id ).toEqual( regionId );
-					done();
-				} );
-			} );
-		} );
 
 		describe( 'FDI performance', function(){
 

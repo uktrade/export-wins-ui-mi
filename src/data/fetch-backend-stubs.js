@@ -63,12 +63,6 @@ const stubs = [
 	[ 'investment/fdi/performance/sectors', '/mi/fdi/performance/sector/' ],
 	[ 'investment/fdi/performance/os_regions', '/mi/fdi/performance/os_region/' ],
 	[ 'investment/fdi/performance/uk_regions', '/mi/fdi/performance/uk_region/' ],
-
-	[ 'investment/fdi/sector_teams/index', '/mi/fdi/sector_teams/' ],
-	[ 'investment/fdi/sector_teams/win_table', '/mi/fdi/sector_teams/1/win_table/' ],
-
-	[ 'investment/fdi/os_regions/index', '/mi/os_regions/' ],
-	[ 'investment/fdi/uk_regions/index', '/mi/uk_regions/' ]
 ];
 
 const years = [ 2016, 2017 ];

@@ -1,29 +1,8 @@
 const { getAll, getJson } = require( '../_helpers' );
 
-//const transformFdiProjectList = require( '../../../transformers/fdi/project-list' );
-
-function createIdMatcher( id ){
-
-	return function( items ){
-
-		for( let item of items.results ){
-
-			if( item.id == id ){
-				items.results = item;
-				return items;
-			}
-		}
-
-		throw new Error( 'Team not matched' );
-	};
-}
-
-function getSectorTeams( req ){
-
-	return getJson( '/mi/fdi/sector_teams/', req );
-}
-
 /*
+const transformFdiProjectList = require( '../../../transformers/fdi/project-list' );
+
 function getSectorTeamWinTable( req, teamId ){
 
 	return getJson( `/mi/fdi/sector_teams/${ teamId }/win_table/`, req );
@@ -46,44 +25,6 @@ function getSectorTeamNonHvcWinTable( req, teamId ){
 	} );
 }
 */
-function getOverseasRegions( req ){
-
-	//use export overseas regions for now
-	return getJson( '/mi/os_regions/', req );
-}
-
-function getOverseasRegion( req, teamId ){
-
-	//use overseas regions list for now to return the name
-	return getOverseasRegions( req ).then( createIdMatcher( teamId ) );
-}
-
-function getUkRegions( req ){
-
-	//use export overseas regions for now
-	return getJson( '/mi/uk_regions/', req );
-}
-
-function getUkRegion( req, regionId ){
-
-	return getUkRegions( req ).then( ( data ) => {
-
-		//flatten grouped regions into one list
-		data.results = data.results.region_groups.reduce( ( list, group ) => {
-
-			group.regions.forEach( ( region ) => {
-
-				list.push( region );
-			} );
-
-			return list;
-
-		}, [] );
-
-		return data;
-
-	} ).then( createIdMatcher( regionId ) );
-}
 
 function getPerformance( req ){
 
@@ -106,13 +47,6 @@ function getUkRegionsPerformance( req ){
 }
 
 module.exports = {
-
-	getSectorTeams,
-	getOverseasRegions,
-	getOverseasRegion,
-
-	getUkRegions,
-	getUkRegion,
 
 	getPerformance,
 	getSectorsPerformance,

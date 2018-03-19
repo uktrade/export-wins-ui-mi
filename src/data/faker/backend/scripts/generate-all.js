@@ -14,10 +14,7 @@ const scripts = [
 	'export/generate-shared',
 	'export/generate-countries',
 
-	'investment/fdi/generate-sector-teams',
-	'investment/fdi/generate-os-regions',
-	'investment/fdi/generate-uk-regions',
-	'investment/fdi/generate-performance'
+	'investment/fdi/generate-performance',
 ];
 
 for( let script of scripts ){

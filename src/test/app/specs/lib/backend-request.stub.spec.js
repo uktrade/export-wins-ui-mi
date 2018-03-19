@@ -475,30 +475,6 @@ describe( 'Backend stub', function(){
 					checkMultipleYears( '/mi/fdi/performance/uk_region/', '/investment/fdi/performance/uk_regions', done );
 				} );
 			} );
-
-			describe( 'Getting the Sector Teams', function(){
-
-				it( 'Should return the list', function( done ){
-
-					checkMultipleYears( '/mi/fdi/sector_teams/', '/investment/fdi/sector_teams/index', done );
-				} );
-			} );
-/*
-			describe( 'Getting a Sector Team win table', function(){
-
-				it( 'Should return the details', function( done ){
-
-					checkMultipleYears( '/mi/fdi/sector_teams/1234/win_table/', '/investment/fdi/sector_teams/win_table', done );
-				} );
-			} );
-*/
-			describe( 'Getting the Overseas Regions', function(){
-
-				it( 'Should return the list', function( done ){
-
-					checkMultipleYears( '/mi/fdi/os_regions/', '/investment/fdi/os_regions/index', done );
-				} );
-			} );
 		} );
 	} );
 } );
