@@ -27,7 +27,7 @@ const staticInput = [
          "target": 0,
          "jobs": {
             "new": 150,
-            "safeguarded": 50,
+            "safe": 50,
             "total": 200
          },
          "pipeline": 0
@@ -58,7 +58,7 @@ const staticInput = [
          "target": 0,
          "jobs": {
             "new": 50,
-            "safeguarded": 100,
+            "safe": 100,
             "total": 150
          },
          "pipeline": 0
@@ -89,7 +89,7 @@ const staticInput = [
          "target": 0,
          "jobs": {
             "new": 25,
-            "safeguarded": 10,
+            "safe": 10,
             "total": 35
          },
          "pipeline": 0
@@ -120,7 +120,7 @@ const staticInput = [
          "target": 0,
          "jobs": {
             "new": 45,
-            "safeguarded": 25,
+            "safe": 25,
             "total": 70
          },
          "pipeline": 0
@@ -151,7 +151,7 @@ const staticInput = [
          "target": 0,
          "jobs": {
             "new": 79,
-            "safeguarded": 101,
+            "safe": 101,
             "total": 180
          },
          "pipeline": 0
@@ -371,7 +371,7 @@ describe( 'Sort Region Progress', function(){
 					const sortName = 'Safeguarded jobs';
 					const resultOrder = [ 2, 3, 0, 1, 4  ];
 
-					checkDirections( 'jobs.safeguarded', sortKey, sortName, resultOrder );
+					checkDirections( 'jobs.safe', sortKey, sortName, resultOrder );
 				} );
 			} );
 		} );
