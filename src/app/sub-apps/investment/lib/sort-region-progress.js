@@ -39,7 +39,7 @@ sorter.createSorter = function( key ){
 			sortName = 'New jobs';
 		break;
 		case KEYS.safeJobs:
-			sorter = ( a, b ) => this.compare( a.jobs.safeguarded, b.jobs.safeguarded );
+			sorter = ( a, b ) => this.compare( a.jobs.safe, b.jobs.safe );
 			sortName = 'Safeguarded jobs';
 		break;
 	}
