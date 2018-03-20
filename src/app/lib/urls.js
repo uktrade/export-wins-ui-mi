@@ -83,8 +83,6 @@ module.exports = function( req ){
 		addSort,
 		downloadFile,
 
-		email: () => `mailto:${ config.feedbackEmail }`,
-		survey: () => config.feedbackSurvey,
 		signout: () => '/sign-out/',
 		changeFy: () => '/change-fy/',
 
