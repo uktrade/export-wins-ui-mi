@@ -21,6 +21,11 @@ module.exports = {
 
 				res.redirect( `/login/?next=${ encodeURIComponent( req.originalUrl ) }` );
 
+			} else if( err.response && err.response.statusCode === 404 ) {
+
+				res.status( 404 );
+				res.render( 'error/404.html' );
+
 			} else {
 
 				sendResponse( res, err );

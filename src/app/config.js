@@ -44,8 +44,6 @@ let config = {
 		cache: bool( 'CACHE_VIEWS', true )
 	},
 	financialYearStart: number( 'FINANCIAL_YEAR_START', 2016 ),
-	feedbackEmail: env( 'FEEDBACK_EMAIL' ),
-	feedbackSurvey: env( 'FEEDBACK_SURVEY' ),
 	urls: {
 		usingMi: requiredEnv( 'URL_USING_MI' ),
 		kimPrinciples: requiredEnv( 'URL_KIM_PRINCIPLES' )

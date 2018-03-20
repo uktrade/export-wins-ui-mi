@@ -1,13 +1,10 @@
 let proxyquire = require( 'proxyquire' );
 
-const reporterStub = {
-	captureException: jasmine.createSpy( 'reporter.captureException' )
-};
-
 const configStub = {
 	showErrors: false
 };
 
+let reporterStub;
 let renderError;
 let res;
 let req;
@@ -15,6 +12,10 @@ let req;
 describe( 'Render Error', function(){
 
 	beforeEach( function(){
+
+		reporterStub = {
+			captureException: jasmine.createSpy( 'reporter.captureException' )
+		};
 
 		renderError = proxyquire( '../../../../app/lib/render-error', {
 			'./reporter': reporterStub,
@@ -138,6 +139,37 @@ describe( 'Render Error', function(){
 			it( 'Should render the error page', function(){
 
 				expect( res.render ).toHaveBeenCalledWith( 'error/default.html', { error: err, showErrors: configStub.showErrors } );
+			} );
+		} );
+
+		describe( 'Calling the error handler with a 404', function(){
+
+			let err;
+
+			beforeEach( function(){
+
+				err = new Error( 'testing' );
+				err.response = {
+					headers: {},
+					statusCode: 404
+				};
+
+				handler( err );
+			} );
+
+			it( 'Should not report the error', function(){
+
+				expect( reporterStub.captureException ).not.toHaveBeenCalled();
+			} );
+
+			it( 'Should set the status to 404', function(){
+
+				expect( res.status ).toHaveBeenCalledWith( 404 );
+			} );
+
+			it( 'Should render the 404 page', function(){
+
+				expect( res.render ).toHaveBeenCalledWith( 'error/404.html' );
 			} );
 		} );
 	} );

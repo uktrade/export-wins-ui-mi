@@ -247,23 +247,6 @@ describe( 'urls middleware', function(){
 		} );
 	} );
 
-
-	describe( 'Email', function(){
-
-		it( 'Should return the correct URL', function(){
-
-			expect( middleware( req ).email() ).toEqual( 'mailto:' + config.feedbackEmail );
-		} );
-	} );
-
-	describe( 'Survey', function(){
-
-		it( 'Should return the correct URL', function(){
-
-			expect( middleware( req ).survey() ).toEqual( config.feedbackSurvey );
-		} );
-	} );
-
 	describe( 'currentForYear', function(){
 
 		describe( 'Without any query params', function(){

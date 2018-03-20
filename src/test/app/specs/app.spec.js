@@ -316,6 +316,24 @@ if( config.backend.mock ){
 							} );
 						} );
 					} );
+
+					describe( 'When the API returns a status of 404', function(){
+
+						it( 'Should return a 404 with the correct heading', function( done ){
+
+							interceptBackend.getStub( '/mi/sector_teams/12345/?year=2017', 404, '/sector_teams/not_found' );
+							interceptBackend.getStub( '/mi/sector_teams/12345/months/?year=2017', 404, '/sector_teams/not_found' );
+							interceptBackend.getStub( '/mi/sector_teams/12345/campaigns/?year=2017', 404, '/sector_teams/not_found' );
+							interceptBackend.getStub( '/mi/sector_teams/12345/top_non_hvcs/?year=2017', 404, '/sector_teams/not_found' );
+
+							supertest( app ).get( '/sector-teams/12345/' ).end( ( err, res ) => {
+
+								checkResponse( res, 404 );
+								expect( getTitle( res ) ).toEqual( 'MI - Not found' );
+								done();
+							} );
+						} );
+					} );
 				} );
 
 				describe( 'HVC win list', function(){
