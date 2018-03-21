@@ -2,7 +2,7 @@ const TableSorter = require( '../../../lib/TableSorter' );
 
 const KEYS = {
 	market: 'market',
-	projectWins: 'project-wins',
+	nonHvcWins: 'non-hvc-wins',
 	hvcWins: 'hvc-wins'
 };
 
@@ -19,9 +19,9 @@ sorter.createSorter = function( key ){
 			sorter = ( a, b ) => this.compare( a.name.toLowerCase(), b.name.toLowerCase() );
 			sortName = 'Market';
 		break;
-		case KEYS.projectWins:
-			sorter = ( a, b ) => this.compare( a.wins.total, b.wins.total );
-			sortName = 'Project wins';
+		case KEYS.nonHvcWins:
+			sorter = ( a, b ) => this.compare( a.wins.nonHvc, b.wins.nonHvc );
+			sortName = 'Non HVC wins';
 		break;
 		case KEYS.hvcWins:
 			sorter = ( a, b ) => this.compare( a.wins.hvc, b.wins.hvc );

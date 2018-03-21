@@ -22,7 +22,7 @@ TableSorter.prototype.sort = function( items, sort = this.defaultSort ){
 
 	if( !this.createSorter ){ throw new Error( 'Must define a createSorter function before sorting' ); }
 
-	if( !items ){ return items; }
+	if( !Array.isArray( items ) ){ return items; }
 
 	const isValidDir = ( sort.dir === 'asc' || sort.dir === 'desc' );
 

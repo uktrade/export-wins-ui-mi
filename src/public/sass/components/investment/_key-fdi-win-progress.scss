@@ -7,17 +7,17 @@
 
 .key-fdi-win-progress_item {
 	display: inline;
-	@include core-12;
-	padding-right: pem( 15, 12 );
+	@include core-14;
+	padding-right: pem( 15, 14 );
 }
 
 .key-fdi-win-progress_block {
 	display: inline-block;
 	width: 20px;
 	height: 10px;
-	margin-left: pem( 5, 12 );
+	margin-left: pem( 5, 14 );
 	position: relative;
-	top: pem( 1, 12 );
+	top: pem( 1, 14 );
 }
 
 .key-fdi-win-progress_block--won {
@@ -37,5 +37,5 @@
 
 .key-fdi-win-progress_target {
 	border-right: 4px solid black;
-	margin-left: pem( 5, 12 );
+	margin-left: pem( 5, 14 );
 }

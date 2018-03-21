@@ -18,7 +18,7 @@
 	<ul class="headline-figure-breakdown{% if modifyer %} headline-figure-breakdown--{{ modifyer }}{% endif %}">
 	{% for label, value in rows %}
 		<li class="headline-figure-breakdown_item">
-			<span class="headline-figure-breakdown_key">{{ label }}</span>
+			<span class="headline-figure-breakdown_key">{{ label | safe }}</span>
 			<span class="headline-figure-breakdown_value">{{ value }}</span>
 		</li>
 	{% endfor %}

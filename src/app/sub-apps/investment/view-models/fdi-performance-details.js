@@ -56,7 +56,7 @@ module.exports = {
 
 						wins.rows.push( [
 							names[ type ],
-							data.percent,
+							( data.percent + '%' ),
 							preciseNumber( data.campaign.hvc.count ),
 							preciseNumber( data.campaign.non_hvc.count ),
 							preciseNumber( data.jobs.new ),
@@ -88,7 +88,7 @@ module.exports = {
 
 							activePipeline.rows.push( [
 								names[ type ],
-								data.percent,
+								( data.percent + '%' ),
 								preciseNumber( data.campaign.hvc.count ),
 								preciseNumber( data.campaign.non_hvc.count ),
 								preciseNumber( data.jobs.new ),

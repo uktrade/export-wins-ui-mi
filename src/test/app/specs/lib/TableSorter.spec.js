@@ -67,13 +67,28 @@ describe( 'TableSorter', function(){
 
 		describe( 'Calling without any items', function(){
 
-			it( 'Should return undefined', function(){
+			describe( 'With undefined', function(){
 
-				inst.createSorter = createSorter;
+				it( 'Should return the input', function(){
 
-				const r = inst.sort();
+					inst.createSorter = createSorter;
 
-				expect( r ).toBeUndefined();
+					const r = inst.sort();
+
+					expect( r ).toBeUndefined();
+				} );
+			} );
+
+			describe( 'With an empty object', function(){
+
+				it( 'Should return input', function(){
+
+					inst.createSorter = createSorter;
+
+					const r = inst.sort( {} );
+
+					expect( r ).toEqual( {} );
+				} );
 			} );
 		} );
 	} );

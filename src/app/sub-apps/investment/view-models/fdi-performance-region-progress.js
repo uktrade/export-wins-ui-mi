@@ -12,8 +12,8 @@ module.exports = {
 					id: item.id,
 					name: item.name,
 					wins: {
-						total: item.wins.total,
-						verify: item.wins.verify_win.count
+						won: item.wins.won.count,
+						verified: item.wins.verify_win.count
 					},
 					jobs: item.jobs
 

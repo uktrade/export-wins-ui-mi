@@ -7,7 +7,7 @@ const staticInput = [
          "short_name": "et",
          "wins": {
             "hvc": 20,
-            "total": 60
+            "nonHvc": 60
          },
          "target": 100,
          "pipeline": 200
@@ -18,7 +18,7 @@ const staticInput = [
          "short_name": "nobis",
          "wins": {
             "hvc": 50,
-            "total": 150
+            "nonHvc": 150
          },
          "target": 200,
          "pipeline": 300
@@ -29,7 +29,7 @@ const staticInput = [
          "short_name": "nostrum",
          "wins": {
             "hvc": 25,
-            "total": 75
+            "nonHvc": 75
          },
          "target": 100,
          "pipeline": 200
@@ -40,7 +40,7 @@ const staticInput = [
          "short_name": "qui",
          "wins": {
             "hvc": 63,
-            "total": 186
+            "nonHvc": 186
          },
          "target": 500,
          "pipeline": 100
@@ -51,7 +51,7 @@ const staticInput = [
          "short_name": "placeat",
          "wins": {
             "hvc": 10,
-            "total": 30
+            "nonHvc": 30
          },
          "target": 100,
          "pipeline": 50
@@ -66,7 +66,7 @@ describe( 'Sort Market Progress', function(){
 
 			const input = {};
 
-			expect( sortMarketProgress( input.hvc ) ).toEqual( input.hvc );
+			expect( sortMarketProgress( input ) ).toEqual( input );
 		} );
 	} );
 
@@ -216,9 +216,9 @@ describe( 'Sort Market Progress', function(){
 				} );
 			} );
 
-			describe( 'Sort by project wins', function(){
+			describe( 'Sort by non HVC wins', function(){
 
-				const sortKey = sortMarketProgress.KEYS.projectWins;
+				const sortKey = sortMarketProgress.KEYS.nonHvcWins;
 
 				describe( 'Ascending', function(){
 
@@ -228,15 +228,15 @@ describe( 'Sort Market Progress', function(){
 						const sort = { key: sortKey, dir: sortDir };
 						const output = sortMarketProgress( input, sort );
 
-						expect( output[ 0 ].wins.total ).toEqual( staticInput[ 4 ].wins.total );
-						expect( output[ 1 ].wins.total ).toEqual( staticInput[ 0 ].wins.total );
-						expect( output[ 2 ].wins.total ).toEqual( staticInput[ 2 ].wins.total );
-						expect( output[ 3 ].wins.total ).toEqual( staticInput[ 1 ].wins.total );
-						expect( output[ 4 ].wins.total ).toEqual( staticInput[ 3 ].wins.total );
+						expect( output[ 0 ].wins.nonHvc ).toEqual( staticInput[ 4 ].wins.nonHvc );
+						expect( output[ 1 ].wins.nonHvc ).toEqual( staticInput[ 0 ].wins.nonHvc );
+						expect( output[ 2 ].wins.nonHvc ).toEqual( staticInput[ 2 ].wins.nonHvc );
+						expect( output[ 3 ].wins.nonHvc ).toEqual( staticInput[ 1 ].wins.nonHvc );
+						expect( output[ 4 ].wins.nonHvc ).toEqual( staticInput[ 3 ].wins.nonHvc );
 
 						expect( output.sortKey ).toEqual( sortKey );
 						expect( output.sortDir ).toEqual( sortDir );
-						expect( output.sortName ).toEqual( 'Project wins' );
+						expect( output.sortName ).toEqual( 'Non HVC wins' );
 						expect( output.sortDirName ).toEqual( 'ascending' );
 					} );
 				} );
@@ -249,15 +249,15 @@ describe( 'Sort Market Progress', function(){
 						const sort = { key: sortKey, dir: sortDir };
 						const output = sortMarketProgress( input, sort );
 
-						expect( output[ 0 ].wins.total ).toEqual( staticInput[ 3 ].wins.total );
-						expect( output[ 1 ].wins.total ).toEqual( staticInput[ 1 ].wins.total );
-						expect( output[ 2 ].wins.total ).toEqual( staticInput[ 2 ].wins.total );
-						expect( output[ 3 ].wins.total ).toEqual( staticInput[ 0 ].wins.total );
-						expect( output[ 4 ].wins.total ).toEqual( staticInput[ 4 ].wins.total );
+						expect( output[ 0 ].wins.nonHvc ).toEqual( staticInput[ 3 ].wins.nonHvc );
+						expect( output[ 1 ].wins.nonHvc ).toEqual( staticInput[ 1 ].wins.nonHvc );
+						expect( output[ 2 ].wins.nonHvc ).toEqual( staticInput[ 2 ].wins.nonHvc );
+						expect( output[ 3 ].wins.nonHvc ).toEqual( staticInput[ 0 ].wins.nonHvc );
+						expect( output[ 4 ].wins.nonHvc ).toEqual( staticInput[ 4 ].wins.nonHvc );
 
 						expect( output.sortKey ).toEqual( sortKey );
 						expect( output.sortDir ).toEqual( sortDir );
-						expect( output.sortName ).toEqual( 'Project wins' );
+						expect( output.sortName ).toEqual( 'Non HVC wins' );
 						expect( output.sortDirName ).toEqual( 'descending' );
 					} );
 				} );

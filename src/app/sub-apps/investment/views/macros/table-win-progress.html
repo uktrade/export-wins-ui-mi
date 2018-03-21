@@ -5,7 +5,7 @@
 		<thead>
 			<tr>
 				<th class="table-fdi-win-progress_heading">{{ sortedHeading( url, progressColumnHeading, progressColumnHeadingKey, progressRows ) }}</th>
-				<th class="table-fdi-win-progress_heading">{{ sortedHeading( url, 'Project wins', sortKeys.projectWins, progressRows ) }}</th>
+				<th class="table-fdi-win-progress_heading">{{ sortedHeading( url, 'Non HVC wins', sortKeys.nonHvcWins, progressRows ) }}</th>
 				<th class="table-fdi-win-progress_heading">{{ sortedHeading( url, 'HVC wins', sortKeys.hvcWins, progressRows ) }}</th>
 				<th class="table-fdi-win-progress_heading"><span class="visually-hidden">Project breakdown</span></th>
 			</tr>
@@ -27,7 +27,7 @@
 			{% for row in progressRows %}
 			<tr>
 				<td class="table-fdi-win-progress_cell table-fdi-win-progress_cell--name">{{ row.name }}</td>
-				<td class="table-fdi-win-progress_cell table-fdi-win-progress_cell--total">{{ row.wins.total }}</td>
+				<td class="table-fdi-win-progress_cell table-fdi-win-progress_cell--non-hvc">{{ row.wins.nonHvc }}</td>
 				<td class="table-fdi-win-progress_cell table-fdi-win-progress_cell--hvc">{{ row.wins.hvc }}</td>
 				<td class="table-fdi-win-progress_cell table-fdi-win-progress_cell--progress">
 					<div class="table-fdi-win-progress_segments">

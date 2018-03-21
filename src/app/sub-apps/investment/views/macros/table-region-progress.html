@@ -8,9 +8,9 @@
 		<thead>
 			<tr>
 				<th class="table-fdi-region-progress_heading">{{ sortedHeading( url, 'UK region', sortKeys.region, rows ) }}</th>
-				<th class="table-fdi-region-progress_heading">{{ sortedHeading( url, 'Project wins', sortKeys.totalWins, rows ) }}</th>
-				<th class="table-fdi-region-progress_heading">{{ sortedHeading( url, 'Project verify win', sortKeys.verifyWin, rows ) }}</th>
-				<th class="table-fdi-region-progress_heading">{{ sortedHeading( url, 'Total jobs won', sortKeys.totalJobs, rows ) }}</th>
+				<th class="table-fdi-region-progress_heading">{{ sortedHeading( url, 'Won', sortKeys.won, rows ) }}</th>
+				<th class="table-fdi-region-progress_heading">{{ sortedHeading( url, 'Verified', sortKeys.verified, rows ) }}</th>
+				<th class="table-fdi-region-progress_heading">{{ sortedHeading( url, 'Total jobs', sortKeys.totalJobs, rows ) }}</th>
 				<th class="table-fdi-region-progress_heading">{{ sortedHeading( url, 'New jobs', sortKeys.newJobs, rows ) }}</th>
 				<th class="table-fdi-region-progress_heading">{{ sortedHeading( url, 'Safeguarded jobs', sortKeys.safeJobs, rows ) }}</th>
 			</tr>
@@ -19,8 +19,8 @@
 			{% for row in rows %}
 				<tr>
 					<td class="table-fdi-region-progress_cell table-fdi-region-progress_cell--name">{{ row.name }}</td>
-					<td class="table-fdi-region-progress_cell table-fdi-region-progress_cell--total-wins">{{ row.wins.total | preciseNumber }}</td>
-					<td class="table-fdi-region-progress_cell table-fdi-region-progress_cell--verify">{{ row.wins.verify | preciseNumber }}</td>
+					<td class="table-fdi-region-progress_cell table-fdi-region-progress_cell--won">{{ row.wins.won | preciseNumber }}</td>
+					<td class="table-fdi-region-progress_cell table-fdi-region-progress_cell--verify">{{ row.wins.verified | preciseNumber }}</td>
 					<td class="table-fdi-region-progress_cell table-fdi-region-progress_cell--total-jobs">{{ row.jobs.total | preciseNumber }}</td>
 					<td class="table-fdi-region-progress_cell table-fdi-region-progress_cell--new-jobs">{{ row.jobs.new | preciseNumber }}</td>
 					<td class="table-fdi-region-progress_cell table-fdi-region-progress_cell--safe-jobs">{{ row.jobs.safe | preciseNumber }}</td>

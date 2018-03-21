@@ -1,11 +1,11 @@
 {% extends 'layout-investment.html' %}
 
 {% if tab.isOverseasRegions %}
-	{% set pageName='Investment Homepage with overseas markets' %}
+	{% set pageName='FDI Homepage with overseas markets' %}
 {% elif tab.isUkRegions %}
-	{% set pageName='Investment Homepage with UK regions' %}
+	{% set pageName='FDI Homepage with UK regions' %}
 {% else %}
-	{% set pageName='Investment Homepage' %}
+	{% set pageName='FDI Homepage' %}
 {% endif %}
 
 {% from 'macros/dates.html' import financialYear %}
@@ -17,7 +17,7 @@
 {% from './macros/table-region-progress.html' import regionProgressTable %}
 
 {% block page_heading %}
-	{{ pageHeading( 'Investment performance' ) }}
+	{{ pageHeading( 'FDI performance' ) }}
 {% endblock %}
 
 {% block page_content %}
@@ -29,32 +29,32 @@
 
 		<div class="column-one-quarter fdi-section-row">
 
-			{{ headlineFigure( 'Project wins', 'Total', headlines.wins.total | preciseNumber ) }}
+			{{ headlineFigure( 'Won & Verified wins', 'Total', headlines.wins.total | preciseNumber ) }}
 
 			{{ headlineBreakdown( [
-				[ 'High', headlines.wins.percentage.high + '%' ],
-				[ 'Good', headlines.wins.percentage.good + '%' ],
-				[ 'Standard', headlines.wins.percentage.standard + '%' ]
+				[ 'High value', headlines.wins.percentage.high + '%' ],
+				[ 'Good value', headlines.wins.percentage.good + '%' ],
+				[ 'Standard value', headlines.wins.percentage.standard + '%' ]
 			] ) }}
 
 		</div>
 		<div class="column-one-quarter fdi-section-row">
 
 			{{ fdiHvcPieChart(
-				'Non-HVC', headlines.breakdown.type.nonHvc,
-				'HVC', headlines.breakdown.type.hvc
+				'HVC', headlines.breakdown.type.hvc,
+				'Non-HVC', headlines.breakdown.type.nonHvc
 			) }}
 
 			{{ fdiStagePieChart(
-				'Verify win', headlines.breakdown.stage.verify,
 				'Won', headlines.breakdown.stage.won,
+				'Verified', headlines.breakdown.stage.verify,
 				'perf-stage'
 			) }}
 
 		</div>
 		<div class="column-one-quarter fdi-section-row">
 
-			{{ headlineSubFigure( 'Jobs', 'Total', headlines.jobs.total | preciseNumber ) }}
+			{{ headlineSubFigure( 'Total jobs', 'Won & Verified', headlines.jobs.total | preciseNumber ) }}
 
 			{{ headlineBreakdown( [
 				[ 'New jobs', headlines.jobs.new | preciseNumber ],
@@ -64,12 +64,12 @@
 		</div>
 		<div class="column-one-quarter">
 
-			{{ headlineSubFigure( 'Pipeline', 'Active', headlines.pipeline.total | preciseNumber ) }}
+			{{ headlineSubFigure( 'Total pipeline', 'Active', headlines.pipeline.total | preciseNumber ) }}
 
 			{{ headlineBreakdown( [
-				[ 'High', headlines.pipeline.percentage.high + '%' ],
-				[ 'Good', headlines.pipeline.percentage.good + '%' ],
-				[ 'Standard', headlines.pipeline.percentage.standard + '%' ]
+				[ 'High value', headlines.pipeline.percentage.high + '%' ],
+				[ 'Good value', headlines.pipeline.percentage.good + '%' ],
+				[ 'Standard value', headlines.pipeline.percentage.standard + '%' ]
 			] )}}
 		</div>
 	</section>
@@ -77,15 +77,15 @@
 	<section class="grid-row fdi-section">
 		<div class="column-single">
 
-			<h2 class="fdi-overview-heading">Investment wins</h2>
-			<p class="fdi-overview-sub-heading">Verified won in all of the department</p>
+			<h2 class="fdi-overview-heading">FDI wins</h2>
+			<p class="fdi-overview-sub-heading">Won across all of the department</p>
 
 			{{ dataTable( 'fdi-wins', details.wins ) }}
 		</div>
 	</section>
 
-	<h2 class="fdi-overview-heading">Investment pipeline</h2>
-	<p class="fdi-overview-sub-heading">Active in all of the department</p>
+	<h2 class="fdi-overview-heading">FDI pipeline</h2>
+	<p class="fdi-overview-sub-heading">Active across all of the department</p>
 	<section class="grid-row">
 		<div class="column-three-quarters">
 
@@ -107,11 +107,11 @@
 
 				<ol class="fdi-pipeline-projects-list">
 					<li class="fdi-pipeline-projects-list_item">
-						<span class="position-marker" data-number="1"></span>
+						<span class="position-marker" data-number="3"></span>
 						{{ projectDetail(
-							'Prospect',
-							details.pipeline.prospect.count,
-							details.pipeline.prospect.percent
+							'Active',
+							details.pipeline.active.count,
+							details.pipeline.active.percent
 						) }}
 					</li>
 					<li class="fdi-pipeline-projects-list_item">
@@ -123,11 +123,11 @@
 						) }}
 					</li>
 					<li class="fdi-pipeline-projects-list_item">
-						<span class="position-marker" data-number="3"></span>
+						<span class="position-marker" data-number="1"></span>
 						{{ projectDetail(
-							'Active',
-							details.pipeline.active.count,
-							details.pipeline.active.percent
+							'Prospect',
+							details.pipeline.prospect.count,
+							details.pipeline.prospect.percent
 						) }}
 					</li>
 				</ol>
@@ -155,7 +155,7 @@
 	<p class="visually-hidden">Project broken down by:</p>
 	<ul class="key-fdi-win-progress">
 		<li class="key-fdi-win-progress_item">Won<span class="key-fdi-win-progress_block key-fdi-win-progress_block--won"></span></li>
-		<li class="key-fdi-win-progress_item">Verify win<span class="key-fdi-win-progress_block key-fdi-win-progress_block--verify-win"></span></li>
+		<li class="key-fdi-win-progress_item">Verified<span class="key-fdi-win-progress_block key-fdi-win-progress_block--verify-win"></span></li>
 		<li class="key-fdi-win-progress_item">Active pipeline<span class="key-fdi-win-progress_block key-fdi-win-progress_block--pipeline"></span></li>
 		<li class="key-fdi-win-progress_item">Target<span class="key-fdi-win-progress_target"></span></li>
 	</ul>

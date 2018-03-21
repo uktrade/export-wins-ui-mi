@@ -3,7 +3,8 @@ const TableSorter = require( '../../../lib/TableSorter' );
 const KEYS = {
 	region: 'region',
 	totalWins: 'total-wins',
-	verifyWin: 'verify-win',
+	won: 'won',
+	verified: 'verify-win',
 	totalJobs: 'total-jobs',
 	newJobs: 'new-jobs',
 	safeJobs: 'safe-jobs'
@@ -24,11 +25,15 @@ sorter.createSorter = function( key ){
 		break;
 		case KEYS.totalWins:
 			sorter = ( a, b ) => this.compare( a.wins.total, b.wins.total );
-			sortName = 'Project wins';
+			sortName = 'Total wins';
 		break;
-		case KEYS.verifyWin:
+		case KEYS.won:
+			sorter = ( a, b ) => this.compare( a.wins.won.count, b.wins.won.count );
+			sortName = 'Won';
+		break;
+		case KEYS.verified:
 			sorter = ( a, b ) => this.compare( a.wins.verify_win.count, b.wins.verify_win.count );
-			sortName = 'Verify win';
+			sortName = 'Verified';
 		break;
 		case KEYS.totalJobs:
 			sorter = ( a, b ) => this.compare( a.jobs.total, b.jobs.total );
