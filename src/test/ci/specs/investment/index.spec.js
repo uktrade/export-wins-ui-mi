@@ -26,7 +26,7 @@ describe( 'Investment Index Page', function(){
 				const text = await heading.getText();
 				const tagName = await heading.getTagName();
 
-				expect( text ).toEqual( 'Investment performance' );
+				expect( text ).toEqual( 'FDI performance' );
 				expect( tagName ).toEqual( 'h1' );
 				done();
 

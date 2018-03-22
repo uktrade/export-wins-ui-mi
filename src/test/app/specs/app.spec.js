@@ -888,7 +888,7 @@ if( config.backend.mock ){
 						supertest( app ).get( '/investment/' ).end( ( err, res ) => {
 
 							checkResponse( res, 200 );
-							expect( getTitle( res ) ).toEqual( 'MI - Investment Homepage' );
+							expect( getTitle( res ) ).toEqual( 'MI - FDI Homepage' );
 							done();
 						} );
 					} );
@@ -904,7 +904,7 @@ if( config.backend.mock ){
 						supertest( app ).get( '/investment/?tab=sectors' ).end( ( err, res ) => {
 
 							checkResponse( res, 200 );
-							expect( getTitle( res ) ).toEqual( 'MI - Investment Homepage' );
+							expect( getTitle( res ) ).toEqual( 'MI - FDI Homepage' );
 							done();
 						} );
 					} );
@@ -920,7 +920,7 @@ if( config.backend.mock ){
 						supertest( app ).get( '/investment/?tab=os-regions' ).end( ( err, res ) => {
 
 							checkResponse( res, 200 );
-							expect( getTitle( res ) ).toEqual( 'MI - Investment Homepage with overseas markets' );
+							expect( getTitle( res ) ).toEqual( 'MI - FDI Homepage with overseas markets' );
 							done();
 						} );
 					} );
@@ -936,7 +936,7 @@ if( config.backend.mock ){
 						supertest( app ).get( '/investment/?tab=uk-regions' ).end( ( err, res ) => {
 
 							checkResponse( res, 200 );
-							expect( getTitle( res ) ).toEqual( 'MI - Investment Homepage with UK regions' );
+							expect( getTitle( res ) ).toEqual( 'MI - FDI Homepage with UK regions' );
 							done();
 						} );
 					} );

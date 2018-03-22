@@ -11,7 +11,7 @@ const staticInput = [
                "percent": 0
             },
             "won": {
-               "count": 200,
+               "count": 210,
                "percent": 0
             },
             "hvc": {
@@ -320,10 +320,22 @@ describe( 'Sort Region Progress', function(){
 				it( 'Should sort it correctly', function(){
 
 					const sortKey = sortRegionProgress.KEYS.totalWins;
-					const sortName = 'Project wins';
+					const sortName = 'Total wins';
 					const resultOrder = [ 2, 3, 0, 1, 4 ];
 
 					checkDirections( 'wins.total', sortKey, sortName, resultOrder );
+				} );
+			} );
+
+			describe( 'Sort by won', function(){
+
+				it( 'Should sort it correctly', function(){
+
+					const sortKey = sortRegionProgress.KEYS.won;
+					const sortName = 'Won';
+					const resultOrder = [ 2, 3, 4, 0, 1 ];
+
+					checkDirections( 'wins.won', sortKey, sortName, resultOrder );
 				} );
 			} );
 
@@ -331,8 +343,8 @@ describe( 'Sort Region Progress', function(){
 
 				it( 'Should sort it correctly', function(){
 
-					const sortKey = sortRegionProgress.KEYS.verifyWin;
-					const sortName = 'Verify win';
+					const sortKey = sortRegionProgress.KEYS.verified;
+					const sortName = 'Verified';
 					const resultOrder = [ 2, 3, 0, 1, 4 ];
 
 					checkDirections( 'wins.verify_win', sortKey, sortName, resultOrder );

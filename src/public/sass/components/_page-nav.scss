@@ -18,10 +18,24 @@
 
 .page-nav--divider {
 
+	.page-nav_list {
+		margin: pem( 15 ) 0;
+	}
+
+
+
 	@include media( tablet ){
 
 		margin-top: pem( 45 );
 		margin-bottom: pem( 30 );
+
+		.page-nav_list {
+			margin: 0;
+		}
+
+		.page-nav_link {
+			min-width: pem( 100 );
+		}
 	}
 }
 
@@ -32,11 +46,18 @@
 }
 
 .page-nav_link {
+
 	text-decoration: none;
 	color: $link-colour;
-	min-width: pem( 100 );
 	display: inline-block;
-	text-align: center;
+	text-align: left;
+	padding: pem( 5 ) 0;
+
+	@include media( tablet ) {
+
+		text-align: center;
+		padding: 0;
+	}
 }
 
 .page-nav_link--active {

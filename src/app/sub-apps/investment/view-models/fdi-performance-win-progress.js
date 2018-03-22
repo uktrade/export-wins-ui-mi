@@ -51,8 +51,8 @@ module.exports = {
 					id: item.id,
 					name: item.name,
 					wins: {
-						total: item.wins.total,
-						hvc: item.wins.hvc.count
+						hvc: item.wins.hvc.count,
+						nonHvc: item.wins.non_hvc.count
 					},
 					segments: createSegments( item, createItem )
 				} );

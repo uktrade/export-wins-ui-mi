@@ -63,6 +63,7 @@
 	display: block;
 	@include core-14( $line-height: 1 );
 	margin-bottom: pem( 10, 14 );
+	padding-right: pem( 10, 14 );
 }
 
 .headline-figure-breakdown_value {

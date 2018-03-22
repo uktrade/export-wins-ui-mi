@@ -57,19 +57,18 @@
 		&:first-of-type {
 
 			width: 48%;
+
+			@include media( tablet ){
+				.headline-figure-breakdown_key {
+					padding-right: 50%;
+				}
+			}
 		}
 	}
 }
 
 .fdi-data-table--fdi-wins,
 .fdi-data-table--fdi-active-pipeline {
-
-	.fdi-data-table_heading {
-
-		&:nth-of-type( 2 ) {
-			text-align: center;
-		}
-	}
 
 	.fdi-data-table_cell {
 
@@ -84,10 +83,6 @@
 			width: 12%;
 		}
 
-		&:nth-of-type( 2 ) {
-			text-align: center;
-		}
-
 		&:nth-of-type( 6 ) {
 			width: 15%;
 		}
@@ -95,11 +90,11 @@
 }
 
 .table-fdi-win-progress_cell--name {
-	width: 36%;
+	width: 34%;
 }
 
-.table-fdi-win-progress_cell--total {
-	width: 7%;
+.table-fdi-win-progress_cell--non-hvc {
+	width: 9%;
 }
 
 .table-fdi-win-progress_cell--hvc {
