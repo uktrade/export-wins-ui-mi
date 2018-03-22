@@ -29,7 +29,7 @@
 
 		<div class="column-one-quarter fdi-section-row">
 
-			{{ headlineFigure( 'Won & Verified wins', 'Total', headlines.wins.total | preciseNumber ) }}
+			{{ headlineFigure( 'Won & Verify win', 'Total', headlines.wins.total | preciseNumber ) }}
 
 			{{ headlineBreakdown( [
 				[ 'High value', headlines.wins.percentage.high + '%' ],
@@ -47,14 +47,14 @@
 
 			{{ fdiStagePieChart(
 				'Won', headlines.breakdown.stage.won,
-				'Verified', headlines.breakdown.stage.verify,
+				'Verify win', headlines.breakdown.stage.verify,
 				'perf-stage'
 			) }}
 
 		</div>
 		<div class="column-one-quarter fdi-section-row">
 
-			{{ headlineSubFigure( 'Total jobs', 'Won & Verified', headlines.jobs.total | preciseNumber ) }}
+			{{ headlineSubFigure( 'Total jobs', 'Won & Verify win', headlines.jobs.total | preciseNumber ) }}
 
 			{{ headlineBreakdown( [
 				[ 'New jobs', headlines.jobs.new | preciseNumber ],
@@ -155,7 +155,7 @@
 	<p class="visually-hidden">Project broken down by:</p>
 	<ul class="key-fdi-win-progress">
 		<li class="key-fdi-win-progress_item">Won<span class="key-fdi-win-progress_block key-fdi-win-progress_block--won"></span></li>
-		<li class="key-fdi-win-progress_item">Verified<span class="key-fdi-win-progress_block key-fdi-win-progress_block--verify-win"></span></li>
+		<li class="key-fdi-win-progress_item">Verify win<span class="key-fdi-win-progress_block key-fdi-win-progress_block--verify-win"></span></li>
 		<li class="key-fdi-win-progress_item">Active pipeline<span class="key-fdi-win-progress_block key-fdi-win-progress_block--pipeline"></span></li>
 		<li class="key-fdi-win-progress_item">Target<span class="key-fdi-win-progress_target"></span></li>
 	</ul>
