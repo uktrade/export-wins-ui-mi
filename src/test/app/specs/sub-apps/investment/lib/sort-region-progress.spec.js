@@ -343,8 +343,8 @@ describe( 'Sort Region Progress', function(){
 
 				it( 'Should sort it correctly', function(){
 
-					const sortKey = sortRegionProgress.KEYS.verified;
-					const sortName = 'Verified';
+					const sortKey = sortRegionProgress.KEYS.verify;
+					const sortName = 'Verify win';
 					const resultOrder = [ 2, 3, 0, 1, 4 ];
 
 					checkDirections( 'wins.verify_win', sortKey, sortName, resultOrder );

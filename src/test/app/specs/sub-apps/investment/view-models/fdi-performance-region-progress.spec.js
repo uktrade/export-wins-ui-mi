@@ -35,7 +35,7 @@ describe( 'FDI Performance Region Progress View Model', function(){
 					expect( item.id ).toEqual( inputItem.id );
 					expect( item.name ).toEqual( inputItem.name );
 					expect( item.wins.won ).toEqual( inputItem.wins.won.count );
-					expect( item.wins.verified ).toEqual( inputItem.wins.verify_win.count );
+					expect( item.wins.verify ).toEqual( inputItem.wins.verify_win.count );
 					expect( item.jobs ).toEqual( inputItem.jobs );
 				} );
 			} );
@@ -75,7 +75,7 @@ describe( 'FDI Performance Region Progress View Model', function(){
 					expect( item.id ).toEqual( inputItem.id );
 					expect( item.name ).toEqual( inputItem.name );
 					expect( item.wins.won ).toEqual( inputItem.wins.won.count );
-					expect( item.wins.verified ).toEqual( inputItem.wins.verify_win.count );
+					expect( item.wins.verify ).toEqual( inputItem.wins.verify_win.count );
 					expect( item.jobs ).toEqual( inputItem.jobs );
 				} );
 			} );

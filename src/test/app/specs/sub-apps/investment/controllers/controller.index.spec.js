@@ -28,7 +28,7 @@ describe( 'Index controller', function(){
 
 		sortSectorProgressSpyResponse = { sortedSectors: true, KEYS: { sector: 'sector', nonHvcWins: 'non-hvc-wins', hvcWins: 'hvc-wins' } };
 		sortMarketProgressSpyResponse = { sortedMarkets: true, KEYS: { market: 'market', nonHvcWins: 'non-hvc-wins', hvcWins: 'hvc-wins' } };
-		sortRegionProgressSpyResponse = { sortedRegions: true, KEYS: { region: 'region',	totalWins: 'total-wins', won: 'won', verified: 'verify-win', totalJobs: 'total-jobs',	newJobs: 'new-jobs',	safeJobs: 'safe-jobs' } };
+		sortRegionProgressSpyResponse = { sortedRegions: true, KEYS: { region: 'region',	totalWins: 'total-wins', won: 'won', verify: 'verify-win', totalJobs: 'total-jobs',	newJobs: 'new-jobs',	safeJobs: 'safe-jobs' } };
 
 		getSectorsHomepageData = jasmine.createSpy( 'getSectorsHomepageData' );
 		getOverseasRegionsHomepageData = jasmine.createSpy( 'getOverseasRegionsHomepageData' );

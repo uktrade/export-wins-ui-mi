@@ -4,7 +4,7 @@ const KEYS = {
 	region: 'region',
 	totalWins: 'total-wins',
 	won: 'won',
-	verified: 'verify-win',
+	verify: 'verify-win',
 	totalJobs: 'total-jobs',
 	newJobs: 'new-jobs',
 	safeJobs: 'safe-jobs'
@@ -31,9 +31,9 @@ sorter.createSorter = function( key ){
 			sorter = ( a, b ) => this.compare( a.wins.won.count, b.wins.won.count );
 			sortName = 'Won';
 		break;
-		case KEYS.verified:
+		case KEYS.verify:
 			sorter = ( a, b ) => this.compare( a.wins.verify_win.count, b.wins.verify_win.count );
-			sortName = 'Verified';
+			sortName = 'Verify win';
 		break;
 		case KEYS.totalJobs:
 			sorter = ( a, b ) => this.compare( a.jobs.total, b.jobs.total );
