@@ -13,7 +13,7 @@ const tabValues = {
 	ukRegions: 'uk-regions'
 };
 
-function getTabs( tabParam ){
+function getTabs( tabParam, hasExperiments ){
 
 	let isSectors = false;
 	let isOverseasRegions = false;
@@ -25,7 +25,7 @@ function getTabs( tabParam ){
 		isOverseasRegions = true;
 		selected = tabValues.overseasRegions;
 
-	} else if( !isOverseasRegions && ( tabParam === tabValues.ukRegions ) ){
+	} else if( !isOverseasRegions && ( hasExperiments && tabParam === tabValues.ukRegions ) ){
 
 		isUkRegions = true;
 		selected = tabValues.ukRegions;
@@ -45,7 +45,7 @@ function getTabs( tabParam ){
 
 module.exports = async function( req, res ){
 
-	const tab = getTabs( req.query.tab );
+	const tab = getTabs( req.query.tab, req.user.experiments );
 
 	try {
 

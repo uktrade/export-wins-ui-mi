@@ -143,9 +143,11 @@
 			<li class="page-nav_list_item">
 				<a class="page-nav_link{% if tab.isOverseasRegions %} page-nav_link--active{% endif %}" href="{{ urls.investment.index({ osRegions: true } ) }}#page-tabs">Overseas markets</a>
 			</li>
+			{% if user.experiments %}
 			<li class="page-nav_list_item">
 				<a class="page-nav_link{% if tab.isUkRegions %} page-nav_link--active{% endif %}" href="{{ urls.investment.index({ ukRegions: true } ) }}#page-tabs">UK regions</a>
 			</li>
+			{% endif %}
 		</ul>
 	</nav>
 
