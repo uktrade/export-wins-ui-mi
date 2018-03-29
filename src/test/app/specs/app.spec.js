@@ -931,22 +931,6 @@ if( config.backend.mock ){
 					it( 'Should return a 200 with the correct heading', function( done ){
 
 						interceptBackend.getStub( `/mi/fdi/performance/?year=2017`, 200, '/investment/fdi/performance/' );
-						interceptBackend.getStub( `/mi/fdi/performance/sector/?year=2017`, 200, '/investment/fdi/performance/sectors' );
-
-						supertest( app ).get( '/investment/?tab=uk-regions' ).end( ( err, res ) => {
-
-							checkResponse( res, 200 );
-							expect( getTitle( res ) ).toEqual( 'MI - FDI Homepage' );
-							done();
-						} );
-					} );
-				} );
-/*
-				describe( 'With tab param set to uk-regions', function(){
-
-					it( 'Should return a 200 with the correct heading', function( done ){
-
-						interceptBackend.getStub( `/mi/fdi/performance/?year=2017`, 200, '/investment/fdi/performance/' );
 						interceptBackend.getStub( `/mi/fdi/performance/uk_region/?year=2017`, 200, '/investment/fdi/performance/uk_regions' );
 
 						supertest( app ).get( '/investment/?tab=uk-regions' ).end( ( err, res ) => {
@@ -957,7 +941,6 @@ if( config.backend.mock ){
 						} );
 					} );
 				} );
-*/
 			} );
 		} );
 	} );

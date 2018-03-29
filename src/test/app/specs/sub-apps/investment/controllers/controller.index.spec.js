@@ -199,112 +199,53 @@ describe( 'Index controller', function(){
 					};
 				} );
 
-				describe( 'With experiments', function(){
+				it( 'Should render the view', function( done ){
 
-					it( 'Should render the view', function( done ){
+					const sortUkRegions = { regionSort: true };
+					const ukRegionsData = { date_range: { ukRegionsDataDateRange: true }, results: { someUkRegionsData: true } };
+					const regionPerformanceViewModelSpyResponse = { someRegionData: true };
 
-						const sortUkRegions = { regionSort: true };
-						const ukRegionsData = { date_range: { ukRegionsDataDateRange: true }, results: { someUkRegionsData: true } };
-						const regionPerformanceViewModelSpyResponse = { someRegionData: true };
-
-						const promise = new Promise( ( resolve ) => {
-							resolve( {
-								performance: this.performanceData,
-								ukRegions: ukRegionsData
-							} );
-						} );
-
-						getUkRegionsHomepageData.and.callFake( () => promise );
-						performanceHeadlinesViewModelSpy.and.callFake( () => this.performanceHeadlinesResponse );
-						performanceDetailsViewModelSpy.and.callFake( () => this.performanceDetailsResponse );
-						regionPerformanceViewModelSpy.and.callFake( () => regionPerformanceViewModelSpyResponse );
-
-						req.query.sort = sortUkRegions;
-						req.query.tab = 'uk-regions';
-						req.user.experiments = true;
-
-						controller( req, res );
-
-						promise.then( () => {
-
-							expect( getUkRegionsHomepageData ).toHaveBeenCalledWith( req );
-							expect( performanceHeadlinesViewModelSpy ).toHaveBeenCalledWith( this.performanceData.results );
-							expect( performanceDetailsViewModelSpy ).toHaveBeenCalledWith( this.performanceData.results );
-							expect( sortRegionProgressSpy ).toHaveBeenCalledWith( ukRegionsData.results, sortUkRegions );
-							expect( regionPerformanceViewModelSpy ).toHaveBeenCalledWith( sortRegionProgressSpyResponse );
-							expect( res.render ).toHaveBeenCalledWith( 'investment/views/index', {
-
-								dateRange: this.performanceData.date_range,
-								headlines: this.performanceHeadlinesResponse,
-								details: this.performanceDetailsResponse,
-								progressRows: regionPerformanceViewModelSpyResponse,
-								sortKeys: sortRegionProgressSpyResponse.KEYS,
-								progressHeading: 'UK regions',
-								tab: {
-									isSectors: false,
-									isOverseasRegions: false,
-									isUkRegions: true,
-									selected: 'uk-regions'
-								}
-							} );
-
-							done();
+					const promise = new Promise( ( resolve ) => {
+						resolve( {
+							performance: this.performanceData,
+							ukRegions: ukRegionsData
 						} );
 					} );
-				} );
 
-				describe( 'Without experiments', function(){
+					getUkRegionsHomepageData.and.callFake( () => promise );
+					performanceHeadlinesViewModelSpy.and.callFake( () => this.performanceHeadlinesResponse );
+					performanceDetailsViewModelSpy.and.callFake( () => this.performanceDetailsResponse );
+					regionPerformanceViewModelSpy.and.callFake( () => regionPerformanceViewModelSpyResponse );
 
-					it( 'Should render the sectors', function( done ){
+					req.query.sort = sortUkRegions;
+					req.query.tab = 'uk-regions';
 
-						let selected;
-						const sortSectors = { sortParams: true };
-						const sectorsData = { date_range: { sectorsDataDateRange: true }, results: { someSectorsData: true } };
+					controller( req, res );
 
-						const promise =  new Promise( ( resolve ) => {
-							resolve( {
-								performance: this.performanceData,
-								sectors: sectorsData
-							} );
+					promise.then( () => {
+
+						expect( getUkRegionsHomepageData ).toHaveBeenCalledWith( req );
+						expect( performanceHeadlinesViewModelSpy ).toHaveBeenCalledWith( this.performanceData.results );
+						expect( performanceDetailsViewModelSpy ).toHaveBeenCalledWith( this.performanceData.results );
+						expect( sortRegionProgressSpy ).toHaveBeenCalledWith( ukRegionsData.results, sortUkRegions );
+						expect( regionPerformanceViewModelSpy ).toHaveBeenCalledWith( sortRegionProgressSpyResponse );
+						expect( res.render ).toHaveBeenCalledWith( 'investment/views/index', {
+
+							dateRange: this.performanceData.date_range,
+							headlines: this.performanceHeadlinesResponse,
+							details: this.performanceDetailsResponse,
+							progressRows: regionPerformanceViewModelSpyResponse,
+							sortKeys: sortRegionProgressSpyResponse.KEYS,
+							progressHeading: 'UK regions',
+							tab: {
+								isSectors: false,
+								isOverseasRegions: false,
+								isUkRegions: true,
+								selected: 'uk-regions'
+							}
 						} );
 
-						getSectorsHomepageData.and.callFake( () => promise );
-						performanceHeadlinesViewModelSpy.and.callFake( () => this.performanceHeadlinesResponse );
-						performanceDetailsViewModelSpy.and.callFake( () => this.performanceDetailsResponse );
-						performanceWinProgressViewModelSpy.and.callFake( () => this.performanceWinProgressResponse );
-
-						req.query.sort = sortSectors;
-						req.query.tab = 'uk-regions';
-
-						controller( req, res );
-
-						promise.then( () => {
-
-							expect( getSectorsHomepageData ).toHaveBeenCalledWith( req );
-							expect( performanceHeadlinesViewModelSpy ).toHaveBeenCalledWith( this.performanceData.results );
-							expect( performanceDetailsViewModelSpy ).toHaveBeenCalledWith( this.performanceData.results );
-							expect( performanceWinProgressViewModelSpy ).toHaveBeenCalledWith( sectorsData.results );
-							expect( sortSectorProgressSpy ).toHaveBeenCalledWith( this.performanceWinProgressResponse, sortSectors );
-							expect( res.render ).toHaveBeenCalledWith( 'investment/views/index', {
-
-								dateRange: this.performanceData.date_range,
-								headlines: this.performanceHeadlinesResponse,
-								details: this.performanceDetailsResponse,
-								progressRows: sortSectorProgressSpyResponse,
-								sortKeys: sortSectorProgressSpyResponse.KEYS,
-								progressHeading: 'Sectors',
-								progressColumnHeading: 'Sector',
-								progressColumnHeadingKey: sortSectorProgressSpyResponse.KEYS.sector,
-								tab: {
-									isSectors: true,
-									isOverseasRegions: false,
-									isUkRegions: false,
-									selected
-								}
-							} );
-
-							done();
-						} );
+						done();
 					} );
 				} );
 			} );

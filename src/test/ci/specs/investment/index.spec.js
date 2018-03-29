@@ -46,12 +46,12 @@ describe( 'Investment Index Page', function(){
 				const links = await driver.findElements( By.css( '#page-tabs .page-nav_link' ) );
 				const text1 = await links[ 0 ].getText();
 				const text2 = await links[ 1 ].getText();
-				//const text3 = await links[ 2 ].getText();
+				const text3 = await links[ 2 ].getText();
 
-				expect( links.length ).toEqual( 2 );
+				expect( links.length ).toEqual( 3 );
 				expect( text1 ).toEqual( 'Sectors' );
 				expect( text2 ).toEqual( 'Overseas markets' );
-				//expect( text3 ).toEqual( 'UK regions' );
+				expect( text3 ).toEqual( 'UK regions' );
 				done();
 
 			} catch( e ){
@@ -128,7 +128,7 @@ describe( 'Investment Index Page', function(){
 			}
 		} );
 	} );
-/*
+
 	describe( 'Clicking the UK regions link', function(){
 
 		beforeEach( async function( done ){
@@ -177,5 +177,4 @@ describe( 'Investment Index Page', function(){
 			}
 		} );
 	} );
-*/
 } );
