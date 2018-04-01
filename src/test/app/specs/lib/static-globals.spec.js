@@ -7,6 +7,7 @@ describe( 'Static globals', function(){
 	const analyticsId = 'abc123';
 	const faqLink = 'http://abc123.com';
 	const financialYearStart = 2016;
+	const financialYearEnd = 2018;
 	const datahubDomain = 'https://some-domain.com';
 
 	let calls;
@@ -26,10 +27,12 @@ describe( 'Static globals', function(){
 				feedbackSurvey,
 				analyticsId,
 				faqLink,
-				financialYearStart,
+				financialYear: {
+					start: financialYearStart,
+					end: financialYearEnd
+				},
 				datahubDomain
-			},
-			'./financial-year': financialYear
+			}
 		};
 
 		staticGlobals = proxyquire( '../../../../app/lib/static-globals', stubs );
@@ -72,21 +75,12 @@ describe( 'Static globals', function(){
 
 		beforeAll( function(){
 
-			const currentYear = financialYearResponse;
-			let year = 2016;
+			let year = financialYearStart;
 
-			while( year <= currentYear ){
+			while( year <= financialYearEnd ){
 				yearList.push( { year, label: `${ year }/${ ( year + 1 ).toString().substr( 2, 4) }` } );
 				year++;
 			}
-		} );
-
-		describe( 'Creating the year list', function(){
-
-			it( 'Should call getCurrent from financialYear', function(){
-
-				expect( financialYear.getCurrent ).toHaveBeenCalled();
-			} );
 		} );
 
 		describe( 'When the financialYearStart is a Number', function(){
@@ -112,7 +106,10 @@ describe( 'Static globals', function(){
 						feedbackSurvey,
 						analyticsId,
 						faqLink,
-						financialYearStart
+						financialYear: {
+							start: financialYearStart,
+							end: financialYearEnd
+						}
 					}
 				};
 
@@ -123,7 +120,6 @@ describe( 'Static globals', function(){
 				};
 
 				staticGlobals( env );
-
 
 				const args = env.addGlobal.calls.argsFor( 3 );
 

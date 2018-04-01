@@ -1,4 +1,4 @@
-const financialYear = require( '../lib/financial-year' );
+const config = require( '../config' );
 const urlYear = /^\/([0-9]{4})\//;
 
 module.exports = function( req, res, next ){
@@ -15,7 +15,7 @@ module.exports = function( req, res, next ){
 
 	} else {
 
-		const year = financialYear.getCurrent();
+		const year = config.financialYear.end;
 
 		req.year = String( year );
 		req.isDefaultYear = true;

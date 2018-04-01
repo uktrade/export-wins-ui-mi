@@ -43,7 +43,10 @@ let config = {
 	views: {
 		cache: bool( 'CACHE_VIEWS', true )
 	},
-	financialYearStart: number( 'FINANCIAL_YEAR_START', 2016 ),
+	financialYear: {
+		start: number( 'FINANCIAL_YEAR_START', 2016 ),
+		end: number( 'FINANCIAL_YEAR_END', 2017 )
+	},
 	urls: {
 		usingMi: requiredEnv( 'URL_USING_MI' ),
 		kimPrinciples: requiredEnv( 'URL_KIM_PRINCIPLES' )
