@@ -1,15 +1,14 @@
 const config = require( '../config' );
-const financialYear = require( './financial-year' );
 
 module.exports = function( env ){
 
-	const startYear = Number( config.financialYearStart );
-	const currentYear = financialYear.getCurrent();
+	const startYear = Number( config.financialYear.start );
+	const endYear = Number( config.financialYear.end );
 	const years = [];
 
 	let year = startYear;
 
-	while( year <= currentYear ){
+	while( year <= endYear ){
 		years.push( { year, label: `${ year }/${ ( year + 1 ).toString().substr( 2, 4 ) }` } );
 		year++;
 	}

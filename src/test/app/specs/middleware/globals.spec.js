@@ -23,7 +23,9 @@ describe( 'Globals middleware', function(){
 
 		middleware = proxyquire( '../../../../app/middleware/globals', {
 			'../lib/urls': () => urlsSpy,
-			'../lib/financial-year': financialYearSpy
+			'../lib/financial-year': {
+				getCurrent: financialYearSpy
+			}
 		} );
 
 		env = {
