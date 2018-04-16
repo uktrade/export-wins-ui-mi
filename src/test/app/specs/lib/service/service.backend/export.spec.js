@@ -13,7 +13,6 @@ let campaignsSpy;
 let sectorTeamsOverviewSpy;
 let osRegionsOverviewSpy;
 let hvcGroupSpy;
-let osRegionsSpy;
 let winListSpy;
 let alphabeticalListSpy;
 
@@ -69,7 +68,6 @@ describe( 'Export backend service', function(){
 			sectorTeamsOverviewSpy = jasmine.createSpy( 'sector-teams-overview' );
 			osRegionsOverviewSpy = jasmine.createSpy( 'os-regions-overview' );
 			hvcGroupSpy = jasmine.createSpy( 'hvc-group' );
-			osRegionsSpy = jasmine.createSpy( 'os-regions' );
 			winListSpy = jasmine.createSpy( 'win-list' );
 			alphabeticalListSpy = jasmine.createSpy( 'alphabetical-list' );
 
@@ -91,7 +89,6 @@ describe( 'Export backend service', function(){
 				'../../transformers/export/sector-teams-overview': sectorTeamsOverviewSpy,
 				'../../transformers/export/os-regions-overview': osRegionsOverviewSpy,
 				'../../transformers/export/hvc-group': hvcGroupSpy,
-				'../../transformers/export/os-regions': osRegionsSpy,
 				'../../transformers/export/win-list': winListSpy,
 				'../../transformers/export/alphabetical-list': alphabeticalListSpy
 			} );
