@@ -260,7 +260,7 @@ describe( 'Backend service', function(){
 
 					configStub.internalUsers = str;
 
-					stubs[ '../../config' ] = configStub;
+					stubs[ '../../../config' ] = configStub;
 
 					backendService = proxyquire( modulePath, stubs );
 				}

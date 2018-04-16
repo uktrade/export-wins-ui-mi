@@ -2,13 +2,13 @@ const proxyquire = require( 'proxyquire' );
 const rewire = require( 'rewire' );
 
 const spy = require( '../../../../../helpers/spy' );
-const getBackendStub = require( '../../../../../helpers/get-backend-stub' );
+//const getBackendStub = require( '../../../../../helpers/get-backend-stub' );
 
 const moduleFile = '../../../../../../../app/lib/service/service.backend/investment/fdi';
 
 let getJson;
 let fdiService;
-let fdiProjectListTransformer;
+//let fdiProjectListTransformer;
 let req;
 
 function checkBackendArgs( path, req, transformer ){
@@ -28,10 +28,10 @@ function checkBackendArgs( path, req, transformer ){
 	}
 }
 
-function returnData( data ){
+//function returnData( data ){
 
-	getJson.and.callFake( () => new Promise( ( resolve ) => resolve( data ) ) );
-}
+//	getJson.and.callFake( () => new Promise( ( resolve ) => resolve( data ) ) );
+//}
 
 describe( 'Investment FDI backend service', function(){
 
@@ -39,7 +39,7 @@ describe( 'Investment FDI backend service', function(){
 
 		req = { cookies: { sessionid: 'test' } };
 		getJson = jasmine.createSpy( 'getJson' );
-		fdiProjectListTransformer = jasmine.createSpy( 'fdiProjectListTransformer' );
+		//fdiProjectListTransformer = jasmine.createSpy( 'fdiProjectListTransformer' );
 	} );
 
 	describe( 'Single methods', function(){
@@ -49,8 +49,8 @@ describe( 'Investment FDI backend service', function(){
 			getJson.and.callFake( () => new Promise( ( resolve ) => resolve() ) );
 
 			fdiService = proxyquire( moduleFile, {
-				'../_helpers': { getJson },
-				'../../../transformers/fdi/project-list': fdiProjectListTransformer
+				'../_helpers': { getJson }//,
+				//'../../../transformers/fdi/project-list': fdiProjectListTransformer
 			} );
 		} );
 

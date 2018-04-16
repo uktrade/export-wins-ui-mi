@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/app
     docker:
-      - image: circleci/node:8.9
+      - image: circleci/node:8.11
         environment:
           SERVER_WORKERS: 2
           MI_PROTOCOL: "http"
