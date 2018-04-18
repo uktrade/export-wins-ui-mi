@@ -53,11 +53,27 @@ To run in development mode and also use fake stubs, first you need to generate t
 node src/data/create-backend-fake-stubs.js
 ```
 
-This should log a message to say how many files were written, now you can run the app with those stubs:
+This will generate and write the stubs into src/data/fake-stubs/ and will log a message to say how many files were written, now you can run the app with those stubs:
+
+```bash
+npm run watch-fake-stub
+```
+
+### Stubs
+
+If you want to be able to run the app without a db and backend running you can run a script:
+
+```bash
+node src/data/fetch-backend-stubs.js
+```
+
+That will fetch a response from all the APIs and write them to disk, these responses will then be returned if you enable stub mode:
 
 ```bash
 npm run watch-stub
 ```
+
+Now you can stop the db and backend from running and the app will still work.
 
 ## Testing
 
@@ -70,7 +86,7 @@ npm test
 To test the client side code:
 
 ```bash
-npm run test-client
+npm run test:client
 ```
 
 # Releases
@@ -153,7 +169,13 @@ docker-compose up
 
 Which will require a database to be running and DATABASE_URL env var to be defined
 
-To start a clean db, use with the over ride file:
+You can start a database by running:
+
+```
+docker run -d -p 5432:5432 -e POSTGRES_DB=export-wins-data postgres:9
+```
+
+And use a script to generate some data, or to start a clean db, use compose with the over ride file:
 
 ```bash
 docker-compose -f docker-compose.yml -f docker-compose.clean.yml up
