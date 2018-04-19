@@ -1,7 +1,7 @@
 Export Wins MI
 ==============
 
-A front end project to show some MI data for Export Wins
+A front end project to show some MI data for Data Hub
 
 [![Build Status](https://circleci.com/gh/uktrade/export-wins-ui-mi.svg?style=shield)](https://circleci.com/gh/uktrade/export-wins-ui-mi)
 [![Dependency Status](https://img.shields.io/gemnasium/uktrade/export-wins-ui-mi.svg?style=flat&label=dependencies)](https://gemnasium.com/github.com/uktrade/export-wins-ui-mi)
@@ -17,6 +17,10 @@ After checkout run:
 ```bash
 npm install
 ```
+
+You will also need some environment variables created before you can start the app, take a look at the [env template](.env.template) file.
+
+To make life easier setup an shell extension to read a .env or .envrc file and setup env vars for you, like [direnv](https://direnv.net/), then ensure you have the correct env variables set.
 
 ## Starting the app
 
@@ -47,6 +51,8 @@ To run in development mode (watching files for changes):
 npm run watch
 ```
 
+#### Fake stubs
+
 To run in development mode and also use fake stubs, first you need to generate the stubs:
 
 ```bash
@@ -59,7 +65,7 @@ This will generate and write the stubs into src/data/fake-stubs/ and will log a 
 npm run watch-fake-stub
 ```
 
-### Stubs
+#### Real stubs
 
 If you want to be able to run the app without a db and backend running you can run a script:
 
@@ -67,7 +73,7 @@ If you want to be able to run the app without a db and backend running you can r
 node src/data/fetch-backend-stubs.js
 ```
 
-That will fetch a response from all the APIs and write them to disk, these responses will then be returned if you enable stub mode:
+That will fetch a response from all the APIs and write them to disk. To avoid losing active stubs, a folder called "backend" will be created with the current date and time appended, you will need to rename this to "backend" in src/data/stubs/ and then these are the responses that will then be returned if you enable stub mode:
 
 ```bash
 npm run watch-stub
