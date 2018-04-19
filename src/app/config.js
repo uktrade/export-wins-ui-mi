@@ -34,11 +34,10 @@ let config = {
 	showErrors: isDev,
 	version: env( 'npm_package_version', 'unknown' ),
 	server: {
-		protocol: env( 'SERVER_PROTOCOL', 'https' ),
 		host: env( 'SERVER_HOST', 'localhost' ),
-		port: env( 'SERVER_PORT', env( 'PORT', 8080 ) ),
+		port: number( 'SERVER_PORT', number( 'PORT', 8080 ) ),
 		cpus,
-		workers: env( 'SERVER_WORKERS', env( 'WEB_CONCURRENCY', defaultWorkers ) )
+		workers: number( 'SERVER_WORKERS', number( 'WEB_CONCURRENCY', defaultWorkers ) )
 	},
 	views: {
 		cache: bool( 'CACHE_VIEWS', true )
@@ -72,8 +71,8 @@ let config = {
 		secret: requiredEnv( 'MI_SECRET' ),
 		protocol: env( 'MI_PROTOCOL', 'https' ),
 		host: env( 'MI_HOST', 'localhost' ),
-		port: env( 'MI_PORT', 8000 ),
-		timeout: env( 'MI_TIMEOUT', 1000 ),
+		port: number( 'MI_PORT', 8000 ),
+		timeout: number( 'MI_TIMEOUT', 1000 ),
 
 		stub: bool( 'STUB_MI', false ),
 		fake: bool( 'FAKE_MI', false ),

@@ -7,16 +7,13 @@ const nonDefaultYear = 2016;
 describe( 'urls middleware', function(){
 
 	let middleware;
-	let config;
 	let req;
 	let getFinancialYearSpy;
 
 	beforeEach( function(){
 
 		getFinancialYearSpy = spy( 'getFinancialYear', 2017 );
-		config = { feedbackEmail: '123', feedbackSurvey: '456' };
 		middleware = proxyquire( '../../../../app/lib/urls' , {
-			'../config': config,
 			'./financial-year': { getCurrent: getFinancialYearSpy }
 		} );
 

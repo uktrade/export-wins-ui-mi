@@ -23,8 +23,6 @@ function listenForWorkerMessages( worker ){
 function startApp(){
 
 	const app = createApp();
-	const env = app.get( 'env' );
-	const isDev = ( 'development' === env );
 
 	app.listen( serverConfig.port, function(){
 
@@ -35,7 +33,7 @@ function startApp(){
 			messages.push( `Worker ${cluster.worker.id} created` );
 		}
 
-		messages.push( `App running in ${env} mode, workers: ${ config.server.workers }, available: ${ config.server.cpus }` );
+		messages.push( `App running in ${ app.get( 'env' ) } mode, workers: ${ config.server.workers }, available: ${ config.server.cpus }` );
 		messages.push( `Listening at http://${serverConfig.host}:${serverConfig.port}` );
 		messages.push( `Connecting to backend at ${config.backend.href}` );
 
@@ -49,7 +47,7 @@ function startApp(){
 			logger.debug( 'Worker ' + cluster.worker.id + ' received message' + msg );
 		} );
 
-		if( isDev ){
+		if( config.isDev ){
 			app.use( function( req, res, next ){
 
 				logger.debug( 'Worker: %s, handling request: %s', cluster.worker.id, req.url );

@@ -2,8 +2,6 @@ const proxyquire = require( 'proxyquire' );
 
 describe( 'Static globals', function(){
 
-	const feedbackEmail = 'test@test.com';
-	const feedbackSurvey = 'http://123abc';
 	const analyticsId = 'abc123';
 	const faqLink = 'http://abc123.com';
 	const financialYearStart = 2016;
@@ -12,19 +10,11 @@ describe( 'Static globals', function(){
 
 	let calls;
 	let staticGlobals;
-	let financialYear;
-	const financialYearResponse = 2017;
 
 	beforeEach( function(){
 
-		financialYear = {
-			getCurrent: jasmine.createSpy( 'financialYear.getCurrent' ).and.callFake( () => financialYearResponse )
-		};
-
 		const stubs = {
 			'../config': {
-				feedbackEmail,
-				feedbackSurvey,
 				analyticsId,
 				faqLink,
 				financialYear: {
@@ -102,8 +92,6 @@ describe( 'Static globals', function(){
 
 				const stubs = {
 					'../config': {
-						feedbackEmail,
-						feedbackSurvey,
 						analyticsId,
 						faqLink,
 						financialYear: {
