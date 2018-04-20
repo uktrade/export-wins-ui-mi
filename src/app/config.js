@@ -50,7 +50,6 @@ let config = {
 		usingMi: requiredEnv( 'URL_USING_MI' ),
 		kimPrinciples: requiredEnv( 'URL_KIM_PRINCIPLES' )
 	},
-	faqLink: env( 'FAQ_LINK' ),
 	cookieSecret: requiredEnv( 'COOKIE_SECRET' ),
 	userCookie: {
 		name: env( 'USER_COOKIE_NAME', 'user' ),
@@ -59,7 +58,6 @@ let config = {
 	logLevel: env( 'LOG_LEVEL', 'warn' ),
 	sentryDsn: env( 'SENTRY_DSN' ),
 	analyticsId: env( 'ANALYTICS_ID' ),
-	coreLoginUrl: env( 'CORE_LOGIN_URL', 'https://adfsmobile.azurecore.com/adfs/ls/' ),
 	exportWinsUrl: env( 'EXPORT_WINS_URL', 'https://www.exportwins.service.trade.gov.uk/' ),
 	datahubDomain: env( 'DATA_HUB_DOMAIN', 'https://www.datahub.trade.gov.uk' ),
 	jwt: {

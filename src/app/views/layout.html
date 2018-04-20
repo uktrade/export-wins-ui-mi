@@ -57,25 +57,6 @@
 	</div>
 {% endblock %}
 
-{#
-{% block footer %}
-
-	<footer class="group js-footer footer--govuk" id="footer" role="contentinfo">
-		<div class="footer-wrapper">
-			<div class="footer-meta">
-				<div class="footer-meta-inner">
-					<p class="footer-feedback-link">If you have any issues or feedback please <a href="{{ urls.email() }}">contact the MI team</a></p>
-			 		{% if faqLink -%}
-					<ul>
-						<li><a href="{{ faqLink }}">View our FAQs</a></li>
-					</ul>
-					{%- endif -%}
-			</div>
-		</div>
-  </footer>
-{% endblock %}
-#}
-
 {% block body_end %}
 	{%- block script -%}
 	<!-- build:js(src) /public/js/jessie.min.js -->

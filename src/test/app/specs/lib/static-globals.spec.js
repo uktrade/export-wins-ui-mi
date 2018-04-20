@@ -3,7 +3,6 @@ const proxyquire = require( 'proxyquire' );
 describe( 'Static globals', function(){
 
 	const analyticsId = 'abc123';
-	const faqLink = 'http://abc123.com';
 	const financialYearStart = 2016;
 	const financialYearEnd = 2018;
 	const datahubDomain = 'https://some-domain.com';
@@ -16,7 +15,6 @@ describe( 'Static globals', function(){
 		const stubs = {
 			'../config': {
 				analyticsId,
-				faqLink,
 				financialYear: {
 					start: financialYearStart,
 					end: financialYearEnd
@@ -51,14 +49,6 @@ describe( 'Static globals', function(){
 		expect( args[ 1 ] ).toEqual( analyticsId );
 	} );
 
-	it( 'Should add the faqLink to the nunjucks env', function(){
-
-		const args = calls.argsFor( 2 );
-
-		expect( args[ 0 ] ).toEqual( 'faqLink' );
-		expect( args[ 1 ] ).toEqual( faqLink );
-	} );
-
 	describe( 'financialYearStart', function(){
 
 		let yearList = [];
@@ -77,7 +67,7 @@ describe( 'Static globals', function(){
 
 			it( 'Should add the list of years to the nunjucks env', function(){
 
-				const args = calls.argsFor( 3 );
+				const args = calls.argsFor( 2 );
 
 				expect( args[ 0 ] ).toEqual( 'yearList' );
 				expect( args[ 1 ] ).toEqual( yearList );
@@ -93,7 +83,6 @@ describe( 'Static globals', function(){
 				const stubs = {
 					'../config': {
 						analyticsId,
-						faqLink,
 						financialYear: {
 							start: financialYearStart,
 							end: financialYearEnd
@@ -109,7 +98,7 @@ describe( 'Static globals', function(){
 
 				staticGlobals( env );
 
-				const args = env.addGlobal.calls.argsFor( 3 );
+				const args = env.addGlobal.calls.argsFor( 2 );
 
 				expect( args[ 0 ] ).toEqual( 'yearList' );
 				expect( args[ 1 ] ).toEqual( yearList );
@@ -123,7 +112,7 @@ describe( 'Static globals', function(){
 
 	it( 'Should add the global nav items to the nunjucks env', function(){
 
-		const args = calls.argsFor( 4 );
+		const args = calls.argsFor( 3 );
 
 		expect( args[ 0 ] ).toEqual( 'globalNavItems' );
 		expect( Array.isArray( args[ 1 ] ) ).toEqual( true );
@@ -131,7 +120,7 @@ describe( 'Static globals', function(){
 
 	it( 'Should add the default title to the nunjucks env', function(){
 
-		const args = calls.argsFor( 5 );
+		const args = calls.argsFor( 4 );
 
 		expect( args[ 0 ] ).toEqual( 'titleDefault' );
 		expect( args[ 1 ] ).toEqual( 'Department for International Trade' );
@@ -139,7 +128,7 @@ describe( 'Static globals', function(){
 
 	it( 'Should add the default service to the nunjucks env', function(){
 
-		const args = calls.argsFor( 6 );
+		const args = calls.argsFor( 5 );
 
 		expect( args[ 0 ] ).toEqual( 'serviceTitle' );
 		expect( args[ 1 ] ).toEqual( 'Data Hub' );
@@ -147,7 +136,7 @@ describe( 'Static globals', function(){
 
 	it( 'Should add the default service to the nunjucks env', function(){
 
-		const args = calls.argsFor( 7 );
+		const args = calls.argsFor( 6 );
 
 		expect( args[ 0 ] ).toEqual( 'projectPhase' );
 		expect( args[ 1 ] ).toEqual( 'beta' );
@@ -155,7 +144,7 @@ describe( 'Static globals', function(){
 
 	it( 'Should add the default service to the nunjucks env', function(){
 
-		const args = calls.argsFor( 8 );
+		const args = calls.argsFor( 7 );
 
 		expect( args[ 0 ] ).toEqual( 'feedbackLink' );
 		expect( args[ 1 ] ).toEqual( `${ datahubDomain }/support` );
@@ -163,7 +152,7 @@ describe( 'Static globals', function(){
 
 	it( 'Should add the headerLink to the nunjucks env', function(){
 
-		const args = calls.argsFor( 9 );
+		const args = calls.argsFor( 8 );
 
 		expect( args[ 0 ] ).toEqual( 'headerLink' );
 		expect( args[ 1 ] ).toEqual( `${ datahubDomain }/` );
@@ -171,7 +160,7 @@ describe( 'Static globals', function(){
 
 	it( 'Should add the profileLink to the nunjucks env', function(){
 
-		const args = calls.argsFor( 10 );
+		const args = calls.argsFor( 9 );
 
 		expect( args[ 0 ] ).toEqual( 'profileLink' );
 		expect( args[ 1 ] ).toEqual( `${ datahubDomain }/profile` );
@@ -179,7 +168,7 @@ describe( 'Static globals', function(){
 
 	it( 'Should add the win table columns to the nunjucks env', function(){
 
-		const args = calls.argsFor( 11 );
+		const args = calls.argsFor( 10 );
 
 		expect( args[ 0 ] ).toEqual( 'winTableColumns' );
 		expect( Array.isArray( args[ 1 ].hvc ) ).toEqual( true );
@@ -190,7 +179,7 @@ describe( 'Static globals', function(){
 
 	it( 'Should add the fdi table columns to the nunjucks env', function(){
 
-		const args = calls.argsFor( 12 );
+		const args = calls.argsFor( 11 );
 
 		expect( args[ 0 ] ).toEqual( 'fdiTableColumns' );
 		expect( Array.isArray( args[ 1 ].hvc ) ).toEqual( true );
