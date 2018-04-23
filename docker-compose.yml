@@ -12,6 +12,10 @@ services:
       - MI_SECRET='mi-secret'
       - COOKIE_SECRET='cookie-secret'
       - MI_HOST=ew-be
+      - MI_PROTOCOL=http
+      - URL_USING_MI='#'
+      - URL_KIM_PRINCIPLES='#'
+      - JWT_SECRET='jwt-secret'
 
   ew-be:
     image: ukti/export-wins-data:latest

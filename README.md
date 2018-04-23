@@ -24,7 +24,9 @@ To make life easier setup an shell extension to read a .env or .envrc file and s
 
 ## Starting the app
 
-### Production
+### Locally
+
+#### Production
 
 To start the app in production:
 
@@ -43,7 +45,7 @@ To run just the app directly (not as a child process from server.js):
 npm run app
 ```
 
-### Development
+#### Development
 
 To run in development mode (watching files for changes):
 
@@ -51,7 +53,7 @@ To run in development mode (watching files for changes):
 npm run watch
 ```
 
-#### Fake stubs
+##### Fake stubs
 
 To run in development mode and also use fake stubs, first you need to generate the stubs:
 
@@ -65,7 +67,7 @@ This will generate and write the stubs into src/data/fake-stubs/ and will log a 
 npm run watch-fake-stub
 ```
 
-#### Real stubs
+##### Real stubs
 
 If you want to be able to run the app without a db and backend running you can run a script:
 
@@ -80,6 +82,52 @@ npm run watch-stub
 ```
 
 Now you can stop the db and backend from running and the app will still work.
+
+### Docker
+
+The [image for this project](https://hub.docker.com/r/ukti/export-wins-ui-mi/tags/) is created automatically in Docker Hub, to run it you need to have some env variables created, as specified in the [env emplate](.env.template) and then use the following command:
+
+#### Linux:
+
+To start the app:
+
+```bash
+	docker run --name datahub-mi -d -p 8080:8080 -e "MI_SECRET=${MI_SECRET}" -e "JWT_SECRET=${JWT_SECRET}" -e "COOKIE_SECRET=${COOKIE_SECRET}" -e "USER_COOKIE_MAX_AGE=${USER_COOKIE_MAX_AGE}" -e "CACHE_VIEWS=${CACHE_VIEWS}" -e "LOG_LEVEL=${LOG_LEVEL}" -e "SERVER_WORKERS=${SERVER_WORKERS}" -e "URL_USING_MI=${URL_USING_MI}" -e "URL_KIM_PRINCIPLES=${URL_KIM_PRINCIPLES}" -e "MI_PROTOCOL=${MI_PROTOCOL}" ukti/export-wins-ui-mi:latest
+```
+
+#### OSX
+
+If you want to run this app and a backend in docker, there is a little trick that needs to done. As the network integration for OSX is not as nice as Linux, you will need to create an alias to enable the app container to talk to the backend container.
+
+Run this in terminal:
+
+```bash
+'[[ `ifconfig -r lo0 | grep 10.200.10.1 | wc -l` -eq 0 ]] && sudo ifconfig lo0 alias 10.200.10.1/24'
+```
+
+It will check whether the alias exists and if not it will prompt for the sudo password and create it.
+
+Now start the app:
+
+```bash
+	docker run --name datahub-mi -d -p 8080:8080 -e "MI_SECRET=${MI_SECRET}" -e "JWT_SECRET=${JWT_SECRET}" -e "COOKIE_SECRET=${COOKIE_SECRET}" -e "USER_COOKIE_MAX_AGE=${USER_COOKIE_MAX_AGE}" -e "CACHE_VIEWS=${CACHE_VIEWS}" -e "LOG_LEVEL=${LOG_LEVEL}" -e "SERVER_WORKERS=${SERVER_WORKERS}" -e "URL_USING_MI=${URL_USING_MI}" -e "URL_KIM_PRINCIPLES=${URL_KIM_PRINCIPLES}" -e "MI_PROTOCOL=${MI_PROTOCOL}" -e "MI_HOST=10.200.10.1" ukti/export-wins-ui-mi:latest
+```
+
+Now visit your localhost on port 8080 and it should be running.
+
+#### Stopping
+
+To stop the container run:
+
+```bash
+	docker stop datahub-mi
+```
+
+And if you want to easily restart it, you need to delete the container
+
+```bash
+	docker rm datahub-mi
+```
 
 ## Testing
 
@@ -161,9 +209,7 @@ Heroku will auto build and deploy from develop onto the ITHC env.
 
 Heroku will auto build master on to the staging environment but you will need to use the "Promote to Production" button on the Heroku dashboard to deploy to Production.
 
-# Docker
-
-## Docker compose
+# Docker compose
 
 Docker images are built automatically by docker hub for all branches and version tags.
 
