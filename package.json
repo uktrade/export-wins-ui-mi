@@ -1,7 +1,7 @@
 {
   "name": "export-wins-ui-mi",
-  "version": "7.10.2",
-  "description": "An MI dashboard for Export Wins",
+  "version": "7.10.3",
+  "description": "An MI dashboard for Data Hub",
   "main": "server.js",
   "engines": {
     "node": "8.11.1",
@@ -10,6 +10,7 @@
   "scripts": {
     "preversion": "npm test",
     "postversion": "git push && git push --tags",
+    "tag-master": "git tag v${npm_package_version}-master && git push --tags",
     "clean": "if [ -d coverage ]; then rm -r coverage; fi;",
     "test": "npm run test:unit",
     "test-all": "run-s test:*",
@@ -30,11 +31,11 @@
     "start:docker": "docker run -d -p 8080:8080 export-wins-ui-mi:${npm_package_version}",
     "start:docker-mac": "docker run -e \"COOKIE_SECRET=${COOKIE_SECRET}\" -e \"MI_SECRET=${MI_SECRET}\" -e \"MI_HOST=10.200.10.1\" -d -p 8080:8080 export-wins-ui-mi:${npm_package_version}",
     "app": "node --use-strict src/app/cluster.js",
-    "watch-stub": "export STUB_MI=true; export FAKE_MI=false; npm run watch",
-    "watch-fake-stub": "export STUB_MI=true; export FAKE_MI=true; npm run watch",
-    "watch-mock-fake-stub": "export MOCK_MI=true; export STUB_MI=true; export FAKE_MI=true; npm run watch",
+    "watch-stub": "STUB_MI=true; FAKE_MI=false; npm run watch",
+    "watch-fake-stub": "STUB_MI=true; FAKE_MI=true; npm run watch",
+    "watch-mock-fake-stub": "MOCK_MI=true; STUB_MI=true; FAKE_MI=true; npm run watch",
     "watch": "run-p watch:*",
-    "watch:node": "export LOG_LEVEL=debug; nodemon src/app/cluster.js --ignore 'src/public/**/*' --ignore 'src/test/**/*' --ignore 'src/data/**/*'",
+    "watch:node": "LOG_LEVEL=debug; nodemon src/app/cluster.js --ignore 'src/public/**/*' --ignore 'src/test/**/*' --ignore 'src/data/**/*'",
     "build": "grunt dist",
     "build:docker": "docker build -t export-wins-ui-mi:${npm_package_version} .",
     "build:dist": "npm run sass:prod && grunt dist && npm run dist-install",

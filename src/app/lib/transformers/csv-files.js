@@ -1,4 +1,4 @@
-const namePattern = /^(.+) [0-9\/-]+$/;
+const namePattern = /^(.+) [0-9/-]+$/;
 
 function updateItem( item ){
 

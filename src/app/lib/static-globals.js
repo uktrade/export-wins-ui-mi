@@ -54,7 +54,6 @@ module.exports = function( env ){
 
 	env.addGlobal( 'asset_path', '/public/' );
 	env.addGlobal( 'analyticsId', config.analyticsId );
-	env.addGlobal( 'faqLink', config.faqLink );
 	env.addGlobal( 'yearList', years );
 	env.addGlobal( 'globalNavItems', globalNavItems );
 	env.addGlobal( 'titleDefault', 'Department for International Trade' );
