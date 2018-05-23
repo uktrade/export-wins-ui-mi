@@ -10,6 +10,7 @@
   "scripts": {
     "preversion": "npm test",
     "postversion": "git push && git push --tags",
+    "tag-master": "git tag v${npm_package_version}-master && git push --tags",
     "clean": "if [ -d coverage ]; then rm -r coverage; fi;",
     "test": "npm run test:unit",
     "test-all": "run-s test:*",

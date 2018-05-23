@@ -188,6 +188,14 @@ Breaking changes.
 npm version major
 ```
 
+Once the branch has been merged to master, pull the latest master branch and then tag the release:
+
+```bash
+npm run tag-master
+```
+
+This will take the version number and tag it in git i.e. v1.2.3-master and then push the tags
+
 ### Errors
 
 If you have not pushed the local branch then running the command above will output an error. Just copy and run the git push command (output in the error) and then run:
