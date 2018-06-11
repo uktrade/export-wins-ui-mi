@@ -10,7 +10,7 @@ const By = webdriver.By;
 describe( 'The UK Nations and Regions HVC Wins page', function() {
 
 	beforeAll(function (done) {
-		fetch('/2017/investment/').then(takeScreenshot('investment_index_2017')).then(done);
+		fetch('/2017/investment/#page-tabs').then(takeScreenshot('investment_index_2017')).then(done);
 	});
 
 	describe( 'Overview subheading', function(){
