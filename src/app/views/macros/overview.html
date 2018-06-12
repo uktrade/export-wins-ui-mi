@@ -45,7 +45,7 @@
 
 		{%- if values.targetPercent.confirmed.isOver -%}
 		<span class="overview-progress_over-marker"></span>
-		<span class="visually-hidden">Value against target:</span>
+		<span class="visually-hidden">Value against {{ target }}:</span>
 		<span class="overview-progress_over-amount">{{ values.targetPercent.confirmed.value }}%</span>
 		{%- elif values.targetPercent.unconfirmed.isOver -%}
 		<span class="overview-progress_over-marker-unconfirmed"></span>

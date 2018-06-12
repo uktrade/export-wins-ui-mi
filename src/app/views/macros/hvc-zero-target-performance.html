@@ -7,7 +7,7 @@
 			<th{% if withHeadings %} class="zero-target-perf-table_heading zero-target-perf-table_heading--target-percentage"{% endif %}>% of HVC target</th>
 			<th{% if withHeadings %} class="zero-target-perf-table_heading zero-target-perf-table_heading--confirmed-value"{% endif %}>Confirmed<br>wins value &pound;</th>
 			<th{% if withHeadings %} class="zero-target-perf-table_heading zero-target-perf-table_heading--unconfirmed-value"{% endif %}>Unconfirmed<br>wins value &pound;</th>
-			<th{% if withHeadings %} class="zero-target-perf-table_heading zero-target-perf-table_heading--target"{% endif %}>Target &pound;</th>
+			<th{% if withHeadings %} class="zero-target-perf-table_heading zero-target-perf-table_heading--target"{% endif %}>{{ target|title }} &pound;</th>
 			<th{% if withHeadings %} class="zero-target-perf-table_heading zero-target-perf-table_heading--wins"{% endif %}>Wins</th>
 		</tr>
 	</thead>
@@ -21,7 +21,7 @@
 			</td>
 			<td class="zero-target-perf-table_cell zero-target-perf-table_cell--hvc-percent">
 				<span class="hvc-perf_status hvc-perf_status--{{ item.status }}">
-					no target
+					no {{ target }}
 				</span>
 			</td>
 			<td class="zero-target-perf-table_cell zero-target-perf-table_cell--confirmed">

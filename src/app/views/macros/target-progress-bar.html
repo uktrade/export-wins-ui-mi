@@ -3,7 +3,7 @@
 	<p class="visually-hidden">Confirmed: {{ progress.confirmed.percent }}%</p>
 	<p class="visually-hidden">Unconfirmed: {{ progress.unconfirmed.percent }}%</p>
 	<span class="target-progress-bar">
-		<span class="target-progress-bar_target">Target</span>
+		<span class="target-progress-bar_target">{{ target|title }}</span>
 		<span class="target-progress-bar_progress target-progress-bar_progress--confirmed" id="confirmed-bar" style="width:{{ progress.confirmed.capped }}%"></span>
 		<span class="target-progress-bar_progress target-progress-bar_progress--unconfirmed" id="unconfirmed-bar" style="width:{{ progress.unconfirmed.capped }}%"></span>
 		{% if progress.over -%}

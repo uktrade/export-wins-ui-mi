@@ -40,7 +40,7 @@
 						<span class="visually-hidden">Active pipeline: {{ row.segments.pipeline.count }}</span>
 						<span class="table-fdi-win-progress_segment table-fdi-win-progress_segment--pipeline" style="left: {{ row.segments.pipeline.start }}%; width: {{ row.segments.pipeline.percent }}%;"></span>
 
-						<span class="visually-hidden">Aspiration: {{ row.segments.target.count }}</span>
+						<span class="visually-hidden">{{ target|title }} {{ row.segments.target.count }}</span>
 						{% if row.segments.target.percent %}
 						<span class="table-fdi-win-progress_target" style="left: {{ row.segments.target.percent }}%;"></span>
 						{% endif %}

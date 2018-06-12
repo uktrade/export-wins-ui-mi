@@ -27,7 +27,7 @@
 		<div class="grid-row">
 			<div class="column-one-third global-performance_hvc-progress">
 
-				<h3 class="global-performance_hvc-progress_heading">Total value of HVC target</h3>
+				<h3 class="global-performance_hvc-progress_heading">Total value of HVC {{ target }}</h3>
 				<p class="global-performance_hvc-progress_figure">
 					&pound;{{ summary.target | largeNumber }}
 				</p>
@@ -35,7 +35,7 @@
 			</div>
 			<div class="column-one-third global-performance_hvc-progress">
 
-				<h3 class="global-performance_hvc-progress_heading">HVC target achieved</h3>
+				<h3 class="global-performance_hvc-progress_heading">HVC {{ target }} achieved</h3>
 				<p class="global-performance_hvc-progress_figure">
 					{{ summary.progress.confirmed.percent }}%
 				</p>
