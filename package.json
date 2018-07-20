@@ -81,7 +81,7 @@
     "nunjucks": "3.1.2",
     "random-int": "^1.0.0",
     "raven": "2.5.0",
-    "request": "2.85.0",
+    "request": "2.87.0",
     "universal-analytics": "0.4.16",
     "winston": "2.4.1"
   },
