@@ -30,19 +30,20 @@ jobs:
           EMAIL_HOST: "$EMAIL_HOST"
           EMAIL_PORT: "$EMAIL_PORT"
           ACTIVITY_STREAM_ACCESS_KEY_ID: "123"
+          ACTIVITY_STREAM_SECRET_ACCESS_KEY: "456"
         command: ./start-wait-for-db.sh
       - image: selenium/standalone-chrome:3.7
     steps:
       - checkout
       - restore_cache:
-          key: node-modules-{{ arch }}-{{ checksum "npm-shrinkwrap.json" }}
+          key: node-modules-{{ arch }}-{{ checksum "package-lock.json" }}
       - run: npm install
       #- run: npm run check:backend
       - run: npm rebuild node-sass
       - run: npm test && npm run coverage
       - run: npm run build:dist
       - save_cache:
-          key: node-modules-{{ arch }}-{{ checksum "npm-shrinkwrap.json" }}
+          key: node-modules-{{ arch }}-{{ checksum "package-lock.json" }}
           paths:
             - "node_modules"
             - "dist/node_modules"
