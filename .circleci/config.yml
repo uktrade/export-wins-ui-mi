@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/app
     docker:
-      - image: circleci/node:8.11
+      - image: circleci/node:8.12
         environment:
           SERVER_WORKERS: 2
           MI_PROTOCOL: "http"
@@ -29,19 +29,25 @@ jobs:
           DATABASE_URL: "postgres://postgres@localhost/export-wins-data"
           EMAIL_HOST: "$EMAIL_HOST"
           EMAIL_PORT: "$EMAIL_PORT"
+          VCAP_SERVICES: '{"redis": [{"credentials": {"uri": "redis://localhost:7000/"}}]}'
+          ACTIVITY_STREAM_ACCESS_KEY_ID: "123"
+          ACTIVITY_STREAM_SECRET_ACCESS_KEY: "456"
         command: ./start-wait-for-db.sh
+      - image: grokzen/redis-cluster:3.2.11
+        environment:
+          CLUSTER_ONLY: true
       - image: selenium/standalone-chrome:3.7
     steps:
       - checkout
       - restore_cache:
-          key: node-modules-{{ arch }}-{{ checksum "npm-shrinkwrap.json" }}
+          key: node-modules-{{ arch }}-{{ checksum "package-lock.json" }}
       - run: npm install
       #- run: npm run check:backend
       - run: npm rebuild node-sass
       - run: npm test && npm run coverage
       - run: npm run build:dist
       - save_cache:
-          key: node-modules-{{ arch }}-{{ checksum "npm-shrinkwrap.json" }}
+          key: node-modules-{{ arch }}-{{ checksum "package-lock.json" }}
           paths:
             - "node_modules"
             - "dist/node_modules"
@@ -58,4 +64,3 @@ jobs:
       - store_artifacts:
           path: coverage
           destination: coverage
-
