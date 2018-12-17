@@ -8,174 +8,19 @@
 	{% set pageName='FDI Homepage' %}
 {% endif %}
 
-{% from 'macros/dates.html' import financialYear %}
-{% from 'macros/pie-charts.html' import fdiStagePieChart, fdiHvcPieChart %}
-{% from 'macros/page-heading.html' import pageHeading %}
-{% from './macros/headline-figures.html' import headlineFigure, headlineSubFigure, headlineBreakdown %}
-{% from './macros/table-data.html' import dataTable %}
-{% from './macros/table-win-progress.html' import winProgressTable %}
-{% from './macros/table-region-progress.html' import regionProgressTable %}
-
 {% block page_heading %}
-	{{ pageHeading( 'FDI performance' ) }}
+<div class="grid-row">
+	<div class="column-single">
+		<h1 class="page-heading">FDI performance</h1>
+	</div>
+</div>
 {% endblock %}
 
 {% block page_content %}
+<p>We are currently updating the FDI performance dashboards. The latest available versions are below, use <strong>Google Chrome</strong> to open the following link:</p>
 
-	<h2 class="fdi-overview-heading">Headlines</h2>
-	<h3 class="fdi-overview-sub-heading">On <span class="fdi-page-date_emphasize">{{ null | dateOnly }}</span> at {{ null | timeOnly }} related to <span class="fdi-page-date_emphasize">financial year {{ selectedYear }}/{{ ( selectedYear - 2000 ) + 1  }}</span></h3>
-
-	<section class="grid-row fdi-section">
-
-		<div class="column-one-quarter fdi-section-row">
-
-			{{ headlineFigure( 'Won & Verify win', 'Total', headlines.wins.total | preciseNumber ) }}
-
-			{{ headlineBreakdown( [
-				[ 'High value', headlines.wins.percentage.high + '%' ],
-				[ 'Good value', headlines.wins.percentage.good + '%' ],
-				[ 'Standard value', headlines.wins.percentage.standard + '%' ]
-			] ) }}
-
-		</div>
-		<div class="column-one-quarter fdi-section-row">
-
-			{{ fdiHvcPieChart(
-				'HVC', headlines.breakdown.type.hvc,
-				'Non-HVC', headlines.breakdown.type.nonHvc
-			) }}
-
-			{{ fdiStagePieChart(
-				'Won', headlines.breakdown.stage.won,
-				'Verify win', headlines.breakdown.stage.verify,
-				'perf-stage'
-			) }}
-
-		</div>
-		<div class="column-one-quarter fdi-section-row">
-
-			{{ headlineSubFigure( 'Total jobs', 'Won & Verify win', headlines.jobs.total | preciseNumber ) }}
-
-			{{ headlineBreakdown( [
-				[ 'New jobs', headlines.jobs.new | preciseNumber ],
-				[ 'Safeguarded jobs', headlines.jobs.safeguarded | preciseNumber ]
-			], 'jobs' ) }}
-
-		</div>
-		<div class="column-one-quarter">
-
-			{{ headlineSubFigure( 'Total pipeline', 'Active', headlines.pipeline.total | preciseNumber ) }}
-
-			{{ headlineBreakdown( [
-				[ 'High value', headlines.pipeline.percentage.high + '%' ],
-				[ 'Good value', headlines.pipeline.percentage.good + '%' ],
-				[ 'Standard value', headlines.pipeline.percentage.standard + '%' ]
-			] )}}
-		</div>
-	</section>
-
-	<section class="grid-row fdi-section">
-		<div class="column-single">
-
-			<h2 class="fdi-overview-heading">FDI wins</h2>
-			<p class="fdi-overview-sub-heading">Won across all of the department</p>
-
-			{{ dataTable( 'fdi-wins', details.wins ) }}
-		</div>
-	</section>
-
-	<h2 class="fdi-overview-heading">FDI pipeline</h2>
-	<p class="fdi-overview-sub-heading">Active across all of the department</p>
-	<section class="grid-row">
-		<div class="column-three-quarters">
-
-			{{ dataTable( 'fdi-active-pipeline', details.activePipeline ) }}
-
-		</div>
-		<div class="column-one-quarter">
-
-			<div class="fdi-pipeline-projects">
-				<h3 class="fdi-pipeline-projects-heading">All pipeline projects</h3>
-
-				{% macro projectDetail( name, value1, value2 ) %}
-					<dl class="fdi-pipeline-projects-list_detail">
-						<dt class="fdi-pipeline-projects-list_detail_term">{{ name }}</dt>
-						<dd class="fdi-pipeline-projects-list_detail_value">{{ value1 }}</dd>
-						<dd class="fdi-pipeline-projects-list_detail_value">{{ value2 }}%</dd>
-					</dl>
-				{% endmacro %}
-
-				<ol class="fdi-pipeline-projects-list">
-					<li class="fdi-pipeline-projects-list_item">
-						<span class="position-marker" data-number="3"></span>
-						{{ projectDetail(
-							'Active',
-							details.pipeline.active.count,
-							details.pipeline.active.percent
-						) }}
-					</li>
-					<li class="fdi-pipeline-projects-list_item">
-						<span class="position-marker" data-number="2"></span>
-						{{ projectDetail(
-							'Assign PM',
-							details.pipeline.assign.count,
-							details.pipeline.assign.percent
-						) }}
-					</li>
-					<li class="fdi-pipeline-projects-list_item">
-						<span class="position-marker" data-number="1"></span>
-						{{ projectDetail(
-							'Prospect',
-							details.pipeline.prospect.count,
-							details.pipeline.prospect.percent
-						) }}
-					</li>
-				</ol>
-			</div>
-		</div>
-	</section>
-
-	<nav class="page-nav page-nav--divider" id="page-tabs">
-		<ul class="page-nav_list">
-			<li class="page-nav_list_item">
-				<a class="page-nav_link{% if tab.isSectors %} page-nav_link--active{% endif %}" href="{{ urls.investment.index() }}#page-tabs">Sectors</a>
-			</li>
-			<li class="page-nav_list_item">
-				<a class="page-nav_link{% if tab.isOverseasRegions %} page-nav_link--active{% endif %}" href="{{ urls.investment.index({ osRegions: true } ) }}#page-tabs">Overseas markets</a>
-			</li>
-			{% if user.experiments %}
-			<li class="page-nav_list_item">
-				<a class="page-nav_link{% if tab.isUkRegions %} page-nav_link--active{% endif %}" href="{{ urls.investment.index({ ukRegions: true } ) }}#page-tabs">UK regions</a>
-			</li>
-			{% endif %}
-		</ul>
-	</nav>
-
-	<h2 class="fdi-overview-heading" id="progress-tab-heading">{{ progressHeading }}</h2>
-
-	{% if not tab.isUkRegions %}
-	<p class="visually-hidden">Project broken down by:</p>
-	<ul class="key-fdi-win-progress">
-		<li class="key-fdi-win-progress_item">Won<span class="key-fdi-win-progress_block key-fdi-win-progress_block--won"></span></li>
-		<li class="key-fdi-win-progress_item">Verify win<span class="key-fdi-win-progress_block key-fdi-win-progress_block--verify-win"></span></li>
-		<li class="key-fdi-win-progress_item">Active pipeline<span class="key-fdi-win-progress_block key-fdi-win-progress_block--pipeline"></span></li>
-		<li class="key-fdi-win-progress_item">{{ target|title }}s<span class="key-fdi-win-progress_target"></span></li>
-	</ul>
-	{% endif %}
-
-	<div class="table-fdi-win-progress-wrapper">
-
-		{% set url=urls.current( { query: { tab: tab.selected } } ) %}
-
-		{%- if tab.isUkRegions -%}
-
-			{{ regionProgressTable( progressRows, url, sortKeys ) }}
-
-		{% else -%}
-
-			{{ winProgressTable( progressRows, url, progressColumnHeading, progressColumnHeadingKey, sortKeys ) }}
-
-		{%- endif %}
-	</div>
+<h2 class="sector-list-heading"><a target="_blank" href="https://datastudio.google.com/reporting/1UlYmDae8o3BeZo6inpLUfwZiDaZTVRfK/page/SjBc">FDI performance dashboard</a> <small>(opens in a new tab)</small></h2>
+<br>
+<p><strong>Watch this space there will be more MI Dashboards coming in early 2019.</strong></p>
 
 {% endblock %}
