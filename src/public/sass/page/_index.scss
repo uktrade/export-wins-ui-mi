@@ -26,6 +26,9 @@
 	margin-top: pem( 40, 24 );
 	padding: 0 0 0 pem( 10, 24 );
 	margin-bottom: 0.75em;
+	small{
+		@include core-16;
+	}
 }
 
 .sector-list-sub-heading {
