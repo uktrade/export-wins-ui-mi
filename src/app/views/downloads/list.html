@@ -90,72 +90,16 @@
 	{% endif %}
 
 	{% if files.contacts or files.companies %}
-
 	<div class="grid-row download-section-separator">
 		<div class="column-two-thirds">
 			<h2 class="download-section-heading">Contacts and Companies</h2>
 			<p class="download-section-message">
-				Only send email marketing to contacts that have checked yes in the email marketing column
+				We have recently developed a function to allow users to filter contacts and download the results into a spreadsheet, you can find this within the 'contacts' tab of Data Hub. Please see the following link for guidance on how to access and use this feature.
 			</p>
+			<p><a href="https://uktrade.zendesk.com/hc/en-gb/articles/360000450678-Downloading-data-to-a-spreadsheet" target="_blank">Guidance on downloading data</a> <small>(opens in a new tab)</small></p>
 		</div>
 	</div>
-
-	{% macro ukItems( downloadName, files, name='region' ) %}
-	<ol class="download-group-list">
-		{% for file in files %}
-		<li class="download-group-list_item">
-			<a href="{{ urls[ downloadName ]( file ) }}">
-				<span class="download-group-list_item_text1">Download -</span>
-				<span class="download-group-list_item_text2">{{ file[ name ] }}</span>
-			</a>
-			{% if file.updated -%}
-			<span class="download-group-list_item_updated">
-				(last updated {{ file.created | dateStamp }})
-			</span>
-			{%- endif %}
-		</li>
-		{% endfor %}
-	</ol>
-	{% endmacro %}
-
-	<div class="grid-row download-group-separator">
-		<div class="column-one-third">
-
-			{% if files.contacts.regions %}
-			<h3 class="download-group-heading">UK contacts by region</h3>
-			{{ ukItems( 'downloadContactsByRegionFile', files.contacts.regions ) }}
-			{% endif %}
-
-		</div>
-		<div class="column-one-third">
-
-			{% if files.companies.regions %}
-			<h3 class="download-group-heading">UK companies by region</h3>
-			{{ ukItems( 'downloadCompaniesByRegionFile', files.companies.regions ) }}
-			{% endif %}
-
-		</div>
-	</div>
-
-	<div class="grid-row download-group-separator">
-		<div class="column-one-third">
-
-			{% if files.contacts.sectors %}
-			<h3 class="download-group-heading">UK contacts by sector</h3>
-			{{ ukItems( 'downloadContactsBySectorFile', files.contacts.sectors, 'sector' ) }}
-			{% endif %}
-
-		</div>
-		<div class="column-one-third">
-
-			{% if files.companies.sectors %}
-			<h3 class="download-group-heading">UK companies by sector</h3>
-			{{ ukItems( 'downloadCompaniesBySectorFile', files.companies.sectors, 'sector' ) }}
-			{% endif %}
-
-		</div>
-	</div>
-
 	{% endif %}
+
 
 {% endblock  %}
