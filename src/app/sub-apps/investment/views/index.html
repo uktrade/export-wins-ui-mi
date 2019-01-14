@@ -8,6 +8,8 @@
 	{% set pageName='FDI Homepage' %}
 {% endif %}
 
+
+
 {% block page_heading %}
 <div class="grid-row">
 	<div class="column-single">
@@ -17,10 +19,16 @@
 {% endblock %}
 
 {% block page_content %}
-<p>We are currently updating the FDI performance dashboards. The latest available versions are below, use <strong>Google Chrome</strong> to open the following link:</p>
+	<p>To open the dashboard you must:</p>
+	<ul class="list list-bullet">
+		<li>Log out of all non-DIT Google accounts (e.g. Gmail).  Note: you may be logged in to your account even if Gmail isn’t open in any tab on your browser.</li>
+		<li>This dashboard works best in Google Chrome.</li>
+	</ul>
 
-<h2 class="sector-list-heading"><a target="_blank" href="https://datastudio.google.com/reporting/1UlYmDae8o3BeZo6inpLUfwZiDaZTVRfK/page/SjBc">FDI performance dashboard</a> <small>(opens in a new tab)</small></h2>
-<br>
-<p><strong>Watch this space there will be more MI Dashboards coming in early 2019.</strong></p>
+	<h2 class="sector-list-heading"><a target="_blank" href="https://datastudio.google.com/embed/reporting/1UlYmDae8o3BeZo6inpLUfwZiDaZTVRfK/page/SjBc">FDI performance dashboard</a> <small>(opens in a new tab)</small></h2>
+
+	<p>We are currently updating the FDI performance dashboards. There will be more MI Dashboards coming in early 2019.</p>
+
 
 {% endblock %}
+
