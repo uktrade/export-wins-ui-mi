@@ -145,22 +145,29 @@ npm run test:client
 
 # Releases
 
-If you have a small branch with minimal commits then run the commands below on the branch. If you have a lot of commits over a long period of time then create a new release branch.
+This project does not have a develop branch so releases are made from either the feature branch or a specific release branch (if you want to release multiple features at once), therefore the PR to master should always include the new version number.
 
 First check the current version:
-
 ```bash
 npm version
 ```
+Now decide what the next semver version will be.
 
-Now decide what the next semver version will be and create the branch:
+If you have a small branch with minimal commits then run the commands below on the branch.
+
+If you want to create a release branch:
 
 ```bash
 git checkout master
+git pull origin
 git checkout -b release-vx.x.x
 ```
 
-The commands below will change the version in the package.json and the npm-shrinkwrap.json and then it will create a git tag and try to push the branch and the tag.
+Now merge in any feature branches.
+
+## Change the version
+
+The commands below will change the version in the package.json and the package-lock.json and then it will create a git tag and try to push the branch and the tag.
 
 Choose the next correct semver version and run the appropriate command:
 
@@ -188,7 +195,7 @@ Breaking changes.
 npm version major
 ```
 
-Once the branch has been merged to master, pull the latest master branch and then tag the release:
+Once the PR has been merged to master, pull the latest master branch and then tag the release:
 
 ```bash
 npm run tag-master
@@ -210,12 +217,7 @@ Now you can create a PR in github, but you will have to wait for CircleCI to bui
 
 # Deploy
 
-## ITHC
-Heroku will auto build and deploy from develop onto the ITHC env.
-
-## Staging/Production
-
-Heroku will auto build master on to the staging environment but you will need to use the "Promote to Production" button on the Heroku dashboard to deploy to Production.
+Deployment is done via Jenkins.
 
 # Docker compose
 
