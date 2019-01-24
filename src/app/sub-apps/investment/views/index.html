@@ -2,7 +2,7 @@
 
 {% if tab.isOverseasRegions %}
 	{% set pageName='FDI Homepage with overseas markets' %}
-{% elif tab.isUkRegions %}
+	{% elif tab.isUkRegions %}
 	{% set pageName='FDI Homepage with UK regions' %}
 {% else %}
 	{% set pageName='FDI Homepage' %}
@@ -11,44 +11,95 @@
 
 
 {% block page_heading %}
-<div class="grid-row">
-	<div class="column-single">
-		<h1 class="page-heading">FDI performance</h1>
+	<div class="grid-row">
+		<div class="column-single">
+			<h1 class="page-heading">FDI performance</h1>
+		</div>
 	</div>
-</div>
 {% endblock %}
 
 {% block page_content %}
 	<p>To open the dashboard:</p>
 	<ul class="list list-bullet">
-		<li>Log out of all non-DIT Google accounts (e.g. Gmail).  Note: you may be logged in to your account even if Gmail isn’t open in any tab on your browser.</li>
+		<li>Log out of all non-DIT Google accounts (e.g. Gmail). Note: you may be logged in to your account even if Gmail
+			isn’t open in any tab on your browser.
+		</li>
 		<li>This dashboard works best in Google Chrome.</li>
 	</ul>
 
-	<h2 class="sector-list-heading"><a target="_blank" href="https://www.google.com/a/data.trade.gov.uk/ServiceLogin?continue=https://datastudio.google.com/embed/reporting/1MAJ0PVg7KbsA6ab01oeZCWuQamWTX8WU/page/SjBc">FDI performance dashboard</a> <small>(opens in a new tab)</small></h2>
-
-	<p><strong>We are currently updating the FDI performance dashboards. There will be more MI Dashboards coming in early 2019.</strong></p>
-
-
-
-
+	<h2 class="sector-list-heading"><a target="_blank"
+												  href="https://www.google.com/a/data.trade.gov.uk/ServiceLogin?continue=https://datastudio.google.com/embed/reporting/1MAJ0PVg7KbsA6ab01oeZCWuQamWTX8WU/page/SjBc">FDI
+			performance dashboard</a>
+		<small>(opens in a new tab)</small>
+	</h2>
 
 
-	<h3 class="sector-list-heading">Overseas Regions</h3>
 
-	<p>All links below open in a new window.</p>
 
-	<ul class="list list-bullet">
-		<li><a href="https://www.google.com/a/data.trade.gov.uk/ServiceLogin?continue=https://datastudio.google.com/embed/reporting/17O2H5Dc02Et1KCK5QlavABYfqzoVdu6j/page/sApc" target="_blank">Africa</a></li>
-		<li><a href="https://www.google.com/a/data.trade.gov.uk/ServiceLogin?continue=https://datastudio.google.com/embed/reporting/17O2H5Dc02Et1KCK5QlavABYfqzoVdu6j/page/q7oc" target="_blank">Asia Pacific</a></li>
-		<li><a href="https://www.google.com/a/data.trade.gov.uk/ServiceLogin?continue=https://datastudio.google.com/embed/reporting/17O2H5Dc02Et1KCK5QlavABYfqzoVdu6j/page/y9oc" target="_blank">China & Hong Kong</a></li>
-		<li><a href="https://www.google.com/a/data.trade.gov.uk/ServiceLogin?continue=https://datastudio.google.com/embed/reporting/17O2H5Dc02Et1KCK5QlavABYfqzoVdu6j/page/DBpc" target="_blank">Eastern Europe & Central Asia</a></li>
-		<li><a href="https://www.google.com/a/data.trade.gov.uk/ServiceLogin?continue=https://datastudio.google.com/embed/reporting/17O2H5Dc02Et1KCK5QlavABYfqzoVdu6j/page/GBpc" target="_blank">Europe</a></li>
-		<li><a href="https://www.google.com/a/data.trade.gov.uk/ServiceLogin?continue=https://datastudio.google.com/embed/reporting/17O2H5Dc02Et1KCK5QlavABYfqzoVdu6j/page/ICpc" target="_blank">Latin America & The Caribbean</a></li>
-		<li><a href="https://www.google.com/a/data.trade.gov.uk/ServiceLogin?continue=https://datastudio.google.com/embed/reporting/17O2H5Dc02Et1KCK5QlavABYfqzoVdu6j/page/ZApc" target="_blank">Middle East</a></li>
-		<li><a href="https://www.google.com/a/data.trade.gov.uk/ServiceLogin?continue=https://datastudio.google.com/embed/reporting/17O2H5Dc02Et1KCK5QlavABYfqzoVdu6j/page/tBpc" target="_blank">North America</a></li>
-		<li><a href="https://www.google.com/a/data.trade.gov.uk/ServiceLogin?continue=https://datastudio.google.com/embed/reporting/17O2H5Dc02Et1KCK5QlavABYfqzoVdu6j/page/R9oc" target="_blank">South Asia</a></li>
-	</ul>
+	<div class="grid-row">
+		<div class="column-half">
+			<h3 class="sector-list-heading">Overseas Regions</h3>
+			<p>All links below open in a new tab.</p>
+			<ul class="list list-bullet">
+				<li><a
+						href="https://www.google.com/a/data.trade.gov.uk/ServiceLogin?continue=https://datastudio.google.com/embed/reporting/17O2H5Dc02Et1KCK5QlavABYfqzoVdu6j/page/sApc"
+						target="_blank">Africa</a></li>
+				<li><a
+						href="https://www.google.com/a/data.trade.gov.uk/ServiceLogin?continue=https://datastudio.google.com/embed/reporting/17O2H5Dc02Et1KCK5QlavABYfqzoVdu6j/page/q7oc"
+						target="_blank">Asia Pacific</a></li>
+				<li><a
+						href="https://www.google.com/a/data.trade.gov.uk/ServiceLogin?continue=https://datastudio.google.com/embed/reporting/17O2H5Dc02Et1KCK5QlavABYfqzoVdu6j/page/y9oc"
+						target="_blank">China & Hong Kong</a></li>
+				<li><a
+						href="https://www.google.com/a/data.trade.gov.uk/ServiceLogin?continue=https://datastudio.google.com/embed/reporting/17O2H5Dc02Et1KCK5QlavABYfqzoVdu6j/page/DBpc"
+						target="_blank">Eastern Europe & Central Asia</a></li>
+				<li><a
+						href="https://www.google.com/a/data.trade.gov.uk/ServiceLogin?continue=https://datastudio.google.com/embed/reporting/17O2H5Dc02Et1KCK5QlavABYfqzoVdu6j/page/GBpc"
+						target="_blank">Europe</a></li>
+				<li><a
+						href="https://www.google.com/a/data.trade.gov.uk/ServiceLogin?continue=https://datastudio.google.com/embed/reporting/17O2H5Dc02Et1KCK5QlavABYfqzoVdu6j/page/ICpc"
+						target="_blank">Latin America & The Caribbean</a></li>
+				<li><a
+						href="https://www.google.com/a/data.trade.gov.uk/ServiceLogin?continue=https://datastudio.google.com/embed/reporting/17O2H5Dc02Et1KCK5QlavABYfqzoVdu6j/page/ZApc"
+						target="_blank">Middle East</a></li>
+				<li><a
+						href="https://www.google.com/a/data.trade.gov.uk/ServiceLogin?continue=https://datastudio.google.com/embed/reporting/17O2H5Dc02Et1KCK5QlavABYfqzoVdu6j/page/tBpc"
+						target="_blank">North America</a></li>
+				<li><a
+						href="https://www.google.com/a/data.trade.gov.uk/ServiceLogin?continue=https://datastudio.google.com/embed/reporting/17O2H5Dc02Et1KCK5QlavABYfqzoVdu6j/page/R9oc"
+						target="_blank">South Asia</a></li>
+			</ul>
+
+		</div>
+
+		<div class="column-half">
+			<h3 class="sector-list-heading">Sector cluster</h3>
+			<p>All links below open in a new tab.</p>
+			<ul class="list list-bullet">
+				<li><a href="https://www.google.com/a/data.trade.gov.uk/ServiceLogin?continue=https://datastudio.go
+	ogle.com/embed/reporting/1_t9TqPw1EIq-wFLORiPYfgS4AFiW8hOW/page/q7oc" target="_blank">Creative, Lifestyle &
+						Learning</a></li>
+				<li><a href="https://www.google.com/a/data.trade.gov.uk/ServiceLogin?continue=https://datastudio.go
+	ogle.com/embed/reporting/1_t9TqPw1EIq-wFLORiPYfgS4AFiW8hOW/page/5HLd" target="_blank">Defence & Security</a></li>
+
+				<li><a href="https://www.google.com/a/data.trade.gov.uk/ServiceLogin?continue=https://datastudio.go
+	ogle.com/embed/reporting/1_t9TqPw1EIq-wFLORiPYfgS4AFiW8hOW/page/GrKd" target="_blank">Energy & Infrastructure</a>
+				</li>
+
+				<li><a href="https://www.google.com/a/data.trade.gov.uk/ServiceLogin?continue=https://datastudio.go
+	ogle.com/embed/reporting/1_t9TqPw1EIq-wFLORiPYfgS4AFiW8hOW/page/6PRd" target="_blank">Financial & Professional
+						Services</a></li>
+
+				<li><a href="https://www.google.com/a/data.trade.gov.uk/ServiceLogin?continue=https://datastudio.go
+	ogle.com/embed/reporting/1_t9TqPw1EIq-wFLORiPYfgS4AFiW8hOW/page/c2Kd" target="_blank">Healthcare, Lifesciences &
+						Bio-Economy</a></li>
+
+				<li><a href="https://www.google.com/a/data.trade.gov.uk/ServiceLogin?continue=https://datastudio.go
+	ogle.com/embed/reporting/1_t9TqPw1EIq-wFLORiPYfgS4AFiW8hOW/page/hgqd" target="_blank">Technology, Entrepreneurship &
+						Advanced Manufacturing</a></li>
+			</ul>
+		</div>
+	</div>
 
 {% endblock %}
 
