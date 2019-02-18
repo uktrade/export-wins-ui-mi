@@ -1,5 +1,6 @@
 const config = require( '../config' );
 const navMiddleware = require( '../middleware/nav' );
+const { buildGlobalNav } = require('../middleware/build-global-nav')
 
 const indexController = require( '../controllers/controller.index' );
 const sectorTeamController = require( '../controllers/controller.sector-teams' );
@@ -24,7 +25,7 @@ module.exports = function( router, user/*, isDev */ ){
 	router.get( '/sector-teams/overview/', ( req, res ) => res.redirect( 301, '/sector-teams/' ) );
 	router.get( '/overseas-regions/overview/', ( req, res ) => res.redirect( 301, '/overseas-regions/' ) );
 
-	get( '/', indexController );
+	get( '/', buildGlobalNav, indexController );
 
 	get( '/sector-teams/', sectorTeamController.overview );
 	get( '/sector-teams/:id', sectorTeamController.team );

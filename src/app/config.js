@@ -60,6 +60,7 @@ let config = {
 	analyticsId: env( 'ANALYTICS_ID' ),
 	exportWinsUrl: env( 'EXPORT_WINS_URL', 'https://www.exportwins.service.trade.gov.uk/' ),
 	datahubDomain: env( 'DATA_HUB_DOMAIN', 'https://www.datahub.trade.gov.uk' ),
+	findExportersDomain: env( 'FIND_EXPORTERS', 'https://find-exporters.datahub.trade.gov.uk/' ),
 	jwt: {
 		secret: requiredEnv( 'JWT_SECRET' )
 	},
