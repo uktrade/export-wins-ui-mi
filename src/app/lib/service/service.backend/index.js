@@ -42,6 +42,10 @@ module.exports = {
 
 			const user = info.data;
 
+			console.log('333333333333333333333333333333333333333333333');
+			console.log(user);
+			console.log('333333333333333333333333333333333333333333333');
+
 			user.internal = ( config.isDev || !!~internalUsers.indexOf( user.email ) );
 
 			return user;
