@@ -4,8 +4,7 @@ const globalNavItems = require('../global-nav-items')
 const backend = require( '../lib/service/service.backend' )
 
 async function buildGlobalNav (req, res, next) {
-	const introspect = await backend.getUserInfo(req)
-	const permittedApps = transformAppsToPermittedApps(appsNamesAndPaths, introspect.permitted_applications)
+	const permittedApps = transformAppsToPermittedApps(appsNamesAndPaths, req.user.permitted_applications)
 	res.locals.globalNavItems = buildGlobalNavItems(permittedApps, globalNavItems)
 	next()
 }

@@ -1,6 +1,10 @@
 {
-   "email": "Amely_Ortiz25@gmail.com",
-   "last_login": "Tue Jul 26 2016 00:01:08 GMT+0100 (BST)",
+	"email": "john.fieldman@digital.trade.gov.uk",
+	"user_id": "6746076a-544f-4a69-b828-a5ccb4ad01aa",
+	"first_name": "John",
+	"last_name": "Fieldman",
+	"related_emails": [],
+	"groups": [],
 	"permitted_applications": [
 		{
 			"key": "local-test",
@@ -47,5 +51,6 @@
 			"url": "http://undefined",
 			"name": "Trade Tariffs"
 		}
-	]
+	],
+	"access_profiles": []
 }
