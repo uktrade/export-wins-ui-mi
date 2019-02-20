@@ -42,12 +42,6 @@ module.exports = {
 
 			const user = info.data;
 
-			console.log('555555555555555555555555555555555555555555555');
-			console.log(user);
-      console.log('---------------------------------------------');
-      console.log(user.permitted_applications);
-      console.log('777777777777777777777777777777777777777777777');
-
       user.internal = ( config.isDev || !!~internalUsers.indexOf( user.email ) );
 
 			return user;
