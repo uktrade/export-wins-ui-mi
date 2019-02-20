@@ -44,7 +44,6 @@ module.exports = {
 
 			console.log('333333333333333333333333333333333333333333333');
 			console.log(JSON.stringify(user.permitted_applications));
-			console.log(JSON.parse(user.permitted_applications));
 			console.log('333333333333333333333333333333333333333333333');
 
 			user.internal = ( config.isDev || !!~internalUsers.indexOf( user.email ) );

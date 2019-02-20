@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="110bd029-0231-47d5-9284-f73c3873def0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/lib/service/service.backend/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/lib/service/service.backend/index.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -58,8 +58,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/lib/service/service.backend/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="38" column="13" selection-start-line="38" selection-start-column="2" selection-end-line="38" selection-end-column="13" />
+            <state relative-caret-position="282">
+              <caret line="45" column="63" selection-start-line="45" selection-start-column="63" selection-end-line="45" selection-end-column="63" />
             </state>
           </provider>
         </entry>
@@ -74,10 +74,10 @@
       <find>8000</find>
       <find>(internal)</find>
       <find>user.internal</find>
-      <find>getUserInfo</find>
       <find>last_login</find>
       <find>is_staff</find>
       <find>/api/v1/user/me/</find>
+      <find>getUserInfo</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -147,15 +147,16 @@
       <option name="presentableId" value="Default" />
       <updated>1550573243466</updated>
       <workItem from="1550573244555" duration="5823000" />
-      <workItem from="1550655644013" duration="977000" />
+      <workItem from="1550655644013" duration="1276000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6800000" />
+    <option name="totallyTimeSpent" value="7099000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="2130" height="877" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6975945" weight="0.27798098" />
       <window_info id="Favorites" order="1" sideWeight="0.3024055" side_tool="true" weight="0.27798098" />
@@ -172,7 +173,7 @@
       <window_info anchor="bottom" id="Changes" order="8" weight="0.32908162" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.09436723" side_tool="true" weight="0.25859872" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.23395722" />
-      <window_info active="true" anchor="bottom" x="1553" y="70" width="1440" height="970" id="Terminal" order="11" sideWeight="0.9056328" visible="true" weight="0.2878981" />
+      <window_info active="true" anchor="bottom" x="1553" y="70" width="1440" height="970" id="Terminal" order="11" sideWeight="0.9056328" visible="true" weight="0.41401273" />
       <window_info anchor="bottom" id="Quokka" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -239,8 +240,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/lib/service/service.backend/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="38" column="13" selection-start-line="38" selection-start-column="2" selection-end-line="38" selection-end-column="13" />
+        <state relative-caret-position="282">
+          <caret line="45" column="63" selection-start-line="45" selection-start-column="63" selection-end-line="45" selection-end-column="63" />
         </state>
       </provider>
     </entry>
