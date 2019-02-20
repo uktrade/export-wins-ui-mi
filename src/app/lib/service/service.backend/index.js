@@ -42,11 +42,14 @@ module.exports = {
 
 			const user = info.data;
 
-			console.log('333333333333333333333333333333333333333333333');
-			console.log(JSON.stringify(user.permitted_applications));
-			console.log('333333333333333333333333333333333333333333333');
+			console.log('555555555555555555555555555555555555555555555');
+			console.log(user);
+      console.log('---------------------------------------------');
+      console.log(req.session);
+      console.log('777777777777777777777777777777777777777777777');
 
-			user.internal = ( config.isDev || !!~internalUsers.indexOf( user.email ) );
+
+      user.internal = ( config.isDev || !!~internalUsers.indexOf( user.email ) );
 
 			return user;
 		} );
