@@ -45,8 +45,9 @@ module.exports = {
 			console.log('555555555555555555555555555555555555555555555');
 			console.log(user);
       console.log('---------------------------------------------');
-      console.log(req.session);
+      console.log(info);
       console.log('777777777777777777777777777777777777777777777');
+      console.log(req);
 
 
       user.internal = ( config.isDev || !!~internalUsers.indexOf( user.email ) );
