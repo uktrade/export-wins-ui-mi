@@ -45,10 +45,8 @@ module.exports = {
 			console.log('555555555555555555555555555555555555555555555');
 			console.log(user);
       console.log('---------------------------------------------');
-      console.log(info);
+      console.log(user.permitted_applications);
       console.log('777777777777777777777777777777777777777777777');
-      console.log(req);
-
 
       user.internal = ( config.isDev || !!~internalUsers.indexOf( user.email ) );
 
