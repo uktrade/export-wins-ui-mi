@@ -22,11 +22,6 @@ function buildGlobalNavItems (permittedApps, globalNavItems) {
 		}
 	})
 
-  console.log('111111111111111111111111111111')
-  console.log(permittedNavItems)
-  console.log('22222222222222222222222222222222222')
-  console.log(globalNavItems.concat(permittedNavItems))
-
 	return globalNavItems.concat(permittedNavItems)
 }
 
