@@ -42,7 +42,7 @@ module.exports = {
 
 			const user = info.data;
 
-			user.internal = ( config.isDev || !!~internalUsers.indexOf( user.email ) );
+      user.internal = ( config.isDev || !!~internalUsers.indexOf( user.email ) );
 
 			return user;
 		} );

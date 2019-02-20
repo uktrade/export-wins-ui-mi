@@ -4,7 +4,7 @@ const globalNavItems = require('../global-nav-items')
 const backend = require( '../lib/service/service.backend' )
 
 async function buildGlobalNav (req, res, next) {
-	const permittedApps = transformAppsToPermittedApps(appsNamesAndPaths, req.user.permitted_applications)
+	const permittedApps = transformAppsToPermittedApps(appsNamesAndPaths, res.locals.user.permitted_applications)
 	res.locals.globalNavItems = buildGlobalNavItems(permittedApps, globalNavItems)
 	next()
 }
@@ -21,6 +21,7 @@ function buildGlobalNavItems (permittedApps, globalNavItems) {
 			label: name
 		}
 	})
+
 	return globalNavItems.concat(permittedNavItems)
 }
 
