@@ -13,16 +13,6 @@ module.exports = function( env ){
 		year++;
 	}
 
-	const globalNavItems = [
-		{ isActive: false, url: `${ config.datahubDomain }/companies`, label: 'Companies' },
-		{ isActive: false, url: `${ config.datahubDomain }/contacts`, label: 'Contacts' },
-		{ isActive: false, url: `${ config.datahubDomain }/events`, label: 'Events' },
-		{ isActive: false, url: `${ config.datahubDomain }/interactions`, label: 'Interactions and services' },
-		{ isActive: false, url: `${ config.datahubDomain }/investment-projects`, label: 'Investment projects' },
-		{ isActive: false, url: `${ config.datahubDomain }/omis`, label: 'Orders (OMIS)' },
-		{ isActive: true, url: '/', label: 'MI dashboards' },
-	];
-
 	const winTableColumns = {
 
 		hvc: [
@@ -55,7 +45,6 @@ module.exports = function( env ){
 	env.addGlobal( 'asset_path', '/public/' );
 	env.addGlobal( 'analyticsId', config.analyticsId );
 	env.addGlobal( 'yearList', years );
-	env.addGlobal( 'globalNavItems', globalNavItems );
 	env.addGlobal( 'titleDefault', 'Department for International Trade' );
 	env.addGlobal( 'serviceTitle', 'Data Hub' );
 	env.addGlobal( 'projectPhase', 'beta' );

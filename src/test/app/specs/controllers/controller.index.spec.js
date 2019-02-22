@@ -1,136 +1,143 @@
-const proxyquire = require( 'proxyquire' );
+const proxyquire = require('proxyquire')
 
-const errorHandler = {};
-const exportBackendService = {};
-const createErrorHandler = require( '../../helpers/create-error-handler' );
-const spy = require( '../../helpers/spy' );
+const errorHandler = {}
+const exportBackendService = {}
+const createErrorHandler = require('../../helpers/create-error-handler')
+const spy = require('../../helpers/spy')
 
-let controller;
-let globalSummary;
-let globalSummaryData;
+let controller
+let globalSummary
+let globalSummaryData
 
-describe( 'Index controller', function(){
+describe('Index controller', function () {
 
-	beforeEach( function(){
+	beforeEach(function () {
 
-		globalSummaryData = { globalSummaryData: true };
-		errorHandler.createHandler = jasmine.createSpy( 'createHandler' );
-		globalSummary = { create: spy( 'globalSummary.create', globalSummaryData ) };
+		globalSummaryData = { globalSummaryData: true }
+		errorHandler.createHandler = jasmine.createSpy('createHandler')
+		globalSummary = { create: spy('globalSummary.create', globalSummaryData) }
 
-		controller = proxyquire( '../../../../app/controllers/controller.index', {
+		controller = proxyquire('../../../../app/controllers/controller.index', {
 			'../lib/service/service.backend': { export: exportBackendService },
 			'../lib/render-error': errorHandler,
 			'../lib/view-models/global-summary': globalSummary
-		} );
-	} );
+		})
+	})
 
-	describe( 'Handler', function(){
+	describe('Handler', function () {
 
-		let req;
-		let res;
-		let sectorTeams;
-		let overseasRegionGroups;
-		let ukRegions;
-		let globalHvcs;
-		let globalWins;
-		let promise;
+		let req
+		let res
+		let globalNavItems
+		let sectorTeams
+		let overseasRegionGroups
+		let ukRegions
+		let globalHvcs
+		let globalWins
+		let promise
 
-		beforeEach( function(){
+		beforeEach(function () {
 
 			req = {
 				cookies: { sessionid: '456' },
 				query: {},
 				year: 2017
-			};
+			}
 
 			res = {
-				render: jasmine.createSpy( 'res.render' )
-			};
+				render: jasmine.createSpy('res.render'),
+				locals: {
+					globalNavItems: [{ isActive: false, url: 'a', key: 'b', label: 'c' }]
+				}
+			}
 
-			sectorTeams = { results: { sectorTeams: true } };
-			overseasRegionGroups = { results: { overseasRegionGroups: true } };
-			ukRegions = { results: { ukRegions: true } };
-			globalHvcs = { results: { globalHvcs: true } };
-			globalWins = { date_range: { test: 1 }, results: { globalWins: true } };
+			globalNavItems = res.locals.globalNavItems
+			sectorTeams = { results: { sectorTeams: true } }
+			overseasRegionGroups = { results: { overseasRegionGroups: true } }
+			ukRegions = { results: { ukRegions: true } }
+			globalHvcs = { results: { globalHvcs: true } }
+			globalWins = { date_range: { test: 1 }, results: { globalWins: true } }
 
-			promise = new Promise( ( resolve ) => {
+			promise = new Promise((resolve) => {
 
-				resolve( {
+				resolve({
 					sectorTeams,
 					overseasRegionGroups,
 					ukRegions,
 					globalHvcs,
 					globalWins
-				} );
-			} );
+				})
+			})
 
-			exportBackendService.getHomepageData = spy( 'getHomepageData', promise );
-		} );
+			exportBackendService.getHomepageData = spy('getHomepageData', promise)
+		})
 
-		describe( 'In the default year', function(){
+		describe('In the default year', function () {
 
-			beforeEach( function(){
+			beforeEach(function () {
 
-				req.isDefaultYear = true;
-			} );
+				req.isDefaultYear = true
+			})
 
-			describe( 'Without any query params', function(){
+			describe('Without any query params', function () {
 
-				it( 'Should render the view with the corect data', function( done ){
+				it('Should render the view with the correct data', function (done) {
 
-					errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
+					errorHandler.createHandler.and.callFake(createErrorHandler(done))
 
-					controller( req, res );
+					controller(req, res)
 
-					promise.then( () => {
+					promise.then(() => {
 
-						expect( exportBackendService.getHomepageData ).toHaveBeenCalledWith( req );
-						expect( globalSummary.create ).toHaveBeenCalledWith( globalWins );
-						expect( res.render ).toHaveBeenCalledWith( 'index.html', {
+						expect(exportBackendService.getHomepageData).toHaveBeenCalledWith(req)
+						expect(globalSummary.create).toHaveBeenCalledWith(globalWins)
+						expect(res.render).toHaveBeenCalledWith('index.html', {
+							globalNavItems,
 							sectorTeams: sectorTeams.results,
 							overseasRegionGroups: overseasRegionGroups.results,
 							ukRegions: ukRegions.results,
 							globalHvcs: globalHvcs.results,
 							summary: globalSummaryData
-						} );
-						expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
-						done();
-					} );
-				} );
-			} );
-		} );
+						})
+						expect(errorHandler.createHandler).toHaveBeenCalledWith(req, res)
+						done()
+					})
+				})
+			})
+		})
 
-		describe( 'Not in the default year', function(){
+		describe('Not in the default year', function () {
 
-			beforeEach( function(){
+			beforeEach(function () {
 
-				req.isDefaultYear = false;
-			} );
+				req.isDefaultYear = false
+			})
 
-			describe( 'Without any query params', function(){
+			describe('Without any query params', function () {
 
-				it( 'Should render the page', function( done ){
+				it('Should render the page', function (done) {
 
-					errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
+					errorHandler.createHandler.and.callFake(createErrorHandler(done))
 
-					controller( req, res );
+					controller(req, res)
 
-					promise.then( () => {
+					promise.then(() => {
 
-						expect( exportBackendService.getHomepageData ).toHaveBeenCalledWith( req );
-						expect( globalSummary.create ).toHaveBeenCalledWith( globalWins );
-						expect( res.render ).toHaveBeenCalledWith( 'index.html', {
+						expect(exportBackendService.getHomepageData).toHaveBeenCalledWith(req)
+						expect(globalSummary.create).toHaveBeenCalledWith(globalWins)
+						expect(res.render).toHaveBeenCalledWith('index.html', {
+							globalNavItems,
 							sectorTeams: sectorTeams.results,
 							overseasRegionGroups: overseasRegionGroups.results,
 							ukRegions: ukRegions.results,
 							globalHvcs: globalHvcs.results,
 							summary: globalSummaryData
-						} );
-						expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
-						done();
-					} );
-				} );
-			} );
-		} );
-	} );
-} );
+						})
+						expect(errorHandler.createHandler).toHaveBeenCalledWith(req, res)
+						done()
+					})
+				})
+			})
+		})
+	})
+})
