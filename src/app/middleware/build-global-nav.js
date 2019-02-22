@@ -1,6 +1,5 @@
-const { appsNamesAndPaths } = require('../config');
+const { appsNamesAndPaths, globalNavItems } = require('../config');
 const { transformAppsToPermittedApps } = require('../lib/transformers/permitted-apps');
-const globalNavItems = require('../global-nav-items');
 
 function buildGlobalNav (req, res, next) {
 	const permittedApps = transformAppsToPermittedApps(appsNamesAndPaths, req.user.permitted_applications);
