@@ -1,32 +1,32 @@
-const os = require('os')
-const requiredEnvs = []
+const os = require('os');
+const requiredEnvs = [];
 
 function env (name, defaultValue) {
 
-	var exists = (typeof process.env[name] !== 'undefined')
+	var exists = (typeof process.env[name] !== 'undefined');
 
-	return (exists ? process.env[name] : defaultValue)
+	return (exists ? process.env[name] : defaultValue);
 }
 
 function bool (name, defaultValue) {
 
-	return (env(name, defaultValue) + '') === 'true'
+	return (env(name, defaultValue) + '') === 'true';
 }
 
 function number (name, defaultValue) {
 
-	return parseInt(env(name, defaultValue), 10)
+	return parseInt(env(name, defaultValue), 10);
 }
 
 function requiredEnv (name, type = env) {
 
-	requiredEnvs.push(name)
+	requiredEnvs.push(name);
 
-	return type(name)
+	return type(name);
 }
 
-const cpus = (os.cpus().length || 1)
-const defaultWorkers = (cpus > 1 ? cpus - 1 : cpus)
+const cpus = (os.cpus().length || 1);
+const defaultWorkers = (cpus > 1 ? cpus - 1 : cpus);
 const isDev = ((process.env.NODE_ENV || 'development') === 'development');
 const exportWinsUrl = env('EXPORT_WINS_URL', 'https://www.exportwins.service.trade.gov.uk/');
 const datahubDomain = env('DATA_HUB_DOMAIN', 'https://www.datahub.trade.gov.uk');
@@ -115,24 +115,24 @@ let config = {
 			path: `${findExportersDomain}`,
 		},
 	]
-}
+};
 
-config.backend.href = `${config.backend.protocol}://${config.backend.host}:${config.backend.port}`
+config.backend.href = `${config.backend.protocol}://${config.backend.host}:${config.backend.port}`;
 
-const missing = []
+const missing = [];
 
 for (let name of requiredEnvs) {
 
 	if (typeof process.env[name] === 'undefined') {
 
-		missing.push(name)
+		missing.push(name);
 	}
 }
 
 if (missing.length) {
 
-	console.log('Missing required env variables:', missing)
-	throw new Error('Missing required env variables')
+	console.log('Missing required env variables:', missing);
+	throw new Error('Missing required env variables');
 }
 
-module.exports = config
+module.exports = config;

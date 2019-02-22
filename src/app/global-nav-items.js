@@ -1,4 +1,4 @@
-const config = require('./config.js')
+const config = require('./config.js');
 
 const globalNavItems = [
 	{ isActive: false, url: `${config.datahubDomain}/companies`, key: 'companies', label: 'Companies' },
@@ -8,6 +8,6 @@ const globalNavItems = [
 	{ isActive: false, url: `${config.datahubDomain}/investment-projects`, key: 'investments', label: 'Investments' },
 	{ isActive: false, url: `${config.datahubDomain}/omis`, key: 'orders-omis', label: 'Orders (OMIS)' },
 	{ isActive: true, url: `/`, key: 'datahub-mi', label: 'MI dashboards' },
-]
+];
 
-module.exports = globalNavItems
+module.exports = globalNavItems;

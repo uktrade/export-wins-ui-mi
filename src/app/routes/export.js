@@ -1,6 +1,6 @@
 const config = require( '../config' );
 const navMiddleware = require( '../middleware/nav' );
-const { buildGlobalNav } = require('../middleware/build-global-nav')
+const { buildGlobalNav } = require('../middleware/build-global-nav');
 
 const indexController = require( '../controllers/controller.index' );
 const sectorTeamController = require( '../controllers/controller.sector-teams' );
