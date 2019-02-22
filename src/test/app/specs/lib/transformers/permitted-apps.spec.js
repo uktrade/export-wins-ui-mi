@@ -1,4 +1,4 @@
-const { transformAppsToPermittedApps } = require('../../../../../app/lib/transformers/permitted-apps.js')
+const { transformAppsToPermittedApps } = require('../../../../../app/lib/transformers/permitted-apps.js');
 
 describe('Transform apps to permitted apps', function () {
 
@@ -14,7 +14,7 @@ describe('Transform apps to permitted apps', function () {
 				key: 'another-app',
 				url: 'http://yhk.cay',
 				name: 'veritatis voluptas adipisci'
-			}]
+			}];
 
 		const appsNamesAndPaths = [
 			{
@@ -22,15 +22,15 @@ describe('Transform apps to permitted apps', function () {
 				name: 'Find exporters',
 				path: 'https://find-exporters.datahub.trade.gov.uk/'
 			}
-		]
+		];
 
-		expect(transformAppsToPermittedApps(appsNamesAndPaths, permittedApps).length).toEqual(1)
+		expect(transformAppsToPermittedApps(appsNamesAndPaths, permittedApps).length).toEqual(1);
 		expect(transformAppsToPermittedApps(appsNamesAndPaths, permittedApps)).toEqual([{
 			key: 'find-exporters',
 			name: 'Find exporters',
 			path: 'https://find-exporters.datahub.trade.gov.uk/'
-		}])
-	})
+		}]);
+	});
 
 	it('should return two allowed apps', () => {
 
@@ -44,7 +44,7 @@ describe('Transform apps to permitted apps', function () {
 				key: 'another-app',
 				url: 'http://yhk.cay',
 				name: 'veritatis voluptas adipisci'
-			}]
+			}];
 
 		const appsNamesAndPaths = [
 			{
@@ -57,10 +57,10 @@ describe('Transform apps to permitted apps', function () {
 				url: 'http://yhk.cay',
 				name: 'veritatis voluptas adipisci'
 			},
-		]
+		];
 
-		expect(transformAppsToPermittedApps(appsNamesAndPaths, permittedApps).length).toEqual(2)
-	})
+		expect(transformAppsToPermittedApps(appsNamesAndPaths, permittedApps).length).toEqual(2);
+	});
 
 	it('should return no allowed apps', () => {
 
@@ -69,7 +69,7 @@ describe('Transform apps to permitted apps', function () {
 				key: 'no-app',
 				url: 'http://amwkcnyk.mem',
 				name: 'incidunt rerum et'
-			}]
+			}];
 
 		const appsNamesAndPaths = [
 			{
@@ -77,10 +77,10 @@ describe('Transform apps to permitted apps', function () {
 				name: 'Find exporters',
 				path: 'https://find-exporters.datahub.trade.gov.uk/'
 			},
-		]
+		];
 
-		expect(transformAppsToPermittedApps(appsNamesAndPaths, permittedApps).length).toEqual(0)
-	})
+		expect(transformAppsToPermittedApps(appsNamesAndPaths, permittedApps).length).toEqual(0);
+	});
 
-})
+});
 

@@ -1,20 +1,20 @@
-const proxyquire = require('proxyquire').noPreserveCache().noCallThru()
-const modulePath = '../../../../app/middleware/build-global-nav.js'
+const proxyquire = require('proxyquire').noPreserveCache().noCallThru();
+const modulePath = '../../../../app/middleware/build-global-nav.js';
 
 describe('Build global navigation', function () {
 
-	let req
-	let res
-	let next
-	let globalNavItems
-	let buildGlobalNav
-	let config
+	let req;
+	let res;
+	let next;
+	let globalNavItems;
+	let buildGlobalNav;
+	let config;
 
 	beforeEach(function () {
 		res = {
 			locals: {}
-		}
-		globalNavItems = [{ isActive: true, url: `/`, key: 'datahub-mi', label: 'MI dashboards' }]
+		};
+		globalNavItems = [{ isActive: true, url: `/`, key: 'datahub-mi', label: 'MI dashboards' }];
 		config = {
 			appsNamesAndPaths: [{
 				key: 'datahub-mi',
@@ -29,10 +29,10 @@ describe('Build global navigation', function () {
 		({ buildGlobalNav } = proxyquire(modulePath, {
 			'../config': config,
 			'../global-nav-items': globalNavItems
-		}))
+		}));
 
-		next = jasmine.createSpy('next')
-	})
+		next = jasmine.createSpy('next');
+	});
 
 	it('should hide links to apps in which the user does not have permission to access', () => {
 		req = {
@@ -43,17 +43,17 @@ describe('Build global navigation', function () {
 					'name': 'incidunt rerum et'
 				}]
 			}
-		}
-		buildGlobalNav(req, res, next)
-		expect(next).toHaveBeenCalled()
+		};
+		buildGlobalNav(req, res, next);
+		expect(next).toHaveBeenCalled();
 		expect(res.locals.globalNavItems).toEqual([{
 			isActive: true,
 			url: '/',
 			key: 'datahub-mi',
 			label: 'MI dashboards'
 		}
-		])
-	})
+		]);
+	});
 
 	it('should show links to apps in which the user does have permission to access', () => {
 
@@ -67,9 +67,9 @@ describe('Build global navigation', function () {
 					}
 				]
 			}
-		}
-		buildGlobalNav(req, res, next)
-		expect(next).toHaveBeenCalled()
+		};
+		buildGlobalNav(req, res, next);
+		expect(next).toHaveBeenCalled();
 
 		expect(res.locals.globalNavItems).toEqual([{
 			isActive: true,
@@ -82,7 +82,7 @@ describe('Build global navigation', function () {
 			key: 'find-exporters',
 			label: 'Find exporters'
 		}
-		])
-	})
+		]);
+	});
 
-})
+});
