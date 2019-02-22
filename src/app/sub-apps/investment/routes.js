@@ -16,10 +16,10 @@ module.exports = function( router, user/*, isDev*/ ){
 	function get( path, ...args ){
 
 		//ensure the user and nav middleware gets run for each route
-		router.get( ( MOUNT_POINT + path ), user, nav, ...args );
+		router.get( ( MOUNT_POINT + path ), user, buildGlobalNav, nav, ...args );
 	}
 
-	get( '/', buildGlobalNav, indexController );
+	get( '/', indexController );
 
 	return router;
 };
