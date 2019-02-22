@@ -18,3 +18,8 @@ src/test/ci/output
 run/node.log
 run/node.pid
 src/test/backstop/data
+
+# IDE configurations
+.vscode/
+.idea/
+/.idea/workspace.xml
