@@ -28,7 +28,7 @@ module.exports = function( express, app, isDev ){
 	app.get( '/sign-out/', loginController.signout );
 
 	app.get( '/downloads/', user, buildGlobalNav, downloadNav, downloadController.list );
-	app.get( '/downloads/:id/', user, downloadController.file );
+	app.get( '/downloads/:id/', user, buildGlobalNav,downloadController.file );
 
 	app.get( '/refresh/', refreshController );
 	app.get( '/experiments/', user, experimentsController );
@@ -36,10 +36,10 @@ module.exports = function( express, app, isDev ){
 
 	app.use( dateRange );
 
-	app.get( '/select-date/', user, returnPath, dateController.selectYear );
-	app.get( '/select-date/:year/', user, returnPath, csrfProtection, dateController.selectDates );
-	app.post( '/select-date/:year/', user, returnPath, urlBodyParser, csrfProtection, dateController.setDate );
+	app.get( '/select-date/', user, buildGlobalNav, returnPath, dateController.selectYear );
+	app.get( '/select-date/:year/', user, buildGlobalNav, returnPath, csrfProtection, dateController.selectDates );
+	app.post( '/select-date/:year/', user, buildGlobalNav, returnPath, urlBodyParser, csrfProtection, dateController.setDate );
 
-	app.use( exportRoutes( express.Router(), user, isDev ) );
-	app.use( investmentRoutes( express.Router(), user, isDev ) );
+	app.use( exportRoutes( express.Router(), user, buildGlobalNav, isDev ) );
+	app.use( investmentRoutes( express.Router(), user, buildGlobalNav, isDev ) );
 };
