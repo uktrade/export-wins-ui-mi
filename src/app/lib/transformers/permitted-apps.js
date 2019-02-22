@@ -11,7 +11,9 @@ function transformPermittedAppsToCollection (appsNamesAndPaths, keys) {
 }
 
 function transformAppsToPermittedApps (appsNamesAndPaths, permittedApplications) {
-	const permittedAppsKeys = permittedApplications && permittedApplications.map((item) => item.key) || [];
+
+	const appsIsArray = Array.isArray( permittedApplications );
+	const permittedAppsKeys = appsIsArray && permittedApplications.map((item) => item.key) || [];
 	const keys = appsNamesAndPaths.map((namePath)=>{
 		if(permittedAppsKeys.includes(namePath.key)){
 			return namePath.key;
