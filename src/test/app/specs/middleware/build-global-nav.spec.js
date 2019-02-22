@@ -6,7 +6,6 @@ describe('Build global navigation', function () {
 	let req;
 	let res;
 	let next;
-	let globalNavItems;
 	let buildGlobalNav;
 	let config;
 
@@ -14,8 +13,8 @@ describe('Build global navigation', function () {
 		res = {
 			locals: {}
 		};
-		globalNavItems = [{ isActive: true, url: `/`, key: 'datahub-mi', label: 'MI dashboards' }];
 		config = {
+			globalNavItems: [{ isActive: true, url: `/`, key: 'datahub-mi', label: 'MI dashboards' }],
 			appsNamesAndPaths: [{
 				key: 'datahub-mi',
 				name: 'MI dashboards',
@@ -28,7 +27,7 @@ describe('Build global navigation', function () {
 		};
 		({ buildGlobalNav } = proxyquire(modulePath, {
 			'../config': config,
-			'../global-nav-items': globalNavItems
+			'../global-nav-items': config.globalNavItems
 		}));
 
 		next = jasmine.createSpy('next');
