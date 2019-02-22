@@ -6,7 +6,13 @@ const backend = require( '../lib/service/service.backend' )
 async function buildGlobalNav (req, res, next) {
 	const permittedApps = transformAppsToPermittedApps(appsNamesAndPaths, res.locals.user.permitted_applications)
 	res.locals.globalNavItems = buildGlobalNavItems(permittedApps, globalNavItems)
-	next()
+  console.log('=============================')
+  console.log(permittedApps)
+  console.log(res.locals.globalNavItems)
+  console.log('+++++++++++++++++++++++++++++')
+
+
+  next()
 }
 
 function buildGlobalNavItems (permittedApps, globalNavItems) {
