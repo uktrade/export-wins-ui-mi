@@ -14,7 +14,7 @@ $default-spacing-unit: $baseline-grid-unit * 4;
 .global-header__inner {
 	@include clearfix;
 	@extend %site-width-container;
-	padding: 8px 0;
+	padding: 7px 0;
 }
 
 .global-header__site-title {
@@ -23,22 +23,21 @@ $default-spacing-unit: $baseline-grid-unit * 4;
 	}
 
 	.phase-badge {
-		margin-top: 5px;
+		margin-top: 3px;
 	}
 }
 
 .global-header__link {
 	display: inline-block;
-	color: inherit !important;
+	position: relative;
 	text-decoration: none;
 	padding: 0;
-	position: relative;
 	margin: 0 ($baseline-grid-unit * 3) 0 0;
-
+	&:link,
 	&:hover,
 	&:visited,
 	&:focus {
-		color: inherit;
+		color: $white;
 	}
 }
 
@@ -58,11 +57,10 @@ $default-spacing-unit: $baseline-grid-unit * 4;
 .global-header__service-name {
 	@include bold-36;
 	color: inherit;
-	line-height: 1;
+	line-height: 0.9;
 	white-space: nowrap;
 
 	@include media(tablet) {
-		line-height: 1;
 		font-size: 30px;
 	}
 }
@@ -77,7 +75,7 @@ span.phase-badge {
   letter-spacing: 1px;
   line-height: 1;
   margin: 0 ($default-spacing-unit / 2) 0 0;
-  padding: 3px 5px;
+  padding: 3px 5px 3px 6px;
   vertical-align: top;
 
   @include media(tablet) {
