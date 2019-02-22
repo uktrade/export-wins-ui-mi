@@ -14,6 +14,7 @@ const returnPath = require( '../middleware/return-path' );
 const dateRange = require( '../middleware/date-range' );
 const user = require( '../middleware/user' );
 const navMiddleware = require( '../middleware/nav' );
+const { buildGlobalNav } = require('../middleware/build-global-nav');
 
 const csrfProtection = csurf( { cookie: true } );
 const downloadNav = navMiddleware( { isDownload: true } );
@@ -26,7 +27,7 @@ module.exports = function( express, app, isDev ){
 	app.get( '/login/callback/', loginController.oauthCallback );
 	app.get( '/sign-out/', loginController.signout );
 
-	app.get( '/downloads/', user, downloadNav, downloadController.list );
+	app.get( '/downloads/', user, buildGlobalNav, downloadNav, downloadController.list );
 	app.get( '/downloads/:id/', user, downloadController.file );
 
 	app.get( '/refresh/', refreshController );

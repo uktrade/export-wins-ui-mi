@@ -1,5 +1,6 @@
 const navMiddleware = require( '../../middleware/nav' );
 const indexController = require( './controllers/controller.index' );
+const { buildGlobalNav } = require('../../middleware/build-global-nav');
 
 const MOUNT_POINT = '/investment';
 
@@ -18,7 +19,7 @@ module.exports = function( router, user/*, isDev*/ ){
 		router.get( ( MOUNT_POINT + path ), user, nav, ...args );
 	}
 
-	get( '/', indexController );
+	get( '/', buildGlobalNav, indexController );
 
 	return router;
 };
