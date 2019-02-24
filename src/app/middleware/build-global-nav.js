@@ -1,12 +1,6 @@
 const { appsNamesAndPaths, globalNavItems } = require('../config');
 const { transformAppsToPermittedApps } = require('../lib/transformers/permitted-apps');
 
-function buildGlobalNav (req, res, next) {
-	const permittedApps = transformAppsToPermittedApps(appsNamesAndPaths, req.user.permitted_applications);
-	res.locals.globalNavItems = buildGlobalNavItems(permittedApps, globalNavItems);
-	next();
-}
-
 function buildGlobalNavItems (permittedApps, globalNavItems) {
 
 	const permittedNavItems = permittedApps.map((item) => {
@@ -22,5 +16,11 @@ function buildGlobalNavItems (permittedApps, globalNavItems) {
 }
 
 module.exports = {
-	buildGlobalNav,
+
+	buildGlobalNav: function (req, res, next) {
+
+		const permittedApps = transformAppsToPermittedApps(appsNamesAndPaths, req.user.permitted_applications);
+		res.locals.globalNavItems = buildGlobalNavItems(permittedApps, globalNavItems);
+		next();
+	}
 };

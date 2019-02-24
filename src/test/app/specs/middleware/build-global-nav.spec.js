@@ -27,7 +27,6 @@ describe('Build global navigation', function () {
 		};
 		({ buildGlobalNav } = proxyquire(modulePath, {
 			'../config': config,
-			'../global-nav-items': config.globalNavItems
 		}));
 
 		next = jasmine.createSpy('next');
