@@ -7,7 +7,7 @@ function transformPermittedAppsToCollection (appsNamesAndPaths, keys) {
 		})
 	);
 
-	return [].concat(...collection).filter((item) => item);
+	return [].concat(...collection).filter((item) => !!item);
 }
 
 function transformAppsToPermittedApps (appsNamesAndPaths, permittedApplications) {
@@ -18,7 +18,7 @@ function transformAppsToPermittedApps (appsNamesAndPaths, permittedApplications)
 		if(permittedAppsKeys.includes(namePath.key)){
 			return namePath.key;
 		}
-	}).filter((key)=>key);
+	}).filter((key) => !!key);
 
 	return transformPermittedAppsToCollection(appsNamesAndPaths, keys);
 }
