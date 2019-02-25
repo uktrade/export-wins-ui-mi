@@ -1,6 +1,43 @@
 const { transformAppsToPermittedApps } = require('../../../../../app/lib/transformers/permitted-apps.js');
 
 describe('Transform apps to permitted apps', function () {
+
+	const mockData = {
+		appsNamesAndPaths: [ {
+			key: 'datahub-crm',
+			name: 'Companies',
+			path: 'https://www.abc.io/companies'
+		}, {
+			key: 'datahub-crm',
+			name: 'Contacts',
+			path: 'https://www.abc.io/contacts'
+		}, {
+			key: 'datahub-crm',
+			name: 'Events',
+			path: 'https://www.abc.io/events'
+		}, {
+			key: 'datahub-crm',
+			name: 'Interactions',
+			path: 'https://www.abc.io/interactions'
+		}, {
+			key: 'datahub-crm',
+			name: 'Investments',
+			path: 'https://www.abc.io/investment-projects'
+		}, {
+			key: 'datahub-crm',
+			name: 'Orders (OMIS)',
+			path: 'https://www.abc.io/omis'
+		}, {
+			key: 'datahub-mi',
+			name: 'MI dashboards',
+			path: '/'
+		}, {
+			key: 'find-exporters',
+			name: 'Find exporters',
+			path: 'https://def.io/'
+		} ]
+	};
+
 	describe( 'When permittedApps is an array', () => {
 		it('should return one allowed app', () => {
 
@@ -16,19 +53,11 @@ describe('Transform apps to permitted apps', function () {
 					name: 'veritatis voluptas adipisci'
 				}];
 
-			const appsNamesAndPaths = [
-				{
-					key: 'find-exporters',
-					name: 'Find exporters',
-					path: 'https://find-exporters.datahub.trade.gov.uk/'
-				}
-			];
-
-			expect(transformAppsToPermittedApps(appsNamesAndPaths, permittedApps).length).toEqual(1);
-			expect(transformAppsToPermittedApps(appsNamesAndPaths, permittedApps)).toEqual([{
+			expect(transformAppsToPermittedApps(mockData.appsNamesAndPaths, permittedApps).length).toEqual(1);
+			expect(transformAppsToPermittedApps(mockData.appsNamesAndPaths, permittedApps)).toEqual([{
 				key: 'find-exporters',
 				name: 'Find exporters',
-				path: 'https://find-exporters.datahub.trade.gov.uk/'
+				path: 'https://def.io/'
 			}]);
 		});
 
@@ -41,25 +70,12 @@ describe('Transform apps to permitted apps', function () {
 					name: 'incidunt rerum et'
 				},
 				{
-					key: 'another-app',
+					key: 'datahub-mi',
 					url: 'http://yhk.cay',
 					name: 'veritatis voluptas adipisci'
 				}];
 
-			const appsNamesAndPaths = [
-				{
-					key: 'find-exporters',
-					name: 'Find exporters',
-					path: 'https://find-exporters.datahub.trade.gov.uk/'
-				},
-				{
-					key: 'another-app',
-					url: 'http://yhk.cay',
-					name: 'veritatis voluptas adipisci'
-				},
-			];
-
-			expect(transformAppsToPermittedApps(appsNamesAndPaths, permittedApps).length).toEqual(2);
+			expect(transformAppsToPermittedApps(mockData.appsNamesAndPaths, permittedApps).length).toEqual(2);
 		});
 
 		it('should return no allowed apps', () => {
@@ -71,30 +87,14 @@ describe('Transform apps to permitted apps', function () {
 					name: 'incidunt rerum et'
 				}];
 
-			const appsNamesAndPaths = [
-				{
-					key: 'find-exporters',
-					name: 'Find exporters',
-					path: 'https://find-exporters.datahub.trade.gov.uk/'
-				},
-			];
-
-			expect(transformAppsToPermittedApps(appsNamesAndPaths, permittedApps).length).toEqual(0);
+			expect(transformAppsToPermittedApps(mockData.appsNamesAndPaths, permittedApps).length).toEqual(0);
 		});
 	} );
 
 	describe( 'When permittedApps is an empty object', () => {
 		it( 'should return no allowed apps', () => {
 
-			const appsNamesAndPaths = [
-				{
-					key: 'find-exporters',
-					name: 'Find exporters',
-					path: 'https://find-exporters.datahub.trade.gov.uk/'
-				},
-			];
-
-			expect(transformAppsToPermittedApps(appsNamesAndPaths, {}).length).toEqual(0);
+			expect(transformAppsToPermittedApps(mockData.appsNamesAndPaths, {}).length).toEqual(0);
 		} );
 	} );
 });

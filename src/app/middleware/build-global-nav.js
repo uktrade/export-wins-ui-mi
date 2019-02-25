@@ -1,18 +1,21 @@
-const { appsNamesAndPaths, globalNavItems } = require('../config');
+const { appsNamesAndPaths } = require('../config');
 const { transformAppsToPermittedApps } = require('../lib/transformers/permitted-apps');
 
-function buildGlobalNavItems (permittedApps, globalNavItems) {
+function buildGlobalNavItems (permittedApps) {
 
 	const permittedNavItems = permittedApps.map((item) => {
+
 		let { path, key, name } = item;
+
 		return {
-			isActive: false,
+			isActive: ( key === 'datahub-mi' ),
 			url: path,
 			key: key,
 			label: name
 		};
 	});
-	return globalNavItems.concat(permittedNavItems);
+
+	return permittedNavItems;
 }
 
 module.exports = {
@@ -20,7 +23,7 @@ module.exports = {
 	buildGlobalNav: function (req, res, next) {
 
 		const permittedApps = transformAppsToPermittedApps(appsNamesAndPaths, req.user.permitted_applications);
-		res.locals.globalNavItems = buildGlobalNavItems(permittedApps, globalNavItems);
+		res.locals.globalNavItems = buildGlobalNavItems(permittedApps);
 		next();
 	}
 };
