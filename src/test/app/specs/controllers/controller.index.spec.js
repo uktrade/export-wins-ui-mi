@@ -28,7 +28,6 @@ describe('Index controller', function () {
 
 		let req;
 		let res;
-		let globalNavItems;
 		let sectorTeams;
 		let overseasRegionGroups;
 		let ukRegions;
@@ -51,7 +50,6 @@ describe('Index controller', function () {
 				}
 			};
 
-			globalNavItems = res.locals.globalNavItems;
 			sectorTeams = { results: { sectorTeams: true } };
 			overseasRegionGroups = { results: { overseasRegionGroups: true } };
 			ukRegions = { results: { ukRegions: true } };
@@ -92,7 +90,6 @@ describe('Index controller', function () {
 						expect(exportBackendService.getHomepageData).toHaveBeenCalledWith(req);
 						expect(globalSummary.create).toHaveBeenCalledWith(globalWins);
 						expect(res.render).toHaveBeenCalledWith('index.html', {
-							globalNavItems,
 							sectorTeams: sectorTeams.results,
 							overseasRegionGroups: overseasRegionGroups.results,
 							ukRegions: ukRegions.results,
@@ -126,7 +123,6 @@ describe('Index controller', function () {
 						expect(exportBackendService.getHomepageData).toHaveBeenCalledWith(req);
 						expect(globalSummary.create).toHaveBeenCalledWith(globalWins);
 						expect(res.render).toHaveBeenCalledWith('index.html', {
-							globalNavItems,
 							sectorTeams: sectorTeams.results,
 							overseasRegionGroups: overseasRegionGroups.results,
 							ukRegions: ukRegions.results,
