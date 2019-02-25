@@ -215,11 +215,9 @@ describe( 'Backend service', function(){
 
 		describe( 'In dev mode', function(){
 
-			it( 'Should set the internal flag to true', function( done ){
+			it( 'Should set the internal flag to true and add permitted_applications', function( done ){
 
 				const userStub = getBackendStub( '/user/me' );
-
-				userStub.internal = true;
 
 				configStub.isDev = true;
 
@@ -229,7 +227,14 @@ describe( 'Backend service', function(){
 
 				backendService.getUserInfo( req ).then( ( user ) => {
 
-					expect( user ).toEqual( userStub );
+					expect( user ).toEqual( {
+						...userStub,
+						internal: true,
+						permitted_applications: [
+							{ key: 'datahub-crm', url: '', name: '' },
+							{ key: 'datahub-mi', url: '', name: '' },
+						]
+					} );
 					done();
 				} );
 			} );

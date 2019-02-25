@@ -1,24 +1,50 @@
 {
 	"$schema": "http://json-schema.org/draft-04/schema#",
 	"title": "User info",
-
 	"type": "object",
-	"required": [ "name", "email", "last_login" ],
+	"required": [
+		"name",
+		"email",
+		"last_login",
+		"permitted_applications"
+	],
 	"properties": {
-
 		"name": {
 			"type": "string",
 			"faker": "name.findName"
 		},
-
 		"email": {
 			"type": "string",
 			"faker": "internet.email"
 		},
-
 		"last_login": {
 			"type": "string",
 			"faker": "date.past"
+		},
+		"permitted_applications" : {
+			"type": "array",
+			"minItems": 1,
+			"maxItems": 5,
+			"items": {
+				"type": "object",
+				"required": [ "key", "url", "name" ],
+				"properties": {
+
+					"key": {
+						"type": "string",
+						"pattern": "[a-z]{3,8}(-[a-z]{3,8})"
+					},
+					"url": {
+						"type": "string",
+						"pattern": "http://[a-z]{3,8}(\\.[a-z]{3})"
+					},
+					"name": {
+						"type": "string",
+						"faker": "lorem.words"
+					}
+				}
+			}
 		}
+
 	}
 }

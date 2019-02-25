@@ -1,5 +1,6 @@
 const navMiddleware = require( '../../middleware/nav' );
 const indexController = require( './controllers/controller.index' );
+const { buildGlobalNav } = require('../../middleware/build-global-nav');
 
 const MOUNT_POINT = '/investment';
 
@@ -15,7 +16,7 @@ module.exports = function( router, user/*, isDev*/ ){
 	function get( path, ...args ){
 
 		//ensure the user and nav middleware gets run for each route
-		router.get( ( MOUNT_POINT + path ), user, nav, ...args );
+		router.get( ( MOUNT_POINT + path ), user, buildGlobalNav, nav, ...args );
 	}
 
 	get( '/', indexController );
