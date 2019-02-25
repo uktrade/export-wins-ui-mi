@@ -5,14 +5,13 @@ const globalSummary = require('../lib/view-models/global-summary');
 module.exports = function (req, res) {
 
 	exportBackendService.getHomepageData(req).then((data) => {
-		const globalNavItems = res.locals.globalNavItems;
 		const sectorTeams = data.sectorTeams.results;
 		const overseasRegionGroups = data.overseasRegionGroups.results;
 		const ukRegions = data.ukRegions.results;
 		const globalHvcs = data.globalHvcs.results;
 		const summary = globalSummary.create(data.globalWins);
 
-		res.render('index.html', { globalNavItems, sectorTeams, overseasRegionGroups, ukRegions, globalHvcs, summary });
+		res.render('index.html', { sectorTeams, overseasRegionGroups, ukRegions, globalHvcs, summary });
 
 	}).catch(renderError.createHandler(req, res));
 };
