@@ -44,6 +44,21 @@ module.exports = {
 
 			user.internal = ( config.isDev || !!~internalUsers.indexOf( user.email ) );
 
+			if( config.isDev ){
+
+				user.permitted_applications = [
+				{
+					key: 'datahub-crm',
+					url: '',
+					name: ''
+				},
+				{
+					key: 'datahub-mi',
+					url: '',
+					name: ''
+				}];
+			}
+
 			return user;
 		} );
 	}

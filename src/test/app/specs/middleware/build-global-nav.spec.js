@@ -14,7 +14,6 @@ describe('Build global navigation', function () {
 			locals: {}
 		};
 		config = {
-			globalNavItems: [{ isActive: true, url: `/`, key: 'datahub-mi', label: 'MI dashboards' }],
 			appsNamesAndPaths: [{
 				key: 'datahub-mi',
 				name: 'MI dashboards',
@@ -27,7 +26,6 @@ describe('Build global navigation', function () {
 		};
 		({ buildGlobalNav } = proxyquire(modulePath, {
 			'../config': config,
-			'../global-nav-items': config.globalNavItems
 		}));
 
 		next = jasmine.createSpy('next');
@@ -37,7 +35,7 @@ describe('Build global navigation', function () {
 		req = {
 			user: {
 				permitted_applications: [{
-					'key': 'some-app',
+					'key': 'datahub-mi',
 					'url': 'http://amwkcnyk.mem',
 					'name': 'incidunt rerum et'
 				}]
@@ -61,8 +59,12 @@ describe('Build global navigation', function () {
 				permitted_applications: [
 					{
 						'key': 'find-exporters',
-						'url': 'http://abc.gov.uk',
-						'name': 'incidunt rerum et'
+						'url': '',
+						'name': ''
+					}, {
+						'key': 'datahub-mi',
+						'url': '',
+						'name': ''
 					}
 				]
 			}
@@ -83,5 +85,4 @@ describe('Build global navigation', function () {
 		}
 		]);
 	});
-
 });

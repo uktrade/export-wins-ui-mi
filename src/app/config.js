@@ -80,15 +80,6 @@ let config = {
 		fake: bool('FAKE_MI', false),
 		mock: bool('MOCK_MI', false)
 	},
-	globalNavItems: [
-		{ isActive: false, url: `${datahubDomain}/companies`, key: 'companies', label: 'Companies' },
-		{ isActive: false, url: `${datahubDomain}/contacts`, key: 'contacts', label: 'Contacts' },
-		{ isActive: false, url: `${datahubDomain}/events`, key: 'events', label: 'Events' },
-		{ isActive: false, url: `${datahubDomain}/interactions`, key: 'interactions', label: 'Interactions' },
-		{ isActive: false, url: `${datahubDomain}/investment-projects`, key: 'investments', label: 'Investments' },
-		{ isActive: false, url: `${datahubDomain}/omis`, key: 'orders-omis', label: 'Orders (OMIS)' },
-		{ isActive: true, url: `/`, key: 'datahub-mi', label: 'MI dashboards' },
-	],
 	appsNamesAndPaths: [
 		{
 			key: 'datahub-crm',
