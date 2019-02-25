@@ -1,8 +1,5 @@
 {
 	"globals": {
 		"Promise": false
-	},
-	"parserOptions": {
-		"ecmaVersion": 2018
 	}
 }
