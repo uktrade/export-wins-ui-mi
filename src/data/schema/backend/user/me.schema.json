@@ -5,7 +5,8 @@
 	"required": [
 		"name",
 		"email",
-		"last_login"
+		"last_login",
+		"permitted_applications"
 	],
 	"properties": {
 		"name": {
