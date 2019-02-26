@@ -100,7 +100,7 @@ let config = {
 		}, {
 			key: 'datahub-crm',
 			name: 'Investments',
-			path: `${datahubDomain}/investment-projects`,
+			path: `${datahubDomain}/investments`,
 		}, {
 			key: 'datahub-crm',
 			name: 'Orders (OMIS)',
