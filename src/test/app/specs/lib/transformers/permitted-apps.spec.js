@@ -22,7 +22,7 @@ describe('Transform apps to permitted apps', function () {
 		}, {
 			key: 'datahub-crm',
 			name: 'Investments',
-			path: 'https://www.abc.io/investment-projects'
+			path: 'https://www.abc.io/investments'
 		}, {
 			key: 'datahub-crm',
 			name: 'Orders (OMIS)',
