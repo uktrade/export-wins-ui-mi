@@ -874,7 +874,7 @@ if( config.backend.mock ){
 			} );
 		} );
 
-		describe( 'Investment', function(){
+	/*	describe( 'Investment', function(){
 
 			describe( 'Index', function(){
 
@@ -941,7 +941,7 @@ if( config.backend.mock ){
 						} );
 					} );
 				} );
-/*
+
 				describe( 'With tab param set to uk-regions', function(){
 
 					it( 'Should return a 200 with the correct heading', function( done ){
@@ -957,9 +957,11 @@ if( config.backend.mock ){
 						} );
 					} );
 				} );
-*/
+
 			} );
 		} );
+
+		*/
 	} );
 
 	describe( 'Sector Teams old overview redirect', function(){
