@@ -4,6 +4,7 @@ node_modules
 npm-debug.log
 dist
 .env
+.bin
 jinja_govuk_template-*
 .sass-cache
 .nyc_output
