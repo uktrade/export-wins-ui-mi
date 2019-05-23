@@ -1,4 +1,5 @@
 @import '_deprecated/colours';
+@import "helpers";
 
 @import 'layout';
 
@@ -10,9 +11,8 @@
 
 @import '_deprecated/trade/components/button';
 
-@import 'components/global-header';
-@import 'components/global-nav';
-@import 'components/page-nav';
+@import 'datahub-header/component/header';
+
 @import 'components/experiments';
 @import 'components/fy-selector';
 @import 'components/alpha-list';
@@ -135,7 +135,7 @@ hr {
 .page-heading-wrapper {
 	background-color: $highlight-colour;
 	margin-bottom: pem( 40 );
-	padding-top: pem( 10 );
+	padding-top: pem( 60 );
 }
 
 .page-heading-content {

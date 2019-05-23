@@ -26,11 +26,13 @@ module.exports = {
 		const app = express();
 		const isDev = config.isDev;
 		const pathToPublic = path.resolve( __dirname, '../public' );
+		const pathToUkTrade = path.resolve( __dirname, ( isDev ? '../' : '' ) + '../node_modules/@uktrade' );
 		const staticMaxAge = ( isDev ? 0 : '2y' );
 
 		const nunjucksEnv = nunjucks.configure( [
 				`${__dirname}/views`,
-				`${__dirname}/sub-apps`
+				`${__dirname}/sub-apps`,
+				pathToUkTrade,
 			], {
 			autoescape: true,
 			watch: isDev,
@@ -48,7 +50,11 @@ module.exports = {
 
 		reporter.setup( app );
 
-		if( !isDev ){ app.use( compression() ); }
+		if( isDev ){
+			app.use( express.static( pathToUkTrade, { maxAge: 0 } ) );
+		} else {
+			app.use( compression() );
+		}
 		app.use( forceHttps( isDev ) );
 		app.use( '/public', express.static( pathToPublic, { maxAge: staticMaxAge } ) );
 		app.use( morganLogger( ( isDev ? 'dev' : 'combined' ) ) );
