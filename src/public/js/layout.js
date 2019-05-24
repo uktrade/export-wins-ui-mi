@@ -52,4 +52,4 @@
 	if( window.GOVUK && GOVUK.addCookieMessage ){
 		GOVUK.addCookieMessage();
 	}
-}).call(this)
+}).call( this );
