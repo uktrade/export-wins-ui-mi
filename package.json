@@ -70,7 +70,7 @@
   },
   "homepage": "https://github.com/uktrade/export-wins-ui-mi#readme",
   "dependencies": {
-    "@uktrade/datahub-header": "^1.0.1",
+    "@uktrade/datahub-header": "^1.0.2",
     "compression": "^1.7.3",
     "cookie-parser": "1.4.3",
     "csurf": "1.9.0",
