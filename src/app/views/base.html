@@ -45,6 +45,7 @@
 		{% block body_site_header -%}
 			{{ datahubHeader( user.permitted_applications, {
 				active: 'datahub-mi',
+				signout: '/sign-out/',
 				fluid: false,
 				user: {
 					name: ( '(Internal) ' if user.internal ) + user.name
