@@ -1,4 +1,6 @@
+{% from 'datahub-header/component/header.njk' import datahubHeader %}
 {% from 'macros/global-nav.html' import globalNav %}
+
 {%- block top_of_page %}{% endblock -%}
 <!DOCTYPE html>
 <!--[if lt IE 9]><html class="lte-ie8" lang="{{ html_lang|default('en') }}"><![endif]-->
@@ -41,46 +43,26 @@
 		</div>
 
 		{% block body_site_header -%}
-
-			<header class="global-header" aria-label="global header">
-				<div class="global-header__inner">
-					{% block header_site_title %}
-						<div class="global-header__site-title">
-							<a href="{{ headerLink }}" class="global-header__link">
-								<span class="global-header__logo">
-									<span class="global-header__site-name">{{ siteTitle|default(titleDefault) }}</span>
-									{% if serviceTitle -%}
-										<span class="global-header__service-name">{{ serviceTitle }}</span>
-									{%- endif %}
-								</span>
-							</a>
-							{%- if not phaseBanner and projectPhase|lower in ['alpha', 'beta'] %}
-								<span class="phase-badge">{{ projectPhase.toUpperCase() }}</span>
-							{% endif -%}
-						</div>
-					{% endblock %}
-					{% block header_menu -%}
-						<nav aria-label="global nav">
-							<ul class="proposition-menu">
-								<li class="proposition-menu__item">
-									<a href="{{ feedbackLink }}" class="proposition-menu__link">Support</a>
-		  						</li>
-								{% if user -%}
-		 						<li class="proposition-menu__item">
-									<a href="{{ profileLink }}" class="proposition-menu__link">{% if user.internal %}(internal) {% endif %}{{ user.name or user.email }}</a>
-		 						</li>
-								<li class="proposition-menu__item">
-									<a href="{{ urls.signout() }}" class="proposition-menu__link">Sign out</a>
-								</li>
-								{% endif -%}
-							</ul>
-						</nav>
-					{% endblock %}
-				</div>
-			</header>
-
-			{{ globalNav({ items: globalNavItems }) -}}
-
+			{{ datahubHeader( user.permitted_applications, {
+				active: 'datahub-mi',
+				fluid: false,
+				user: {
+					name: ( '(Internal) ' if user.internal ) + user.name
+				},
+				subNavigation: [{
+					text: 'Export performance',
+					href: urls.index(),
+					active: nav.isExport
+				},{
+					text: 'FDI performance',
+					href: urls.investment.index(),
+					active: nav.isInvestment
+				},{
+					text: 'Data download',
+					href: urls.downloads(),
+					active: nav.isDownload
+				}]
+			} ) }}
 		{%- endblock -%}
 
 		{%- block after_header %}{% endblock -%}
@@ -91,7 +73,8 @@
 
 		{%- block footer %}{% endblock -%}
 
-		<!-- build:js(src) /public/js/layout.min.js -->
+		<!-- build:js({src,node_modules/@uktrade}) /public/js/layout.min.js -->
+		<script src="/datahub-header/component/header.js"></script>
 		<script src="/public/js/layout.js"></script>
 		<!-- endbuild -->
 		{% block body_end %}{% endblock %}

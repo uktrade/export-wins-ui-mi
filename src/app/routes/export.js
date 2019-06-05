@@ -1,6 +1,5 @@
 const config = require( '../config' );
 const navMiddleware = require( '../middleware/nav' );
-const { buildGlobalNav } = require('../middleware/build-global-nav');
 
 const indexController = require( '../controllers/controller.index' );
 const sectorTeamController = require( '../controllers/controller.sector-teams' );
@@ -19,7 +18,7 @@ module.exports = function( router, user/*, isDev */ ){
 	function get( path, ...args ){
 
 		//ensure the user and nav middleware gets run for each route
-		router.get( path, user, buildGlobalNav, nav, ...args );
+		router.get( path, user, nav, ...args );
 	}
 
 	router.get( '/sector-teams/overview/', ( req, res ) => res.redirect( 301, '/sector-teams/' ) );
