@@ -3,7 +3,7 @@ const winston = require( 'winston' );
 
 const colorize = ( !process.env.NODE_ENV || process.env.NODE_ENV === 'development' );
 
-const logger = new winston.Logger({
+const logger = new winston.createLogger({
 	level: config.logLevel,
 	transports: [
 		new winston.transports.Console( { colorize } )
