@@ -227,4 +227,9 @@ hr {
 	margin-bottom: pem( 10, 24 );
 }
 
+.section-title--separator {
+	margin-top: pem( 60, 24 );
+	margin-bottom: pem( 30, 24 );
+}
+
 @import 'print';

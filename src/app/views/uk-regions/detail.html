@@ -114,18 +114,21 @@
 		</div>
 	</section>
 
+
+	<h2 class="section-title section-title--separator">{{ regionName }} performance</h2>
+
 	<section class="grid-row">
-		<div class="column-single row-separator">
-			<h2 class="section-title">{{ regionName }} performance</h2>
-			<h3 class="page-date page-date--region-performance">{{ financialYear( performance.dateRange ) }}</h3>
+		<div class="column-single">
+			<h3 class="sector-heading">Non-HVC Confirmed Wins</h3>
+			<h4 class="page-date page-date--region-performance">{{ financialYear( performance.dateRange ) }}</h4>
 			{{ regionPerformanceTable( performance.items ) }}
 		</div>
 	</section>
 
 	<section class="grid-row row-separator">
 		<div class="column-two-thirds">
-			<h2 class="sector-heading">{{ regionName }} monthly performance</h2>
-			<h3 class="sub-heading-date">{{ financialYear( monthlyPerformance.dateRange ) }}</h3>
+			<h3 class="sector-heading">{{ regionName }} monthly performance</h3>
+			<h4 class="sub-heading-date">{{ financialYear( monthlyPerformance.dateRange ) }}</h4>
 		</div>
 		<div class="column-one-third">
 			{{ monthlyPerformanceKey( monthlyPerformance.keys ) }}
@@ -141,8 +144,8 @@
 	{% if topMarkets.items.length %}
 	<section class="grid-row row-separator">
 		<div class="column-single">
-			<h2 class="sector-heading">Top performing markets (wins with no HVC tagged)</h2>
-			<h3 class="sub-heading-date">{{ financialYear( topMarkets.dateRange ) }}</h3>
+			<h3 class="sector-heading">Top performing markets (wins with no HVC tagged)</h3>
+			<h4 class="sub-heading-date">{{ financialYear( topMarkets.dateRange ) }}</h4>
 			{{ topMarketsTable( topMarkets ) }}
 		</div>
 	</section>
