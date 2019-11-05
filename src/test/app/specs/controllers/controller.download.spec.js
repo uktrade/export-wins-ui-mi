@@ -1,4 +1,5 @@
 const proxyquire = require( 'proxyquire' );
+const faker = require( 'faker' );
 
 const errorHandler = {};
 const backendService = {};
@@ -20,8 +21,13 @@ describe( 'Download controller', function(){
 		};
 		config = {
 			urls: {
-				usingMi: 'some-link-here',
-				kimPrinciples: 'some-other-link'
+				usingMi: faker.internet.url(),
+				kimPrinciples: faker.internet.url(),
+				dataWorkspace: {
+					index: faker.internet.url(),
+					companies: faker.internet.url(),
+					contacts: faker.internet.url(),
+				}
 			}
 		};
 
@@ -73,7 +79,8 @@ describe( 'Download controller', function(){
 						files: fileListResponse,
 						showFdi: true,
 						usingMiUrl: config.urls.usingMi,
-						kimPrinciplesUrl: config.urls.kimPrinciples
+						kimPrinciplesUrl: config.urls.kimPrinciples,
+						workspaceUrls: config.urls.dataWorkspace,
 					} );
 					done();
 
@@ -99,7 +106,8 @@ describe( 'Download controller', function(){
 						files: fileListResponse,
 						showFdi: false,
 						usingMiUrl: config.urls.usingMi,
-						kimPrinciplesUrl: config.urls.kimPrinciples
+						kimPrinciplesUrl: config.urls.kimPrinciples,
+						workspaceUrls: config.urls.dataWorkspace,
 					} );
 					done();
 

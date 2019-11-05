@@ -29,6 +29,10 @@
 	display: inline-block;
 }
 
+.download-group-message {
+	margin: 0;
+}
+
 .download-group-current {
 	margin: 0 0 pem( 20 ) 0;
 }
@@ -79,4 +83,20 @@
 
 .download-section-separator {
 	border-top: 1px solid $grey-2;
+}
+
+.download-banner {
+	border: 3px solid $govuk-blue;
+	padding: pem( 15 );
+	color: $govuk-blue;
+	max-width: pem( 650 );
+}
+
+.download-banner_heading {
+	@include bold-19;
+	margin: 0 0 pem( 15, 19 ) 0;
+}
+
+.download-banner_text {
+	margin: 0;
 }
