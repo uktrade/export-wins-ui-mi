@@ -54,7 +54,12 @@ let config = {
 	},
 	urls: {
 		usingMi: requiredEnv('URL_USING_MI'),
-		kimPrinciples: requiredEnv('URL_KIM_PRINCIPLES')
+		kimPrinciples: requiredEnv('URL_KIM_PRINCIPLES'),
+		dataWorkspace: {
+			index: requiredEnv('URL_WORKSPACE'),
+			companies: requiredEnv('URL_WORKSPACE_COMPANIES'),
+			contacts: requiredEnv('URL_WORKSPACE_CONTACTS')
+		}
 	},
 	cookieSecret: requiredEnv('COOKIE_SECRET'),
 	userCookie: {

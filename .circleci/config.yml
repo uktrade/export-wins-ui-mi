@@ -12,6 +12,9 @@ jobs:
           JWT_SECRET: "abcd1234"
           URL_USING_MI: "http://using-mi.com"
           URL_KIM_PRINCIPLES: "http://kim-principles.com"
+          URL_WORKSPACE: "http://workspace.com"
+          URL_WORKSPACE_COMPANIES: "http://workspace.com/companies"
+          URL_WORKSPACE_CONTACTS: "http://workspace.com/contacts"
       - image: postgres:9
         environment:
           POSTGRES_USER: postgres

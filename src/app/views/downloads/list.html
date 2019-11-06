@@ -10,6 +10,13 @@
 
 {% block page_content %}
 
+	<div class="download-banner">
+		<h2 class="download-banner_heading">Data downloads are moving to Data Workspace</h2>
+		<p class="download-banner_text">
+			Look for your download below as normal and follow the links to access your download on <a href="{{ workspaceUrls.index }}">Data Workspace</a>. Note that some data downloads will remain on Data Hub for a transition period and some will move to Data Workspace immediately.
+		</p>
+	</div>
+
 	<p class="download-message">
 		Make sure you know the rules and your responsibilities around handling Official Sensitive DIT information. More information can be found on the intranet about <a href="{{ usingMiUrl }}">Using management information (MI)</a> and <a href="{{ kimPrinciplesUrl }}">Knowledge and information management: principles</a>.
 	</p>
@@ -89,69 +96,29 @@
 		</div>
 	{% endif %}
 
-	{% if files.contacts or files.companies %}
 	<div class="grid-row download-section-separator">
 		<div class="column-two-thirds">
 			<h2 class="download-section-heading">Contacts and Companies</h2>
 		</div>
 	</div>
-	{% endif %}
-
-	{% macro ukItems( downloadName, files, name='region' ) %}
-		<ol class="download-group-list">
-			{% for file in files %}
-				<li class="download-group-list_item">
-					<a href="{{ urls[ downloadName ]( file ) }}">
-						<span class="download-group-list_item_text1">Download -</span>
-						<span class="download-group-list_item_text2">{{ file[ name ] }}</span>
-					</a>
-					{% if file.updated -%}
-						<span class="download-group-list_item_updated">
-				(last updated {{ file.created | dateStamp }})
-			</span>
-					{%- endif %}
-				</li>
-			{% endfor %}
-		</ol>
-	{% endmacro %}
 
 	<div class="grid-row download-group-separator">
 		<div class="column-one-third">
 
-			{% if files.contacts.regions %}
-				<h3 class="download-group-heading">UK contacts by region</h3>
-				{{ ukItems( 'downloadContactsByRegionFile', files.contacts.regions ) }}
-			{% endif %}
+			<h3 class="download-group-heading">UK contacts</h3>
+			<p class="download-group-message">
+				This data has been moved to <a href="{{ workspaceUrls.contacts }}">Data Workspace</a>.
+			</p>
 
 		</div>
 		<div class="column-one-third">
 
-			{% if files.companies.regions %}
-				<h3 class="download-group-heading">UK companies by region</h3>
-				{{ ukItems( 'downloadCompaniesByRegionFile', files.companies.regions ) }}
-			{% endif %}
+			<h3 class="download-group-heading">UK companies</h3>
+			<p class="download-group-message">
+				This data has been moved to <a href="{{ workspaceUrls.companies }}">Data Workspace</a>.
+			</p>
 
 		</div>
 	</div>
-
-	<div class="grid-row download-group-separator">
-		<div class="column-one-third">
-
-			{% if files.contacts.sectors %}
-				<h3 class="download-group-heading">UK contacts by sector</h3>
-				{{ ukItems( 'downloadContactsBySectorFile', files.contacts.sectors, 'sector' ) }}
-			{% endif %}
-
-		</div>
-		<div class="column-one-third">
-
-			{% if files.companies.sectors %}
-				<h3 class="download-group-heading">UK companies by sector</h3>
-				{{ ukItems( 'downloadCompaniesBySectorFile', files.companies.sectors, 'sector' ) }}
-			{% endif %}
-
-		</div>
-	</div>
-
 
 {% endblock  %}
