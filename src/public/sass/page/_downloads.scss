@@ -8,12 +8,6 @@
 	margin-top: pem( 50 );
 }
 
-.download-no-files {
-	text-align: center;
-	@include core-24;
-	margin: pem( 100, 24 );
-}
-
 .download-group-heading {
 	@include bold-24;
 	padding-bottom: pem( 20, 24 );
@@ -83,6 +77,7 @@
 
 .download-section-separator {
 	border-top: 1px solid $grey-2;
+	margin-top: pem( 25 )
 }
 
 .download-banner {

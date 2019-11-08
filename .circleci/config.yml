@@ -10,11 +10,13 @@ jobs:
           MI_SECRET: "JKL123"
           COOKIE_SECRET: "abc123"
           JWT_SECRET: "abcd1234"
-          URL_USING_MI: "http://using-mi.com"
-          URL_KIM_PRINCIPLES: "http://kim-principles.com"
-          URL_WORKSPACE: "http://workspace.com"
-          URL_WORKSPACE_COMPANIES: "http://workspace.com/companies"
-          URL_WORKSPACE_CONTACTS: "http://workspace.com/contacts"
+          URL_USING_MI: "https://test.uktrade.io/using-mi"
+          URL_KIM_PRINCIPLES: "https://test.uktrade.io/kim-principles"
+          URL_WORKSPACE: "https://test.uktrade.io/workspace"
+          URL_WORKSPACE_COMPANIES: "https://test.uktrade.io/workspace/companies"
+          URL_WORKSPACE_CONTACTS: "https://test.uktrade.io/workspace/contacts"
+          URL_WORKSPACE_SDI: "https://test.uktrade.io/workspace/sdi"
+          URL_WORKSPACE_CLIENT_SURVEY: "https://test.uktrade.io/workspace/client-survey"
       - image: postgres:9
         environment:
           POSTGRES_USER: postgres

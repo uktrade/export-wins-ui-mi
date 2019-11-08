@@ -58,7 +58,9 @@ let config = {
 		dataWorkspace: {
 			index: requiredEnv('URL_WORKSPACE'),
 			companies: requiredEnv('URL_WORKSPACE_COMPANIES'),
-			contacts: requiredEnv('URL_WORKSPACE_CONTACTS')
+			contacts: requiredEnv('URL_WORKSPACE_CONTACTS'),
+			sdi: requiredEnv('URL_WORKSPACE_SDI'),
+			clientSurvey: requiredEnv('URL_WORKSPACE_CLIENT_SURVEY'),
 		}
 	},
 	cookieSecret: requiredEnv('COOKIE_SECRET'),
