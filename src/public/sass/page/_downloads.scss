@@ -8,12 +8,6 @@
 	margin-top: pem( 50 );
 }
 
-.download-no-files {
-	text-align: center;
-	@include core-24;
-	margin: pem( 100, 24 );
-}
-
 .download-group-heading {
 	@include bold-24;
 	padding-bottom: pem( 20, 24 );
@@ -30,7 +24,9 @@
 }
 
 .download-group-message {
-	margin: 0;
+	margin: 0 0 pem( 20 ) 0;
+	padding: pem( 10 );
+	border: 3px solid $govuk-blue;
 }
 
 .download-group-current {
@@ -83,6 +79,7 @@
 
 .download-section-separator {
 	border-top: 1px solid $grey-2;
+	margin-top: pem( 25 )
 }
 
 .download-banner {
