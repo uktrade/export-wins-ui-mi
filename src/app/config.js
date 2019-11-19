@@ -61,6 +61,7 @@ let config = {
 			contacts: requiredEnv('URL_WORKSPACE_CONTACTS'),
 			sdi: requiredEnv('URL_WORKSPACE_SDI'),
 			clientSurvey: requiredEnv('URL_WORKSPACE_CLIENT_SURVEY'),
+			exportWins: requiredEnv('URL_WORKSPACE_EXPORT_WINS')
 		}
 	},
 	cookieSecret: requiredEnv('COOKIE_SECRET'),

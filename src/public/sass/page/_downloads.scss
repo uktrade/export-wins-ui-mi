@@ -24,7 +24,9 @@
 }
 
 .download-group-message {
-	margin: 0;
+	margin: 0 0 pem( 20 ) 0;
+	padding: pem( 10 );
+	border: 3px solid $govuk-blue;
 }
 
 .download-group-current {

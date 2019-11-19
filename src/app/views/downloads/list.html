@@ -28,10 +28,13 @@
 	</p>
 
 	<div class="grid-row">
+
 		<div class="column-one-third">
+			<h2 class="download-group-heading"><span class="download-group-heading_text">Export Wins</span><span class="download-group-heading_valign"></span></h2>
+
+			{{ workspaceMessage( workspaceUrls.exportWins ) }}
 
 			{% if files.export %}
-			<h2 class="download-group-heading"><span class="download-group-heading_text">Export Wins</span><span class="download-group-heading_valign"></span></h2>
 			<p class="download-group-current">
 				<a class="download-group-current_link" href="{{ urls.downloadExportFile( files.export.current ) }}">Download current CSV file.<br>{{ files.export.current.report_end_date | dateStamp }}</a>
 				<span class="download-group-current_date">(last updated {{ files.export.current.created | dateOnly }})</span>
@@ -44,11 +47,10 @@
 				{% endfor %}
 			</ol>
 			{% endif %}
-
 		</div>
-		<div class="column-one-third">
 
-			{% if files.fdi and files.fdi.latest %}
+		{% if files.fdi and files.fdi.latest %}
+		<div class="column-one-third">
 			<h2 class="download-group-heading"><span class="download-group-heading_text">FDI</span><span class="download-group-heading_valign"></span></h2>
 			<p class="download-group-current">
 				<a class="download-group-current_link" href="{{ urls.downloadFdiFile( files.fdi.latest, 'CSV - ' ) }}">Download current CSV file.<br>{{ files.fdi.latest.report_end_date | dateStamp }}</a>
@@ -61,23 +63,47 @@
 				</li>
 				{% endfor %}
 			</ol>
-			{% endif %}
-
 		</div>
-		<div class="column-one-third">
+		{% endif %}
 
+		<div class="column-one-third">
 			<h2 class="download-group-heading"><span class="download-group-heading_text">Service deliveries &amp; interactions</span><span class="download-group-heading_valign"></span></h2>
+
 			{{ workspaceMessage( workspaceUrls.sdi ) }}
 
+			{% if files.sdi %}
+			<p class="download-group-current">
+				<a class="download-group-current_link" href="{{ urls.downloadInteractionsFile( files.sdi.latest ) }}">Download current CSV file.<br>{{ files.sdi.latest.report_end_date | dateStamp }}</a>
+				<span class="download-group-current_date">(last updated {{ files.sdi.latest.created | dateOnly }})</span>
+			</p>
+			<ol class="download-group-list">
+				{% for file in files.sdi.months %}
+				<li class="download-group-list_item">
+					<a href="{{ urls.downloadInteractionsFile( file ) }}">Download {{ file.report_start_date | dateStamp }} - {{ file.report_end_date | dateStamp }}</a>
+				</li>
+				{% endfor %}
+			</ol>
+			{% endif %}
 		</div>
 	</div>
 
 	<div class="grid-row">
 		<div class="column-one-third">
+			<h2 class="download-group-heading">
+				Export client survey: sample frame
+			</h2>
 
-			<h2 class="download-group-heading">Export client survey: sample frame</h2>
 			{{ workspaceMessage( workspaceUrls.clientSurvey ) }}
 
+			{% if files.kantar and files.kantar.months.length %}
+			<ol class="download-group-list">
+				{% for file in files.kantar.months %}
+				<li class="download-group-list_item">
+					<a href="{{ urls.downloadSampleFrameFile( file ) }}">Download {{ file.report_start_date | dateStamp }} - {{ file.report_end_date | dateStamp }}</a>
+				</li>
+				{% endfor %}
+			</ol>
+			{% endif %}
 		</div>
 	</div>
 
