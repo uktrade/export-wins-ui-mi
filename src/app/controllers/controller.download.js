@@ -16,7 +16,8 @@ module.exports = {
 				showFdi,
 				usingMiUrl: config.urls.usingMi,
 				kimPrinciplesUrl: config.urls.kimPrinciples,
-				workspaceUrls: config.urls.dataWorkspace
+				workspaceUrls: config.urls.dataWorkspace,
+				helpDownloadsUrl: config.urls.helpDownloads,
 			} );
 
 		} ).catch( renderError.createHandler( req, res ) );

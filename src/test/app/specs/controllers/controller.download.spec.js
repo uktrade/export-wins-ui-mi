@@ -27,7 +27,8 @@ describe( 'Download controller', function(){
 					index: faker.internet.url(),
 					companies: faker.internet.url(),
 					contacts: faker.internet.url(),
-				}
+				},
+				helpDownloads: faker.internet.url(),
 			}
 		};
 
@@ -81,6 +82,7 @@ describe( 'Download controller', function(){
 						usingMiUrl: config.urls.usingMi,
 						kimPrinciplesUrl: config.urls.kimPrinciples,
 						workspaceUrls: config.urls.dataWorkspace,
+						helpDownloadsUrl: config.urls.helpDownloads,
 					} );
 					done();
 
@@ -108,6 +110,7 @@ describe( 'Download controller', function(){
 						usingMiUrl: config.urls.usingMi,
 						kimPrinciplesUrl: config.urls.kimPrinciples,
 						workspaceUrls: config.urls.dataWorkspace,
+						helpDownloadsUrl: config.urls.helpDownloads,
 					} );
 					done();
 

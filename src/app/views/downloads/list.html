@@ -17,9 +17,12 @@
 {% block page_content %}
 
 	<div class="download-banner">
-		<h2 class="download-banner_heading">Data downloads are moving to Data Workspace</h2>
+		<h2 class="download-banner_heading">These downloads have moved to Data Workspace</h2>
 		<p class="download-banner_text">
-			Look for your download below as normal and follow the links to access your download on <a href="{{ workspaceUrls.index }}">Data Workspace</a>. Note that some data downloads will continue to be available on this page until <strong>Thursday 5 December</strong>.
+			The data downloads previously on this page are now available on <a href="{{ workspaceUrls.index }}">Data Workspace</a>. Follow the links below for the data you need.
+		</p>
+		<p class="download-banner_text">
+			Note that you can still download search results in Data Hub. See the <a href="{{ helpDownloadsUrl }}">help article on downloading</a> for guidance
 		</p>
 	</div>
 
@@ -30,80 +33,35 @@
 	<div class="grid-row">
 
 		<div class="column-one-third">
-			<h2 class="download-group-heading"><span class="download-group-heading_text">Export Wins</span><span class="download-group-heading_valign"></span></h2>
 
+			<h2 class="download-group-heading"><span class="download-group-heading_text">Export Wins</span><span class="download-group-heading_valign"></span></h2>
 			{{ workspaceMessage( workspaceUrls.exportWins ) }}
 
-			{% if files.export %}
-			<p class="download-group-current">
-				<a class="download-group-current_link" href="{{ urls.downloadExportFile( files.export.current ) }}">Download current CSV file.<br>{{ files.export.current.report_end_date | dateStamp }}</a>
-				<span class="download-group-current_date">(last updated {{ files.export.current.created | dateOnly }})</span>
-			</p>
-			<ol class="download-group-list">
-				{% for file in files.export.previous %}
-				<li class="download-group-list_item">
-					<a href="{{ urls.downloadExportFile( file ) }}">Download ({{ file.financial_year }})</a>
-				</li>
-				{% endfor %}
-			</ol>
-			{% endif %}
 		</div>
 
-		{% if files.fdi and files.fdi.latest %}
 		<div class="column-one-third">
+
 			<h2 class="download-group-heading"><span class="download-group-heading_text">FDI</span><span class="download-group-heading_valign"></span></h2>
-			<p class="download-group-current">
-				<a class="download-group-current_link" href="{{ urls.downloadFdiFile( files.fdi.latest, 'CSV - ' ) }}">Download current CSV file.<br>{{ files.fdi.latest.report_end_date | dateStamp }}</a>
-				<span class="download-group-current_date">(last updated {{ files.fdi.latest.created | dateOnly }})</span>
-			</p>
-			<ol class="download-group-list">
-				{% for file in files.fdi.months %}
-				<li class="download-group-list_item">
-					<a href="{{ urls.downloadFdiFile( file ) }}">Download {{ file.report_end_date | dateStamp }}</a>
-				</li>
-				{% endfor %}
-			</ol>
+			{{ workspaceMessage( workspaceUrls.fdi ) }}
+
 		</div>
-		{% endif %}
 
 		<div class="column-one-third">
-			<h2 class="download-group-heading"><span class="download-group-heading_text">Service deliveries &amp; interactions</span><span class="download-group-heading_valign"></span></h2>
 
+			<h2 class="download-group-heading"><span class="download-group-heading_text">Service deliveries &amp; interactions</span><span class="download-group-heading_valign"></span></h2>
 			{{ workspaceMessage( workspaceUrls.sdi ) }}
 
-			{% if files.sdi %}
-			<p class="download-group-current">
-				<a class="download-group-current_link" href="{{ urls.downloadInteractionsFile( files.sdi.latest ) }}">Download current CSV file.<br>{{ files.sdi.latest.report_end_date | dateStamp }}</a>
-				<span class="download-group-current_date">(last updated {{ files.sdi.latest.created | dateOnly }})</span>
-			</p>
-			<ol class="download-group-list">
-				{% for file in files.sdi.months %}
-				<li class="download-group-list_item">
-					<a href="{{ urls.downloadInteractionsFile( file ) }}">Download {{ file.report_start_date | dateStamp }} - {{ file.report_end_date | dateStamp }}</a>
-				</li>
-				{% endfor %}
-			</ol>
-			{% endif %}
 		</div>
 	</div>
 
 	<div class="grid-row">
 		<div class="column-one-third">
+
 			<h2 class="download-group-heading">
 				Export client survey: sample frame
 			</h2>
-
 			{{ workspaceMessage( workspaceUrls.clientSurvey ) }}
 
-			{% if files.kantar and files.kantar.months.length %}
-			<ol class="download-group-list">
-				{% for file in files.kantar.months %}
-				<li class="download-group-list_item">
-					<a href="{{ urls.downloadSampleFrameFile( file ) }}">Download {{ file.report_start_date | dateStamp }} - {{ file.report_end_date | dateStamp }}</a>
-				</li>
-				{% endfor %}
-			</ol>
-			{% endif %}
 		</div>
 	</div>
 
