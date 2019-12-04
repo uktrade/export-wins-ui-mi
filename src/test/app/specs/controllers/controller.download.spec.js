@@ -44,8 +44,6 @@ describe( 'Download controller', function(){
 
 		let req;
 		let res;
-		let fileListResponse;
-		let promise;
 
 		beforeEach( function(){
 
@@ -56,65 +54,19 @@ describe( 'Download controller', function(){
 				render: jasmine.createSpy( 'res.render' )
 			};
 
-			fileListResponse = { id: 123, created: 'abc123' };
-			promise = new Promise( ( resolve ) => resolve( { data: fileListResponse } ) );
-
-			backendService.getCsvFileList = spy( 'getCsvFileList', promise );
+			backendService.getCsvFileList = spy( 'getCsvFileList' );
 		} );
 
-		describe( 'With a fdi user param', function(){
+		it( 'Should render the correct view', function(){
 
-			it( 'Should render the correct view', function( done ){
+			controller.list( req, res );
 
-				req.user = { fdi: true };
-
-				errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
-				controller.list( req, res );
-
-				expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
-
-				promise.then( ( ) => {
-
-					expect( backendService.getCsvFileList ).toHaveBeenCalledWith( req );
-					expect( res.render ).toHaveBeenCalledWith( 'downloads/list', {
-						files: fileListResponse,
-						showFdi: true,
-						usingMiUrl: config.urls.usingMi,
-						kimPrinciplesUrl: config.urls.kimPrinciples,
-						workspaceUrls: config.urls.dataWorkspace,
-						helpDownloadsUrl: config.urls.helpDownloads,
-					} );
-					done();
-
-				} ).catch( done.fail );
-			} );
-		} );
-
-		describe( 'Without an fdi user', function(){
-
-			it( 'Should render the correct view', function( done ){
-
-				req.user = { fdi: false };
-
-				errorHandler.createHandler.and.callFake( createErrorHandler( done ) );
-				controller.list( req, res );
-
-				expect( errorHandler.createHandler ).toHaveBeenCalledWith( req, res );
-
-				promise.then( ( ) => {
-
-					expect( backendService.getCsvFileList ).toHaveBeenCalledWith( req );
-					expect( res.render ).toHaveBeenCalledWith( 'downloads/list', {
-						files: fileListResponse,
-						showFdi: false,
-						usingMiUrl: config.urls.usingMi,
-						kimPrinciplesUrl: config.urls.kimPrinciples,
-						workspaceUrls: config.urls.dataWorkspace,
-						helpDownloadsUrl: config.urls.helpDownloads,
-					} );
-					done();
-
-				} ).catch( done.fail );
+			expect( backendService.getCsvFileList ).not.toHaveBeenCalled();
+			expect( res.render ).toHaveBeenCalledWith( 'downloads/list', {
+				usingMiUrl: config.urls.usingMi,
+				kimPrinciplesUrl: config.urls.kimPrinciples,
+				workspaceUrls: config.urls.dataWorkspace,
+				helpDownloadsUrl: config.urls.helpDownloads,
 			} );
 		} );
 	} );

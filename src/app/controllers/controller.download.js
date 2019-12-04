@@ -7,20 +7,12 @@ module.exports = {
 
 	list: function( req, res ){
 
-		const showFdi = req.user.fdi;
-
-		backendService.getCsvFileList( req ).then( ( filesInfo ) => {
-
-			res.render( 'downloads/list', {
-				files: filesInfo.data,
-				showFdi,
-				usingMiUrl: config.urls.usingMi,
-				kimPrinciplesUrl: config.urls.kimPrinciples,
-				workspaceUrls: config.urls.dataWorkspace,
-				helpDownloadsUrl: config.urls.helpDownloads,
-			} );
-
-		} ).catch( renderError.createHandler( req, res ) );
+		res.render( 'downloads/list', {
+			usingMiUrl: config.urls.usingMi,
+			kimPrinciplesUrl: config.urls.kimPrinciples,
+			workspaceUrls: config.urls.dataWorkspace,
+			helpDownloadsUrl: config.urls.helpDownloads,
+		} );
 	},
 
 	file: function( req, res ){
