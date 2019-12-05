@@ -59,10 +59,12 @@ let config = {
 			index: requiredEnv('URL_WORKSPACE'),
 			companies: requiredEnv('URL_WORKSPACE_COMPANIES'),
 			contacts: requiredEnv('URL_WORKSPACE_CONTACTS'),
+			fdi: requiredEnv('URL_WORKSPACE_FDI'),
 			sdi: requiredEnv('URL_WORKSPACE_SDI'),
 			clientSurvey: requiredEnv('URL_WORKSPACE_CLIENT_SURVEY'),
 			exportWins: requiredEnv('URL_WORKSPACE_EXPORT_WINS')
-		}
+		},
+		helpDownloads: requiredEnv('URL_HELP_DOWNLOADS')
 	},
 	cookieSecret: requiredEnv('COOKIE_SECRET'),
 	userCookie: {

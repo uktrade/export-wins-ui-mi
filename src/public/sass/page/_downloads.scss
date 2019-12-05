@@ -29,45 +29,6 @@
 	border: 3px solid $govuk-blue;
 }
 
-.download-group-current {
-	margin: 0 0 pem( 20 ) 0;
-}
-
-.download-group-current_link {
-	display: block;
-}
-
-.download-group-current_date {
-	@include core-14;
-	color: $grey-1;
-}
-
-.download-group-list{
-	padding: 0;
-}
-
-.download-group-list_item {
-	padding-bottom: pem( 10 );
-	position: relative;
-}
-
-.download-group-list_item_text1 {
-	position: absolute;
-	left: 0;
-	top: 0;
-}
-
-.download-group-list_item_text2 {
-	display: inline-block;
-	padding-left: pem( 85 );
-}
-
-.download-group-list_item_updated {
-	color: $grey-1;
-	@include core-14;
-	display: block;
-}
-
 .download-section-heading {
 	@include bold-27;
 	padding-top: pem( 30, 27 );
@@ -95,5 +56,10 @@
 }
 
 .download-banner_text {
-	margin: 0;
+
+	margin-bottom: 0;
+
+	&:first-of-type {
+		margin-top: 0;
+	}
 }

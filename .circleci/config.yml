@@ -15,9 +15,11 @@ jobs:
           URL_WORKSPACE: "https://test.uktrade.io/workspace"
           URL_WORKSPACE_COMPANIES: "https://test.uktrade.io/workspace/companies"
           URL_WORKSPACE_CONTACTS: "https://test.uktrade.io/workspace/contacts"
+          URL_WORKSPACE_FDI: "https://test.uktrade.io/workspace/fdi"
           URL_WORKSPACE_SDI: "https://test.uktrade.io/workspace/sdi"
           URL_WORKSPACE_CLIENT_SURVEY: "https://test.uktrade.io/workspace/client-survey"
           URL_WORKSPACE_EXPORT_WINS: "https://test.uktrade.io/workspace/export-wins"
+          URL_HELP_DOWNLOADS: "https://test.uktrade.io/help/downloads"
       - image: postgres:9
         environment:
           POSTGRES_USER: postgres
