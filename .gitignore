@@ -4,6 +4,7 @@ node_modules
 npm-debug.log
 dist
 .env
+.env.list
 .bin
 jinja_govuk_template-*
 .sass-cache
