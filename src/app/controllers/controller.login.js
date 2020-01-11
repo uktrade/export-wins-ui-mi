@@ -72,9 +72,12 @@ module.exports = {
 			err.param = error;
 
 			createUnableToLoginHandler( res )( err );
+			return;
+		}
 
-		} else if( code.length < MAX_LEN && state.length < MAX_LEN && isAlpha.test( code ) && isAlpha.test( state ) ){
-
+		const paramLengthOk = code.length < MAX_LEN && state.length < MAX_LEN;
+		const paramContentOk = paramLengthOk && isAlpha.test( code ) && isAlpha.test( state );
+		if( paramContentOk ){
 			return backendService.postOauthCallback( `code=${ code }&state=${ state }` ).then( ( info ) => {
 
 				const response = info.response;
