@@ -42,7 +42,7 @@ module.exports = {
 
 	oauth: function( req, res ){
 
-		backendService.getOauthUrl( req.query.next ).then( ( info ) => {
+		return backendService.getOauthUrl( req.query.next ).then( ( info ) => {
 
 			const json = info.data;
 
@@ -75,7 +75,7 @@ module.exports = {
 
 		} else if( code.length < MAX_LEN && state.length < MAX_LEN && isAlpha.test( code ) && isAlpha.test( state ) ){
 
-			backendService.postOauthCallback( `code=${ code }&state=${ state }` ).then( ( info ) => {
+			return backendService.postOauthCallback( `code=${ code }&state=${ state }` ).then( ( info ) => {
 
 				const response = info.response;
 				const data = info.data;
