@@ -4,8 +4,8 @@
   "description": "An MI dashboard for Data Hub",
   "main": "server.js",
   "engines": {
-    "node": "8.12.0",
-    "npm": "6.4.1"
+    "node": "12.14.0",
+    "npm": "6.13.4"
   },
   "scripts": {
     "preversion": "npm test",
