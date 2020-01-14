@@ -155,21 +155,17 @@ describe( 'Login controller', function(){
 
 		describe( 'With a fail response', function(){
 
-			it( 'Should render an error page', function( done ){
+			it( 'Should render an error page', async function(){
 
 				const err = new Error( 'fail response' );
 				const promise = new Promise( ( resolve, reject ) => reject( err ) );
 				backendService.getOauthUrl = spy( 'getOauthUrl', promise );
 
-				controller.oauth( req, res );
+				await controller.oauth( req, res );
 
-				process.nextTick( () => {
-
-					expect( res.status ).toHaveBeenCalledWith( 500 );
-					expect( res.render ).toHaveBeenCalledWith( 'error/unable-to-login.html' );
-					expect( reporter.captureException ).toHaveBeenCalledWith( err );
-					done();
-				} );
+				expect( res.status ).toHaveBeenCalledWith( 500 );
+				expect( res.render ).toHaveBeenCalledWith( 'error/unable-to-login.html' );
+				expect( reporter.captureException ).toHaveBeenCalledWith( err );
 			} );
 		} );
 	} );
@@ -317,7 +313,7 @@ describe( 'Login controller', function(){
 
 			describe( 'With any other response', function(){
 
-				it( 'Should render the unable to login page', function( done ){
+				it( 'Should render the unable to login page', async function(){
 
 					const e = new Error( 'something' );
 
@@ -325,15 +321,11 @@ describe( 'Login controller', function(){
 
 					backendService.postOauthCallback = spy( 'postOauthCallback', promise );
 
-					controller.oauthCallback( req, res );
+					await controller.oauthCallback( req, res );
 
-					process.nextTick( () => {
-
-						expect( res.status ).toHaveBeenCalledWith( 500 );
-						expect( res.render ).toHaveBeenCalledWith( 'error/unable-to-login.html' );
-						expect( reporter.captureException ).toHaveBeenCalledWith( e );
-						done();
-					} );
+					expect( res.status ).toHaveBeenCalledWith( 500 );
+					expect( res.render ).toHaveBeenCalledWith( 'error/unable-to-login.html' );
+					expect( reporter.captureException ).toHaveBeenCalledWith( e );
 				} );
 			} );
 		} );

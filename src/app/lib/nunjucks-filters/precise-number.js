@@ -24,6 +24,13 @@ module.exports = function( num ){
 	// otherwise show with commas
 	} else {
 
+		// Number() now supports signed zeroes so minus zero (-0) will render as "-0" unless we do this:
+		if ( absValue === 0 ) {
+
+			num = 0;
+
+		}
+
 		num = Number( num ).toLocaleString( 'en-GB' );
 	}
 
