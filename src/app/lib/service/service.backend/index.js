@@ -19,13 +19,18 @@ module.exports = {
 		return sessionGet( `/csv/generate_otu/${ fileId }/`, req );
 	},
 
-	getOauthUrl: function( next ){
+	getOauthUrl: function( next, redirect_uri ){
 
 		let path = '/oauth2/auth_url/';
 
 		if( next ){
 
 			path += `?next=${ encodeURIComponent( next ) }`;
+		}
+
+		if (redirect_uri) {
+			
+			path += `&redirect_uri=${encodeURIComponent(redirect_uri)}`;
 		}
 
 		return get( path );
