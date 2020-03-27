@@ -23,7 +23,7 @@ jobs:
       - image: postgres:9
         environment:
           POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: ""
+          POSTGRES_PASSWORD: postgres
           POSTGRES_DB: export-wins-data
       - image: ukti/export-wins-data
         environment:
@@ -34,7 +34,7 @@ jobs:
           UI_SECRET: "GHI789"
           MI_SECRET: "JKL123"
           DATA_SECRET: "QWERTY123"
-          DATABASE_URL: "postgres://postgres@localhost/export-wins-data"
+          DATABASE_URL: "postgres://postgres:postgres@localhost/export-wins-data"
           EMAIL_HOST: "$EMAIL_HOST"
           EMAIL_PORT: "$EMAIL_PORT"
           VCAP_SERVICES: '{"redis": [{"credentials": {"uri": "redis://localhost:7000/"}}]}'

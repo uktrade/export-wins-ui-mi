@@ -1,6 +1,7 @@
 const backendService = require( '../lib/service/service.backend' );
 const reporter = require( '../lib/reporter' );
 const getSessionId = require( '../lib/get-session-id' );
+const getLocalCallbackUrl = require('../lib/get-redirect-uri');
 const config = require( '../config' );
 const logger = require('../lib/logger');
 const url = require('url');
@@ -28,17 +29,6 @@ function createClearCookieStr( name ){
 function createClearUserCookie(){
 
 	return createClearCookieStr( config.userCookie.name );
-}
-
-function getLocalCallbackUrl(req){
-
-	const callbackUrl = url.format({
-		protocol: req.protocol,
-		host: req.get('host'),
-		pathname: '/login/callback/'
-	});
-	logger.debug(`callback url: ${callbackUrl}`);
-	return callbackUrl;
 }
 
 function convertDataCookieToLocalCookie(cookieFromData) {

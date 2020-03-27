@@ -10,10 +10,12 @@ let reporter;
 let res;
 let req;
 let config;
+let getRedirectUri;
 
 describe( 'Login controller', function(){
 
 	const datahubDomain = 'abc.com';
+	const redirectUri = "http://example.com/login/callback/";
 
 	beforeEach( function(){
 
@@ -34,6 +36,7 @@ describe( 'Login controller', function(){
 
 		req = {
 			cookies: 'test',
+			get: function(key) { return key;},
 			query: {}
 		};
 		res = {
@@ -44,11 +47,16 @@ describe( 'Login controller', function(){
 			clearCookie: spy( 'res.clearCookie' )
 		};
 
+		getRedirectUri = function(){
+			return redirectUri;
+		};
+
 		controller = proxyquire( '../../../../app/controllers/controller.login', {
 			'../lib/service/service.backend': backendService,
 			'../lib/render-error': errorHandler,
 			'../lib/reporter': reporter,
-			'../config': config
+			'../config': config,
+			'../lib/get-redirect-uri': getRedirectUri
 		} );
 	} );
 
@@ -121,10 +129,9 @@ describe( 'Login controller', function(){
 						const promise = new Promise( ( resolve ) => resolve( { response: {}, data: null } ) );
 
 						backendService.getOauthUrl = spy( 'getOauthUrl', promise );
-
 						controller.oauth( req, res );
 
-						expect( backendService.getOauthUrl ).toHaveBeenCalledWith( req.query.next );
+						expect( backendService.getOauthUrl ).toHaveBeenCalledWith( req.query.next, redirectUri );
 					} );
 				} );
 			} );
@@ -225,7 +232,7 @@ describe( 'Login controller', function(){
 
 							promise.then( () => {
 
-								expect( backendService.postOauthCallback ).toHaveBeenCalledWith( `code=${ req.query.code }&state=${ req.query.state }` );
+								expect( backendService.postOauthCallback ).toHaveBeenCalledWith( `code=${ req.query.code }&state=${ req.query.state }&redirect_uri=${encodeURIComponent(redirectUri)}` );
 								expect( res.set ).toHaveBeenCalledWith( 'Set-Cookie', [ response.headers[ 'set-cookie' ][ 1 ] ] );
 								expect( res.redirect ).toHaveBeenCalledWith( next );
 								done();
@@ -245,7 +252,7 @@ describe( 'Login controller', function(){
 
 							promise.then( () => {
 
-								expect( backendService.postOauthCallback ).toHaveBeenCalledWith( `code=${ req.query.code }&state=${ req.query.state }` );
+								expect( backendService.postOauthCallback ).toHaveBeenCalledWith( `code=${ req.query.code }&state=${ req.query.state }&redirect_uri=${encodeURIComponent(redirectUri)}` );
 								expect( res.set ).toHaveBeenCalledWith( 'Set-Cookie', [ response.headers[ 'set-cookie' ][ 1 ] ] );
 								expect( res.redirect ).toHaveBeenCalledWith( '/' );
 								done();
