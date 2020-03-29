@@ -3,8 +3,6 @@ const reporter = require( '../lib/reporter' );
 const getSessionId = require( '../lib/get-session-id' );
 const getLocalCallbackUrl = require('../lib/get-redirect-uri');
 const config = require( '../config' );
-const logger = require('../lib/logger');
-const url = require('url');
 
 const MAX_LEN = Number( config.oauthParamLength );
 const isAlpha = /^[a-zA-Z0-9]+$/;
@@ -44,8 +42,6 @@ function convertDataCookieToLocalCookie(cookieFromData) {
 			return part;
 		})
 		.join(';');
-	logger.debug(cookieFromData);
-	logger.debug(localCookie);
 
 	return localCookie;
 }
