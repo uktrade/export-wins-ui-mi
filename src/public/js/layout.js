@@ -1,3 +1,4 @@
+/*global GOVUK */ 
 (function () {
 	var root = this;
 	if( typeof root.GOVUK === 'undefined' ){ root.GOVUK = {}; }
@@ -19,7 +20,7 @@
 		}
 
 		document.cookie = cookieString;
-	}
+	};
 
 	GOVUK.getCookie = function( name ){
 		var nameEQ = name + '=';
@@ -34,7 +35,7 @@
 			}
 		}
 		return null;
-	}
+	};
 
 	GOVUK.addCookieMessage = function(){
 		var message = document.getElementById( 'global-cookie-message' );
@@ -44,7 +45,7 @@
 			message.style.display = 'block';
 			GOVUK.setCookie( 'seen_cookie_message', 'yes', { days: 28 } );
 		}
-	}
+	};
 }).call(this);
 
 (function () {

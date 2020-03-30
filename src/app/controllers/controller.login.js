@@ -33,7 +33,7 @@ function convertDataCookieToLocalCookie(cookieFromData) {
 
 	const localCookie = cookieFromData
 		.split(";")
-		.filter(part => {
+		.filter((part) => {
 			const trimmed = part.trim();
 
 			if (trimmed.startsWith('Domain=')) return false;
