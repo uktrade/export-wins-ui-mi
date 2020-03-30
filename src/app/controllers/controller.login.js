@@ -32,16 +32,14 @@ function createClearUserCookie(){
 function convertDataCookieToLocalCookie(cookieFromData) {
 
 	const localCookie = cookieFromData
-		.split(";")
+		.split("; ")
 		.filter((part) => {
-			const trimmed = part.trim();
-
-			if (trimmed.startsWith('Domain=')) return false;
-			if (trimmed.startsWith('Secure') && config.isDev) return false;
+			if (part.startsWith('Domain=')) return false;
+			if (part.startsWith('Secure') && config.isDev) return false;
 
 			return part;
 		})
-		.join(';');
+		.join('; ');
 
 	return localCookie;
 }
