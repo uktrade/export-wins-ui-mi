@@ -140,7 +140,7 @@ for (let name of requiredEnvs) {
 }
 
 if (missing.length) {
-
+	// eslint-disable-next-line no-console
 	console.log('Missing required env variables:', missing);
 	throw new Error('Missing required env variables');
 }
