@@ -47,9 +47,7 @@ describe( 'Login controller', function(){
 			clearCookie: spy( 'res.clearCookie' )
 		};
 
-		getRedirectUri = function(){
-			return redirectUri;
-		};
+		getRedirectUri = spy('getRedirectUri', redirectUri);
 
 		controller = proxyquire( '../../../../app/controllers/controller.login', {
 			'../lib/service/service.backend': backendService,
@@ -112,6 +110,7 @@ describe( 'Login controller', function(){
 							expect( backendService.getOauthUrl ).toHaveBeenCalled();
 							expect( errorHandler.createHandler ).not.toHaveBeenCalled();
 							expect( res.set ).toHaveBeenCalledWith( 'Set-Cookie', [ createClearUserCookie() ] );
+							expect( getRedirectUri ).toHaveBeenCalledWith( req );
 							expect( res.redirect ).toHaveBeenCalledWith( json.target_url );
 							done();
 						} );

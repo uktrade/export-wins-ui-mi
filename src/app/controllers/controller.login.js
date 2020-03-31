@@ -1,7 +1,7 @@
 const backendService = require( '../lib/service/service.backend' );
 const reporter = require( '../lib/reporter' );
 const getSessionId = require( '../lib/get-session-id' );
-const getLocalCallbackUrl = require('../lib/get-redirect-uri');
+const getRedirectUri = require('../lib/get-redirect-uri');
 const config = require( '../config' );
 
 const MAX_LEN = Number( config.oauthParamLength );
@@ -57,7 +57,7 @@ module.exports = {
 
 	oauth: function( req, res ){
 
-		return backendService.getOauthUrl( req.query.next, getLocalCallbackUrl(req) ).then( ( info ) => {
+		return backendService.getOauthUrl( req.query.next, getRedirectUri(req) ).then( ( info ) => {
 
 			const json = info.data;
 
@@ -93,7 +93,7 @@ module.exports = {
 		const paramLengthOk = code.length < MAX_LEN && state.length < MAX_LEN;
 		const paramContentOk = paramLengthOk && isAlpha.test( code ) && isAlpha.test( state );
 		if( paramContentOk ){
-			const redirectUri = encodeURIComponent(getLocalCallbackUrl(req));
+			const redirectUri = encodeURIComponent(getRedirectUri(req));
 			return backendService.postOauthCallback( `code=${ code }&state=${ state }&redirect_uri=${redirectUri}` ).then( ( info ) => {
 				const response = info.response;
 				const data = info.data;
