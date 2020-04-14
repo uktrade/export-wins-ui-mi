@@ -16,7 +16,7 @@
     "test-all": "run-s test:*",
     "test-mock-unit": "NODE_ENV=development; LOG_LEVEL=error; STUB_MI=false; FAKE_MI=false; MOCK_MI=true; JASMINE_CONFIG_PATH=src/test/app/jasmine.json jasmine",
     "test:unit": "NODE_ENV=development; LOG_LEVEL=error; STUB_MI=false; FAKE_MI=false; MOCK_MI=false; JASMINE_CONFIG_PATH=src/test/app/jasmine.json jasmine",
-    "test:unit:debug": "NODE_ENV=development; LOG_LEVEL=error; STUB_MI=false; FAKE_MI=false; MOCK_MI=false; JASMINE_CONFIG_PATH=src/test/app/jasmine.json node --inspect --debug-brk node_modules/jasmine/bin/jasmine.js",
+    "test:unit:debug": "NODE_ENV=development; LOG_LEVEL=error; STUB_MI=false; FAKE_MI=false; MOCK_MI=false; JASMINE_CONFIG_PATH=src/test/app/jasmine.json node --inspect node_modules/jasmine/bin/jasmine.js",
     "coverage": "npm run clean; NODE_ENV=development; LOG_LEVEL=error; STUB_MI=false; FAKE_MI=false; MOCK_MI=false; JASMINE_CONFIG_PATH=src/test/app/jasmine.json nyc jasmine",
     "test:stubs": "JASMINE_CONFIG_PATH=src/test/data/stubs/jasmine.json jasmine",
     "test:mocks": "JASMINE_CONFIG_PATH=src/test/data/mocks/jasmine.json jasmine",

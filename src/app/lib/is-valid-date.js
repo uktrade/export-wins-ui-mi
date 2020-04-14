@@ -2,7 +2,7 @@
 // Checks a string to see if it is a valid date
 
 // format (YY)YY-M(M)-D(D)
-const dateFormat = /^\d{1,4}[\.|\/|-]\d{1,2}[\.|\/|-]\d{1,2}$/;
+const dateFormat = /^\d{1,4}[.|/|-]\d{1,2}[.|/|-]\d{1,2}$/;
 
 module.exports = function isValidDate( s ){
 
@@ -10,7 +10,7 @@ module.exports = function isValidDate( s ){
 		// remove any leading zeros from date values
 		s = s.replace( /0*(\d*)/gi, '$1' );
 
-		const dateArray = s.split( /[\.|\/|-]/ );
+		const dateArray = s.split( /[.|/|-]/ );
 
 		// correct month value
 		dateArray[ 1 ] = dateArray[ 1 ] - 1;

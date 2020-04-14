@@ -1001,10 +1001,9 @@ if( config.backend.mock ){
 					target_url: 'https://localhost:2000/o/authorize/?response_type=code&client_id=some-id&redirect_uri=http%3A%2F%2Flocalhost%3A9001%2F&state=abcd1234'
 				};
 
-				interceptBackend.get( '/oauth2/auth_url/' ).reply( 200, json );
-
+				interceptBackend.get( /\/oauth2\/auth_url(.*)/ ).reply( 200, json );
 				supertest( app ).get( '/login/' ).end( ( err, res ) => {
-
+					
 					checkResponse( res, 302 );
 					expect( res.headers.location ).toEqual( json.target_url );
 					done();
@@ -1020,7 +1019,7 @@ if( config.backend.mock ){
 
 					const next = '/my/url/';
 
-					interceptBackend.post( '/oauth2/callback/', JSON.stringify( { code: '123abc', state: '234def' } ) ).reply( 200, { next } );
+					interceptBackend.post( '/oauth2/callback/', JSON.stringify( { code: '123abc', state: '234def' } ) ).query(true).reply( 200, { next } );
 
 					supertest( app ).get( '/login/callback/?code=123abc&state=234def' ).end( ( err, res ) => {
 
