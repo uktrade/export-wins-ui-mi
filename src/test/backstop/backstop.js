@@ -95,7 +95,7 @@ module.exports = {
 		ci_report: 'src/test/backstop/data/ci-report'
 	},
 	casperFlags: [],
-	engine: 'phantomjs',
+	engine: 'puppeteer',
 	report: [
 		'browser', 'CI'
 	],
