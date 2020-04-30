@@ -1,9 +1,9 @@
-FROM node:8.12
+FROM node:12.16.2
 
 RUN mkdir /app
 
 COPY package.json /app/package.json
-COPY npm-shrinkwrap.json /app/npm-shrinkwrap.json
+COPY package-lock.json /app/package-lock.json
 COPY Gruntfile.js /app/Gruntfile.js
 COPY server.js /app/server.js
 COPY src /app/src
