@@ -1,3 +1,4 @@
+const config = require( '../../../config' );
 const fdiService = require( '../../../lib/service/service.backend/investment/fdi' );
 const renderError = require( '../../../lib/render-error' );
 const sortSectorProgress = require( '../lib/sort-sector-progress' );
@@ -103,7 +104,8 @@ module.exports = async function( req, res ){
 			dateRange: data.performance.date_range,
 			headlines: performanceHeadlinesViewModel.create( data.performance.results ),
 			details: performanceDetailsViewModel.create( data.performance.results ),
-			tab
+			tab,
+			workspaceUrls: config.urls.dataWorkspace,
 		}, viewData ) );
 
 	} catch( e ){

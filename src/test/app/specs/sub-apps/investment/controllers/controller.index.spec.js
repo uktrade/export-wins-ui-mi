@@ -3,6 +3,7 @@ const proxyquire = require( 'proxyquire' );
 const moduleFile = '../../../../../../app/sub-apps/investment/controllers/controller.index';
 
 let controller;
+let config;
 let fdiService;
 let getSectorsHomepageData;
 let getOverseasRegionsHomepageData;
@@ -44,9 +45,16 @@ describe( 'Index controller', function(){
 		renderErrorHandler = jasmine.createSpy( 'renderErrorHandler' );
 		createHandler = jasmine.createSpy( 'createHandler' ).and.callFake( () => renderErrorHandler );
 
+		config = {
+			urls: {
+				dataWorkspace: { fdi: 'somestring' },
+			}
+		};
+
 		fdiService = { getSectorsHomepageData, getOverseasRegionsHomepageData, getUkRegionsHomepageData };
 
 		controller = proxyquire( moduleFile, {
+			'../../../config': config,
 			'../../../lib/service/service.backend/investment/fdi': fdiService,
 			'../../../lib/render-error': { createHandler },
 			'../lib/sort-sector-progress': sortSectorProgressSpy,
@@ -128,7 +136,8 @@ describe( 'Index controller', function(){
 								isOverseasRegions: false,
 								isUkRegions: false,
 								selected
-							}
+							},
+							workspaceUrls: { fdi: 'somestring' }
 						} );
 
 						done();
@@ -182,7 +191,8 @@ describe( 'Index controller', function(){
 								isOverseasRegions: true,
 								isUkRegions: false,
 								selected: 'os-regions'
-							}
+							},
+							workspaceUrls: { fdi: 'somestring' }
 						} );
 
 						done();
@@ -245,7 +255,8 @@ describe( 'Index controller', function(){
 									isOverseasRegions: false,
 									isUkRegions: true,
 									selected: 'uk-regions'
-								}
+								},
+								workspaceUrls: { fdi: 'somestring' }
 							} );
 
 							done();
@@ -300,7 +311,8 @@ describe( 'Index controller', function(){
 									isOverseasRegions: false,
 									isUkRegions: false,
 									selected
-								}
+								},
+								workspaceUrls: { fdi: 'somestring' }
 							} );
 
 							done();
