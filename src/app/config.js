@@ -60,6 +60,7 @@ let config = {
 			companies: requiredEnv('URL_WORKSPACE_COMPANIES'),
 			contacts: requiredEnv('URL_WORKSPACE_CONTACTS'),
 			fdi: requiredEnv('URL_WORKSPACE_FDI'),
+			fdiDashboard: requiredEnv('URL_WORKSPACE_FDI_DASHBOARD'),
 			sdi: requiredEnv('URL_WORKSPACE_SDI'),
 			clientSurvey: requiredEnv('URL_WORKSPACE_CLIENT_SURVEY'),
 			exportWins: requiredEnv('URL_WORKSPACE_EXPORT_WINS')
