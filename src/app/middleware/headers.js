@@ -20,11 +20,11 @@ module.exports = function( isDev ){
 		res.setHeader( 'X-Content-Type-Options', 'nosniff' );
 		res.setHeader( 'X-Frame-Options', 'deny' );
 		res.setHeader( 'Content-Security-Policy', cspValues );
-		res.setHeader( 'Cache-Control', 'no-cache, no-store' );
+		res.setHeader( 'Cache-Control', 'max-age=0, no-cache, no-store, must-revalidate, private' );
+		res.setHeader( 'Pragma', 'no-cache' );
 
 		if( !isDev ){
-
-			res.setHeader( 'Strict-Transport-Security', 'max-age=31536000; includeSubDomains' );
+			res.setHeader( 'Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload' );
 		}
 
 		next();
