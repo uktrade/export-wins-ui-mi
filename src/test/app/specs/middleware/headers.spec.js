@@ -26,7 +26,8 @@ describe( 'headers middleware', function(){
 		expect( args[ 2 ] ).toEqual( [ 'X-Content-Type-Options', 'nosniff' ] );
 		expect( args[ 3 ] ).toEqual( [ 'X-Frame-Options', 'deny' ] );
 		expect( args[ 4 ][ 0 ] ).toEqual( 'Content-Security-Policy' );
-		expect( args[ 5 ] ).toEqual( [ 'Cache-Control', 'no-cache, no-store' ] );
+		expect( args[ 5 ] ).toEqual( [ 'Cache-Control', 'max-age=0, no-cache, no-store, must-revalidate, private' ] );
+		expect( args[ 6 ] ).toEqual( [ 'Pragma', 'no-cache' ] );
 	}
 
 
@@ -43,7 +44,7 @@ describe( 'headers middleware', function(){
 
 				middleware( req, res, next );
 
-				expect( res.setHeader.calls.count() ).toEqual( 6 );
+				expect( res.setHeader.calls.count() ).toEqual( 7 );
 				checkHeadersForEveryRequest();
 			} );
 		} );
@@ -62,11 +63,11 @@ describe( 'headers middleware', function(){
 
 				middleware( req, res, next );
 
-				const lastArgs = res.setHeader.calls.argsFor( 6 );
+				const lastArgs = res.setHeader.calls.argsFor( 7 );
 
-				expect( res.setHeader.calls.count() ).toEqual( 7 );
+				expect( res.setHeader.calls.count() ).toEqual( 8 );
 				checkHeadersForEveryRequest();
-				expect( lastArgs ).toEqual( [ 'Strict-Transport-Security', 'max-age=31536000; includeSubDomains' ] );
+				expect( lastArgs ).toEqual( [ 'Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload' ] );
 			} );
 		} );
 	} );

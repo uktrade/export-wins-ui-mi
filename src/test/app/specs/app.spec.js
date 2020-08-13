@@ -33,7 +33,8 @@ function checkResponse( res, statusCode ){
 	expect( headers[ 'x-xss-protection' ] ).toBeDefined();
 	expect( headers[ 'x-content-type-options' ] ).toBeDefined();
 	expect( headers[ 'x-frame-options' ] ).toBeDefined();
-	expect( headers[ 'cache-control' ] ).toEqual( 'no-cache, no-store' );
+	expect( headers[ 'cache-control' ] ).toEqual( 'max-age=0, no-cache, no-store, must-revalidate, private' );
+	expect( headers[ 'pragma' ] ).toEqual( 'no-cache' );
 }
 
 describe( 'App', function(){
