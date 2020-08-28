@@ -66,7 +66,7 @@ if( config.backend.mock ){
 				supertest( app ).get( '/win/' ).end( ( err, res ) => {
 
 					expect( res.statusCode ).toEqual( 200 );
-					expect( getTitle( res ) ).toEqual( 'MI - Win detail' );
+					expect( getTitle( res ) ).toEqual( 'Dashboards - Win detail' );
 					done();
 				} );
 			} );
@@ -112,7 +112,7 @@ if( config.backend.mock ){
 					supertest( app ).get( '/downloads/' ).end( ( err, res ) => {
 
 						checkResponse( res, 200 );
-						expect( getTitle( res ) ).toEqual( 'MI - Download raw data' );
+						expect( getTitle( res ) ).toEqual( 'Dashboards - Data download - DIT Data Hub' );
 						done();
 					} );
 				} );
@@ -146,7 +146,7 @@ if( config.backend.mock ){
 					supertest( app ).get( '/select-date/' ).end( ( err, res ) => {
 
 						checkResponse( res, 200 );
-						expect( getTitle( res ) ).toEqual( 'MI - Choose date range' );
+						expect( getTitle( res ) ).toEqual( 'Dashboards - Choose date range - DIT Data Hub' );
 						done();
 					} );
 				} );
@@ -160,7 +160,7 @@ if( config.backend.mock ){
 
 						supertest( app ).get( '/select-date/2016/' ).end( ( err, res ) => {
 
-							expect( getTitle( res ) ).toEqual( 'MI - Choose 2016 financial year start and end dates');
+							expect( getTitle( res ) ).toEqual( 'Dashboards - Choose 2016 financial year start and end dates - DIT Data Hub');
 							done();
 						} );
 					} );
@@ -172,7 +172,7 @@ if( config.backend.mock ){
 
 						supertest( app ).get( '/select-date/2017/' ).end( ( err, res ) => {
 
-							expect( getTitle( res ) ).toEqual( 'MI - Choose 2017 financial year start and end dates');
+							expect( getTitle( res ) ).toEqual( 'Dashboards - Choose 2017 financial year start and end dates - DIT Data Hub');
 							done();
 						} );
 					} );
@@ -197,7 +197,7 @@ if( config.backend.mock ){
 						supertest( app ).get( '/' ).end( ( err, res ) => {
 
 							checkResponse( res, 200 );
-							expect( getTitle( res ) ).toEqual( 'MI - Homepage' );
+							expect( getTitle( res ) ).toEqual( 'Dashboards - Export performance - DIT Data Hub' );
 							done();
 						} );
 					} );
@@ -215,7 +215,7 @@ if( config.backend.mock ){
 							supertest( app ).get( '/?date[start]=1234' ).end( ( err, res ) => {
 
 								checkResponse( res, 200 );
-								expect( getTitle( res ) ).toEqual( 'MI - Homepage' );
+								expect( getTitle( res ) ).toEqual( 'Dashboards - Export performance - DIT Data Hub' );
 								done();
 							} );
 						} );
@@ -234,7 +234,7 @@ if( config.backend.mock ){
 							supertest( app ).get( '/?date[end]=6789' ).end( ( err, res ) => {
 
 								checkResponse( res, 200 );
-								expect( getTitle( res ) ).toEqual( 'MI - Homepage' );
+								expect( getTitle( res ) ).toEqual( 'Dashboards - Export performance - DIT Data Hub' );
 								done();
 							} );
 						} );
@@ -291,7 +291,7 @@ if( config.backend.mock ){
 							supertest( app ).get( '/sector-teams/' ).end( ( err, res ) => {
 
 								checkResponse( res, 200 );
-								expect( getTitle( res ) ).toEqual( 'MI - Sector Teams Overview' );
+								expect( getTitle( res ) ).toEqual( 'Dashboards - Sector Teams Overview - DIT Data Hub' );
 								done();
 							} );
 						} );
@@ -312,7 +312,7 @@ if( config.backend.mock ){
 							supertest( app ).get( '/sector-teams/1/' ).end( ( err, res ) => {
 
 								checkResponse( res, 200 );
-								expect( getTitle( res ) ).toEqual( 'MI - Sector team performance - distinctio quas &amp; numquam' );
+								expect( getTitle( res ) ).toEqual( 'Dashboards - Sector team performance - distinctio quas &amp; numquam - DIT Data Hub' );
 								done();
 							} );
 						} );
@@ -330,7 +330,7 @@ if( config.backend.mock ){
 							supertest( app ).get( '/sector-teams/12345/' ).end( ( err, res ) => {
 
 								checkResponse( res, 404 );
-								expect( getTitle( res ) ).toEqual( 'MI - Not found' );
+								expect( getTitle( res ) ).toEqual( 'Dashboards - Not found - DIT Data Hub' );
 								done();
 							} );
 						} );
@@ -348,7 +348,7 @@ if( config.backend.mock ){
 							supertest( app ).get( '/sector-teams/1/wins/' ).end( ( err, res ) => {
 
 								checkResponse( res, 200 );
-								expect( getTitle( res ) ).toEqual( 'MI - Sector team HVC wins - animi architecto nam' );
+								expect( getTitle( res ) ).toEqual( 'Dashboards - Sector team HVC wins - animi architecto nam - DIT Data Hub' );
 								done();
 							} );
 						} );
@@ -366,7 +366,7 @@ if( config.backend.mock ){
 							supertest( app ).get( '/sector-teams/1/non-hvc-wins/' ).end( ( err, res ) => {
 
 								checkResponse( res, 200 );
-								expect( getTitle( res ) ).toEqual( 'MI - Sector team non HVC wins - animi architecto nam' );
+								expect( getTitle( res ) ).toEqual( 'Dashboards - Sector team non HVC wins - animi architecto nam - DIT Data Hub' );
 								done();
 							} );
 						} );
@@ -404,7 +404,7 @@ if( config.backend.mock ){
 							supertest( app ).get( '/hvc-groups/' ).end( ( err, res ) => {
 
 								checkResponse( res, 200 );
-								expect( getTitle( res ) ).toEqual( 'MI - HVC Groups' );
+								expect( getTitle( res ) ).toEqual( 'Dashboards - HVC Groups - DIT Data Hub' );
 								done();
 							} );
 						} );
@@ -424,7 +424,7 @@ if( config.backend.mock ){
 							supertest( app ).get( '/hvc-groups/1/' ).end( ( err, res ) => {
 
 								checkResponse( res, 200 );
-								expect( getTitle( res ) ).toEqual( 'MI - HVC group performance - sunt laborum &amp; quos' );
+								expect( getTitle( res ) ).toEqual( 'Dashboards - HVC group performance - sunt laborum &amp; quos - DIT Data Hub' );
 								done();
 							} );
 						} );
@@ -442,7 +442,7 @@ if( config.backend.mock ){
 							supertest( app ).get( '/hvc-groups/1/wins/' ).end( ( err, res ) => {
 
 								checkResponse( res, 200 );
-								expect( getTitle( res ) ).toEqual( 'MI - HVC group wins - dolorem quos vero' );
+								expect( getTitle( res ) ).toEqual( 'Dashboards - HVC group wins - dolorem quos vero - DIT Data Hub' );
 								done();
 							} );
 						} );
@@ -464,7 +464,7 @@ if( config.backend.mock ){
 						supertest( app ).get( `/hvc/${ hvcId }/` ).end( ( err, res ) => {
 
 							expect( res.statusCode ).toEqual( 200 );
-							expect( getTitle( res ) ).toEqual( 'MI - HVC performance - rerum blanditiis rerum' );
+							expect( getTitle( res ) ).toEqual( 'Dashboards - HVC performance - rerum blanditiis rerum - DIT Data Hub' );
 							done();
 						} );
 					} );
@@ -481,7 +481,7 @@ if( config.backend.mock ){
 						supertest( app ).get( `/hvc/${ hvcId }/wins/` ).end( ( err, res ) => {
 
 							expect( res.statusCode ).toEqual( 200 );
-							expect( getTitle( res ) ).toEqual( 'MI - HVC wins - non mollitia qui' );
+							expect( getTitle( res ) ).toEqual( 'Dashboards - HVC wins - non mollitia qui - DIT Data Hub' );
 							done();
 						} );
 					} );
@@ -502,7 +502,7 @@ if( config.backend.mock ){
 							supertest( app ).get( '/overseas-regions/' ).end( ( err, res ) => {
 
 								checkResponse( res, 200 );
-								expect( getTitle( res ) ).toEqual( 'MI - Overseas Regions Overview' );
+								expect( getTitle( res ) ).toEqual( 'Dashboards - Overseas Regions Overview - DIT Data Hub' );
 								done();
 							} );
 						} );
@@ -523,7 +523,7 @@ if( config.backend.mock ){
 							supertest( app ).get( '/overseas-regions/1/' ).end( ( err, res ) => {
 
 								checkResponse( res, 200 );
-								expect( getTitle( res ) ).toEqual( 'MI - Overseas region performance - minima explicabo &amp; architecto' );
+								expect( getTitle( res ) ).toEqual( 'Dashboards - Overseas region performance - minima explicabo &amp; architecto - DIT Data Hub' );
 								done();
 							} );
 						} );
@@ -541,7 +541,7 @@ if( config.backend.mock ){
 							supertest( app ).get( '/overseas-regions/1/wins/' ).end( ( err, res ) => {
 
 								checkResponse( res, 200 );
-								expect( getTitle( res ) ).toEqual( 'MI - Overseas region HVC wins - sed blanditiis dolorum' );
+								expect( getTitle( res ) ).toEqual( 'Dashboards - Overseas region HVC wins - sed blanditiis dolorum - DIT Data Hub' );
 								done();
 							} );
 						} );
@@ -559,7 +559,7 @@ if( config.backend.mock ){
 							supertest( app ).get( '/overseas-regions/1/non-hvc-wins/' ).end( ( err, res ) => {
 
 								checkResponse( res, 200 );
-								expect( getTitle( res ) ).toEqual( 'MI - Overseas region non HVC wins - sed blanditiis dolorum' );
+								expect( getTitle( res ) ).toEqual( 'Dashboards - Overseas region non HVC wins - sed blanditiis dolorum - DIT Data Hub' );
 								done();
 							} );
 						} );
@@ -597,7 +597,7 @@ if( config.backend.mock ){
 							supertest( app ).get( '/countries/' ).end( ( err, res ) => {
 
 								checkResponse( res, 200 );
-								expect( getTitle( res ) ).toEqual( 'MI - Countries' );
+								expect( getTitle( res ) ).toEqual( 'Dashboards - Countries - DIT Data Hub' );
 								done();
 							} );
 						} );
@@ -620,7 +620,7 @@ if( config.backend.mock ){
 							supertest( app ).get( `/countries/${ countryCode }/` ).end( ( err, res ) => {
 
 								checkResponse( res, 200 );
-								expect( getTitle( res ) ).toEqual( 'MI - Country performance - atque molestiae ducimus' );
+								expect( getTitle( res ) ).toEqual( 'Dashboards - Country performance - atque molestiae ducimus - DIT Data Hub' );
 								done();
 							} );
 						} );
@@ -638,7 +638,7 @@ if( config.backend.mock ){
 							supertest( app ).get( '/countries/AU/wins/' ).end( ( err, res ) => {
 
 								checkResponse( res, 200 );
-								expect( getTitle( res ) ).toEqual( 'MI - Country HVC wins - atque at atque' );
+								expect( getTitle( res ) ).toEqual( 'Dashboards - Country HVC wins - atque at atque - DIT Data Hub' );
 								done();
 							} );
 						} );
@@ -656,7 +656,7 @@ if( config.backend.mock ){
 							supertest( app ).get( '/countries/AU/non-hvc-wins/' ).end( ( err, res ) => {
 
 								checkResponse( res, 200 );
-								expect( getTitle( res ) ).toEqual( 'MI - Country non HVC wins - atque at atque' );
+								expect( getTitle( res ) ).toEqual( 'Dashboards - Country non HVC wins - atque at atque - DIT Data Hub' );
 								done();
 							} );
 						} );
@@ -696,7 +696,7 @@ if( config.backend.mock ){
 							supertest( app ).get( '/posts/' ).end( ( err, res ) => {
 
 								checkResponse( res, 200 );
-								expect( getTitle( res ) ).toEqual( 'MI - Posts' );
+								expect( getTitle( res ) ).toEqual( 'Dashboards - Posts - DIT Data Hub' );
 								done();
 							} );
 						} );
@@ -717,7 +717,7 @@ if( config.backend.mock ){
 							supertest( app ).get( `/posts/${ postId }/` ).end( ( err, res ) => {
 
 								checkResponse( res, 200 );
-								expect( getTitle( res ) ).toEqual( 'MI - Post performance - quisquam provident aut' );
+								expect( getTitle( res ) ).toEqual( 'Dashboards - Post performance - quisquam provident aut - DIT Data Hub' );
 								done();
 							} );
 						} );
@@ -735,7 +735,7 @@ if( config.backend.mock ){
 							supertest( app ).get( `/posts/${ postId }/wins/` ).end( ( err, res ) => {
 
 								checkResponse( res, 200 );
-								expect( getTitle( res ) ).toEqual( 'MI - Post HVC wins - fuga libero id' );
+								expect( getTitle( res ) ).toEqual( 'Dashboards - Post HVC wins - fuga libero id - DIT Data Hub' );
 								done();
 							} );
 						} );
@@ -753,7 +753,7 @@ if( config.backend.mock ){
 							supertest( app ).get( `/posts/${ postId }/non-hvc-wins/` ).end( ( err, res ) => {
 
 								checkResponse( res, 200 );
-								expect( getTitle( res ) ).toEqual( 'MI - Post non HVC wins - fuga libero id' );
+								expect( getTitle( res ) ).toEqual( 'Dashboards - Post non HVC wins - fuga libero id - DIT Data Hub' );
 								done();
 							} );
 						} );
@@ -793,7 +793,7 @@ if( config.backend.mock ){
 							supertest( app ).get( '/uk-regions/' ).end( ( err, res ) => {
 
 								checkResponse( res, 200 );
-								expect( getTitle( res ) ).toEqual( 'MI - UK Regions' );
+								expect( getTitle( res ) ).toEqual( 'Dashboards - UK Regions - DIT Data Hub' );
 								done();
 							} );
 						} );
@@ -813,7 +813,7 @@ if( config.backend.mock ){
 							supertest( app ).get( `/uk-regions/${ regionId }/` ).end( ( err, res ) => {
 
 								checkResponse( res, 200 );
-								expect( getTitle( res ) ).toEqual( 'MI - UK Region performance - tenetur et et' );
+								expect( getTitle( res ) ).toEqual( 'Dashboards - UK Region performance - tenetur et et - DIT Data Hub' );
 								done();
 							} );
 						} );
@@ -831,7 +831,7 @@ if( config.backend.mock ){
 							supertest( app ).get( `/uk-regions/${ regionId }/wins/` ).end( ( err, res ) => {
 
 								checkResponse( res, 200 );
-								expect( getTitle( res ) ).toEqual( 'MI - UK Region HVC wins - ut ducimus dolorem' );
+								expect( getTitle( res ) ).toEqual( 'Dashboards - UK Region HVC wins - ut ducimus dolorem - DIT Data Hub' );
 								done();
 							} );
 						} );
@@ -849,7 +849,7 @@ if( config.backend.mock ){
 							supertest( app ).get( `/uk-regions/${ regionId }/non-hvc-wins/` ).end( ( err, res ) => {
 
 								checkResponse( res, 200 );
-								expect( getTitle( res ) ).toEqual( 'MI - UK Region non HVC wins - ut ducimus dolorem' );
+								expect( getTitle( res ) ).toEqual( 'Dashboards - UK Region non HVC wins - ut ducimus dolorem - DIT Data Hub' );
 								done();
 							} );
 						} );
@@ -1069,7 +1069,7 @@ if( config.backend.mock ){
 			supertest( app ).get( '/abc123' ).end( ( err, res ) => {
 
 				checkResponse( res, 404 );
-				expect( getTitle( res ) ).toEqual( 'MI - Not found' );
+				expect( getTitle( res ) ).toEqual( 'Dashboards - Not found - DIT Data Hub' );
 				done();
 			} );
 		} );
