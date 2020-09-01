@@ -1,6 +1,6 @@
 {
 	"name": "export-wins-ui-mi",
-	"version": "8.2.0",
+	"version": "8.4.0",
 	"description": "An MI dashboard for Data Hub",
 	"main": "server.js",
 	"engines": {
