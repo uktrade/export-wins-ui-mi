@@ -18,7 +18,7 @@ describe( '404 Page', function(){
 
 			driver.getTitle().then( ( text ) => {
 
-				expect( text ).toEqual( 'MI - Not found' );
+				expect( text ).toEqual( 'Dashboards - Not found - DIT Data Hub' );
 				done();
 
 			} ).catch( done.fail );
