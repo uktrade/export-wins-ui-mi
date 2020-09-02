@@ -215,7 +215,9 @@ Heroku will auto build and deploy from develop onto the ITHC env.
 
 ## Staging/Production
 
-Heroku will auto build master on to the staging environment but you will need to use the "Promote to Production" button on the Heroku dashboard to deploy to Production.
+The staging and production environments both require manual deployments. To to this, go to the Jenkins project `datahub-mi` and click on `Build with parameters`. Select `staging` from the dropdown list and enter the git tag you have created into the `Git_Commit` field. Once you have done this, press the `Build` button.
+
+Once your changes have deployed successfully to staging, you can deploy to production by following the same process, but selecting `prod` in the dropdown.
 
 # Docker compose
 
