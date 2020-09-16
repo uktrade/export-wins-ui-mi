@@ -20,7 +20,7 @@ describe('Index controller', function () {
 		controller = proxyquire('../../../../app/controllers/controller.index', {
 			'../lib/service/service.backend': { export: exportBackendService },
 			'../lib/render-error': errorHandler,
-			'../lib/view-models/global-summary': globalSummary,
+			'../lib/view-models/global-summary': globalSummary
 		});
 	});
 
@@ -93,7 +93,7 @@ describe('Index controller', function () {
 							sectorTeams: sectorTeams.results,
 							overseasRegionGroups: overseasRegionGroups.results,
 							ukRegions: ukRegions.results,
-							globalHvcs: ['globalHvcs'],
+							globalHvcs: [true],
 							summary: globalSummaryData
 						});
 						expect(errorHandler.createHandler).toHaveBeenCalledWith(req, res);
@@ -126,7 +126,7 @@ describe('Index controller', function () {
 							sectorTeams: sectorTeams.results,
 							overseasRegionGroups: overseasRegionGroups.results,
 							ukRegions: ukRegions.results,
-							globalHvcs: ['globalHvcs'],
+							globalHvcs: [true],
 							summary: globalSummaryData
 						});
 						expect(errorHandler.createHandler).toHaveBeenCalledWith(req, res);
