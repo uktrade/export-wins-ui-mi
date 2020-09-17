@@ -53,7 +53,12 @@ describe('Index controller', function () {
 			sectorTeams = { results: { sectorTeams: true } };
 			overseasRegionGroups = { results: { overseasRegionGroups: true } };
 			ukRegions = { results: { ukRegions: true } };
-			globalHvcs = { results: ['{ globalHvcs: true }'] };
+			globalHvcs = { results: [
+				{ name: 'voluptatibus et aut', code: 'E35' },
+				{ name: 'accusamus minus inventore', code: 'E191' },
+				{ name: 'vitae tenetur quis', code: 'E25' }
+			]
+			};
 			globalWins = { date_range: { test: 1 }, results: { globalWins: true } };
 
 			promise = new Promise((resolve) => {
