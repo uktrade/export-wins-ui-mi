@@ -4,7 +4,6 @@ Export Wins MI
 A front end project to show some MI data for Data Hub
 
 [![Build Status](https://circleci.com/gh/uktrade/export-wins-ui-mi.svg?style=shield)](https://circleci.com/gh/uktrade/export-wins-ui-mi)
-[![Dependency Status](https://img.shields.io/gemnasium/uktrade/export-wins-ui-mi.svg?style=flat&label=dependencies)](https://gemnasium.com/github.com/uktrade/export-wins-ui-mi)
 
 ## Dependenies
 
