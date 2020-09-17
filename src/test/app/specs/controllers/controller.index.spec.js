@@ -61,13 +61,6 @@ describe('Index controller', function () {
 				{ name: 'vitae tenetur quis', code: 'E25' },
 			]
 			};
-
-			globalHvcsNoDuplicates = { results: [
-				{ name: 'voluptatibus et aut', code: 'E35' },
-				{ name: 'accusamus minus inventore', code: 'E191' },
-				{ name: 'vitae tenetur quis', code: 'E25' },
-			]
-			};
 			
 			globalWins = { date_range: { test: 1 }, results: { globalWins: true } };
 
@@ -108,7 +101,7 @@ describe('Index controller', function () {
 							sectorTeams: sectorTeams.results,
 							overseasRegionGroups: overseasRegionGroups.results,
 							ukRegions: ukRegions.results,
-							globalHvcs: globalHvcsNoDuplicates.results,
+							globalHvcs: globalHvcs.results.slice(0,3),
 							summary: globalSummaryData
 						});
 						expect(errorHandler.createHandler).toHaveBeenCalledWith(req, res);
@@ -140,7 +133,7 @@ describe('Index controller', function () {
 							sectorTeams: sectorTeams.results,
 							overseasRegionGroups: overseasRegionGroups.results,
 							ukRegions: ukRegions.results,
-							globalHvcs: globalHvcsNoDuplicates.results,
+							globalHvcs: globalHvcs.results.slice(0,3),
 							summary: globalSummaryData
 						});
 						expect(errorHandler.createHandler).toHaveBeenCalledWith(req, res);
