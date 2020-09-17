@@ -32,6 +32,7 @@ describe('Index controller', function () {
 		let overseasRegionGroups;
 		let ukRegions;
 		let globalHvcs;
+		let globalHvcsNoDuplicates;
 		let globalWins;
 		let promise;
 
@@ -56,9 +57,18 @@ describe('Index controller', function () {
 			globalHvcs = { results: [
 				{ name: 'voluptatibus et aut', code: 'E35' },
 				{ name: 'accusamus minus inventore', code: 'E191' },
-				{ name: 'vitae tenetur quis', code: 'E25' }
+				{ name: 'vitae tenetur quis', code: 'E25' },
+				{ name: 'vitae tenetur quis', code: 'E25' },
 			]
 			};
+
+			globalHvcsNoDuplicates = { results: [
+				{ name: 'voluptatibus et aut', code: 'E35' },
+				{ name: 'accusamus minus inventore', code: 'E191' },
+				{ name: 'vitae tenetur quis', code: 'E25' },
+			]
+			};
+			
 			globalWins = { date_range: { test: 1 }, results: { globalWins: true } };
 
 			promise = new Promise((resolve) => {
@@ -98,7 +108,7 @@ describe('Index controller', function () {
 							sectorTeams: sectorTeams.results,
 							overseasRegionGroups: overseasRegionGroups.results,
 							ukRegions: ukRegions.results,
-							globalHvcs: globalHvcs.results,
+							globalHvcs: globalHvcsNoDuplicates.results,
 							summary: globalSummaryData
 						});
 						expect(errorHandler.createHandler).toHaveBeenCalledWith(req, res);
@@ -130,7 +140,7 @@ describe('Index controller', function () {
 							sectorTeams: sectorTeams.results,
 							overseasRegionGroups: overseasRegionGroups.results,
 							ukRegions: ukRegions.results,
-							globalHvcs: globalHvcs.results,
+							globalHvcs: globalHvcsNoDuplicates.results,
 							summary: globalSummaryData
 						});
 						expect(errorHandler.createHandler).toHaveBeenCalledWith(req, res);
