@@ -32,7 +32,6 @@ describe('Index controller', function () {
 		let overseasRegionGroups;
 		let ukRegions;
 		let globalHvcs;
-		let globalHvcsNoDuplicates;
 		let globalWins;
 		let promise;
 
