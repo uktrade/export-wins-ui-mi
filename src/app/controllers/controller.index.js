@@ -9,7 +9,7 @@ module.exports = function (req, res) {
 		const overseasRegionGroups = data.overseasRegionGroups.results;
 		const ukRegions = data.ukRegions.results;
 		const globalHvcs = data.globalHvcs.results.filter((hvc, index, self) =>
-			index === self.findIndex((hvc2) => hvc.name === hvc2.name)
+			index === self.findIndex((hvc2) => hvc.code === hvc2.code)
 		);
 		const summary = globalSummary.create(data.globalWins);
 		res.render('index.html', { sectorTeams, overseasRegionGroups, ukRegions, globalHvcs, summary });

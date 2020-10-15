@@ -139,7 +139,7 @@
 			<ul class="global-hvc-list">
 				{% for hvc in globalHvcs %}
 					<li>
-						<a href="{{ urls.hvc( hvc.code ) }}">{{ hvc.name }}</a>
+						<a href="{{ urls.hvc( hvc.code ) }}">{{ hvc.code }}</a>
 					</li>
 				{% endfor %}
 			</ul>
