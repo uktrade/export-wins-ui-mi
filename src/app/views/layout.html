@@ -5,9 +5,9 @@
 {% block page_title %}Dashboards - {{ pageName }} - DIT Data Hub{% endblock page_title %}
 
 {% block head %}
-<!-- build:css(src) /public/css/app.min.css -->
+	<!-- main:css -->
 	<link rel="stylesheet" href="/public/css/main.css">
-<!-- endbuild -->
+  <!-- endinject -->
 {% endblock head %}
 
 {% block content %}
@@ -44,17 +44,17 @@
 
 {% block body_end %}
 	{%- block script -%}
-	<!-- build:js(src) /public/js/jessie.min.js -->
+	<!-- vendor:js -->
 	<script src="/public/js/vendor/jessie/jessie.js"></script>
-	<!-- endbuild -->
-	<!-- build:js(src) /public/js/app.min.js -->
+	<!-- endinject -->
+	<!-- layout:js -->
 		<script src="/public/js/mi.js"></script>
 		<script src="/public/js/components/component.target-progress.js"></script>
 		<script src="/public/js/components/component.top-non-hvcs.js"></script>
 		<script src="/public/js/pages/page.sector.js"></script>
 		<script src="/public/js/pages/page.hvc.js"></script>
 		<script src="/public/js/pages/page.uk-region.js"></script>
-	<!-- endbuild -->
+	<!-- endinject -->
 	{%- endblock script -%}
 
 	{%- block pageScript %}{% endblock pageScript -%}
