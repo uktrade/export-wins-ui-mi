@@ -19,7 +19,9 @@
 		#}
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta property="og:image" content="/public/img/opengraph-image.png">
+		<!-- layout:css -->
 		<link href="/public/css/layout.css" media="screen" rel="stylesheet">
+		  <!-- endinject -->
 		{% block head %}{% endblock -%}
 		{% block head_styles %}{% endblock -%}
 		{% block head_script %}{% endblock -%}
@@ -74,10 +76,10 @@
 
 		{%- block footer %}{% endblock -%}
 
-		<!-- build:js({src,node_modules/@uktrade}) /public/js/layout.min.js -->
+		<!-- base:js -->
 		<script src="/datahub-header/component/header.js"></script>
 		<script src="/public/js/layout.js"></script>
-		<!-- endbuild -->
+		<!-- endinject -->
 		{% block body_end %}{% endblock %}
 		{% block body_end_scripts %}{% endblock %}
 	</body>
