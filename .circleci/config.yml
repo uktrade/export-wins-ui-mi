@@ -42,7 +42,7 @@ jobs:
           HAWK_ACCESS_KEY_ID: "123"
           HAWK_SECRET_ACCESS_KEY: "456"
         command: ./start-wait-for-db.sh
-      - image: grokzen/redis-cluster:3.2.11
+      - image: rahul342/redis-cluster-3.2.10
         environment:
           CLUSTER_ONLY: true
       - image: selenium/standalone-chrome:3.7
