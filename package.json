@@ -41,7 +41,8 @@
 		"build:dist": "gulp dist && npm run dist-install",
 		"dist": "npm run build:dist && npm run start",
 		"dist-install": "cd dist && npm install --production",
-		"lint": "eslint ."
+		"lint": "eslint .",
+		"preinstall": "npx force-resolutions"
 	},
 	"repository": {
 		"type": "git",
@@ -114,5 +115,8 @@
 	},
 	"optionalDependencies": {
 		"fsevents": "*"
+	},
+	"resolutions": {
+		"set-value": "4.0.1"
 	}
 }
