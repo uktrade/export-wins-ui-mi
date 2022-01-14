@@ -105,7 +105,7 @@ const injectInvestmentCss = () =>
 
 const concatBaseTemplateJs = () =>
 	src([
-		"./node_modules/@uktrade/datahub-header/component/header.js",
+		"src/public/js/components/header.js",
 		"src/public/js/layout.js",
 	])
 		.pipe(gulpUglify())
