@@ -5,7 +5,7 @@ A front end project to show some MI data for Data Hub
 
 [![Build Status](https://circleci.com/gh/uktrade/export-wins-ui-mi.svg?style=shield)](https://circleci.com/gh/uktrade/export-wins-ui-mi)
 
-## Dependenies
+## Dependencies
 
 All dependencies come from NPM
 
