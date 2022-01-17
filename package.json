@@ -60,7 +60,6 @@
 	},
 	"homepage": "https://github.com/uktrade/export-wins-ui-mi#readme",
 	"dependencies": {
-		"@uktrade/datahub-header": "1.2.5",
 		"compression": "^1.7.4",
 		"cookie-parser": "^1.4.5",
 		"csurf": "^1.11.0",
@@ -117,6 +116,7 @@
 		"fsevents": "*"
 	},
 	"resolutions": {
-		"set-value": "4.0.1"
+		"set-value": "4.0.1",
+		"json-schema": "0.4.0"
 	}
 }
