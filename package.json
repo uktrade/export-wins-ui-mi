@@ -69,7 +69,7 @@
 		"morgan": "^1.10.0",
 		"normalize-strings": "1.1.1",
 		"normalize-url": "^7.0.3",
-		"nunjucks": "^3.2.1",
+		"nunjucks": "^3.2.3",
 		"random-int": "^2.0.1",
 		"raven": "^2.6.4",
 		"request": "^2.88.2",
