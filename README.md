@@ -1,5 +1,4 @@
-Export Wins MI
-==============
+# Export Wins MI
 
 A front end project to show some MI data for Data Hub
 
@@ -36,7 +35,6 @@ npm start
 This will use server.js to run the app as a child process, if the child process crashes then it will be respawned.
 
 If the SERVER_WORKERS env variable is set to more than 1, it will use the cluster module and will spin up x amount of workers as specified.
-
 
 To run just the app directly (not as a child process from server.js):
 
@@ -84,7 +82,7 @@ Now you can stop the db and backend from running and the app will still work.
 
 ### Docker
 
-The [image for this project](https://hub.docker.com/r/ukti/export-wins-ui-mi/tags/) is created automatically in Docker Hub, to run it you need to have some env variables created, as specified in the [env emplate](.env.template) and then use the following command:
+The [image for this project](https://hub.docker.com/r/ukti/export-wins-ui-mi/tags/) is created automatically in Docker Hub, to run it you need to have some env variables created, as specified in the [env template](.env.template) and then use the following command:
 
 #### Linux:
 
@@ -210,6 +208,7 @@ Now you can create a PR in github, but you will have to wait for CircleCI to bui
 # Deploy
 
 ## ITHC
+
 Heroku will auto build and deploy from develop onto the ITHC env.
 
 ## Staging/Production
@@ -241,5 +240,3 @@ And use a script to generate some data, or to start a clean db, use compose with
 ```bash
 docker-compose -f docker-compose.yml -f docker-compose.clean.yml up
 ```
-
-
