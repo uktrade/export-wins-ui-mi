@@ -73,7 +73,7 @@
 		"random-int": "^2.0.1",
 		"raven": "^2.6.4",
 		"request": "^2.88.2",
-		"universal-analytics": "^0.4.20",
+		"universal-analytics": "^0.5.3",
 		"winston": "2.4.1"
 	},
 	"devDependencies": {
