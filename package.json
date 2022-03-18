@@ -117,6 +117,8 @@
 	},
 	"resolutions": {
 		"set-value": "4.0.1",
-		"json-schema": "0.4.0"
+		"json-schema": "0.4.0",
+		"ansi-regex": "5.0.1",
+		"yargs-parser": "5.0.1"
 	}
 }
