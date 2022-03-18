@@ -16,7 +16,7 @@ After checkout run:
 npm install
 ```
 
-You will also need some environment variables created before you can start the app, take a look at the [env template](.env.template) file.
+You will also need some environment variables created before you can start the app, take a look at the [env template](.env.template) file with command `source .env.template`.
 
 To make life easier setup an shell extension to read a .env or .envrc file and setup env vars for you, like [direnv](https://direnv.net/), then ensure you have the correct env variables set.
 
