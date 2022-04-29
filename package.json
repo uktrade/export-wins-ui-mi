@@ -120,6 +120,7 @@
 		"json-schema": "0.4.0",
 		"ansi-regex": "5.0.1",
 		"yargs-parser": "5.0.1",
-		"minimist": "^1.2.6"
+		"minimist": "^1.2.6",
+		"async": "^2.6.4"
 	}
 }
