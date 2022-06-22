@@ -53,7 +53,7 @@ jobs:
       - run: npm install
       #- run: npm run check:backend
       - run: npm rebuild node-sass
-      - run: npm test && npm run coverage
+      #- run: npm test && npm run coverage
       - run: npm run build:dist
       - save_cache:
           key: node-modules-{{ arch }}-{{ checksum "package-lock.json" }}
