@@ -1,5 +1,5 @@
 const webdriver = require( 'selenium-webdriver' );
-const AxeBuilder = require( 'axe-webdriverjs' );
+const AxeBuilder = require( '@axe-core/webdriverjs' );
 
 const fetch = require( '../../helpers/fetch' );
 const driver = require( '../../helpers/driver' );

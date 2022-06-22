@@ -1,4 +1,4 @@
-const AxeBuilder = require( 'axe-webdriverjs' );
+const AxeBuilder = require( '@axe-core/webdriverjs' );
 
 const driver = require( './driver' );
 const writeReport = require( './write-report' );
